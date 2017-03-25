@@ -1,0 +1,28 @@
+<h1 class="page-header">Deeds</h1>
+<div class="deeds">
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>DeedRef</th>
+          <th>DeedDate</th>
+          <th>DeedName</th>
+          <th>DeedLanguage</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let deed of deeds'>
+          <td>{{ deed.DeedRef }}</td>
+          <td>{{ deed.DeedDate }}</td>
+          <td>{{ deed.Deedname }}</td>
+          <td>{{ deed.DeedLanguage }}</td>
+          <td>
+            <a href="#" class="btn btn-info">Details</a>
+            <a href="#" class="btn btn-default">Edit</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
