@@ -123,5 +123,3 @@ app.delete("/api/deeds/:id", (req, res) => {
  		}
  	});
 });
-
-
