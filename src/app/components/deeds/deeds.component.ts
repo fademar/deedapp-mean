@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DeedService } from '../../services/deed.service'
+import { DeedService } from '../../services/deed.service';
 
 @Component({
 	selector: 'app-deeds',

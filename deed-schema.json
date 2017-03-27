@@ -1,0 +1,239 @@
+
+        { 
+        "DeedRef": {
+            "type": "string",
+            "title": "DeedRef",
+            "required": true
+        },
+        "DeedDate": {
+            "type": "string",
+            "title": "DeedDate"
+        },
+        "DeedName": {
+            "type": "string",
+            "title": "DeedName"
+        },
+        "DeedLanguage": {
+            "type": "string",
+            "title": "DeedLanguage",
+            "default": "russian"
+        },
+        "AgentSex": {
+            "type": "string",
+            "enum": ["M", "F"]
+        },
+        "AgentSexM": {
+            "type": "object",
+            "title": "AgentSexM",
+            "properties": {
+                "geogrStatus": {"type": "string", "title": "geogrStatus"},
+                "socialStatus": {"type": "string"}, 
+                "firstName": {"type": "string"}, 
+                "patronyme": {"type": "string"}, 
+                "lastName": {"type": "string"}, 
+                "relatedTo": {"type": "string"}
+            }
+        },      
+        "AgentSexF": {
+            "type": "object",
+            "properties": {
+                "familyStatus": {"type": "string"}, 
+                "firstName": {"type": "string"}, 
+                "patronyme": {"type": "string"}, 
+                "relatedTo": {"type": "string"}, 
+                "referentMale": {
+                    "type": "object",
+                    "properties": {
+                        "relationshipToAgentSexF": {"type": "string"},
+                        "geogrStatus": {"type": "string"}, 
+                        "socialStatus": {"type": "string"}, 
+                        "firstName": {"type": "string"}, 
+                        "patronyme": {"type": "string"}, 
+                        "lastName": {"type": "string"}, 
+                        "relatedTo": {"type": "string"} 
+                    }
+                }
+            }
+        },
+        "CoAgentSexM": {
+            "type": "object",
+            "properties": {
+                "geogrStatus": {"type": "string"},
+                "socialStatus": {"type": "string"}, 
+                "firstName": {"type": "string"}, 
+                "patronyme": {"type": "string"}, 
+                "lastName": {"type": "string"}, 
+                "relatedTo": {"type": "string"}
+            }
+        },
+        "CoAgentSexF": {
+            "type": "object",
+            "properties": {
+                "familyStatus": {"type": "string"}, 
+                "firstName": {"type": "string"}, 
+                "patronyme": {"type": "string"}, 
+                "relatedTo": {"type": "string"}, 
+                "referentMale": {
+                    "type": "object",
+                    "properties": {
+                        "relationshipToCoAgentSexF": {"type": "string"},
+                        "geogrStatus": {"type": "string"}, 
+                        "socialStatus": {"type": "string"}, 
+                        "firstName": {"type": "string"}, 
+                        "patronyme": {"type": "string"}, 
+                        "lastName": {"type": "string"}, 
+                        "relatedTo": {"type": "string"} 
+                    }
+                }
+            }
+        },
+        "CounterAgentSexM": {
+            "type": "object",
+            "properties": {
+                "geogrStatus": {"type": "string"},
+                "socialStatus": {"type": "string"}, 
+                "firstName": {"type": "string"}, 
+                "patronyme": {"type": "string"}, 
+                "lastName": {"type": "string"}, 
+                "relatedTo": {"type": "string"}
+            }
+        },      
+        "CounterAgentSexF": {
+            "type": "object",
+            "properties": {
+                "familyStatus": {"type": "string"}, 
+                "firstName": {"type": "string"}, 
+                "patronyme": {"type": "string"}, 
+                "relatedTo": {"type": "string"}, 
+                "referentMale": {
+                    "type": "object",
+                    "properties": {
+                        "relationshipToCounterAgentSexF": {"type": "string"},
+                        "geogrStatus": {"type": "string"}, 
+                        "socialStatus": {"type": "string"}, 
+                        "firstName": {"type": "string"}, 
+                        "patronyme": {"type": "string"}, 
+                        "lastName": {"type": "string"}, 
+                        "relatedTo": {"type": "string"} 
+                    }
+                }
+            }
+        },
+        "CoCounterAgentSexM": {
+            "type": "object",
+            "properties": {
+                "geogrStatus": {"type": "string"},
+                "socialStatus": {"type": "string"}, 
+                "firstName": {"type": "string"}, 
+                "patronyme": {"type": "string"}, 
+                "lastName": {"type": "string"}, 
+                "relatedTo": {"type": "string"}
+            }
+        },
+        "CoCounterAgentSexF": {
+            "type": "object",
+            "properties": {
+                "familyStatus": {"type": "string"}, 
+                "firstName": {"type": "string"}, 
+                "patronyme": {"type": "string"}, 
+                "relatedTo": {"type": "string"}, 
+                "referentMale": {
+                    "type": "object",
+                    "properties": {
+                        "relationshipToCoCounterAgentSexF": {"type": "string"},
+                        "geogrStatus": {"type": "string"}, 
+                        "socialStatus": {"type": "string"}, 
+                        "firstName": {"type": "string"}, 
+                        "patronyme": {"type": "string"}, 
+                        "lastName": {"type": "string"}, 
+                        "relatedTo": {"type": "string"} 
+                    }
+                }
+            }
+        },
+        "Transaction": {
+            "type": "string"
+        },
+        "AgentTransactionObject": {
+            "type": "string",
+            "enum": ["money", "land", "building", "soul", "movable", "obligation" ]
+        },
+        "CounterAgentTransactionObject": {
+            "type": "enum",
+            "properties": {
+                "objectType": {"type": {"enum": [ "money", "land", "building", "soul", "movable", "obligation" ]}}
+            }
+        },
+        "AdvancePayment": {
+            "type": "boolean"
+        },
+        "ContractConditions": {
+            "type": "string"
+        },
+        "ContractDuration": {
+            "type": "string"
+        },
+        "Forfeit": {
+            "type": "number"
+        },
+        "Whitness": {
+            "type": "object",
+            "properties": {
+                "geogrStatus": {"type": "string"},
+                "socialStatus": {"type": "string"}, 
+                "firstName": {"type": "string"}, 
+                "patronyme": {"type": "string"}, 
+                "lastName": {"type": "string"}, 
+                "relatedTo": {"type": "string"}
+            }
+        },
+        "Surety": {
+            "type": "object",
+            "properties": {
+                "geogrStatus": {"type": "string"},
+                "socialStatus": {"type": "string"}, 
+                "firstName": {"type": "string"}, 
+                "patronyme": {"type": "string"}, 
+                "lastName": {"type": "string"}, 
+                "relatedTo": {"type": "string"}
+            }
+        },
+        "Scribe": {
+            "type": "object",
+            "properties": {
+                "geogrStatus": {"type": "string"},
+                "socialStatus": {"type": "string"}, 
+                "firstName": {"type": "string"}, 
+                "patronyme": {"type": "string"}, 
+                "lastName": {"type": "string"}, 
+                "relatedTo": {"type": "string"}
+            }
+        },
+        "RegistrationDate": {
+            "type": "string"
+        },
+        "Registrator": {
+            "type": "object",
+            "properties": {
+                "geogrStatus": {"type": "string"},
+                "socialStatus": {"type": "string"}, 
+                "firstName": {"type": "string"}, 
+                "patronyme": {"type": "string"}, 
+                "lastName": {"type": "string"}, 
+                "relatedTo": {"type": "string"}
+            }
+        },
+        "Fee": {
+            "type": "object",
+            "properties": {
+                "currency": {"type": "string", "enum": [ "rouble", "altyn", "denga"]},
+                "collected": {"type": "boolean", "default": false}
+            }
+        },
+        "VerbatimCitations": {
+            "type": "string"
+        },
+        "ResearcherNotes": {
+            "type": "string"
+        }
+    }

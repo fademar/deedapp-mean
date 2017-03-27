@@ -8,8 +8,26 @@ export class DeedService {
   constructor(private http: Http) { }
 
   	getDeeds() {
-  		return this.http.get('http://localhost:3000/api/deeds').map(res => res.json());
-  		
+  		return this.http.get('http://localhost:3000/api/deeds').map(res => res.json());  		
   	}
 
+	saveDeed(deed) {
+		let headers = new Headers();
+		headers.append('Content-Type', 'application/json');
+		return this.http.post('http://localhost:3000/api/deeds', deed, {headers: headers}).map(res => res.json());
+	}
+
+	getDeed(id) {
+  		return this.http.get('http://localhost:3000/api/deed/'+id).map(res => res.json());  		
+  	}
+
+	updateDeed(id, deed) {
+		let headers = new Headers();
+		headers.append('Content-Type', 'application/json');
+		return this.http.put('http://localhost:3000/api/deed/'+id, deed, {headers: headers}).map(res => res.json());
+	}
+
+	deleteDeed(id) {
+  		return this.http.delete('http://localhost:3000/api/deed/'+id).map(res => res.json());  		
+  	}
 }

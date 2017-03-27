@@ -1,0 +1,14 @@
+,
+      new QuestionFieldset({
+        key: 'AgentSexM',
+        label: 'Agent SexM',
+        properties: [
+          {key: 'geogrStatus', label: 'geogr Status'},
+          {key: 'socialStatus', label: 'social Status'},
+          {key: 'firstName', label: 'first Name'},
+          {key: 'patronyme', label: 'patronyme'},
+          {key: 'lastName', label: 'last Name'},
+          {key: 'relatedTo', label: 'related To'}
+        ],
+        order: 6
+      })

@@ -15,11 +15,10 @@
         <tr *ngFor='let deed of deeds'>
           <td>{{ deed.DeedRef }}</td>
           <td>{{ deed.DeedDate }}</td>
-          <td>{{ deed.Deedname }}</td>
+          <td>{{ deed.DeedName }}</td>
           <td>{{ deed.DeedLanguage }}</td>
           <td>
-            <a href="#" class="btn btn-info">Details</a>
-            <a href="#" class="btn btn-default">Edit</a>
+            <a routerLink="/deed/{{ deed._id }}" class="btn btn-info">Details</a>
           </td>
         </tr>
       </tbody>

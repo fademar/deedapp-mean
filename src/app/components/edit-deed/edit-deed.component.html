@@ -1,3 +1,11 @@
-<p>
-  edit-deed works!
-</p>
+<div *ngIf="deed">
+   <form (ngSubmit)="onEditSubmit()">
+
+      <div class="pull-right">
+          <button class="btn btn-success" type="submit">Update</button>
+          <a routerLink="/deed/{{ deed._id }}" class="btn btn-warning">Cancel</a>
+      </div>
+      <h1 class="page-header">Deed Ref : {{ deed.DeedRef }}</h1>
+      <textarea class="form-control "style="width:100%; height:500px" [(ngModel)]="deedDetails" name="deedDetails"></textarea>
+    </form>
+</div>

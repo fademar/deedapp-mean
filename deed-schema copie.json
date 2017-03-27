@@ -1,0 +1,38 @@
+
+{ 
+"DeedRef": {
+    "type": "string",
+    "title": "DeedRef",
+    "required": true
+},
+"DeedDate": {
+    "type": "string",
+    "title": "DeedDate"
+},
+"DeedName": {
+    "type": "string",
+    "title": "DeedName"
+},
+"DeedLanguage": {
+    "type": "string",
+    "title": "DeedLanguage",
+    "default": "russian"
+},
+"AgentSex": {
+    "type": "string",
+    "title": "AgentSex",
+    "enum": ["M", "F"]
+},
+"AgentSexM": {
+    "type": "object",
+    "title": "AgentSexM",
+    "properties": {
+        "geogrStatus": {"type": "string", "title": "geogrStatus"},
+        "socialStatus": {"type": "string", "title": "socialStatus"}, 
+        "firstName": {"type": "string", "title": "firstName"}, 
+        "patronyme": {"type": "string", "title": "patronyme"}, 
+        "lastName": {"type": "string", "title": "lastName"}, 
+        "relatedTo": {"type": "string", "title": "relatedTo"}
+    }
+}
+}

@@ -1,11 +1,12 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const mongodb = require("mongodb");
+const fs = require('fs');
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongodb = require('mongodb');
 
 var ObjectID = mongodb.ObjectID;
 
 // Db Collection and URI
-const deedsCollection = "Deeds";
+const deedsCollection = 'Deeds';
 const dbUri = 'mongodb://fademar:Deeds75014$@deeds0-shard-00-00-dnewh.mongodb.net:27017,deeds0-shard-00-01-dnewh.mongodb.net:27017,deeds0-shard-00-02-dnewh.mongodb.net:27017/deeds?ssl=true&replicaSet=Deeds0-shard-0&authSource=admin'
 const port = 3000;
 
@@ -15,8 +16,9 @@ app.use(bodyParser.json());
 
 // Enable CORS 
 app.use(function(req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 	next();
 });
 
@@ -32,11 +34,11 @@ mongodb.MongoClient.connect(dbUri, (err, database) => {
 
 	// Save database object from the callback for reuse.
 	db = database;
-	console.log("Database connection ready");
+	console.log('Database connection ready');
 
 	// Initialize the app.
 	var server = app.listen(port, () => {
-		console.log("App now running on port", port);
+		console.log('App now running on port', port);
 	});
 
 });
@@ -45,8 +47,8 @@ mongodb.MongoClient.connect(dbUri, (err, database) => {
 
 // Generic error handler used by all endpoints.
 function handleError(res, reason, message, code) {
-  console.log("ERROR: " + reason);
-  res.status(code || 500).json({"error": message});
+  console.log('ERROR: ' + reason);
+  res.status(code || 500).json({'error': message});
 }
 
 // Redirect / to /api/deeds
@@ -54,72 +56,81 @@ app.get('/', (req, res) => {
     res.send('Please use /api/deeds');
 });
 
-/*  "/api/deeds"
+/*  '/api/deeds'
  *    GET: finds all deeds
  *    POST: creates a new deed
  */
 
-app.get("/api/deeds", (req, res) => {
+app.get('/api/deeds', (req, res) => {
 		db.collection(deedsCollection).find({}).toArray((err, docs) => {
 	    if (err) {
-	      handleError(res, err.message, "Failed to get deeds.");
+	      handleError(res, err.message, 'Failed to get deeds.');
 	    } else {
 	      res.status(200).json(docs);
 	    }	
   	});
 });
 
-app.post("/api/deeds", (req, res) => {
+app.post('/api/deeds', (req, res) => {
 	var newDeed = req.body;
 
 	if (!req.body.DeedRef) {
-	    handleError(res, "Invalid deed input. You must at least provide a Deed Reference", 400);
+	    handleError(res, 'Invalid deed input. You must at least provide a Deed Reference', 400);
 	}
 
 	db.collection(deedsCollection).insertOne(newDeed, (err, doc) => {
 		if (err) {
-			handleError(res, err.message, "Failed to create new deed.");
+			handleError(res, err.message, 'Failed to create new deed.');
 		} else {
 			res.status(201).json(doc.ops[0]);
 		}
 	});
 });
 
-/*  "/api/deeds/:id"
+/*  '/api/deed/:id'
  *    GET: find deed by id
  *    PUT: update deed by id
  *    DELETE: deletes deed by id
  */
 
-app.get("/api/deeds/:id", (req, res) => {
- 	db.collection(deedsCollection).findOne({ _id: req.params.id }, (err, doc) => {
- 		if (err) {
- 			handleError(res, err.message, "Failed to get deed");
+app.get('/api/deed/:id', (req, res) => {
+	 db.collection(deedsCollection).findOne({ _id: new ObjectID(req.params.id) }, (err, doc) => {
+		 if (err) {
+ 			handleError(res, err.message, 'Failed to get deed');
  		} else {
  			res.status(200).json(doc);
  		}
  	});
 });
 
-app.put("/api/deeds/:id", (req, res) => {
+app.put('/api/deed/:id', (req, res) => {
  	var updateDoc = req.body;
 	delete updateDoc._id;
 
  	db.collection(deedsCollection).updateOne({_id: new ObjectID(req.params.id)}, updateDoc, (err, doc) => {
  		if (err) {
- 			handleError(res, err.message, "Failed to update deed");
+ 			handleError(res, err.message, 'Failed to update deed');
  		} else {
  			res.status(200).json(updateDoc);
  		}
  	});
 });
 
-app.delete("/api/deeds/:id", (req, res) => {
+app.delete('/api/deed/:id', (req, res) => {
  	db.collection(deedsCollection).deleteOne({_id: new ObjectID(req.params.id)}, (err, result) => {
  		if (err) {
- 			handleError(res, err.message, "Failed to delete contact");
+ 			handleError(res, err.message, 'Failed to delete contact');
  		} else {
  			res.status(200).json(req.params.id);
  		}
  	});
+});
+
+
+// Load JSON schema file
+
+app.get('/api/schema', (req, res) => {
+	let jsonFile = fs.readFileSync('./deed-schema copie.json', {encoding: 'utf8'});
+	let jsonSchema = JSON.parse(jsonFile);
+	res.status(200).json(jsonSchema);
 });
