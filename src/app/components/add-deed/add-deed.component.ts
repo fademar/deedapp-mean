@@ -12,13 +12,10 @@ import { DeedService } from '../../services/deed.service'
 export class AddDeedComponent implements OnInit {
 
   questions: any[];
-  constructor(private service: QuestionService) { 
-        this.questions = service.getQuestions();
-
-  }
+  constructor(private service: QuestionService) { }
 
   ngOnInit() {
-  
+     this.questions = this.service.getQuestions();
   }
 
 }

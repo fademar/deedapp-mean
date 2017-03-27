@@ -4,3 +4,33 @@
           <div class="col-sm-10">
             <input class="form-control" [formControlName]="opt.key" [id]="opt.key">
           </div>
+
+
+
+
+          ,
+       new QuestionFieldset({
+        key: 'AgentSexF',
+        label: 'Agent Sex F',
+        properties: [
+          {key: 'familyStatus', label: 'family Status'},
+          {key: 'firstName', label: 'first Name'},
+          {key: 'patronyme', label: 'patronyme'},
+          {key: 'relatedTo', label: 'related To'},
+          {key: 'referentMale', label: 'referent Male', type:'boolean', properties: [
+            {key: 'relationshipToAgentSexF', label: 'relationship To AgentSexF'},
+            {key: 'geogrStatus', label: 'geogr Status'},
+            {key: 'socialStatus', label: 'social Status'},
+            {key: 'firstName', label: 'first Name'},
+            {key: 'patronyme', label: 'patronyme'},
+            {key: 'lastName', label: 'last Name'},
+            {key: 'relatedTo', label: 'related To'},
+          ]},
+
+        ],
+        order: 6
+      })
+
+ fieldset[property.key] = property.required ? new FormControl(property.value || '', Validators.required)
+                                                     : new FormControl(property.value || '');
+          

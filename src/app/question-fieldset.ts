@@ -7,6 +7,5 @@ export class QuestionFieldset extends QuestionBase<string> {
   constructor(options: {} = {}) {
     super(options);
     this.options = options['properties'] || [];
-    console.log(this.options)
   }
 }

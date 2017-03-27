@@ -17,7 +17,10 @@ export class DynamicFormComponent implements OnInit {
   constructor(private qcs: QuestionControlService, private deedService: DeedService, private router: Router) {  }
   ngOnInit() {
     this.form = this.qcs.toFormGroup(this.questions);
+    
   }
+
+
   onSubmit() {
     this.payLoad = JSON.stringify(this.form.value);
     this.deedService.saveDeed(this.payLoad).subscribe(deed => {
