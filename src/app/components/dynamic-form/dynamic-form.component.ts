@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './dynamic-form.component.html',
   providers: [ QuestionControlService, DeedService ]
 })
+
 export class DynamicFormComponent implements OnInit {
   @Input() questions: QuestionBase<any>[] = [];
   form: FormGroup;
