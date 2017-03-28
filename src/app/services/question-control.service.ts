@@ -16,26 +16,23 @@ export class QuestionControlService {
 
       if (question.controlType === 'fieldset') {
       
+
+
         let fieldset: any = {};
 
-      
-          question.properties.forEach(property => {
+ 
+        question.properties.forEach(property => {
             
-            if (question.parent) {
-
-              console.log(question.parent);
               // let child: any = {};
               // question.properties.forEach(property => {
               // fieldset[property.key] = property.required ? new FormControl(property.value || '', Validators.required)
               //                                           : new FormControl(property.value || '');
               // child
-            } else {
 
               fieldset[property.key] = property.required ? new FormControl(property.value || '', Validators.required)
-                                                     : new FormControl(property.value || '');
+                                                         : new FormControl(property.value || '');
 
-            }
-      
+   
          });
 
         group[question.key] = new FormGroup(fieldset);
