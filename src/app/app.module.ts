@@ -13,15 +13,10 @@ import { AddDeedComponent } from './components/add-deed/add-deed.component';
 import { EditDeedComponent } from './components/edit-deed/edit-deed.component';
 import { DeedDetailsComponent } from './components/deed-details/deed-details.component';
 import { SchemaComponent } from './components/schema/schema.component';
-import { DynamicFormQuestionComponent } from './components/dynamic-form-question/dynamic-form-question.component';
-import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
 
 
 import { DeedService } from './services/deed.service';
 import { SchemaService } from './services/schema.service';
-import { QuestionControlService } from './services/question-control.service';
-import { QuestionService } from './services/question.service';
-
 
 const appRoutes: Routes = [
   {path: '', component:DeedsComponent},
@@ -40,9 +35,7 @@ const appRoutes: Routes = [
     AddDeedComponent,
     EditDeedComponent,
     DeedDetailsComponent,
-    SchemaComponent,
-    DynamicFormQuestionComponent,
-    DynamicFormComponent
+    SchemaComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +44,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [DeedService, SchemaService, QuestionControlService, QuestionService ],
+  providers: [DeedService, SchemaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
