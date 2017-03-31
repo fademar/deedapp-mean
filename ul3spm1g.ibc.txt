@@ -1,0 +1,41 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch change-reactive-forms
+# Your branch is up-to-date with 'origin/change-reactive-forms'.
+#
+# Changes to be committed:
+#	deleted:    ._.DS_Store
+#	deleted:    ._app.js
+#	deleted:    ._questions.json
+#	deleted:    ._rawcode.json
+#	modified:   package.json
+#	deleted:    src/._.DS_Store
+#	deleted:    src/._yeti-bootstrap.min.css
+#	deleted:    src/app/._.DS_Store
+#	modified:   src/app/app.module.ts
+#	deleted:    src/app/components/._.DS_Store
+#	modified:   src/app/components/add-deed/add-deed.component.html
+#	modified:   src/app/components/add-deed/add-deed.component.ts
+#	deleted:    src/app/components/dynamic-form-question/dynamic-form-question.component.css
+#	deleted:    src/app/components/dynamic-form-question/dynamic-form-question.component.html
+#	deleted:    src/app/components/dynamic-form-question/dynamic-form-question.component.spec.ts
+#	deleted:    src/app/components/dynamic-form-question/dynamic-form-question.component.ts
+#	deleted:    src/app/components/dynamic-form/dynamic-form.component.css
+#	deleted:    src/app/components/dynamic-form/dynamic-form.component.html
+#	deleted:    src/app/components/dynamic-form/dynamic-form.component.spec.ts
+#	deleted:    src/app/components/dynamic-form/dynamic-form.component.ts
+#	deleted:    src/app/question-base.ts
+#	deleted:    src/app/question-dropdown.ts
+#	deleted:    src/app/question-fieldset.ts
+#	deleted:    src/app/question-textbox.ts
+#	deleted:    src/app/services/._.DS_Store
+#	deleted:    src/app/services/question-control.service.spec.ts
+#	deleted:    src/app/services/question-control.service.ts
+#	deleted:    src/app/services/question.service.spec.ts
+#	deleted:    src/app/services/question.service.ts
+#
+# Untracked files:
+#	src/app/models/
+#
+
