@@ -81,3 +81,7 @@ export class Fee {
 }
 
 export const gender = ['M', 'F'];
+
+export const transactionTypes = ['money', 'land', 'building', 'soul', 'movable', 'obligation'];
+
+export const currencies = ['rouble', 'altyn', 'denga'];

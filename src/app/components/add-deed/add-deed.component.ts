@@ -1,27 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { DeedService } from '../../services/deed.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Deed, AgentM, AgentF, ReferentMale, OtherParticipant, Registrator, Fee, gender } from '../../models/deed-model'
+import { Deed, AgentM, AgentF, ReferentMale, OtherParticipant, Registrator, Fee, gender, transactionTypes, currencies } from '../../models/deed-model'
 
 @Component({
 	selector: 'app-add-deed',
 	templateUrl: './add-deed.component.html',
 	styleUrls: ['./add-deed.component.css']
 })
-export class AddDeedComponent implements OnInit {
-
+export class AddDeedComponent implements OnInit, OnChanges {
+	
 	deedForm: FormGroup;
+	agent: FormGroup;
 	gender = gender;
 	deedValue = '';
+	agentSex = '';
+	coAgentSex = '';
+	transactionTypes = transactionTypes;
+	currencies = currencies;
+
 
 	constructor(private fb: FormBuilder, private deedService: DeedService, private router: Router) {}
 
 	ngOnInit() {
 
 		this.createForm();
-
 	}
+
+	// Create the form
 
 	createForm() {
 
@@ -32,7 +39,10 @@ export class AddDeedComponent implements OnInit {
 			deedName: [''],
 			deedLanguage: ['russian'],
 			agentSex: [''], 
-			agentSexM: this.fb.group({
+			agent: [''],
+			coAgents: this.fb.array([]),
+			counterAgentSex: [''],
+			counterAgentSexM: this.fb.group({
 				geogrStatus: [''],
 				socialStatus: [''],
 				firstName: [''],
@@ -40,7 +50,7 @@ export class AddDeedComponent implements OnInit {
 				lastName: [''],
 				relatedTo: ['']
 			}),
-			agentSexF: this.fb.group({
+			counterAgentSexF: this.fb.group({
 				familyStatus: [''],
 				firstName: [''],
 				patronyme: [''],
@@ -55,30 +65,67 @@ export class AddDeedComponent implements OnInit {
 					relatedTo: ['']
 				}) 
 			}),
-			// coAgentSexM: this.fb.group(new AgentM()),
-			// coAgentSexF: this.fb.group(new AgentF()),
-			// counterAgentSexM: this.fb.group(new AgentM),
-			// counterAgentSexF: this.fb.group(new AgentF),
-			// coCounterAgentSexM: this.fb.group(new AgentM),
-			// coCounterAgentSexF: this.fb.group(new AgentF),
-			transaction: [''],
+			coCounterAgents: this.fb.array([]),
+			transactions: this.fb.array([
+				this.initTransaction(),
+			]),
 			agentTransactionObject: [''],
 			counterAgentTransactionObject: [''],
 			advancePayment: [false],
 			contractConditions: [''],
 			contractDuration: [''],
 			forfeit: [''],
-			// whitness: this.fb.group(new AgentM),
-			// surety: this.fb.group(new AgentM),
-			// scribe: this.fb.group(new AgentM),
-			otherParticipant: this.fb.group(new OtherParticipant),
+			whitness: this.fb.group({
+				geogrStatus: [''],
+				socialStatus: [''],
+				firstName: [''],
+				patronyme: [''],
+				lastName: [''],
+				relatedTo: ['']
+			}),
+			surety: this.fb.group({
+				geogrStatus: [''],
+				socialStatus: [''],
+				firstName: [''],
+				patronyme: [''],
+				lastName: [''],
+				relatedTo: ['']
+			}),
+			scribe: this.fb.group({
+				geogrStatus: [''],
+				socialStatus: [''],
+				firstName: [''],
+				patronyme: [''],
+				lastName: [''],
+				relatedTo: ['']
+			}),
+			otherParticipant: this.fb.group({
+				role: [''],
+				geogrStatus: [''],
+				socialStatus: [''],
+				firstName: [''],
+				patronyme: [''],
+				lastName: [''],
+				relatedTo: ['']
+			}),
 			registrationDate: [''],
-			registrator: this.fb.group(new Registrator),
-			fee: this.fb.group(new Fee),
+			registrator: this.fb.group({
+				firstName: [''],
+				patronyme: [''],
+				lastName: [''],
+				relatedTo: ['']
+			}),
+			fee: this.fb.group({
+				amount: [''],
+				collected: ['yes']
+			}),
 			verbatimCitations: [''],
 			researcherNotes: ['']
 		})
+	
 	}
+
+	// Submit the form
 
 	onSubmit() {
 		this.deedValue = JSON.stringify(this.deedForm.value);
@@ -87,9 +134,228 @@ export class AddDeedComponent implements OnInit {
 		})
 	}
 
-	getAgentSex() {
+	// Get the gender of the main agents (agent and counter-agent)
+
+ 	getAgentSex() {
+			
 		return this.deedForm.get('agentSex').value;
 	}
 
-}
+	getCounterAgentSex() {
+		return this.deedForm.get('counterAgentSex').value;
+	}
 
+	ngOnChanges(changes: {[ ]}) {
+			this.agentSex = this.deedForm.get('agentSex').value;
+			switch (this.agentSex) {
+			case ('M'): {
+				this.agent = this.fb.group({
+					geogrStatus: [''],
+					socialStatus: [''],
+					firstName: [''],
+					patronyme: [''],
+					lastName: [''],
+					relatedTo: ['']
+				})
+				this.deedForm.setControl('agent', this.agent);
+			}
+			case ('F'): {
+				this.agent = this.fb.group({
+					familyStatus: [''],
+					firstName: [''],
+					patronyme: [''],
+					relatedTo: [''],
+					referentMale: this.fb.group({
+						relationshipToAgentSexF: [''],
+						geogrStatus: [''],
+						socialStatus: [''],
+						firstName: [''],
+						patronyme: [''],
+						lastName: [''],
+						relatedTo: ['']
+					}) 
+				})
+				this.deedForm.setControl('agent', this.agent);
+			}
+		}
+
+	}
+
+	// Co-Agents Methods (init, add and remove)
+
+	initCoAgent() {
+		
+		return this.fb.group({
+			coAgentSexM: this.fb.group({
+				geogrStatus: [''],
+				socialStatus: [''],
+				firstName: [''],
+				patronyme: [''],
+				lastName: [''],
+				relatedTo: ['']
+			}),
+			coAgentSexF: this.fb.group({
+				familyStatus: [''],
+				firstName: [''],
+				patronyme: [''],
+				relatedTo: [''],
+				referentMale: this.fb.group({
+					relationshipToAgentSexF: [''],
+					geogrStatus: [''],
+					socialStatus: [''],
+					firstName: [''],
+					patronyme: [''],
+					lastName: [''],
+					relatedTo: ['']
+					}) 
+				})
+			});
+	}
+
+	addCoAgent() {
+		const control = <FormArray>this.deedForm.controls['coAgents'];
+		control.push(this.initCoAgent());
+	}
+
+	removeCoAgent(i: number) {
+		const control = <FormArray>this.deedForm.controls['coAgents'];
+		control.removeAt(i);
+	}
+
+	// Co-Counter Agents Methods (init, add and remove)
+
+	initCoCounterAgent() {
+		
+		return this.fb.group({
+			coCounterAgentSexM: this.fb.group({
+				geogrStatus: [''],
+				socialStatus: [''],
+				firstName: [''],
+				patronyme: [''],
+				lastName: [''],
+				relatedTo: ['']
+			}),
+			coCounterAgentSexF: this.fb.group({
+				familyStatus: [''],
+				firstName: [''],
+				patronyme: [''],
+				relatedTo: [''],
+				referentMale: this.fb.group({
+					relationshipToAgentSexF: [''],
+					geogrStatus: [''],
+					socialStatus: [''],
+					firstName: [''],
+					patronyme: [''],
+					lastName: [''],
+					relatedTo: ['']
+					}) 
+				})
+			});
+	}
+
+	addCoCounterAgent() {
+		const control = <FormArray>this.deedForm.controls['coCounterAgents'];
+		control.push(this.initCoCounterAgent());
+	}
+
+	removeCoCounterAgent(i: number) {
+		const control = <FormArray>this.deedForm.controls['coCounterAgents'];
+		control.removeAt(i);
+	}
+
+	// Transaction Methods (init, add and remove)
+
+	initTransaction() {
+        return this.fb.group({
+            transaction: [''],
+			agentTransactionType: [''],
+			agentTransactionObject: this.fb.group({
+				money: this.fb.group({
+					amount: [''],
+					currency: ['']
+				}),
+				land: this.fb.group({
+					juridicalStatus: [''],
+					localisation: [''],
+					surface: [''],
+					population: [''],
+					construction: [''],
+					dependencies: ['']
+				}),
+				building: this.fb.group({
+					destination: [''],
+					localisation: [''],
+					description: ['']
+				}),
+				soul: this.fb.group({
+					juridicalStatus: [''],
+					sex: [''],
+					name: ['']
+				}),
+				movable: this.fb.group({
+					definition: [''],
+					description: ['']
+				}),
+				obligation: this.fb.group({
+					nature: [''],
+					subjects: [''],
+					conditions: ['']
+				})
+			}),
+			counterAgentTransactionObject: this.fb.group({
+				money: this.fb.group({
+					amount: [''],
+					currency: ['']
+				}),
+				land: this.fb.group({
+					juridicalStatus: [''],
+					localisation: [''],
+					surface: [''],
+					population: [''],
+					construction: [''],
+					dependencies: ['']
+				}),
+				building: this.fb.group({
+					destination: [''],
+					localisation: [''],
+					description: ['']
+				}),
+				soul: this.fb.group({
+					juridicalStatus: [''],
+					sex: [''],
+					name: ['']
+				}),
+				movable: this.fb.group({
+					definition: [''],
+					description: ['']
+				}),
+				obligation: this.fb.group({
+					nature: [''],
+					subjects: [''],
+					conditions: ['']
+				})
+			}),
+			advancePayment: ['no'],
+			contractConditions: [''],
+			contractDuration: [''],
+			forfeit: ['']
+        });
+    }
+
+	addTransaction() {
+		const control = <FormArray>this.deedForm.controls['transactions'];
+		control.push(this.initTransaction());
+	}
+
+	removeTransaction(i: number) {
+		const control = <FormArray>this.deedForm.controls['transactions'];
+		control.removeAt(i);
+	}
+
+	getAgentTransactionType(i: number) {
+
+		return this.deedForm.controls.transactions['controls'][i].get('agentTransactionType').value;
+	}
+
+
+}
