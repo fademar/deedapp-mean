@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DeedService } from '../../services/deed.service';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -9,13 +9,15 @@ import { Deed, AgentM, AgentF, ReferentMale, OtherParticipant, Registrator, Fee,
 	templateUrl: './add-deed.component.html',
 	styleUrls: ['./add-deed.component.css']
 })
-export class AddDeedComponent implements OnInit, OnChanges {
+export class AddDeedComponent implements OnInit {
 	
 	deedForm: FormGroup;
 	agent: FormGroup;
+	counterAgent: FormGroup;
 	gender = gender;
 	deedValue = '';
 	agentSex = '';
+	counterAgentSex = '';
 	coAgentSex = '';
 	transactionTypes = transactionTypes;
 	currencies = currencies;
@@ -42,29 +44,7 @@ export class AddDeedComponent implements OnInit, OnChanges {
 			agent: [''],
 			coAgents: this.fb.array([]),
 			counterAgentSex: [''],
-			counterAgentSexM: this.fb.group({
-				geogrStatus: [''],
-				socialStatus: [''],
-				firstName: [''],
-				patronyme: [''],
-				lastName: [''],
-				relatedTo: ['']
-			}),
-			counterAgentSexF: this.fb.group({
-				familyStatus: [''],
-				firstName: [''],
-				patronyme: [''],
-				relatedTo: [''],
-				referentMale: this.fb.group({
-					relationshipToAgentSexF: [''],
-					geogrStatus: [''],
-					socialStatus: [''],
-					firstName: [''],
-					patronyme: [''],
-					lastName: [''],
-					relatedTo: ['']
-				}) 
-			}),
+			counterAgent: [''], 
 			coCounterAgents: this.fb.array([]),
 			transactions: this.fb.array([
 				this.initTransaction(),
@@ -145,10 +125,11 @@ export class AddDeedComponent implements OnInit, OnChanges {
 		return this.deedForm.get('counterAgentSex').value;
 	}
 
-	ngOnChanges(changes: {[ ]}) {
+	updateAgent() {
 			this.agentSex = this.deedForm.get('agentSex').value;
+
 			switch (this.agentSex) {
-			case ('M'): {
+			case 'M': {
 				this.agent = this.fb.group({
 					geogrStatus: [''],
 					socialStatus: [''],
@@ -157,9 +138,9 @@ export class AddDeedComponent implements OnInit, OnChanges {
 					lastName: [''],
 					relatedTo: ['']
 				})
-				this.deedForm.setControl('agent', this.agent);
+				break;
 			}
-			case ('F'): {
+			case 'F': {
 				this.agent = this.fb.group({
 					familyStatus: [''],
 					firstName: [''],
@@ -175,11 +156,49 @@ export class AddDeedComponent implements OnInit, OnChanges {
 						relatedTo: ['']
 					}) 
 				})
-				this.deedForm.setControl('agent', this.agent);
+				break;
 			}
 		}
-
+		this.deedForm.setControl('agent', this.agent);
 	}
+
+	updateCounterAgent() {
+			this.counterAgentSex = this.deedForm.get('counterAgentSex').value;
+
+			switch (this.counterAgentSex) {
+			case 'M': {
+				this.counterAgent = this.fb.group({
+					geogrStatus: [''],
+					socialStatus: [''],
+					firstName: [''],
+					patronyme: [''],
+					lastName: [''],
+					relatedTo: ['']
+				})
+				break;
+			}
+			case 'F': {
+				this.counterAgent = this.fb.group({
+					familyStatus: [''],
+					firstName: [''],
+					patronyme: [''],
+					relatedTo: [''],
+					referentMale: this.fb.group({
+						relationshipToAgentSexF: [''],
+						geogrStatus: [''],
+						socialStatus: [''],
+						firstName: [''],
+						patronyme: [''],
+						lastName: [''],
+						relatedTo: ['']
+					}) 
+				})
+				break;
+			}
+		}
+		this.deedForm.setControl('counterAgent', this.counterAgent);
+	}
+
 
 	// Co-Agents Methods (init, add and remove)
 

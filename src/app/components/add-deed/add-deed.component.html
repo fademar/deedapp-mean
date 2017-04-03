@@ -45,7 +45,7 @@
   <div class="form-group">
     <label class="col-sm-2 control-label">Agent Gender</label>
     <div class="col-sm-10">
-      <select class="form-control" formControlName="agentSex">
+      <select class="form-control" formControlName="agentSex" (change)="updateAgent()">
           <option *ngFor="let gen of gender" [value]="gen">{{gen}}</option>
       </select>
     </div>
@@ -118,7 +118,7 @@
             </div>
           </div>
           <div formGroupName="referentMale">
-            <h4>Referent Male</h4>
+            <h4 class="text-center">Referent Male</h4>
             <div class="form-group">
               <label class="col-sm-2 control-label">Relationship To AgentSexF</label>
               <div class="col-sm-10">
@@ -167,7 +167,6 @@
   </div>
 
 <!--Co Agents -->
-<h3 class="text-center">Co-Agents</h3>
 <div class="text-center">
   <a (click)="addCoAgent()" style="cursor: default">Add a Co-Agent</a>
 </div>
@@ -296,19 +295,18 @@
 
 <!-- Main Counter Agent -->
   
-<h3 class="text-center">Main Counter Agent</h3>  
+<h3 class="text-center">Counter Agent</h3>  
   <div class="form-group">
-    <label class="col-sm-2 control-label">Main Counter Agent Gender</label>
+    <label class="col-sm-2 control-label">Counter Agent Gender</label>
     <div class="col-sm-10">
-      <select class="form-control" formControlName="counterAgentSex">
+      <select class="form-control" formControlName="counterAgentSex" (change)="updateCounterAgent()">
           <option *ngFor="let gen of gender" [value]="gen">{{gen}}</option>
       </select>
     </div>
   </div>
   <div [ngSwitch]="getCounterAgentSex()">
     <div *ngSwitchCase="'M'">
-      <div formGroupName="counterAgentSexM">
-          <h3>Counter Agent Sex M</h3>
+      <div formGroupName="counterAgent">
           <div class="form-group">
             <label class="col-sm-2 control-label">Geogr Status</label>
             <div class="col-sm-10">
@@ -348,8 +346,7 @@
       </div>
     </div>
     <div *ngSwitchCase="'F'">
-      <div formGroupName="counterAgentSexF">
-          <h3>Counter Agent Sex F</h3>
+      <div formGroupName="counterAgent">
           <div class="form-group">
             <label class="col-sm-2 control-label">Family Status</label>
             <div class="col-sm-10">
@@ -375,7 +372,7 @@
             </div>
           </div>
           <div formGroupName="referentMale">
-            <h4>Referent Male</h4>
+            <h4 class="text-center">Referent Male</h4>
             <div class="form-group">
               <label class="col-sm-2 control-label">Relationship To AgentSexF</label>
               <div class="col-sm-10">
@@ -424,8 +421,6 @@
   </div>
 
 <!-- Co Counter Agents-->
-
-<h3 class="text-center">Co-Counter Agents</h3>
 <div class="text-center">
   <a (click)="addCoCounterAgent()" style="cursor: default">
     Add a Co-Counter Agent
