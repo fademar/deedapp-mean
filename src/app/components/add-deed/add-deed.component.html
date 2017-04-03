@@ -568,7 +568,7 @@
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Agent Transaction Object</label>
 					<div class="col-sm-10">
-						<select class="form-control" formControlName="agentTransactionType">
+						<select class="form-control" formControlName="agentTransactionType" (change)="updateAgentTransactionObject(i)">
 							<option *ngFor="let type of transactionTypes" [value]="type">{{ type }}</option>
 						</select>
 					</div>
@@ -734,9 +734,9 @@
 		<a (click)="addTransaction()" style="cursor: default">Add another transaction</a>
 	</div>
 
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" [disabled]="deedForm.invalid" class="btn btn-primary">Save the deed</button>
+  <div class="col-sm-12">
+    <div class="form-group">
+        <button type="submit" [disabled]="deedForm.invalid" class="btn btn-primary center-block">Save the deed</button>
     </div>
   </div>
 </form>

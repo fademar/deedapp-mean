@@ -14,11 +14,15 @@ export class AddDeedComponent implements OnInit {
 	deedForm: FormGroup;
 	agent: FormGroup;
 	counterAgent: FormGroup;
-	gender = gender;
+	agentTransactionObject: FormGroup;
+	
 	deedValue = '';
 	agentSex = '';
 	counterAgentSex = '';
 	coAgentSex = '';
+	agentTransactionType = '';
+	
+	gender = gender;
 	transactionTypes = transactionTypes;
 	currencies = currencies;
 
@@ -288,39 +292,7 @@ export class AddDeedComponent implements OnInit {
         return this.fb.group({
             transaction: [''],
 			agentTransactionType: [''],
-			agentTransactionObject: this.fb.group({
-				money: this.fb.group({
-					amount: [''],
-					currency: ['']
-				}),
-				land: this.fb.group({
-					juridicalStatus: [''],
-					localisation: [''],
-					surface: [''],
-					population: [''],
-					construction: [''],
-					dependencies: ['']
-				}),
-				building: this.fb.group({
-					destination: [''],
-					localisation: [''],
-					description: ['']
-				}),
-				soul: this.fb.group({
-					juridicalStatus: [''],
-					sex: [''],
-					name: ['']
-				}),
-				movable: this.fb.group({
-					definition: [''],
-					description: ['']
-				}),
-				obligation: this.fb.group({
-					nature: [''],
-					subjects: [''],
-					conditions: ['']
-				})
-			}),
+			agentTransactionObject: [''],
 			counterAgentTransactionObject: this.fb.group({
 				money: this.fb.group({
 					amount: [''],
@@ -360,6 +332,73 @@ export class AddDeedComponent implements OnInit {
 			forfeit: ['']
         });
     }
+
+	updateAgentTransactionObject(i: number) {
+
+		this.agentTransactionType = this.deedForm.controls.transactions['controls'][i].get('agentTransactionType').value;
+
+		switch (this.agentTransactionType) {
+		
+			case 'money': {
+				this.agentTransactionObject = this.fb.group({
+						money: this.fb.group({
+							amount: [''],
+							currency: ['']
+						})
+				})
+			}
+			case 'land': {
+				this.agentTransactionObject = this.fb.group({
+					land: this.fb.group({
+						juridicalStatus: [''],
+						localisation: [''],
+						surface: [''],
+						population: [''],
+						construction: [''],
+						dependencies: ['']
+					})
+				})
+			}
+			case 'building': {
+				this.agentTransactionObject = this.fb.group({
+					building: this.fb.group({
+						destination: [''],
+						localisation: [''],
+						description: ['']
+					})
+				})
+			}
+			case 'soul': {
+				this.agentTransactionObject = this.fb.group({
+					soul: this.fb.group({
+						juridicalStatus: [''],
+						sex: [''],
+						name: ['']
+					})
+				})
+			}
+			case 'movable': {
+				this.agentTransactionObject = this.fb.group({
+					movable: this.fb.group({
+						definition: [''],
+						description: ['']
+					})
+				})
+			}
+			case 'obligation': {
+				this.agentTransactionObject = this.fb.group({
+					obligation: this.fb.group({
+						nature: [''],
+						subjects: [''],
+						conditions: ['']
+					})
+				})
+			}
+		}
+		console.log(this.deedForm.controls.transactions['controls'][i]);
+		this.deedForm.controls.transactions['controls'][i].setControl('agentTransactionObject', this.agentTransactionObject);
+		
+	}
 
 	addTransaction() {
 		const control = <FormArray>this.deedForm.controls['transactions'];
