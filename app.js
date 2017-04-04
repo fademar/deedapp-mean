@@ -74,7 +74,7 @@ app.get('/api/deeds', (req, res) => {
 app.post('/api/deeds', (req, res) => {
 	var newDeed = req.body;
 
-	if (!req.body.DeedRef) {
+	if (!req.body.deedRef) {
 	    handleError(res, 'Invalid deed input. You must at least provide a Deed Reference', 400);
 	}
 

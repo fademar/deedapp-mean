@@ -12,13 +12,16 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^4.0.0",
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
+    "@angular/compiler-cli": "^4.0.0",
     "@angular/core": "^4.0.0",
     "@angular/forms": "^4.0.0",
     "@angular/http": "^4.0.0",
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
+    "@angular/platform-server": "^4.0.0",
     "@angular/router": "^4.0.0",
     "angular2-schema-form": "^1.0.0-beta.5",
     "body-parser": "^1.17.1",
@@ -26,6 +29,7 @@
     "express": "^4.15.2",
     "mongodb": "^2.2.25",
     "rxjs": "^5.1.0",
+    "typescript": "^2.2.2",
     "zone.js": "^0.8.5"
   },
   "devDependencies": {
