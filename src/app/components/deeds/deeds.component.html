@@ -4,6 +4,7 @@
     <table class="table table-striped">
       <thead>
         <tr>
+          <th>DeedCode</th>
           <th>DeedRef</th>
           <th>DeedDate</th>
           <th>DeedName</th>
@@ -13,10 +14,11 @@
       </thead>
       <tbody>
         <tr *ngFor='let deed of deeds'>
-          <td>{{ deed.DeedRef }}</td>
-          <td>{{ deed.DeedDate }}</td>
-          <td>{{ deed.DeedName }}</td>
-          <td>{{ deed.DeedLanguage }}</td>
+          <td>{{ deed.deedCode }}</td>
+          <td>{{ deed.deedRef }}</td>
+          <td>{{ deed.deedDate }}</td>
+          <td>{{ deed.deedName }}</td>
+          <td>{{ deed.deedLanguage }}</td>
           <td>
             <a routerLink="/deed/{{ deed._id }}" class="btn btn-info">Details</a>
           </td>
