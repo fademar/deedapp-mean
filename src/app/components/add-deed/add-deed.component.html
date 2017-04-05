@@ -46,8 +46,8 @@
 		<label class="col-sm-2 control-label">Agent Gender</label>
 		<div class="col-sm-10">
 			<select class="form-control" formControlName="agentSex" (change)="updateAgent()">
-          <option *ngFor="let gen of gender" [value]="gen">{{gen}}</option>
-      </select>
+          		<option *ngFor="let gen of gender" [value]="gen">{{gen}}</option>
+      		</select>
 		</div>
 	</div>
 	<div [ngSwitch]="getAgentSex()">
@@ -120,9 +120,9 @@
 				<div formGroupName="referentMale">
 					<h4 class="text-center">Referent Male</h4>
 					<div class="form-group">
-						<label class="col-sm-2 control-label">Relationship To AgentSexF</label>
+						<label class="col-sm-2 control-label">Relationship To Agent</label>
 						<div class="col-sm-10">
-							<input class="form-control" formControlName="relationshipToAgentSexF">
+							<input class="form-control" formControlName="relationshipToAgent">
 						</div>
 					</div>
 					<div class="form-group">
@@ -177,113 +177,125 @@
 				<span class="glyphicon glyphicon-remove pull-right" (click)="removeCoAgent(i)"></span>
 			</div>
 			<div class="panel-body" [formGroupName]="i">
-				<div formGroupName="coAgentSexM">
-					<h4>coAgent Sex M</h4>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Geogr Status</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="geogrStatus">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Social Status</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="socialStatus">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">First Name</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="firstName">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Patronyme</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="patronyme">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Last Name</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="lastName">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Related To</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="relatedTo">
-						</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Co-Agent Gender</label>
+					<div class="col-sm-10">
+						<select class="form-control" formControlName="coAgentSex" (change)="updateCoAgent(i)">
+							<option *ngFor="let gen of gender" [value]="gen">{{gen}}</option>
+						</select>
 					</div>
 				</div>
-				<div formGroupName="coAgentSexF">
-					<h4>Co-Agent Sex F</h4>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Family Status</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="familyStatus">
+				<div [ngSwitch]="getCoAgentSex(i)">
+					<div *ngSwitchCase="'M'">
+						<div formGroupName="coAgent">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Geogr Status</label>
+								<div class="col-sm-10">
+									<input class="form-control" formControlName="geogrStatus">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Social Status</label>
+								<div class="col-sm-10">
+									<input class="form-control" formControlName="socialStatus">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">First Name</label>
+								<div class="col-sm-10">
+									<input class="form-control" formControlName="firstName">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Patronyme</label>
+								<div class="col-sm-10">
+									<input class="form-control" formControlName="patronyme">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Last Name</label>
+								<div class="col-sm-10">
+									<input class="form-control" formControlName="lastName">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Related To</label>
+								<div class="col-sm-10">
+									<input class="form-control" formControlName="relatedTo">
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">First Name</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="firstName">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Patronyme</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="patronyme">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Related To</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="relatedTo">
-						</div>
-					</div>
-					<div formGroupName="referentMale">
-						<h4>Referent Male</h4>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">Relationship To AgentSexF</label>
-							<div class="col-sm-10">
-								<input class="form-control" formControlName="relationshipToAgentSexF">
+					<div *ngSwitchCase="'F'">
+						<div formGroupName="coAgent">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Family Status</label>
+								<div class="col-sm-10">
+									<input class="form-control" formControlName="familyStatus">
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">Geogr Status</label>
-							<div class="col-sm-10">
-								<input class="form-control" formControlName="geogrStatus">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">First Name</label>
+								<div class="col-sm-10">
+									<input class="form-control" formControlName="firstName">
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">Social Status</label>
-							<div class="col-sm-10">
-								<input class="form-control" formControlName="socialStatus">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Patronyme</label>
+								<div class="col-sm-10">
+									<input class="form-control" formControlName="patronyme">
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">First Name</label>
-							<div class="col-sm-10">
-								<input class="form-control" formControlName="firstName">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Related To</label>
+								<div class="col-sm-10">
+									<input class="form-control" formControlName="relatedTo">
+								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">Patronyme</label>
-							<div class="col-sm-10">
-								<input class="form-control" formControlName="patronyme">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">Last Name</label>
-							<div class="col-sm-10">
-								<input class="form-control" formControlName="lastName">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">Related To</label>
-							<div class="col-sm-10">
-								<input class="form-control" formControlName="relatedTo">
+							<div formGroupName="referentMale">
+								<h4 class="text-center">Referent Male</h4>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Relationship To coAgent</label>
+									<div class="col-sm-10">
+										<input class="form-control" formControlName="relationshipToCoAgent">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Geogr Status</label>
+									<div class="col-sm-10">
+										<input class="form-control" formControlName="geogrStatus">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Social Status</label>
+									<div class="col-sm-10">
+										<input class="form-control" formControlName="socialStatus">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">First Name</label>
+									<div class="col-sm-10">
+										<input class="form-control" formControlName="firstName">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Patronyme</label>
+									<div class="col-sm-10">
+										<input class="form-control" formControlName="patronyme">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Last Name</label>
+									<div class="col-sm-10">
+										<input class="form-control" formControlName="lastName">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Related To</label>
+									<div class="col-sm-10">
+										<input class="form-control" formControlName="relatedTo">
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -374,9 +386,9 @@
 				<div formGroupName="referentMale">
 					<h4 class="text-center">Referent Male</h4>
 					<div class="form-group">
-						<label class="col-sm-2 control-label">Relationship To AgentSexF</label>
+						<label class="col-sm-2 control-label">Relationship To Counter Agent</label>
 						<div class="col-sm-10">
-							<input class="form-control" formControlName="relationshipToAgentSexF">
+							<input class="form-control" formControlName="relationshipToCounterAgent">
 						</div>
 					</div>
 					<div class="form-group">
@@ -433,117 +445,130 @@
 				<span class="glyphicon glyphicon-remove pull-right" (click)="removeCoCounterAgent(i)"></span>
 			</div>
 			<div class="panel-body" [formGroupName]="i">
-				<div formGroupName="coCounterAgentSexM">
-					<h4>coCounter Agent Sex M</h4>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Geogr Status</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="geogrStatus">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Co-Agent Gender</label>
+					<div class="col-sm-10">
+						<select class="form-control" formControlName="coCounterAgentSex" (change)="updateCoCounterAgent(i)">
+							<option *ngFor="let gen of gender" [value]="gen">{{gen}}</option>
+						</select>
+					</div>
+				</div>
+				<div [ngSwitch]="getCoCounterAgentSex(i)">
+					<div *ngSwitchCase="'M'">
+						<div formGroupName="coCounterAgent">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Geogr Status</label>
+								<div class="col-sm-10">
+									<input class="form-control" formControlName="geogrStatus">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Social Status</label>
+								<div class="col-sm-10">
+									<input class="form-control" formControlName="socialStatus">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">First Name</label>
+								<div class="col-sm-10">
+									<input class="form-control" formControlName="firstName">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Patronyme</label>
+								<div class="col-sm-10">
+									<input class="form-control" formControlName="patronyme">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Last Name</label>
+								<div class="col-sm-10">
+									<input class="form-control" formControlName="lastName">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Related To</label>
+								<div class="col-sm-10">
+									<input class="form-control" formControlName="relatedTo">
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Social Status</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="socialStatus">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">First Name</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="firstName">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Patronyme</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="patronyme">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Last Name</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="lastName">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Related To</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="relatedTo">
+					<div *ngSwitchCase="'F'">
+						<div formGroupName="coCounterAgent">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Family Status</label>
+								<div class="col-sm-10">
+									<input class="form-control" formControlName="familyStatus">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">First Name</label>
+								<div class="col-sm-10">
+									<input class="form-control" formControlName="firstName">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Patronyme</label>
+								<div class="col-sm-10">
+									<input class="form-control" formControlName="patronyme">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Related To</label>
+								<div class="col-sm-10">
+									<input class="form-control" formControlName="relatedTo">
+								</div>
+							</div>
+							<div formGroupName="referentMale">
+								<h4 class="text-center">Referent Male</h4>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Relationship To coAgent</label>
+									<div class="col-sm-10">
+										<input class="form-control" formControlName="relationshipToCoCounterAgent">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Geogr Status</label>
+									<div class="col-sm-10">
+										<input class="form-control" formControlName="geogrStatus">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Social Status</label>
+									<div class="col-sm-10">
+										<input class="form-control" formControlName="socialStatus">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">First Name</label>
+									<div class="col-sm-10">
+										<input class="form-control" formControlName="firstName">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Patronyme</label>
+									<div class="col-sm-10">
+										<input class="form-control" formControlName="patronyme">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Last Name</label>
+									<div class="col-sm-10">
+										<input class="form-control" formControlName="lastName">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Related To</label>
+									<div class="col-sm-10">
+										<input class="form-control" formControlName="relatedTo">
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div formGroupName="coCounterAgentSexF">
-					<h4>Co-Counter Agent Sex F</h4>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Family Status</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="familyStatus">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">First Name</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="firstName">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Patronyme</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="patronyme">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Related To</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="relatedTo">
-						</div>
-					</div>
-					<div formGroupName="referentMale">
-						<h4>Referent Male</h4>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">Relationship To AgentSexF</label>
-							<div class="col-sm-10">
-								<input class="form-control" formControlName="relationshipToAgentSexF">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">Geogr Status</label>
-							<div class="col-sm-10">
-								<input class="form-control" formControlName="geogrStatus">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">Social Status</label>
-							<div class="col-sm-10">
-								<input class="form-control" formControlName="socialStatus">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">First Name</label>
-							<div class="col-sm-10">
-								<input class="form-control" formControlName="firstName">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">Patronyme</label>
-							<div class="col-sm-10">
-								<input class="form-control" formControlName="patronyme">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">Last Name</label>
-							<div class="col-sm-10">
-								<input class="form-control" formControlName="lastName">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">Related To</label>
-							<div class="col-sm-10">
-								<input class="form-control" formControlName="relatedTo">
-							</div>
-						</div>
-					</div>
-				</div>
+
 			</div>
 		</div>
 	</div>
@@ -1182,3 +1207,5 @@
 	</div>
 
 </form>
+
+<p>Form value: {{ deedForm.value | json }}</p>

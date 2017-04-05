@@ -14,6 +14,8 @@ export class AddDeedComponent implements OnInit {
 	deedForm: FormGroup;
 	agent: FormGroup;
 	counterAgent: FormGroup;
+	coAgent: FormGroup;
+	coCounterAgent: FormGroup;
 	agentTransactionObject: FormGroup;
 	counterAgentTransactionObject: FormGroup;
 	scribe: FormGroup;
@@ -23,6 +25,7 @@ export class AddDeedComponent implements OnInit {
 	agentSex = '';
 	counterAgentSex = '';
 	coAgentSex = '';
+	coCounterAgentSex = '';
 	agentTransactionType = '';
 	counterAgentTransactionType = '';
 
@@ -82,15 +85,10 @@ export class AddDeedComponent implements OnInit {
 		})
 	}
 
-	// Get the gender of the main agents (agent and counter-agent)
+	// AGENT METHODS
 
 	getAgentSex() {
-
 		return this.deedForm.get('agentSex').value;
-	}
-
-	getCounterAgentSex() {
-		return this.deedForm.get('counterAgentSex').value;
 	}
 
 	updateAgent() {
@@ -115,7 +113,7 @@ export class AddDeedComponent implements OnInit {
 					patronyme: [''],
 					relatedTo: [''],
 					referentMale: this.fb.group({
-						relationshipToAgentSexF: [''],
+						relationshipToAgent: [''],
 						geogrStatus: [''],
 						socialStatus: [''],
 						firstName: [''],
@@ -128,6 +126,12 @@ export class AddDeedComponent implements OnInit {
 			}
 		}
 		this.deedForm.setControl('agent', this.agent);
+	}
+
+	// COUNTER AGENT METHODS
+
+	getCounterAgentSex() {
+		return this.deedForm.get('counterAgentSex').value;
 	}
 
 	updateCounterAgent() {
@@ -152,7 +156,7 @@ export class AddDeedComponent implements OnInit {
 					patronyme: [''],
 					relatedTo: [''],
 					referentMale: this.fb.group({
-						relationshipToAgentSexF: [''],
+						relationshipToCounterAgent: [''],
 						geogrStatus: [''],
 						socialStatus: [''],
 						firstName: [''],
@@ -171,23 +175,17 @@ export class AddDeedComponent implements OnInit {
 	// Co-Agents Methods (init, add and remove)
 
 	initCoAgent() {
-
 		return this.fb.group({
-			coAgentSexM: this.fb.group({
-				geogrStatus: [''],
-				socialStatus: [''],
-				firstName: [''],
-				patronyme: [''],
-				lastName: [''],
-				relatedTo: ['']
-			}),
-			coAgentSexF: this.fb.group({
-				familyStatus: [''],
-				firstName: [''],
-				patronyme: [''],
-				relatedTo: [''],
-				referentMale: this.fb.group({
-					relationshipToAgentSexF: [''],
+				coAgentSex: ['']
+		});
+	}
+
+	updateCoAgent(i) {
+		this.coAgentSex = this.deedForm.controls['coAgents']['controls'][i].get('coAgentSex').value;
+
+		switch (this.coAgentSex) {
+			case 'M': {
+				this.coAgent = this.fb.group({
 					geogrStatus: [''],
 					socialStatus: [''],
 					firstName: [''],
@@ -195,8 +193,32 @@ export class AddDeedComponent implements OnInit {
 					lastName: [''],
 					relatedTo: ['']
 				})
-			})
-		});
+				break;
+			}
+			case 'F': {
+				this.coAgent = this.fb.group({
+					familyStatus: [''],
+					firstName: [''],
+					patronyme: [''],
+					relatedTo: [''],
+					referentMale: this.fb.group({
+						relationshipToCoAgent: [''],
+						geogrStatus: [''],
+						socialStatus: [''],
+						firstName: [''],
+						patronyme: [''],
+						lastName: [''],
+						relatedTo: ['']
+					})
+				})
+				break;
+			}
+		}
+		this.deedForm.controls['coAgents']['controls'][i].setControl('coAgent', this.coAgent);
+	}
+
+	getCoAgentSex(i) {
+		return this.deedForm.controls['coAgents']['controls'][i].get('coAgentSex').value;
 	}
 
 	addCoAgent() {
@@ -209,26 +231,21 @@ export class AddDeedComponent implements OnInit {
 		control.removeAt(i);
 	}
 
+
 	// Co-Counter Agents Methods (init, add and remove)
 
 	initCoCounterAgent() {
-
 		return this.fb.group({
-			coCounterAgentSexM: this.fb.group({
-				geogrStatus: [''],
-				socialStatus: [''],
-				firstName: [''],
-				patronyme: [''],
-				lastName: [''],
-				relatedTo: ['']
-			}),
-			coCounterAgentSexF: this.fb.group({
-				familyStatus: [''],
-				firstName: [''],
-				patronyme: [''],
-				relatedTo: [''],
-				referentMale: this.fb.group({
-					relationshipToAgentSexF: [''],
+				coCounterAgentSex: ['']
+		});
+	}
+
+	updateCoCounterAgent(i) {
+		this.coCounterAgentSex = this.deedForm.controls['coCounterAgents']['controls'][i].get('coCounterAgentSex').value;
+
+		switch (this.coCounterAgentSex) {
+			case 'M': {
+				this.coCounterAgent = this.fb.group({
 					geogrStatus: [''],
 					socialStatus: [''],
 					firstName: [''],
@@ -236,8 +253,32 @@ export class AddDeedComponent implements OnInit {
 					lastName: [''],
 					relatedTo: ['']
 				})
-			})
-		});
+				break;
+			}
+			case 'F': {
+				this.coCounterAgent = this.fb.group({
+					familyStatus: [''],
+					firstName: [''],
+					patronyme: [''],
+					relatedTo: [''],
+					referentMale: this.fb.group({
+						relationshipToCoCounterAgent: [''],
+						geogrStatus: [''],
+						socialStatus: [''],
+						firstName: [''],
+						patronyme: [''],
+						lastName: [''],
+						relatedTo: ['']
+					})
+				})
+				break;
+			}
+		}
+		this.deedForm.controls['coCounterAgents']['controls'][i].setControl('coCounterAgent', this.coCounterAgent);
+	}
+
+	getCoCounterAgentSex(i) {
+		return this.deedForm.controls['coCounterAgents']['controls'][i].get('coCounterAgentSex').value;
 	}
 
 	addCoCounterAgent() {
