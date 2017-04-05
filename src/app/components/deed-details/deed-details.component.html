@@ -78,43 +78,232 @@
         <ng-template ngFor let-coAgent [ngForOf]="deed.coAgents" let-i="index">
             <h4>Co-Agent {{ i + 1 }}</h4>
             <ul class="list-group">
-                <li class="list-group-item"><strong>Co Agent Gender: </strong>{{ coAgent.coAgentSex }}</li>
-                <div [ngSwitch]="deed.counterAgentSex">
+                <li class="list-group-item"><strong>Co-Agent {{ i + 1 }} Gender: </strong>{{ coAgent.coAgentSex }}</li>
+                <div [ngSwitch]="getCoAgentSex(i)">
                     <div *ngSwitchCase="'M'">
-                        <li class="list-group-item"><strong>Counter Agent Geogr Status: </strong>{{ deed.counterAgent.geogrStatus }}</li>
-                        <li class="list-group-item"><strong>Counter Agent Social Status: </strong>{{ deed.counterAgent.socialStatus }}</li>
-                        <li class="list-group-item"><strong>Counter Agent First Name: </strong>{{ deed.counterAgent.firstName }}</li>
-                        <li class="list-group-item"><strong>Counter Agent Patronyme: </strong>{{ deed.counterAgent.patronyme }}</li>
-                        <li class="list-group-item"><strong>Counter Agent Last Name: </strong>{{ deed.counterAgent.lastName }}</li>
-                        <li class="list-group-item"><strong>Counter Agent Related To: </strong>{{ deed.counterAgent.relatedTo }}</li>
+                        <li class="list-group-item"><strong>Co-Agent {{ i + 1 }} Geogr Status: </strong>{{ coAgent.coAgent.geogrStatus }}</li>
+                        <li class="list-group-item"><strong>Co-Agent {{ i + 1 }} Social Status: </strong>{{ coAgent.coAgent.socialStatus }}</li>
+                        <li class="list-group-item"><strong>Co-Agent {{ i + 1 }} First Name: </strong>{{ coAgent.coAgent.firstName }}</li>
+                        <li class="list-group-item"><strong>Co-Agent {{ i + 1 }} Patronyme: </strong>{{ coAgent.coAgent.patronyme }}</li>
+                        <li class="list-group-item"><strong>Co-Agent {{ i + 1 }} Last Name: </strong>{{ coAgent.coAgent.lastName }}</li>
+                        <li class="list-group-item"><strong>Co-Agent {{ i + 1 }} Related To: </strong>{{ coAgent.coAgent.relatedTo }}</li>
                     </div>
                     <div *ngSwitchCase="'F'">
-                        <li class="list-group-item"><strong>Counter Agent Family Status: </strong>{{ deed.counterAgent.familyStatus }}</li>
-                        <li class="list-group-item"><strong>Counter Agent First Name: </strong>{{ deed.counterAgent.firstName }}</li>
-                        <li class="list-group-item"><strong>Counter Agent Patronyme: </strong>{{ deed.counterAgent.patronyme }}</li>
-                        <li class="list-group-item"><strong>Counter Agent Related To: </strong>{{ deed.counterAgent.relatedTo }}</li>
-                        <h4>Referent Male of Counter Agent</h4>
+                        <li class="list-group-item"><strong>Co-Agent {{ i + 1 }} Family Status: </strong>{{ coAgent.coAgent.familyStatus }}</li>
+                        <li class="list-group-item"><strong>Co-Agent {{ i + 1 }} First Name: </strong>{{ coAgent.coAgent.firstName }}</li>
+                        <li class="list-group-item"><strong>Co-Agent {{ i + 1 }} Patronyme: </strong>{{ coAgent.coAgent.patronyme }}</li>
+                        <li class="list-group-item"><strong>Co-Agent {{ i + 1 }} Related To: </strong>{{ coAgent.coAgent.relatedTo }}</li>
+                        <h5>Referent Male of Co-Agent {{ i+1 }}</h5>
                         <ul class="list-group">
-                            <li class="list-group-item"><strong>Relationship To Agent: </strong>{{ deed.counterAgent.referentMale.relationshipToAgentSexF
-                                }}</li>
-                            <li class="list-group-item"><strong>Referent Male Geogr Status: </strong>{{ deed.counterAgent.referentMale.geogrStatus }}</li>
-                            <li class="list-group-item"><strong>Referent Male Social Status: </strong>{{ deed.counterAgent.referentMale.socialStatus
-                                }}</li>
-                            <li class="list-group-item"><strong>Referent Male First Name: </strong>{{ deed.counterAgent.referentMale.firstName }}</li>
-                            <li class="list-group-item"><strong>Referent Male Patronyme: </strong>{{ deed.counterAgent.referentMale.patronyme }}</li>
-                            <li class="list-group-item"><strong>Referent Male Last Name: </strong>{{ deed.counterAgent.referentMale.lastName }}</li>
-                            <li class="list-group-item"><strong>Referent Male Related To: </strong>{{ deed.counterAgent.referentMale.relatedTo }}</li>
+                            <li class="list-group-item"><strong>Relationship To Co-Agent {{ i + 1 }}: </strong>{{ coAgent.coAgent.referentMale.relationshipToCoAgent
+                                }}
+                            </li>
+                            <li class="list-group-item"><strong>Referent Male Geogr Status: </strong>{{ coAgent.coAgent.referentMale.geogrStatus }}</li>
+                            <li class="list-group-item"><strong>Referent Male Social Status: </strong>{{ coAgent.coAgent.referentMale.socialStatus }}
+                            </li>
+                            <li class="list-group-item"><strong>Referent Male First Name: </strong>{{ coAgent.coAgent.referentMale.firstName }}</li>
+                            <li class="list-group-item"><strong>Referent Male Patronyme: </strong>{{ coAgent.coAgent.referentMale.patronyme }}</li>
+                            <li class="list-group-item"><strong>Referent Male Last Name: </strong>{{ coAgent.coAgent.referentMale.lastName }}</li>
+                            <li class="list-group-item"><strong>Referent Male Related To: </strong>{{ coAgent.coAgent.referentMale.relatedTo }}</li>
                         </ul>
                     </div>
                 </div>
-
-
             </ul>
         </ng-template>
-
     </div>
-
-
+    <div *ngIf="deed.coCounterAgents.length > 0">
+        <h3>Co-Counter Agents</h3>
+        <ng-template ngFor let-coCounterAgent [ngForOf]="deed.coCounterAgents" let-i="index">
+            <h4>Co-Counter Agent {{ i + 1 }}</h4>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Co-Agent {{ i + 1 }} Gender: </strong>{{ coCounterAgent.coCounterAgentSex }}</li>
+                <div [ngSwitch]="getCoCounterAgentSex(i)">
+                    <div *ngSwitchCase="'M'">
+                        <li class="list-group-item"><strong>Co-Counter Agent {{ i + 1 }} Geogr Status: </strong>{{ coCounterAgent.coCounterAgent.geogrStatus
+                            }}
+                        </li>
+                        <li class="list-group-item"><strong>Co-Counter Agent {{ i + 1 }} Social Status: </strong>{{ coCounterAgent.coCounterAgent.socialStatus
+                            }}
+                        </li>
+                        <li class="list-group-item"><strong>Co-Counter Agent {{ i + 1 }} First Name: </strong>{{ coCounterAgent.coCounterAgent.firstName
+                            }}
+                        </li>
+                        <li class="list-group-item"><strong>Co-Counter Agent {{ i + 1 }} Patronyme: </strong>{{ coCounterAgent.coCounterAgent.patronyme
+                            }}
+                        </li>
+                        <li class="list-group-item"><strong>Co-Counter Agent {{ i + 1 }} Last Name: </strong>{{ coCounterAgent.coCounterAgent.lastName
+                            }}
+                        </li>
+                        <li class="list-group-item"><strong>Co-Counter Agent {{ i + 1 }} Related To: </strong>{{ coCounterAgent.coCounterAgent.relatedTo
+                            }}
+                        </li>
+                    </div>
+                    <div *ngSwitchCase="'F'">
+                        <li class="list-group-item"><strong>Co-Counter Agent {{ i + 1 }} Family Status: </strong>{{ coCounterAgent.coCounterAgent.familyStatus
+                            }}
+                        </li>
+                        <li class="list-group-item"><strong>Co-Counter Agent {{ i + 1 }} First Name: </strong>{{ coCounterAgent.coCounterAgent.firstName
+                            }}
+                        </li>
+                        <li class="list-group-item"><strong>Co-Counter Agent {{ i + 1 }} Patronyme: </strong>{{ coCounterAgent.coCounterAgent.patronyme
+                            }}
+                        </li>
+                        <li class="list-group-item"><strong>Co-Counter Agent {{ i + 1 }} Related To: </strong>{{ coCounterAgent.coCounterAgent.relatedTo
+                            }}
+                        </li>
+                        <h5>Referent Male of Co-Agent {{ i+1 }}</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item"><strong>Relationship To Co-Counter Agent {{ i + 1 }}: </strong>{{ coCounterAgent.coCounterAgent.referentMale.relationshipToCoCounterAgent
+                                }}
+                            </li>
+                            <li class="list-group-item"><strong>Referent Male Geogr Status: </strong>{{ coCounterAgent.coCounterAgent.referentMale.geogrStatus
+                                }}
+                            </li>
+                            <li class="list-group-item"><strong>Referent Male Social Status: </strong>{{ coCounterAgent.coCounterAgent.referentMale.socialStatus
+                                }}
+                            </li>
+                            <li class="list-group-item"><strong>Referent Male First Name: </strong>{{ coCounterAgent.coCounterAgent.referentMale.firstName
+                                }}
+                            </li>
+                            <li class="list-group-item"><strong>Referent Male Patronyme: </strong>{{ coCounterAgent.coCounterAgent.referentMale.patronyme
+                                }}
+                            </li>
+                            <li class="list-group-item"><strong>Referent Male Last Name: </strong>{{ coCounterAgent.coCounterAgent.referentMale.lastName
+                                }}
+                            </li>
+                            <li class="list-group-item"><strong>Referent Male Related To: </strong>{{ coCounterAgent.coCounterAgent.referentMale.relatedTo
+                                }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </ul>
+        </ng-template>
+    </div>
+    <h2>Transactions</h2>
+    <ng-template ngFor let-transaction [ngForOf]="deed.transactions" let-i="index">
+        <h3>Transaction {{ i + 1 }}</h3>
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Transaction: </strong>{{ transaction.transaction }}</li>
+            <div *ngIf="transaction.agentTransactionType">
+                <li class="list-group-item"><strong>Agent Transaction Object Type: </strong>{{ transaction.agentTransactionType }}</li>
+                <div [ngSwitch]="getAgentTransactionObjectType(i)">
+                    <div *ngSwitchCase="'money'">
+                        <li class="list-group-item"><strong>Amount: </strong>{{ transaction.agentTransactionObject.money.amount }}</li>
+                        <li class="list-group-item"><strong>Currency: </strong>{{ transaction.agentTransactionObject.money.currency }}</li>
+                    </div>
+                    <div *ngSwitchCase="'land'">
+                        <li class="list-group-item"><strong>Juridical Status: </strong>{{ transaction.agentTransactionObject.land.juridicalStatus }}</li>
+                        <li class="list-group-item"><strong>Localisation: </strong>{{ transaction.agentTransactionObject.land.localisation }}</li>
+                        <li class="list-group-item"><strong>Surface: </strong>{{ transaction.agentTransactionObject.land.surface }}</li>
+                        <li class="list-group-item"><strong>Population: </strong>{{ transaction.agentTransactionObject.land.population }}</li>
+                        <li class="list-group-item"><strong>Construction: </strong>{{ transaction.agentTransactionObject.land.construction }}</li>
+                        <li class="list-group-item"><strong>Dependencies: </strong>{{ transaction.agentTransactionObject.land.dependencies }}</li>
+                    </div>
+                    <div *ngSwitchCase="'building'">
+                        <li class="list-group-item"><strong>Destination: </strong>{{ transaction.agentTransactionObject.building.destination }}</li>
+                        <li class="list-group-item"><strong>Localisation: </strong>{{ transaction.agentTransactionObject.building.localisation }}</li>
+                        <li class="list-group-item"><strong>Description: </strong>{{ transaction.agentTransactionObject.building.description }}</li>
+                    </div>
+                    <div *ngSwitchCase="'soul'">
+                        <li class="list-group-item"><strong>Juridical Status: </strong>{{ transaction.agentTransactionObject.soul.juridicalStatus }}</li>
+                        <li class="list-group-item"><strong>Gender: </strong>{{ transaction.agentTransactionObject.soul.sex }}</li>
+                        <li class="list-group-item"><strong>Name: </strong>{{ transaction.agentTransactionObject.soul.name }}</li>
+                    </div>
+                    <div *ngSwitchCase="'movable'">
+                        <li class="list-group-item"><strong>Definition: </strong>{{ transaction.agentTransactionObject.movable.definition }}</li>
+                        <li class="list-group-item"><strong>Description: </strong>{{ transaction.agentTransactionObject.movable.description }}</li>
+                    </div>
+                    <div *ngSwitchCase="'obligation'">
+                        <li class="list-group-item"><strong>Nature: </strong>{{ transaction.agentTransactionObject.obligation.nature }}</li>
+                        <li class="list-group-item"><strong>Ssubjects: </strong>{{ transaction.agentTransactionObject.obligation.subjects }}</li>
+                        <li class="list-group-item"><strong>Conditions: </strong>{{ transaction.agentTransactionObject.obligation.conditions }}</li>
+                    </div>
+                </div>
+            </div>
+            <li class="list-group-item"><strong>Advance Payment: </strong>{{ transaction.advancePayment }}</li>
+            <li class="list-group-item"><strong>Contract Conditions: </strong>{{ transaction.contractConditions }}</li>
+            <li class="list-group-item"><strong>Contract Duration: </strong>{{ transaction.contractDuration }}</li>
+            <li class="list-group-item"><strong>Forfeit (roubles): </strong>{{ transaction.forfeit }}</li>
+        </ul>
+    </ng-template>
+    <h2>Accessories to Contract</h2>
+    <div *ngIf="deed.whitnesses.length > 0">
+        <h3>Whitnesses</h3>
+        <ng-template ngFor let-whitness [ngForOf]="deed.whitnesses" let-i="index">
+            <h4>Whitness {{ i + 1 }}</h4>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Whitness {{ i + 1 }} Geogr Status: </strong>{{ whitness.whitness.geogrStatus }}</li>
+                <li class="list-group-item"><strong>Whitness {{ i + 1 }} Social Status: </strong>{{ whitness.whitness.socialStatus }}</li>
+                <li class="list-group-item"><strong>Whitness {{ i + 1 }} First Name: </strong>{{ whitness.whitness.firstName }}</li>
+                <li class="list-group-item"><strong>Whitness {{ i + 1 }} Patronyme: </strong>{{ whitness.whitness.patronyme }}</li>
+                <li class="list-group-item"><strong>Whitness {{ i + 1 }} Last Name: </strong>{{ whitness.whitness.lastName }}</li>
+                <li class="list-group-item"><strong>Whitness {{ i + 1 }} Related To: </strong>{{ whitness.whitness.relatedTo }}</li>
+            </ul>
+        </ng-template>
+    </div>
+    <div *ngIf="deed.sureties.length > 0">
+        <h3>Sureties</h3>
+        <ng-template ngFor let-surety [ngForOf]="deed.sureties" let-i="index">
+            <h4>Surety {{ i + 1 }}</h4>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Surety {{ i + 1 }} Geogr Status: </strong>{{ surety.surety.geogrStatus }}</li>
+                <li class="list-group-item"><strong>Surety {{ i + 1 }} Social Status: </strong>{{ surety.surety.socialStatus }}</li>
+                <li class="list-group-item"><strong>Surety {{ i + 1 }} First Name: </strong>{{ surety.surety.firstName }}</li>
+                <li class="list-group-item"><strong>Surety {{ i + 1 }} Patronyme: </strong>{{ surety.surety.patronyme }}</li>
+                <li class="list-group-item"><strong>Surety {{ i + 1 }} Last Name: </strong>{{ surety.surety.lastName }}</li>
+                <li class="list-group-item"><strong>Surety {{ i + 1 }} Related To: </strong>{{ surety.surety.relatedTo }}</li>
+            </ul>
+        </ng-template>
+    </div>
+    <div *ngIf="deed.scribe">
+        <h3>Scribe</h3>
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Scribe Geogr Status: </strong>{{ deed.scribe.geogrStatus }}</li>
+            <li class="list-group-item"><strong>Scribe Social Status: </strong>{{ deed.scribe.socialStatus }}</li>
+            <li class="list-group-item"><strong>Scribe First Name: </strong>{{ deed.scribe.firstName }}</li>
+            <li class="list-group-item"><strong>Scribe Patronyme: </strong>{{ deed.scribe.patronyme }}</li>
+            <li class="list-group-item"><strong>Scribe Last Name: </strong>{{ deed.scribe.lastName }}</li>
+            <li class="list-group-item"><strong>Scribe Related To: </strong>{{ deed.scribe.relatedTo }}</li>
+        </ul>
+    </div>
+    <div *ngIf="deed.otherParticipants.length > 0">
+        <h3>Other Participants</h3>
+        <ng-template ngFor let-otherParticipant [ngForOf]="deed.otherParticipants" let-i="index">
+            <h4>Other Participant {{ i + 1 }}</h4>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Other Participant {{ i + 1 }} Role: </strong>{{ otherParticipant.otherParticipant.role }}</li>
+                <li class="list-group-item"><strong>Other Participant {{ i + 1 }} Geogr Status: </strong>{{ otherParticipant.otherParticipant.geogrStatus }}</li>
+                <li class="list-group-item"><strong>Other Participant {{ i + 1 }} Social Status: </strong>{{ otherParticipant.otherParticipant.socialStatus }}</li>
+                <li class="list-group-item"><strong>Other Participant {{ i + 1 }} First Name: </strong>{{ otherParticipant.otherParticipant.firstName }}</li>
+                <li class="list-group-item"><strong>Other Participant {{ i + 1 }} Patronyme: </strong>{{ otherParticipant.otherParticipant.patronyme }}</li>
+                <li class="list-group-item"><strong>Other Participant {{ i + 1 }} Last Name: </strong>{{ otherParticipant.otherParticipant.lastName }}</li>
+                <li class="list-group-item"><strong>Other Participant {{ i + 1 }} Related To: </strong>{{ otherParticipant.otherParticipant.relatedTo }}</li>
+            </ul>
+        </ng-template>
+    </div>
+    <h2>Registration</h2>
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Registration Date: </strong>{{ deed.registrationDate }}</li>
+        <div *ngIf="deed.registrator">
+            <h4>Registrator</h4>
+            <li class="list-group-item"><strong>Registrator First Name: </strong>{{ deed.registrator.firstName }}</li>
+            <li class="list-group-item"><strong>Registrator Patronyme: </strong>{{ deed.registrator.patronyme }}</li>
+            <li class="list-group-item"><strong>Registrator Last Name: </strong>{{ deed.registrator.lastName }}</li>
+            <li class="list-group-item"><strong>Registrator Related To: </strong>{{ deed.registrator.relatedTo }}</li>
+        </div>
+        <h4>Fee</h4>
+        <li class="list-group-item"><strong>Fee Amount: </strong>{{ deed.fee.amount }}</li>
+        <li class="list-group-item"><strong>Fee Currency: </strong>{{ deed.fee.currency }}</li>
+        <li class="list-group-item"><strong>Fee Collected: </strong>{{ deed.fee.amount }}</li>
+    </ul>
+    <h2>Annexes</h2>
+    <ul class="list-group">
+        <h3>Verbatim Citations</h3>
+        <li class="list-group-item"><strong>Scribe Geogr Status: </strong>{{ deed.verbatimCitations }}</li>
+        <h3>Researcher Notes</h3>
+        <li class="list-group-item"><strong>Scribe Social Status: </strong>{{ deed.researcherNotes }}</li>
+    </ul>
 
 
 
@@ -123,67 +312,3 @@
 
 </div>
 
-
-<!--
-			deedDate: [''],
-			deedName: [''],
-			deedLanguage: ['russian'],
-			agentSex: [''],
-			agent: [''],
-			coAgents: this.fb.array([]),
-			counterAgentSex: [''],
-			counterAgent: [''],
-			coCounterAgents: this.fb.array([]),
-			transactions: this.fb.array([
-				this.initTransaction(),
-			]),
-			whitnesses: this.fb.array([]),
-			sureties: this.fb.array([]),
-			otherParticipants: this.fb.array([]),
-			registrationDate: [''],
-			fee: this.fb.group({
-				amount: [''],
-				currency: [''],
-				collected: ['yes']
-			}),
-			verbatimCitations: [''],
-			researcherNotes: ['']
-            
-            switch (this.agentSex) {
-			case 'M': {
-				this.agent = this.fb.group({
-					geogrStatus: [''],
-					socialStatus: [''],
-					firstName: [''],
-					patronyme: [''],
-					lastName: [''],
-					relatedTo: ['']
-				})
-				break;
-			}
-			case 'F': {
-				this.agent = this.fb.group({
-					familyStatus: [''],
-					firstName: [''],
-					patronyme: [''],
-					relatedTo: [''],
-					referentMale: this.fb.group({
-						relationshipToAgentSexF: [''],
-						geogrStatus: [''],
-						socialStatus: [''],
-						firstName: [''],
-						patronyme: [''],
-						lastName: [''],
-						relatedTo: ['']
-					})
-				})
-				break;
-			}
-		}
-            
-            
-            
-            
-            
-            
-            -->

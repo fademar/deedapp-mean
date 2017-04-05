@@ -8,7 +8,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./deed-details.component.css']
 })
 export class DeedDetailsComponent implements OnInit {
-
+  
   id: string;
   deed;
 
@@ -27,5 +27,18 @@ export class DeedDetailsComponent implements OnInit {
       this.router.navigate(['/']);
     })
   }
+
+  getCoAgentSex(i) {
+		return this.deed.coAgents[i].coAgentSex;
+	}
+  
+  getCoCounterAgentSex(i) {
+		return this.deed.coCounterAgents[i].coCounterAgentSex;
+	}
+
+  getAgentTransactionObjectType(i) {
+    return this.deed.transactions[i].agentTransactionType;
+  }
+
 
 }
