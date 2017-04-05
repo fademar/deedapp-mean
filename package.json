@@ -28,8 +28,7 @@
     "express": "^4.15.2",
     "mongodb": "^2.2.25",
     "rxjs": "^5.1.0",
-    "typescript": "^2.2.2",
-    "zone.js": "^0.8.5"
+    "typescript": "^2.2.2"
   },
   "devDependencies": {
     "@angular/cli": "1.0.0",
