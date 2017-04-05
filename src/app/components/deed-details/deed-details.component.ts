@@ -11,15 +11,14 @@ export class DeedDetailsComponent implements OnInit {
 
   id: string;
   deed;
-  deedDetails;
 
   constructor(private deedService:DeedService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.deedService.getDeed(this.id).subscribe(deed => {
+      console.log(deed);
       this.deed = deed;
-      this.deedDetails = JSON.stringify(deed, null, '\t');
     });
   }
  

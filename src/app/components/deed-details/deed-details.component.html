@@ -3,8 +3,151 @@
         <a routerLink="/deed/edit/{{ deed._id }}" class="btn btn-default">Edit</a>
         <a href="#" (click)="onDeleteClick(deed._id)" class="btn btn-danger">Delete</a>
     </div>
-    <h1 class="page-header">Deed Ref : {{ deed.DeedRef }}</h1>
-    <div>
-        <pre>{{ deedDetails }}</pre>
+    <h1 class="page-header">Deed N° : {{ deed.deedCode }} {{ deed.deedRef }}</h1>
+    <h2>Deed References</h2>
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Deed Code: </strong>{{ deed.deedCode }}</li>
+        <li class="list-group-item"><strong>Deed Ref: </strong>{{ deed.deedRef }}</li>
+        <li class="list-group-item"><strong>Deed Name: </strong>{{ deed.deedName }}</li>
+        <li class="list-group-item"><strong>Deed Language: </strong>{{ deed.deedLanguage }}</li>
+    </ul>
+    <h2>Contracting Parties</h2>
+    <h3>Agent</h3>
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Agent Sex: </strong>{{ deed.agentSex }}</li>
+        <div [ngSwitch]="deed.agentSex">
+            <div *ngSwitchCase="'M'">
+                <li class="list-group-item"><strong>Agent Geogr Status: </strong>{{ deed.agent.geogrStatus }}</li>
+                <li class="list-group-item"><strong>Agent Social Status: </strong>{{ deed.agent.socialStatus }}</li>
+                <li class="list-group-item"><strong>Agent First Name: </strong>{{ deed.agent.firstName }}</li>
+                <li class="list-group-item"><strong>Agent Patronyme: </strong>{{ deed.agent.patronyme }}</li>
+                <li class="list-group-item"><strong>Agent Last Name: </strong>{{ deed.agent.lastName }}</li>
+                <li class="list-group-item"><strong>Agent Related To: </strong>{{ deed.agent.relatedTo }}</li>
+            </div>
+            <div *ngSwitchCase="'F'">
+                <li class="list-group-item"><strong>Agent Family Status: </strong>{{ deed.agent.familyStatus }}</li>
+                <li class="list-group-item"><strong>Agent First Name: </strong>{{ deed.agent.firstName }}</li>
+                <li class="list-group-item"><strong>Agent Patronyme: </strong>{{ deed.agent.patronyme }}</li>
+                <li class="list-group-item"><strong>Agent Related To: </strong>{{ deed.agent.relatedTo }}</li>
+                <h4>Referent Male of Agent</h4>
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Relationship To Agent: </strong>{{ deed.agent.referentMale.relationshipToAgent }}</li>
+                    <li class="list-group-item"><strong>Referent Male Geogr Status: </strong>{{ deed.agent.referentMale.geogrStatus }}</li>
+                    <li class="list-group-item"><strong>Referent Male Social Status: </strong>{{ deed.agent.referentMale.socialStatus }}</li>
+                    <li class="list-group-item"><strong>Referent Male First Name: </strong>{{ deed.agent.referentMale.firstName }}</li>
+                    <li class="list-group-item"><strong>Referent Male Patronyme: </strong>{{ deed.agent.referentMale.patronyme }}</li>
+                    <li class="list-group-item"><strong>Referent Male Last Name: </strong>{{ deed.agent.referentMale.lastName }}</li>
+                    <li class="list-group-item"><strong>Referent Male Related To: </strong>{{ deed.agent.referentMale.relatedTo }}</li>
+                </ul>
+
+            </div>
+        </div>
+    </ul>
+    <h3>Counter Agent</h3>
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Counter Agent Sex: </strong>{{ deed.counterAgentSex }}</li>
+        <div [ngSwitch]="deed.counterAgentSex">
+            <div *ngSwitchCase="'M'">
+                <li class="list-group-item"><strong>Counter Agent Geogr Status: </strong>{{ deed.counterAgent.geogrStatus }}</li>
+                <li class="list-group-item"><strong>Counter Agent Social Status: </strong>{{ deed.counterAgent.socialStatus }}</li>
+                <li class="list-group-item"><strong>Counter Agent First Name: </strong>{{ deed.counterAgent.firstName }}</li>
+                <li class="list-group-item"><strong>Counter Agent Patronyme: </strong>{{ deed.counterAgent.patronyme }}</li>
+                <li class="list-group-item"><strong>Counter Agent Last Name: </strong>{{ deed.counterAgent.lastName }}</li>
+                <li class="list-group-item"><strong>Counter Agent Related To: </strong>{{ deed.counterAgent.relatedTo }}</li>
+            </div>
+            <div *ngSwitchCase="'F'">
+                <li class="list-group-item"><strong>Counter Agent Family Status: </strong>{{ deed.counterAgent.familyStatus }}</li>
+                <li class="list-group-item"><strong>Counter Agent First Name: </strong>{{ deed.counterAgent.firstName }}</li>
+                <li class="list-group-item"><strong>Counter Agent Patronyme: </strong>{{ deed.counterAgent.patronyme }}</li>
+                <li class="list-group-item"><strong>Counter Agent Related To: </strong>{{ deed.counterAgent.relatedTo }}</li>
+                <h4>Referent Male of Counter Agent</h4>
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Relationship To Agent: </strong>{{ deed.counterAgent.referentMale.relationshipToAgentSexF }}</li>
+                    <li class="list-group-item"><strong>Referent Male Geogr Status: </strong>{{ deed.counterAgent.referentMale.geogrStatus }}</li>
+                    <li class="list-group-item"><strong>Referent Male Social Status: </strong>{{ deed.counterAgent.referentMale.socialStatus }}</li>
+                    <li class="list-group-item"><strong>Referent Male First Name: </strong>{{ deed.counterAgent.referentMale.firstName }}</li>
+                    <li class="list-group-item"><strong>Referent Male Patronyme: </strong>{{ deed.counterAgent.referentMale.patronyme }}</li>
+                    <li class="list-group-item"><strong>Referent Male Last Name: </strong>{{ deed.counterAgent.referentMale.lastName }}</li>
+                    <li class="list-group-item"><strong>Referent Male Related To: </strong>{{ deed.counterAgent.referentMale.relatedTo }}</li>
+                </ul>
+            </div>
+        </div>
+    </ul>
+    <div *ngIf="deed.coAgents.length > 0">
+        <h3>Co Agents</h3>
+        
     </div>
+    
+    
+    
+    
+    
+    
+    
+
 </div>
+
+
+<!--
+			deedDate: [''],
+			deedName: [''],
+			deedLanguage: ['russian'],
+			agentSex: [''],
+			agent: [''],
+			coAgents: this.fb.array([]),
+			counterAgentSex: [''],
+			counterAgent: [''],
+			coCounterAgents: this.fb.array([]),
+			transactions: this.fb.array([
+				this.initTransaction(),
+			]),
+			whitnesses: this.fb.array([]),
+			sureties: this.fb.array([]),
+			otherParticipants: this.fb.array([]),
+			registrationDate: [''],
+			fee: this.fb.group({
+				amount: [''],
+				currency: [''],
+				collected: ['yes']
+			}),
+			verbatimCitations: [''],
+			researcherNotes: ['']
+            
+            switch (this.agentSex) {
+			case 'M': {
+				this.agent = this.fb.group({
+					geogrStatus: [''],
+					socialStatus: [''],
+					firstName: [''],
+					patronyme: [''],
+					lastName: [''],
+					relatedTo: ['']
+				})
+				break;
+			}
+			case 'F': {
+				this.agent = this.fb.group({
+					familyStatus: [''],
+					firstName: [''],
+					patronyme: [''],
+					relatedTo: [''],
+					referentMale: this.fb.group({
+						relationshipToAgentSexF: [''],
+						geogrStatus: [''],
+						socialStatus: [''],
+						firstName: [''],
+						patronyme: [''],
+						lastName: [''],
+						relatedTo: ['']
+					})
+				})
+				break;
+			}
+		}
+            
+            
+            
+            
+            
+            
+            -->
