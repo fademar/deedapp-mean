@@ -248,7 +248,6 @@ export class EditDeedComponent implements OnInit {
 					const element = this.deed.transactions[i];
 					const control = <FormArray>this.deedForm.controls['transactions'];
 					control.push(this.initTransaction());
-					console.log(control);
 
 					this.deedForm.controls['transactions']['controls'][i].patchValue({
 						transaction: element.transaction,
