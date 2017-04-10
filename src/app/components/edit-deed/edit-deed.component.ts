@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { DeedService } from '../../services/deed.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
@@ -6,16 +6,15 @@ import { Deed, AgentM, AgentF, ReferentMale, OtherParticipant, Registrator, Fee,
 
 
 @Component({
-  selector: 'app-edit-deed',
-  templateUrl: './edit-deed.component.html',
-  styleUrls: ['./edit-deed.component.css']
+	selector: 'app-edit-deed',
+	templateUrl: './edit-deed.component.html',
+	styleUrls: ['./edit-deed.component.css']
 })
 export class EditDeedComponent implements OnInit {
-  id;
-  deed;
-  deedDetails;
+	id;
+	deed;
 
-  deedForm: FormGroup;
+	deedForm: FormGroup;
 	agent: FormGroup;
 	counterAgent: FormGroup;
 	coAgent: FormGroup;
@@ -32,7 +31,6 @@ export class EditDeedComponent implements OnInit {
 	coCounterAgentSex = '';
 	agentTransactionType = '';
 	counterAgentTransactionType = '';
-  agentSet;
 
 	gender = gender;
 	transactionTypes = transactionTypes;
@@ -40,102 +38,443 @@ export class EditDeedComponent implements OnInit {
 	scribeOn = this.scribeOn;
 	registratorOn = this.registratorOn;
 
-  constructor(private deedService:DeedService, private router: Router, private route: ActivatedRoute, private fb: FormBuilder) { 		this.createForm();
-  }
-
-  ngOnInit() {
-    this.id = this.route.snapshot.params['id'];
-    this.deedService.getDeed(this.id).subscribe(deed => {
-        this.deed = deed;
-
-        switch (this.deed.agentSex) {
-          case 'M': {
-            this.agentSet = { 
-              geogrStatus: this.deed.agent.geogrStatus, 
-              socialStatus: this.deed.agent.socialStatus,  
-              firstName: this.deed.agent.firstName,
-					    patronyme: this.deed.agent.patronyme,
-					    lastName: this.deed.agent.lastName,
-					    relatedTo: this.deed.agent.relatedTo
-            }
-            break;
-          }
-          case 'F': {
-            this.agentSet = {
-              familyStatus: this.deed.agent.familyStatus,
-              firstName: this.deed.agent.firstName,
-              patronyme: this.deed.agent.patronyme,
-              relatedTo: this.deed.agent.lastName,
-              referentMale: {
-                relationshipToAgent: this.deed.agent.referenMale.relationshipToAgent,
-                geogrStatus: this.deed.agent.referenMale.geogrStatus,
-                socialStatus: this.deed.agent.referenMale.socialStatus,
-                firstName: this.deed.agent.referenMale.firstName,
-                patronyme: this.deed.agent.referenMale.patronyme,
-                lastName: this.deed.agent.referenMale.lastName,
-                relatedTo: this.deed.agent.referenMale.relatedTo
-              }
-            }
-            break;
-          }
-        }
-
-        this.deedForm.setValue({
-          _id: this.deed._id,
-          deedCode: this.deed.deedCode,
-			    deedRef: this.deed.deedRef,
-			    deedDate: this.deed.deedDate,
-			    deedName: this.deed.deedName,
-			    deedLanguage: this.deed.deedLanguage,
-			    agentSex: this.deed.agentSex,
-			    agent: this.agentSet,
-			    coAgents: this.fb.array([]),
-          counterAgentSex: [''],
-          counterAgent: [''],
-          coCounterAgents: this.fb.array([]),
-          transactions: this.fb.array([
-            this.initTransaction(),
-          ]),
-          whitnesses: this.fb.array([]),
-          sureties: this.fb.array([]),
-          otherParticipants: this.fb.array([]),
-          registrationDate: [''],
-          fee: this.fb.group({
-            amount: [''],
-            currency: [''],
-            collected: ['yes']
-          }),
-          verbatimCitations: [''],
-          researcherNotes: ['']
+	constructor(private fb: FormBuilder, private deedService: DeedService, private router: Router, private route: ActivatedRoute) { this.initForm(); }
 
 
 
-        });
+	ngOnInit() {
+		this.id = this.route.snapshot.params['id'];
+		this.deedService.getDeed(this.id).subscribe(deed => {
+
+			// Getting deed values from db
+			this.deed = deed;
+
+			// Populating first FormControlNames with values
+			this.deedForm.patchValue({
+				_id: this.id,
+				deedCode: this.deed.deedCode,
+				deedRef: this.deed.deedRef,
+				deedDate: this.deed.deedDate,
+				deedName: this.deed.deedName,
+				deedLanguage: this.deed.deedLanguage,
+				registrationDate: this.deed.registrationDate,
+				fee: this.deed.fee,
+				verbatimCitations: this.deed.verbatimCitations,
+				researcherNotes: this.deed.researcherNotes
+			})
+
+			// Populate Agent depending on AgentSex
+			switch (this.deed.agentSex) {
+				case 'M': {
+					this.agent = this.fb.group({
+						geogrStatus: [''],
+						socialStatus: [''],
+						firstName: [''],
+						patronyme: [''],
+						lastName: [''],
+						relatedTo: ['']
+					})
+					break;
+				}
+				case 'F': {
+					this.agent = this.fb.group({
+						familyStatus: [''],
+						firstName: [''],
+						patronyme: [''],
+						relatedTo: [''],
+						referentMale: this.fb.group({
+							relationshipToAgent: [''],
+							geogrStatus: [''],
+							socialStatus: [''],
+							firstName: [''],
+							patronyme: [''],
+							lastName: [''],
+							relatedTo: ['']
+						})
+					})
+					break;
+				}
+			}
+			this.deedForm.setControl('agent', this.agent);
+			this.deedForm.patchValue({
+				agentSex: this.deed.agentSex,
+				agent: this.deed.agent
+			});
+
+			// Populate Counter Agent depending on CounterAgentSex
+			switch (this.deed.counterAgentSex) {
+				case 'M': {
+					this.counterAgent = this.fb.group({
+						geogrStatus: [''],
+						socialStatus: [''],
+						firstName: [''],
+						patronyme: [''],
+						lastName: [''],
+						relatedTo: ['']
+					})
+					break;
+				}
+				case 'F': {
+					this.counterAgent = this.fb.group({
+						familyStatus: [''],
+						firstName: [''],
+						patronyme: [''],
+						relatedTo: [''],
+						referentMale: this.fb.group({
+							relationshipToCounterAgent: [''],
+							geogrStatus: [''],
+							socialStatus: [''],
+							firstName: [''],
+							patronyme: [''],
+							lastName: [''],
+							relatedTo: ['']
+						})
+					})
+					break;
+				}
+			}
+			this.deedForm.setControl('counterAgent', this.counterAgent);
+			this.deedForm.patchValue({
+				counterAgentSex: this.deed.counterAgentSex,
+				counterAgent: this.deed.counterAgent
+			});
+
+
+			// Populating coAgents
+			if (this.deed.coAgents.length > 0) {
+
+				for (var i = 0; i < this.deed.coAgents.length; i++) {
+					const element = this.deed.coAgents[i];
+					const control = <FormArray>this.deedForm.controls['coAgents'];
+					control.push(this.initCoAgent());
+					this.deedForm.controls['coAgents']['controls'][i].patchValue({
+						coAgentSex: element.coAgentSex
+					})
+
+					switch (element.coAgentSex) {
+						case 'M': {
+							this.coAgent = this.fb.group({
+								geogrStatus: [''],
+								socialStatus: [''],
+								firstName: [''],
+								patronyme: [''],
+								lastName: [''],
+								relatedTo: ['']
+							})
+							break;
+						}
+						case 'F': {
+							this.coAgent = this.fb.group({
+								familyStatus: [''],
+								firstName: [''],
+								patronyme: [''],
+								relatedTo: [''],
+								referentMale: this.fb.group({
+									relationshipToCoAgent: [''],
+									geogrStatus: [''],
+									socialStatus: [''],
+									firstName: [''],
+									patronyme: [''],
+									lastName: [''],
+									relatedTo: ['']
+								})
+							})
+							break;
+						}
+					} // end switch
+
+					this.deedForm.controls['coAgents']['controls'][i].setControl('coAgent', this.coAgent);
+					this.deedForm.controls['coAgents']['controls'][i].patchValue({
+						coAgent: element.coAgent
+					});
+
+				} //endfor
+			} // endif coagents
+
+			// Populating coCounterAgents
+			if (this.deed.coCounterAgents.length > 0) {
+				for (var i = 0; i < this.deed.coCounterAgents.length; i++) {
+					const element = this.deed.coCounterAgents[i];
+					const control = <FormArray>this.deedForm.controls['coCounterAgents'];
+					control.push(this.initCoCounterAgent());
+					this.deedForm.controls['coCounterAgents']['controls'][i].patchValue({
+						coCounterAgentSex: element.coCounterAgentSex
+					})
+
+					switch (element.coCounterAgentSex) {
+						case 'M': {
+							this.coCounterAgent = this.fb.group({
+								geogrStatus: [''],
+								socialStatus: [''],
+								firstName: [''],
+								patronyme: [''],
+								lastName: [''],
+								relatedTo: ['']
+							})
+							break;
+						}
+						case 'F': {
+							this.coCounterAgent = this.fb.group({
+								familyStatus: [''],
+								firstName: [''],
+								patronyme: [''],
+								relatedTo: [''],
+								referentMale: this.fb.group({
+									relationshipToCoCounterAgent: [''],
+									geogrStatus: [''],
+									socialStatus: [''],
+									firstName: [''],
+									patronyme: [''],
+									lastName: [''],
+									relatedTo: ['']
+								})
+							})
+							break;
+						}
+					} // end switch
+
+					this.deedForm.controls['coCounterAgents']['controls'][i].setControl('coCounterAgent', this.coCounterAgent);
+					this.deedForm.controls['coCounterAgents']['controls'][i].patchValue({
+						coCounterAgent: element.coCounterAgent
+					});
+
+				} //endfor
+			} // endif coCounteragents	
+
+			// Populating Transactions
+			if (this.deed.transactions.length > 0) {
+				for (var i = 0; i < this.deed.transactions.length; i++) {
+
+					const element = this.deed.transactions[i];
+					const control = <FormArray>this.deedForm.controls['transactions'];
+					control.push(this.initTransaction());
+					console.log(control);
+
+					this.deedForm.controls['transactions']['controls'][i].patchValue({
+						transaction: element.transaction,
+						agentTransactionType: element.agentTransactionType,
+						counterAgentTransactionType: element.counterAgentTransactionType,
+						advancePayment: element.advancePayment,
+						contractConditions: element.contractConditions,
+						contractDuration: element.contractDuration,
+						forfeit: element.forfeit
+					})
+
+					if (element.agentTransactionType !== '') {
+						switch (element.agentTransactionType) {
+
+							case 'money': {
+								this.agentTransactionObject = this.fb.group({
+									money: this.fb.group({
+										amount: [''],
+										currency: ['']
+									})
+								})
+								break;
+							}
+							case 'land': {
+								this.agentTransactionObject = this.fb.group({
+									land: this.fb.group({
+										juridicalStatus: [''],
+										localisation: [''],
+										surface: [''],
+										population: [''],
+										construction: [''],
+										dependencies: ['']
+									})
+								})
+								break;
+							}
+							case 'building': {
+								this.agentTransactionObject = this.fb.group({
+									building: this.fb.group({
+										destination: [''],
+										localisation: [''],
+										description: ['']
+									})
+								})
+								break;
+							}
+							case 'soul': {
+								this.agentTransactionObject = this.fb.group({
+									soul: this.fb.group({
+										juridicalStatus: [''],
+										sex: [''],
+										name: ['']
+									})
+								})
+								break;
+							}
+							case 'movable': {
+								this.agentTransactionObject = this.fb.group({
+									movable: this.fb.group({
+										definition: [''],
+										description: ['']
+									})
+								})
+								break;
+							}
+							case 'obligation': {
+								this.agentTransactionObject = this.fb.group({
+									obligation: this.fb.group({
+										nature: [''],
+										subjects: [''],
+										conditions: ['']
+									})
+								})
+								break;
+							}
+						}
+					} else {
+						this.agentTransactionObject = this.fb.group({});
+					}
+
+					this.deedForm.controls.transactions['controls'][i].setControl('agentTransactionObject', this.agentTransactionObject);
+					this.deedForm.controls.transactions['controls'][i].patchValue({
+						agentTransactionObject: element.agentTransactionObject
+					});
+
+
+					if (element.counterAgentTransactionType !== '') {
+						switch (element.counterAgentTransactionType) {
+							case 'money': {
+								this.counterAgentTransactionObject = this.fb.group({
+									money: this.fb.group({
+										amount: [''],
+										currency: ['']
+									})
+								})
+								break;
+							}
+							case 'land': {
+								this.counterAgentTransactionObject = this.fb.group({
+									land: this.fb.group({
+										juridicalStatus: [''],
+										localisation: [''],
+										surface: [''],
+										population: [''],
+										construction: [''],
+										dependencies: ['']
+									})
+								})
+								break;
+							}
+							case 'building': {
+								this.counterAgentTransactionObject = this.fb.group({
+									building: this.fb.group({
+										destination: [''],
+										localisation: [''],
+										description: ['']
+									})
+								})
+								break;
+							}
+							case 'soul': {
+								this.counterAgentTransactionObject = this.fb.group({
+									soul: this.fb.group({
+										juridicalStatus: [''],
+										sex: [''],
+										name: ['']
+									})
+								})
+								break;
+							}
+							case 'movable': {
+								this.counterAgentTransactionObject = this.fb.group({
+									movable: this.fb.group({
+										definition: [''],
+										description: ['']
+									})
+								})
+								break;
+							}
+							case 'obligation': {
+								this.counterAgentTransactionObject = this.fb.group({
+									obligation: this.fb.group({
+										nature: [''],
+										subjects: [''],
+										conditions: ['']
+									})
+								})
+								break;
+							}
+						}
+					}
+					else {
+						this.counterAgentTransactionObject = this.fb.group({});
+					}
+
+					this.deedForm.controls.transactions['controls'][i].setControl('counterAgentTransactionObject', this.counterAgentTransactionObject);
+
+					this.deedForm.controls.transactions['controls'][i].patchValue({
+						counterAgentTransactionObject: element.counterAgentTransactionObject
+					});
+				} //endfor
+			} // endif
+
+
+			// Populating Whitnesses
+			if (this.deed.whitnesses.length > 0) {
+				for (var i = 0; i < this.deed.whitnesses.length; i++) {
+					var element = this.deed.whitnesses[i];
+					const control = <FormArray>this.deedForm.controls['whitnesses'];
+					control.push(this.initWhitness());
+					this.deedForm.controls['whitnesses']['controls'][i].patchValue({
+						whitness: element.whitness
+					})
+				}
+			}
+
+			// Populating Sureties
+			if (this.deed.sureties.length > 0) {
+				for (var i = 0; i < this.deed.sureties.length; i++) {
+					var element = this.deed.sureties[i];
+					const control = <FormArray>this.deedForm.controls['sureties'];
+					control.push(this.initSurety());
+					this.deedForm.controls['sureties']['controls'][i].patchValue({
+						surety: element.surety
+					})
+				}
+			}
+
+			// Populating Scribe
+			if (this.deed.scribe) {
+				this.addScribe();
+				this.deedForm.patchValue({
+					scribe: this.deed.scribe
+				})
+			}
+
+			// Populating Other Participants
+			if (this.deed.otherParticipants.length > 0) {
+				for (var i = 0; i < this.deed.otherParticipants.length; i++) {
+					var element = this.deed.otherParticipants[i];
+					const control = <FormArray>this.deedForm.controls['otherParticipants'];
+					control.push(this.initOtherParticipant());
+					this.deedForm.controls['otherParticipants']['controls'][i].patchValue({
+						otherParticipant: element.otherParticipant
+					})
+				}
+			}
+
+			// Populating Registrator
+			if (this.deed.registrator) {
+				this.addRegistrator();
+				this.deedForm.patchValue({
+					registrator: this.deed.registrator
+				})
+			}
 
 
 
-  
+		}); // end Subscribe
+	} // end NgOnInit
 
-
-    });
-
-  }
-
-
-  onEditSubmit() {
-    let deed = this.deedDetails;
-
-    this.deedService.updateDeed(this.id, deed).subscribe(deed =>{
-      this.router.navigate(['/deed/'+this.id]);
-    })
-  }
-
-  // Create the form
-
-	createForm() {
+	// Create the form
+	initForm() {
 
 		this.deedForm = this.fb.group({
-      _id: [''],
+			_id: [{ value: '', disabled: true }],
 			deedCode: ['', Validators.required],
 			deedRef: ['', Validators.required],
 			deedDate: [''],
@@ -147,9 +486,7 @@ export class EditDeedComponent implements OnInit {
 			counterAgentSex: [''],
 			counterAgent: [''],
 			coCounterAgents: this.fb.array([]),
-			transactions: this.fb.array([
-				this.initTransaction(),
-			]),
+			transactions: this.fb.array([]),
 			whitnesses: this.fb.array([]),
 			sureties: this.fb.array([]),
 			otherParticipants: this.fb.array([]),
@@ -162,10 +499,22 @@ export class EditDeedComponent implements OnInit {
 			verbatimCitations: [''],
 			researcherNotes: ['']
 		})
-
 	}
 
-  // AGENT METHODS
+
+
+
+
+
+	// Submit the form
+	onSubmit() {
+		this.deedValue = JSON.stringify(this.deedForm.value);
+		this.deedService.updateDeed(this.id, this.deedValue).subscribe(deed => {
+			this.router.navigate(['/']);
+		})
+	}
+
+	// AGENT METHODS
 
 	getAgentSex() {
 		return this.deedForm.get('agentSex').value;
@@ -256,7 +605,7 @@ export class EditDeedComponent implements OnInit {
 
 	initCoAgent() {
 		return this.fb.group({
-				coAgentSex: ['']
+			coAgentSex: ['']
 		});
 	}
 
@@ -316,7 +665,7 @@ export class EditDeedComponent implements OnInit {
 
 	initCoCounterAgent() {
 		return this.fb.group({
-				coCounterAgentSex: ['']
+			coCounterAgentSex: ['']
 		});
 	}
 
@@ -613,7 +962,6 @@ export class EditDeedComponent implements OnInit {
 
 
 	addScribe() {
-
 		this.scribe = this.fb.group({
 			geogrStatus: [''],
 			socialStatus: [''],
@@ -680,7 +1028,6 @@ export class EditDeedComponent implements OnInit {
 		this.deedForm.removeControl('registrator');
 		return this.registratorOn = false;
 	}
-
 
 
 

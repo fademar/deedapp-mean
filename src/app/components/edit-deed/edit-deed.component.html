@@ -1,135 +1,64 @@
-<h1 class="page-header">Update Deed {{ id }}</h1>
-<form class="form-horizontal" [formGroup]="deedForm" (ngSubmit)="onSubmit()" novalidate>
-    <div class="form-group">
-		<label class="col-sm-2 control-label">Deed Id</label>
-		<div class="col-sm-10">
-			<input class="form-control" formControlName="_id">
-		</div>
-	</div>
-	<!--DEED REFERENCES-->
-
-	<h2 class="text-center bg-info">Deed References</h2>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Deed Code</label>
-		<div class="col-sm-10">
-			<input class="form-control" formControlName="deedCode" [(ngModel)]="deedCode">
-			<small class="text-danger" *ngIf="deedForm.controls.deedCode.errors">This field is required</small>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Deed Reference</label>
-		<div class="col-sm-10">
-			<input class="form-control" formControlName="deedRef">
-			<small class="text-danger" *ngIf="deedForm.controls.deedRef.errors">This field is required</small>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Deed Date</label>
-		<div class="col-sm-10">
-			<input class="form-control" formControlName="deedDate">
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Deed Name</label>
-		<div class="col-sm-10">
-			<input class="form-control" formControlName="deedName">
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Deed Language</label>
-		<div class="col-sm-10">
-			<input class="form-control" formControlName="deedLanguage">
-		</div>
-	</div>
-
-	<!-- CONTRACTING PARTIES -->
-	<h2 class="text-center bg-info">Contracting Parties</h2>
-
-	<!-- Main Agent -->
-	<h3 class="text-center">Agent</h3>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Agent Gender</label>
-		<div class="col-sm-10">
-			<select class="form-control" formControlName="agentSex" (change)="updateAgent()">
-          		<option *ngFor="let gen of gender" [value]="gen">{{gen}}</option>
-      		</select>
-		</div>
-	</div>
-	<div [ngSwitch]="getAgentSex()">
-		<div *ngSwitchCase="'M'">
-			<div formGroupName="agent">
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Geogr Status</label>
-					<div class="col-sm-10">
-						<input class="form-control" formControlName="geogrStatus">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Social Status</label>
-					<div class="col-sm-10">
-						<input class="form-control" formControlName="socialStatus">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">First Name</label>
-					<div class="col-sm-10">
-						<input class="form-control" formControlName="firstName">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Patronyme</label>
-					<div class="col-sm-10">
-						<input class="form-control" formControlName="patronyme">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Last Name</label>
-					<div class="col-sm-10">
-						<input class="form-control" formControlName="lastName">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Related To</label>
-					<div class="col-sm-10">
-						<input class="form-control" formControlName="relatedTo">
-					</div>
-				</div>
+<h1 class="page-header">Edit Deed</h1>
+<div *ngIf="deed">
+	<form class="form-horizontal" [formGroup]="deedForm" (ngSubmit)="onSubmit()" novalidate>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Deed Id</label>
+			<div class="col-sm-10">
+				<input class="form-control" formControlName="_id">
 			</div>
 		</div>
-		<div *ngSwitchCase="'F'">
-			<div formGroupName="agent">
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Family Status</label>
-					<div class="col-sm-10">
-						<input class="form-control" formControlName="familyStatus">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">First Name</label>
-					<div class="col-sm-10">
-						<input class="form-control" formControlName="firstName">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Patronyme</label>
-					<div class="col-sm-10">
-						<input class="form-control" formControlName="patronyme">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Related To</label>
-					<div class="col-sm-10">
-						<input class="form-control" formControlName="relatedTo">
-					</div>
-				</div>
-				<div formGroupName="referentMale">
-					<h4 class="text-center">Referent Male</h4>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Relationship To Agent</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="relationshipToAgent">
-						</div>
-					</div>
+		<!--DEED REFERENCES-->
+
+		<h2 class="text-center bg-info">Deed References</h2>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Deed Code</label>
+			<div class="col-sm-10">
+				<input class="form-control" formControlName="deedCode">
+				<small class="text-danger" *ngIf="deedForm.controls.deedCode.errors">This field is required</small>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Deed Reference</label>
+			<div class="col-sm-10">
+				<input class="form-control" formControlName="deedRef">
+				<small class="text-danger" *ngIf="deedForm.controls.deedRef.errors">This field is required</small>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Deed Date</label>
+			<div class="col-sm-10">
+				<input class="form-control" formControlName="deedDate">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Deed Name</label>
+			<div class="col-sm-10">
+				<input class="form-control" formControlName="deedName">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Deed Language</label>
+			<div class="col-sm-10">
+				<input class="form-control" formControlName="deedLanguage">
+			</div>
+		</div>
+
+		<!-- CONTRACTING PARTIES -->
+		<h2 class="text-center bg-info">Contracting Parties</h2>
+
+		<!-- Main Agent -->
+		<h3 class="text-center">Agent</h3>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Agent Gender</label>
+			<div class="col-sm-10">
+				<select class="form-control" formControlName="agentSex" (change)="updateAgent()">
+					<option *ngFor="let gen of gender" [value]="gen">{{gen}}</option>
+				</select>
+			</div>
+		</div>
+		<div [ngSwitch]="getAgentSex()">
+			<div *ngSwitchCase="'M'">
+				<div formGroupName="agent">
 					<div class="form-group">
 						<label class="col-sm-2 control-label">Geogr Status</label>
 						<div class="col-sm-10">
@@ -168,103 +97,103 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-
-	<!--Co Agents -->
-	<div class="text-center">
-		<a (click)="addCoAgent()" style="cursor: default">Add a Co-Agent</a>
-	</div>
-	<div formArrayName="coAgents">
-		<div *ngFor="let coAgent of deedForm.controls.coAgents.controls; let i=index" class="panel panel-default">
-			<div class="panel-heading">
-				<span>Co-Agent {{i + 1}}</span>
-				<span class="glyphicon glyphicon-remove pull-right" (click)="removeCoAgent(i)"></span>
-			</div>
-			<div class="panel-body" [formGroupName]="i">
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Co-Agent Gender</label>
-					<div class="col-sm-10">
-						<select class="form-control" formControlName="coAgentSex" (change)="updateCoAgent(i)">
-							<option *ngFor="let gen of gender" [value]="gen">{{gen}}</option>
-						</select>
+			<div *ngSwitchCase="'F'">
+				<div formGroupName="agent">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Family Status</label>
+						<div class="col-sm-10">
+							<input class="form-control" formControlName="familyStatus">
+						</div>
 					</div>
-				</div>
-				<div [ngSwitch]="getCoAgentSex(i)">
-					<div *ngSwitchCase="'M'">
-						<div formGroupName="coAgent">
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Geogr Status</label>
-								<div class="col-sm-10">
-									<input class="form-control" formControlName="geogrStatus">
-								</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">First Name</label>
+						<div class="col-sm-10">
+							<input class="form-control" formControlName="firstName">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Patronyme</label>
+						<div class="col-sm-10">
+							<input class="form-control" formControlName="patronyme">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Related To</label>
+						<div class="col-sm-10">
+							<input class="form-control" formControlName="relatedTo">
+						</div>
+					</div>
+					<div formGroupName="referentMale">
+						<h4 class="text-center">Referent Male</h4>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Relationship To Agent</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="relationshipToAgent">
 							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Social Status</label>
-								<div class="col-sm-10">
-									<input class="form-control" formControlName="socialStatus">
-								</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Geogr Status</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="geogrStatus">
 							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">First Name</label>
-								<div class="col-sm-10">
-									<input class="form-control" formControlName="firstName">
-								</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Social Status</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="socialStatus">
 							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Patronyme</label>
-								<div class="col-sm-10">
-									<input class="form-control" formControlName="patronyme">
-								</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">First Name</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="firstName">
 							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Last Name</label>
-								<div class="col-sm-10">
-									<input class="form-control" formControlName="lastName">
-								</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Patronyme</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="patronyme">
 							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Related To</label>
-								<div class="col-sm-10">
-									<input class="form-control" formControlName="relatedTo">
-								</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Last Name</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="lastName">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Related To</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="relatedTo">
 							</div>
 						</div>
 					</div>
-					<div *ngSwitchCase="'F'">
-						<div formGroupName="coAgent">
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Family Status</label>
-								<div class="col-sm-10">
-									<input class="form-control" formControlName="familyStatus">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">First Name</label>
-								<div class="col-sm-10">
-									<input class="form-control" formControlName="firstName">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Patronyme</label>
-								<div class="col-sm-10">
-									<input class="form-control" formControlName="patronyme">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Related To</label>
-								<div class="col-sm-10">
-									<input class="form-control" formControlName="relatedTo">
-								</div>
-							</div>
-							<div formGroupName="referentMale">
-								<h4 class="text-center">Referent Male</h4>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Relationship To coAgent</label>
-									<div class="col-sm-10">
-										<input class="form-control" formControlName="relationshipToCoAgent">
-									</div>
-								</div>
+				</div>
+			</div>
+		</div>
+
+		<!--Co Agents -->
+		<div class="text-center">
+			<a (click)="addCoAgent()" style="cursor: default">Add a Co-Agent</a>
+		</div>
+		<div formArrayName="coAgents">
+			<div *ngFor="let coAgent of deedForm.controls.coAgents.controls; let i=index" class="panel panel-default">
+				<div class="panel-heading">
+					<span>Co-Agent {{i + 1}}</span>
+					<span class="glyphicon glyphicon-remove pull-right" (click)="removeCoAgent(i)"></span>
+				</div>
+				<div class="panel-body" [formGroupName]="i">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Co-Agent Gender</label>
+						<div class="col-sm-10">
+							<select class="form-control" formControlName="coAgentSex" (change)="updateCoAgent(i)">
+								<option *ngFor="let gen of gender" [value]="gen">{{gen}}</option>
+							</select>
+						</div>
+					</div>
+					<div [ngSwitch]="getCoAgentSex(i)">
+						<div *ngSwitchCase="'M'">
+							<div formGroupName="coAgent">
 								<div class="form-group">
 									<label class="col-sm-2 control-label">Geogr Status</label>
 									<div class="col-sm-10">
@@ -303,99 +232,99 @@
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<!-- Main Counter Agent -->
-
-	<h3 class="text-center">Counter Agent</h3>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Counter Agent Gender</label>
-		<div class="col-sm-10">
-			<select class="form-control" formControlName="counterAgentSex" (change)="updateCounterAgent()">
-          <option *ngFor="let gen of gender" [value]="gen">{{gen}}</option>
-      </select>
-		</div>
-	</div>
-	<div [ngSwitch]="getCounterAgentSex()">
-		<div *ngSwitchCase="'M'">
-			<div formGroupName="counterAgent">
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Geogr Status</label>
-					<div class="col-sm-10">
-						<input class="form-control" formControlName="geogrStatus">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Social Status</label>
-					<div class="col-sm-10">
-						<input class="form-control" formControlName="socialStatus">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">First Name</label>
-					<div class="col-sm-10">
-						<input class="form-control" formControlName="firstName">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Patronyme</label>
-					<div class="col-sm-10">
-						<input class="form-control" formControlName="patronyme">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Last Name</label>
-					<div class="col-sm-10">
-						<input class="form-control" formControlName="lastName">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Related To</label>
-					<div class="col-sm-10">
-						<input class="form-control" formControlName="relatedTo">
-					</div>
-				</div>
-			</div>
-		</div>
-		<div *ngSwitchCase="'F'">
-			<div formGroupName="counterAgent">
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Family Status</label>
-					<div class="col-sm-10">
-						<input class="form-control" formControlName="familyStatus">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">First Name</label>
-					<div class="col-sm-10">
-						<input class="form-control" formControlName="firstName">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Patronyme</label>
-					<div class="col-sm-10">
-						<input class="form-control" formControlName="patronyme">
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Related To</label>
-					<div class="col-sm-10">
-						<input class="form-control" formControlName="relatedTo">
-					</div>
-				</div>
-				<div formGroupName="referentMale">
-					<h4 class="text-center">Referent Male</h4>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Relationship To Counter Agent</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="relationshipToCounterAgent">
+						<div *ngSwitchCase="'F'">
+							<div formGroupName="coAgent">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Family Status</label>
+									<div class="col-sm-10">
+										<input class="form-control" formControlName="familyStatus">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">First Name</label>
+									<div class="col-sm-10">
+										<input class="form-control" formControlName="firstName">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Patronyme</label>
+									<div class="col-sm-10">
+										<input class="form-control" formControlName="patronyme">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Related To</label>
+									<div class="col-sm-10">
+										<input class="form-control" formControlName="relatedTo">
+									</div>
+								</div>
+								<div formGroupName="referentMale">
+									<h4 class="text-center">Referent Male</h4>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Relationship To coAgent</label>
+										<div class="col-sm-10">
+											<input class="form-control" formControlName="relationshipToCoAgent">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Geogr Status</label>
+										<div class="col-sm-10">
+											<input class="form-control" formControlName="geogrStatus">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Social Status</label>
+										<div class="col-sm-10">
+											<input class="form-control" formControlName="socialStatus">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">First Name</label>
+										<div class="col-sm-10">
+											<input class="form-control" formControlName="firstName">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Patronyme</label>
+										<div class="col-sm-10">
+											<input class="form-control" formControlName="patronyme">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Last Name</label>
+										<div class="col-sm-10">
+											<input class="form-control" formControlName="lastName">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Related To</label>
+										<div class="col-sm-10">
+											<input class="form-control" formControlName="relatedTo">
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- Main Counter Agent -->
+
+		<h3 class="text-center">Counter Agent</h3>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Counter Agent Gender</label>
+			<div class="col-sm-10">
+				<select class="form-control" formControlName="counterAgentSex" (change)="updateCounterAgent()">
+			<option *ngFor="let gen of gender" [value]="gen">{{gen}}</option>
+		</select>
+			</div>
+		</div>
+		<div [ngSwitch]="getCounterAgentSex()">
+			<div *ngSwitchCase="'M'">
+				<div formGroupName="counterAgent">
 					<div class="form-group">
 						<label class="col-sm-2 control-label">Geogr Status</label>
 						<div class="col-sm-10">
@@ -434,105 +363,105 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-
-	<!-- Co Counter Agents-->
-	<div class="text-center">
-		<a (click)="addCoCounterAgent()" style="cursor: default">
-    Add a Co-Counter Agent
-  </a>
-	</div>
-	<div formArrayName="coCounterAgents">
-		<div *ngFor="let coCounterAgent of deedForm.controls.coCounterAgents.controls; let i=index" class="panel panel-default">
-			<div class="panel-heading">
-				<span>Co-Counter Agent {{i + 1}}</span>
-				<span class="glyphicon glyphicon-remove pull-right" (click)="removeCoCounterAgent(i)"></span>
-			</div>
-			<div class="panel-body" [formGroupName]="i">
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Co-Agent Gender</label>
-					<div class="col-sm-10">
-						<select class="form-control" formControlName="coCounterAgentSex" (change)="updateCoCounterAgent(i)">
-							<option *ngFor="let gen of gender" [value]="gen">{{gen}}</option>
-						</select>
+			<div *ngSwitchCase="'F'">
+				<div formGroupName="counterAgent">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Family Status</label>
+						<div class="col-sm-10">
+							<input class="form-control" formControlName="familyStatus">
+						</div>
 					</div>
-				</div>
-				<div [ngSwitch]="getCoCounterAgentSex(i)">
-					<div *ngSwitchCase="'M'">
-						<div formGroupName="coCounterAgent">
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Geogr Status</label>
-								<div class="col-sm-10">
-									<input class="form-control" formControlName="geogrStatus">
-								</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">First Name</label>
+						<div class="col-sm-10">
+							<input class="form-control" formControlName="firstName">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Patronyme</label>
+						<div class="col-sm-10">
+							<input class="form-control" formControlName="patronyme">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Related To</label>
+						<div class="col-sm-10">
+							<input class="form-control" formControlName="relatedTo">
+						</div>
+					</div>
+					<div formGroupName="referentMale">
+						<h4 class="text-center">Referent Male</h4>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Relationship To Counter Agent</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="relationshipToCounterAgent">
 							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Social Status</label>
-								<div class="col-sm-10">
-									<input class="form-control" formControlName="socialStatus">
-								</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Geogr Status</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="geogrStatus">
 							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">First Name</label>
-								<div class="col-sm-10">
-									<input class="form-control" formControlName="firstName">
-								</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Social Status</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="socialStatus">
 							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Patronyme</label>
-								<div class="col-sm-10">
-									<input class="form-control" formControlName="patronyme">
-								</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">First Name</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="firstName">
 							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Last Name</label>
-								<div class="col-sm-10">
-									<input class="form-control" formControlName="lastName">
-								</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Patronyme</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="patronyme">
 							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Related To</label>
-								<div class="col-sm-10">
-									<input class="form-control" formControlName="relatedTo">
-								</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Last Name</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="lastName">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Related To</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="relatedTo">
 							</div>
 						</div>
 					</div>
-					<div *ngSwitchCase="'F'">
-						<div formGroupName="coCounterAgent">
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Family Status</label>
-								<div class="col-sm-10">
-									<input class="form-control" formControlName="familyStatus">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">First Name</label>
-								<div class="col-sm-10">
-									<input class="form-control" formControlName="firstName">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Patronyme</label>
-								<div class="col-sm-10">
-									<input class="form-control" formControlName="patronyme">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Related To</label>
-								<div class="col-sm-10">
-									<input class="form-control" formControlName="relatedTo">
-								</div>
-							</div>
-							<div formGroupName="referentMale">
-								<h4 class="text-center">Referent Male</h4>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Relationship To coAgent</label>
-									<div class="col-sm-10">
-										<input class="form-control" formControlName="relationshipToCoCounterAgent">
-									</div>
-								</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Co Counter Agents-->
+		<div class="text-center">
+			<a (click)="addCoCounterAgent()" style="cursor: default">
+		Add a Co-Counter Agent
+	</a>
+		</div>
+		<div formArrayName="coCounterAgents">
+			<div *ngFor="let coCounterAgent of deedForm.controls.coCounterAgents.controls; let i=index" class="panel panel-default">
+				<div class="panel-heading">
+					<span>Co-Counter Agent {{i + 1}}</span>
+					<span class="glyphicon glyphicon-remove pull-right" (click)="removeCoCounterAgent(i)"></span>
+				</div>
+				<div class="panel-body" [formGroupName]="i">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Co-Agent Gender</label>
+						<div class="col-sm-10">
+							<select class="form-control" formControlName="coCounterAgentSex" (change)="updateCoCounterAgent(i)">
+								<option *ngFor="let gen of gender" [value]="gen">{{gen}}</option>
+							</select>
+						</div>
+					</div>
+					<div [ngSwitch]="getCoCounterAgentSex(i)">
+						<div *ngSwitchCase="'M'">
+							<div formGroupName="coCounterAgent">
 								<div class="form-group">
 									<label class="col-sm-2 control-label">Geogr Status</label>
 									<div class="col-sm-10">
@@ -571,191 +500,112 @@
 								</div>
 							</div>
 						</div>
+						<div *ngSwitchCase="'F'">
+							<div formGroupName="coCounterAgent">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Family Status</label>
+									<div class="col-sm-10">
+										<input class="form-control" formControlName="familyStatus">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">First Name</label>
+									<div class="col-sm-10">
+										<input class="form-control" formControlName="firstName">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Patronyme</label>
+									<div class="col-sm-10">
+										<input class="form-control" formControlName="patronyme">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Related To</label>
+									<div class="col-sm-10">
+										<input class="form-control" formControlName="relatedTo">
+									</div>
+								</div>
+								<div formGroupName="referentMale">
+									<h4 class="text-center">Referent Male</h4>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Relationship To coAgent</label>
+										<div class="col-sm-10">
+											<input class="form-control" formControlName="relationshipToCoCounterAgent">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Geogr Status</label>
+										<div class="col-sm-10">
+											<input class="form-control" formControlName="geogrStatus">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Social Status</label>
+										<div class="col-sm-10">
+											<input class="form-control" formControlName="socialStatus">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">First Name</label>
+										<div class="col-sm-10">
+											<input class="form-control" formControlName="firstName">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Patronyme</label>
+										<div class="col-sm-10">
+											<input class="form-control" formControlName="patronyme">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Last Name</label>
+										<div class="col-sm-10">
+											<input class="form-control" formControlName="lastName">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Related To</label>
+										<div class="col-sm-10">
+											<input class="form-control" formControlName="relatedTo">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-				</div>
 
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<!-- TRANSACTION -->
+		<!-- TRANSACTION -->
 
-	<h2 class="text-center bg-info">Transaction</h2>
+		<h2 class="text-center bg-info">Transaction</h2>
 
-	<div formArrayName="transactions">
-		<div *ngFor="let transaction of deedForm.controls.transactions.controls; let i=index" class="panel panel-default">
-			<div class="panel-heading">
-				<span>Transaction {{i + 1}}</span>
-				<span class="glyphicon glyphicon-remove pull-right" *ngIf="deedForm.controls.transactions.controls.length > 1" (click)="removeTransaction(i)"></span>
-			</div>
-			<div class="panel-body" [formGroupName]="i">
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Transaction</label>
-					<div class="col-sm-10">
-						<textarea class="form-control" formControlName="transaction"></textarea>
-					</div>
+		<div formArrayName="transactions">
+			<div *ngFor="let transaction of deedForm.controls.transactions.controls; let i=index" class="panel panel-default">
+				<div class="panel-heading">
+					<span>Transaction {{i + 1}}</span>
+					<span class="glyphicon glyphicon-remove pull-right" *ngIf="deedForm.controls.transactions.controls.length > 1" (click)="removeTransaction(i)"></span>
 				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Agent Transaction Object</label>
-					<div class="col-sm-10">
-						<select class="form-control" formControlName="agentTransactionType" (change)="updateAgentTransactionObject(i)">
-							<option *ngFor="let type of transactionTypes" [value]="type">{{ type }}</option>
-						</select>
-					</div>
-				</div>
-				<div [ngSwitch]="getAgentTransactionType(i)">
-					<div formGroupName="agentTransactionObject">
-						<div *ngSwitchCase="'money'">
-							<div formGroupName="money">
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Amount</label>
-									<div class="col-sm-10">
-										<input class="form-control" formControlName="amount">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Currency</label>
-									<div class="col-sm-10">
-										<select class="form-control" formControlName="currency">
-										<option *ngFor="let currency of currencies" [value]="currency">{{currency}}</option>
-									</select>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div *ngSwitchCase="'land'">
-							<div formGroupName="land">
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Juridical Status</label>
-									<div class="col-sm-10">
-										<input class="form-control" formControlName="juridicalStatus">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Localisation</label>
-									<div class="col-sm-10">
-										<input class="form-control" formControlName="localisation">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Surface</label>
-									<div class="col-sm-10">
-										<input class="form-control" formControlName="surface">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Population</label>
-									<div class="col-sm-10">
-										<input class="form-control" formControlName="population">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Construction</label>
-									<div class="col-sm-10">
-										<input class="form-control" formControlName="construction">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Dependencies</label>
-									<div class="col-sm-10">
-										<input class="form-control" formControlName="dependencies">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div *ngSwitchCase="'building'">
-							<div formGroupName="building">
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Destination</label>
-									<div class="col-sm-10">
-										<input class="form-control" formControlName="destination">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Localisation</label>
-									<div class="col-sm-10">
-										<input class="form-control" formControlName="localisation">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Description</label>
-									<div class="col-sm-10">
-										<input class="form-control" formControlName="description">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div *ngSwitchCase="'soul'">
-							<div formGroupName="soul">
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Juridical Status</label>
-									<div class="col-sm-10">
-										<input class="form-control" formControlName="juridicalStatus">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Sex</label>
-									<div class="col-sm-10">
-										<input class="form-control" formControlName="sex">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Name</label>
-									<div class="col-sm-10">
-										<input class="form-control" formControlName="name">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div *ngSwitchCase="'movable'">
-							<div formGroupName="movable">
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Definition</label>
-									<div class="col-sm-10">
-										<input class="form-control" formControlName="definition">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Description</label>
-									<div class="col-sm-10">
-										<input class="form-control" formControlName="description">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div *ngSwitchCase="'obligation'">
-							<div formGroupName="obligation">
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Nature</label>
-									<div class="col-sm-10">
-										<input class="form-control" formControlName="nature">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Subjects</label>
-									<div class="col-sm-10">
-										<input class="form-control" formControlName="subjects">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Conditions</label>
-									<div class="col-sm-10">
-										<input class="form-control" formControlName="conditions">
-									</div>
-								</div>
-							</div>
+				<div class="panel-body" [formGroupName]="i">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Transaction</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" formControlName="transaction"></textarea>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-2 control-label">Counter-Agent Transaction Object</label>
+						<label class="col-sm-2 control-label">Agent Transaction Object</label>
 						<div class="col-sm-10">
-							<select class="form-control" formControlName="counterAgentTransactionType" (change)="updateCounterAgentTransactionObject(i)">
-							<option *ngFor="let type of transactionTypes" [value]="type">{{ type }}</option>
-						</select>
+							<select class="form-control" formControlName="agentTransactionType" (change)="updateAgentTransactionObject(i)">
+								<option *ngFor="let type of transactionTypes" [value]="type">{{ type }}</option>
+							</select>
 						</div>
 					</div>
-					<div [ngSwitch]="getCounterAgentTransactionType(i)">
-						<div formGroupName="counterAgentTransactionObject">
+					<div [ngSwitch]="getAgentTransactionType(i)">
+						<div formGroupName="agentTransactionObject">
 							<div *ngSwitchCase="'money'">
 								<div formGroupName="money">
 									<div class="form-group">
@@ -768,8 +618,8 @@
 										<label class="col-sm-2 control-label">Currency</label>
 										<div class="col-sm-10">
 											<select class="form-control" formControlName="currency">
-										<option *ngFor="let currency of currencies" [value]="currency">{{currency}}</option>
-									</select>
+											<option *ngFor="let currency of currencies" [value]="currency">{{currency}}</option>
+										</select>
 										</div>
 									</div>
 								</div>
@@ -897,349 +747,499 @@
 								</div>
 							</div>
 						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Counter-Agent Transaction Object</label>
+							<div class="col-sm-10">
+								<select class="form-control" formControlName="counterAgentTransactionType" (change)="updateCounterAgentTransactionObject(i)">
+								<option *ngFor="let type of transactionTypes" [value]="type">{{ type }}</option>
+							</select>
+							</div>
+						</div>
+						<div [ngSwitch]="getCounterAgentTransactionType(i)">
+							<div formGroupName="counterAgentTransactionObject">
+								<div *ngSwitchCase="'money'">
+									<div formGroupName="money">
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Amount</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="amount">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Currency</label>
+											<div class="col-sm-10">
+												<select class="form-control" formControlName="currency">
+											<option *ngFor="let currency of currencies" [value]="currency">{{currency}}</option>
+										</select>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div *ngSwitchCase="'land'">
+									<div formGroupName="land">
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Juridical Status</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="juridicalStatus">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Localisation</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="localisation">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Surface</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="surface">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Population</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="population">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Construction</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="construction">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Dependencies</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="dependencies">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div *ngSwitchCase="'building'">
+									<div formGroupName="building">
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Destination</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="destination">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Localisation</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="localisation">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Description</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="description">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div *ngSwitchCase="'soul'">
+									<div formGroupName="soul">
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Juridical Status</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="juridicalStatus">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Sex</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="sex">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Name</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="name">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div *ngSwitchCase="'movable'">
+									<div formGroupName="movable">
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Definition</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="definition">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Description</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="description">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div *ngSwitchCase="'obligation'">
+									<div formGroupName="obligation">
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Nature</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="nature">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Subjects</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="subjects">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Conditions</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="conditions">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Advance Payment</label>
-					<div class="col-sm-10">
-						<label class="radio-inline">
-							<input type="radio" formControlName="advancePayment" value="yes"> Yes
-						</label>
-						<label class="radio-inline">
-							<input type="radio" formControlName="advancePayment" value="no"> No
-						</label>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Advance Payment</label>
+						<div class="col-sm-10">
+							<label class="radio-inline">
+								<input type="radio" formControlName="advancePayment" value="yes"> Yes
+							</label>
+							<label class="radio-inline">
+								<input type="radio" formControlName="advancePayment" value="no"> No
+							</label>
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Contract Conditions</label>
-					<div class="col-sm-10">
-						<textarea class="form-control" formControlName="contractConditions"></textarea>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Contract Conditions</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" formControlName="contractConditions"></textarea>
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Contract Duration</label>
-					<div class="col-sm-10">
-						<input class="form-control" formControlName="contractDuration">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Contract Duration</label>
+						<div class="col-sm-10">
+							<input class="form-control" formControlName="contractDuration">
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Forfeit (roubles)</label>
-					<div class="col-sm-10">
-						<input class="form-control" formControlName="forfeit">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Forfeit (roubles)</label>
+						<div class="col-sm-10">
+							<input class="form-control" formControlName="forfeit">
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- FORMARRAYNAME TRANSACTIONS END  -->
-	<div class="text-center">
-		<a (click)="addTransaction()" style="cursor: default">Add another transaction</a>
-	</div>
+		<!-- FORMARRAYNAME TRANSACTIONS END  -->
+		<div class="text-center">
+			<a (click)="addTransaction()" style="cursor: default">Add another transaction</a>
+		</div>
 
-	<!-- ACCESSORIES TO CONTRACT -->
-	<h2 class="text-center bg-info">Accessories to contract</h2>
-	<div class="text-center">
-		<a (click)="addWhitness()" style="cursor: default">Add a Whitness</a>
-	</div>
-	<div formArrayName="whitnesses">
-		<div *ngFor="let coAgent of deedForm.controls.whitnesses.controls; let i=index" class="panel panel-default">
-			<div class="panel-heading">
-				<span>Whitness {{i + 1}}</span>
-				<span class="glyphicon glyphicon-remove pull-right" (click)="removeWhitness(i)"></span>
-			</div>
-			<div class="panel-body" [formGroupName]="i">
-				<div formGroupName="whitness">
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Geogr Status</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="geogrStatus">
+		<!-- ACCESSORIES TO CONTRACT -->
+		<h2 class="text-center bg-info">Accessories to contract</h2>
+		<div class="text-center">
+			<a (click)="addWhitness()" style="cursor: default">Add a Whitness</a>
+		</div>
+		<div formArrayName="whitnesses">
+			<div *ngFor="let coAgent of deedForm.controls.whitnesses.controls; let i=index" class="panel panel-default">
+				<div class="panel-heading">
+					<span>Whitness {{i + 1}}</span>
+					<span class="glyphicon glyphicon-remove pull-right" (click)="removeWhitness(i)"></span>
+				</div>
+				<div class="panel-body" [formGroupName]="i">
+					<div formGroupName="whitness">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Geogr Status</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="geogrStatus">
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Social Status</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="socialStatus">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Social Status</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="socialStatus">
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">First Name</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="firstName">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">First Name</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="firstName">
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Patronyme</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="patronyme">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Patronyme</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="patronyme">
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Last Name</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="lastName">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Last Name</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="lastName">
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Related To</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="relatedTo">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Related To</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="relatedTo">
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="text-center">
-		<a (click)="addSurety()" style="cursor: default">Add a Surety</a>
-	</div>
-	<div formArrayName="sureties">
-		<div *ngFor="let coAgent of deedForm.controls.sureties.controls; let i=index" class="panel panel-default">
-			<div class="panel-heading">
-				<span>Surety {{i + 1}}</span>
-				<span class="glyphicon glyphicon-remove pull-right" (click)="removeSurety(i)"></span>
-			</div>
-			<div class="panel-body" [formGroupName]="i">
-				<div formGroupName="surety">
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Geogr Status</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="geogrStatus">
+		<div class="text-center">
+			<a (click)="addSurety()" style="cursor: default">Add a Surety</a>
+		</div>
+		<div formArrayName="sureties">
+			<div *ngFor="let coAgent of deedForm.controls.sureties.controls; let i=index" class="panel panel-default">
+				<div class="panel-heading">
+					<span>Surety {{i + 1}}</span>
+					<span class="glyphicon glyphicon-remove pull-right" (click)="removeSurety(i)"></span>
+				</div>
+				<div class="panel-body" [formGroupName]="i">
+					<div formGroupName="surety">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Geogr Status</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="geogrStatus">
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Social Status</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="socialStatus">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Social Status</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="socialStatus">
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">First Name</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="firstName">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">First Name</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="firstName">
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Patronyme</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="patronyme">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Patronyme</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="patronyme">
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Last Name</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="lastName">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Last Name</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="lastName">
+							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Related To</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="relatedTo">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Related To</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="relatedTo">
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="text-center">
-		<a (click)="addScribe()" style="cursor: default">Add a Scribe</a>
-	</div>
-	<div *ngIf="scribeOn">
-		<div formGroupName="scribe">
-			<div class="panel-heading">
-				<span>Scribe</span>
-				<span class="glyphicon glyphicon-remove pull-right" (click)="removeScribe()"></span>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Geogr Status</label>
-				<div class="col-sm-10">
-					<input class="form-control" formControlName="geogrStatus">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Social Status</label>
-				<div class="col-sm-10">
-					<input class="form-control" formControlName="socialStatus">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">First Name</label>
-				<div class="col-sm-10">
-					<input class="form-control" formControlName="firstName">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Patronyme</label>
-				<div class="col-sm-10">
-					<input class="form-control" formControlName="patronyme">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Last Name</label>
-				<div class="col-sm-10">
-					<input class="form-control" formControlName="lastName">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Related To</label>
-				<div class="col-sm-10">
-					<input class="form-control" formControlName="relatedTo">
-				</div>
-			</div>
+		<div class="text-center">
+			<a (click)="addScribe()" style="cursor: default">Add a Scribe</a>
 		</div>
-	</div>
-	<div class="text-center">
-		<a (click)="addOtherParticipant()" style="cursor: default">Add another Participant</a>
-	</div>
-	<div formArrayName="otherParticipants">
-		<div *ngFor="let coAgent of deedForm.controls.otherParticipants.controls; let i=index" class="panel panel-default">
-			<div class="panel-heading">
-				<span>Other Participant {{i + 1}}</span>
-				<span class="glyphicon glyphicon-remove pull-right" (click)="removeOtherParticipant(i)"></span>
-			</div>
-			<div class="panel-body" [formGroupName]="i">
-				<div formGroupName="otherParticipant">
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Role</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="role">
-						</div>
+		<div *ngIf="scribeOn">
+			<div formGroupName="scribe">
+				<div class="panel-heading">
+					<span>Scribe</span>
+					<span class="glyphicon glyphicon-remove pull-right" (click)="removeScribe()"></span>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Geogr Status</label>
+					<div class="col-sm-10">
+						<input class="form-control" formControlName="geogrStatus">
 					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Geogr Status</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="geogrStatus">
-						</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Social Status</label>
+					<div class="col-sm-10">
+						<input class="form-control" formControlName="socialStatus">
 					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Social Status</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="socialStatus">
-						</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">First Name</label>
+					<div class="col-sm-10">
+						<input class="form-control" formControlName="firstName">
 					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">First Name</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="firstName">
-						</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Patronyme</label>
+					<div class="col-sm-10">
+						<input class="form-control" formControlName="patronyme">
 					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Patronyme</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="patronyme">
-						</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Last Name</label>
+					<div class="col-sm-10">
+						<input class="form-control" formControlName="lastName">
 					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Last Name</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="lastName">
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label">Related To</label>
-						<div class="col-sm-10">
-							<input class="form-control" formControlName="relatedTo">
-						</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Related To</label>
+					<div class="col-sm-10">
+						<input class="form-control" formControlName="relatedTo">
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- REGISTRATION -->
-	<h2 class="text-center bg-info">Registration</h2>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Registration Date</label>
-		<div class="col-sm-10">
-			<input class="form-control" formControlName="registrationDate">
+		<div class="text-center">
+			<a (click)="addOtherParticipant()" style="cursor: default">Add another Participant</a>
 		</div>
-	</div>
-	<div class="text-center">
-		<a (click)="addRegistrator()" style="cursor: default">Add a Registrator</a>
-	</div>
-	<div *ngIf="registratorOn">
-		<div formGroupName="registrator">
-			<div class="panel-heading">
-				<span>Registrator</span>
-				<span class="glyphicon glyphicon-remove pull-right" (click)="removeRegistrator()"></span>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">First Name</label>
-				<div class="col-sm-10">
-					<input class="form-control" formControlName="firstName">
+		<div formArrayName="otherParticipants">
+			<div *ngFor="let coAgent of deedForm.controls.otherParticipants.controls; let i=index" class="panel panel-default">
+				<div class="panel-heading">
+					<span>Other Participant {{i + 1}}</span>
+					<span class="glyphicon glyphicon-remove pull-right" (click)="removeOtherParticipant(i)"></span>
 				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Patronyme</label>
-				<div class="col-sm-10">
-					<input class="form-control" formControlName="patronyme">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Last Name</label>
-				<div class="col-sm-10">
-					<input class="form-control" formControlName="lastName">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Related To</label>
-				<div class="col-sm-10">
-					<input class="form-control" formControlName="relatedTo">
+				<div class="panel-body" [formGroupName]="i">
+					<div formGroupName="otherParticipant">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Role</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="role">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Geogr Status</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="geogrStatus">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Social Status</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="socialStatus">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">First Name</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="firstName">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Patronyme</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="patronyme">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Last Name</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="lastName">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Related To</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="relatedTo">
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<h3 class="text-center">Fee</h3>
-	<div formGroupName="fee">
+		<!-- REGISTRATION -->
+		<h2 class="text-center bg-info">Registration</h2>
 		<div class="form-group">
-			<label class="col-sm-2 control-label">Amount</label>
+			<label class="col-sm-2 control-label">Registration Date</label>
 			<div class="col-sm-10">
-				<input class="form-control" formControlName="amount">
+				<input class="form-control" formControlName="registrationDate">
 			</div>
 		</div>
+		<div class="text-center">
+			<a (click)="addRegistrator()" style="cursor: default">Add a Registrator</a>
+		</div>
+		<div *ngIf="registratorOn">
+			<div formGroupName="registrator">
+				<div class="panel-heading">
+					<span>Registrator</span>
+					<span class="glyphicon glyphicon-remove pull-right" (click)="removeRegistrator()"></span>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">First Name</label>
+					<div class="col-sm-10">
+						<input class="form-control" formControlName="firstName">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Patronyme</label>
+					<div class="col-sm-10">
+						<input class="form-control" formControlName="patronyme">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Last Name</label>
+					<div class="col-sm-10">
+						<input class="form-control" formControlName="lastName">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Related To</label>
+					<div class="col-sm-10">
+						<input class="form-control" formControlName="relatedTo">
+					</div>
+				</div>
+			</div>
+		</div>
+		<h3 class="text-center">Fee</h3>
+		<div formGroupName="fee">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Amount</label>
+				<div class="col-sm-10">
+					<input class="form-control" formControlName="amount">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Currency</label>
+				<div class="col-sm-10">
+					<select class="form-control" formControlName="currency">
+				<option *ngFor="let currency of currencies" [value]="currency">{{currency}}</option>
+			</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Collected</label>
+				<div class="col-sm-10">
+					<label class="radio-inline">
+					<input type="radio" formControlName="collected" value="yes"> Yes
+				</label>
+					<label class="radio-inline">
+					<input type="radio" formControlName="collected" value="no"> No
+				</label>
+				</div>
+			</div>
+		</div>
+
+		<!-- ANNEXES -->
+		<h2 class="text-center bg-info">Annexes</h2>
 		<div class="form-group">
-			<label class="col-sm-2 control-label">Currency</label>
+			<label class="col-sm-2 control-label">Verbatim Citations</label>
 			<div class="col-sm-10">
-				<select class="form-control" formControlName="currency">
-			<option *ngFor="let currency of currencies" [value]="currency">{{currency}}</option>
-		</select>
+				<textarea class="form-control" formControlName="verbatimCitations"></textarea>
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-2 control-label">Collected</label>
+			<label class="col-sm-2 control-label">Researcher Notes</label>
 			<div class="col-sm-10">
-				<label class="radio-inline">
-				<input type="radio" formControlName="collected" value="yes"> Yes
-			</label>
-				<label class="radio-inline">
-				<input type="radio" formControlName="collected" value="no"> No
-			</label>
+				<textarea class="form-control" formControlName="researcherNotes"></textarea>
 			</div>
 		</div>
-	</div>
 
-	<!-- ANNEXES -->
-	<h2 class="text-center bg-info">Annexes</h2>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Verbatim Citations</label>
-		<div class="col-sm-10">
-			<textarea class="form-control" formControlName="verbatimCitations"></textarea>
+
+
+		<div class="col-sm-12">
+			<div class="form-group">
+				<button type="submit" [disabled]="deedForm.invalid" class="btn btn-primary center-block">Update the deed</button>
+			</div>
 		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Researcher Notes</label>
-		<div class="col-sm-10">
-			<textarea class="form-control" formControlName="researcherNotes"></textarea>
-		</div>
-	</div>
 
-
-
-	<div class="col-sm-12">
-		<div class="form-group">
-			<button type="submit" [disabled]="deedForm.invalid" class="btn btn-primary center-block">Save the deed</button>
-		</div>
-	</div>
-
-</form>
-
-<p>Form value: {{ deedForm.value | json }}</p>
+	</form>
+</div>
