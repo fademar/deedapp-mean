@@ -44,46 +44,7 @@ mongodb.MongoClient.connect(dbUri, (err, database) => {
 
 });
 
-// ELASTICSEACH 
 
-// Defining ElasticSearch Client
-const esClient = new elasticsearch.Client({
-  host: '127.0.0.1:9200',
-  log: 'error'
-});
-
-// Bulk
-const bulkIndex = function bulkIndex(index, type, data) {
-  let bulkBody = [];
-
-  data.forEach(item => {
-    bulkBody.push({
-      index: {
-        _index: index,
-        _type: type,
-        _id: item.id
-      }
-    });
-
-    bulkBody.push(item);
-  });
-
-  esClient.bulk({body: bulkBody})
-  .then(response => {
-    console.log('here');
-    let errorCount = 0;
-    response.items.forEach(item => {
-      if (item.index && item.index.error) {
-        console.log(++errorCount, item.index.error);
-      }
-    });
-    console.log(
-      `Successfully indexed ${data.length - errorCount}
-       out of ${data.length} items`
-    );
-  })
-  .catch(console.err);
-};
 
 // DEEDS API ROUTES BELOW
 
@@ -192,13 +153,13 @@ app.get('/api/schema', (req, res) => {
 
 // Search the database
 
-app.get('/api/search', (req, res) => {
-	db.collection(deedsCollection).find({}).toArray((err, docs) => {
-	    if (err) {
-	      	handleError(res, err.message, 'Failed to get deeds.');
-	    } else {
-			bulkIndex('deeds', 'deed', docs);
-		  	res.status(200).json('ok');
-	    }	
-  	});
-});
+// app.get('/api/search', (req, res) => {
+// 	db.collection(deedsCollection).find({}).toArray((err, docs) => {
+// 	    if (err) {
+// 	      	handleError(res, err.message, 'Failed to get deeds.');
+// 	    } else {
+// 			bulkIndex('deeds', 'deed', docs);
+// 		  	res.status(200).json('ok');
+// 	    }	
+//   	});
+// });
