@@ -16,13 +16,15 @@ import { SchemaComponent } from './components/schema/schema.component';
 
 import { DeedService } from './services/deed.service';
 import { SchemaService } from './services/schema.service';
+import { SearchComponent } from './components/search/search.component';
 
 const appRoutes: Routes = [
   {path: '', component:DeedsComponent},
   {path: 'deed/add', component:AddDeedComponent},
   {path: 'deed/:id', component:DeedDetailsComponent},
   {path: 'deed/edit/:id', component:EditDeedComponent},
-  {path: 'schema', component:SchemaComponent}
+  {path: 'schema', component:SchemaComponent},
+  {path: 'search', component:SearchComponent}
 ]
 
 
@@ -34,7 +36,8 @@ const appRoutes: Routes = [
     AddDeedComponent,
     EditDeedComponent,
     DeedDetailsComponent,
-    SchemaComponent
+    SchemaComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

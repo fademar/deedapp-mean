@@ -2,6 +2,7 @@ const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongodb = require('mongodb');
+const elasticsearch = require('elasticsearch');
 
 var ObjectID = mongodb.ObjectID;
 
@@ -43,6 +44,8 @@ mongodb.MongoClient.connect(dbUri, (err, database) => {
 
 });
 
+
+
 // DEEDS API ROUTES BELOW
 
 // Generic error handler used by all endpoints.
@@ -62,7 +65,7 @@ app.get('/', (req, res) => {
  */
 
 app.get('/api/deeds', (req, res) => {
-		db.collection(deedsCollection).find({}).toArray((err, docs) => {
+	db.collection(deedsCollection).find({}).toArray((err, docs) => {
 	    if (err) {
 	      handleError(res, err.message, 'Failed to get deeds.');
 	    } else {
@@ -127,6 +130,18 @@ app.delete('/api/deed/:id', (req, res) => {
 });
 
 
+// Get the last Document inserted
+
+app.get('/api/lastdeed', (req, res) => {
+	db.collection(deedsCollection).find({}).limit(1).sort({$natural:-1}).toArray((err,doc) => {
+		if (err) {
+ 			handleError(res, err.message, 'Failed to get the last deed');
+ 		} else {
+ 			res.status(200).json(doc);
+ 		}
+	});
+});
+
 // Load JSON schema file
 
 app.get('/api/schema', (req, res) => {
@@ -134,3 +149,5 @@ app.get('/api/schema', (req, res) => {
 	let jsonSchema = JSON.parse(jsonFile);
 	res.status(200).json(jsonSchema);
 });
+
+

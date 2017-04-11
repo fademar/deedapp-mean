@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import 'rxjs/add/operator/map';
+import 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+
 
 @Injectable()
 export class DeedService {
@@ -30,4 +32,10 @@ export class DeedService {
 	deleteDeed(id) {
   		return this.http.delete('http://localhost:3000/api/deed/'+id).map(res => res.json());  		
   	}
+
+	getLastDeed() {
+		return this.http.get('http://localhost:3000/api/lastdeed/').map(res => res.json());
+	}
+
+
 }

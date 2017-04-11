@@ -9,6 +9,8 @@
 		<div class="col-sm-10">
 			<input class="form-control" formControlName="deedCode">
 			<small class="text-danger" *ngIf="deedForm.controls.deedCode.errors">This field is required</small>
+			<button type="button" (click)="insertLastDeedCode()" class="btn btn-primary btn-xs pull-right">Insert the last Deed Code saved in the database</button>
+
 		</div>
 	</div>
 	<div class="form-group">
@@ -1231,10 +1233,11 @@
 
 	<div class="col-sm-12">
 		<div class="form-group">
-			<button type="submit" [disabled]="deedForm.invalid" class="btn btn-primary center-block">Save the deed</button>
+			<button type="submit" [disabled]="deedForm.invalid" class="btn btn-info center-block">Save the deed</button>
 		</div>
 	</div>
 
 </form>
 
-<p>Form value: {{ deedForm.value | json }}</p>
+<h2>Current Json Document</h2>
+<pre>{{ deedForm.value | json }}</pre>

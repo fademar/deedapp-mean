@@ -28,6 +28,8 @@ export class AddDeedComponent implements OnInit {
 	coCounterAgentSex = '';
 	agentTransactionType = '';
 	counterAgentTransactionType = '';
+	lastDeed;
+	lastDeedCode;
 
 	gender = gender;
 	transactionTypes = transactionTypes;
@@ -35,7 +37,7 @@ export class AddDeedComponent implements OnInit {
 	scribeOn = this.scribeOn;
 	registratorOn = this.registratorOn;
 
-	constructor(private fb: FormBuilder, private deedService: DeedService, private router: Router) { }
+	constructor(private fb: FormBuilder, private deedService: DeedService, private router: Router) {}
 
 	ngOnInit() {
 
@@ -45,7 +47,7 @@ export class AddDeedComponent implements OnInit {
 	// Create the form
 
 	createForm() {
-
+		
 		this.deedForm = this.fb.group({
 			deedCode: ['', Validators.required],
 			deedRef: ['', Validators.required],
@@ -76,6 +78,16 @@ export class AddDeedComponent implements OnInit {
 
 	}
 
+	insertLastDeedCode() {
+		this.deedService.getLastDeed().subscribe(result => {
+			this.lastDeed = result;
+			this.lastDeedCode = this.lastDeed[0].deedCode;
+			this.deedForm.patchValue({
+				deedCode: this.lastDeedCode
+			});
+		});
+	}
+
 	// Submit the form
 
 	onSubmit() {
@@ -84,6 +96,7 @@ export class AddDeedComponent implements OnInit {
 			this.router.navigate(['/']);
 		})
 	}
+
 
 	// AGENT METHODS
 
