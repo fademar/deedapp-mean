@@ -151,15 +151,3 @@ app.get('/api/schema', (req, res) => {
 });
 
 
-// Search the database
-
-// app.get('/api/search', (req, res) => {
-// 	db.collection(deedsCollection).find({}).toArray((err, docs) => {
-// 	    if (err) {
-// 	      	handleError(res, err.message, 'Failed to get deeds.');
-// 	    } else {
-// 			bulkIndex('deeds', 'deed', docs);
-// 		  	res.status(200).json('ok');
-// 	    }	
-//   	});
-// });
