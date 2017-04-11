@@ -17,7 +17,6 @@ export class DeedDetailsComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.deedService.getDeed(this.id).subscribe(deed => {
-      console.log(deed);
       this.deed = deed;
     });
   }
