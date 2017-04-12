@@ -12,11 +12,12 @@ import { AddDeedComponent } from './components/add-deed/add-deed.component';
 import { EditDeedComponent } from './components/edit-deed/edit-deed.component';
 import { DeedDetailsComponent } from './components/deed-details/deed-details.component';
 import { SchemaComponent } from './components/schema/schema.component';
+import { SearchComponent } from './components/search/search.component';
 
 
 import { DeedService } from './services/deed.service';
 import { SchemaService } from './services/schema.service';
-import { SearchComponent } from './components/search/search.component';
+import { SearchService } from './services/search.service';
 
 const appRoutes: Routes = [
   {path: '', component:DeedsComponent},
@@ -46,7 +47,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [DeedService, SchemaService],
+  providers: [DeedService, SchemaService, SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
