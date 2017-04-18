@@ -1,25 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../../services/search.service';
-import { DeedService } from '../../services/deed.service';
+import { Subject } from 'rxjs/Subject';
+
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
+  providers: [SearchService]
 })
 export class SearchComponent implements OnInit {
 
-  data;
+  results: Object;
+  searchTerm = new Subject<string>();
 
-
-
-  constructor(private searchservice: SearchService, private deedService: DeedService) { }
+  constructor(private searchService: SearchService) { 
+    this.searchService.search(this.searchTerm).subscribe(results => {
+        this.results = results;
+    });
+  }
 
   ngOnInit() {
-    this.data = this.deedService.getDeeds();
-    console.log(this.data);   
-    
-
-
   }
+
 }

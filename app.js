@@ -190,13 +190,25 @@ app.get('/api/schema', (req, res) => {
 });
 
 app.get('/api/search', (req, res) => {
+	let arrayBody = [];
 	db.collection(deedsCollection).find({}).toArray((err, docs) => {
 		if (err) {
 			handleError(res, err.message, 'Failed to get deeds.');
 		} else {
   			bulkIndex('deeds', 'deed', docs);
-			res.status(200).json('Sucessfully indexing the database');
+			res.status(200).json(arrayBody);
 		}
 	});
 });
 
+app.get('/api/search/:term', (req, res) => {
+	esClient.search({
+		index: 'deeds',
+		q: req.params.term
+	}).then(function (resp) {
+    	let hits = resp.hits.hits;
+		res.status(200).json(hits);
+	}, function (err) {
+    	handleError(res, err.message, 'Failed to get deeds.');
+	});
+});

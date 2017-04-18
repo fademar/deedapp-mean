@@ -1,67 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+
 import 'rxjs/add/operator/map';
-import { Observable } from 'rxjs';
-import { Client, SearchResponse } from 'elasticsearch';
-import { DeedService } from '../services/deed.service';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/switchMap';
+
 
 @Injectable()
+
 export class SearchService {
 
-  constructor(private esClient: Client, private deedService: DeedService) {
-    if (!this.esClient) {
-      this.connect();
-    }
-  }
-  
-  connect() {
-    this.esClient = new Client({
-      host: 'http://localhost:9200',
-      log: 'trace'
-    });
+
+  constructor(private http: Http) { }
+
+
+  search(terms: Observable<string>) {
+    return terms.debounceTime(400)
+      .distinctUntilChanged()
+      .switchMap(term => this.searchEntries(term));
   }
 
-  bulkIndex(index, type, data) {
-    let bulkBody = [];
-
-    data.forEach(item => {
-      item.id = item._id;
-      delete item._id;
-
-      bulkBody.push({
-        index: {
-          _index: index,
-          _type: type,
-          _id: item.id
-        }
-      });
-      bulkBody.push(item);
-    });
-
-    this.esClient.bulk({ body: bulkBody })
-      .then(response => {
-        console.log('here');
-        let errorCount = 0;
-        response.items.forEach(item => {
-          if (item.index && item.index.error) {
-            console.log(++errorCount, item.index.error);
-          }
-        });
-        console.log(
-          `Successfully indexed ${data.length - errorCount}
-       out of ${data.length} items`
-        );
-      });
-  };
-
-
-
-
-
-
-
-
-
+  searchEntries(term) {
+    return this.http.get('http://localhost:3000/api/search/'+term).map(res => res.json());
+  }
 
 
 }

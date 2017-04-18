@@ -12,12 +12,11 @@ import { AddDeedComponent } from './components/add-deed/add-deed.component';
 import { EditDeedComponent } from './components/edit-deed/edit-deed.component';
 import { DeedDetailsComponent } from './components/deed-details/deed-details.component';
 import { SchemaComponent } from './components/schema/schema.component';
-import { SearchComponent } from './components/search/search.component';
 
 
 import { DeedService } from './services/deed.service';
 import { SchemaService } from './services/schema.service';
-import { SearchService } from './services/search.service';
+import { SearchComponent } from './components/search/search.component';
 
 const appRoutes: Routes = [
   {path: '', component:DeedsComponent},
@@ -25,7 +24,8 @@ const appRoutes: Routes = [
   {path: 'deed/:id', component:DeedDetailsComponent},
   {path: 'deed/edit/:id', component:EditDeedComponent},
   {path: 'schema', component:SchemaComponent},
-  {path: 'search', component:SearchComponent}
+  {path: 'search', component:SearchComponent},
+
 ]
 
 
@@ -38,7 +38,7 @@ const appRoutes: Routes = [
     EditDeedComponent,
     DeedDetailsComponent,
     SchemaComponent,
-    SearchComponent
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +47,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [DeedService, SchemaService, SearchService],
+  providers: [DeedService, SchemaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
