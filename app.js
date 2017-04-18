@@ -206,7 +206,7 @@ app.get('/api/search/:term', (req, res) => {
 		index: 'deeds',
 		q: req.params.term
 	}).then(function (resp) {
-    	let hits = resp.hits.hits;
+		let hits = resp.hits.hits;
 		res.status(200).json(hits);
 	}, function (err) {
     	handleError(res, err.message, 'Failed to get deeds.');
