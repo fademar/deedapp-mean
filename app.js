@@ -8,7 +8,7 @@ var ObjectID = mongodb.ObjectID;
 
 // Db Collection and URI
 const deedsCollection = 'Deeds';
-const dbUri = 'mongodb://fademar:Deeds75014$@deeds0-shard-00-00-dnewh.mongodb.net:27017,deeds0-shard-00-01-dnewh.mongodb.net:27017,deeds0-shard-00-02-dnewh.mongodb.net:27017/deeds?ssl=true&replicaSet=Deeds0-shard-0&authSource=admin'
+const dbUri = 'mongodb://localhost:27017/Deeds'
 const port = 3000;
 
 // App Init
