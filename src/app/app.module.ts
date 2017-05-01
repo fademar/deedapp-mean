@@ -1,8 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import { SimpleNotificationsModule } from 'angular2-notifications';
+
 
 
 import { AppComponent } from './app.component';
@@ -45,6 +48,8 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule, 
+    SimpleNotificationsModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     HttpModule,

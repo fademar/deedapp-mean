@@ -3,7 +3,7 @@ import { DeedService } from '../../services/deed.service';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Deed, AgentM, AgentF, ReferentMale, OtherParticipant, Registrator, Fee, gender, transactionTypes, currencies } from '../../models/deed-model'
-
+import { NotificationsService } from 'angular2-notifications';
 @Component({
 	selector: 'app-add-deed',
 	templateUrl: './add-deed.component.html',
@@ -38,10 +38,17 @@ export class AddDeedComponent implements OnInit {
 	scribeOn = this.scribeOn;
 	registratorOn = this.registratorOn;
 
-	constructor(private fb: FormBuilder, private deedService: DeedService, private router: Router) {}
+	public options = {
+		position: ["top", "left"],
+		timeOut: 3000,
+		showProgressBar: false,
+		pauseOnHover: false,
+		animate: "fromLeft"
+	}
+
+	constructor(private fb: FormBuilder, private deedService: DeedService, private router: Router, private notificationsService: NotificationsService) {}
 
 	ngOnInit() {
-
 		this.createForm();
 	}
 
@@ -102,8 +109,14 @@ export class AddDeedComponent implements OnInit {
 		this.deedValue = JSON.stringify(this.deedForm.value);
 		this.deedService.saveDeed(this.deedValue).subscribe(deed => {
 			this.deed = deed;
-			console.log(this.deed);
-			this.router.navigate(['/']);
+			if (this.deed._id)	{
+				this.notificationsService.success(
+					'Success',
+					'The deed has been successfully saved in the database with id ' + this.deed._id,
+				);
+				// setTimeout(this.router.navigate(['/']), 6000);
+			}	
+			
 		})
 	}
 
