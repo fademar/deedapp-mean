@@ -4,11 +4,13 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Deed, AgentM, AgentF, ReferentMale, OtherParticipant, Registrator, Fee, gender, transactionTypes, currencies } from '../../models/deed-model'
 import { NotificationsService } from 'angular2-notifications';
+
 @Component({
 	selector: 'app-add-deed',
 	templateUrl: './add-deed.component.html',
 	styleUrls: ['./add-deed.component.css']
 })
+
 export class AddDeedComponent implements OnInit {
 
 	deedForm: FormGroup;
@@ -49,12 +51,12 @@ export class AddDeedComponent implements OnInit {
 	constructor(private fb: FormBuilder, private deedService: DeedService, private router: Router, private notificationsService: NotificationsService) {}
 
 	ngOnInit() {
-		this.createForm();
+		this.initForm();
 	}
 
 	// Create the form
 
-	createForm() {
+	initForm() {
 		
 		this.deedForm = this.fb.group({
 			deedCode: ['', Validators.required],
@@ -117,7 +119,7 @@ export class AddDeedComponent implements OnInit {
 			}
 		});
 		setTimeout(() => {
-			this.createForm();
+			this.initForm();
 		}, 2000);
 	}
 
