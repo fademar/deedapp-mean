@@ -21,6 +21,7 @@ export class AddDeedComponent implements OnInit {
 	scribe: FormGroup;
 	registrator: FormGroup;
 
+	deed;
 	deedValue = '';
 	agentSex = '';
 	counterAgentSex = '';
@@ -100,6 +101,8 @@ export class AddDeedComponent implements OnInit {
 	onSubmit() {
 		this.deedValue = JSON.stringify(this.deedForm.value);
 		this.deedService.saveDeed(this.deedValue).subscribe(deed => {
+			this.deed = deed;
+			console.log(this.deed);
 			this.router.navigate(['/']);
 		})
 	}
