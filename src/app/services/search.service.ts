@@ -22,6 +22,10 @@ export class SearchService {
       .switchMap(term => this.searchEntries(term));
   }
 
+  initSearch() {
+    return this.http.get('http://localhost:3000/api/search/').map(res => res.json());
+  }
+
   searchEntries(term) {
     return this.http.get('http://localhost:3000/api/search/'+term).map(res => res.json());
   }

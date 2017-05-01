@@ -8,7 +8,7 @@ var ObjectID = mongodb.ObjectID;
 
 // Db Collection and URI
 const deedsCollection = 'Deeds';
-const dbUri = 'mongodb://localhost:27017/Deeds'
+const dbUri = 'mongodb://localhost:27017/dbdeeds';
 const port = 3000;
 
 // App Init
@@ -108,6 +108,7 @@ app.get('/api/deeds', (req, res) => {
 		if (err) {
 			handleError(res, err.message, 'Failed to get deeds.');
 		} else {
+			bulkIndex('deeds', 'deed', docs);
 			res.status(200).json(docs);
 		}
 	});
@@ -124,6 +125,7 @@ app.post('/api/deeds', (req, res) => {
 		if (err) {
 			handleError(res, err.message, 'Failed to create new deed.');
 		} else {
+			console.log(doc.ops[0]);
 			res.status(201).json(doc.ops[0]);
 		}
 	});
@@ -187,18 +189,6 @@ app.get('/api/schema', (req, res) => {
 	let jsonFile = fs.readFileSync('./deed-schema copie.json', { encoding: 'utf8' });
 	let jsonSchema = JSON.parse(jsonFile);
 	res.status(200).json(jsonSchema);
-});
-
-app.get('/api/search', (req, res) => {
-	let arrayBody = [];
-	db.collection(deedsCollection).find({}).toArray((err, docs) => {
-		if (err) {
-			handleError(res, err.message, 'Failed to get deeds.');
-		} else {
-  			bulkIndex('deeds', 'deed', docs);
-			res.status(200).json(arrayBody);
-		}
-	});
 });
 
 app.get('/api/search/:term', (req, res) => {

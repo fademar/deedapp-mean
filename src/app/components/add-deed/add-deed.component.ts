@@ -81,10 +81,17 @@ export class AddDeedComponent implements OnInit {
 	insertLastDeedCode() {
 		this.deedService.getLastDeed().subscribe(result => {
 			this.lastDeed = result;
-			this.lastDeedCode = this.lastDeed[0].deedCode;
-			this.deedForm.patchValue({
-				deedCode: this.lastDeedCode
-			});
+			if (this.lastDeed.length < 1) {
+				this.deedForm.patchValue({
+					deedCode: "No deed saved yet"
+				});
+			}
+			else {
+				this.lastDeedCode = this.lastDeed[0].deedCode;
+				this.deedForm.patchValue({
+					deedCode: this.lastDeedCode
+				});
+			}
 		});
 	}
 
