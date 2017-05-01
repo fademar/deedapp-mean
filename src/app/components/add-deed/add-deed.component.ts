@@ -40,7 +40,7 @@ export class AddDeedComponent implements OnInit {
 
 	public options = {
 		position: ["top", "left"],
-		timeOut: 3000,
+		timeOut: 2000,
 		showProgressBar: false,
 		pauseOnHover: false,
 		animate: "fromLeft"
@@ -114,10 +114,11 @@ export class AddDeedComponent implements OnInit {
 					'Success',
 					'The deed has been successfully saved in the database with id ' + this.deed._id,
 				);
-				// setTimeout(this.router.navigate(['/']), 6000);
-			}	
-			
-		})
+			}
+		});
+		setTimeout(() => {
+			this.createForm();
+		}, 2000);
 	}
 
 
