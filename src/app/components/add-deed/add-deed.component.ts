@@ -49,7 +49,7 @@ export class AddDeedComponent implements OnInit {
 		animate: "fromLeft"
 	}
 
-	constructor(private fb: FormBuilder, private deedService: DeedService, private router: Router, private notificationsService: NotificationsService) {}
+	constructor(private fb: FormBuilder, private deedService: DeedService, private router: Router, private notificationsService: NotificationsService) { }
 
 	ngOnInit() {
 		this.initForm();
@@ -58,7 +58,7 @@ export class AddDeedComponent implements OnInit {
 	// Create the form
 
 	initForm() {
-		
+
 		this.deedForm = this.fb.group({
 			deedCode: ['', Validators.required],
 			deedRef: ['', Validators.required],
@@ -79,11 +79,11 @@ export class AddDeedComponent implements OnInit {
 			otherParticipants: this.fb.array([]),
 			registrationDate: [''],
 			fee: this.fb.group({
-					rouble: [''],
-					altyn: [''],
-					dynga: [''],
-					chekhi: [''],
-					collected: ['yes']
+				rouble: [''],
+				altyn: [''],
+				dynga: [''],
+				chekhi: [''],
+				collected: ['yes']
 			}),
 			verbatimCitations: [''],
 			researcherNotes: [''],
@@ -115,7 +115,7 @@ export class AddDeedComponent implements OnInit {
 		this.deedValue = JSON.stringify(this.deedForm.value);
 		this.deedService.saveDeed(this.deedValue).subscribe(deed => {
 			this.deed = deed;
-			if (this.deed._id)	{
+			if (this.deed._id) {
 				this.notificationsService.success(
 					'Success',
 					'The deed has been successfully saved in the database with id ' + this.deed._id,
@@ -213,6 +213,9 @@ export class AddDeedComponent implements OnInit {
 				})
 				break;
 			}
+			default: {
+				break
+			}
 		}
 		this.deedForm.setControl('counterAgent', this.counterAgent);
 	}
@@ -222,7 +225,7 @@ export class AddDeedComponent implements OnInit {
 
 	initCoAgent() {
 		return this.fb.group({
-				coAgentSex: ['']
+			coAgentSex: ['']
 		});
 	}
 
@@ -259,6 +262,9 @@ export class AddDeedComponent implements OnInit {
 				})
 				break;
 			}
+			default: {
+				break
+			}
 		}
 		this.deedForm.controls['coAgents']['controls'][i].setControl('coAgent', this.coAgent);
 	}
@@ -282,7 +288,7 @@ export class AddDeedComponent implements OnInit {
 
 	initCoCounterAgent() {
 		return this.fb.group({
-				coCounterAgentSex: ['']
+			coCounterAgentSex: ['']
 		});
 	}
 
@@ -318,6 +324,9 @@ export class AddDeedComponent implements OnInit {
 					})
 				})
 				break;
+			}
+			default: {
+				break
 			}
 		}
 		this.deedForm.controls['coCounterAgents']['controls'][i].setControl('coCounterAgent', this.coCounterAgent);
@@ -370,157 +379,167 @@ export class AddDeedComponent implements OnInit {
 
 		this.agentTransactionType = this.deedForm.controls.transactions['controls'][i].get('agentTransactionType').value;
 
-		switch (this.agentTransactionType) {
-
-			case 'money': {
-				this.agentTransactionObject = this.fb.group({
-					money: this.fb.group({
-						rouble: [''],
-						altyn: [''],
-						dynga: [''],
-						chekhi: ['']
-					})
-				})
-				break;
-			}
-			case 'land': {
-				this.agentTransactionObject = this.fb.group({
-					land: this.fb.group({
-						juridicalStatus: [''],
-						localisation: [''],
-						surface: this.fb.group({
-							cheti: [''],
-							sazheni: [''],
-							arshin: ['']
-						}),
-						population: [''],
-						construction: [''],
-						dependencies: ['']
-					})
-				})
-				break;
-			}
-			case 'building': {
-				this.agentTransactionObject = this.fb.group({
-					building: this.fb.group({
-						destination: [''],
-						localisation: [''],
-						description: ['']
-					})
-				})
-				break;
-			}
-			case 'soul': {
-				this.agentTransactionObject = this.fb.group({
-					soul: this.fb.group({
-						juridicalStatus: [''],
-						sex: [''],
-						name: ['']
-					})
-				})
-				break;
-			}
-			case 'movable': {
-				this.agentTransactionObject = this.fb.group({
-					movable: this.fb.group({
-						definition: [''],
-						description: ['']
-					})
-				})
-				break;
-			}
-			case 'obligation': {
-				this.agentTransactionObject = this.fb.group({
-					obligation: this.fb.group({
-						nature: [''],
-						subjects: [''],
-						conditions: ['']
-					})
-				})
-				break;
-			}
+		if (this.agentTransactionType == '' && ('agentTransactionObject' in this.deedForm.controls.transactions['controls'][i]['controls'])) {
+			this.deedForm.controls.transactions['controls'][i].removeControl('agentTransactionObject');
 		}
-		this.deedForm.controls.transactions['controls'][i].setControl('agentTransactionObject', this.agentTransactionObject);
+		else {
+			switch (this.agentTransactionType) {
 
+				case 'money': {
+					this.agentTransactionObject = this.fb.group({
+						money: this.fb.group({
+							rouble: [''],
+							altyn: [''],
+							dynga: [''],
+							chekhi: ['']
+						})
+					})
+					break;
+				}
+				case 'land': {
+					this.agentTransactionObject = this.fb.group({
+						land: this.fb.group({
+							juridicalStatus: [''],
+							localisation: [''],
+							surface: this.fb.group({
+								cheti: [''],
+								sazheni: [''],
+								arshin: ['']
+							}),
+							population: [''],
+							construction: [''],
+							dependencies: ['']
+						})
+					})
+					break;
+				}
+				case 'building': {
+					this.agentTransactionObject = this.fb.group({
+						building: this.fb.group({
+							destination: [''],
+							localisation: [''],
+							description: ['']
+						})
+					})
+					break;
+				}
+				case 'soul': {
+					this.agentTransactionObject = this.fb.group({
+						soul: this.fb.group({
+							juridicalStatus: [''],
+							sex: [''],
+							name: ['']
+						})
+					})
+					break;
+				}
+				case 'movable': {
+					this.agentTransactionObject = this.fb.group({
+						movable: this.fb.group({
+							definition: [''],
+							description: ['']
+						})
+					})
+					break;
+				}
+				case 'obligation': {
+					this.agentTransactionObject = this.fb.group({
+						obligation: this.fb.group({
+							nature: [''],
+							subjects: [''],
+							conditions: ['']
+						})
+					})
+					break;
+				}
+			}
+			this.deedForm.controls.transactions['controls'][i].setControl('agentTransactionObject', this.agentTransactionObject);
+		}
 	}
 
 	updateCounterAgentTransactionObject(i: number) {
 
 		this.counterAgentTransactionType = this.deedForm.controls.transactions['controls'][i].get('counterAgentTransactionType').value;
-
-		switch (this.counterAgentTransactionType) {
-
-			case 'money': {
-				this.counterAgentTransactionObject = this.fb.group({
-					money: this.fb.group({
-						rouble: [''],
-						altyn: [''],
-						dynga: [''],
-						chekhi: ['']
-					})
-				})
-				break;
-			}
-			case 'land': {
-				this.counterAgentTransactionObject = this.fb.group({
-					land: this.fb.group({
-						juridicalStatus: [''],
-						localisation: [''],
-						surface: this.fb.group({
-							cheti: [''],
-							sazheni: [''],
-							arshin: ['']
-						}),
-						population: [''],
-						construction: [''],
-						dependencies: ['']
-					})
-				})
-				break;
-			}
-			case 'building': {
-				this.counterAgentTransactionObject = this.fb.group({
-					building: this.fb.group({
-						destination: [''],
-						localisation: [''],
-						description: ['']
-					})
-				})
-				break;
-			}
-			case 'soul': {
-				this.counterAgentTransactionObject = this.fb.group({
-					soul: this.fb.group({
-						juridicalStatus: [''],
-						sex: [''],
-						name: ['']
-					})
-				})
-				break;
-			}
-			case 'movable': {
-				this.counterAgentTransactionObject = this.fb.group({
-					movable: this.fb.group({
-						definition: [''],
-						description: ['']
-					})
-				})
-				break;
-			}
-			case 'obligation': {
-				this.counterAgentTransactionObject = this.fb.group({
-					obligation: this.fb.group({
-						nature: [''],
-						subjects: [''],
-						conditions: ['']
-					})
-				})
-				break;
-			}
+		if (this.counterAgentTransactionType == '' && ('counterAgentTransactionObject' in this.deedForm.controls.transactions['controls'][i]['controls'])) {
+			this.deedForm.controls.transactions['controls'][i].removeControl('counterAgentTransactionObject');
 		}
+		else {
+			switch (this.counterAgentTransactionType) {
 
-		this.deedForm.controls.transactions['controls'][i].setControl('counterAgentTransactionObject', this.counterAgentTransactionObject);
+				case 'money': {
+					this.counterAgentTransactionObject = this.fb.group({
+						money: this.fb.group({
+							rouble: [''],
+							altyn: [''],
+							dynga: [''],
+							chekhi: ['']
+						})
+					})
+					break;
+				}
+				case 'land': {
+					this.counterAgentTransactionObject = this.fb.group({
+						land: this.fb.group({
+							juridicalStatus: [''],
+							localisation: [''],
+							surface: this.fb.group({
+								cheti: [''],
+								sazheni: [''],
+								arshin: ['']
+							}),
+							population: [''],
+							construction: [''],
+							dependencies: ['']
+						})
+					})
+					break;
+				}
+				case 'building': {
+					this.counterAgentTransactionObject = this.fb.group({
+						building: this.fb.group({
+							destination: [''],
+							localisation: [''],
+							description: ['']
+						})
+					})
+					break;
+				}
+				case 'soul': {
+					this.counterAgentTransactionObject = this.fb.group({
+						soul: this.fb.group({
+							juridicalStatus: [''],
+							sex: [''],
+							name: ['']
+						})
+					})
+					break;
+				}
+				case 'movable': {
+					this.counterAgentTransactionObject = this.fb.group({
+						movable: this.fb.group({
+							definition: [''],
+							description: ['']
+						})
+					})
+					break;
+				}
+				case 'obligation': {
+					this.counterAgentTransactionObject = this.fb.group({
+						obligation: this.fb.group({
+							nature: [''],
+							subjects: [''],
+							conditions: ['']
+						})
+					})
+					break;
+				}
+				default: {
+					break
+				}
+			}
 
+			this.deedForm.controls.transactions['controls'][i].setControl('counterAgentTransactionObject', this.counterAgentTransactionObject);
+		}
 	}
 
 	addTransaction() {
