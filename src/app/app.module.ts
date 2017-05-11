@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { SimpleNotificationsModule } from 'angular2-notifications';
-
+import { SelectModule } from 'ng2-select';
 
 
 import { AppComponent } from './app.component';
@@ -53,7 +53,8 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    SelectModule
   ],
   providers: [DeedService, SchemaService, SearchService, PagerService],
   bootstrap: [AppComponent]
