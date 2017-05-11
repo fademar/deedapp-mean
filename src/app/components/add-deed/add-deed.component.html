@@ -49,7 +49,7 @@
 		<label class="col-sm-2 control-label">Agent Gender</label>
 		<div class="col-sm-10">
 			<select class="form-control" formControlName="agentSex" (change)="updateAgent()">
-          		<option *ngFor="let gen of gender" [value]="gen">{{gen}}</option>
+				<option *ngFor="let gen of gender" [value]="gen">{{gen}}</option>
       		</select>
 		</div>
 	</div>
@@ -608,15 +608,27 @@
 								<div class="form-group">
 									<label class="col-sm-2 control-label">Amount</label>
 									<div class="col-sm-10">
-										<input class="form-control" formControlName="amount">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Currency</label>
-									<div class="col-sm-10">
-										<select class="form-control" formControlName="currency">
-										<option *ngFor="let currency of currencies" [value]="currency">{{currency}}</option>
-									</select>
+										<div class="row">
+											<div class="col-sm-2">
+												<input class="form-control" formControlName="rouble">
+											</div>
+											<div class="col-sm-1 small-label">roubles</div>
+											<div class="col-sm-2">
+												<input class="form-control" formControlName="altyn">
+											</div>
+											<div class="col-sm-1 small-label">altyn</div>
+											<div class="col-sm-2">
+												<input class="form-control" formControlName="dynga">
+											</div>
+											<div class="col-sm-1 small-label">dynga</div>
+											<div class="col-sm-1">
+												<div class="checkbox">
+													<label>
+														<input type="checkbox" formControlName="chekhi"> chekhi
+													</label>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -635,10 +647,23 @@
 										<input class="form-control" formControlName="localisation">
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group" formGroupName="surface">
 									<label class="col-sm-2 control-label">Surface</label>
 									<div class="col-sm-10">
-										<input class="form-control" formControlName="surface">
+										<div class="row">
+											<div class="col-sm-2">
+												<input class="form-control" formControlName="cheti">
+											</div>
+											<div class="col-sm-1 small-label">cheti</div>
+											<div class="col-sm-2">
+												<input class="form-control" formControlName="sazheni">
+											</div>
+											<div class="col-sm-1 small-label">sazheni</div>
+											<div class="col-sm-2">
+												<input class="form-control" formControlName="arshin">
+											</div>
+											<div class="col-sm-1 small-label">arshin</div>
+										</div>
 									</div>
 								</div>
 								<div class="form-group">
@@ -759,15 +784,27 @@
 									<div class="form-group">
 										<label class="col-sm-2 control-label">Amount</label>
 										<div class="col-sm-10">
-											<input class="form-control" formControlName="amount">
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-2 control-label">Currency</label>
-										<div class="col-sm-10">
-											<select class="form-control" formControlName="currency">
-										<option *ngFor="let currency of currencies" [value]="currency">{{currency}}</option>
-									</select>
+											<div class="row">
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="rouble">
+												</div>
+												<div class="col-sm-1 small-label">roubles</div>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="altyn">
+												</div>
+												<div class="col-sm-1 small-label">altyn</div>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="dynga">
+												</div>
+												<div class="col-sm-1 small-label">dynga</div>
+												<div class="col-sm-1">
+													<div class="checkbox">
+														<label>
+															<input type="checkbox" formControlName="chekhi"> chekhi
+														</label>
+													</div>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -786,10 +823,23 @@
 											<input class="form-control" formControlName="localisation">
 										</div>
 									</div>
-									<div class="form-group">
+									<div class="form-group" formGroupName="surface">
 										<label class="col-sm-2 control-label">Surface</label>
 										<div class="col-sm-10">
-											<input class="form-control" formControlName="surface">
+											<div class="row">
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="cheti">
+												</div>
+												<div class="col-sm-1 small-label">cheti</div>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="sazheni">
+												</div>
+												<div class="col-sm-1 small-label">sazheni</div>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="arshin">
+												</div>
+												<div class="col-sm-1 small-label">arshin</div>
+											</div>
 										</div>
 									</div>
 									<div class="form-group">
@@ -1191,26 +1241,38 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Amount</label>
 			<div class="col-sm-10">
-				<input class="form-control" formControlName="amount">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Currency</label>
-			<div class="col-sm-10">
-				<select class="form-control" formControlName="currency">
-			<option *ngFor="let currency of currencies" [value]="currency">{{currency}}</option>
-		</select>
+				<div class="row">
+					<div class="col-sm-2">
+						<input class="form-control" formControlName="rouble">
+					</div>
+					<div class="col-sm-1 small-label">roubles</div>
+					<div class="col-sm-2">
+						<input class="form-control" formControlName="altyn">
+					</div>
+					<div class="col-sm-1 small-label">altyn</div>
+					<div class="col-sm-2">
+						<input class="form-control" formControlName="dynga">
+					</div>
+					<div class="col-sm-1 small-label">dynga</div>
+					<div class="col-sm-1">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" formControlName="chekhi"> chekhi
+							</label>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Collected</label>
 			<div class="col-sm-10">
 				<label class="radio-inline">
-				<input type="radio" formControlName="collected" value="yes"> Yes
-			</label>
+					<input type="radio" formControlName="collected" value="yes"> Yes
+				</label>
 				<label class="radio-inline">
-				<input type="radio" formControlName="collected" value="no"> No
-			</label>
+					<input type="radio" formControlName="collected" value="no"> No
+				</label>
 			</div>
 		</div>
 	</div>
@@ -1229,12 +1291,20 @@
 			<textarea class="form-control" formControlName="researcherNotes"></textarea>
 		</div>
 	</div>
-
-
-
-	<div class="col-sm-12">
-		<div class="form-group">
-			<button type="submit" [disabled]="deedForm.invalid" class="btn btn-info center-block">Save the deed</button>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="form-group">
+				<div class="checkbox">
+					<label><input type="checkbox" formControlName="incomplete">Incomplete</label>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="form-group">
+				<button type="submit" [disabled]="deedForm.invalid" class="btn btn-info center-block">Save the deed</button>
+			</div>
 		</div>
 	</div>
 

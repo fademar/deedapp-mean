@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Deed, AgentM, AgentF, ReferentMale, OtherParticipant, Registrator, Fee, gender, transactionTypes, currencies } from '../../models/deed-model'
 import { NotificationsService } from 'angular2-notifications';
+import { SwitchComponent } from 'angular2-bootstrap-switch/components';
 
 @Component({
 	selector: 'app-add-deed',
@@ -78,12 +79,15 @@ export class AddDeedComponent implements OnInit {
 			otherParticipants: this.fb.array([]),
 			registrationDate: [''],
 			fee: this.fb.group({
-				amount: [''],
-				currency: [''],
-				collected: ['yes']
+					rouble: [''],
+					altyn: [''],
+					dynga: [''],
+					chekhi: [''],
+					collected: ['yes']
 			}),
 			verbatimCitations: [''],
-			researcherNotes: ['']
+			researcherNotes: [''],
+			incomplete: [false]
 		})
 
 	}
@@ -162,6 +166,9 @@ export class AddDeedComponent implements OnInit {
 					})
 				})
 				break;
+			}
+			default: {
+				break
 			}
 		}
 		this.deedForm.setControl('agent', this.agent);
@@ -368,8 +375,10 @@ export class AddDeedComponent implements OnInit {
 			case 'money': {
 				this.agentTransactionObject = this.fb.group({
 					money: this.fb.group({
-						amount: [''],
-						currency: ['']
+						rouble: [''],
+						altyn: [''],
+						dynga: [''],
+						chekhi: ['']
 					})
 				})
 				break;
@@ -379,7 +388,11 @@ export class AddDeedComponent implements OnInit {
 					land: this.fb.group({
 						juridicalStatus: [''],
 						localisation: [''],
-						surface: [''],
+						surface: this.fb.group({
+							cheti: [''],
+							sazheni: [''],
+							arshin: ['']
+						}),
 						population: [''],
 						construction: [''],
 						dependencies: ['']
@@ -440,8 +453,10 @@ export class AddDeedComponent implements OnInit {
 			case 'money': {
 				this.counterAgentTransactionObject = this.fb.group({
 					money: this.fb.group({
-						amount: [''],
-						currency: ['']
+						rouble: [''],
+						altyn: [''],
+						dynga: [''],
+						chekhi: ['']
 					})
 				})
 				break;
@@ -451,7 +466,11 @@ export class AddDeedComponent implements OnInit {
 					land: this.fb.group({
 						juridicalStatus: [''],
 						localisation: [''],
-						surface: [''],
+						surface: this.fb.group({
+							cheti: [''],
+							sazheni: [''],
+							arshin: ['']
+						}),
 						population: [''],
 						construction: [''],
 						dependencies: ['']

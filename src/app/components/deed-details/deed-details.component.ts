@@ -39,5 +39,7 @@ export class DeedDetailsComponent implements OnInit {
     return this.deed.transactions[i].agentTransactionType;
   }
 
-
+  getCounterAgentTransactionObjectType(i) {
+    return this.deed.transactions[i].counterAgentTransactionType;
+  }
 }

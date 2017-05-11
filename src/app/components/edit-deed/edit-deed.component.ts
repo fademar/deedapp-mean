@@ -60,7 +60,8 @@ export class EditDeedComponent implements OnInit {
 				registrationDate: this.deed.registrationDate,
 				fee: this.deed.fee,
 				verbatimCitations: this.deed.verbatimCitations,
-				researcherNotes: this.deed.researcherNotes
+				researcherNotes: this.deed.researcherNotes,
+				incomplete: this.deed.incomplete
 			})
 
 			// Populate Agent depending on AgentSex
@@ -491,12 +492,15 @@ export class EditDeedComponent implements OnInit {
 			otherParticipants: this.fb.array([]),
 			registrationDate: [''],
 			fee: this.fb.group({
-				amount: [''],
-				currency: [''],
-				collected: ['yes']
+					rouble: [''],
+					altyn: [''],
+					dynga: [''],
+					chekhi: [''],
+					collected: ['yes']
 			}),
 			verbatimCitations: [''],
-			researcherNotes: ['']
+			researcherNotes: [''],
+			incomplete: [false]
 		})
 	}
 
@@ -701,6 +705,9 @@ export class EditDeedComponent implements OnInit {
 				})
 				break;
 			}
+			default: {
+				break;
+			}
 		}
 		this.deedForm.controls['coCounterAgents']['controls'][i].setControl('coCounterAgent', this.coCounterAgent);
 	}
@@ -757,8 +764,10 @@ export class EditDeedComponent implements OnInit {
 			case 'money': {
 				this.agentTransactionObject = this.fb.group({
 					money: this.fb.group({
-						amount: [''],
-						currency: ['']
+						rouble: [''],
+						altyn: [''],
+						dynga: [''],
+						chekhi: ['']
 					})
 				})
 				break;
@@ -768,7 +777,11 @@ export class EditDeedComponent implements OnInit {
 					land: this.fb.group({
 						juridicalStatus: [''],
 						localisation: [''],
-						surface: [''],
+						surface: this.fb.group({
+							cheti: [''],
+							sazheni: [''],
+							arshin: ['']
+						}),
 						population: [''],
 						construction: [''],
 						dependencies: ['']
@@ -829,8 +842,10 @@ export class EditDeedComponent implements OnInit {
 			case 'money': {
 				this.counterAgentTransactionObject = this.fb.group({
 					money: this.fb.group({
-						amount: [''],
-						currency: ['']
+						rouble: [''],
+						altyn: [''],
+						dynga: [''],
+						chekhi: ['']
 					})
 				})
 				break;
@@ -840,7 +855,11 @@ export class EditDeedComponent implements OnInit {
 					land: this.fb.group({
 						juridicalStatus: [''],
 						localisation: [''],
-						surface: [''],
+						surface: this.fb.group({
+							cheti: [''],
+							sazheni: [''],
+							arshin: ['']
+						}),
 						population: [''],
 						construction: [''],
 						dependencies: ['']

@@ -7,12 +7,12 @@ export class Deed {
 	agentSex: '';
 	agentSexM: AgentM[];
 	agentSexF: AgentF[];
-	// // coAgentSexM: AgentM[];
-	// // coAgentSexF: AgentF[];
-	// counterAgentSexM: AgentM[];
-	// counterAgentSexF: AgentF[];
-	// coCounterAgentSexM: AgentM[];
-	// coCounterAgentSexF: AgentF[];
+	coAgentSexM: AgentM[];
+	coAgentSexF: AgentF[];
+	counterAgentSexM: AgentM[];
+	counterAgentSexF: AgentF[];
+	coCounterAgentSexM: AgentM[];
+	coCounterAgentSexF: AgentF[];
 	transaction: '';
 	agentTransactionObject: '';
 	counterAgentTransactionObject: '';
@@ -20,9 +20,9 @@ export class Deed {
 	contractConditions: '';
 	contractDuration: '';
 	forfeit: '';
-	// whitness: AgentM[];
-	// surety: AgentM[];
-	// scribe: AgentM[];
+	whitness: AgentM[];
+	surety: AgentM[];
+	scribe: AgentM[];
 	otherParticipant: OtherParticipant[]; 
 	registrationDate: '';
 	registrator: Registrator[];
@@ -80,7 +80,7 @@ export class Fee {
 	collected: ''
 }
 
-export const gender = ['M', 'F'];
+export const gender = ['', 'M', 'F'];
 
 export const transactionTypes = ['money', 'land', 'building', 'soul', 'movable', 'obligation'];
 

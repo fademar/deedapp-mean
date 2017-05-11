@@ -8,7 +8,9 @@
           <th>DeedRef</th>
           <th>DeedDate</th>
           <th>DeedName</th>
-          <th>DeedLanguage</th>
+          <th>Agent Name</th>
+          <th>ToDo</th>
+
           <th></th>
         </tr>
       </thead>
@@ -16,9 +18,10 @@
         <tr *ngFor='let deed of pagedDeeds'>
           <td>{{ deed.deedCode }}</td>
           <td>{{ deed.deedRef }}</td>
-          <td>{{ deed.deedDate }}</td>
-          <td>{{ deed.deedName }}</td>
-          <td>{{ deed.deedLanguage }}</td>
+          <td> <span *ngIf="deed.deedDate">{{ deed.deedDate }}</span></td>
+          <td> <span *ngIf="deed.deedName">{{ deed.deedName }}</span></td>
+          <td> <span *ngIf="deed.agent">{{ deed.agent.firstName }}</span> <span *ngIf="deed.agent">{{ deed.agent?.lastName }}</span></td>
+          <td> <i *ngIf="deed.incomplete" class="glyphicon glyphicon-ok"></i></td>
           <td>
             <a routerLink="/deed/{{ deed.id }}" class="btn btn-primary">Details</a>
           </td>

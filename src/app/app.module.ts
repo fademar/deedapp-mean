@@ -44,7 +44,7 @@ const appRoutes: Routes = [
     EditDeedComponent,
     DeedDetailsComponent,
     SchemaComponent,
-    SearchComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

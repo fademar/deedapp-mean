@@ -6104,3 +6104,14 @@ button.close {
 .panel-info > .panel-heading .badge {
   background-color: #fff;
 }
+
+/* Custom checkbox by Matt Sisto */ 
+
+
+
+/* Custom CSS by Fabrice Demarthon */
+
+.small-label {
+  margin: 0;
+  padding: 9px 0 0 0;
+}
