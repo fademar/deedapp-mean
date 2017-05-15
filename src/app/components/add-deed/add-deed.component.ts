@@ -34,6 +34,7 @@ export class AddDeedComponent implements OnInit {
 	counterAgentTransactionType = '';
 	lastDeed;
 	lastDeedCode;
+	lastDeedRef;
 
 	gender = gender;
 	transactionTypes = transactionTypes;
@@ -104,6 +105,23 @@ export class AddDeedComponent implements OnInit {
 				this.lastDeedCode = this.lastDeed[0].deedCode;
 				this.deedForm.patchValue({
 					deedCode: this.lastDeedCode
+				});
+			}
+		});
+	}
+
+	insertLastDeedRef() {
+		this.deedService.getLastDeed().subscribe(result => {
+			this.lastDeed = result;
+			if (this.lastDeed.length < 1) {
+				this.deedForm.patchValue({
+					deedRef: "No deed saved yet"
+				});
+			}
+			else {
+				this.lastDeedRef = this.lastDeed[0].deedRef;
+				this.deedForm.patchValue({
+					deedRef: this.lastDeedRef
 				});
 			}
 		});
