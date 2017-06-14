@@ -80,8 +80,16 @@ export class Fee {
 	collected: ''
 }
 
-export const gender = ['', 'M', 'F'];
+export const gender = ['', 'male', 'female', 'body-corporate'];
+
+export const socialBody = ['', 'monks', 'nuns', 'parishioners', 'townsfolk', 'country folk', 'regiment', 'other']
 
 export const transactionTypes = ['', 'money', 'land', 'building', 'soul', 'movable', 'obligation'];
 
 export const currencies = ['rouble', 'altyn', 'denga'];
+
+export const relationtoagents = ['', 'parents', 'corporation members', 'companions', 'other'];
+
+export const agentActionsList = ['', 'agrees to divorce', 'agrees to marry', 'agrees to marry-off', 'bequeaths', 'borrows', 'cedes', 'donates', 'elects', 'engages', 'exchanges', 'manumits', 'mortgages', 'promises', 'puts to rent', 'sells', 'settles', 'signs receipt', 'other'];
+
+export const agentTransactionObjectList = ['', 'chattels', 'debt', 'dependent', 'forfeit', 'fugitive souls', 'goods', 'immovable property', 'money', 'parent', 'responsibilities', 'share from estate', 'souls', 'other'];
