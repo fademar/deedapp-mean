@@ -4,7 +4,6 @@ import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@ang
 import { Router } from '@angular/router';
 import { Deed, AgentM, AgentF, ReferentMale, OtherParticipant, Registrator, Fee, gender, transactionTypes, currencies, socialBody, relationtoagents, agentActionsList, agentTransactionObjectList } from '../../models/deed-model'
 import { NotificationsService } from 'angular2-notifications';
-import { SwitchComponent } from 'angular2-bootstrap-switch/components';
 
 @Component({
 	selector: 'app-add-deed',
@@ -527,7 +526,7 @@ export class AddDeedComponent implements OnInit {
 	initTransaction() {
 		return this.fb.group({
 			agentAction: [''],
-			agentTransactionObject: this.fb.array([]),
+			agentTransactionObjects: this.fb.array([]),
 			counterAgentAction: [''],
 			counterAgentTransactionObject: this.fb.group({}),
 			advancePayment: ['no'],
@@ -572,9 +571,9 @@ export class AddDeedComponent implements OnInit {
 		}
 	}
 
-	// updateAgentTransactionObject(i: number) {
-
-	// } 
+	updateAgentTransactionObject(i: number) {
+		
+	} 
 
 	// getCounterAgentTransactionType(i: number) {
 	// 	return this.deedForm.controls.transactions['controls'][i].get('counterAgentTransactionType').value;
