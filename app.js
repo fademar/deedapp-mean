@@ -108,7 +108,7 @@ app.get('/api/deeds', (req, res) => {
 		if (err) {
 			handleError(res, err.message, 'Failed to get deeds.');
 		} else {
-			bulkIndex('deeds', 'deed', docs);
+			// bulkIndex('deeds', 'deed', docs);
 			res.status(200).json(docs);
 		}
 	});

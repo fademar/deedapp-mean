@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { SimpleNotificationsModule } from 'angular2-notifications';
-import { MdAutocompleteModule, MdInputModule, MdCheckboxModule, MdSelectModule, MdRadioModule } from '@angular/material';
+import { MdAutocompleteModule, MdInputModule, MdCheckboxModule, MdSelectModule, MdRadioModule, MdButtonModule } from '@angular/material';
 
 
 import { AppComponent } from './app.component';
@@ -58,7 +58,8 @@ const appRoutes: Routes = [
     MdInputModule, 
     MdCheckboxModule, 
     MdSelectModule, 
-    MdRadioModule
+    MdRadioModule, 
+    MdButtonModule
   ],
   providers: [DeedService, SchemaService, SearchService, PagerService],
   bootstrap: [AppComponent]

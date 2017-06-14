@@ -10,8 +10,7 @@ import { PagerService } from '../../services/pager.service';
 })
 export class DeedsComponent implements OnInit {
 	deeds;
-	firstName;
-	lastName;
+
 
 	// pager object
  	pager: any = {};
