@@ -867,7 +867,7 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label">What ?</label>
 							<div class="col-sm-10">
-								<select class="form-control" formArrayName="agentTransactionObjects" (change)="updateAgentTransactionObject(i)">
+								<select class="form-control" formControlName="agentTransactionObject" (change)="updateAgentTransactionObject(i)">
 									<option *ngFor="let object of agentTransactionObjectList" [value]="object">{{ object }}</option>
 								</select>
 							</div>

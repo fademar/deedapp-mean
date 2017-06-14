@@ -45,6 +45,7 @@ export class AddDeedComponent implements OnInit {
 	lastDeed;
 	lastDeedCode;
 	lastDeedRef;
+	selectedObject;
 
 	gender = gender;
 	socialBody = socialBody;
@@ -573,6 +574,8 @@ export class AddDeedComponent implements OnInit {
 
 	updateAgentTransactionObject(i: number) {
 		
+		this.selectedObject = this.deedForm.controls.transactions['controls'][i].get('agentTransactionObjects').value;
+		console.log(this.selectedObject);
 	} 
 
 	// getCounterAgentTransactionType(i: number) {
