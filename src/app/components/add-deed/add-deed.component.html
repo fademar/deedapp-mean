@@ -4,20 +4,19 @@
 
 	<!--DEED REFERENCES-->
 
-	<h2>Deed References</h2>
-	<div class="col-sm-4">
-			<md-input-container>
-				<input mdInput placeholder="Deed Code" formControlName="deedCode" required>
-			</md-input-container>
-			<button md-raised-button type="button" (click)="insertLastDeedCode()">Insert last Deed Code</button>
+	<h2 class="text-center bg-info">Deed References</h2>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Deed Code</label>
+		<div class="col-sm-10">
+			<input class="form-control" formControlName="deedCode" required>
+			<small class="text-danger" *ngIf="deedForm.controls.deedCode.errors">This field is required</small>
+			<button type="button" (click)="insertLastDeedCode()" class="btn btn-primary btn-xs pull-right">Insert the last Deed Code saved in the database</button>
+		</div>
 	</div>
-	
-
-
 	<div class="form-group">
 		<label class="col-sm-2 control-label">Deed Reference</label>
 		<div class="col-sm-10">
-			<input class="form-control" formControlName="deedRef">
+			<input class="form-control" formControlName="deedRef" required>
 			<small class="text-danger" *ngIf="deedForm.controls.deedRef.errors">This field is required</small>
 			<button type="button" (click)="insertLastDeedRef()" class="btn btn-primary btn-xs pull-right">Insert the last Deed Ref saved in the database</button>
 		</div>
@@ -868,9 +867,18 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label">What ?</label>
 							<div class="col-sm-10">
-								<select class="form-control" formControlName="agentTransactionObject" (change)="updateAgentTransactionObject(i)">
+								<div formArrayName='agentTransactionObjects'>
+									<ng-select [multiple]="true"
+												[items]="agentTransactionObjectList"
+												(data)="refreshValue($event, i)"
+												(selected)="selected($event, i)"
+												(removed)="removed($event, i)"
+												placeholder="No object selected">
+									</ng-select>
+								</div>
+								<!--<select class="form-control" formControlName="agentTransactionObject" (change)="updateAgentTransactionObject(i)">
 									<option *ngFor="let object of agentTransactionObjectList" [value]="object">{{ object }}</option>
-								</select>
+								</select>-->
 							</div>
 						</div>
 					</div>

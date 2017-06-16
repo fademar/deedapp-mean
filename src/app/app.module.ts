@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MdAutocompleteModule, MdInputModule, MdCheckboxModule, MdSelectModule, MdRadioModule, MdButtonModule } from '@angular/material';
-
+import { SelectModule } from 'ng2-select';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -59,7 +59,8 @@ const appRoutes: Routes = [
     MdCheckboxModule, 
     MdSelectModule, 
     MdRadioModule, 
-    MdButtonModule
+    MdButtonModule,
+    SelectModule
   ],
   providers: [DeedService, SchemaService, SearchService, PagerService],
   bootstrap: [AppComponent]

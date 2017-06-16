@@ -20,13 +20,24 @@ export class AddDeedComponent implements OnInit {
 	coCounterAgent: FormGroup;
 	collectiveCoAgent: FormGroup;
 	collectiveCoCounterAgent: FormGroup;
-	agentWhat: FormArray;
-	agentAsWhom: FormGroup;
-	agentWhom: FormGroup;
+	agentTransactionObject: FormGroup;
 	accusationAgainstAgent: FormControl;
 	scribe: FormGroup;
 	registrator: FormGroup;
-
+	chattels: FormGroup;
+	debt: FormGroup;
+	dependent: FormGroup;
+	forfeit: FormGroup;
+	fugitiveSouls: FormGroup;
+	goods: FormGroup;
+	immovableProperty: FormGroup;
+	money: FormGroup;
+	parent: FormGroup;
+	responsibilities: FormGroup;
+	shareFromEstate: FormGroup;
+	souls: FormGroup;
+	other: FormGroup;
+	
 	deed;
 	deedValue = '';
 	agentSex = '';
@@ -46,6 +57,8 @@ export class AddDeedComponent implements OnInit {
 	lastDeedCode;
 	lastDeedRef;
 	selectedObject;
+	value;
+	indexValues = [];
 
 	gender = gender;
 	socialBody = socialBody;
@@ -545,10 +558,10 @@ export class AddDeedComponent implements OnInit {
 		switch (this.agentAction) {
 
 			case 'bequeaths':
-			case 'cedes': 
+			case 'cedes':
 			case 'exchanges':
-			case 'mortgages': 
-			case 'puts to rent': 
+			case 'mortgages':
+			case 'puts to rent':
 			case 'sells':
 			case 'donates':
 			case 'borrows': {
@@ -567,16 +580,224 @@ export class AddDeedComponent implements OnInit {
 				this.selectedAction = 'accusationAgainstAgent';
 				break;
 			}
-			default: 
+			default:
 				break;
 		}
 	}
 
-	updateAgentTransactionObject(i: number) {
+	// Multiple Select Methods
+
+	refreshValue(value: any, i: number) {
+		this.value = value;
+	}
+
+	selected(value: any, i:any): void {
 		
-		this.selectedObject = this.deedForm.controls.transactions['controls'][i].get('agentTransactionObjects').value;
-		console.log(this.selectedObject);
-	} 
+		switch (value.id) {
+			case 'chattels': {
+				this.agentTransactionObject = this.fb.group({
+					chattels: this.fb.group({
+						type: [''],
+						origin: [''],
+						description: [''],
+						price: ['']
+					})
+				});
+				break;
+			}
+			case 'debt': {
+				this.agentTransactionObject = this.fb.group({
+					debt: this.fb.group({
+						amount: this.fb.group({
+							moscowSilver: this.fb.group({
+								rubli: [''],
+								altyny: [''],
+								dengi: ['']
+							}),
+							chekhi: this.fb.group({
+								rubli: [''],
+								altyny: [''],
+								dengi: ['']
+							})
+						}),
+						debtorName: [''],
+						debtDate: ['']
+					})
+				});
+				break;
+			}
+			case 'dependent': {
+				this.agentTransactionObject = this.fb.group({
+					dependent: this.fb.group({
+						familyStatus: [''],
+						firstName: [''],
+						patronyme: [''],
+						lastName: [''],
+						relationToAgent: ['']
+					})
+				});
+				break;
+			}
+			case 'forfeit': {
+				this.agentTransactionObject = this.fb.group({
+					forfeit: this.fb.group({
+						moscowSilver: this.fb.group({
+							rubli: [''],
+							altyny: [''],
+							dengi: ['']
+						}),
+						chekhi: this.fb.group({
+							rubli: [''],
+							altyny: [''],
+							dengi: ['']
+						})
+					})
+				});
+				break;
+			}
+			case 'fugitive souls': {
+				this.agentTransactionObject = this.fb.group({
+					fugitiveSouls: this.fb.group({
+						juridicalStatus: [''],
+						numberOfSouls: this.fb.group({
+							male: [''],
+							female: [''],
+							operator: [''],
+							households: ['']
+						}),
+						names: [''],
+						yearsOfRent: ['']
+					})
+				});
+				break;
+			}
+			case 'goods': {
+				this.agentTransactionObject = this.fb.group({
+					goods: this.fb.group({
+						type: [''],
+						description: [''],
+						price: this.fb.group({
+							moscowSilver: this.fb.group({
+								rubli: [''],
+								altyny: [''],
+								dengi: ['']
+							}),
+							chekhi: this.fb.group({
+								rubli: [''],
+								altyny: [''],
+								dengi: ['']
+							})
+						})
+					})
+				});
+				break;
+			}
+			case 'immovable property': {
+				this.agentTransactionObject = this.fb.group({
+					immovableProperty: this.fb.group({
+						type: [''],
+						share: [''],
+						origin: [''], 
+						localisation: [''],
+						neighbours: [''],
+						surface: this.fb.group({
+							chetiVpole: [''],
+							sazheni: this.fb.group({
+								0: [''],
+								1: ['']
+							}),
+						}),
+						population: this.fb.group({
+							male: [''],
+							female: [''],
+							operator: [''],
+							households: ['']
+						}),
+						buildings: [''],
+						appurtenances: ['']
+					})
+				});
+				break;
+			}
+			case 'money': {
+				this.agentTransactionObject = this.fb.group({
+					money: this.fb.group({
+						amount: this.fb.group({
+							moscowSilver: this.fb.group({
+								rubli: [''],
+								altyny: [''],
+								dengi: ['']
+							}),
+							chekhi: this.fb.group({
+								rubli: [''],
+								altyny: [''],
+								dengi: ['']
+							})
+						})
+					})
+				});
+				break;
+			}
+			case 'parent': {
+				this.agentTransactionObject = this.fb.group({
+					parent: this.fb.group({
+						coAgent: ['']
+					})
+				});
+				break;
+			}
+			case 'responsibilities': {
+				this.agentTransactionObject = this.fb.group({
+					responsabilities: this.fb.group({
+						description: ['']
+					})
+				});
+				break;
+			}
+			case 'share from estate': {
+				this.agentTransactionObject = this.fb.group({
+					shareFromEstate: this.fb.group({
+						share: [''],
+						description: ['']
+					})
+				});
+				break;
+			}
+			case 'souls': {
+				this.agentTransactionObject = this.fb.group({
+					souls: this.fb.group({
+						juridicalStatus: [''],
+						numberOfSouls: this.fb.group({
+							male: [''],
+							female: [''],
+							operator: [''],
+							households: ['']
+						}),
+						names: ['']
+					})
+				});
+				break;
+			}
+			case 'other': {
+				this.agentTransactionObject = this.fb.group({
+					other: ['']
+				});
+				break;
+			}
+
+		} // END SWITCH
+		
+		this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
+		this.indexValues.push(value.id);
+	}
+
+	removed(value: any, i: any): void {
+		let index = this.indexValues.indexOf(value.id);
+		this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.removeAt(index);
+		this.indexValues.splice(index, 1);
+	}
+
+
 
 	// getCounterAgentTransactionType(i: number) {
 	// 	return this.deedForm.controls.transactions['controls'][i].get('counterAgentTransactionType').value;
