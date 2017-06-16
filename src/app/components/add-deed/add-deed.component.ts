@@ -73,6 +73,8 @@ export class AddDeedComponent implements OnInit {
 	scribeOn = this.scribeOn;
 	registratorOn = this.registratorOn;
 	selectedAction = this.selectedAction;
+	selectedValue = this.selectedValue;
+
 
 	public options = {
 		position: ["top", "left"],
@@ -592,7 +594,7 @@ export class AddDeedComponent implements OnInit {
 	}
 
 	selected(value: any, i:any): void {
-		
+		console.log(this.deedForm.controls.transactions['controls'][i].controls);
 		switch (value.id) {
 			case 'chattels': {
 				this.agentTransactionObject = this.fb.group({
@@ -789,6 +791,7 @@ export class AddDeedComponent implements OnInit {
 		
 		this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
 		this.indexValues.push(value.id);
+		this.selectedValue = value.id;
 	}
 
 	removed(value: any, i: any): void {
@@ -796,7 +799,6 @@ export class AddDeedComponent implements OnInit {
 		this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.removeAt(index);
 		this.indexValues.splice(index, 1);
 	}
-
 
 
 	// getCounterAgentTransactionType(i: number) {
