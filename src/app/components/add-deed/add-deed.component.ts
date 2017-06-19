@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { DeedService } from '../../services/deed.service';
 import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Deed, AgentM, AgentF, ReferentMale, OtherParticipant, Registrator, Fee, gender, transactionTypes, currencies, socialBody, relationtoagents, agentActionsList, agentTransactionObjectList } from '../../models/deed-model'
+import { Deed, AgentM, AgentF, ReferentMale, OtherParticipant, Registrator, Fee, gender, transactionTypes, currencies, socialBody, relationtoagents, agentActionsList, agentTransactionObjectList, immovablePropertyList, shareList } from '../../models/deed-model'
 import { NotificationsService } from 'angular2-notifications';
 
 @Component({
@@ -37,7 +37,8 @@ export class AddDeedComponent implements OnInit {
 	shareFromEstate: FormGroup;
 	souls: FormGroup;
 	other: FormGroup;
-	
+
+
 	deed;
 	deedValue = '';
 	agentSex = '';
@@ -67,6 +68,8 @@ export class AddDeedComponent implements OnInit {
 	transactionTypes = transactionTypes;
 	relationtoagents = relationtoagents;
 	currencies = currencies;
+	immovablePropertyList = immovablePropertyList;
+	shareList = shareList; 
 
 	collectiveCoAgentOn = this.collectiveCoAgentOn;
 	collectiveCoCounterAgentOn = this.collectiveCoCounterAgentOn;
@@ -583,8 +586,13 @@ export class AddDeedComponent implements OnInit {
 				break;
 			}
 			default:
+				this.selectedAction = '';
 				break;
 		}
+	}
+
+	updateWhom(i: number) {
+		this.whom = this.deedForm.controls.transactions['controls'][i].get('agentAction').value;
 	}
 
 	// Multiple Select Methods
@@ -594,7 +602,6 @@ export class AddDeedComponent implements OnInit {
 	}
 
 	selected(value: any, i:any): void {
-		console.log(this.deedForm.controls.transactions['controls'][i].controls);
 		switch (value.id) {
 			case 'chattels': {
 				this.agentTransactionObject = this.fb.group({
@@ -743,7 +750,7 @@ export class AddDeedComponent implements OnInit {
 			case 'parent': {
 				this.agentTransactionObject = this.fb.group({
 					parent: this.fb.group({
-						coAgent: ['']
+						coAgentNumber: ['']
 					})
 				});
 				break;
