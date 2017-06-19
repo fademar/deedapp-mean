@@ -9,7 +9,7 @@
 		<label class="col-sm-2 control-label">Deed Code</label>
 		<div class="col-sm-10">
 			<input class="form-control" formControlName="deedCode" required>
-			<small class="text-danger" *ngIf="deedForm.controls.deedCode.errors">This field is required</small>
+			<small class="text-danger" *ngIf="deedForm['controls'].deedCode.errors">This field is required</small>
 			<button type="button" (click)="insertLastDeedCode()" class="btn btn-primary btn-xs pull-right">Insert the last Deed Code saved in the database</button>
 		</div>
 	</div>
@@ -848,10 +848,10 @@
 	<h2 class="text-center bg-info">Transaction</h2>
 
 	<div formArrayName="transactions">
-		<div *ngFor="let transaction of deedForm.controls.transactions.controls; let i=index" class="panel panel-default">
+		<div *ngFor="let transaction of deedForm['controls']['transactions']['controls']; let i=index" class="panel panel-default">
 			<div class="panel-heading">
 				<span>Transaction {{i + 1}}</span>
-				<span class="glyphicon glyphicon-remove pull-right" *ngIf="deedForm.controls.transactions.controls.length > 1" (click)="removeTransaction(i)"></span>
+				<span class="glyphicon glyphicon-remove pull-right" *ngIf="deedForm['controls']['transactions']['controls'].length > 1" (click)="removeTransaction(i)"></span>
 			</div>
 			<div class="panel-body" [formGroupName]="i">
 				<div class="form-group">
@@ -885,9 +885,9 @@
 					</div>
 				</div>
 				<div formArrayName='agentTransactionObjects'>
-					<div *ngFor="let transactionObject of transaction.controls.agentTransactionObjects.controls; let j=index">
+					<div *ngFor="let transactionObject of transaction['controls']['agentTransactionObjects']['controls']; let j=index">
 							<div [formGroupName]="j">
-								<div *ngIf="transactionObject.controls.chattels">
+								<div *ngIf="transactionObject['controls']['chattels']">
 									<h3 class="text-center">Chattels</h3>
 									<div formGroupName="chattels">
 									<div class="form-group">
@@ -916,12 +916,13 @@
 									</div>
 									</div>
 								</div>
-								<div *ngIf="transactionObject.controls.debt">
+								<div *ngIf="transactionObject['controls']['debt']">
 									<h3 class="text-center">Debt</h3>
 									<div class="form-group" formGroupName="debt">
 										<label class="col-sm-2 control-label">Amount</label>
 										<div class="col-sm-10" formGroupName="amount">
 											<div class="row" formGroupName="moscowSilver">
+												<div class="form-group">
 												<label class="col-sm-2 small-label">moscow silver: </label>
 												<div class="col-sm-2">
 													<input class="form-control" formControlName="rubli">
@@ -935,6 +936,7 @@
 													<input class="form-control" formControlName="dengi">
 												</div>
 												<div class="col-sm-1 small-label">den'gi</div>
+											</div>
 											</div>
 											<div class="row" formGroupName="chekhi">
 												<label class="col-sm-2 small-label">chekhi:</label>

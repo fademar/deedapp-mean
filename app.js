@@ -8,12 +8,14 @@ var ObjectID = mongodb.ObjectID;
 
 // Db Collection and URI
 const deedsCollection = 'Deeds';
-const dbUri = 'mongodb://localhost:27017/dbdeeds';
+const dbUri = 'mongodb://fadem:886682@ds061248.mlab.com:61248/dbdeeds';
 const port = 3000;
 
 // App Init
 const app = express();
 app.use(bodyParser.json());
+
+
 
 // Enable CORS 
 app.use(function (req, res, next) {
