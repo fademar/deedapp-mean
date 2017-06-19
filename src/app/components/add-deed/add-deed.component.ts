@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { DeedService } from '../../services/deed.service';
 import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Deed, AgentM, AgentF, ReferentMale, OtherParticipant, Registrator, Fee, gender, transactionTypes, currencies, socialBody, relationtoagents, agentActionsList, agentTransactionObjectList, immovablePropertyList, shareList } from '../../models/deed-model'
+import { Deed, AgentM, AgentF, ReferentMale, OtherParticipant, Registrator, Fee, gender, transactionTypes, currencies, socialBody, relationtoagents, agentActionsList, whatList, immovablePropertyList, shareList, whomList, asWhomList } from '../../models/deed-model'
 import { NotificationsService } from 'angular2-notifications';
 
 @Component({
@@ -60,16 +60,22 @@ export class AddDeedComponent implements OnInit {
 	selectedObject;
 	value;
 	indexValues = [];
+	what;
+	whom;
+	asWhom
+
 
 	gender = gender;
 	socialBody = socialBody;
 	agentActionsList = agentActionsList;
-	agentTransactionObjectList = agentTransactionObjectList;
+	whatList = whatList;
 	transactionTypes = transactionTypes;
 	relationtoagents = relationtoagents;
 	currencies = currencies;
 	immovablePropertyList = immovablePropertyList;
-	shareList = shareList; 
+	shareList = shareList;
+	whomList = whomList;
+	asWhomList = asWhomList;
 
 	collectiveCoAgentOn = this.collectiveCoAgentOn;
 	collectiveCoCounterAgentOn = this.collectiveCoCounterAgentOn;
@@ -77,7 +83,7 @@ export class AddDeedComponent implements OnInit {
 	registratorOn = this.registratorOn;
 	selectedAction = this.selectedAction;
 	selectedValue = this.selectedValue;
-
+	selectedAsWhomValue = this.selectedAsWhomValue;
 
 	public options = {
 		position: ["top", "left"],
@@ -591,17 +597,137 @@ export class AddDeedComponent implements OnInit {
 		}
 	}
 
-	updateWhom(i: number) {
-		this.whom = this.deedForm.controls.transactions['controls'][i].get('agentAction').value;
-	}
 
-	// Multiple Select Methods
-
-	refreshValue(value: any, i: number) {
+	refreshValueAsWhom(value: any, i: number) {
 		this.value = value;
 	}
 
-	selected(value: any, i:any): void {
+	selectedAsWhom(value: any, i:number) {
+		if (this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.length > 0) {
+			this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.removeAt(0);
+		}
+		switch (value.id) {
+			case 'as hired worker': {
+				this.agentTransactionObject = this.fb.group({
+					asWhom: ['as hired worker'],
+					toDoWhat: ['']
+				});
+				break;
+			}
+			case 'in household': {
+				this.agentTransactionObject = this.fb.group({
+					asWhom: ['in household'],
+					withFamily: ['']
+				});
+				break;
+			}
+			case 'as son-in-law': {
+				this.agentTransactionObject = this.fb.group({
+					asWhom: ['as son-in-law']
+				});
+				break;
+			}
+			case 'as bondman': {
+				this.agentTransactionObject = this.fb.group({
+					asWhom: ['as bondman']
+				});
+				break;
+			}
+			case 'as peasant': {
+				this.agentTransactionObject = this.fb.group({
+					asWhom: ['as peasant']
+				});
+				break;
+			}
+			case 'as contractor': {
+				this.agentTransactionObject = this.fb.group({
+					asWhom: ['as contractor'],
+					activity: ['']
+				});
+				break;
+			}
+			case 'as tax-farmer': {
+				this.agentTransactionObject = this.fb.group({
+					asWhom: ['as tax-farmer'],
+					type: [''],
+					description: [''],
+					annualRent: this.fb.group({
+						rubli: [''],
+						altyny: [''],
+						dengi: ['']
+					})
+				});
+				break;
+			}
+			case 'other': {
+				this.agentTransactionObject = this.fb.group({
+					asWhom: ['other'],
+					other: ['']
+				});
+				break;
+			}
+			default: {
+				break;
+			}
+		};
+		this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
+		this.selectedAsWhomValue = value.id;
+	}
+
+	removedAsWhom(value: any, i: any): void {
+		this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.removeAt(0);
+	}
+
+
+	// WHOM Select Methods
+
+	refreshValueWhom(value: any, i: number) {
+		this.value = value;
+	}
+
+	selectedWhom(value: any, i:number) {
+		if (this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.length > 0) {
+			this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.removeAt(0);
+		}
+		switch (value.id) {
+			case 'parent': {
+				this.agentTransactionObject = this.fb.group({
+					parent: this.fb.group({
+						coAgentNumber: ['']
+					})
+				});
+				break;
+			}
+			case 'dependent': {
+				this.agentTransactionObject = this.fb.group({
+					dependent: this.fb.group({
+						familyStatus: [''],
+						firstName: [''],
+						patronyme: [''],
+						lastName: [''],
+						relationToAgent: ['']
+					})
+				});
+				break;
+			}
+			default: {
+				break;
+			}
+		};
+		this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
+	}
+
+	removedWhom(value: any, i: any): void {
+		this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.removeAt(0);
+	}
+
+	// WHAT Select Methods
+
+	refreshValueWhat(value: any, i: number) {
+		this.value = value;
+	}
+
+	selectedWhat(value: any, i:number): void {
 		switch (value.id) {
 			case 'chattels': {
 				this.agentTransactionObject = this.fb.group({
@@ -801,102 +927,13 @@ export class AddDeedComponent implements OnInit {
 		this.selectedValue = value.id;
 	}
 
-	removed(value: any, i: any): void {
+	removedWhat(value: any, i: any): void {
 		let index = this.indexValues.indexOf(value.id);
 		this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.removeAt(index);
 		this.indexValues.splice(index, 1);
 	}
 
 
-	// getCounterAgentTransactionType(i: number) {
-	// 	return this.deedForm.controls.transactions['controls'][i].get('counterAgentTransactionType').value;
-	// }
-
-
-	// updateCounterAgentTransactionObject(i: number) {
-
-	// 	this.counterAgentTransactionType = this.deedForm.controls.transactions['controls'][i].get('counterAgentTransactionType').value;
-	// 	if (this.counterAgentTransactionType == '' && ('counterAgentTransactionObject' in this.deedForm.controls.transactions['controls'][i]['controls'])) {
-	// 		this.deedForm.controls.transactions['controls'][i].removeControl('counterAgentTransactionObject');
-	// 	}
-	// 	else {
-	// 		switch (this.counterAgentTransactionType) {
-
-	// 			case 'money': {
-	// 				this.counterAgentTransactionObject = this.fb.group({
-	// 					money: this.fb.group({
-	// 						rouble: [''],
-	// 						altyn: [''],
-	// 						dynga: [''],
-	// 						chekhi: ['']
-	// 					})
-	// 				})
-	// 				break;
-	// 			}
-	// 			case 'land': {
-	// 				this.counterAgentTransactionObject = this.fb.group({
-	// 					land: this.fb.group({
-	// 						juridicalStatus: [''],
-	// 						localisation: [''],
-	// 						surface: this.fb.group({
-	// 							cheti: [''],
-	// 							sazheni: [''],
-	// 							arshin: ['']
-	// 						}),
-	// 						population: [''],
-	// 						construction: [''],
-	// 						dependencies: ['']
-	// 					})
-	// 				})
-	// 				break;
-	// 			}
-	// 			case 'building': {
-	// 				this.counterAgentTransactionObject = this.fb.group({
-	// 					building: this.fb.group({
-	// 						destination: [''],
-	// 						localisation: [''],
-	// 						description: ['']
-	// 					})
-	// 				})
-	// 				break;
-	// 			}
-	// 			case 'soul': {
-	// 				this.counterAgentTransactionObject = this.fb.group({
-	// 					soul: this.fb.group({
-	// 						juridicalStatus: [''],
-	// 						sex: [''],
-	// 						name: ['']
-	// 					})
-	// 				})
-	// 				break;
-	// 			}
-	// 			case 'movable': {
-	// 				this.counterAgentTransactionObject = this.fb.group({
-	// 					movable: this.fb.group({
-	// 						definition: [''],
-	// 						description: ['']
-	// 					})
-	// 				})
-	// 				break;
-	// 			}
-	// 			case 'obligation': {
-	// 				this.counterAgentTransactionObject = this.fb.group({
-	// 					obligation: this.fb.group({
-	// 						nature: [''],
-	// 						subjects: [''],
-	// 						conditions: ['']
-	// 					})
-	// 				})
-	// 				break;
-	// 			}
-	// 			default: {
-	// 				break
-	// 			}
-	// 		}
-
-	// 		this.deedForm.controls.transactions['controls'][i].setControl('counterAgentTransactionObject', this.counterAgentTransactionObject);
-	// 	}
-	// }
 
 	addTransaction() {
 		const control = <FormArray>this.deedForm.controls['transactions'];

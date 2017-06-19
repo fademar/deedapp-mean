@@ -867,8 +867,8 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label">What ?</label>
 							<div class="col-sm-10">
-								<ng-select [multiple]="true" [items]="agentTransactionObjectList" (data)="refreshValue($event, i)" (selected)="selected($event, i)"
-								 (removed)="removed($event, i)" placeholder="No object selected">
+								<ng-select [multiple]="true" [items]="whatList" (data)="refreshValueWhat($event, i)" (selected)="selectedWhat($event, i)"
+								 (removed)="removedWhat($event, i)" placeholder="No object selected">
 								</ng-select>
 							</div>
 						</div>
@@ -877,10 +877,19 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Whom ?</label>
 							<div class="col-sm-10">
-								<select class="form-control" formControlName="whom" (change)="updateWhom(i)">
-									<option [value]="'parent'">Parent</option>
-									<option [value]="'dependent'">Dependent</option>
-								</select>
+								<ng-select [allowClear]="true" [items]="whomList" (data)="refreshValueWhom($event, i)" (selected)="selectedWhom($event, i)"
+								 (removed)="removedWhom($event, i)" placeholder="No object selected">
+								</ng-select>	
+							</div>
+						</div>
+					</div>
+					<div *ngSwitchCase="'asWhom'">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">As Whom ?</label>
+							<div class="col-sm-10">
+								<ng-select [allowClear]="true" [items]="asWhomList" (data)="refreshValueAsWhom($event, i)" (selected)="selectedAsWhom($event, i)"
+								 (removed)="removedAsWhom($event, i)" placeholder="No object selected">
+								</ng-select>	
 							</div>
 						</div>
 					</div>
@@ -1363,7 +1372,35 @@
 											<input class="form-control" formControlName="other">
 										</div>
 									</div>
-								</div>		
+								</div>
+								<div *ngIf="transactionObject['controls']['asWhom']">
+									<div [ngSwitch]=selectedAsWhomValue>
+										<div *ngSwitchCase="'as hired worker'">
+											<div class="form-group">
+												<label class="col-sm-2 control-label">To Do What</label>
+												<div class="col-sm-10">
+													<input class="form-control" formControlName="toDoWhat">
+												</div>
+											</div>
+										</div>
+										<div *ngSwitchCase="'in household'">
+											<div class="form-group">
+												<label class="col-sm-2 control-label">With Family</label>
+												<div class="col-sm-10">
+													<input class="form-control" formControlName="withFamily">
+												</div>
+											</div>
+										</div>
+										<div *ngSwitchCase="'as contractor'">
+											<div class="form-group">
+												<label class="col-sm-2 control-label">Activity</label>
+												<div class="col-sm-10">
+													<input class="form-control" formControlName="activity">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>	
 						</div>
 					</div>
 				</div>
