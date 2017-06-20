@@ -689,10 +689,6 @@ export class AddDeedComponent implements OnInit {
 		}
 	}
 
-	updateWhoInherits(i: number) {
-		
-	}
-
 
 	updateCounterAgentAction(i: number) {
 		this.counterAgentAction = this.deedForm.controls.transactions['controls'][i].get('counterAgentAction').value;

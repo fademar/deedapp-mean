@@ -41,6 +41,15 @@
                     <li *ngIf="deed.agent.referentMale.relatedTo" class="list-group-item"><strong>Referent Male Related To: </strong>{{ deed.agent.referentMale.relatedTo }}</li>
                 </ul>
             </div>
+            <div *ngSwitchCase="'body-corporate'">
+                <li *ngIf="deed.agent.geogrStatus" class="list-group-item"><strong>Agent Geogr Status: </strong>{{ deed.agent.geogrStatus }}</li>
+                <li *ngIf="deed.agent.socialStatus" class="list-group-item"><strong>Agent Social Status: </strong>{{ deed.agent.socialStatus }}</li>
+                <li *ngIf="deed.agent.otherSocialStatus" class="list-group-item"><strong>Agent Other Social Status: </strong>{{ deed.agent.otherSocialStatus }}</li>
+                <li *ngIf="deed.agent.corporationName" class="list-group-item"><strong>Agent Corporation Name: </strong>{{ deed.agent.corporationName }}</li>
+                <li *ngIf="deed.agent.patronyme" class="list-group-item"><strong>Agent Patronyme: </strong>{{ deed.agent.patronyme }}</li>
+                <li *ngIf="deed.agent.nbParticipants" class="list-group-item"><strong>Agent Number Of Participants: </strong>{{ deed.agent.nbParticipants }}</li>
+                <li *ngIf="deed.agent.names" class="list-group-item"><strong>Agent Names: </strong>{{ deed.agent.names }}</li>
+            </div>
         </div>
     </ul>
     <h3 *ngIf="deed.counterAgentSex">Counter Agent</h3>
