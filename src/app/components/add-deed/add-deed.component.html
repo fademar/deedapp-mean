@@ -854,6 +854,9 @@
 				<span class="glyphicon glyphicon-remove pull-right" *ngIf="deedForm['controls']['transactions']['controls'].length > 1" (click)="removeTransaction(i)"></span>
 			</div>
 			<div class="panel-body" [formGroupName]="i">
+
+				<!-- AGENT TRANSACTION -->
+
 				<div class="form-group">
 					<label class="col-sm-2 control-label">What the Agent does ?</label>
 					<div class="col-sm-10">
@@ -870,6 +873,25 @@
 								<ng-select [multiple]="true" [items]="whatList" (data)="refreshValueWhat($event, i)" (selected)="selectedWhat($event, i)"
 								 (removed)="removedWhat($event, i)" placeholder="No object selected">
 								</ng-select>
+							</div>
+						</div>
+					</div>
+					<div *ngSwitchCase="'bequeaths'">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">What ?</label>
+							<div class="col-sm-10">
+								<ng-select [multiple]="true" [items]="whatList" (data)="refreshValueWhat($event, i)" (selected)="selectedWhat($event, i)"
+								 (removed)="removedWhat($event, i)" placeholder="No object selected">
+								</ng-select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Who inherits</label>
+							<div class="col-sm-10">
+								<select class="form-control" formControlName="whoInherits" (change)="updateWhoInherits(i)">
+									<option value="counterAgent">Counter Agent</option>	
+									<option *ngFor="let value of deedForm.controls.coAgents.controls; let i=index" [value]="'coAgent' + (i+1)">CoAgent {{ i + 1 }}</option>
+								</select>
 							</div>
 						</div>
 					</div>
@@ -894,6 +916,7 @@
 						</div>
 					</div>
 				</div>
+				<!-- AGENT TRANSACTION OBJETCS -->
 				<div formArrayName='agentTransactionObjects'>
 					<div *ngFor="let transactionObject of transaction['controls']['agentTransactionObjects']['controls']; let j=index">
 							<div [formGroupName]="j">
@@ -1387,7 +1410,12 @@
 											<div class="form-group">
 												<label class="col-sm-2 control-label">With Family</label>
 												<div class="col-sm-10">
-													<input class="form-control" formControlName="withFamily">
+													<label class="radio-inline">
+														<input type="radio" formControlName="withFamily" value="yes"> Yes
+													</label>
+													<label class="radio-inline">
+														<input type="radio" formControlName="withFamily" value="no"> No
+													</label>
 												</div>
 											</div>
 										</div>
@@ -1395,8 +1423,41 @@
 											<div class="form-group">
 												<label class="col-sm-2 control-label">Activity</label>
 												<div class="col-sm-10">
-													<input class="form-control" formControlName="activity">
+													<select class="form-control" formControlName="activity">
+														<option *ngFor="let activityValue of activityList" [value]="activityValue">{{ activityValue }}</option>
+													</select>
 												</div>
+											</div>
+										</div>
+										<div *ngSwitchCase="'as tax-farmer'">
+											<div class="form-group">
+												<label class="col-sm-2 control-label">Type/Object of tax</label>
+												<div class="col-sm-10">
+													<select class="form-control" formControlName="type">
+														<option *ngFor="let typeTaxValue of typeTaxList" [value]="typeTaxValue">{{ typeTaxValue }}</option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-2 control-label">Description</label>
+												<div class="col-sm-10">
+													<input class="form-control" formControlName="description">
+												</div>
+											</div>
+											<div class="form-group" formGroupName="annualRent">
+												<label class="col-sm-2 control-label">Annual Rent</label>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="rubli">
+												</div>
+												<div class="col-sm-1 small-label">rubli</div>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="altyny">
+												</div>
+												<div class="col-sm-1 small-label">altyny</div>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="dengi">
+												</div>
+												<div class="col-sm-1 small-label">den'gi</div>
 											</div>
 										</div>
 									</div>
@@ -1404,6 +1465,600 @@
 						</div>
 					</div>
 				</div>
+				<!-- COUNTER AGENT TRANSACTION -->
+				<div [ngSwitch]="counterAgentField">
+					<div *ngSwitchCase="'text'">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">What the Counter Agent does ?</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="counterAgentAction">
+							</div>
+						</div>
+					</div>
+					<div *ngSwitchCase="'select'">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">What the Counter Agent does ?</label>
+							<div class="col-sm-10">
+								<select class="form-control" formControlName="counterAgentAction" (change)="updateCounterAgentAction(i)">
+									<option *ngFor="let action of counterAgentActionsList" [value]="action">{{ action }}</option>
+								</select>
+							</div>
+						</div>
+						<div [ngSwitch]="selectedCounterAction">
+							<div *ngSwitchCase="'what'">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">What ?</label>
+									<div class="col-sm-10">
+										<ng-select [multiple]="true" [items]="whatList" (data)="refreshValueCounterWhat($event, i)" (selected)="selectedCounterWhat($event, i)"
+										(removed)="removedCounterWhat($event, i)" placeholder="No object selected">
+										</ng-select>
+									</div>
+								</div>
+							</div>
+							<div *ngSwitchCase="'whom'">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Whom ?</label>
+									<div class="col-sm-10">
+										<ng-select [allowClear]="true" [items]="whomList" (data)="refreshValueCounterWhom($event, i)" (selected)="selectedCounterWhom($event, i)"
+										(removed)="removedCounterWhom($event, i)" placeholder="No object selected">
+										</ng-select>	
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- COUNTER AGENT TRANSACTION OBJETCS -->
+				<div formArrayName='counterAgentTransactionObjects'>
+					<div *ngFor="let transactionCounterObject of transaction['controls']['counterAgentTransactionObjects']['controls']; let j=index">
+							<div [formGroupName]="j">
+								<div *ngIf="transactionCounterObject['controls']['chattels']">
+									<h3 class="text-center">Chattels</h3>
+									<div formGroupName="chattels">
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Type</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="type">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Origin</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="origin">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Description</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="description">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Price</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="price">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div *ngIf="transactionCounterObject['controls']['debt']">
+									<h3 class="text-center">Debt</h3>
+									<div formGroupName="debt">
+										<h4 class="text-center">Amount</h4>
+										<div formGroupName="amount">
+											<div class="form-group" formGroupName="moscowSilver">
+												<label class="col-sm-2 control-label">moscow silver: </label>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="rubli">
+												</div>
+												<div class="col-sm-1 small-label">rubli</div>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="altyny">
+												</div>
+												<div class="col-sm-1 small-label">altyny</div>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="dengi">
+												</div>
+												<div class="col-sm-1 small-label">den'gi</div>
+											</div>
+											<div class="form-group" formGroupName="chekhi">
+												<label class="col-sm-2 control-label">chekhi:</label>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="rubli">
+												</div>
+												<div class="col-sm-1 small-label">rubli</div>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="altyny">
+												</div>
+												<div class="col-sm-1 small-label">altyny</div>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="dengi">
+												</div>
+												<div class="col-sm-1 small-label">den'gi</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Debtor Name</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="debtorName">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Debtor Date</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="debtDate">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div *ngIf="transactionCounterObject['controls']['dependent']">
+									<h3 class="text-center">Dependent</h3>
+									<div formGroupName="dependent">
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Family Status</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="familyStatus">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">First Name</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="firstName">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Patronyme</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="patronyme">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Last Name</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="lastName">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Relation to Agent</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="relationToAgent">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div *ngIf="transactionCounterObject['controls']['forfeit']">
+									<h3 class="text-center">Forfeit</h3>
+									<div formGroupName="forfeit">
+										<div class="form-group" formGroupName="moscowSilver">
+											<label class="col-sm-2 control-label">moscow silver: </label>
+											<div class="col-sm-2">
+												<input class="form-control" formControlName="rubli">
+											</div>
+											<div class="col-sm-1 small-label">rubli</div>
+											<div class="col-sm-2">
+												<input class="form-control" formControlName="altyny">
+											</div>
+											<div class="col-sm-1 small-label">altyny</div>
+											<div class="col-sm-2">
+												<input class="form-control" formControlName="dengi">
+											</div>
+											<div class="col-sm-1 small-label">den'gi</div>
+										</div>
+										<div class="form-group" formGroupName="chekhi">
+											<label class="col-sm-2 control-label">chekhi:</label>
+											<div class="col-sm-2">
+												<input class="form-control" formControlName="rubli">
+											</div>
+											<div class="col-sm-1 small-label">rubli</div>
+											<div class="col-sm-2">
+												<input class="form-control" formControlName="altyny">
+											</div>
+											<div class="col-sm-1 small-label">altyny</div>
+											<div class="col-sm-2">
+												<input class="form-control" formControlName="dengi">
+											</div>
+											<div class="col-sm-1 small-label">den'gi</div>
+										</div>
+									</div>
+								</div>
+								<div *ngIf="transactionCounterObject['controls']['fugitiveSouls']">
+									<h3 class="text-center">Fugitive Souls</h3>
+									<div formGroupName="fugitiveSouls">
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Juridical Status</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="juridicalStatus">
+											</div>
+										</div>
+										<div class="form-group" formGroupName="numberOfSouls">
+											<label class="col-sm-2 control-label">Number of Souls</label>
+											<div class="col-sm-1">
+												<input class="form-control" formControlName="male">
+											</div>
+											<div class="col-sm-1 small-label">male</div>
+											<div class="col-sm-1">
+												<input class="form-control" formControlName="female">
+											</div>
+											<div class="col-sm-1 small-label">female</div>
+											<div class="col-sm-2">
+												<div class="radio-inline">
+													<label>
+														<input type="radio" formControlName="operator" value="or">
+														OR
+													</label>
+												</div>
+												<div class="radio-inline">
+													<label>
+														<input type="radio" formControlName="operator" value="and">
+														AND
+													</label>
+												</div>
+											</div>
+											<div class="col-sm-2">
+												<input class="form-control" formControlName="households">
+											</div>
+											<div class="col-sm-1 small-label">households</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Names</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="names">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Years of rent</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="yearsOfRent">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div *ngIf="transactionCounterObject['controls']['goods']">
+									<h3 class="text-center">Goods</h3>
+									<div formGroupName="goods">
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Type</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="type">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Description</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="description">
+											</div>
+										</div>
+										<h4 class="text-center">Price</h4>
+										<div formGroupName="price">
+											<div class="form-group" formGroupName="moscowSilver">
+												<label class="col-sm-2 control-label">moscow silver: </label>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="rubli">
+												</div>
+												<div class="col-sm-1 small-label">rubli</div>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="altyny">
+												</div>
+												<div class="col-sm-1 small-label">altyny</div>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="dengi">
+												</div>
+												<div class="col-sm-1 small-label">den'gi</div>
+											</div>
+											<div class="form-group" formGroupName="chekhi">
+												<label class="col-sm-2 control-label">chekhi:</label>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="rubli">
+												</div>
+												<div class="col-sm-1 small-label">rubli</div>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="altyny">
+												</div>
+												<div class="col-sm-1 small-label">altyny</div>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="dengi">
+												</div>
+												<div class="col-sm-1 small-label">den'gi</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div *ngIf="transactionCounterObject['controls']['immovableProperty']">
+									<h3 class="text-center">Immovable Property</h3>
+									<div formGroupName="immovableProperty">
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Type</label>
+											<div class="col-sm-10">
+												<select class="form-control" formControlName="type">
+													<option *ngFor="let immovablePropertyValue of immovablePropertyList" [value]="immovablePropertyValue">{{ immovablePropertyValue }}</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Share</label>
+											<div class="col-sm-10">
+												<select class="form-control" formControlName="share">
+													<option *ngFor="let shareValue of shareList" [value]="shareValue">{{ shareValue }}</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Localisation</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="localisation">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Neighbours</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="neighbours">
+											</div>
+										</div>
+										<div  class="form-group" formGroupName="surface">
+											<label class="col-sm-2 control-label">Surface</label>
+											<div class="col-sm-2">
+												<input class="form-control" formControlName="chetiVpole">
+											</div>
+											<div class="col-sm-1 small-label">cheri v pole</div>
+											<div class="col-sm-1 small-label text-center">OR</div>
+											<div formGroupName="sazheni">
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="0">
+												</div>
+												<div class="col-sm-1 small-label text-center">x</div>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="1">
+												</div>
+												<div class="col-sm-1 small-label">sazheni</div>
+											</div>
+										</div>
+										<div class="form-group" formGroupName="population">
+											<label class="col-sm-2 control-label">Population (souls)</label>
+											<div class="col-sm-1">
+												<input class="form-control" formControlName="male">
+											</div>
+											<div class="col-sm-1 small-label">male</div>
+											<div class="col-sm-1">
+												<input class="form-control" formControlName="female">
+											</div>
+											<div class="col-sm-1 small-label">female</div>
+											<div class="col-sm-2">
+												<div class="radio-inline">
+													<label>
+														<input type="radio" formControlName="operator" value="or">
+														OR
+													</label>
+												</div>
+												<div class="radio-inline">
+													<label>
+														<input type="radio" formControlName="operator" value="and">
+														AND
+													</label>
+												</div>
+											</div>
+											<div class="col-sm-2">
+												<input class="form-control" formControlName="households">
+											</div>
+											<div class="col-sm-1 small-label">households</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Buildings</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="buildings">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Appurtenances</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="appurtenances">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div *ngIf="transactionCounterObject['controls']['money']">
+									<h3 class="text-center">Money</h3>
+									<div formGroupName="money">
+										<h4 class="text-center">Amount</h4>
+										<div formGroupName ="amount">	
+											<div class="form-group" formGroupName="moscowSilver">
+												<label class="col-sm-2 control-label">moscow silver: </label>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="rubli">
+												</div>
+												<div class="col-sm-1 small-label">rubli</div>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="altyny">
+												</div>
+												<div class="col-sm-1 small-label">altyny</div>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="dengi">
+												</div>
+												<div class="col-sm-1 small-label">den'gi</div>
+											</div>
+											<div class="form-group" formGroupName="chekhi">
+												<label class="col-sm-2 control-label">chekhi:</label>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="rubli">
+												</div>
+												<div class="col-sm-1 small-label">rubli</div>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="altyny">
+												</div>
+												<div class="col-sm-1 small-label">altyny</div>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="dengi">
+												</div>
+												<div class="col-sm-1 small-label">den'gi</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div *ngIf="transactionCounterObject['controls']['parent']">
+									<h3 class="text-center">Parent</h3>
+									<div formGroupName="parent">
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Co-Agent</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="coAgentNumber">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div *ngIf="transactionCounterObject['controls']['responsabilies']">
+									<h3 class="text-center">Responsabilities</h3>
+									<div formGroupName="responsabilities">
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Description</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="description">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div *ngIf="transactionCounterObject['controls']['shareFromEstate']">
+									<h3 class="text-center">Share From Estate</h3>
+									<div formGroupName="shareFromEstate">
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Share</label>
+											<div class="col-sm-10">
+												<select class="form-control" formControlName="share">
+													<option *ngFor="let shareValue of shareList" [value]="shareValue">{{ shareValue }}</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Description</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="description">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div *ngIf="transactionCounterObject['controls']['souls']">
+									<h3 class="text-center">Souls</h3>
+									<div formGroupName="souls">
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Juridical Status</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="juridicalStatus">
+											</div>
+										</div>
+										<div class="form-group" formGroupName="numberOfSouls">
+											<label class="col-sm-2 control-label">Number of Souls</label>
+											<div class="col-sm-1">
+												<input class="form-control" formControlName="male">
+											</div>
+											<div class="col-sm-1 small-label">male</div>
+											<div class="col-sm-1">
+												<input class="form-control" formControlName="female">
+											</div>
+											<div class="col-sm-1 small-label">female</div>
+											<div class="col-sm-2">
+												<div class="radio-inline">
+													<label>
+														<input type="radio" formControlName="operator" value="or">
+														OR
+													</label>
+												</div>
+												<div class="radio-inline">
+													<label>
+														<input type="radio" formControlName="operator" value="and">
+														AND
+													</label>
+												</div>
+											</div>
+											<div class="col-sm-2">
+												<input class="form-control" formControlName="households">
+											</div>
+											<div class="col-sm-1 small-label">households</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Names</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="names">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div *ngIf="transactionCounterObject['controls']['other']">
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Other</label>
+										<div class="col-sm-10">
+											<input class="form-control" formControlName="other">
+										</div>
+									</div>
+								</div>
+								<div *ngIf="transactionCounterObject['controls']['asWhom']">
+									<div [ngSwitch]=selectedAsWhomValue>
+										<div *ngSwitchCase="'as hired worker'">
+											<div class="form-group">
+												<label class="col-sm-2 control-label">To Do What</label>
+												<div class="col-sm-10">
+													<input class="form-control" formControlName="toDoWhat">
+												</div>
+											</div>
+										</div>
+										<div *ngSwitchCase="'in household'">
+											<div class="form-group">
+												<label class="col-sm-2 control-label">With Family</label>
+												<div class="col-sm-10">
+													<label class="radio-inline">
+														<input type="radio" formControlName="withFamily" value="yes"> Yes
+													</label>
+													<label class="radio-inline">
+														<input type="radio" formControlName="withFamily" value="no"> No
+													</label>
+												</div>
+											</div>
+										</div>
+										<div *ngSwitchCase="'as contractor'">
+											<div class="form-group">
+												<label class="col-sm-2 control-label">Activity</label>
+												<div class="col-sm-10">
+													<select class="form-control" formControlName="activity">
+														<option *ngFor="let activityValue of activityList" [value]="activityValue">{{ activityValue }}</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div *ngSwitchCase="'as tax-farmer'">
+											<div class="form-group">
+												<label class="col-sm-2 control-label">Type/Object of tax</label>
+												<div class="col-sm-10">
+													<select class="form-control" formControlName="type">
+														<option *ngFor="let typeTaxValue of typeTaxList" [value]="typeTaxValue">{{ typeTaxValue }}</option>
+													</select>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="col-sm-2 control-label">Description</label>
+												<div class="col-sm-10">
+													<input class="form-control" formControlName="description">
+												</div>
+											</div>
+											<div class="form-group" formGroupName="annualRent">
+												<label class="col-sm-2 control-label">Annual Rent</label>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="rubli">
+												</div>
+												<div class="col-sm-1 small-label">rubli</div>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="altyny">
+												</div>
+												<div class="col-sm-1 small-label">altyny</div>
+												<div class="col-sm-2">
+													<input class="form-control" formControlName="dengi">
+												</div>
+												<div class="col-sm-1 small-label">den'gi</div>
+											</div>
+										</div>
+									</div>
+								</div>	
+						</div>
+					</div>
+				</div>
+
+				
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Advance Payment</label>
 					<div class="col-sm-10">
