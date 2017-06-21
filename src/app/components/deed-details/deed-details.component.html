@@ -95,6 +95,7 @@
             </div>
         </ul>
     </div>
+    <div class="clearfix"></div>
 
     <div *ngIf="deed.coAgents.length > 0">
         <h3>Co Agents</h3>
@@ -325,19 +326,19 @@
                 <div *ngIf="counterAgentTransactionObject.chattels">
                     <h5>Chattels</h5>
                     <ul class="list-group">
-                        <li *ngIf="counterAgentTransactionObject.chattels.type" class="list-group-item"><strong>Chattels Type: </strong>{{ agentTransactionObject.chattels.type }}</li>
-                        <li *ngIf="counterAgentTransactionObject.chattels.origin" class="list-group-item"><strong>Chattels Origin: </strong>{{ agentTransactionObject.chattels.origin }}</li>
+                        <li *ngIf="counterAgentTransactionObject.chattels.type" class="list-group-item"><strong>Chattels Type: </strong>{{ counterAgentTransactionObject.chattels.type }}</li>
+                        <li *ngIf="counterAgentTransactionObject.chattels.origin" class="list-group-item"><strong>Chattels Origin: </strong>{{ counterAgentTransactionObject.chattels.origin }}</li>
                         <li *ngIf="counterAgentTransactionObject.chattels.description" class="list-group-item"><strong>Chattels Description: </strong>{{ agentTransactionObject.chattels.description }}</li>
-                        <li *ngIf="counterAgentTransactionObject.chattels.price" class="list-group-item"><strong>Chattels Price: </strong>{{ agentTransactionObject.chattels.price }}</li>
+                        <li *ngIf="counterAgentTransactionObject.chattels.price" class="list-group-item"><strong>Chattels Price: </strong>{{ counterAgentTransactionObject.chattels.price }}</li>
                     </ul>
                 </div>
                 <div *ngIf="counterAgentTransactionObject.debt">
                     <h5>Debt</h5>
                     <ul class="list-group">
-                        <li *ngIf="counterAgentTransactionObject.debt.amount.moscowSilver" class="list-group-item"><strong>Amount in Moscow Silver: </strong>{{ agentTransactionObject.debt.amount.moscowSilver.rubli }} rubli {{ agentTransactionObject.debt.amount.moscowSilver.altyny }} altyny {{ agentTransactionObject.debt.amount.moscowSilver.dengi }} den'gi</li>
-                        <li *ngIf="counterAgentTransactionObject.debt.amount.chekhi" class="list-group-item"><strong>Amount in Chekhi: </strong>{{ agentTransactionObject.debt.amount.chekhi.rubli }} rubli {{ agentTransactionObject.debt.amount.chekhi.altyny }} altyny {{ agentTransactionObject.debt.amount.chekhi.dengi }} den'gi</li>
-                        <li *ngIf="counterAgentTransactionObject.debt.debtorName" class="list-group-item"><strong>Debtor Name: </strong>{{ agentTransactionObject.debt.debtorName }}</li>
-                        <li *ngIf="counterAgentTransactionObject.debt.debtDate" class="list-group-item"><strong>Debt Date: </strong>{{ agentTransactionObject.debt.debtDate }}</li>
+                        <li *ngIf="counterAgentTransactionObject.debt.amount.moscowSilver" class="list-group-item"><strong>Amount in Moscow Silver: </strong>{{ counterAgentTransactionObject.debt.amount.moscowSilver.rubli }} rubli {{ counterAgentTransactionObject.debt.amount.moscowSilver.altyny }} altyny {{ counterAgentTransactionObject.debt.amount.moscowSilver.dengi }} den'gi</li>
+                        <li *ngIf="counterAgentTransactionObject.debt.amount.chekhi" class="list-group-item"><strong>Amount in Chekhi: </strong>{{ counterAgentTransactionObject.debt.amount.chekhi.rubli }} rubli {{ counterAgentTransactionObject.debt.amount.chekhi.altyny }} altyny {{ counterAgentTransactionObject.debt.amount.chekhi.dengi }} den'gi</li>
+                        <li *ngIf="counterAgentTransactionObject.debt.debtorName" class="list-group-item"><strong>Debtor Name: </strong>{{ counterAgentTransactionObject.debt.debtorName }}</li>
+                        <li *ngIf="counterAgentTransactionObject.debt.debtDate" class="list-group-item"><strong>Debt Date: </strong>{{ counterAgentTransactionObject.debt.debtDate }}</li>
 
                     </ul>
                 </div>
@@ -345,7 +346,7 @@
                     <h5>Dependent</h5>
                     <ul class="list-group">
                         <li *ngIf="counterAgentTransactionObject.dependent.familyStatus" class="list-group-item"><strong>Family Status: </strong>{{ agentTransactionObject.dependent.familyStatus }}</li>
-                        <li *ngIf="counterAgentTransactionObject.dependent.firstName" class="list-group-item"><strong>First Name: </strong>{{ agentTransactionObject.dependent.firstName }}</li>
+                        <li *ngIf="counterAgentTransactionObject.dependent.firstName" class="list-group-item"><strong>First Name: </strong>{{ counterAgentTransactionObject.dependent.firstName }}</li>
                         <li *ngIf="counterAgentTransactionObject.dependent.patronyme" class="list-group-item"><strong>Patronyme: </strong>{{ agentTransactionObject.dependent.patronyme }}</li>
                         <li *ngIf="counterAgentTransactionObject.dependent.lastName" class="list-group-item"><strong>Last Name: </strong>{{ agentTransactionObject.dependent.lastName }}</li>
                         <li *ngIf="counterAgentTransactionObject.dependent.relationToAgent" class="list-group-item"><strong>Relation To Agent: </strong>{{ agentTransactionObject.dependent.relationToAgent }}</li>
@@ -354,82 +355,82 @@
                 <div *ngIf="counterAgentTransactionObject.forfeit">
                     <h5>Forfeit</h5>
                     <ul class="list-group">
-                        <li *ngIf="counterAgentTransactionObject.forfeit.moscowSilver" class="list-group-item"><strong>Amount in Moscow Silver: </strong>{{ agentTransactionObject.forfeit.moscowSilver.rubli }} rubli {{ agentTransactionObject.forfeit.moscowSilver.altyny }} altyny {{ agentTransactionObject.forfeit.moscowSilver.dengi }} den'gi</li>
-                        <li *ngIf="counterAgentTransactionObject.forfeit.chekhi" class="list-group-item"><strong>Amount in Chekhi: </strong>{{ agentTransactionObject.forfeit.chekhi.rubli }} rubli {{ agentTransactionObject.forfeit.chekhi.altyny }} altyny {{ agentTransactionObject.forfeit.chekhi.dengi }} den'gi</li>
+                        <li *ngIf="counterAgentTransactionObject.forfeit.moscowSilver" class="list-group-item"><strong>Amount in Moscow Silver: </strong>{{ counterAgentTransactionObject.forfeit.moscowSilver.rubli }} rubli {{ counterAgentTransactionObject.forfeit.moscowSilver.altyny }} altyny {{ counterAgentTransactionObject.forfeit.moscowSilver.dengi }} den'gi</li>
+                        <li *ngIf="counterAgentTransactionObject.forfeit.chekhi" class="list-group-item"><strong>Amount in Chekhi: </strong>{{ counterAgentTransactionObject.forfeit.chekhi.rubli }} rubli {{ counterAgentTransactionObject.forfeit.chekhi.altyny }} altyny {{ counterAgentTransactionObject.forfeit.chekhi.dengi }} den'gi</li>
                     </ul>
                 </div>
                 <div *ngIf="counterAgentTransactionObject.fugitiveSouls">
                     <h5>Fugitive Souls</h5>
                     <ul class="list-group">
-                        <li *ngIf="counterAgentTransactionObject.fugitiveSouls.juridicalStatus" class="list-group-item"><strong>Family Status: </strong>{{ agentTransactionObject.fugitiveSouls.juridicalStatus }}</li>
-                        <li *ngIf="counterAgentTransactionObject.fugitiveSouls.numberOfSouls" class="list-group-item"><strong>Number of Souls: </strong>{{ agentTransactionObject.fugitiveSouls.numberOfSouls.male }} male / {{ agentTransactionObject.fugitiveSouls.numberOfSouls.female }} female {{ agentTransactionObject.fugitiveSouls.numberOfSouls.operator }} {{ agentTransactionObject.fugitiveSouls.numberOfSouls.households }} households</li>
-                        <li *ngIf="counterAgentTransactionObject.fugitiveSouls.names" class="list-group-item"><strong>Names: </strong>{{ agentTransactionObject.fugitiveSouls.names }}</li>
-                        <li *ngIf="counterAgentTransactionObject.fugitiveSouls.yearsOfRent" class="list-group-item"><strong>Years of Rent: </strong>{{ agentTransactionObject.fugitiveSouls.yearsOfRent }}</li>
+                        <li *ngIf="counterAgentTransactionObject.fugitiveSouls.juridicalStatus" class="list-group-item"><strong>Family Status: </strong>{{ counterAgentTransactionObject.fugitiveSouls.juridicalStatus }}</li>
+                        <li *ngIf="counterAgentTransactionObject.fugitiveSouls.numberOfSouls" class="list-group-item"><strong>Number of Souls: </strong>{{ counterAgentTransactionObject.fugitiveSouls.numberOfSouls.male }} male / {{ counterAgentTransactionObject.fugitiveSouls.numberOfSouls.female }} female {{ counterAgentTransactionObject.fugitiveSouls.numberOfSouls.operator }} {{ counterAgentTransactionObject.fugitiveSouls.numberOfSouls.households }} households</li>
+                        <li *ngIf="counterAgentTransactionObject.fugitiveSouls.names" class="list-group-item"><strong>Names: </strong>{{ counterAgentTransactionObject.fugitiveSouls.names }}</li>
+                        <li *ngIf="counterAgentTransactionObject.fugitiveSouls.yearsOfRent" class="list-group-item"><strong>Years of Rent: </strong>{{ counterAgentTransactionObject.fugitiveSouls.yearsOfRent }}</li>
                     </ul>
                 </div>
                 <div *ngIf="counterAgentTransactionObject.goods">
                     <h5>Goods</h5>
                     <ul class="list-group">
-                        <li *ngIf="counterAgentTransactionObject.goods.type" class="list-group-item"><strong>Type: </strong>{{ agentTransactionObject.goods.type }}</li>
-                        <li *ngIf="counterAgentTransactionObject.goods.description" class="list-group-item"><strong>Type: </strong>{{ agentTransactionObject.goods.description }}</li>
-                        <li *ngIf="counterAgentTransactionObject.goods.price.moscowSilver" class="list-group-item"><strong>Price in Moscow Silver: </strong>{{ agentTransactionObject.goods.price.moscowSilver.rubli }} rubli {{ agentTransactionObject.goods.price.moscowSilver.altyny }} altyny {{ agentTransactionObject.goods.price.moscowSilver.dengi }} den'gi</li>
-                        <li *ngIf="counterAgentTransactionObject.goods.price.chekhi" class="list-group-item"><strong>Price in Chekhi: </strong>{{ agentTransactionObject.goods.price.chekhi.rubli }} rubli {{ agentTransactionObject.goods.price.chekhi.altyny }} altyny {{ agentTransactionObject.goods.price.chekhi.dengi }} den'gi</li>
+                        <li *ngIf="counterAgentTransactionObject.goods.type" class="list-group-item"><strong>Type: </strong>{{ counterAgentTransactionObject.goods.type }}</li>
+                        <li *ngIf="counterAgentTransactionObject.goods.description" class="list-group-item"><strong>Type: </strong>{{ counterAgentTransactionObject.goods.description }}</li>
+                        <li *ngIf="counterAgentTransactionObject.goods.price.moscowSilver" class="list-group-item"><strong>Price in Moscow Silver: </strong>{{ counterAgentTransactionObject.goods.price.moscowSilver.rubli }} rubli {{ counterAgentTransactionObject.goods.price.moscowSilver.altyny }} altyny {{ counterAgentTransactionObject.goods.price.moscowSilver.dengi }} den'gi</li>
+                        <li *ngIf="counterAgentTransactionObject.goods.price.chekhi" class="list-group-item"><strong>Price in Chekhi: </strong>{{ counterAgentTransactionObject.goods.price.chekhi.rubli }} rubli {{ counterAgentTransactionObject.goods.price.chekhi.altyny }} altyny {{ counterAgentTransactionObject.goods.price.chekhi.dengi }} den'gi</li>
                     </ul>
                 </div>
                 <div *ngIf="counterAgentTransactionObject.immovableProperty">
                     <h5>Immovable Property</h5>
                     <ul class="list-group">
-                        <li *ngIf="counterAgentTransactionObject.immovableProperty.type" class="list-group-item"><strong>Type: </strong>{{ agentTransactionObject.immovableProperty.type }}</li>
-                        <li *ngIf="counterAgentTransactionObject.immovableProperty.share" class="list-group-item"><strong>Share: </strong>{{ agentTransactionObject.immovableProperty.share }}</li>
-                        <li *ngIf="counterAgentTransactionObject.immovableProperty.origin" class="list-group-item"><strong>Origin: </strong>{{ agentTransactionObject.immovableProperty.origin }}</li>
-                        <li *ngIf="counterAgentTransactionObject.immovableProperty.localisation" class="list-group-item"><strong>Localisation: </strong>{{ agentTransactionObject.immovableProperty.localisation }}</li>
-                        <li *ngIf="counterAgentTransactionObject.immovableProperty.neighbours" class="list-group-item"><strong>Neighbours: </strong>{{ agentTransactionObject.immovableProperty.neighbours }}</li>
+                        <li *ngIf="counterAgentTransactionObject.immovableProperty.type" class="list-group-item"><strong>Type: </strong>{{ counterAgentTransactionObject.immovableProperty.type }}</li>
+                        <li *ngIf="counterAgentTransactionObject.immovableProperty.share" class="list-group-item"><strong>Share: </strong>{{ counterAgentTransactionObject.immovableProperty.share }}</li>
+                        <li *ngIf="counterAgentTransactionObject.immovableProperty.origin" class="list-group-item"><strong>Origin: </strong>{{ counterAgentTransactionObject.immovableProperty.origin }}</li>
+                        <li *ngIf="counterAgentTransactionObject.immovableProperty.localisation" class="list-group-item"><strong>Localisation: </strong>{{ counterAgentTransactionObject.immovableProperty.localisation }}</li>
+                        <li *ngIf="counterAgentTransactionObject.immovableProperty.neighbours" class="list-group-item"><strong>Neighbours: </strong>{{ counterAgentTransactionObject.immovableProperty.neighbours }}</li>
 
-                       <li *ngIf="counterAgentTransactionObject.immovableProperty.surface" class="list-group-item"><strong>Surface: </strong>{{ agentTransactionObject.immovableProperty.surface.chetiVpole }} cheti v pole {{ agentTransactionObject.immovableProperty.surface.sazheni.x }} X {{ agentTransactionObject.immovableProperty.surface.sazheni.y }} sazheni</li>
-                        <li *ngIf="counterAgentTransactionObject.immovableProperty.population" class="list-group-item"><strong>Population (souls): </strong>{{ agentTransactionObject.immovableProperty.population.male }} male / {{ agentTransactionObject.immovableProperty.population.female }} female {{ agentTransactionObject.immovableProperty.population.operator }} {{ agentTransactionObject.immovableProperty.population.households }} households</li>
-                        <li *ngIf="counterAgentTransactionObject.immovableProperty.buildings" class="list-group-item"><strong>Buildings: </strong>{{ agentTransactionObject.immovableProperty.buildings }}</li>
-                        <li *ngIf="counterAgentTransactionObject.immovableProperty.appurtenances" class="list-group-item"><strong>Appurtenances: </strong>{{ agentTransactionObject.immovableProperty.appurtenances }}</li>                        
+                       <li *ngIf="counterAgentTransactionObject.immovableProperty.surface" class="list-group-item"><strong>Surface: </strong>{{ counterAgentTransactionObject.immovableProperty.surface.chetiVpole }} cheti v pole {{ counterAgentTransactionObject.immovableProperty.surface.sazheni.x }} X {{ counterAgentTransactionObject.immovableProperty.surface.sazheni.y }} sazheni</li>
+                        <li *ngIf="counterAgentTransactionObject.immovableProperty.population" class="list-group-item"><strong>Population (souls): </strong>{{ counterAgentTransactionObject.immovableProperty.population.male }} male / {{ counterAgentTransactionObject.immovableProperty.population.female }} female {{ counterAgentTransactionObject.immovableProperty.population.operator }} {{ counterAgentTransactionObject.immovableProperty.population.households }} households</li>
+                        <li *ngIf="counterAgentTransactionObject.immovableProperty.buildings" class="list-group-item"><strong>Buildings: </strong>{{ counterAgentTransactionObject.immovableProperty.buildings }}</li>
+                        <li *ngIf="counterAgentTransactionObject.immovableProperty.appurtenances" class="list-group-item"><strong>Appurtenances: </strong>{{ counterAgentTransactionObject.immovableProperty.appurtenances }}</li>                        
                     </ul>
                 </div>
                 <div *ngIf="counterAgentTransactionObject.money">
                     <h5>Money</h5>
                     <ul class="list-group">
-                        <li *ngIf="counterAgentTransactionObject.money.amount.moscowSilver" class="list-group-item"><strong>Amount in Moscow Silver: </strong>{{ agentTransactionObject.money.amount.moscowSilver.rubli }} rubli {{ agentTransactionObject.money.amount.moscowSilver.altyny }} altyny {{ agentTransactionObject.money.amount.moscowSilver.dengi }} den'gi</li>
-                        <li *ngIf="counterAgentTransactionObject.money.amount.chekhi" class="list-group-item"><strong>Amount in Chekhi: </strong>{{ agentTransactionObject.money.amount.chekhi.rubli }} rubli {{ agentTransactionObject.money.amount.chekhi.altyny }} altyny {{ agentTransactionObject.money.amount.chekhi.dengi }} den'gi</li>
+                        <li *ngIf="counterAgentTransactionObject.money.amount.moscowSilver" class="list-group-item"><strong>Amount in Moscow Silver: </strong>{{ counterAgentTransactionObject.money.amount.moscowSilver.rubli }} rubli {{ counterAgentTransactionObject.money.amount.moscowSilver.altyny }} altyny {{ counterAgentTransactionObject.money.amount.moscowSilver.dengi }} den'gi</li>
+                        <li *ngIf="counterAgentTransactionObject.money.amount.chekhi" class="list-group-item"><strong>Amount in Chekhi: </strong>{{ counterAgentTransactionObject.money.amount.chekhi.rubli }} rubli {{ counterAgentTransactionObject.money.amount.chekhi.altyny }} altyny {{ counterAgentTransactionObject.money.amount.chekhi.dengi }} den'gi</li>
                     </ul>
                 </div>
                 <div *ngIf="counterAgentTransactionObject.parent">
                     <h5>Parent</h5>
                     <ul class="list-group">
-                        <li *ngIf="counterAgentTransactionObject.parent.coAgentNumber" class="list-group-item"><strong>Co-Agent Number: </strong>{{ agentTransactionObject.parent.coAgentNumber }}</li>
+                        <li *ngIf="counterAgentTransactionObject.parent.coAgentNumber" class="list-group-item"><strong>Co-Agent Number: </strong>{{ counterAgentTransactionObject.parent.coAgentNumber }}</li>
                     </ul>
                 </div>
                 <div *ngIf="counterAgentTransactionObject.responsibilities">
                     <h5>Responsabilities</h5>
                     <ul class="list-group">
-                        <li *ngIf="counterAgentTransactionObject.responsibilities.description" class="list-group-item"><strong>Description: </strong>{{ agentTransactionObject.responsibilities.description }}</li>
+                        <li *ngIf="counterAgentTransactionObject.responsibilities.description" class="list-group-item"><strong>Description: </strong>{{ counterAgentTransactionObject.responsibilities.description }}</li>
                     </ul>
                 </div>
                 <div *ngIf="counterAgentTransactionObject.shareFromEstate">
                     <h5>Responsabilities</h5>
                     <ul class="list-group">
-                        <li *ngIf="counterAgentTransactionObject.shareFromEstate.share" class="list-group-item"><strong>Share: </strong>{{ agentTransactionObject.shareFromEstate.share }}</li>
-                        <li *ngIf="counterAgentTransactionObject.shareFromEstate.description" class="list-group-item"><strong>Description: </strong>{{ agentTransactionObject.shareFromEstate.description }}</li>
+                        <li *ngIf="counterAgentTransactionObject.shareFromEstate.share" class="list-group-item"><strong>Share: </strong>{{ counterAgentTransactionObject.shareFromEstate.share }}</li>
+                        <li *ngIf="counterAgentTransactionObject.shareFromEstate.description" class="list-group-item"><strong>Description: </strong>{{ counterAgentTransactionObject.shareFromEstate.description }}</li>
                     </ul>
                 </div>
                 <div *ngIf="counterAgentTransactionObject.souls">
                     <h5>Fugitive Souls</h5>
                     <ul class="list-group">
-                        <li *ngIf="counterAgentTransactionObject.souls.juridicalStatus" class="list-group-item"><strong>Family Status: </strong>{{ agentTransactionObject.souls.juridicalStatus }}</li>
-                        <li *ngIf="counterAgentTransactionObject.souls.numberOfSouls" class="list-group-item"><strong>Number of Souls: </strong>{{ agentTransactionObject.souls.numberOfSouls.male }} male / {{ agentTransactionObject.souls.numberOfSouls.female }} female {{ agentTransactionObject.souls.numberOfSouls.operator }} {{ agentTransactionObject.souls.numberOfSouls.households }} households</li>
-                        <li *ngIf="counterAgentTransactionObject.souls.names" class="list-group-item"><strong>Names: </strong>{{ agentTransactionObject.souls.names }}</li>
-                        <li *ngIf="counterAgentTransactionObject.souls.yearsOfRent" class="list-group-item"><strong>Years of Rent: </strong>{{ agentTransactionObject.souls.yearsOfRent }}</li>
+                        <li *ngIf="counterAgentTransactionObject.souls.juridicalStatus" class="list-group-item"><strong>Family Status: </strong>{{ counterAgentTransactionObject.souls.juridicalStatus }}</li>
+                        <li *ngIf="counterAgentTransactionObject.souls.numberOfSouls" class="list-group-item"><strong>Number of Souls: </strong>{{ counterAgentTransactionObject.souls.numberOfSouls.male }} male / {{ counterAgentTransactionObject.souls.numberOfSouls.female }} female {{ counterAgentTransactionObject.souls.numberOfSouls.operator }} {{ counterAgentTransactionObject.souls.numberOfSouls.households }} households</li>
+                        <li *ngIf="counterAgentTransactionObject.souls.names" class="list-group-item"><strong>Names: </strong>{{ counterAgentTransactionObject.souls.names }}</li>
+                        <li *ngIf="counterAgentTransactionObject.souls.yearsOfRent" class="list-group-item"><strong>Years of Rent: </strong>{{ counterAgentTransactionObject.souls.yearsOfRent }}</li>
                     </ul>
                 </div>
                 <div *ngIf="counterAgentTransactionObject.other">
                     <h5>Other</h5>
                     <ul class="list-group">
-                        <li *ngIf="counterAgentTransactionObject.other" class="list-group-item"><strong>Other: </strong>{{ agentTransactionObject.other }}</li>
+                        <li *ngIf="counterAgentTransactionObject.other" class="list-group-item"><strong>Other: </strong>{{ counterAgentTransactionObject.other }}</li>
                     </ul>
                 </div>
             </ng-template>
