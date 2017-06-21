@@ -1210,8 +1210,8 @@ export class AddDeedComponent implements OnInit {
                         surface: this.fb.group({
                             chetiVpole: [''],
                             sazheni: this.fb.group({
-                                0: [''],
-                                1: ['']
+                                x: [''],
+                                y: ['']
                             }),
                         }),
                         population: this.fb.group({
