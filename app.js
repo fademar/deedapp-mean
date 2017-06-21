@@ -9,7 +9,6 @@ var ObjectID = mongodb.ObjectID;
 
 // Db Collection and URI
 const deedsCollection = 'Deeds';
-const dbUri = 'mongodb://fadem:886682@ds061248.mlab.com:61248/dbdeeds';
 
 // App Init
 const app = express();
@@ -33,7 +32,7 @@ app.use(express.static(distDir));
 var db;
 
 // Connection to the database
-mongodb.MongoClient.connect(dbUri, (err, database) => {
+mongodb.MongoClient.connect(process.env.MONGODB_URI, (err, database) => {
 	if (err) {
 		console.log(err);
 		process.exit(1);
