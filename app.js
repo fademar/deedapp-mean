@@ -10,7 +10,6 @@ var ObjectID = mongodb.ObjectID;
 // Db Collection and URI
 const deedsCollection = 'Deeds';
 const dbUri = 'mongodb://fadem:886682@ds061248.mlab.com:61248/dbdeeds';
-const port = 3000;
 
 // App Init
 const app = express();
@@ -45,7 +44,7 @@ mongodb.MongoClient.connect(dbUri, (err, database) => {
 	console.log('Database connection ready');
 
 	// Initialize the app.
-	var server = app.listen(port, () => {
+	var server = app.listen(process.env.PORT || 8080, () => {
 		console.log('App now running on port', port);
 	});
 
