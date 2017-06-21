@@ -23,11 +23,11 @@ export class SearchService {
   }
 
   initSearch() {
-    return this.http.get('http://localhost:3000/api/search/').map(res => res.json());
+    return this.http.get('/api/search/').map(res => res.json());
   }
 
   searchEntries(term) {
-    return this.http.get('http://localhost:3000/api/search/'+term).map(res => res.json());
+    return this.http.get('/api/search/'+term).map(res => res.json());
   }
 
 
