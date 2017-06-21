@@ -435,16 +435,210 @@ export class EditDeedComponent implements OnInit {
                         forfeit: transaction.forfeit
                     })
 
-                    if (this.deed.transaction.agentTransactionObjects.length > 0) {
-                        for (let index = 0; index < this.deed.transaction.agentTransactionObjects.length; index++) {
-                            var element = array[index];
+                    if (transaction.agentTransactionObjects.length > 0) {
+                        
+						for (let index = 0; index < transaction.agentTransactionObjects.length; index++) {
                             
-                        }
+							const controlObject = Object.keys(transaction.agentTransactionObjects[index])[0];
 
+                            switch (controlObject) {
+								case 'chattels': {
+									this.agentTransactionObject = this.fb.group({
+										chattels: this.fb.group({
+											type: [''],
+											origin: [''],
+											description: [''],
+											price: ['']
+										})
+									});
+									break;
+								}
+								case 'debt': {
+									this.agentTransactionObject = this.fb.group({
+										debt: this.fb.group({
+											amount: this.fb.group({
+												moscowSilver: this.fb.group({
+													rubli: [''],
+													altyny: [''],
+													dengi: ['']
+												}),
+												chekhi: this.fb.group({
+													rubli: [''],
+													altyny: [''],
+													dengi: ['']
+												})
+											}),
+											debtorName: [''],
+											debtDate: ['']
+										})
+									});
+									break;
+								}
+								case 'dependent': {
+									this.agentTransactionObject = this.fb.group({
+										dependent: this.fb.group({
+											familyStatus: [''],
+											firstName: [''],
+											patronyme: [''],
+											lastName: [''],
+											relationToAgent: ['']
+										})
+									});
+									break;
+								}
+								case 'forfeit': {
+									this.agentTransactionObject = this.fb.group({
+										forfeit: this.fb.group({
+											moscowSilver: this.fb.group({
+												rubli: [''],
+												altyny: [''],
+												dengi: ['']
+											}),
+											chekhi: this.fb.group({
+												rubli: [''],
+												altyny: [''],
+												dengi: ['']
+											})
+										})
+									});
+									break;
+								}
+								case 'fugitiveSouls': {
+									this.agentTransactionObject = this.fb.group({
+										fugitiveSouls: this.fb.group({
+											juridicalStatus: [''],
+											numberOfSouls: this.fb.group({
+												male: [''],
+												female: [''],
+												operator: [''],
+												households: ['']
+											}),
+											names: [''],
+											yearsOfRent: ['']
+										})
+									});
+									break;
+								}
+								case 'goods': {
+									this.agentTransactionObject = this.fb.group({
+										goods: this.fb.group({
+											type: [''],
+											description: [''],
+											price: this.fb.group({
+												moscowSilver: this.fb.group({
+													rubli: [''],
+													altyny: [''],
+													dengi: ['']
+												}),
+												chekhi: this.fb.group({
+													rubli: [''],
+													altyny: [''],
+													dengi: ['']
+												})
+											})
+										})
+									});
+									break;
+								}
+								case 'immovableProperty': {
+									this.agentTransactionObject = this.fb.group({
+										immovableProperty: this.fb.group({
+											type: [''],
+											share: [''],
+											origin: [''], 
+											localisation: [''],
+											neighbours: [''],
+											surface: this.fb.group({
+												chetiVpole: [''],
+												sazheni: this.fb.group({
+													x: [''],
+													y: ['']
+												}),
+											}),
+											population: this.fb.group({
+												male: [''],
+												female: [''],
+												operator: [''],
+												households: ['']
+											}),
+											buildings: [''],
+											appurtenances: ['']
+										})
+									});
+									break;
+								}
+								case 'money': {
+									this.agentTransactionObject = this.fb.group({
+										money: this.fb.group({
+											amount: this.fb.group({
+												moscowSilver: this.fb.group({
+													rubli: [''],
+													altyny: [''],
+													dengi: ['']
+												}),
+												chekhi: this.fb.group({
+													rubli: [''],
+													altyny: [''],
+													dengi: ['']
+												})
+											})
+										})
+									});
+									break;
+								}
+								case 'parent': {
+									this.agentTransactionObject = this.fb.group({
+										parent: this.fb.group({
+											coAgentNumber: ['']
+										})
+									});
+									break;
+								}
+								case 'responsibilities': {
+									this.agentTransactionObject = this.fb.group({
+										responsabilities: this.fb.group({
+											description: ['']
+										})
+									});
+									break;
+								}
+								case 'shareFromEstate': {
+									this.agentTransactionObject = this.fb.group({
+										shareFromEstate: this.fb.group({
+											share: [''],
+											description: ['']
+										})
+									});
+									break;
+								}
+								case 'souls': {
+									this.agentTransactionObject = this.fb.group({
+										souls: this.fb.group({
+											juridicalStatus: [''],
+											numberOfSouls: this.fb.group({
+												male: [''],
+												female: [''],
+												operator: [''],
+												households: ['']
+											}),
+											names: ['']
+										})
+									});
+									break;
+								}
+								case 'other': {
+									this.agentTransactionObject = this.fb.group({
+										other: ['']
+									});
+									break;
+								}
 
+							} // END SWITCH
+							this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+					        this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
 
                     } // endfor agentransactionobjects
-
+					}
                 } // endfor transactions
             } // endif
 
