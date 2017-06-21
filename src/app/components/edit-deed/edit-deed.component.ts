@@ -638,6 +638,212 @@ export class EditDeedComponent implements OnInit {
 					        this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
 
                     } // endfor agentransactionobjects
+
+					if (transaction.counterAgentTransactionObjects.length > 0) {
+                        
+						for (let index = 0; index < transaction.counterAgentTransactionObjects.length; index++) {
+                            
+							const controlCounterObject = Object.keys(transaction.counterAgentTransactionObjects[index])[0];
+
+                            switch (controlCounterObject) {
+								case 'chattels': {
+									this.counterAgentTransactionObject = this.fb.group({
+										chattels: this.fb.group({
+											type: [''],
+											origin: [''],
+											description: [''],
+											price: ['']
+										})
+									});
+									break;
+								}
+								case 'debt': {
+									this.counterAgentTransactionObject = this.fb.group({
+										debt: this.fb.group({
+											amount: this.fb.group({
+												moscowSilver: this.fb.group({
+													rubli: [''],
+													altyny: [''],
+													dengi: ['']
+												}),
+												chekhi: this.fb.group({
+													rubli: [''],
+													altyny: [''],
+													dengi: ['']
+												})
+											}),
+											debtorName: [''],
+											debtDate: ['']
+										})
+									});
+									break;
+								}
+								case 'dependent': {
+									this.counterAgentTransactionObject = this.fb.group({
+										dependent: this.fb.group({
+											familyStatus: [''],
+											firstName: [''],
+											patronyme: [''],
+											lastName: [''],
+											relationToAgent: ['']
+										})
+									});
+									break;
+								}
+								case 'forfeit': {
+									this.counterAgentTransactionObject = this.fb.group({
+										forfeit: this.fb.group({
+											moscowSilver: this.fb.group({
+												rubli: [''],
+												altyny: [''],
+												dengi: ['']
+											}),
+											chekhi: this.fb.group({
+												rubli: [''],
+												altyny: [''],
+												dengi: ['']
+											})
+										})
+									});
+									break;
+								}
+								case 'fugitiveSouls': {
+									this.counterAgentTransactionObject = this.fb.group({
+										fugitiveSouls: this.fb.group({
+											juridicalStatus: [''],
+											numberOfSouls: this.fb.group({
+												male: [''],
+												female: [''],
+												operator: [''],
+												households: ['']
+											}),
+											names: [''],
+											yearsOfRent: ['']
+										})
+									});
+									break;
+								}
+								case 'goods': {
+									this.counterAgentTransactionObject = this.fb.group({
+										goods: this.fb.group({
+											type: [''],
+											description: [''],
+											price: this.fb.group({
+												moscowSilver: this.fb.group({
+													rubli: [''],
+													altyny: [''],
+													dengi: ['']
+												}),
+												chekhi: this.fb.group({
+													rubli: [''],
+													altyny: [''],
+													dengi: ['']
+												})
+											})
+										})
+									});
+									break;
+								}
+								case 'immovableProperty': {
+									this.counterAgentTransactionObject = this.fb.group({
+										immovableProperty: this.fb.group({
+											type: [''],
+											share: [''],
+											origin: [''], 
+											localisation: [''],
+											neighbours: [''],
+											surface: this.fb.group({
+												chetiVpole: [''],
+												sazheni: this.fb.group({
+													x: [''],
+													y: ['']
+												}),
+											}),
+											population: this.fb.group({
+												male: [''],
+												female: [''],
+												operator: [''],
+												households: ['']
+											}),
+											buildings: [''],
+											appurtenances: ['']
+										})
+									});
+									break;
+								}
+								case 'money': {
+									this.counterAgentTransactionObject = this.fb.group({
+										money: this.fb.group({
+											amount: this.fb.group({
+												moscowSilver: this.fb.group({
+													rubli: [''],
+													altyny: [''],
+													dengi: ['']
+												}),
+												chekhi: this.fb.group({
+													rubli: [''],
+													altyny: [''],
+													dengi: ['']
+												})
+											})
+										})
+									});
+									break;
+								}
+								case 'parent': {
+									this.counterAgentTransactionObject = this.fb.group({
+										parent: this.fb.group({
+											coAgentNumber: ['']
+										})
+									});
+									break;
+								}
+								case 'responsibilities': {
+									this.counterAgentTransactionObject = this.fb.group({
+										responsabilities: this.fb.group({
+											description: ['']
+										})
+									});
+									break;
+								}
+								case 'shareFromEstate': {
+									this.counterAgentTransactionObject = this.fb.group({
+										shareFromEstate: this.fb.group({
+											share: [''],
+											description: ['']
+										})
+									});
+									break;
+								}
+								case 'souls': {
+									this.counterAgentTransactionObject = this.fb.group({
+										souls: this.fb.group({
+											juridicalStatus: [''],
+											numberOfSouls: this.fb.group({
+												male: [''],
+												female: [''],
+												operator: [''],
+												households: ['']
+											}),
+											names: ['']
+										})
+									});
+									break;
+								}
+								case 'other': {
+									this.counterAgentTransactionObject = this.fb.group({
+										other: ['']
+									});
+									break;
+								}
+
+							} // END SWITCH
+							this.counterAgentTransactionObject.patchValue(transaction.counterAgentTransactionObjects[index]);
+					        this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects.push(this.counterAgentTransactionObject);
+
+                    } // endfor counterAgentransactionobjects
+
+					}
 					}
                 } // endfor transactions
             } // endif
