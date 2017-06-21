@@ -402,7 +402,7 @@
 	<div class="text-center">
 		<a (click)="addCoAgent()" style="cursor: default">Add a Co-Agent</a>
 	</div>
-	<div class="text-center">
+	<div class="text-center" *ngIf="!collectiveCoAgentOn">
 		<a (click)="addCollectiveCoAgent()" style="cursor: default">Add a Collective Co-Agent</a>
 	</div>
 	<div *ngIf="collectiveCoAgentOn">
@@ -803,7 +803,7 @@
 	<div class="text-center">
 		<a (click)="addCoCounterAgent()" style="cursor: default">Add a Co-Counter Agent</a>
 	</div>
-	<div class="text-center">
+	<div class="text-center" *ngIf="!collectiveCoCounterAgentOn">
 		<a (click)="addCollectiveCoCounterAgent()" style="cursor: default">Add a Collective Co-Counter Agent</a>
 	</div>
 	<div *ngIf="collectiveCoCounterAgentOn">

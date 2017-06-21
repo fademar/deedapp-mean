@@ -1,12 +1,9 @@
 <h1 class="page-header">Edit Deed</h1>
 <div *ngIf="deed">
+	<div class="alert alert-warning">Deed saved in the database with id <strong> {{ id }} </strong></div>
+
 	<form class="form-horizontal" [formGroup]="deedForm" (ngSubmit)="onSubmit()" novalidate>
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Deed Id</label>
-			<div class="col-sm-10">
-				<input class="form-control" formControlName="_id">
-			</div>
-		</div>
+		
 		<!--DEED REFERENCES-->
 
 		<h2 class="text-center bg-info">Deed References</h2>
@@ -14,16 +11,12 @@
 			<label class="col-sm-2 control-label">Deed Code</label>
 			<div class="col-sm-10">
 				<input class="form-control" formControlName="deedCode" required>
-				<small class="text-danger" *ngIf="deedForm['controls'].deedCode.errors">This field is required</small>
-				<button type="button" (click)="insertLastDeedCode()" class="btn btn-primary btn-xs pull-right">Insert the last Deed Code saved in the database</button>
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Deed Reference</label>
 			<div class="col-sm-10">
 				<input class="form-control" formControlName="deedRef" required>
-				<small class="text-danger" *ngIf="deedForm.controls.deedRef.errors">This field is required</small>
-				<button type="button" (click)="insertLastDeedRef()" class="btn btn-primary btn-xs pull-right">Insert the last Deed Ref saved in the database</button>
 			</div>
 		</div>
 		<div class="form-group">
@@ -407,7 +400,7 @@
 		<div class="text-center">
 			<a (click)="addCoAgent()" style="cursor: default">Add a Co-Agent</a>
 		</div>
-		<div class="text-center">
+		<div class="text-center" *ngIf="!collectiveCoAgentOn">
 			<a (click)="addCollectiveCoAgent()" style="cursor: default">Add a Collective Co-Agent</a>
 		</div>
 		<div *ngIf="collectiveCoAgentOn">
@@ -808,7 +801,7 @@
 		<div class="text-center">
 			<a (click)="addCoCounterAgent()" style="cursor: default">Add a Co-Counter Agent</a>
 		</div>
-		<div class="text-center">
+		<div class="text-center" *ngIf="!collectiveCoCounterAgentOn">
 			<a (click)="addCollectiveCoCounterAgent()" style="cursor: default">Add a Collective Co-Counter Agent</a>
 		</div>
 		<div *ngIf="collectiveCoCounterAgentOn">

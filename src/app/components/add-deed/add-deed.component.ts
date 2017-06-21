@@ -95,11 +95,11 @@ export class AddDeedComponent implements OnInit {
     counterAgentField = this.counterAgentField;
     
     public options = {
-        position: ["top", "left"],
+        position: ['top', 'left'],
         timeOut: 2000,
         showProgressBar: false,
         pauseOnHover: false,
-        animate: "fromLeft"
+        animate: 'fromLeft'
     }
 
     constructor(private fb: FormBuilder, private deedService: DeedService, private router: Router, private notificationsService: NotificationsService) { }
@@ -518,7 +518,7 @@ export class AddDeedComponent implements OnInit {
 
     updateRelationToAgent() {
         this.relationToAgent = this.collectiveCoAgent.get('relationToAgent').value;
-        if (this.relationToAgent == 'other') {
+        if (this.relationToAgent === 'other') {
             this.otherRelationToAgent = new FormControl;
             this.collectiveCoAgent.addControl('otherRelationToAgent', this.otherRelationToAgent);
             return true;
