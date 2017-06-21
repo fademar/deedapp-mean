@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongodb = require('mongodb');
 const elasticsearch = require('elasticsearch');
+const path = require('path');
 
 var ObjectID = mongodb.ObjectID;
 
@@ -25,6 +26,10 @@ app.use(function (req, res, next) {
 	next();
 });
 
+// Create link to Angular build directory
+const distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
+
 // Create a db const to reuse the connection
 var db;
 
@@ -45,46 +50,6 @@ mongodb.MongoClient.connect(dbUri, (err, database) => {
 	});
 
 });
-
-// // Initialize ElasticSearch Client
-// const esClient = new elasticsearch.Client({
-// 	host: '127.0.0.1:9200',
-// 	log: 'error'
-// });
-
-// const bulkIndex = function bulkIndex(index, type, data) {
-// 	let bulkBody = [];
-
-// 	data.forEach(item => {
-// 		item.id = item._id;
-// 		delete item._id;
-
-// 		bulkBody.push({
-// 			index: {
-// 				_index: index,
-// 				_type: type,
-// 				_id: item.id
-// 			}
-// 		});
-// 		bulkBody.push(item);
-// 	});
-
-// 	esClient.bulk({ body: bulkBody })
-// 		.then(response => {
-// 			console.log('here');
-// 			let errorCount = 0;
-// 			response.items.forEach(item => {
-// 				if (item.index && item.index.error) {
-// 					console.log(++errorCount, item.index.error);
-// 				}
-// 			});
-// 			console.log(
-// 				`Successfully indexed ${data.length - errorCount}
-//        out of ${data.length} items`
-// 			);
-// 		})
-// 		.catch(console.err);
-// };
 
 
 // DEEDS API ROUTES BELOW
@@ -110,7 +75,6 @@ app.get('/api/deeds', (req, res) => {
 		if (err) {
 			handleError(res, err.message, 'Failed to get deeds.');
 		} else {
-			// bulkIndex('deeds', 'deed', docs);
 			res.status(200).json(docs);
 		}
 	});
@@ -204,14 +168,14 @@ app.get('/api/search', (req, res) => {
 	});
 });
 
-app.get('/api/search/:term', (req, res) => {
-	esClient.search({
-		index: 'deeds',
-		q: req.params.term
-	}).then(function (resp) {
-		let hits = resp.hits.hits;
-		res.status(200).json(hits);
-	}, function (err) {
-    	handleError(res, err.message, 'Failed to get deeds.');
-	});
-});
+// app.get('/api/search/:term', (req, res) => {
+// 	esClient.search({
+// 		index: 'deeds',
+// 		q: req.params.term
+// 	}).then(function (resp) {
+// 		let hits = resp.hits.hits;
+// 		res.status(200).json(hits);
+// 	}, function (err) {
+//     	handleError(res, err.message, 'Failed to get deeds.');
+// 	});
+// });

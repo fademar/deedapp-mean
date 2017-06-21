@@ -425,15 +425,57 @@ export class EditDeedComponent implements OnInit {
                     if (i !== 0) {
                         control.push(this.initTransaction());
                     }
-                    console.log(transaction);
+
                     this.deedForm.controls['transactions']['controls'][i].patchValue({
                         agentAction: transaction.agentAction,
-                        counterAgentAction: transaction.counterAgentTransactionType,
+                        counterAgentAction: transaction.counterAgentAction,
                         advancePayment: transaction.advancePayment,
                         contractConditions: transaction.contractConditions,
                         contractDuration: transaction.contractDuration,
                         forfeit: transaction.forfeit
                     })
+
+					switch (transaction.agentAction) {
+
+						case 'cedes': 
+						case 'exchanges':
+						case 'mortgages':
+						case 'puts to rent':
+						case 'sells':
+						case 'agrees to marry-off': 
+						case 'engages': 
+						case 'settles': 
+						case 'manumits': {
+							this.counterAgentField = 'select'
+							break;
+						}
+						case 'donates':
+						case 'borrows': {
+							this.selectedCounterAction = '';
+							this.counterAgentField = '';
+							break;
+						}
+						case 'bequeaths': {
+							this.whoInherits = new FormControl;
+							this.whoInherits.patchValue(transaction.whoInherits);
+							this.deedForm.controls.transactions['controls'][i].addControl('whoInherits', this.whoInherits);
+							break;
+						}
+						case 'agrees to marry': 
+						case 'agrees to divorce':
+						case 'promises':
+						case 'elects':
+						case 'signs receipt': {
+							this.counterAgentField = 'text';
+							break;
+						}
+						default: {
+							this.selectedAction = '';
+							this.selectedCounterAction = '';
+							this.counterAgentField = '';				
+							break;
+						}
+					}
 
                     if (transaction.agentTransactionObjects.length > 0) {
                         
@@ -1444,11 +1486,12 @@ export class EditDeedComponent implements OnInit {
                 this.counterAgentField = 'text';				
                 break;
             }
-            default:
+            default: {
                 this.selectedAction = '';
                 this.selectedCounterAction = '';
                 this.counterAgentField = '';				
                 break;
+			}
         }
     }
 

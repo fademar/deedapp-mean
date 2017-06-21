@@ -219,7 +219,7 @@
 
 	<!--Co Agents -->
 	<div formArrayName="coAgents">
-		<div *ngFor="let coAgent of deedForm.controls.coAgents.controls; let i=index" class="panel panel-default">
+		<div *ngFor="let coAgent of deedForm['controls'].coAgents['controls']; let i=index" class="panel panel-default">
 			<div class="panel-heading">
 				<span>Co-Agent {{i + 1}}</span>
 				<span class="glyphicon glyphicon-remove pull-right" (click)="removeCoAgent(i)"></span>
@@ -619,7 +619,7 @@
 
 	<!-- Co Counter Agents-->
 	<div formArrayName="coCounterAgents">
-		<div *ngFor="let coCounterAgent of deedForm.controls.coCounterAgents.controls; let i=index" class="panel panel-default">
+		<div *ngFor="let coCounterAgent of deedForm['controls'].coCounterAgents['controls']; let i=index" class="panel panel-default">
 			<div class="panel-heading">
 				<span>Co-Counter Agent {{i + 1}}</span>
 				<span class="glyphicon glyphicon-remove pull-right" (click)="removeCoCounterAgent(i)"></span>
@@ -2106,7 +2106,7 @@
 		<a (click)="addWhitness()" style="cursor: default">Add a Whitness</a>
 	</div>
 	<div formArrayName="whitnesses">
-		<div *ngFor="let coAgent of deedForm.controls.whitnesses.controls; let i=index" class="panel panel-default">
+		<div *ngFor="let coAgent of deedForm['controls'].whitnesses['controls']; let i=index" class="panel panel-default">
 			<div class="panel-heading">
 				<span>Whitness {{i + 1}}</span>
 				<span class="glyphicon glyphicon-remove pull-right" (click)="removeWhitness(i)"></span>
@@ -2157,7 +2157,7 @@
 		<a (click)="addSurety()" style="cursor: default">Add a Surety</a>
 	</div>
 	<div formArrayName="sureties">
-		<div *ngFor="let coAgent of deedForm.controls.sureties.controls; let i=index" class="panel panel-default">
+		<div *ngFor="let coAgent of deedForm['controls'].sureties['controls']; let i=index" class="panel panel-default">
 			<div class="panel-heading">
 				<span>Surety {{i + 1}}</span>
 				<span class="glyphicon glyphicon-remove pull-right" (click)="removeSurety(i)"></span>
@@ -2256,7 +2256,7 @@
 		<a (click)="addOtherParticipant()" style="cursor: default">Add another Participant</a>
 	</div>
 	<div formArrayName="otherParticipants">
-		<div *ngFor="let coAgent of deedForm.controls.otherParticipants.controls; let i=index" class="panel panel-default">
+		<div *ngFor="let coAgent of deedForm['controls'].otherParticipants['controls']; let i=index" class="panel panel-default">
 			<div class="panel-heading">
 				<span>Other Participant {{i + 1}}</span>
 				<span class="glyphicon glyphicon-remove pull-right" (click)="removeOtherParticipant(i)"></span>

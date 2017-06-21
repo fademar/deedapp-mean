@@ -1491,23 +1491,23 @@
 						<div class="col-sm-10">
 							<ng-select [multiple]="true" [items]="whatList" (data)="refreshValueCounterWhat($event, i)" (selected)="selectedCounterWhat($event, i)"
 							(removed)="removedCounterWhat($event, i)" placeholder="No object selected">
-						</ng-select>
+							</ng-select>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div *ngSwitchCase="'whom'">
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Whom ?</label>
-					<div class="col-sm-10">
-						<ng-select [allowClear]="true" [items]="whomList" (data)="refreshValueCounterWhom($event, i)" (selected)="selectedCounterWhom($event, i)"
-						(removed)="removedCounterWhom($event, i)" placeholder="No object selected">
-					</ng-select>	
+				<div *ngSwitchCase="'whom'">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Whom ?</label>
+						<div class="col-sm-10">
+							<ng-select [allowClear]="true" [items]="whomList" (data)="refreshValueCounterWhom($event, i)" (selected)="selectedCounterWhom($event, i)"
+							(removed)="removedCounterWhom($event, i)" placeholder="No object selected">
+							</ng-select>	
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-</div>
 <!-- COUNTER AGENT TRANSACTION OBJETCS -->
 <div formArrayName='counterAgentTransactionObjects'>
 	<div *ngFor="let transactionCounterObject of transaction['controls']['counterAgentTransactionObjects']['controls']; let j=index">
