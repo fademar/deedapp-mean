@@ -15,12 +15,13 @@ export class SearchComponent implements OnInit {
   searchTerm = new Subject<string>();
 
   constructor(private searchService: SearchService) { 
-    this.searchService.search(this.searchTerm).subscribe(results => {
-        this.results = results;
-    });
+    
   }
 
   ngOnInit() {
+    this.searchService.search(this.searchTerm).subscribe(results => {
+        this.results = results;
+    });
   }
 
 }

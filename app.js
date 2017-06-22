@@ -17,6 +17,7 @@ app.use(bodyParser.json());
 const dbURL = "mongodb://fadem:886682@ds061248.mlab.com:61248/dbdeeds"
 
 
+
 // Enable CORS 
 app.use(function (req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*');
@@ -42,6 +43,8 @@ mongodb.MongoClient.connect(dbURL, (err, database) => {
 	// Save database object from the callback for reuse.
 	db = database;
 	console.log('Database connection ready');
+	
+	db.collection(deedsCollection).createIndex({"$**":"text"});
 
 	// Initialize the app.
 	var server = app.listen(process.env.PORT || 3000, () => {
@@ -49,6 +52,7 @@ mongodb.MongoClient.connect(dbURL, (err, database) => {
 	});
 
 });
+
 
 
 // DEEDS API ROUTES BELOW
@@ -167,14 +171,13 @@ app.get('/api/search', (req, res) => {
 	});
 });
 
-// app.get('/api/search/:term', (req, res) => {
-// 	esClient.search({
-// 		index: 'deeds',
-// 		q: req.params.term
-// 	}).then(function (resp) {
-// 		let hits = resp.hits.hits;
-// 		res.status(200).json(hits);
-// 	}, function (err) {
-//     	handleError(res, err.message, 'Failed to get deeds.');
-// 	});
-// });
+app.get('/api/search/:term', (req, res) => {
+	let term = req.params.term;
+	db.collection(deedsCollection).find({$text: { $search: term }}).toArray((err, docs) => {
+		if (err) {
+			handleError(res, err.message, 'Failed to get deeds.');
+		} else {
+			res.status(200).json(docs);
+		}
+	});
+});

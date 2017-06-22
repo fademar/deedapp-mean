@@ -13,21 +13,23 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>DeedCode</th>
-          <th>DeedRef</th>
-          <th>DeedDate</th>
-          <th>DeedName</th>
-          <th>DeedLanguage</th>
-          <th></th>
+          <th>Deed Code</th>
+          <th>Deed Ref</th>
+          <th>Deed Date</th>
+          <th>Deed Name</th>
+          <th>Agent Name</th>
+          <th>To Do</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor='let result of results'>
-          <td>{{ result._source.deedCode }}</td>
-          <td>{{ result._source.deedRef }}</td>
-          <td>{{ result._source.deedDate }}</td>
-          <td>{{ result._source.deedName }}</td>
-          <td>{{ result._source.deedLanguage }}</td>
+          <td>{{ result.deedCode }}</td>
+          <td>{{ result.deedRef }}</td>
+          <td>{{ result.deedDate }}</td>
+          <td>{{ result.deedName }}</td>
+          <td>{{ result.agent.firstName }} {{ result.agent.lastName }}</td>
+          <td> <i *ngIf="result.incomplete" class="glyphicon glyphicon-ok"></i></td>
+
           <td>
             <a routerLink="/deed/{{ result._id }}" class="btn btn-primary">Details</a>
           </td>
