@@ -28,6 +28,8 @@ export class EditDeedComponent implements OnInit {
     agentTransactionObjects: FormArray;
     counterAgentTransactionObjects: FormArray;
     accusationAgainstAgent: FormControl;
+    accusationAgainstCounterAgent: FormControl;
+    juridicalProcedureStage: FormControl;
     scribe: FormGroup;
     registrator: FormGroup;
     chattels: FormGroup;
@@ -48,6 +50,7 @@ export class EditDeedComponent implements OnInit {
     asWhom: FormGroup;
     whoInherits: FormControl;
     coAgentNumberWhoInherits: FormControl;
+    otherAgentAction: FormControl;
 
     deedValue = '';
     agentSex = '';
@@ -435,6 +438,12 @@ export class EditDeedComponent implements OnInit {
                         forfeit: transaction.forfeit
                     })
 
+                    if (transaction.otherAgentAction) {
+                        this.otherAgentAction = new FormControl;
+						this.otherAgentAction.patchValue(transaction.otherAgentAction);
+                        this.deedForm.controls.transactions['controls'][i].addControl('otherAgentAction', this.otherAgentAction);
+                    }
+
 					switch (transaction.agentAction) {
 
 						case 'cedes': 
@@ -444,11 +453,26 @@ export class EditDeedComponent implements OnInit {
 						case 'sells':
 						case 'agrees to marry-off': 
 						case 'engages': 
-						case 'settles': 
 						case 'manumits': {
 							this.counterAgentField = 'select'
 							break;
 						}
+						case 'settles': {
+                            this.selectedAction = 'settles';
+							this.selectedCounterAction = 'settles';
+							this.counterAgentField = 'select'
+                            this.accusationAgainstAgent = new FormControl;
+                            this.accusationAgainstCounterAgent = new FormControl;
+                            this.juridicalProcedureStage = new FormControl;
+                            this.accusationAgainstAgent.patchValue(transaction.accusationAgainstAgent);
+                            this.accusationAgainstCounterAgent.patchValue(transaction.accusationAgainstCounterAgent);
+                            this.juridicalProcedureStage.patchValue(transaction.juridicalProcedureStage);
+                            this.deedForm.controls.transactions['controls'][i].addControl('accusationAgainstAgent', this.accusationAgainstAgent);
+							this.deedForm.controls.transactions['controls'][i].addControl('accusationAgainstCounterAgent', this.accusationAgainstCounterAgent);
+							this.deedForm.controls.transactions['controls'][i].addControl('juridicalProcedureStage', this.juridicalProcedureStage);                            
+                            break;
+                        }
+
 						case 'donates':
 						case 'borrows': {
 							this.selectedCounterAction = '';
@@ -469,6 +493,13 @@ export class EditDeedComponent implements OnInit {
 							this.counterAgentField = 'text';
 							break;
 						}
+                        case 'other': {
+                            this.otherAgentAction = new FormControl;
+                            this.deedForm.controls.transactions['controls'][i].addControl('otherAgentAction', this.otherAgentAction);
+                            this.counterAgentField = 'text';
+                            this.selectedAction = 'other'; 				
+                            break;
+                        }   
 						default: {
 							this.selectedAction = '';
 							this.selectedCounterAction = '';
@@ -985,23 +1016,6 @@ export class EditDeedComponent implements OnInit {
 
     }
 
-    
-    // Submit the form
-
-    onSubmit() {
-        this.deedValue = JSON.stringify(this.deedForm.value);
-        this.deedService.updateDeed(this.id, this.deedValue).subscribe(deed => {
-            this.deed = deed;
-            this.notificationsService.success(
-                'Success',
-                'The deed with id' + this.deed.id + 'has been successfully updated',
-            );
-        });
-        setTimeout(() => {
-            this.router.navigate(['/']);
-        }, 2000);
-    }
-
 
     // AGENT METHODS
 
@@ -1453,14 +1467,20 @@ export class EditDeedComponent implements OnInit {
                 this.whoInherits = new FormControl;
                 this.deedForm.controls.transactions['controls'][i].addControl('whoInherits', this.whoInherits);
                 this.selectedAction = 'bequeaths';
-
+                this.counterAgentField = '';
                 break;
             }
             case 'settles': {
-                this.selectedAction = 'accusationAgainstAgent';
-                this.selectedCounterAction = 'accusationAgainstCounterAgent';
+                this.selectedAction = 'settles';
+                this.selectedCounterAction = 'settles';
                 this.counterAgentField = 'select';
                 this.deedForm.controls.transactions['controls'][i].controls.counterAgentAction.patchValue('settles');
+                this.accusationAgainstAgent = new FormControl;
+                this.accusationAgainstCounterAgent = new FormControl;
+                this.juridicalProcedureStage = new FormControl;
+                this.deedForm.controls.transactions['controls'][i].addControl('accusationAgainstAgent', this.accusationAgainstAgent);
+                this.deedForm.controls.transactions['controls'][i].addControl('accusationAgainstCounterAgent', this.accusationAgainstCounterAgent);
+                this.deedForm.controls.transactions['controls'][i].addControl('juridicalProcedureStage', this.juridicalProcedureStage);
                 break;
             }
             case 'agrees to marry': {
@@ -1486,12 +1506,19 @@ export class EditDeedComponent implements OnInit {
                 this.counterAgentField = 'text';				
                 break;
             }
+            case 'other': {
+                this.otherAgentAction = new FormControl;
+                this.deedForm.controls.transactions['controls'][i].addControl('otherAgentAction', this.otherAgentAction);
+                this.counterAgentField = 'text';
+                this.selectedAction = 'other'; 				
+                break;
+            }
             default: {
                 this.selectedAction = '';
                 this.selectedCounterAction = '';
                 this.counterAgentField = '';				
                 break;
-			}
+            }
         }
     }
 
@@ -2248,6 +2275,30 @@ export class EditDeedComponent implements OnInit {
         this.deedForm.removeControl('registrator');
         return this.registratorOn = false;
     }
+
+
+    // Submit the form
+
+    onSubmit() {
+        this.deedValue = JSON.stringify(this.deedForm.value);
+        this.deedService.updateDeed(this.id, this.deedValue).subscribe(deed => {
+            
+            if (deed) {
+                this.notificationsService.success(
+                    'Success',
+                    'The deed with id ' + this.id + ' has been successfully updated',
+                );
+            }
+        });
+        setTimeout(() => {
+            this.router.navigate(['/']);
+        }, 2000);
+    }
+
+
+
+
+
 
 
 }

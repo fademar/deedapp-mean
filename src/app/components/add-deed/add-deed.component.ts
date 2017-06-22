@@ -25,6 +25,8 @@ export class AddDeedComponent implements OnInit {
     agentTransactionObjects: FormArray;
     counterAgentTransactionObjects: FormArray;
     accusationAgainstAgent: FormControl;
+    accusationAgainstCounterAgent: FormControl;
+    juridicalProcedureStage: FormControl;
     scribe: FormGroup;
     registrator: FormGroup;
     chattels: FormGroup;
@@ -45,6 +47,8 @@ export class AddDeedComponent implements OnInit {
     asWhom: FormGroup;
     whoInherits: FormControl;
     coAgentNumberWhoInherits: FormControl;
+    otherAgentAction: FormControl;
+
 
     deed;
     deedValue = '';
@@ -106,6 +110,8 @@ export class AddDeedComponent implements OnInit {
 
     ngOnInit() {
         this.initForm();
+        this.selectedAction = '';
+        this.selectedCounterAction = '';
     }
 
     // Create the form
@@ -178,25 +184,6 @@ export class AddDeedComponent implements OnInit {
             }
         });
     }
-
-    // Submit the form
-
-    onSubmit() {
-        this.deedValue = JSON.stringify(this.deedForm.value);
-        this.deedService.saveDeed(this.deedValue).subscribe(deed => {
-            this.deed = deed;
-            if (this.deed._id) {
-                this.notificationsService.success(
-                    'Success',
-                    'The deed has been successfully saved in the database with id ' + this.deed._id,
-                );
-            }
-        });
-        setTimeout(() => {
-            this.initForm();
-        }, 2000);
-    }
-
 
     // AGENT METHODS
 
@@ -548,7 +535,7 @@ export class AddDeedComponent implements OnInit {
         this.relationToCounterAgent = this.collectiveCoCounterAgent.get('relationToCounterAgent').value;
         if (this.relationToCounterAgent == 'other') {
             this.otherRelationToCounterAgent = new FormControl;
-            this.collectiveCoCounterAgent.addControl('otherRelationToAgent', this.otherRelationToCounterAgent);
+            this.collectiveCoCounterAgent.addControl('otherRelationToCounterAgent', this.otherRelationToCounterAgent);
             return true;
         }
     }
@@ -648,14 +635,20 @@ export class AddDeedComponent implements OnInit {
                 this.whoInherits = new FormControl;
                 this.deedForm.controls.transactions['controls'][i].addControl('whoInherits', this.whoInherits);
                 this.selectedAction = 'bequeaths';
-
+                this.counterAgentField = '';
                 break;
             }
             case 'settles': {
-                this.selectedAction = 'accusationAgainstAgent';
-                this.selectedCounterAction = 'accusationAgainstCounterAgent';
+                this.selectedAction = 'settles';
+                this.selectedCounterAction = 'settles';
                 this.counterAgentField = 'select';
                 this.deedForm.controls.transactions['controls'][i].controls.counterAgentAction.patchValue('settles');
+                this.accusationAgainstAgent = new FormControl;
+                this.accusationAgainstCounterAgent = new FormControl;
+                this.juridicalProcedureStage = new FormControl;
+                this.deedForm.controls.transactions['controls'][i].addControl('accusationAgainstAgent', this.accusationAgainstAgent);
+                this.deedForm.controls.transactions['controls'][i].addControl('accusationAgainstCounterAgent', this.accusationAgainstCounterAgent);
+                this.deedForm.controls.transactions['controls'][i].addControl('juridicalProcedureStage', this.juridicalProcedureStage);
                 break;
             }
             case 'agrees to marry': {
@@ -681,11 +674,19 @@ export class AddDeedComponent implements OnInit {
                 this.counterAgentField = 'text';				
                 break;
             }
-            default:
+            case 'other': {
+                this.otherAgentAction = new FormControl;
+                this.deedForm.controls.transactions['controls'][i].addControl('otherAgentAction', this.otherAgentAction);
+                this.counterAgentField = 'text';
+                this.selectedAction = 'other'; 				
+                break;
+            }
+            default: {
                 this.selectedAction = '';
                 this.selectedCounterAction = '';
                 this.counterAgentField = '';				
                 break;
+            }
         }
     }
 
@@ -707,12 +708,13 @@ export class AddDeedComponent implements OnInit {
                 break;
             }
             case 'settles': {
-                this.selectedCounterAction = 'accusationAgainstCounterAgent';
+                this.selectedCounterAction = 'settles';
                 break;
             }
-            default:
+            default: {
                 this.selectedCounterAction = '';
                 break;
+            }
         }
     }
 
@@ -1444,7 +1446,23 @@ export class AddDeedComponent implements OnInit {
     }
 
 
+     // Submit the form
 
+    onSubmit() {
+        this.deedValue = JSON.stringify(this.deedForm.value);
+        this.deedService.saveDeed(this.deedValue).subscribe(deed => {
+            this.deed = deed;
+            if (this.deed._id) {
+                this.notificationsService.success(
+                    'Success',
+                    'The deed has been successfully saved in the database with id ' + this.deed._id,
+                );
+            }
+        });
+        setTimeout(() => {
+            this.router.navigate(['/']);
+        }, 2000);
+    }
 
 
 }
