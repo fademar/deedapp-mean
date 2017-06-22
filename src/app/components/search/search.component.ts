@@ -19,10 +19,12 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
+    
     this.searchService.search(this.searchTerm)
-                      .subscribe(results => {
-                          this.results = results;
-                      });
-  }
+                .subscribe(results => {
+                    this.results = results;
+            });
+   
+   }
 
 }
