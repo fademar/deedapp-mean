@@ -2291,7 +2291,7 @@ export class EditDeedComponent implements OnInit {
             }
         });
         setTimeout(() => {
-            this.router.navigate(['/']);
+            this.router.navigate(['/deed/' + this.id]);
         }, 2000);
     }
 

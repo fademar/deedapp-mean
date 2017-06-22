@@ -1,6 +1,10 @@
 <simple-notifications [options]="options"></simple-notifications>
-<h1 class="page-header">Edit Deed</h1>
 <div *ngIf="deed">
+	<div class="pull-right">
+        <a routerLink="/deed/{{ id }}" class="btn btn-warning">Cancel</a>
+    </div>
+	<h1 class="page-header">Edit Deed</h1>
+
 	<div class="alert alert-warning">Deed saved in the database with id <strong> {{ id }} </strong></div>
 
 	<form class="form-horizontal" [formGroup]="deedForm" (ngSubmit)="onSubmit()" novalidate>
@@ -2453,7 +2457,7 @@
 
 <div class="col-sm-12">
 	<div class="form-group">
-		<button type="submit" [disabled]="deedForm.invalid" class="btn btn-info center-block">Update the deed</button>
+		<button type="submit" [disabled]="deedForm.invalid" class="btn btn-success center-block">Update the deed</button>
 	</div>
 </div>
 

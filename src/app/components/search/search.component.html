@@ -8,7 +8,7 @@
 	</div>
 </form>
 <div *ngIf="results">
-  <h2>{{ results.length }} - Results</h2>
+  <h2>{{ results.length }} deeds found in the database</h2>
   <div class="table-responsive">
     <table class="table table-striped">
       <thead>
@@ -27,7 +27,12 @@
           <td>{{ result.deedRef }}</td>
           <td>{{ result.deedDate }}</td>
           <td>{{ result.deedName }}</td>
-          <td>{{ result.agent.firstName }} {{ result.agent.lastName }}</td>
+          <td>
+            <span *ngIf="result.agent">
+              <span *ngIf="result.agent.firstName"> {{ result.agent.firstName }}</span> <span *ngIf="result.agent.lastName">{{ result.agent.lastName }}</span>
+              <span *ngIf="result.agent.corporationName">{{result.agent.corporationName}}</span>
+            </span>
+          </td>
           <td> <i *ngIf="result.incomplete" class="glyphicon glyphicon-ok"></i></td>
 
           <td>
