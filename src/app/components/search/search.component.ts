@@ -38,7 +38,7 @@ export class SearchComponent implements OnInit {
         this.sub = this.route
             .queryParams
             .subscribe(params => {
-                this.term = params['searchFor'];
+                this.term = params['resultFor'];
                 if(this.term) {
                     this.loadData(this.term);
                 }
