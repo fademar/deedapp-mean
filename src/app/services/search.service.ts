@@ -16,12 +16,12 @@ export class SearchService {
   constructor(private http: Http) { }
 
 
-  search(terms: Observable<string>) {
-    return terms.debounceTime(400)
-      .distinctUntilChanged()
-      .switchMap(
-        term => this.searchEntries(term));
-  }
+//   search(terms: Observable<string>) {
+//     return terms.debounceTime(400)
+//       .distinctUntilChanged()
+//       .switchMap(
+//         term => this.searchEntries(term));
+//   }
 
 
   searchEntries(term) {
