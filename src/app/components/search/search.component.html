@@ -8,26 +8,33 @@
 	</div>
 </form>
 <div *ngIf="results">
-  <h2>{{ results.length }} - Results</h2>
+  <h2>{{ results.length }} deeds found in the database</h2>
   <div class="table-responsive">
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>DeedCode</th>
-          <th>DeedRef</th>
-          <th>DeedDate</th>
-          <th>DeedName</th>
-          <th>DeedLanguage</th>
-          <th></th>
+          <th>Deed Code</th>
+          <th>Deed Ref</th>
+          <th>Deed Date</th>
+          <th>Deed Name</th>
+          <th>Agent Name</th>
+          <th>To Do</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor='let result of results'>
-          <td>{{ result._source.deedCode }}</td>
-          <td>{{ result._source.deedRef }}</td>
-          <td>{{ result._source.deedDate }}</td>
-          <td>{{ result._source.deedName }}</td>
-          <td>{{ result._source.deedLanguage }}</td>
+          <td>{{ result.deedCode }}</td>
+          <td>{{ result.deedRef }}</td>
+          <td>{{ result.deedDate }}</td>
+          <td>{{ result.deedName }}</td>
+          <td>
+            <span *ngIf="result.agent">
+              <span *ngIf="result.agent.firstName"> {{ result.agent.firstName }}</span> <span *ngIf="result.agent.lastName">{{ result.agent.lastName }}</span>
+              <span *ngIf="result.agent.corporationName">{{result.agent.corporationName}}</span>
+            </span>
+          </td>
+          <td> <i *ngIf="result.incomplete" class="glyphicon glyphicon-ok"></i></td>
+
           <td>
             <a routerLink="/deed/{{ result._id }}" class="btn btn-primary">Details</a>
           </td>

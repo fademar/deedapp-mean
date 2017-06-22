@@ -1,6 +1,6 @@
 <div *ngIf="deed">
     <div class="pull-right">
-        <a routerLink="/deed/edit/{{ deed._id }}" class="btn btn-default">Edit</a>
+        <a routerLink="/deed/edit/{{ deed._id }}" class="btn btn-primary">Edit</a>
         <a href="#" (click)="onDeleteClick(deed._id)" class="btn btn-danger">Delete</a>
     </div>
     <h1 class="page-header">Deed {{ deed.deedCode }} {{ deed.deedRef }}</h1>
@@ -206,6 +206,9 @@
         <h3>Transaction {{ i + 1 }}</h3>
         <ul class="list-group">
             <li *ngIf="transaction.agentAction" class="list-group-item"><strong>Agent Action: </strong>{{ transaction.agentAction }}</li>
+            <li *ngIf="transaction.otherAgentAction" class="list-group-item"><strong>Other Agent Action: </strong>{{ transaction.otherAgentAction }}</li>
+            <li *ngIf="transaction.accusationAgainstAgent" class="list-group-item"><strong>Accusation against Agent: </strong>{{ transaction.accusationAgainstAgent }}</li>
+ 
             <ng-template ngFor let-agentTransactionObject [ngForOf]="transaction.agentTransactionObjects" let-j="index">
                 <h4>Agent Transaction Object {{ j + 1 }}</h4>
                 <div *ngIf="agentTransactionObject.chattels">
@@ -321,6 +324,9 @@
             </ng-template>
 
             <li *ngIf="transaction.counterAgentAction" class="list-group-item"><strong>Counter Agent Action: </strong>{{ transaction.counterAgentAction }}</li>
+            <li *ngIf="transaction.accusationAgainstCounterAgent" class="list-group-item"><strong>Accusation against Counter Agent: </strong>{{ transaction.accusationAgainstCounterAgent }}</li>
+            <li *ngIf="transaction.juridicalProcedureStage" class="list-group-item"><strong>Juridical Procedure Stage: </strong>{{ transaction.juridicalProcedureStage }}</li>
+
             <ng-template ngFor let-counterAgentTransactionObject [ngForOf]="transaction.counterAgentTransactionObjects" let-j="index">
                 <h4>Counter Agent Transaction Object {{ j + 1 }}</h4>
                 <div *ngIf="counterAgentTransactionObject.chattels">

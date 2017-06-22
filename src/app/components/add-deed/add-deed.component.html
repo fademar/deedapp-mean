@@ -866,6 +866,14 @@
 					</div>
 				</div>
 				<div [ngSwitch]="selectedAction">
+					<div *ngSwitchCase="'other'">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Other Agent Action</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="otherAgentAction">
+							</div>
+						</div>
+					</div>
 					<div *ngSwitchCase="'what'">
 						<div class="form-group">
 							<label class="col-sm-2 control-label">What ?</label>
@@ -915,6 +923,15 @@
 							</div>
 						</div>
 					</div>
+					<div *ngSwitchCase="'settles'">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">Accusation against Agent</label>
+							<div class="col-sm-10">
+								<input class="form-control" formControlName="accusationAgainstAgent">
+							</div>
+						</div>
+					</div>
+
 				</div>
 				<!-- AGENT TRANSACTION OBJETCS -->
 				<div formArrayName='agentTransactionObjects'>
@@ -1465,6 +1482,7 @@
 						</div>
 					</div>
 				</div>
+
 				<!-- COUNTER AGENT TRANSACTION -->
 				<div [ngSwitch]="counterAgentField">
 					<div *ngSwitchCase="'text'">
@@ -1502,6 +1520,20 @@
 										<ng-select [allowClear]="true" [items]="whomList" (data)="refreshValueCounterWhom($event, i)" (selected)="selectedCounterWhom($event, i)"
 										(removed)="removedCounterWhom($event, i)" placeholder="No object selected">
 										</ng-select>	
+									</div>
+								</div>
+							</div>
+							<div *ngSwitchCase="'settles'">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Accusation against Counter Agent</label>
+									<div class="col-sm-10">
+										<input class="form-control" formControlName="accusationAgainstCounterAgent">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Juridical Procedure Stage</label>
+									<div class="col-sm-10">
+										<input class="form-control" formControlName="juridicalProcedureStage">
 									</div>
 								</div>
 							</div>
