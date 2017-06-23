@@ -25,6 +25,7 @@ import { SchemaService } from './services/schema.service';
 import { SearchService } from './services/search.service';
 import { PagerService } from './services/pager.service';
 import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { AuthService } from './services/auth.service';
     AppRoutingModule,
     SelectModule
   ],
-  providers: [AuthService, DeedService, SchemaService, SearchService, PagerService],
+  providers: [AuthService, AuthGuard, DeedService, SchemaService, SearchService, PagerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
