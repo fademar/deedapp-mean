@@ -4,21 +4,11 @@ const bodyParser = require('body-parser');
 const mongodb = require('mongodb');
 const elasticsearch = require('elasticsearch');
 const path = require('path');
-const wwwhisper = require('connect-wwwhisper');
 
 let ObjectID = mongodb.ObjectID;
 
 // App Init
 const app = express();
-
-// app holds a reference to express or connect framework, it
-// may be named differently in your source file.
-app.use(wwwhisper());
-
-// Alternatively, if you don't want wwwhisper to insert
-// a logout iframe into HTML responses use.
-app.use(wwwhisper(false));
-
 
 app.use(bodyParser.json());
 
@@ -46,7 +36,7 @@ app.use(express.static(distDir));
 var db;
 
 // Connection to the database
-mongodb.MongoClient.connect(dbURL, (err, database) => {
+mongodb.MongoClient.connect(process.env.MONGODB_URI, (err, database) => {
 	if (err) {
 		console.log(err);
 		process.exit(1);
