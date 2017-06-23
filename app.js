@@ -5,17 +5,17 @@ const mongodb = require('mongodb');
 const elasticsearch = require('elasticsearch');
 const path = require('path');
 
-var ObjectID = mongodb.ObjectID;
-
-// Db Collection and URI
-const deedsCollection = 'Deeds';
 
 // App Init
 const app = express();
 app.use(bodyParser.json());
 
+
+// Db Collection and URI
+const deedsCollection = 'Deeds';
 const dbURL = "mongodb://fadem:886682@ds061248.mlab.com:61248/dbdeeds"
 
+var ObjectID = mongodb.ObjectID;
 
 
 // Enable CORS 
