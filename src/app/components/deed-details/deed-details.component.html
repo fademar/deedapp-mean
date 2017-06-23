@@ -1,4 +1,4 @@
-<div *ngIf="deed">
+<div *ngIf="deed" >
     <div class="pull-right">
         <a *ngIf="term" routerLink="/search" [queryParams]="{resultFor: term}" class="btn btn-default">Back to results</a>
         <a routerLink="/deed/edit/{{ deed._id }}" class="btn btn-primary">Edit</a>
@@ -10,7 +10,7 @@
     <ul class="list-group">
         <li class="list-group-item"><strong>Deed Code: </strong>{{ deed.deedCode }}</li>
         <li class="list-group-item"><strong>Deed Ref: </strong>{{ deed.deedRef }}</li>
-        <li *ngIf="deed.deedName" class="list-group-item"><strong>Deed Name: </strong>{{ deed.deedName }}</li>
+        <li *ngIf="deed.deedName" class="list-group-item"><strong>Deed Name: </strong><span innerHTML="{{ deed.deedName }}"></span></li>
         <li *ngIf="deed.deedLanguage" class="list-group-item"><strong>Deed Language: </strong>{{ deed.deedLanguage }}</li>
     </ul>
     <h2>Contracting Parties</h2>

@@ -19,6 +19,7 @@ import { SearchComponent } from './components/search/search.component';
 import { HomeComponent } from './components/home/home.component';
 import { CallbackComponent } from './components/callback/callback.component';
 
+import { HighlightPipe } from './pipes/highlight.pipe';
 
 import { DeedService } from './services/deed.service';
 import { SchemaService } from './services/schema.service';
@@ -38,7 +39,8 @@ import { AuthGuard } from './services/auth-guard.service';
     SchemaComponent,
     SearchComponent,
     HomeComponent,
-    CallbackComponent
+    CallbackComponent,
+    HighlightPipe
   ],
   imports: [
     BrowserModule,
