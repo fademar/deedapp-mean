@@ -40,6 +40,7 @@ export class SearchComponent implements OnInit {
             .subscribe(params => {
                 this.term = params['resultFor'];
                 if(this.term) {
+                    console.log(this.term);
                     this.loadData(this.term);
                 }
             });
@@ -52,9 +53,10 @@ export class SearchComponent implements OnInit {
     }
 
     onSubmit() {
-        this.term = JSON.stringify(this.searchForm.controls.searchTerm.value);
+        this.term = this.searchForm.controls.searchTerm.value;
         this.searchService.clearCache();
         this.loadData(this.term);
+        localStorage.setItem('results', JSON.stringify(this.loadData(this.term)));
     }
 
 
