@@ -7,6 +7,16 @@ const path = require('path');
 
 var ObjectID = mongodb.ObjectID;
 
+var wwwhisper = require('connect-wwwhisper');
+// app holds a reference to express or connect framework, it
+// may be named differently in your source file.
+app.use(wwwhisper());
+
+// Alternatively, if you don't want wwwhisper to insert
+// a logout iframe into HTML responses use.
+app.use(wwwhisper(false));
+
+
 // Db Collection and URI
 const deedsCollection = 'Deeds';
 
