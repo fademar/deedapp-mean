@@ -11,14 +11,22 @@ export class DeedDetailsComponent implements OnInit {
   
   id: string;
   deed;
-
+  sub;
+  term = this.term;
   constructor(private deedService:DeedService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
+    
     this.deedService.getDeed(this.id).subscribe(deed => {
       this.deed = deed;
     });
+
+    this.sub = this.route
+      .queryParams
+      .subscribe(params => {
+        this.term = params['resultFor'] || null;
+      });
   }
  
  onDeleteClick(id) {
