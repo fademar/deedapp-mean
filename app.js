@@ -5,11 +5,27 @@ const mongodb = require('mongodb');
 const elasticsearch = require('elasticsearch');
 const path = require('path');
 
+const jwt = require('express-jwt');
+const jwks = require('jwks-rsa');
 
 // App Init
 const app = express();
 app.use(bodyParser.json());
 
+
+// We are going to implement a JWT middleware that will ensure the validity of our token. We'll require each protected route to have a valid access_token sent in the Authorization header
+const authCheck = jwt({
+  secret: jwks.expressJwtSecret({
+        cache: true,
+        rateLimit: true,
+        jwksRequestsPerMinute: 5,
+        jwksUri: "https://cercec.eu.auth0.com/.well-known/jwks.json"
+    }),
+    // This is the identifier we set when we created the API
+    audience: 'deed-app-api',
+    issuer: "https://cercec.eu.auth0.com/",
+    algorithms: ['RS256']
+});
 
 // Db Collection and URI
 const deedsCollection = 'Deeds';
@@ -73,7 +89,7 @@ app.get('/', (req, res) => {
  *    POST: creates a new deed
  */
 
-app.get('/api/deeds', (req, res) => {
+app.get('/api/deeds', authCheck, (req, res) => {
 	db.collection(deedsCollection).find({}).toArray((err, docs) => {
 		if (err) {
 			handleError(res, err.message, 'Failed to get deeds.');
@@ -83,7 +99,7 @@ app.get('/api/deeds', (req, res) => {
 	});
 });
 
-app.post('/api/deeds', (req, res) => {
+app.post('/api/deeds', authCheck, (req, res) => {
 	var newDeed = req.body;
 
 	if (!req.body.deedRef) {
@@ -106,7 +122,7 @@ app.post('/api/deeds', (req, res) => {
  *    DELETE: deletes deed by id
  */
 
-app.get('/api/deed/:id', (req, res) => {
+app.get('/api/deed/:id', authCheck, (req, res) => {
 	db.collection(deedsCollection).findOne({ _id: new ObjectID(req.params.id) }, (err, doc) => {
 		if (err) {
 			handleError(res, err.message, 'Failed to get deed');
@@ -116,7 +132,7 @@ app.get('/api/deed/:id', (req, res) => {
 	});
 });
 
-app.put('/api/deed/:id', (req, res) => {
+app.put('/api/deed/:id', authCheck, (req, res) => {
 	var updateDoc = req.body;
 	delete updateDoc._id;
 
@@ -129,7 +145,7 @@ app.put('/api/deed/:id', (req, res) => {
 	});
 });
 
-app.delete('/api/deed/:id', (req, res) => {
+app.delete('/api/deed/:id', authCheck, (req, res) => {
 	db.collection(deedsCollection).deleteOne({ _id: new ObjectID(req.params.id) }, (err, result) => {
 		if (err) {
 			handleError(res, err.message, 'Failed to delete contact');
@@ -142,7 +158,7 @@ app.delete('/api/deed/:id', (req, res) => {
 
 // Get the last Document inserted
 
-app.get('/api/lastdeed', (req, res) => {
+app.get('/api/lastdeed', authCheck, (req, res) => {
 	db.collection(deedsCollection).find({}).limit(1).sort({ $natural: -1 }).toArray((err, doc) => {
 		if (err) {
 			handleError(res, err.message, 'Failed to get the last deed');
@@ -152,15 +168,9 @@ app.get('/api/lastdeed', (req, res) => {
 	});
 });
 
-// Load JSON schema file
 
-app.get('/api/schema', (req, res) => {
-	let jsonFile = fs.readFileSync('./deed-schema copie.json', { encoding: 'utf8' });
-	let jsonSchema = JSON.parse(jsonFile);
-	res.status(200).json(jsonSchema);
-});
 
-app.get('/api/search', (req, res) => {
+app.get('/api/search', authCheck, (req, res) => {
 	let arrayBody = [];
 	db.collection(deedsCollection).find({}).toArray((err, docs) => {
 		if (err) {
@@ -171,7 +181,7 @@ app.get('/api/search', (req, res) => {
 	});
 });
 
-app.get('/api/search/:term', (req, res) => {
+app.get('/api/search/:term', authCheck, (req, res) => {
 	let term = req.params.term;
 	db.collection(deedsCollection).find({$text: { $search: term }}).toArray((err, docs) => {
 		if (err) {

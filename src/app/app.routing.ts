@@ -1,5 +1,7 @@
 import { NgModule }              from '@angular/core';
-import { RouterModule, Routes }  from '@angular/router';
+import { RouterModule, Routes, CanActivate }  from '@angular/router';
+
+import { AuthGuard } from './services/auth.guard.service';
 
 import { DeedsComponent } from './components/deeds/deeds.component';
 import { AddDeedComponent } from './components/add-deed/add-deed.component';
@@ -12,12 +14,12 @@ import { CallbackComponent } from './components/callback/callback.component';
 
 const appRoutes: Routes = [
   {path: '', component:HomeComponent},
-  {path: 'list', component:DeedsComponent},
-  {path: 'deed/add', component:AddDeedComponent},
-  {path: 'deed/:id', component:DeedDetailsComponent},
-  {path: 'deed/edit/:id', component:EditDeedComponent},
-  {path: 'schema', component:SchemaComponent},
-  {path: 'search', component:SearchComponent},
+  {path: 'list', component:DeedsComponent, canActivate: [AuthGuard]},
+  {path: 'deed/add', component:AddDeedComponent, canActivate: [AuthGuard]},
+  {path: 'deed/:id', component:DeedDetailsComponent, canActivate: [AuthGuard]},
+  {path: 'deed/edit/:id', component:EditDeedComponent, canActivate: [AuthGuard]},
+  {path: 'schema', component:SchemaComponent, canActivate: [AuthGuard]},
+  {path: 'search', component:SearchComponent, canActivate: [AuthGuard]},
   {path: 'callback', component: CallbackComponent },
   {path: '**', redirectTo: '' }
 ]
