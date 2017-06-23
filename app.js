@@ -4,10 +4,13 @@ const bodyParser = require('body-parser');
 const mongodb = require('mongodb');
 const elasticsearch = require('elasticsearch');
 const path = require('path');
+const wwwhisper = require('connect-wwwhisper');
 
-var ObjectID = mongodb.ObjectID;
+let ObjectID = mongodb.ObjectID;
 
-var wwwhisper = require('connect-wwwhisper');
+// App Init
+const app = express();
+
 // app holds a reference to express or connect framework, it
 // may be named differently in your source file.
 app.use(wwwhisper());
@@ -17,13 +20,11 @@ app.use(wwwhisper());
 app.use(wwwhisper(false));
 
 
-// Db Collection and URI
-const deedsCollection = 'Deeds';
-
-// App Init
-const app = express();
 app.use(bodyParser.json());
 
+
+// Db Collection and URI
+const deedsCollection = 'Deeds';
 const dbURL = "mongodb://fadem:886682@ds061248.mlab.com:61248/dbdeeds"
 
 
