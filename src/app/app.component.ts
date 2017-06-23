@@ -7,6 +7,7 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  color: string;
   constructor(public auth: AuthService) {
       auth.handleAuthentication();
     }

@@ -19,7 +19,9 @@ import { SearchComponent } from './components/search/search.component';
 import { HomeComponent } from './components/home/home.component';
 import { CallbackComponent } from './components/callback/callback.component';
 
-import { HighlightPipe } from './pipes/highlight.pipe';
+import { HighlightDirective } from './directives/highlight.directive';
+
+import { SafeHtmlPipe } from './pipes/safeHtml.pipe';
 
 import { DeedService } from './services/deed.service';
 import { SchemaService } from './services/schema.service';
@@ -40,7 +42,8 @@ import { AuthGuard } from './services/auth-guard.service';
     SearchComponent,
     HomeComponent,
     CallbackComponent,
-    HighlightPipe
+    HighlightDirective,
+    SafeHtmlPipe
   ],
   imports: [
     BrowserModule,
