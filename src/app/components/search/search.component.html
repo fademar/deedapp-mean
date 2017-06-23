@@ -39,7 +39,7 @@
           <td> <i *ngIf="result.incomplete" class="glyphicon glyphicon-ok"></i></td>
 
           <td>
-            <a routerLink="/deed/{{ result._id }}" [queryParams]="{ resultFor: term}" class="btn btn-primary">Details</a>
+            <a routerLink="/deed/{{ result._id }}" [queryParams]="{resultFor: term}" class="btn btn-primary">Details</a>
           </td>
         </tr>
       </tbody>
