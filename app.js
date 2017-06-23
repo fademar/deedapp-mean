@@ -5,7 +5,6 @@ const mongodb = require('mongodb');
 const elasticsearch = require('elasticsearch');
 const path = require('path');
 
-let ObjectID = mongodb.ObjectID;
 // App Init
 const app = express();
 
@@ -36,7 +35,7 @@ app.use(express.static(distDir));
 var db;
 
 // Connection to the database
-mongodb.MongoClient.connect(process.env.MONGODB_URI, (err, database) => {
+mongodb.MongoClient.connect(dbURL, (err, database) => {
 	if (err) {
 		console.log(err);
 		process.exit(1);
@@ -46,10 +45,10 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, (err, database) => {
 	db = database;
 	console.log('Database connection ready');
 	
-	db.collection(deedsCollection).createIndex({"$**":"text"}, { default_language: "russian" });
+	db.collection(deedsCollection).createIndex({"$**":"text"});
 
 	// Initialize the app.
-	var server = app.listen(process.env.PORT || 8080, () => {
+	var server = app.listen(process.env.PORT || 3000, () => {
 		console.log('App now running on port', process.env.PORT);
 	});
 
