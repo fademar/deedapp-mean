@@ -46,7 +46,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, (err, database) => {
 	db = database;
 	console.log('Database connection ready');
 	
-	db.collection(deedsCollection).createIndex({"$**":"text"});
+	db.collection(deedsCollection).createIndex({"$**":"text"}, { default_language: "russian" });
 
 	// Initialize the app.
 	var server = app.listen(process.env.PORT || 8080, () => {
