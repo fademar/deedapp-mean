@@ -6,7 +6,6 @@ const elasticsearch = require('elasticsearch');
 const path = require('path');
 
 let ObjectID = mongodb.ObjectID;
-
 // App Init
 const app = express();
 
@@ -17,6 +16,7 @@ app.use(bodyParser.json());
 const deedsCollection = 'Deeds';
 const dbURL = "mongodb://fadem:886682@ds061248.mlab.com:61248/dbdeeds"
 
+var ObjectID = mongodb.ObjectID;
 
 
 // Enable CORS 
