@@ -54,9 +54,7 @@ export class SearchComponent implements OnInit {
 
     onSubmit() {
         this.term = this.searchForm.controls.searchTerm.value;
-        this.searchService.clearCache();
         this.loadData(this.term);
-        localStorage.setItem('results', JSON.stringify(this.loadData(this.term)));
     }
 
 
