@@ -1,4 +1,4 @@
-        <p myHighLight>TEST</p>
+        <myHighlight>TEST</myHighlight>
 
 <div *ngIf="deed" >
     <div class="pull-right">
@@ -12,7 +12,7 @@
     <ul class="list-group">
         <li class="list-group-item"><strong>Deed Code: </strong>{{ deed.deedCode }}</li>
         <li class="list-group-item"><strong>Deed Ref: </strong>{{ deed.deedRef }}</li>
-        <li *ngIf="deed.deedName" class="list-group-item"><strong>Deed Name: </strong><span [innerHTML]="deed.deedName | safeHtml"></span></li>
+        <li *ngIf="deed.deedName" class="list-group-item"><strong>Deed Name: </strong><myHighlight [innerHTML]="deed.deedName | safeHtml"></myHighlight></li>
         <li *ngIf="deed.deedLanguage" class="list-group-item"><strong>Deed Language: </strong>{{ deed.deedLanguage }}</li>
     </ul>
     <h2>Contracting Parties</h2>

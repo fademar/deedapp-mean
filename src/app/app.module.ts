@@ -8,6 +8,7 @@ import { SelectModule } from 'ng2-select';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
+import { SharedModule } from './shared/shared.module';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DeedsComponent } from './components/deeds/deeds.component';
@@ -42,7 +43,6 @@ import { AuthGuard } from './services/auth-guard.service';
     SearchComponent,
     HomeComponent,
     CallbackComponent,
-    HighlightDirective,
     SafeHtmlPipe
   ],
   imports: [
@@ -53,7 +53,8 @@ import { AuthGuard } from './services/auth-guard.service';
     ReactiveFormsModule,
     HttpModule,
     AppRoutingModule,
-    SelectModule
+    SelectModule,
+    SharedModule
   ],
   providers: [AuthService, AuthGuard, DeedService, SchemaService, SearchService, PagerService],
   bootstrap: [AppComponent]

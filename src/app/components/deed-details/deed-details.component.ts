@@ -66,7 +66,7 @@ export class DeedDetailsComponent implements OnInit {
 
     // let highlightTerm = _.escape('<p class="highlighting">'+term+'</p>');
 
-    let resultHighlight = _.replace(collection, new RegExp(term, 'g'), '<span myHighlight>'+term+'</span>');
+    let resultHighlight = _.replace(collection, new RegExp(term, 'g'), '<myHighlight>'+term+'</myHighlight>');
     console.log(resultHighlight);
     return JSON.parse(resultHighlight);
 
