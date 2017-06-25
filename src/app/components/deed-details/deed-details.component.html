@@ -1,5 +1,4 @@
-        <myHighlight>TEST</myHighlight>
-
+<div class="container">
 <div *ngIf="deed" >
     <div class="pull-right">
         <a *ngIf="term" routerLink="/search" [queryParams]="{resultFor: term}" class="btn btn-default">Back to results</a>
@@ -12,7 +11,7 @@
     <ul class="list-group">
         <li class="list-group-item"><strong>Deed Code: </strong>{{ deed.deedCode }}</li>
         <li class="list-group-item"><strong>Deed Ref: </strong>{{ deed.deedRef }}</li>
-        <li *ngIf="deed.deedName" class="list-group-item"><strong>Deed Name: </strong><myHighlight [innerHTML]="deed.deedName | safeHtml"></myHighlight></li>
+        <li *ngIf="deed.deedName" class="list-group-item"><strong>Deed Name: </strong>{{deed.deedName}}</li>
         <li *ngIf="deed.deedLanguage" class="list-group-item"><strong>Deed Language: </strong>{{ deed.deedLanguage }}</li>
     </ul>
     <h2>Contracting Parties</h2>
@@ -512,10 +511,10 @@
             <li *ngIf="deed.registrator.relatedTo" class="list-group-item"><strong>Registrator Related To: </strong>{{ deed.registrator.relatedTo }}</li>
         </div>
         <h4>Fee</h4>
-        <li *ngIf="deed.fee.rouble" class="list-group-item"><strong>Rouble: </strong>{{ transaction.counterAgentTransactionObject.money.rouble }}</li>
-        <li *ngIf="deed.fee.altyn" class="list-group-item"><strong>Altyn: </strong>{{ transaction.counterAgentTransactionObject.money.altyn }}</li>
-        <li *ngIf="deed.fee.dynga" class="list-group-item"><strong>Dynga: </strong>{{ transaction.counterAgentTransactionObject.money.dynga }}</li>
-        <li *ngIf="deed.fee.chekhi" class="list-group-item"><strong>Chekhi: </strong>{{ transaction.counterAgentTransactionObject.money.chekhi }}</li>
+        <li *ngIf="deed.fee.rouble" class="list-group-item"><strong>Rubly: </strong>{{ deed.fee.rouble }}</li>
+        <li *ngIf="deed.fee.altyn" class="list-group-item"><strong>Altyny: </strong>{{ deed.fee.altyn }}</li>
+        <li *ngIf="deed.fee.dynga" class="list-group-item"><strong>Dynga: </strong>{{ deed.fee.dynga }}</li>
+        <li *ngIf="deed.fee.chekhi" class="list-group-item"><strong>Chekhi: </strong>{{ deed.fee.chekhi }}</li>
         <li class="list-group-item"><strong>Collected: </strong>{{ deed.fee.collected }}</li>
     </ul>
     <div *ngIf="deed.verbatimCitations || deed.researcherNotes">
@@ -531,12 +530,6 @@
             </div>
         </ul>
     </div>
-
-
-
-
-
-
-
+</div>
 </div>
 

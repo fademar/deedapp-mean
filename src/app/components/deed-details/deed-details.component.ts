@@ -32,6 +32,7 @@ export class DeedDetailsComponent implements OnInit {
             this.deed = this.highlight(deed, this.term);
           } else {
              this.deed = deed;
+             console.log(this.deed);
           }
         }); 
         

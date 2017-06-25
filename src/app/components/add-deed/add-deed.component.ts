@@ -97,7 +97,9 @@ export class AddDeedComponent implements OnInit {
     selectedAsWhomValue = this.selectedAsWhomValue;
     selectedCounterAction = this.selectedCounterAction;
     counterAgentField = this.counterAgentField;
-    
+    isLabelCodeActive = this.isLabelCodeActive;
+    isLabelRefActive = this.isLabelRefActive;
+
     public options = {
         position: ['top', 'left'],
         timeOut: 2000,
@@ -109,6 +111,8 @@ export class AddDeedComponent implements OnInit {
     constructor(private fb: FormBuilder, private deedService: DeedService, private router: Router, private notificationsService: NotificationsService) { }
 
     ngOnInit() {
+        this.isLabelCodeActive = false;
+        this.isLabelRefActive = false;
         this.initForm();
         this.selectedAction = '';
         this.selectedCounterAction = '';
@@ -155,12 +159,14 @@ export class AddDeedComponent implements OnInit {
         this.deedService.getLastDeed().subscribe(result => {
             this.lastDeed = result;
             if (this.lastDeed.length < 1) {
-                this.deedForm.patchValue({
-                    deedCode: "No deed saved yet"
-                });
+                this.notificationsService.warn(
+                    'No Deed Code',
+                    'No deed has been registered in the database yet',
+                );
             }
             else {
                 this.lastDeedCode = this.lastDeed[0].deedCode;
+                this.isLabelCodeActive = true;
                 this.deedForm.patchValue({
                     deedCode: this.lastDeedCode
                 });
@@ -172,12 +178,14 @@ export class AddDeedComponent implements OnInit {
         this.deedService.getLastDeed().subscribe(result => {
             this.lastDeed = result;
             if (this.lastDeed.length < 1) {
-                this.deedForm.patchValue({
-                    deedRef: "No deed saved yet"
-                });
+                this.notificationsService.warn(
+                    'No Deed Ref',
+                    'No deed has been registered in the database yet',
+                );
             }
             else {
                 this.lastDeedRef = this.lastDeed[0].deedRef;
+                this.isLabelRefActive = true;
                 this.deedForm.patchValue({
                     deedRef: this.lastDeedRef
                 });
@@ -185,6 +193,8 @@ export class AddDeedComponent implements OnInit {
         });
     }
 
+
+   
     // AGENT METHODS
 
     getAgentSex() {
@@ -1445,8 +1455,7 @@ export class AddDeedComponent implements OnInit {
         return this.registratorOn = false;
     }
 
-
-     // Submit the form
+    // Submit the form
 
     onSubmit() {
         this.deedValue = JSON.stringify(this.deedForm.value);

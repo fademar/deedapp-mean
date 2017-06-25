@@ -13,7 +13,7 @@ import { HomeComponent } from './components/home/home.component';
 import { CallbackComponent } from './components/callback/callback.component';
 
 const appRoutes: Routes = [
-  {path: '', component:HomeComponent},
+  {path: 'home', component:HomeComponent},
   {path: 'list', component:DeedsComponent, canActivate: [AuthGuard]},
   {path: 'deed/add', component:AddDeedComponent, canActivate: [AuthGuard]},
   {path: 'deed/:id', component:DeedDetailsComponent, canActivate: [AuthGuard]},
@@ -21,7 +21,7 @@ const appRoutes: Routes = [
   {path: 'schema', component:SchemaComponent, canActivate: [AuthGuard]},
   {path: 'search', component:SearchComponent, canActivate: [AuthGuard]},
   {path: 'callback', component: CallbackComponent},
-  {path: '**', redirectTo: '' }
+  {path: '**', redirectTo: 'home' }
 ]
 
 

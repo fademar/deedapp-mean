@@ -1,3 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
+body { padding-top: 100px; }
 
+.row {
+    margin-bottom: 20px;
+}
+
+.card {
+    margin-top: 60px;
+}
+
+.mat-select { display: block !important; }

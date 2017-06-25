@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { SelectModule } from 'ng2-select';
+import { MdSelectModule } from '@angular/material';
+
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
@@ -47,7 +49,8 @@ import { AuthGuard } from './services/auth-guard.service';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
+    MdSelectModule, 
     SimpleNotificationsModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
