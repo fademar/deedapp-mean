@@ -2,12 +2,4 @@
 
 body { padding-top: 100px; }
 
-.row {
-    margin-bottom: 20px;
-}
-
-.card {
-    margin-top: 60px;
-}
-
 .mat-select { display: block !important; }

@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { SelectModule } from 'ng2-select';
-import { MdSelectModule } from '@angular/material';
+import {MaterialModule, MdNativeDateModule} from '@angular/material';
 
 
 import { AppComponent } from './app.component';
@@ -50,7 +50,8 @@ import { AuthGuard } from './services/auth-guard.service';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MdSelectModule, 
+    MaterialModule,
+    MdNativeDateModule,
     SimpleNotificationsModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,

@@ -21,6 +21,7 @@ export class AddDeedComponent implements OnInit {
     collectiveCoAgent: FormGroup;
     collectiveCoCounterAgent: FormGroup;
     agentTransactionObject: FormGroup;
+    agentTransactionObjectType: FormControl;
     counterAgentTransactionObject: FormGroup;
     agentTransactionObjects: FormArray;
     counterAgentTransactionObjects: FormArray;
@@ -239,7 +240,6 @@ export class AddDeedComponent implements OnInit {
                     geogrStatus: [''],
                     socialStatus: [''],
                     corporationName: [''],
-                    patronyme: [''],
                     nbParticipants: [''],
                     names: ['']
                 })
@@ -306,7 +306,6 @@ export class AddDeedComponent implements OnInit {
                     geogrStatus: [''],
                     socialStatus: [''],
                     corporationName: [''],
-                    patronyme: [''],
                     nbParticipants: [''],
                     names: ['']
                 })
@@ -375,7 +374,6 @@ export class AddDeedComponent implements OnInit {
                     geogrStatus: [''],
                     socialStatus: [''],
                     corporationName: [''],
-                    patronyme: [''],
                     nbParticipants: [''],
                     names: ['']
                 })
@@ -457,7 +455,6 @@ export class AddDeedComponent implements OnInit {
                     geogrStatus: [''],
                     socialStatus: [''],
                     corporationName: [''],
-                    patronyme: [''],
                     nbParticipants: [''],
                     names: ['']
                 })
@@ -557,8 +554,10 @@ export class AddDeedComponent implements OnInit {
     initTransaction() {
         return this.fb.group({
             agentAction: [''],
+            agentTransactionObjectType: [''],
             agentTransactionObjects: this.fb.array([]),
             counterAgentAction: [''],
+            conunterAgentTransactionObjectType: [''],
             counterAgentTransactionObjects: this.fb.array([]),
             advancePayment: ['no'],
             contractConditions: [''],
@@ -728,6 +727,15 @@ export class AddDeedComponent implements OnInit {
         }
     }
 
+    addAnotherAgentTransactionObject(i) {
+        this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjectType.reset();
+    }
+
+    removeAgentTransactionObject(i, j) {
+        this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjectType.reset();
+        this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.removeAt(j);
+    }
+
     refreshValueAsWhom(value: any, i: number) {
         this.value = value;
     }
@@ -857,8 +865,9 @@ export class AddDeedComponent implements OnInit {
         this.value = value;
     }
 
-    selectedWhat(value: any, i:number): void {
-        switch (value.id) {
+    selectedWhat(i:number) {
+
+        switch (this.deedForm.controls.transactions['controls'][i].get('agentTransactionObjectType').value) {
             case 'chattels': {
                 this.agentTransactionObject = this.fb.group({
                     chattels: this.fb.group({
@@ -1053,8 +1062,8 @@ export class AddDeedComponent implements OnInit {
         } // END SWITCH
         
         this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
-        this.indexValues.push(value.id);
-        this.selectedValue = value.id;
+        // this.indexValues.push(this.deedForm.controls.transactions['controls'][i].controls.get('agentTransactionObjectType').value);
+        // this.selectedValue =this.deedForm.controls.transactions['controls'][i].controls.get('agentTransactionObjectType').value;
     }
 
     removedWhat(value: any, i: any): void {
