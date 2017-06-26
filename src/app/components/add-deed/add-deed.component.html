@@ -1043,20 +1043,20 @@
 													</div>
 													<div class="md-form">
 													<label>Share</label>
-															<select class="form-control" formControlName="share">
-																<option *ngFor="let shareValue of shareList" [value]="shareValue">{{ shareValue }}</option>
-															</select>
+														<md-select class="form-control" formControlName="share">
+															<md-option *ngFor="let shareValue of shareList" [value]="shareValue">{{ shareValue }}</md-option>
+														</md-select>
 													</div>
 													<div class="md-form">
 													<label>Localisation</label>
-															<input class="form-control" formControlName="localisation">
+														<input class="form-control" formControlName="localisation">
 													</div>
 													<div class="md-form">
 													<label>Neighbours</label>
-															<input class="form-control" formControlName="neighbours">
+														<input class="form-control" formControlName="neighbours">
 													</div>
 													<div  class="md-form" formGroupName="surface">
-													<label>Surface</label>
+													<div>Surface</div>
 															<input class="form-control" formControlName="chetiVpole">
 														<div class="col-sm-1 small-label">cheri v pole</div>
 														<div class="col-sm-1 small-label text-center">OR</div>
