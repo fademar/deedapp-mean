@@ -21,7 +21,7 @@ export class SearchService {
 
   searchEntries(term) {
         if(!this.results) {
-            this.results = this.http.get('http://localhost:3000/api/search/'+term).map(res => res.json());
+            this.results = this.http.get('/api/search/'+term).map(res => res.json());
         }
     return this.results;
   }

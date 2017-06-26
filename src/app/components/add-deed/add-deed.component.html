@@ -45,7 +45,7 @@
 					<div class="col-4">
 						<div class="md-form">
 							<input type="text" id="deedLanguage" class="form-control" formControlName="deedLanguage" required>
-							<label for="deedLanguage">Deed Language</label>
+							<label class="active" for="deedLanguage">Deed Language</label>
 						</div>
 					</div>
 				</div>
@@ -1036,14 +1036,12 @@
 												<h3 class="text-center">Immovable Property<i class="fa fa-plus-circle pull-right" (click)="addAnotherAgentTransactionObject(i)" aria-hidden="true"></i><i class="fa fa-minus-circle pull-right" (click)="removeAgentTransactionObject(i, j)" aria-hidden="true"></i></h3>
 												<div formGroupName="immovableProperty">
 													<div class="md-form">
-													<label>Type</label>
-														<md-select class="form-control" formControlName="type">
+														<md-select placeholder="Type of immovable property" formControlName="type">
 															<md-option *ngFor="let immovablePropertyValue of immovablePropertyList" [value]="immovablePropertyValue">{{ immovablePropertyValue }}</md-option>
 														</md-select>
 													</div>
 													<div class="md-form">
-													<label>Share</label>
-														<md-select class="form-control" formControlName="share">
+														<md-select placeholder="Share" formControlName="share">
 															<md-option *ngFor="let shareValue of shareList" [value]="shareValue">{{ shareValue }}</md-option>
 														</md-select>
 													</div>
@@ -1057,18 +1055,25 @@
 													</div>
 													<div  class="md-form" formGroupName="surface">
 													<div>Surface</div>
+														<div class="md-form">
 															<input class="form-control" formControlName="chetiVpole">
-														<div class="col-sm-1 small-label">cheri v pole</div>
-														<div class="col-sm-1 small-label text-center">OR</div>
+															<label>cheti v pole</label>
+														</div>
+														<div>OR</div>
 														<div formGroupName="sazheni">
 															<div class="col-sm-2">
-																<input class="form-control" formControlName="x">
+																<div class="md-form">
+																	<input type="text" class="form-control" formControlName="x">
+																	<label>Sazheni x</label>
+																</div>
 															</div>
 															<div class="col-sm-1 small-label text-center">x</div>
 															<div class="col-sm-2">
-																<input class="form-control" formControlName="y">
+																<div class="md-form">
+																	<input class="form-control" formControlName="y">
+																	<label>Sazheni y</label>
+																</div>
 															</div>
-															<div class="col-sm-1 small-label">sazheni</div>
 														</div>
 													</div>
 													<div class="md-form" formGroupName="population">
@@ -1114,6 +1119,8 @@
 													</div>
 												</div>
 											</div>
+										</div>
+										</div>
 											<div *ngIf="transactionObject['controls']['money']">
 												<h3 class="text-center">Money<i class="fa fa-plus-circle pull-right" (click)="addAnotherAgentTransactionObject(i)" aria-hidden="true"></i><i class="fa fa-minus-circle pull-right" (click)="removeAgentTransactionObject(i, j)" aria-hidden="true"></i></h3>
 												<div formGroupName="money">
