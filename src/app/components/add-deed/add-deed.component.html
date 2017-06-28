@@ -196,12 +196,6 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label">Patronyme</label>
-					<div class="col-sm-10">
-						<input class="form-control" formControlName="patronyme">
-					</div>
-				</div>
-				<div class="form-group">
 					<label class="col-sm-2 control-label">Number of Participants</label>
 					<div class="col-sm-10">
 						<input class="form-control" formControlName="nbParticipants">
@@ -373,12 +367,6 @@
 								<label class="col-sm-2 control-label">Corporation Name</label>
 								<div class="col-sm-10">
 									<input class="form-control" formControlName="corporationName">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Patronyme</label>
-								<div class="col-sm-10">
-									<input class="form-control" formControlName="patronyme">
 								</div>
 							</div>
 							<div class="form-group">
@@ -596,12 +584,6 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label">Patronyme</label>
-					<div class="col-sm-10">
-						<input class="form-control" formControlName="patronyme">
-					</div>
-				</div>
-				<div class="form-group">
 					<label class="col-sm-2 control-label">Number of Participants</label>
 					<div class="col-sm-10">
 						<input class="form-control" formControlName="nbParticipants">
@@ -776,12 +758,6 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label">Patronyme</label>
-								<div class="col-sm-10">
-									<input class="form-control" formControlName="patronyme">
-								</div>
-							</div>
-							<div class="form-group">
 								<label class="col-sm-2 control-label">Number of Participants</label>
 								<div class="col-sm-10">
 									<input class="form-control" formControlName="nbParticipants">
@@ -878,9 +854,9 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label">What ?</label>
 							<div class="col-sm-10">
-								<ng-select [multiple]="true" [items]="whatList" (data)="refreshValueWhat($event, i)" (selected)="selectedWhat($event, i)"
-								 (removed)="removedWhat($event, i)" placeholder="No object selected">
-								</ng-select>
+								<select class="form-control" formControlName="agentTransactionObjectType" (change)="selectedWhat(i)">
+									<option *ngFor="let what of whatList" [value]="what">{{ what }}</option>
+								</select>
 							</div>
 						</div>
 					</div>
@@ -888,17 +864,8 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label">What ?</label>
 							<div class="col-sm-10">
-								<ng-select [multiple]="true" [items]="whatList" (data)="refreshValueWhat($event, i)" (selected)="selectedWhat($event, i)"
-								 (removed)="removedWhat($event, i)" placeholder="No object selected">
-								</ng-select>
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">Who inherits</label>
-							<div class="col-sm-10">
-								<select class="form-control" formControlName="whoInherits">
-									<option value="counterAgent">Counter Agent</option>	
-									<option *ngFor="let value of deedForm.controls.coAgents.controls; let i=index" [value]="'coAgent' + (i+1)">CoAgent {{ i + 1 }}</option>
+								<select class="form-control" formControlName="agentTransactionObjectType" (change)="selectedWhat(i)">
+									<option *ngFor="let what of whatList" [value]="what">{{ what }}</option>
 								</select>
 							</div>
 						</div>
@@ -909,7 +876,7 @@
 							<div class="col-sm-10">
 								<ng-select [allowClear]="true" [items]="whomList" (data)="refreshValueWhom($event, i)" (selected)="selectedWhom($event, i)"
 								 (removed)="removedWhom($event, i)" placeholder="No object selected">
-								</ng-select>	
+								</ng-select>
 							</div>
 						</div>
 					</div>
@@ -917,9 +884,9 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label">As Whom ?</label>
 							<div class="col-sm-10">
-								<ng-select [allowClear]="true" [items]="asWhomList" (data)="refreshValueAsWhom($event, i)" (selected)="selectedAsWhom($event, i)"
-								 (removed)="removedAsWhom($event, i)" placeholder="No object selected">
-								</ng-select>	
+								<select class="form-control" #aswhom (change)="selectedAsWhom(i, aswhom.value)">
+									<option *ngFor="let asWhom of asWhomList" [value]="asWhom">{{ asWhom }}</option>
+								</select>
 							</div>
 						</div>
 					</div>
@@ -938,7 +905,7 @@
 					<div *ngFor="let transactionObject of transaction['controls']['agentTransactionObjects']['controls']; let j=index">
 							<div [formGroupName]="j">
 								<div *ngIf="transactionObject['controls']['chattels']">
-									<h3 class="text-center">Chattels</h3>
+									<h3 class="text-center">Chattels<i class="fa fa-minus-circle pull-right" (click)="removeAgentTransactionObject(i, j)" aria-hidden="true"></i></h3>
 									<div formGroupName="chattels">
 										<div class="form-group">
 											<label class="col-sm-2 control-label">Type</label>
@@ -967,7 +934,7 @@
 									</div>
 								</div>
 								<div *ngIf="transactionObject['controls']['debt']">
-									<h3 class="text-center">Debt</h3>
+									<h3 class="text-center">Debt<i class="fa fa-minus-circle pull-right" (click)="removeAgentTransactionObject(i, j)" aria-hidden="true"></i></h3>
 									<div formGroupName="debt">
 										<h4 class="text-center">Amount</h4>
 										<div formGroupName="amount">
@@ -1017,7 +984,7 @@
 									</div>
 								</div>
 								<div *ngIf="transactionObject['controls']['dependent']">
-									<h3 class="text-center">Dependent</h3>
+									<h3 class="text-center">Dependent<i class="fa fa-minus-circle pull-right" (click)="removeAgentTransactionObject(i, j)" aria-hidden="true"></i></h3>
 									<div formGroupName="dependent">
 										<div class="form-group">
 											<label class="col-sm-2 control-label">Family Status</label>
@@ -1052,7 +1019,7 @@
 									</div>
 								</div>
 								<div *ngIf="transactionObject['controls']['forfeit']">
-									<h3 class="text-center">Forfeit</h3>
+									<h3 class="text-center">Forfeit<i class="fa fa-minus-circle pull-right" (click)="removeAgentTransactionObject(i, j)" aria-hidden="true"></i></h3>
 									<div formGroupName="forfeit">
 										<div class="form-group" formGroupName="moscowSilver">
 											<label class="col-sm-2 control-label">moscow silver: </label>
@@ -1087,7 +1054,7 @@
 									</div>
 								</div>
 								<div *ngIf="transactionObject['controls']['fugitiveSouls']">
-									<h3 class="text-center">Fugitive Souls</h3>
+									<h3 class="text-center">Fugitive Souls<i class="fa fa-minus-circle pull-right" (click)="removeAgentTransactionObject(i, j)" aria-hidden="true"></i></h3>
 									<div formGroupName="fugitiveSouls">
 										<div class="form-group">
 											<label class="col-sm-2 control-label">Juridical Status</label>
@@ -1139,7 +1106,7 @@
 									</div>
 								</div>
 								<div *ngIf="transactionObject['controls']['goods']">
-									<h3 class="text-center">Goods</h3>
+									<h3 class="text-center">Goods<i class="fa fa-minus-circle pull-right" (click)="removeAgentTransactionObject(i, j)" aria-hidden="true"></i></h3>
 									<div formGroupName="goods">
 										<div class="form-group">
 											<label class="col-sm-2 control-label">Type</label>
@@ -1189,7 +1156,7 @@
 									</div>
 								</div>
 								<div *ngIf="transactionObject['controls']['immovableProperty']">
-									<h3 class="text-center">Immovable Property</h3>
+									<h3 class="text-center">Immovable Property<i class="fa fa-minus-circle pull-right" (click)="removeAgentTransactionObject(i, j)" aria-hidden="true"></i></h3>
 									<div formGroupName="immovableProperty">
 										<div class="form-group">
 											<label class="col-sm-2 control-label">Type</label>
@@ -1299,7 +1266,7 @@
 									</div>
 								</div>
 								<div *ngIf="transactionObject['controls']['money']">
-									<h3 class="text-center">Money</h3>
+									<h3 class="text-center">Money<i class="fa fa-minus-circle pull-right" (click)="removeAgentTransactionObject(i, j)" aria-hidden="true"></i></h3>
 									<div formGroupName="money">
 										<h4 class="text-center">Amount</h4>
 										<div formGroupName ="amount">	
@@ -1337,7 +1304,7 @@
 									</div>
 								</div>
 								<div *ngIf="transactionObject['controls']['parent']">
-									<h3 class="text-center">Parent</h3>
+									<h3 class="text-center">Parent<i class="fa fa-minus-circle pull-right" (click)="removeAgentTransactionObject(i, j)" aria-hidden="true"></i></h3>
 									<div formGroupName="parent">
 										<div class="form-group">
 											<label class="col-sm-2 control-label">Co-Agent</label>
@@ -1348,7 +1315,7 @@
 									</div>
 								</div>
 								<div *ngIf="transactionObject['controls']['responsabilies']">
-									<h3 class="text-center">Responsabilities</h3>
+									<h3 class="text-center">Responsabilities<i class="fa fa-minus-circle pull-right" (click)="removeAgentTransactionObject(i, j)" aria-hidden="true"></i></h3>
 									<div formGroupName="responsabilities">
 										<div class="form-group">
 											<label class="col-sm-2 control-label">Description</label>
@@ -1359,7 +1326,7 @@
 									</div>
 								</div>
 								<div *ngIf="transactionObject['controls']['shareFromEstate']">
-									<h3 class="text-center">Share From Estate</h3>
+									<h3 class="text-center">Share From Estate<i class="fa fa-minus-circle pull-right" (click)="removeAgentTransactionObject(i, j)" aria-hidden="true"></i></h3>
 									<div formGroupName="shareFromEstate">
 										<div class="form-group">
 											<label class="col-sm-2 control-label">Share</label>
@@ -1378,7 +1345,7 @@
 									</div>
 								</div>
 								<div *ngIf="transactionObject['controls']['souls']">
-									<h3 class="text-center">Souls</h3>
+									<h3 class="text-center">Souls<i class="fa fa-minus-circle pull-right" (click)="removeAgentTransactionObject(i, j)" aria-hidden="true"></i></h3>
 									<div formGroupName="souls">
 										<div class="form-group">
 											<label class="col-sm-2 control-label">Juridical Status</label>
@@ -1425,14 +1392,14 @@
 								</div>
 								<div *ngIf="transactionObject['controls']['other']">
 									<div class="form-group">
-										<label class="col-sm-2 control-label">Other</label>
+										<label class="col-sm-2 control-label">Other<i class="fa fa-minus-circle pull-right" (click)="removeAgentTransactionObject(i, j)" aria-hidden="true"></i></label>
 										<div class="col-sm-10">
 											<input class="form-control" formControlName="other">
 										</div>
 									</div>
 								</div>
 								<div *ngIf="transactionObject['controls']['asWhom']">
-									<div [ngSwitch]=selectedAsWhomValue>
+									<div [ngSwitch]="selectedAsWhomValue">
 										<div *ngSwitchCase="'as hired worker'">
 											<div class="form-group">
 												<label class="col-sm-2 control-label">To Do What</label>
@@ -1496,7 +1463,16 @@
 											</div>
 										</div>
 									</div>
-								</div>	
+								</div>
+								<div *ngIf="selectedAction === 'bequeaths'" class="form-group">
+									<label class="col-sm-2 control-label">Who inherits</label>
+									<div class="col-sm-10">
+										<select class="form-control" formControlName="whoInherits">
+											<option value="counterAgent">Counter Agent</option>	
+											<option *ngFor="let value of deedForm['controls'].coCounterAgents['controls']; let i=index" [value]="'coCounterAgent' + (i+1)">Co-Counter Agent {{ i + 1 }}</option>
+										</select>
+									</div>
+								</div>
 						</div>
 					</div>
 				</div>
@@ -1525,9 +1501,9 @@
 								<div class="form-group">
 									<label class="col-sm-2 control-label">What ?</label>
 									<div class="col-sm-10">
-										<ng-select [multiple]="true" [items]="whatList" (data)="refreshValueCounterWhat($event, i)" (selected)="selectedCounterWhat($event, i)"
-										(removed)="removedCounterWhat($event, i)" placeholder="No object selected">
-										</ng-select>
+										<select class="form-control" formControlName="counterAgentTransactionObjectType" (change)="selectedCounterWhat(i)">
+											<option *ngFor="let what of whatList" [value]="what">{{ what }}</option>
+										</select>
 									</div>
 								</div>
 							</div>
@@ -1562,6 +1538,7 @@
 				<div formArrayName='counterAgentTransactionObjects'>
 					<div *ngFor="let transactionCounterObject of transaction['controls']['counterAgentTransactionObjects']['controls']; let j=index">
 							<div [formGroupName]="j">
+								<h3><i class="fa fa-minus-circle pull-right" (click)="removeCounterAgentTransactionObject(i, j)" aria-hidden="true"></i></h3>
 								<div *ngIf="transactionCounterObject['controls']['chattels']">
 									<h3 class="text-center">Chattels</h3>
 									<div formGroupName="chattels">

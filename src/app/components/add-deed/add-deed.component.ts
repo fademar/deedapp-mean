@@ -44,14 +44,15 @@ export class AddDeedComponent implements OnInit {
     other: FormGroup;
     what: FormArray;
     whom: FormGroup;
-    asWhom: FormGroup;
+    asWhom: FormControl;
     whoInherits: FormControl;
     coAgentNumberWhoInherits: FormControl;
     otherAgentAction: FormControl;
 	otherImmovablePropertyType: FormControl;
 	otherImmovablePropertyShare: FormControl;
+	asWhomValue;
 
-    deed;
+	deed;
     deedValue = '';
     agentSex = '';
     socialStatus;
@@ -237,7 +238,6 @@ export class AddDeedComponent implements OnInit {
                     geogrStatus: [''],
                     socialStatus: [''],
                     corporationName: [''],
-                    patronyme: [''],
                     nbParticipants: [''],
                     names: ['']
                 })
@@ -305,7 +305,6 @@ export class AddDeedComponent implements OnInit {
                     geogrStatus: [''],
                     socialStatus: [''],
                     corporationName: [''],
-                    patronyme: [''],
                     nbParticipants: [''],
                     names: ['']
                 })
@@ -374,7 +373,6 @@ export class AddDeedComponent implements OnInit {
                     geogrStatus: [''],
                     socialStatus: [''],
                     corporationName: [''],
-                    patronyme: [''],
                     nbParticipants: [''],
                     names: ['']
                 })
@@ -456,7 +454,6 @@ export class AddDeedComponent implements OnInit {
                     geogrStatus: [''],
                     socialStatus: [''],
                     corporationName: [''],
-                    patronyme: [''],
                     nbParticipants: [''],
                     names: ['']
                 })
@@ -557,8 +554,10 @@ export class AddDeedComponent implements OnInit {
         return this.fb.group({
             agentAction: [''],
             agentTransactionObjects: this.fb.array([]),
+            agentTransactionObjectType: [''],
             counterAgentAction: [''],
             counterAgentTransactionObjects: this.fb.array([]),
+            counterAgentTransactionObjectType: [''],
             advancePayment: ['no'],
             contractConditions: [''],
             contractDuration: [''],
@@ -641,8 +640,6 @@ export class AddDeedComponent implements OnInit {
                 break;
             }
             case 'bequeaths': {
-                this.whoInherits = new FormControl;
-                this.deedForm.controls.transactions['controls'][i].addControl('whoInherits', this.whoInherits);
                 this.selectedAction = 'bequeaths';
                 this.counterAgentField = '';
                 break;
@@ -699,7 +696,6 @@ export class AddDeedComponent implements OnInit {
         }
     }
 
-
     updateCounterAgentAction(i: number) {
         this.counterAgentAction = this.deedForm.controls.transactions['controls'][i].get('counterAgentAction').value;
 
@@ -726,16 +722,12 @@ export class AddDeedComponent implements OnInit {
             }
         }
     }
-
-    refreshValueAsWhom(value: any, i: number) {
-        this.value = value;
-    }
-
-    selectedAsWhom(value: any, i:number) {
-        if (this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.length > 0) {
-            this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.removeAt(0);
-        }
-        switch (value.id) {
+	
+	
+	// AGENT AS WHOM methods
+	
+	selectedAsWhom(i:number, value) {
+        switch (value) {
             case 'as hired worker': {
                 this.agentTransactionObject = this.fb.group({
                     asWhom: ['as hired worker'],
@@ -747,24 +739,6 @@ export class AddDeedComponent implements OnInit {
                 this.agentTransactionObject = this.fb.group({
                     asWhom: ['in household'],
                     withFamily: ['']
-                });
-                break;
-            }
-            case 'as son-in-law': {
-                this.agentTransactionObject = this.fb.group({
-                    asWhom: ['as son-in-law']
-                });
-                break;
-            }
-            case 'as bondman': {
-                this.agentTransactionObject = this.fb.group({
-                    asWhom: ['as bondman']
-                });
-                break;
-            }
-            case 'as peasant': {
-                this.agentTransactionObject = this.fb.group({
-                    asWhom: ['as peasant']
                 });
                 break;
             }
@@ -800,13 +774,12 @@ export class AddDeedComponent implements OnInit {
             }
         };
         this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
-        this.selectedAsWhomValue = value.id;
-    }
+		this.selectedAsWhomValue = value;
+}
 
     removedAsWhom(value: any, i: any): void {
         this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.removeAt(0);
     }
-
 
     // AGENT WHOM Select Methods
 
@@ -850,14 +823,11 @@ export class AddDeedComponent implements OnInit {
         this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.removeAt(0);
     }
 
-    // WHAT Select Methods
+    // AGENT WHAT Select Methods
 
-    refreshValueWhat(value: any, i: number) {
-        this.value = value;
-    }
 
-    selectedWhat(value: any, i:number): void {
-        switch (value.id) {
+    selectedWhat(i:number) {
+        switch (this.deedForm.controls.transactions['controls'][i].get('agentTransactionObjectType').value) {
             case 'chattels': {
                 this.agentTransactionObject = this.fb.group({
                     chattels: this.fb.group({
@@ -1050,17 +1020,23 @@ export class AddDeedComponent implements OnInit {
             }
 
         } // END SWITCH
-        
+
+		if (this.deedForm.controls.transactions['controls'][i].get('agentAction').value === 'bequeaths') {
+			this.whoInherits = new FormControl;
+        	this.agentTransactionObject.addControl('whoInherits', this.whoInherits);
+		}
         this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
-        this.indexValues.push(value.id);
-        this.selectedValue = value.id;
+		this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjectType.reset();
     }
 
-    removedWhat(value: any, i: any): void {
-        let index = this.indexValues.indexOf(value.id);
-        this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.removeAt(index);
-        this.indexValues.splice(index, 1);
+	removeAgentTransactionObject(i, j) {
+        this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjectType.reset();
+        this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.removeAt(j);
     }
+
+
+	// IMMOVABLE PROPERTY ACTIONS
+
 
 	updateAgentImmovablePropertyType(i: number, j:number) {
         if (this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.immovableProperty.get('type').value === 'other') {
@@ -1136,12 +1112,8 @@ export class AddDeedComponent implements OnInit {
 
     // WHAT Select Methods
 
-    refreshValueCounterWhat(value: any, i: number) {
-        this.value = value;
-    }
-
-    selectedCounterWhat(value: any, i:number): void {
-        switch (value.id) {
+    selectedCounterWhat(i:number) {
+        switch (this.deedForm.controls.transactions['controls'][i].get('counterAgentTransactionObjectType').value) {
             case 'chattels': {
                 this.counterAgentTransactionObject = this.fb.group({
                     chattels: this.fb.group({
@@ -1336,14 +1308,12 @@ export class AddDeedComponent implements OnInit {
         } // END SWITCH
 
         this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects.push(this.counterAgentTransactionObject);
-        this.indexValues.push(value.id);
-        this.selectedValue = value.id;
+        this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjectType.reset();
     }
 
-    removedCounterWhat(value: any, i: any): void {
-        let index = this.indexValues.indexOf(value.id);
-        this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects.removeAt(index);
-        this.indexValues.splice(index, 1);
+	removeCounterAgentTransactionObject(i, j) {
+        this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjectType.reset();
+        this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects.removeAt(j);
     }
 
 
