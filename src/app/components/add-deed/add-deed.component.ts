@@ -48,7 +48,8 @@ export class AddDeedComponent implements OnInit {
     whoInherits: FormControl;
     coAgentNumberWhoInherits: FormControl;
     otherAgentAction: FormControl;
-
+	otherImmovablePropertyType: FormControl;
+	otherImmovablePropertyShare: FormControl;
 
     deed;
     deedValue = '';
@@ -137,16 +138,23 @@ export class AddDeedComponent implements OnInit {
             sureties: this.fb.array([]),
             otherParticipants: this.fb.array([]),
             registrationDate: [''],
-            fee: this.fb.group({
-                rouble: [''],
-                altyn: [''],
-                dynga: [''],
-                chekhi: [''],
-                collected: ['yes']
+            fees: this.fb.group({
+				tax: this.fb.group({
+					roubles: [''],
+					altyn: [''],
+					denga: [''],
+					collected: ['yes']	
+				}),
+				fee: this.fb.group({
+					roubles: [''],
+					altyn: [''],
+					denga: [''],
+					collected: ['yes']
+				})
             }),
             verbatimCitations: [''],
             researcherNotes: [''],
-            incomplete: [false]
+            complete: [false]
         })
 
     }
@@ -250,6 +258,7 @@ export class AddDeedComponent implements OnInit {
             return true;
         }
     }
+
 
 
     // COUNTER AGENT METHODS
@@ -1052,6 +1061,36 @@ export class AddDeedComponent implements OnInit {
         this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.removeAt(index);
         this.indexValues.splice(index, 1);
     }
+
+	updateAgentImmovablePropertyType(i: number, j:number) {
+        if (this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.immovableProperty.get('type').value === 'other') {
+            this.otherImmovablePropertyType = new FormControl;
+            this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.immovableProperty.addControl('otherImmovablePropertyType', this.otherImmovablePropertyType);
+			return true;
+        }
+	}
+	updateCounterAgentImmovablePropertyType(i: number, j:number) {
+		if (this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.immovableProperty.get('type').value === 'other') {
+            this.otherImmovablePropertyType = new FormControl;
+            this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.immovableProperty.addControl('otherImmovablePropertyType', this.otherImmovablePropertyType);
+			return true;
+        }
+	}
+
+	updateAgentImmovablePropertyShare(i: number, j:number) {
+        if (this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.immovableProperty.get('share').value === 'other') {
+            this.otherImmovablePropertyShare = new FormControl;
+            this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.immovableProperty.addControl('otherImmovablePropertyShare', this.otherImmovablePropertyShare);
+			return true;
+        }
+	}
+	updateCounterAgentImmovablePropertyShare(i: number, j:number) {
+		if (this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.immovableProperty.get('share').value === 'other') {
+            this.otherImmovablePropertyShare = new FormControl;
+            this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.immovableProperty.addControl('otherImmovablePropertyShare', this.otherImmovablePropertyShare);
+			return true;
+        }
+	}
 
     // COUNTER AGENT WHOM Select Methods
 

@@ -1194,17 +1194,35 @@
 										<div class="form-group">
 											<label class="col-sm-2 control-label">Type</label>
 											<div class="col-sm-10">
-												<select class="form-control" formControlName="type">
+												<select class="form-control" formControlName="type" (change)="updateAgentImmovablePropertyType(i,j)">
 													<option *ngFor="let immovablePropertyValue of immovablePropertyList" [value]="immovablePropertyValue">{{ immovablePropertyValue }}</option>
 												</select>
+											</div>
+										</div>
+										<div *ngIf="updateAgentImmovablePropertyType(i,j)" class="form-group">
+											<label class="col-sm-2 control-label">Other type</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="otherImmovablePropertyType">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-2 control-label">Share</label>
 											<div class="col-sm-10">
-												<select class="form-control" formControlName="share">
+												<select class="form-control" formControlName="share" (change)="updateAgentImmovablePropertyShare(i,j)">
 													<option *ngFor="let shareValue of shareList" [value]="shareValue">{{ shareValue }}</option>
 												</select>
+											</div>
+										</div>
+										<div *ngIf="updateAgentImmovablePropertyShare(i,j)" class="form-group">
+											<label class="col-sm-2 control-label">Other share</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="otherImmovablePropertyShare">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Origin</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="origin">
 											</div>
 										</div>
 										<div class="form-group">
@@ -1801,17 +1819,35 @@
 										<div class="form-group">
 											<label class="col-sm-2 control-label">Type</label>
 											<div class="col-sm-10">
-												<select class="form-control" formControlName="type">
+												<select class="form-control" formControlName="type" (change)="updateCounterAgentImmovablePropertyType(i,j)">
 													<option *ngFor="let immovablePropertyValue of immovablePropertyList" [value]="immovablePropertyValue">{{ immovablePropertyValue }}</option>
 												</select>
+											</div>
+										</div>
+										<div *ngIf="updateCounterAgentImmovablePropertyType(i,j)" class="form-group">
+											<label class="col-sm-2 control-label">Other type</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="otherImmovablePropertyType">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-2 control-label">Share</label>
 											<div class="col-sm-10">
-												<select class="form-control" formControlName="share">
+												<select class="form-control" formControlName="share" (change)="updateCounterAgentImmovablePropertyShare(i,j)">
 													<option *ngFor="let shareValue of shareList" [value]="shareValue">{{ shareValue }}</option>
 												</select>
+											</div>
+										</div>
+										<div *ngIf="updateCounterAgentImmovablePropertyShare(i,j)" class="form-group">
+											<label class="col-sm-2 control-label">Other share</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="otherImmovablePropertyShare">
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">Origin</label>
+											<div class="col-sm-10">
+												<input class="form-control" formControlName="origin">
 											</div>
 										</div>
 										<div class="form-group">
@@ -2386,43 +2422,66 @@
 			</div>
 		</div>
 	</div>
-	<h3 class="text-center">Fee</h3>
-	<div formGroupName="fee">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Amount</label>
-			<div class="col-sm-10">
-				<div class="row">
-					<div class="col-sm-2">
-						<input class="form-control" formControlName="rouble">
-					</div>
-					<div class="col-sm-1 small-label">roubles</div>
-					<div class="col-sm-2">
-						<input class="form-control" formControlName="altyn">
-					</div>
-					<div class="col-sm-1 small-label">altyn</div>
-					<div class="col-sm-2">
-						<input class="form-control" formControlName="dynga">
-					</div>
-					<div class="col-sm-1 small-label">dynga</div>
-					<div class="col-sm-1">
-						<div class="checkbox">
-							<label>
-								<input type="checkbox" formControlName="chekhi"> chekhi
+	<h3 class="text-center">Fees</h3>
+	<div formGroupName="fees">
+		<div formGroupName="tax">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Tax</label>
+				<div class="col-sm-10">
+					<div class="row">
+						<div class="col-sm-2">
+							<input class="form-control" formControlName="roubles">
+						</div>
+						<div class="col-sm-1 small-label">roubles</div>
+						<div class="col-sm-2">
+							<input class="form-control" formControlName="altyn">
+						</div>
+						<div class="col-sm-1 small-label">altyn</div>
+						<div class="col-sm-2">
+							<input class="form-control" formControlName="denga">
+						</div>
+						<div class="col-sm-1 small-label">denga</div>
+						<div class="col-sm-1 small-label">Collected: </div>
+						<div class="col-sm-2">
+							<label class="radio-inline">
+								<input type="radio" formControlName="collected" value="yes"> Yes
+							</label>
+							<label class="radio-inline">
+								<input type="radio" formControlName="collected" value="no"> No
 							</label>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Collected</label>
-			<div class="col-sm-10">
-				<label class="radio-inline">
-					<input type="radio" formControlName="collected" value="yes"> Yes
-				</label>
-				<label class="radio-inline">
-					<input type="radio" formControlName="collected" value="no"> No
-				</label>
+		<div formGroupName="fee">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Fee</label>
+				<div class="col-sm-10">
+					<div class="row">
+						<div class="col-sm-2">
+							<input class="form-control" formControlName="roubles">
+						</div>
+						<div class="col-sm-1 small-label">roubles</div>
+						<div class="col-sm-2">
+							<input class="form-control" formControlName="altyn">
+						</div>
+						<div class="col-sm-1 small-label">altyn</div>
+						<div class="col-sm-2">
+							<input class="form-control" formControlName="denga">
+						</div>
+						<div class="col-sm-1 small-label">denga</div>
+						<div class="col-sm-1 small-label">Collected: </div>
+						<div class="col-sm-2">
+							<label class="radio-inline">
+								<input type="radio" formControlName="collected" value="yes"> Yes
+							</label>
+							<label class="radio-inline">
+								<input type="radio" formControlName="collected" value="no"> No
+							</label>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -2445,7 +2504,7 @@
 		<div class="col-sm-12">
 			<div class="form-group">
 				<div class="checkbox">
-					<label><input type="checkbox" formControlName="incomplete">Incomplete</label>
+					<label><input type="checkbox" formControlName="complete">Complete</label>
 				</div>
 			</div>
 		</div>
