@@ -55,6 +55,7 @@ export class AddDeedComponent implements OnInit {
 	deed;
     deedValue = '';
     agentSex = '';
+	agentData;
     socialStatus;
     relationToAgent;
     relationToCounterAgent;
@@ -260,7 +261,6 @@ export class AddDeedComponent implements OnInit {
     }
 
 
-
     // COUNTER AGENT METHODS
 
     getCounterAgentSex() {
@@ -407,6 +407,11 @@ export class AddDeedComponent implements OnInit {
             return true;
         }
     }
+
+	insertAgentData(i) {
+		this.agentData = this.deedForm.get('agent').value;
+		this.deedForm.controls['coAgents']['controls'][i]['controls'].coAgent.controls.referentMale.patchValue(this.agentData); 
+	}
 
     // Co-Counter Agents Methods (init, add and remove)
 
@@ -580,6 +585,12 @@ export class AddDeedComponent implements OnInit {
             this.counterAgentTransactionObjects = this.fb.array([]);
             this.deedForm.controls.transactions['controls'][i].setControl('counterAgentTransactionObjects', this.counterAgentTransactionObjects);
         }
+
+		if (this.deedForm.controls.transactions['controls'][i].controls.accusationAgainstAgent) {
+			this.deedForm.controls.transactions['controls'][i].removeControl('accusationAgainstAgent');
+			this.deedForm.controls.transactions['controls'][i].removeControl('accusationAgainstCounterAgent');
+            this.deedForm.controls.transactions['controls'][i].removeControl('juridicalProcedureStage');
+		}
 
         switch (this.agentAction) {
 
