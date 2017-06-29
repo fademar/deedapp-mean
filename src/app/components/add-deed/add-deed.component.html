@@ -874,9 +874,9 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Whom ?</label>
 							<div class="col-sm-10">
-								<ng-select [allowClear]="true" [items]="whomList" (data)="refreshValueWhom($event, i)" (selected)="selectedWhom($event, i)"
-								 (removed)="removedWhom($event, i)" placeholder="No object selected">
-								</ng-select>
+								<select class="form-control" #whom (change)="selectedWhom(whom.value, i)">
+									<option *ngFor="let whom of whomList" [value]="whom">{{ whom }}</option>
+								</select>
 							</div>
 						</div>
 					</div>
@@ -1487,6 +1487,17 @@
 							</div>
 						</div>
 					</div>
+					<div *ngSwitchCase="'selectMarry'">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">What the Counter Agent does ?</label>
+							<div class="col-sm-10">
+								<select class="form-control" formControlName="counterAgentAction" (change)="updateCounterAgentAction(i)">
+									<option value="agrees to marry">agrees to marry</option>
+									<option value="agrees to marry-off">agrees to marry-off</option>
+								</select>
+							</div>
+						</div>
+					</div>
 					<div *ngSwitchCase="'select'">
 						<div class="form-group">
 							<label class="col-sm-2 control-label">What the Counter Agent does ?</label>
@@ -1496,39 +1507,39 @@
 								</select>
 							</div>
 						</div>
-						<div [ngSwitch]="selectedCounterAction">
-							<div *ngSwitchCase="'what'">
-								<div class="form-group">
-									<label class="col-sm-2 control-label">What ?</label>
-									<div class="col-sm-10">
-										<select class="form-control" formControlName="counterAgentTransactionObjectType" (change)="selectedCounterWhat(i)">
-											<option *ngFor="let what of whatList" [value]="what">{{ what }}</option>
-										</select>
-									</div>
+					</div>					
+					<div [ngSwitch]="selectedCounterAction">
+						<div *ngSwitchCase="'what'">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">What ?</label>
+								<div class="col-sm-10">
+									<select class="form-control" formControlName="counterAgentTransactionObjectType" (change)="selectedCounterWhat(i)">
+										<option *ngFor="let what of whatList" [value]="what">{{ what }}</option>
+									</select>
 								</div>
 							</div>
-							<div *ngSwitchCase="'whom'">
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Whom ?</label>
-									<div class="col-sm-10">
-										<ng-select [allowClear]="true" [items]="whomList" (data)="refreshValueCounterWhom($event, i)" (selected)="selectedCounterWhom($event, i)"
-										(removed)="removedCounterWhom($event, i)" placeholder="No object selected">
-										</ng-select>	
-									</div>
+						</div>
+						<div *ngSwitchCase="'whom'">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Whom ?</label>
+								<div class="col-sm-10">
+									<select class="form-control" #counterWhom (change)="selectedCounterWhom(counterWhom.value, i)">
+										<option *ngFor="let whom of whomList" [value]="whom">{{ whom }}</option>
+									</select>	
 								</div>
 							</div>
-							<div *ngSwitchCase="'settles'">
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Accusation against Counter Agent</label>
-									<div class="col-sm-10">
-										<input class="form-control" formControlName="accusationAgainstCounterAgent">
-									</div>
+						</div>
+						<div *ngSwitchCase="'settles'">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Accusation against Counter Agent</label>
+								<div class="col-sm-10">
+									<input class="form-control" formControlName="accusationAgainstCounterAgent">
 								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">Juridical Procedure Stage</label>
-									<div class="col-sm-10">
-										<input class="form-control" formControlName="juridicalProcedureStage">
-									</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Juridical Procedure Stage</label>
+								<div class="col-sm-10">
+									<input class="form-control" formControlName="juridicalProcedureStage">
 								</div>
 							</div>
 						</div>
@@ -1944,7 +1955,9 @@
 										<div class="form-group">
 											<label class="col-sm-2 control-label">Co-Agent</label>
 											<div class="col-sm-10">
-												<input class="form-control" formControlName="coAgentNumber">
+												<select class="form-control" formControlName="coAgentNumber">
+													<option *ngFor="let value of deedForm['controls'].coAgents['controls']; let i=index" [value]="'coAgent' + (i+1)">Co-Agent {{ i + 1 }}</option>
+												</select>
 											</div>
 										</div>
 									</div>
@@ -2489,7 +2502,7 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="form-group">
-				<button type="submit" [disabled]="deedForm.invalid" class="btn btn-info center-block">Save the deed</button>
+				<button type="submit" [disabled]="deedForm.invalid" class="submit btn btn-success btn-lg center-block">Save the deed</button>
 			</div>
 		</div>
 	</div>
