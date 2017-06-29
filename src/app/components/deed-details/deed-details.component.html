@@ -6,7 +6,7 @@
     </div>
     <h1 class="page-header">Deed {{ deed.deedCode }} {{ deed.deedRef }}</h1>
     <div *ngIf="!deed.complete" class="alert alert-warning" role="alert"><i class="glyphicon glyphicon-alert"></i> There is more data in the manuscript</div>
-    <h2>Deed References</h2>
+    <!--<h2>Deed References</h2>
     <ul class="list-group">
         <li class="list-group-item"><strong>Deed Code: </strong>{{ deed.deedCode }}</li>
         <li class="list-group-item"><strong>Deed Ref: </strong>{{ deed.deedRef }}</li>
@@ -528,11 +528,11 @@
                 <li class="list-group-item">{{ deed.researcherNotes }}</li>
             </div>
         </ul>
-    </div>
+    </div>-->
 
 
 
-
+<pre>{{ deed | json }}</pre>
 
 
 

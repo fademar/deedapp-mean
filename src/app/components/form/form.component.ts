@@ -113,6 +113,13 @@ export class FormComponent implements OnInit {
 
     ngOnInit() {
         this.initForm();
+        this.id = this.route.snapshot.params['id'];
+        if (this.id) {
+          this.deedService.getDeed(this.id).subscribe(deed => {
+              this.deed = deed;
+              this.patchForm(this.deed);
+          });
+        }
         this.selectedAction = '';
         this.selectedCounterAction = '';
     }
@@ -130,6 +137,48 @@ export class FormComponent implements OnInit {
             agentSex: [''],
             agent: this.fb.group({}),
             coAgents: this.fb.array([]),
+            counterAgentSex: [''],
+            counterAgent: this.fb.group({}),
+            coCounterAgents: this.fb.array([]),
+            transactions: this.fb.array([
+                this.initTransaction(),
+            ]),
+            whitnesses: this.fb.array([]),
+            sureties: this.fb.array([]),
+            otherParticipants: this.fb.array([]),
+            registrationDate: [''],
+            fees: this.fb.group({
+              tax: this.fb.group({
+                roubles: [''],
+                altyn: [''],
+                denga: [''],
+                collected: ['yes']	
+              }),
+              fee: this.fb.group({
+                roubles: [''],
+                altyn: [''],
+                denga: [''],
+                collected: ['yes']
+              })
+            }),
+            verbatimCitations: [''],
+            researcherNotes: [''],
+            complete: [false]
+        })
+
+    }
+
+    patchForm(deed) {
+
+        this.deedForm = this.fb.group({
+            deedCode: deed.deedCode,
+            deedRef: deed.deedRef,
+            deedDate: deed.deedDate,
+            deedName: deed.deedName,
+            deedLanguage: deed.deedLanguage,
+            agentSex: deed.agentSex,
+            agent: this.patchAgent(deed),
+            coAgents: this.patchCoAgents(deed),
             counterAgentSex: [''],
             counterAgent: this.fb.group({}),
             coCounterAgents: this.fb.array([]),
@@ -159,17 +208,110 @@ export class FormComponent implements OnInit {
             complete: [false]
         })
 
-        this.id = this.route.snapshot.params['id'];
-        if (this.id) {
-          this.deedService.getDeed(this.id).subscribe(deed => {
-              this.deed = deed;
-              this.deedForm.patchValue(this.deed);
-          });
+    }
+
+    patchAgent(deed) {
+      switch (deed.agentSex) {
+            case 'male': {
+                return this.fb.group({
+                    geogrStatus: deed.agent.geogrStatus,
+                    socialStatus: deed.agent.socialStatus,
+                    firstName: deed.agent.firstName,
+                    patronyme: deed.agent.patronyme,
+                    lastName: deed.agent.lastName,
+                    relatedTo: deed.agent.relatedTo
+                })
+            }
+            case 'female': {
+                return this.fb.group({
+                    familyStatus: deed.agent.familyStatus,
+                    firstName: deed.agent.firstName,
+                    patronyme: deed.agent.patronyme,
+                    relatedTo: deed.agent.relatedTo,
+                    referentMale: this.fb.group({
+                        relationshipToAgent: deed.agent.referentMale.relationshipToAgent,
+                        geogrStatus: deed.agent.referentMale.geogrStatus,
+                        socialStatus: deed.agent.referentMale.socialStatus,
+                        firstName: deed.agent.referentMale.firstName,
+                        patronyme: deed.agent.referentMale.patronyme,
+                        lastName: deed.agent.referentMale.lastName,
+                        relatedTo: deed.agent.referentMale.relatedTo
+                    })
+                })
+            }
+            case 'body-corporate': {
+                return this.fb.group({
+                    geogrStatus: deed.agent.geogrStatus,
+                    socialStatus: deed.agent.socialStatus,
+                    corporationName: deed.agent.corporationName,
+                    nbParticipants: deed.agent.nbParticipants,
+                    names: deed.agent.names
+                })
+            }
+            default: {
+                break;
+            }
         }
 
+    }
 
+    patchCoAgents(deed) {
+        if (deed.coAgents.length > 0) {
+            console.log(deed.coAgents);
+            for (let i = 0; i < deed.coAgents.length; i++) {
+                const element = deed.coAgents[i];
+                console.log(element)
+;                const control = <FormArray>this.deedForm.controls['coAgents'];
+                control.push(this.initCoAgent());
+                this.deedForm.controls['coAgents']['controls'][i].patchValue({
+                    coAgentSex: element.coAgentSex
+                })
 
+                switch (element.coAgentSex) {
+                    case 'male': {
+                        this.coAgent = this.fb.group({
+                            geogrStatus: element.coAgent.geogrStatus,
+                            socialStatus: element.coAgent.socialStatus,
+                            firstName: element.coAgent.firstName,
+                            patronyme: element.coAgent.patronyme,
+                            lastName: element.coAgent.lastName,
+                            relatedTo: element.coAgent.relatedTo
+                        });
+                        break;
+                    }
+                    case 'female': {
+                        this.coAgent = this.fb.group({
+                            familyStatus: element.coAgent.familyStatus,
+                            firstName: element.coAgent.firstName,
+                            patronyme: element.coAgent.patronyme,
+                            relatedTo: element.coAgent.relatedTo,
+                            referentMale: this.fb.group({
+                                relationshipToCoAgent: [''],
+                                geogrStatus: element.coAgent.geogrStatus,
+                                socialStatus: element.coAgent.socialStatus,
+                                firstName: element.coAgent.firstName,
+                                patronyme: element.coAgent.patronyme,
+                                lastName: element.coAgent.lastName,
+                                relatedTo: element.coAgent.relatedTo
+                            })
+                        });
+                        break;
+                    }
+                    case 'body-corporate': {
+                        this.coAgent = this.fb.group({
+                            geogrStatus: [''],
+                            socialStatus: [''],
+                            corporationName: [''],
+                            nbParticipants: [''],
+                            names: ['']
+                        });
+                        break;
+                    }
+                } // end switch
 
+              
+            } // endfor
+        } // endif coagents
     }
 
     insertLastDeedCode() {
@@ -270,6 +412,9 @@ export class FormComponent implements OnInit {
             return true;
         }
     }
+
+    
+
 
 
     // COUNTER AGENT METHODS
