@@ -4,12 +4,12 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>DeedCode</th>
-          <th>DeedRef</th>
-          <th>DeedDate</th>
-          <th>DeedName</th>
+          <th>Deed Code</th>
+          <th>Deed Ref</th>
+          <th>Deed Date<br><em>Registration Date</em></th>
+          <th>Deed Name</th>
           <th>Agent Name</th>
-          <th>ToDo</th>
+          <th>Complete</th>
 
           <th></th>
         </tr>
@@ -18,10 +18,10 @@
         <tr *ngFor='let deed of pagedDeeds'>
           <td>{{ deed.deedCode }}</td>
           <td>{{ deed.deedRef }}</td>
-          <td> <span *ngIf="deed.deedDate">{{ deed.deedDate }}</span></td>
-          <td> <span *ngIf="deed.deedName">{{ deed.deedName }}</span></td>
-          <td> <span *ngIf="deed.agent">{{ deed.agent.firstName }}</span> <span *ngIf="deed.agent">{{ deed.agent?.lastName }}</span></td>
-          <td> <i *ngIf="deed.incomplete" class="glyphicon glyphicon-ok"></i></td>
+          <td><span *ngIf="deed.deedDate">{{ deed.deedDate }}</span><span *ngIf="!deed.deedDate && deed.registrationDate"><em>{{ deed.registrationDate }}</em></span></td>
+          <td><span *ngIf="deed.deedName">{{ deed.deedName }}</span></td>
+          <td><span *ngIf="deed.agent.firstName">{{ deed.agent.firstName }}</span> <span *ngIf="deed.agent.lastName">{{ deed.agent.lastName }}</span> <span *ngIf="deed.agent.corporationName">{{ deed.agent.corporationName }}</span></td>
+          <td><i *ngIf="deed.complete" class="glyphicon glyphicon-ok"></i></td>
           <td>
             <a routerLink="/deed/{{ deed._id }}" class="btn btn-primary">Details</a>
           </td>
