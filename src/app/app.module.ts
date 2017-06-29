@@ -22,6 +22,7 @@ import { DeedService } from './services/deed.service';
 import { SchemaService } from './services/schema.service';
 import { SearchService } from './services/search.service';
 import { PagerService } from './services/pager.service';
+import { FormComponent } from './components/form/form.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { PagerService } from './services/pager.service';
     EditDeedComponent,
     DeedDetailsComponent,
     SchemaComponent,
-    SearchComponent
+    SearchComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,

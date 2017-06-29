@@ -1,7 +1,7 @@
 <div *ngIf="deed">
     <div class="pull-right">
         <a *ngIf="term" routerLink="/search" [queryParams]="{resultFor: term}" class="btn btn-default">Back to results</a>
-        <a routerLink="/deed/edit/{{ deed._id }}" class="btn btn-primary">Edit</a>
+        <a routerLink="/form/{{ deed._id }}" class="btn btn-primary">Edit</a>
         <a href="#" (click)="onDeleteClick(deed._id)" class="btn btn-danger">Delete</a>
     </div>
     <h1 class="page-header">Deed {{ deed.deedCode }} {{ deed.deedRef }}</h1>
