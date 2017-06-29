@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 // Db Collection and URI
 const deedsCollection = 'Deeds';
-const dbURL = "mongodb://fadem:886682@ds061248.mlab.com:61248/dbdeeds"
+const dbURL = "mongodb://localhost:27017/dbdeeds"
 
 var ObjectID = mongodb.ObjectID;
 
