@@ -172,7 +172,6 @@ export class EditDeedComponent implements OnInit {
                         geogrStatus: [''],
                         socialStatus: [''],
                         corporationName: [''],
-                        patronyme: [''],
                         nbParticipants: [''],
                         names: ['']
                     });
@@ -222,7 +221,6 @@ export class EditDeedComponent implements OnInit {
                         geogrStatus: [''],
                         socialStatus: [''],
                         corporationName: [''],
-                        patronyme: [''],
                         nbParticipants: [''],
                         names: ['']
                     });
@@ -282,7 +280,6 @@ export class EditDeedComponent implements OnInit {
                                 geogrStatus: [''],
                                 socialStatus: [''],
                                 corporationName: [''],
-                                patronyme: [''],
                                 nbParticipants: [''],
                                 names: ['']
                             });
