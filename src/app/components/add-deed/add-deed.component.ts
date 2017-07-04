@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { DeedService } from '../../services/deed.service';
 import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Deed, AgentM, AgentF, ReferentMale, OtherParticipant, Registrator, Fee, gender, transactionTypes, currencies, socialBody, relationtoagents, agentActionsList, whatList, immovablePropertyList, shareList, whomList, asWhomList, activityList, typeTaxList, counterAgentActionsList } from '../../models/deed-model'
+import { Male, Female, BodyCorporate, OtherParticipant, Registrator, Fee, gender, transactionTypes, currencies, socialBody, relationtoagents, agentActionsList, whatList, immovablePropertyList, shareList, whomList, asWhomList, activityList, typeTaxList, counterAgentActionsList } from '../../models/deed-model'
 import { NotificationsService } from 'angular2-notifications';
 
 @Component({
@@ -109,7 +109,10 @@ export class AddDeedComponent implements OnInit {
         animate: 'fromLeft'
     }
 
-    constructor(private fb: FormBuilder, private deedService: DeedService, private router: Router, private notificationsService: NotificationsService) { }
+    constructor(private fb: FormBuilder, 
+                private deedService: DeedService, 
+                private router: Router, 
+                private notificationsService: NotificationsService) { }
 
     ngOnInit() {
         this.initForm();

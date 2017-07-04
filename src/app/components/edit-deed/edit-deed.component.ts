@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import { DeedService } from '../../services/deed.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
-import { Deed, AgentM, AgentF, ReferentMale, OtherParticipant, Registrator, Fee, gender, transactionTypes, currencies, socialBody, relationtoagents, agentActionsList, whatList, immovablePropertyList, shareList, whomList, asWhomList, activityList, typeTaxList, counterAgentActionsList } from '../../models/deed-model'
+import { OtherParticipant, Registrator, Fee, gender, transactionTypes, currencies, socialBody, relationtoagents, agentActionsList, whatList, immovablePropertyList, shareList, whomList, asWhomList, activityList, typeTaxList, counterAgentActionsList } from '../../models/deed-model'
 import { NotificationsService } from 'angular2-notifications';
 
 
@@ -121,6 +121,7 @@ export class EditDeedComponent implements OnInit {
 
             // Getting deed values from db
             this.deed = deed;
+            console.log(this.deed);
 
             // Populating first FormControlNames with values
             this.deedForm.patchValue({
@@ -130,10 +131,10 @@ export class EditDeedComponent implements OnInit {
                 deedName: this.deed.deedName,
                 deedLanguage: this.deed.deedLanguage,
                 registrationDate: this.deed.registrationDate,
-                fee: this.deed.fee,
+                fees: this.deed.fees,
                 verbatimCitations: this.deed.verbatimCitations,
                 researcherNotes: this.deed.researcherNotes,
-                incomplete: this.deed.incomplete
+                complete: this.deed.complete
             });
 
             // Populate Agent depending on AgentSex
@@ -999,16 +1000,23 @@ export class EditDeedComponent implements OnInit {
             sureties: this.fb.array([]),
             otherParticipants: this.fb.array([]),
             registrationDate: [''],
-            fee: this.fb.group({
-                rouble: [''],
-                altyn: [''],
-                dynga: [''],
-                chekhi: [''],
-                collected: ['yes']
+            fees: this.fb.group({
+				tax: this.fb.group({
+					roubles: [''],
+					altyn: [''],
+					denga: [''],
+					collected: ['yes']	
+				}),
+				fee: this.fb.group({
+					roubles: [''],
+					altyn: [''],
+					denga: [''],
+					collected: ['yes']
+				})
             }),
             verbatimCitations: [''],
             researcherNotes: [''],
-            incomplete: [false]
+            complete: [false]
         })
 
     }

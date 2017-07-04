@@ -4,7 +4,7 @@
         <a routerLink="/deed/edit/{{ deed._id }}" class="btn btn-primary">Edit</a>
         <a href="#" (click)="onDeleteClick(deed._id)" class="btn btn-danger">Delete</a>
     </div>
-    <h1 class="page-header">Deed {{ deed.deedCode }} {{ deed.deedRef }}</h1>
+    <!--<h1 class="page-header">Deed {{ deed.deedCode }} {{ deed.deedRef }}</h1>
     <div *ngIf="!deed.complete" class="alert alert-warning" role="alert"><i class="glyphicon glyphicon-alert"></i> There is more data in the manuscript</div>
     <h2>Deed References</h2>
     <ul class="list-group">
@@ -529,10 +529,10 @@
             </div>
         </ul>
     </div>
+-->
 
 
-
-
+<pre>{{ deed | json }}</pre>
 
 
 

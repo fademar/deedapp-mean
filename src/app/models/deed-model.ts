@@ -1,61 +1,35 @@
-export class Deed {
-	deedCode: '';
-	deedRef: '';
-	deedDate: ''; 
-	deedName: '';
-	deedLanguage: '';
-	agentSex: '';
-	agentSexM: AgentM[];
-	agentSexF: AgentF[];
-	coAgentSexM: AgentM[];
-	coAgentSexF: AgentF[];
-	counterAgentSexM: AgentM[];
-	counterAgentSexF: AgentF[];
-	coCounterAgentSexM: AgentM[];
-	coCounterAgentSexF: AgentF[];
-	transaction: '';
-	agentTransactionObject: '';
-	counterAgentTransactionObject: '';
-	advancePayment: '';
-	contractConditions: '';
-	contractDuration: '';
-	forfeit: '';
-	whitness: AgentM[];
-	surety: AgentM[];
-	scribe: AgentM[];
-	otherParticipant: OtherParticipant[]; 
-	registrationDate: '';
-	registrator: Registrator[];
-	fee: Fee[];
-	verbatimCitations: '';
-	researcherNotes: ''
-}
 
-export class AgentM {
+export class Male {
 	geogrStatus: '';
 	socialStatus: '';
 	firstName: '';
 	patronyme: '';
 	lastName: '';
-	relatedTo: ''
+	relatedTo: '';
 }
 
-export class AgentF {
+export class Female {
 	familyStatus: '';
 	firstName: '';
 	patronyme: '';
 	relatedTo: '';
-	referentMale: ReferentMale[]
+	referentMale: {
+		relationshipToAgentSexF: '';
+		geogrStatus: '';
+		socialStatus: '';
+		firstName: '';
+		patronyme: '';
+		lastName: '';
+		relatedTo: '';
+	}
 }
 
-export class ReferentMale {
-	relationshipToAgentSexF: '';
+export class BodyCorporate {
 	geogrStatus: '';
-	socialStatus: '';
-	firstName: '';
-	patronyme: '';
-	lastName: '';
-	relatedTo: ''
+    socialStatus: '';
+    corporationName: '';
+    nbParticipants: '';
+    names: '';
 }
 
 export class OtherParticipant {
