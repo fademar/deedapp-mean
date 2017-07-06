@@ -1,45 +1,57 @@
 <simple-notifications [options]="options"></simple-notifications>
-<h1 class="page-header">Add New Deed</h1>
-<form class="form-horizontal" [formGroup]="deedForm" (ngSubmit)="onSubmit()" novalidate>
+<form [formGroup]="deedForm" (ngSubmit)="onSubmit()" novalidate>
 
 	<!--DEED REFERENCES-->
-
-	<h2 class="text-center bg-info">Deed References</h2>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Deed Code</label>
-		<div class="col-sm-10">
-			<input class="form-control" formControlName="deedCode" required>
-			<small class="text-danger" *ngIf="deedForm['controls'].deedCode.errors">This field is required</small>
-			<button type="button" (click)="insertLastDeedCode()" class="btn btn-primary btn-xs pull-right">Insert the last Deed Code saved in the database</button>
+	<div class="card">
+		<div class="card-block">
+			<div class="text-center">
+	            <h3><i class="fa fa-info-circle"></i> Deed Information</h3>
+	            <hr class="mt-2 mb-2">
+	        </div>
+	        <div class="row">
+				<div class="form-group col">
+					<label>Deed Code</label>
+					<div class="input-group">
+						<input class="form-control" formControlName="deedCode" required>
+						<span class="input-group-btn">
+					        <button type="button" (click)="insertLastDeedCode()" class="btn btn-info" placement="bottom" ngbTooltip="Insert the code of the last deed saved"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i>
+Last Code</button>
+					     </span>
+					</div>
+				</div>
+				<div class="form-group col">
+					<label>Deed Reference</label>
+					<div class="input-group">
+						<input class="form-control" formControlName="deedRef" required>
+					<span class="input-group-btn">
+						<button type="button" (click)="insertLastDeedRef()" class="btn btn-info" placement="bottom" ngbTooltip="Insert the reference of the last deed saved"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i>
+Last Reference</button>
+					</span>
+					</div>
+				</div>
+				<div class="form-group col">
+					<label>Deed Date</label>
+					<div>
+						<input type="text" class="form-control" formControlName="deedDate">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-8">
+					<label>Deed Name</label>
+					<div>
+						<input type="text" class="form-control" formControlName="deedName">
+					</div>
+				</div>
+				<div class="form-group col-4">
+					<label>Deed Language</label>
+					<div>
+						<input type="text" class="form-control" formControlName="deedLanguage">
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Deed Reference</label>
-		<div class="col-sm-10">
-			<input class="form-control" formControlName="deedRef" required>
-			<small class="text-danger" *ngIf="deedForm.controls.deedRef.errors">This field is required</small>
-			<button type="button" (click)="insertLastDeedRef()" class="btn btn-primary btn-xs pull-right">Insert the last Deed Ref saved in the database</button>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Deed Date</label>
-		<div class="col-sm-10">
-			<input class="form-control" formControlName="deedDate">
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Deed Name</label>
-		<div class="col-sm-10">
-			<input class="form-control" formControlName="deedName">
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label">Deed Language</label>
-		<div class="col-sm-10">
-			<input class="form-control" formControlName="deedLanguage">
-		</div>
-	</div>
-
 	<!-- CONTRACTING PARTIES -->
 	<h2 class="text-center bg-info">Contracting Parties</h2>
 

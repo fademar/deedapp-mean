@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { SelectModule } from 'ng2-select';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -43,7 +44,8 @@ import { PagerService } from './services/pager.service';
     ReactiveFormsModule,
     HttpModule,
     AppRoutingModule,
-    SelectModule
+    SelectModule,
+    NgbModule.forRoot()
   ],
   providers: [DeedService, SchemaService, SearchService, PagerService],
   bootstrap: [AppComponent]
