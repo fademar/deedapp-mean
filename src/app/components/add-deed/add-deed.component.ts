@@ -738,6 +738,10 @@ export class AddDeedComponent implements OnInit {
 	// AGENT AS WHOM methods
 	
 	selectedAsWhom(i:number, value) {
+        
+        if (this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.length > 0) {
+            this.removedAsWhom(i);
+        }
         switch (value) {
             case 'as hired worker': {
                 this.agentTransactionObject = this.fb.group({
@@ -785,10 +789,11 @@ export class AddDeedComponent implements OnInit {
             }
         };
         this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
-		this.selectedAsWhomValue = value;
-}
+        this.selectedAsWhomValue = value;
 
-    removedAsWhom(value: any, i: any): void {
+    }
+
+    removedAsWhom(i: any): void {
         this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.removeAt(0);
     }
 
