@@ -63,10 +63,6 @@ function handleError(res, reason, message, code) {
 	res.status(code || 500).json({ 'error': message });
 }
 
-// Redirect / to /api/deeds
-app.get('/', (req, res) => {
-	res.send('Please use /api/deeds');
-});
 
 /*  '/api/deeds'
  *    GET: finds all deeds
