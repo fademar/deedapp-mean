@@ -3,3 +3,11 @@
     bottom: 40px;
     right: 40px;
 }
+
+.actions {
+	display: block;
+	position: fixed;
+	bottom: 100px;
+	right: 40px;
+	z-index: 5000;
+}
