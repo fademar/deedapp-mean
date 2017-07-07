@@ -112,8 +112,7 @@ export class EditDeedComponent implements OnInit {
     }
 
 
-    constructor(private fb: FormBuilder, private deedService: DeedService,
-        private router: Router, private route: ActivatedRoute, private notificationsService: NotificationsService) {
+    constructor(private fb: FormBuilder, private deedService: DeedService, private router: Router, private route: ActivatedRoute, private notificationsService: NotificationsService) {
         this.initForm();
     }
 
@@ -827,6 +826,11 @@ export class EditDeedComponent implements OnInit {
                                 }
 
                             } // END SWITCH
+                            if (this.deedForm.controls.transactions['controls'][i].get('agentAction').value === 'bequeaths') {
+                                this.whoInherits = new FormControl;
+                                this.whoInherits.patchValue(transaction.agentTransactionObjects[index]['whoInherits']);
+                                this.agentTransactionObject.addControl('whoInherits', this.whoInherits);
+                            }    
                             this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
                             this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
 
