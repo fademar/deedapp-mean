@@ -56,6 +56,7 @@ export class AddDeedComponent implements OnInit {
     deedValue = '';
     agentSex = '';
 	agentData;
+    counterAgentData;
     socialStatus;
     relationToAgent;
     relationToCounterAgent;
@@ -497,6 +498,10 @@ export class AddDeedComponent implements OnInit {
         }
     }
 
+    insertCounterAgentData(i) {
+		this.counterAgentData = this.deedForm.get('counterAgent').value;
+		this.deedForm.controls['coCounterAgents']['controls'][i]['controls'].coCounterAgent.controls.referentMale.patchValue(this.counterAgentData); 
+	}
 
     // Collective Co-Agent Methods
 
