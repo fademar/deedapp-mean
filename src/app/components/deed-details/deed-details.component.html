@@ -315,7 +315,6 @@
 
                         <!-- AGENT TRANSACTION -->
                         <h5 *ngIf="transaction.agentAction" class="text-center p-3">The Agent {{ transaction.agentAction }}</h5>
-                        <li *ngIf="transaction.agentAction" class="list-group-item"><strong>Agent Action: </strong><span class="form-data">{{ transaction.agentAction }}</span></li>
                         <li *ngIf="transaction.otherAgentAction" class="list-group-item"><strong>Other Agent Action: </strong><span class="form-data">{{ transaction.otherAgentAction }}</span></li>
                         <li *ngIf="transaction.accusationAgainstAgent" class="list-group-item"><strong>Accusation against Agent: </strong><span class="form-data">{{ transaction.accusationAgainstAgent }}</span></li>
                         <h5 class="text-center p-4">Objects of the transaction</h5>
