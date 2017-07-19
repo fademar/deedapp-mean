@@ -1,0 +1,12 @@
+a:not([href]):not([tabindex]) {
+    text-decoration: none;
+}
+
+a.page-link {
+	cursor: pointer;
+}
+
+a.page-link:active {
+	color: #428bca;
+}
+

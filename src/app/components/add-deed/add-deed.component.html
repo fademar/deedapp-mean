@@ -1375,9 +1375,13 @@
 										<div formGroupName="shareFromEstate" class="card-block">
 											<div class="form-group">
 												<label>Share</label>
-												<select class="form-control" formControlName="share">
+												<select class="form-control" formControlName="share" (change)="updateAgentShareFromEstate(i,j)">
 													<option *ngFor="let shareValue of shareList" [value]="shareValue">{{ shareValue }}</option>
 												</select>
+											</div>
+											<div *ngIf="updateAgentShareFromEstate(i,j)" class="form-group">
+												<label>Other Share</label>
+												<input type="text" class="form-control" formControlName="otherShareFromEstate">
 											</div>
 											<div class="form-group">
 												<label>Description</label>
@@ -2078,6 +2082,10 @@
 													<option *ngFor="let shareValue of shareList" [value]="shareValue">{{ shareValue }}</option>
 												</select>
 											</div>
+											<div *ngIf="updateCounterAgentShareFromEstate(i,j)" class="form-group">
+												<label>Other Share</label>
+												<input type="text" class="form-control" formControlName="otherShareFromEstate">
+											</div>
 											<div class="form-group">
 												<label>Description</label>
 												<input type="text" class="form-control" formControlName="description">
@@ -2638,14 +2646,23 @@
 			<div class="text-center">
 				<h4>Is the form complete ?</h4>
 				<!-- Rounded switch -->
-				<label class="switch">
-				  <input formControlName="complete" type="checkbox">
-				  <span class="slider round"></span>
-				</label>
+			</div>
+			<div class="row justify-content-center p-2">
+				<div class="col-2">
+					<div class="onoffswitch">
+					    <input type="checkbox" formControlName="complete" class="onoffswitch-checkbox" id="myonoffswitch">
+					    <label class="onoffswitch-label" for="myonoffswitch">
+					        <span class="onoffswitch-inner"></span>
+					        <span class="onoffswitch-switch"></span>
+					    </label>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </form>
 
-<h2>Current Json Document</h2>
-<pre>{{ deedForm.value | json }}</pre>
+<div class="card shadow mt-5 p-5">
+	<h2 class="text-center">Current Json Document</h2>
+	<pre>{{ deedForm.value | json }}</pre>
+</div>

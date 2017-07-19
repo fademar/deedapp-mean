@@ -1,53 +1,64 @@
-<h1 class="page-header">All Deeds</h1>
-<div class="deeds">
-  <div class="table-responsive">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Deed Code</th>
-          <th>Deed Ref</th>
-          <th>Deed Date<br><em>Registration Date</em></th>
-          <th>Deed Name</th>
-          <th>Agent Name</th>
-          <th>Complete</th>
+<div class="card shadow mb-3">
+	<div class="card-block">
+		<div class="text-center">
+			<h3><i class="fa fa-list"></i> All Deeds</h3>
+			<hr class="mt-2 mb-2">
+		</div>
 
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor='let deed of pagedDeeds'>
-          <td>{{ deed.deedCode }}</td>
-          <td>{{ deed.deedRef }}</td>
-          <td><span *ngIf="deed.deedDate">{{ deed.deedDate }}</span><span *ngIf="!deed.deedDate && deed.registrationDate"><em>{{ deed.registrationDate }}</em></span></td>
-          <td><span *ngIf="deed.deedName">{{ deed.deedName }}</span></td>
-          <td><span *ngIf="deed.agent.firstName">{{ deed.agent.firstName }}</span> <span *ngIf="deed.agent.lastName">{{ deed.agent.lastName }}</span> <span *ngIf="deed.agent.corporationName">{{ deed.agent.corporationName }}</span></td>
-          <td><i *ngIf="deed.complete" class="glyphicon glyphicon-ok"></i></td>
-          <td>
-            <a routerLink="/deed/{{ deed._id }}" class="btn btn-primary">Details</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <!-- pager -->
-  <div class="text-center">
-    <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-      <li [ngClass]="{disabled:pager.currentPage === 1}">
-        <a (click)="setPage(1)">First</a>
-      </li>
-      <li [ngClass]="{disabled:pager.currentPage === 1}">
-        <a (click)="setPage(pager.currentPage - 1)">Previous</a>
-      </li>
-      <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-        <a (click)="setPage(page)">{{page}}</a>
-      </li>
-      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-        <a (click)="setPage(pager.currentPage + 1)">Next</a>
-      </li>
-      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-        <a (click)="setPage(pager.totalPages)">Last</a>
-      </li>
-    </ul>
-  </div>
+		<div class="deeds">
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Deed Code</th>
+							<th>Deed Ref</th>
+							<th>Deed Date<br><em>Registration Date</em></th>
+							<th>Deed Name</th>
+							<th>Agent Name</th>
+							<th>Complete</th>
+
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor='let deed of pagedDeeds'>
+							<td>{{ deed.deedCode }}</td>
+							<td>{{ deed.deedRef }}</td>
+							<td><span *ngIf="deed.deedDate">{{ deed.deedDate }}</span><span *ngIf="!deed.deedDate && deed.registrationDate"><em>{{ deed.registrationDate }}</em></span></td>
+							<td><span *ngIf="deed.deedName">{{ deed.deedName }}</span></td>
+							<td><span *ngIf="deed.agent.firstName">{{ deed.agent.firstName }}</span> <span *ngIf="deed.agent.lastName">{{ deed.agent.lastName }}</span> <span *ngIf="deed.agent.corporationName">{{ deed.agent.corporationName }}</span></td>
+							<td><i *ngIf="deed.complete" class="glyphicon glyphicon-ok"></i></td>
+							<td>
+								<a routerLink="/deed/{{ deed._id }}" class="btn btn-primary">Details</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- pager -->
+			<div class="row justify-content-center p-5">
+				<nav aria-label="page navigation col-4">
+					<ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+						<li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+							<a class="page-link" (click)="setPage(1)">First</a>
+						</li>
+						<li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+							<a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
+						</li>
+						<li *ngFor="let page of pager.pages" class="page-item" [ngClass]="{active:pager.currentPage === page}">
+							<a class="page-link" (click)="setPage(page)">{{page}}</a>
+						</li>
+						<li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+							<a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
+						</li>
+						<li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+							<a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<!-- pager -->
+	</div>
 </div>
-<!-- pager -->
+

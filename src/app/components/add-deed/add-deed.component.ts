@@ -50,6 +50,7 @@ export class AddDeedComponent implements OnInit {
     otherAgentAction: FormControl;
 	otherImmovablePropertyType: FormControl;
 	otherImmovablePropertyShare: FormControl;
+    otherShareFromEstate: FormControl;
 	asWhomValue;
 
 	deed;
@@ -103,7 +104,7 @@ export class AddDeedComponent implements OnInit {
     counterAgentField = this.counterAgentField;
     
     public options = {
-        position: ['top', 'left'],
+        position: ['bottom', 'left'],
         timeOut: 2000,
         showProgressBar: false,
         pauseOnHover: false,
@@ -790,6 +791,9 @@ export class AddDeedComponent implements OnInit {
                 break;
             }
             default: {
+                this.agentTransactionObject = this.fb.group({
+                    asWhom: [value]
+                });
                 break;
             }
         };
@@ -1088,6 +1092,23 @@ export class AddDeedComponent implements OnInit {
 			return true;
         }
 	}
+
+    // SHARE FROM ESTATE ACTIONS
+    updateAgentShareFromEstate(i: number, j: number) {
+        if (this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.shareFromEstate.get('share').value === 'other') {
+            this.otherShareFromEstate = new FormControl;
+            this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.shareFromEstate.addControl('otherShareFromEstate', this.otherShareFromEstate);
+            return true;
+        }
+    }
+
+    updateCounterAgentShareFromEstate(i: number, j:number) {
+        if (this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.shareFromEstate.get('share').value === 'other') {
+            this.otherShareFromEstate = new FormControl;
+            this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.shareFromEstate.addControl('otherShareFromEstate', this.otherShareFromEstate);
+            return true;
+        }
+    }
 
     // COUNTER AGENT WHOM Select Methods
 
@@ -1488,7 +1509,7 @@ export class AddDeedComponent implements OnInit {
             }
         });
         setTimeout(() => {
-            this.router.navigate(['/']);
+            this.router.navigate(['/list']);
         }, 2000);
     }
 

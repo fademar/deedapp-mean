@@ -43,6 +43,7 @@ export class EditDeedComponent implements OnInit {
     parent: FormGroup;
     responsibilities: FormGroup;
     shareFromEstate: FormGroup;
+    otherShareFromEstate: FormControl;
     souls: FormGroup;
     other: FormGroup;
     what: FormArray;
@@ -104,7 +105,7 @@ export class EditDeedComponent implements OnInit {
     counterAgentField = this.counterAgentField;
 
     public options = {
-        position: ['top', 'left'],
+        position: ['bottom', 'left'],
         timeOut: 2000,
         showProgressBar: false,
         pauseOnHover: false,
@@ -2063,6 +2064,23 @@ export class EditDeedComponent implements OnInit {
         if (this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.immovableProperty.get('share').value === 'other') {
             this.otherImmovablePropertyShare = new FormControl;
             this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.immovableProperty.addControl('otherImmovablePropertyShare', this.otherImmovablePropertyShare);
+            return true;
+        }
+    }
+
+    // SHARE FROM ESTATE ACTIONS
+    updateAgentShareFromEstate(i: number, j: number) {
+        if (this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.shareFromEstate.get('share').value === 'other') {
+            this.otherShareFromEstate = new FormControl;
+            this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.shareFromEstate.addControl('otherShareFromEstate', this.otherShareFromEstate);
+            return true;
+        }
+    }
+
+    updateCounterAgentShareFromEstate(i: number, j:number) {
+        if (this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.shareFromEstate.get('share').value === 'other') {
+            this.otherShareFromEstate = new FormControl;
+            this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.shareFromEstate.addControl('otherShareFromEstate', this.otherShareFromEstate);
             return true;
         }
     }
