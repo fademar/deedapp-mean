@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { DeedService } from '../../services/deed.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { MdDialog, MdDialogRef } from '@angular/material';
+
+import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-deed-details',
   templateUrl: './deed-details.component.html',
-  styleUrls: ['./deed-details.component.css']
+  styleUrls: ['./deed-details.component.css'],
+  providers: [MdDialog]
 })
 export class DeedDetailsComponent implements OnInit {
   
@@ -17,9 +21,10 @@ export class DeedDetailsComponent implements OnInit {
   selectedCounterActions = this.selectedCounterActions;
   selectedCounterAction;
   
+  dialogRef: MdDialogRef<ConfirmDialogComponent>;
 
   term = this.term;
-  constructor(private deedService:DeedService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private deedService:DeedService, private router: Router, private route: ActivatedRoute, public dialog: MdDialog) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -30,7 +35,6 @@ export class DeedDetailsComponent implements OnInit {
       this.selectedCounterActions = [];
 
       this.deed.transactions.forEach(transaction => {
-        console.log(transaction);
         switch (transaction.agentAction) {
 
             case 'cedes': {
@@ -114,8 +118,6 @@ export class DeedDetailsComponent implements OnInit {
       
         this.selectedActions.push(this.selectedAction);
         this.selectedCounterActions.push(this.selectedCounterAction);  
-        console.log(this.selectedActions);
-        console.log(this.selectedCounterActions);
       });
 
       
@@ -131,9 +133,27 @@ export class DeedDetailsComponent implements OnInit {
   }
  
  onDeleteClick(id) {
-    this.deedService.deleteDeed(id).subscribe(deed => {
-      this.router.navigate(['/']);
-    })
+    console.log('test');
+    this.dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      disableClose: false
+    });
+    this.dialogRef.componentInstance.confirmMessage = "Are you sure you want to delete the deed?"
+
+    this.dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.deedService.deleteDeed(id).subscribe(deed => {
+          this.router.navigate(['/list']);
+        })
+      }
+      this.dialogRef = null;
+    });
+
+
+
+    
+  
+
+
   }
 
   getCoAgentSex(i) {

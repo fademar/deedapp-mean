@@ -48,7 +48,7 @@
 					<div class="input-group">
 						<input class="form-control" formControlName="deedCode" required>
 						<span class="input-group-btn">
-							<button type="button" (click)="insertLastDeedCode()" class="btn btn-sm btn-info" placement="bottom" ngbTooltip="Click to insert the code of the last deed saved"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Last Code</button>
+							<button type="button" (click)="insertLastDeedCode()" class="btn btn-sm btn-info" placement="bottom" ngbTooltip="Click to insert the code of the last deed saved in the database"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Last Code</button>
 						</span>
 					</div>
 				</div>
@@ -57,7 +57,7 @@
 					<div class="input-group">
 						<input class="form-control" formControlName="deedRef" required>
 						<span class="input-group-btn">
-							<button type="button" (click)="insertLastDeedRef()" class="btn btn-sm btn-info" placement="bottom" ngbTooltip="Click to insert the reference of the last deed saved"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Last Reference</button>
+							<button type="button" (click)="insertLastDeedRef()" class="btn btn-sm btn-info" placement="bottom" ngbTooltip="Click to insert the reference of the last deed saved in the database"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Last Reference</button>
 						</span>
 					</div>
 				</div>
@@ -774,7 +774,7 @@
 				</div> <!-- END card -->
 			</div> <!-- END formArrayName -->
 			<div *ngIf="collectiveCoCounterAgentOn">
-				<div formGroupName="collectiveCoAgent" class="card mb-3">
+				<div formGroupName="collectiveCoCounterAgent" class="card mb-3">
 					<div class="card-header amber lighten-5">
 						<div class="row justify-content-end">
 							<div class="col-4">
@@ -788,13 +788,13 @@
 					<div class="card-block">
 						<div class="form-group">
 							<label>Relation To Counter Agent</label>
-							<select class="form-control" formControlName="relationToAgent" (change)="updateRelationToCounterAgent()">
+							<select class="form-control" formControlName="relationToCounterAgent" (change)="updateRelationToCounterAgent()">
 								<option *ngFor="let relation of relationtoagents" [value]="relation">{{relation}}</option>
 							</select>
 						</div>
 						<div *ngIf="updateRelationToCounterAgent()" class="form-group">
-							<label>Other Relation to Agent</label>
-							<input type="text" class="form-control" formControlName="otherRelationToAgent">
+							<label>Other Relation to Counter Agent</label>
+							<input type="text" class="form-control" formControlName="otherRelationToCounterAgent">
 						</div>
 						<div class="form-group">
 							<label>Number of Participants</label>
@@ -820,7 +820,7 @@
 
 			<div formArrayName="transactions">
 				<div *ngFor="let transaction of deedForm['controls']['transactions']['controls']; let i=index" class="card mb-3">
-					<div class="card-header deep-purple lighten-3">
+					<div class="card-header light-blue lighten-3">
 						<div class="row justify-content-end">
 							<div class="col-4">
 								<h4 class="text-center">Transaction {{i + 1}}</h4>

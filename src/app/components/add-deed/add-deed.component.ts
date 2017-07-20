@@ -714,7 +714,6 @@ export class AddDeedComponent implements OnInit {
 
     updateCounterAgentAction(i: number) {
         this.counterAgentAction = this.deedForm.controls.transactions['controls'][i].get('counterAgentAction').value;
-		console.log(this.counterAgentAction);
         switch (this.counterAgentAction) {
 
             case 'cedes':
@@ -737,7 +736,6 @@ export class AddDeedComponent implements OnInit {
                 break;
             }
         }
-		console.log(this.selectedCounterAction);
     }
 	
 	
@@ -1122,7 +1120,7 @@ export class AddDeedComponent implements OnInit {
             case 'parent': {
                 this.counterAgentTransactionObject = this.fb.group({
                     parent: this.fb.group({
-                        coAgentNumber: ['']
+                        coCounterAgentNumber: ['']
                     })
                 });
                 break;

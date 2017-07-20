@@ -6,6 +6,8 @@ import { HttpModule } from '@angular/http';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { SelectModule } from 'ng2-select';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MdDialogModule } from '@angular/material';
+
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -23,6 +25,7 @@ import { DeedService } from './services/deed.service';
 import { SchemaService } from './services/schema.service';
 import { SearchService } from './services/search.service';
 import { PagerService } from './services/pager.service';
+import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 
 
 @NgModule({
@@ -34,7 +37,8 @@ import { PagerService } from './services/pager.service';
     EditDeedComponent,
     DeedDetailsComponent,
     SchemaComponent,
-    SearchComponent
+    SearchComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -45,8 +49,10 @@ import { PagerService } from './services/pager.service';
     HttpModule,
     AppRoutingModule,
     SelectModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    MdDialogModule
   ],
+  entryComponents: [ConfirmDialogComponent],
   providers: [DeedService, SchemaService, SearchService, PagerService],
   bootstrap: [AppComponent]
 })

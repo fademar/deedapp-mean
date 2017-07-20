@@ -2,7 +2,7 @@
     <div class="pull-right">
         <a *ngIf="term" routerLink="/search" [queryParams]="{resultFor: term}" class="btn btn-default">Back to results</a>
         <a routerLink="/deed/edit/{{ deed._id }}" class="btn btn-primary">Edit</a>
-        <a href="#" (click)="onDeleteClick(deed._id)" class="btn btn-danger">Delete</a>
+        <a (click)="onDeleteClick(deed._id)" class="btn btn-danger">Delete</a>
     </div>
 
     <h1 class="page-header">Deed {{ deed.deedCode }} {{ deed.deedRef }}</h1>
@@ -163,7 +163,7 @@
             <!-- COUNTER AGENTS -->
 
             <div *ngIf="deed.counterAgentSex" class="card mb-3">
-                <div class="card-header teal lighten-3">
+                <div class="card-header amber lighten-3">
                     <h4 class="text-center">Counter-Agent</h4>
                 </div>
                 <div class="card-block">
@@ -216,7 +216,7 @@
             <div *ngIf="deed.coCounterAgents.length > 0">
                 <ng-template ngFor let-coCounterAgent [ngForOf]="deed.coCounterAgents" let-i="index">
                     <div class="card mb-3">
-                        <div class="card-header teal lighten-4">
+                        <div class="card-header amber lighten-4">
                             <div class="row justify-content-center">
                                 <div class="col">
                                     <h4 class="text-center">Co-Counter Agent {{i + 1}}</h4>
@@ -274,7 +274,7 @@
             </div>
             <div *ngIf="deed.collectiveCoCounterAgent">
                 <div class="card mb-3">
-                    <div class="card-header teal lighten-5">
+                    <div class="card-header amber lighten-5">
                         <div class="row justify-content-center">
                             <div class="col-4">
                                 <h4 class="text-center">Collective Co-Counter Agent</h4>
@@ -304,7 +304,7 @@
             </div>
             <ng-template ngFor let-transaction [ngForOf]="deed.transactions" let-i="index">
                 <div class="card mb-3">
-                    <div class="card-header deep-purple lighten-3">
+                    <div class="card-header light-blue lighten-3">
                         <div class="row justify-content-center">
                             <div class="col-4">
                                 <h4 class="text-center">Transaction {{i + 1}}</h4>
@@ -314,11 +314,13 @@
                     <div class="card-block">
 
                         <!-- AGENT TRANSACTION -->
-                        <h5 *ngIf="transaction.agentAction" class="text-center p-3">The Agent {{ transaction.agentAction }}</h5>
+                        <div *ngIf="transaction.agentAction" class="alert alert-info">
+                            <h5 class="text-center p-3">The Agent <span class="text-uppercase">{{ transaction.agentAction }}</span></h5>
+                        </div>
                         <li *ngIf="transaction.otherAgentAction" class="list-group-item"><strong>Other Agent Action: </strong><span class="form-data">{{ transaction.otherAgentAction }}</span></li>
                         <li *ngIf="transaction.accusationAgainstAgent" class="list-group-item"><strong>Accusation against Agent: </strong><span class="form-data">{{ transaction.accusationAgainstAgent }}</span></li>
-                        <h5 class="text-center p-4">Objects of the transaction</h5>
-                        <ng-template ngFor let-agentTransactionObject [ngForOf]="transaction.agentTransactionObjects" let-j="index">
+<!--                         <h5 *ngIf="selectedActions[i] === 'what'" class="text-center p-4">What ?</h5>
+ -->                        <ng-template ngFor let-agentTransactionObject [ngForOf]="transaction.agentTransactionObjects" let-j="index">
                             <div *ngIf="agentTransactionObject.chattels" class="card mb-3">
                                 <div class="card-header">
                                     <div class="row justify-content-center">
@@ -612,13 +614,13 @@
 
 
                         <!-- COUNTER AGENT TRANSACTION -->
-                        <li *ngIf="transaction.counterAgentAction" class="list-group-item"><strong>Counter Agent Action: </strong><span class="form-data">{{ transaction.counterAgentAction }}</span></li>
+                        <div *ngIf="transaction.counterAgentAction" class="alert alert-info">
+                            <h5 class="text-center p-3">The Counter Agent <span class="text-uppercase">{{ transaction.counterAgentAction }}</span></h5>
+                        </div>
                         <li *ngIf="transaction.otherCounterAgentAction" class="list-group-item"><strong>Other Counter Agent Action: </strong><span class="form-data">{{ transaction.otherCounterAgentAction }}</span></li>
                         <li *ngIf="transaction.accusationAgainstCounterAgent" class="list-group-item"><strong>Accusation against Counter-Agent: </strong><span class="form-data">{{ transaction.accusationAgainstCounterAgent }}</span></li>
                         <li *ngIf="transaction.juridicalProcedureStage" class="list-group-item"><strong>Juridical Procedure Stage: </strong><span class="form-data">{{ transaction.juridicalProcedureStage }}</span></li>
-                        <h5 class="text-center p-4">Objects of the transaction</h5>
 
-                        
                         <ng-template ngFor let-counterAgentTransactionObject [ngForOf]="transaction.counterAgentTransactionObjects" let-j="index">
                             <div *ngIf="counterAgentTransactionObject.chattels" class="card mb-3">
                                 <div class="card-header">
@@ -757,8 +759,8 @@
                                 </div>
                                 <div class="card-block">
                                     <ul class="list-group">
-                                        <li *ngIf="counterAgentTransactionObject.money.amount.moscowSilver" class="list-group-item"><strong>Amount in Moscow Silver: </strong><span class="form-data">{{ counterAgentTransactionObject.forfeit.moscowSilver.rubli }}</span> rubli <span class="form-data">{{ counterAgentTransactionObject.forfeit.moscowSilver.altyny }}</span> altyny <span class="form-data">{{ counterAgentTransactionObject.forfeit.moscowSilver.dengi }}</span> den'gi</li>
-                                        <li *ngIf="counterAgentTransactionObject.money.amount.chekhi" class="list-group-item"><strong>Amount in Chekhi: </strong><span class="form-data">{{ counterAgentTransactionObject.forfeit.chekhi.rubli }}</span> rubli <span class="form-data">{{ counterAgentTransactionObject.forfeit.chekhi.altyny }}</span> altyny <span class="form-data">{{ counterAgentTransactionObject.forfeit.chekhi.dengi }}</span> den'gi</li>
+                                        <li *ngIf="counterAgentTransactionObject.money.amount.moscowSilver" class="list-group-item"><strong>Amount in Moscow Silver: </strong><span class="form-data">{{ counterAgentTransactionObject.money.amount.moscowSilver.rubli }}</span> rubli <span class="form-data">{{ counterAgentTransactionObject.money.amount.moscowSilver.altyny }}</span> altyny <span class="form-data">{{ counterAgentTransactionObject.money.amount.moscowSilver.dengi }}</span> den'gi</li>
+                                        <li *ngIf="counterAgentTransactionObject.money.amount.chekhi" class="list-group-item"><strong>Amount in Chekhi: </strong><span class="form-data">{{ counterAgentTransactionObject.money.amount.chekhi.rubli }}</span> rubli <span class="form-data">{{ counterAgentTransactionObject.money.amount.chekhi.altyny }}</span> altyny <span class="form-data">{{ counterAgentTransactionObject.money.amount.chekhi.dengi }}</span> den'gi</li>
                                     </ul>
                                 </div>
                             </div>
@@ -772,7 +774,7 @@
                                 </div>
                                 <div class="card-block">
                                     <ul class="list-group">
-                                        <li *ngIf="counterAgentTransactionObject.parent.coAgentNumber" class="list-group-item"><strong>Co-Agent Number: </strong><span class="form-data">{{ counterAgentTransactionObject.parent.coAgentNumber }}</span></li>
+                                        <li *ngIf="counterAgentTransactionObject.parent.coCounterAgentNumber" class="list-group-item"><strong>Co-Counter Agent Number: </strong><span class="form-data">{{ counterAgentTransactionObject.parent.coCounterAgentNumber }}</span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -915,7 +917,7 @@
             </ng-template>
         </div> <!-- END TRANSACTIONS CARD-BLOCK-->
     </div> <!-- END TRANSACTIONS CARD-->
-    
+
     <!-- ACCESSORIES TO CONTRACT -->
     <div class="card shadow mb-3">
         <div class="card-block">

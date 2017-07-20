@@ -1,0 +1,6 @@
+<h1 md-dialog-title class="text-center">Confirm</h1>
+<div md-dialog-content>{{confirmMessage}}</div>
+<div md-dialog-actions class="row justify-content-center mt-5">
+	<button type="button" class="btn btn-warning col" (click)="dialogRef.close(false)">Cancel</button>
+	<button type="button" class="btn btn-success col" (click)="dialogRef.close(true)">Confirm</button>
+</div>

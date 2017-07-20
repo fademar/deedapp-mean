@@ -7,6 +7,7 @@ import { NotificationsService } from 'angular2-notifications';
 
 
 
+
 @Component({
     selector: 'app-edit-deed',
     templateUrl: './edit-deed.component.html',
@@ -125,7 +126,6 @@ export class EditDeedComponent implements OnInit {
 
             // Getting deed values from db
             this.deed = deed;
-            console.log(this.deed);
 
             // Populating first FormControlNames with values
             this.deedForm.patchValue({
@@ -991,7 +991,7 @@ export class EditDeedComponent implements OnInit {
                                     case 'parent': {
                                         this.counterAgentTransactionObject = this.fb.group({
                                             parent: this.fb.group({
-                                                coAgentNumber: ['']
+                                                coCounterAgentNumber: ['']
                                             })
                                         });
                                         break;
