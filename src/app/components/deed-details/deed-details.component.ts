@@ -133,7 +133,6 @@ export class DeedDetailsComponent implements OnInit {
   }
  
  onDeleteClick(id) {
-    console.log('test');
     this.dialogRef = this.dialog.open(ConfirmDialogComponent, {
       disableClose: false
     });
