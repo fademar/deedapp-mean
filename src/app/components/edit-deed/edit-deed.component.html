@@ -8,7 +8,7 @@
 
 	<div class="alert alert-warning">Deed saved in the database with id <strong> {{ id }} </strong></div>
 
-	<form class="form-horizontal" [formGroup]="deedForm" (ngSubmit)="onSubmit()" novalidate>
+	<form (keydown.enter)="$event.preventDefault()" [formGroup]="deedForm" (ngSubmit)="onSubmit()" novalidate>
 
 		<!-- Default dropup button -->
 	<div class="actions">

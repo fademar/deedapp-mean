@@ -1,5 +1,5 @@
 <simple-notifications [options]="options"></simple-notifications>
-<form [formGroup]="deedForm" (ngSubmit)="onSubmit()" novalidate>
+<form (keydown.enter)="$event.preventDefault()" [formGroup]="deedForm" (ngSubmit)="onSubmit()" novalidate>
 	
 
 	<!-- Default dropup button -->
