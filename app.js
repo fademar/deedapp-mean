@@ -14,7 +14,7 @@ const deedsCollection = 'Deeds';
 const app = express();
 app.use(bodyParser.json());
 
-const dbURL = "mongodb://fadem:886682@ds061248.mlab.com:61248/dbdeeds"
+// const dbURL = "mongodb://fadem:886682@ds061248.mlab.com:61248/dbdeeds"
 
 
 
@@ -27,18 +27,15 @@ app.use(function (req, res, next) {
 });
 
 // Create link to Angular build directory
-// const distDir = __dirname + "/dist/";
-// app.use(express.static(distDir));
+const distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
 
-// app.get('/*', function(req, res) {
-//   res.sendFile(path.join(__dirname + '/dist/index.html'));
-// });
 
 // Create a db const to reuse the connection
 var db;
 
 // Connection to the database
-mongodb.MongoClient.connect(dbURL, (err, database) => {
+mongodb.MongoClient.connect(process.env.MONGODB_URI, (err, database) => {
 	if (err) {
 		console.log(err);
 		process.exit(1);
@@ -51,7 +48,7 @@ mongodb.MongoClient.connect(dbURL, (err, database) => {
 	db.collection(deedsCollection).createIndex({"$**":"text"});
 
 	// Initialize the app.
-	var server = app.listen(process.env.PORT || 3000, () => {
+	var server = app.listen(process.env.PORT || 8080, () => {
 		console.log('App now running on port', process.env.PORT);
 	});
 
