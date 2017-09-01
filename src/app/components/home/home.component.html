@@ -1,25 +1,37 @@
 <header *ngIf="!auth.isAuthenticated()" class="masthead">
-    <div class="container h-100">
-      <div class="row h-100">
-        <div class="col-lg-7 my-auto">
-          <div class="header-content mx-auto">
-            <h1 class="mb-5">The Deed App allows you to sto Age is an app landing page that will help you beautifully showcase your new mobile app, or anything else!</h1>
-            <a href="#download" class="btn btn-outline btn-xl">Learn More</a>
-            <a href="#download" class="btn btn-outline btn-xl">Login</a>
+  <div class="container h-100">
+    <div class="row h-100">
+      <div class="col my-auto">
+        <div class="header-content mx-auto">
+          <h1 class="mb-5">The Deed App Poject<br>Indexing the books of deeds under Peter the Great.</h1>
+          <a href="#download" class="btn btn-outline btn-xl">Learn More</a>
+          <a href="#download" class="btn btn-outline btn-xl">Login</a>
+        </div>
+        <div class="header-foot pb-5">
+          <div class="row">
+            <div class="col mx-auto">
+              <h2>A project developped by the Center of the Russian and Caucasus Worlds and Central Europe (CERCEC, EHESS/CNRS) with the support of the LabEx TEPSIS.</h2>
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div class="col"><img src="../../../assets/img/logoCERCEC_WB.png" height="100px"></div>
+            <div class="col"></div>
+            <div class="col"></div>
           </div>
         </div>
       </div>
     </div>
-  </header>
+  </div>
+</header>
 
-  <header *ngIf="auth.isAuthenticated()" class="masthead">
-      <div class="container h-100">
-        <div class="row h-100">
-          <div class="col-lg-7 my-auto">
-            <div class="header-content mx-auto">
-              <h1 class="mb-5">Your are now logged in! You can browse the list of the documents, add a document or search in the database</h1>
-            </div>
-          </div>
+<header *ngIf="auth.isAuthenticated()" class="masthead">
+  <div class="container h-100">
+    <div class="row h-100">
+      <div class="col-lg-7 my-auto">
+        <div class="header-content mx-auto">
+          <h1 class="mb-5">Your are now logged in! You can browse the list of the documents, add a document or search in the database</h1>
         </div>
       </div>
-    </header>
+    </div>
+  </div>
+</header>
