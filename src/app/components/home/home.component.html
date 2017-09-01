@@ -1,0 +1,25 @@
+<header *ngIf="!auth.isAuthenticated()" class="masthead">
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col-lg-7 my-auto">
+          <div class="header-content mx-auto">
+            <h1 class="mb-5">The Deed App allows you to sto Age is an app landing page that will help you beautifully showcase your new mobile app, or anything else!</h1>
+            <a href="#download" class="btn btn-outline btn-xl">Learn More</a>
+            <a href="#download" class="btn btn-outline btn-xl">Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <header *ngIf="auth.isAuthenticated()" class="masthead">
+      <div class="container h-100">
+        <div class="row h-100">
+          <div class="col-lg-7 my-auto">
+            <div class="header-content mx-auto">
+              <h1 class="mb-5">Your are now logged in! You can browse the list of the documents, add a document or search in the database</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>

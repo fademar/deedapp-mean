@@ -1,5 +1,7 @@
-
+<app-navbar></app-navbar>
 <simple-notifications [options]="options"></simple-notifications>
+<div class="container main-container">
+		
 <div *ngIf="deed">
 	<div class="pull-right">
         <a routerLink="/deed/{{ id }}" class="btn btn-warning">Cancel</a>
@@ -2678,4 +2680,5 @@
 </div>
 
 
+</div>
 </div>

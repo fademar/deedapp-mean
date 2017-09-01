@@ -1,48 +1,51 @@
-<h1 class="page-header">Search Deeds</h1>
-<form class="form-horizontal" [formGroup]="searchForm" (ngSubmit)="onSubmit()" novalidat>
-<div class="form-group">
-		<label class="col-sm-2 control-label">Search in all fields</label>
-		<div class="col-sm-8">
-			<input class="form-control" formControlName="searchTerm">
-		</div>
-		<div class="col-sm-2">
-				<button type="submit" class="btn btn-info">Search</button>
-		</div>
-</div>
-</form>
-<div *ngIf="results">
-  <h2>{{ results.length }} deeds found in the database</h2>
-  <div class="table-responsive">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Deed Code</th>
-          <th>Deed Ref</th>
-          <th>Deed Date</th>
-          <th>Deed Name</th>
-          <th>Agent Name</th>
-          <th>To Do</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor='let result of results'>
-          <td>{{ result.deedCode }}</td>
-          <td>{{ result.deedRef }}</td>
-          <td>{{ result.deedDate }}</td>
-          <td>{{ result.deedName }}</td>
-          <td>
-            <span *ngIf="result.agent">
+<app-navbar></app-navbar>
+<div class="container main-container">
+  <h1 class="page-header">Search Deeds</h1>
+  <form class="form-horizontal" [formGroup]="searchForm" (ngSubmit)="onSubmit()" novalidat>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Search in all fields</label>
+      <div class="col-sm-8">
+        <input class="form-control" formControlName="searchTerm">
+      </div>
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-info">Search</button>
+      </div>
+    </div>
+  </form>
+  <div *ngIf="results">
+    <h2>{{ results.length }} deeds found in the database</h2>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Deed Code</th>
+            <th>Deed Ref</th>
+            <th>Deed Date</th>
+            <th>Deed Name</th>
+            <th>Agent Name</th>
+            <th>To Do</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let result of results'>
+            <td>{{ result.deedCode }}</td>
+            <td>{{ result.deedRef }}</td>
+            <td>{{ result.deedDate }}</td>
+            <td>{{ result.deedName }}</td>
+            <td>
+              <span *ngIf="result.agent">
               <span *ngIf="result.agent.firstName"> {{ result.agent.firstName }}</span> <span *ngIf="result.agent.lastName">{{ result.agent.lastName }}</span>
               <span *ngIf="result.agent.corporationName">{{result.agent.corporationName}}</span>
-            </span>
-          </td>
-          <td> <i *ngIf="result.incomplete" class="glyphicon glyphicon-ok"></i></td>
+              </span>
+            </td>
+            <td> <i *ngIf="result.incomplete" class="glyphicon glyphicon-ok"></i></td>
 
-          <td>
-            <a routerLink="/deed/{{ result._id }}" [queryParams]="{resultFor: term}" class="btn btn-primary">Details</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+            <td>
+              <a routerLink="/deed/{{ result._id }}" [queryParams]="{resultFor: term}" class="btn btn-primary">Details</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

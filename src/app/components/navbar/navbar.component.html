@@ -23,8 +23,12 @@
 
     </ul>
 	<ul class="navbar-nav">
-		<!-- <button  class="btn btn-sm btn-lime" type="button" >LOGIN</button>
-		<button class="btn btn-sm btn-amber" type="button" >LOG OUT</button> -->
+      <li class="nav-item"> 
+          <a class="nav-link" *ngIf="!auth.isAuthenticated()" (click)="auth.login()">Login</a>
+        </li>
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="auth.isAuthenticated()" (click)="auth.logout()">Logout</a>
+      </li>
 	</ul>
   </div>
   </div>
