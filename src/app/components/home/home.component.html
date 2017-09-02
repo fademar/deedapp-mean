@@ -1,37 +1,35 @@
-<header *ngIf="!auth.isAuthenticated()" class="masthead">
-  <div class="container h-100">
-    <div class="row h-100">
-      <div class="col my-auto">
-        <div class="header-content mx-auto">
-          <h1 class="mb-5">The Deed App Poject<br>Indexing the books of deeds under Peter the Great.</h1>
-          <a href="#download" class="btn btn-outline btn-xl">Learn More</a>
-          <a href="#download" class="btn btn-outline btn-xl">Login</a>
-        </div>
-        <div class="header-foot pb-5">
-          <div class="row">
-            <div class="col mx-auto">
-              <h2>A project developped by the Center of the Russian and Caucasus Worlds and Central Europe (CERCEC, EHESS/CNRS) with the support of the LabEx TEPSIS.</h2>
-            </div>
-          </div>
-          <div class="row mt-5">
-            <div class="col"><img src="../../../assets/img/logoCERCEC_WB.png" height="100px"></div>
-            <div class="col"></div>
-            <div class="col"></div>
-          </div>
-        </div>
+<div *ngIf="!auth.isAuthenticated()" class="wrapper">
+  <div class="page-header clear-filter" filter-color="orange">
+      <div class="page-header-image" data-parallax="true" style="background-image: url('../../../assets/img/scandeed4.jpg');">
       </div>
-    </div>
+      <div class="container">
+          <div class="content-center brand">
+              <h1 class="h1-seo">The Deed App</h1>
+              <h3 class="mb-5">Indexing the books of deeds in the reign of Peter the Great.</h3>
+              <p class="mt-5">A project developed by the Center of the Russian and Caucasus Worlds and Central Europe (EHESS/CNRS)<br> with the support of the LabEx TEPSIS.
+              </p>
+              <div class="row justify-content-center mt-5">
+                  <div class="col-4">
+                      <button class="btn btn-neutral btn-lg">Learn more</button>                
+                  </div>
+                  <div class="col-4">
+                      <button class="btn btn-primary btn-lg" (click)="auth.login()">Login</button>                
+                  </div>
+                </div>
+          </div>
+      </div>
   </div>
-</header>
+</div>
 
-<header *ngIf="auth.isAuthenticated()" class="masthead">
-  <div class="container h-100">
-    <div class="row h-100">
-      <div class="col-lg-7 my-auto">
-        <div class="header-content mx-auto">
-          <h1 class="mb-5">Your are now logged in! You can browse the list of the documents, add a document or search in the database</h1>
-        </div>
+  <div *ngIf="auth.isAuthenticated()" class="wrapper">
+      <div class="page-header clear-filter" filter-color="orange">
+          <div class="page-header-image" data-parallax="true" style="background-image: url('../../../assets/img/scandeed4.jpg');">
+          </div>
+          <div class="container">
+              <div class="content-center brand">
+                  <h1 class="h1-seo">You are now logged in!</h1>
+                  <h3 class="mb-5">You will be redirected soon</h3>
+              </div>
+          </div>
       </div>
-    </div>
   </div>
-</header>
