@@ -85,7 +85,6 @@ outline: none !important;
   position: fixed;
   top: 220px;
   right: 80px;
-  background-color: #3F51B5;
 }
 
 .back-button>button:focus, .back-button>button:active {
