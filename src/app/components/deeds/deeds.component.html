@@ -2,7 +2,7 @@
 <div class="container main-container">
 		
 <div class="card shadow mb-3">
-	<div class="card-block">
+	<div class="card-body">
 		<div class="text-center">
 			<h3><i class="fa fa-list"></i> All Deeds</h3>
 			<hr class="mt-2 mb-2">
@@ -32,7 +32,7 @@
 							<td><span *ngIf="deed.agent.firstName">{{ deed.agent.firstName }}</span> <span *ngIf="deed.agent.lastName">{{ deed.agent.lastName }}</span> <span *ngIf="deed.agent.corporationName">{{ deed.agent.corporationName }}</span></td>
 							<td><i *ngIf="deed.complete" class="glyphicon glyphicon-ok"></i></td>
 							<td>
-								<a routerLink="/deed/{{ deed._id }}" class="btn btn-primary">Details</a>
+								<button md-raised-button color="primary" routerLink="/deed/{{ deed._id }}">Details</button>
 							</td>
 						</tr>
 					</tbody>

@@ -2,17 +2,27 @@
 <div class="container main-container">
         
 <div *ngIf="deed">
-    <div class="pull-right">
-        <a *ngIf="term" routerLink="/search" [queryParams]="{resultFor: term}" class="btn btn-default">Back to results</a>
-        <a routerLink="/deed/edit/{{ deed._id }}" class="btn btn-primary">Edit</a>
-        <a (click)="onDeleteClick(deed._id)" class="btn btn-danger">Delete</a>
+    
+    <div class="edit-button">
+        <button md-fab type="button" routerLink="/deed/edit/{{ deed._id }}" mdTooltip="Edit the deed" mdTooltipPosition="left">
+            <md-icon class="md-24" style="color:white">mode_edit</md-icon>
+        </button>
     </div>
-
-    <h1 class="page-header">Deed {{ deed.deedCode }} {{ deed.deedRef }}</h1>
-    <div *ngIf="!deed.complete" class="alert alert-warning" role="alert"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> There is more data in the manuscript</div>
+    <div class="delete-button">
+        <button md-fab type="button" color="warn" (click)="onDeleteClick(deed._id)" mdTooltip="Delete the deed" mdTooltipPosition="left">
+            <md-icon class="md-24" style="color:white">delete</md-icon>
+        </button>
+    </div>
+    <div *ngIf="term" routerLink="/search" [queryParams]="{resultFor: term}" class="back-button">
+        <button md-fab type="button" mdTooltip="Back to results" mdTooltipPosition="left">
+            <md-icon class="md-24" style="color:white">arrow_back</md-icon>
+        </button>
+    </div>
+    
+    <md-card *ngIf="!deed.complete" class="bg-yellow-500 mb-3"><span class="message"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> There is more data in the manuscript</span></md-card>
     
     <div class="card shadow mb-3">
-        <div class="card-block">
+        <div class="card-body">
             <div class="text-center">
                 <h3><i class="fa fa-info-circle"></i> Deed Information</h3>
                 <hr class="mt-2 mb-2">
@@ -26,7 +36,7 @@
         </div>
     </div>
     <div class="card shadow mb-3">
-        <div class="card-block">
+        <div class="card-body">
             <div class="text-center">
                 <h3><i class="fa fa-users"></i> Contracting Parties</h3>
                 <hr class="mt-2 mb-2">
@@ -38,7 +48,7 @@
                 <div class="card-header teal lighten-3">
                     <h4 class="text-center">Agent</h4>
                 </div>
-                <div class="card-block">
+                <div class="card-body">
                     <ul class="list-group">
                         <li *ngIf="deed.agentSex" class="list-group-item"><strong>Agent Type: </strong> <span class="form-data">{{ deed.agentSex }}</span></li>
                         <div [ngSwitch]="deed.agentSex">
@@ -59,7 +69,7 @@
                                     <div class="card-header">
                                         <h5 class="text-center">Referent Male</h5>
                                     </div>
-                                    <div class="card-block">
+                                    <div class="card-body">
                                         <ul class="list-group">
                                             <li *ngIf="deed.agent.referentMale.relationshipToAgent" class="list-group-item"><strong>Relationship To Agent: </strong><span class="form-data">{{ deed.agent.referentMale.relationshipToAgent }}</span></li>
                                             <li *ngIf="deed.agent.referentMale.geogrStatus" class="list-group-item"><strong>Geogr Status: </strong><span class="form-data">{{ deed.agent.referentMale.geogrStatus }}</span></li>
@@ -95,7 +105,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-block">
+                        <div class="card-body">
                             <ul class="list-group">
                                 <li *ngIf="coAgent.coAgentSex" class="list-group-item"><strong>Co-Agent type: </strong> <span class="form-data">{{ coAgent.coAgentSex }}</span></li>
                                 <div [ngSwitch]="coAgent.coAgentSex">
@@ -116,7 +126,7 @@
                                             <div class="card-header">
                                                 <h5 class="text-center">Referent Male</h5>
                                             </div>
-                                            <div class="card-block">
+                                            <div class="card-body">
                                                 <ul class="list-group">
                                                     <li *ngIf="coAgent.coAgent.referentMale.relationshipToAgent" class="list-group-item"><strong>Relationship To Co-Agent: </strong><span class="form-data">{{ coAgent.coAgent.referentMale.relationshipToAgent }}</span></li>
                                                     <li *ngIf="coAgent.coAgent.referentMale.geogrStatus" class="list-group-item"><strong>Geogr Status: </strong><span class="form-data">{{ coAgent.coAgent.referentMale.geogrStatus }}</span></li>
@@ -153,7 +163,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-block">
+                    <div class="card-body">
                         <ul class="list-group">
                             <li *ngIf="deed.collectiveCoAgent.relationToAgent" class="list-group-item"><strong>Collective Co-Agent Relation to Agent: </strong><span class="form-data">{{ deed.collectiveCoAgent.relationToAgent }}</span></li>
                             <li *ngIf="deed.collectiveCoAgent.numberOfParticipants" class="list-group-item"><strong>Collective Co-Agent Number of Participants: </strong><span class="form-data">{{ deed.collectiveCoAgent.numberOfParticipants }}</span></li>
@@ -169,7 +179,7 @@
                 <div class="card-header amber lighten-3">
                     <h4 class="text-center">Counter-Agent</h4>
                 </div>
-                <div class="card-block">
+                <div class="card-body">
                     <ul class="list-group">
                         <li *ngIf="deed.counterAgentSex" class="list-group-item"><strong>Counter-Agent Type: </strong> <span class="form-data">{{ deed.counterAgentSex }}</span></li>
                         <div [ngSwitch]="deed.agentSex">
@@ -190,7 +200,7 @@
                                     <div class="card-header">
                                         <h5 class="text-center">Referent Male</h5>
                                     </div>
-                                    <div class="card-block">
+                                    <div class="card-body">
                                         <ul class="list-group">
                                             <li *ngIf="deed.counterAgent.referentMale.relationshipToAgent" class="list-group-item"><strong>Relationship To Agent: </strong><span class="form-data">{{ deed.counterAgent.referentMale.relationshipToAgent }}</span></li>
                                             <li *ngIf="deed.counterAgent.referentMale.geogrStatus" class="list-group-item"><strong>Geogr Status: </strong><span class="form-data">{{ deed.counterAgent.referentMale.geogrStatus }}</span></li>
@@ -226,7 +236,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-block">
+                        <div class="card-body">
                             <ul class="list-group">
                                 <li *ngIf="coCounterAgent.coCounterAgentSex" class="list-group-item"><strong>Co-Counter Agent type: </strong> <span class="form-data">{{ coCounterAgent.coCounterAgentSex }}</span></li>
                                 <div [ngSwitch]="coCounterAgent.coCounterAgentSex">
@@ -247,7 +257,7 @@
                                             <div class="card-header">
                                                 <h5 class="text-center">Referent Male</h5>
                                             </div>
-                                            <div class="card-block">
+                                            <div class="card-body">
                                                 <ul class="list-group">
                                                     <li *ngIf="coCounterAgent.coCounterAgent.referentMale.relationshipToAgent" class="list-group-item"><strong>Relationship To Co-Agent: </strong><span class="form-data">{{ coCounterAgent.coCounterAgent.referentMale.relationshipToAgent }}</span></li>
                                                     <li *ngIf="coCounterAgent.coCounterAgent.referentMale.geogrStatus" class="list-group-item"><strong>Geogr Status: </strong><span class="form-data">{{ coCounterAgent.coCounterAgent.referentMale.geogrStatus }}</span></li>
@@ -284,7 +294,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-block">
+                    <div class="card-body">
                         <ul class="list-group">
                             <li *ngIf="deed.collectiveCoCounterAgent.relationToAgent" class="list-group-item"><strong>Collective Co-Agent Relation to Agent: </strong><span class="form-data">{{ deed.collectiveCoCounterAgent.relationToAgent }}</span></li>
                             <li *ngIf="deed.collectiveCoCounterAgent.numberOfParticipants" class="list-group-item"><strong>Collective Co-Agent Number of Participants: </strong><span class="form-data">{{ deed.collectiveCoCounterAgent.numberOfParticipants }}</span></li>
@@ -300,7 +310,7 @@
 
     <!-- TRANSACTION -->
     <div class="card shadow mb-3">
-        <div class="card-block">
+        <div class="card-body">
             <div class="text-center">
                 <h3><i class="fa fa-handshake-o"></i> Transactions</h3>
                 <hr class="mt-2 mb-2">
@@ -314,7 +324,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-block">
+                    <div class="card-body">
 
                         <!-- AGENT TRANSACTION -->
                         <div *ngIf="transaction.agentAction" class="alert alert-info">
@@ -332,7 +342,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="agentTransactionObject.chattels.type" class="list-group-item"><strong>Chattels Type: </strong><span class="form-data">{{ agentTransactionObject.chattels.type }}</span></li>
                                         <li *ngIf="agentTransactionObject.chattels.origin" class="list-group-item"><strong>Chattels Origin: </strong><span class="form-data">{{ agentTransactionObject.chattels.origin }}</span></li>
@@ -349,7 +359,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="agentTransactionObject.debt.amount.moscowSilver" class="list-group-item"><strong>Amount in Moscow Silver: </strong><span class="form-data">{{ agentTransactionObject.debt.amount.moscowSilver.rubli }}</span> rubli <span class="form-data">{{ agentTransactionObject.debt.amount.moscowSilver.altyny }}</span> altyny <span class="form-data">{{ agentTransactionObject.debt.amount.moscowSilver.dengi }}</span> den'gi</li>
                                         <li *ngIf="agentTransactionObject.debt.amount.chekhi" class="list-group-item"><strong>Amount in Chekhi: </strong><span class="form-data">{{ agentTransactionObject.debt.amount.chekhi.rubli }}</span> rubli <span class="form-data">{{ agentTransactionObject.debt.amount.chekhi.altyny }}</span> altyny <span class="form-data">{{ agentTransactionObject.debt.amount.chekhi.dengi }}</span> den'gi</li>
@@ -366,7 +376,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="agentTransactionObject.dependent.familyStatus" class="list-group-item"><strong>Family Status: </strong><span class="form-data">{{ agentTransactionObject.dependent.familyStatus }}</span></li>
                                         <li *ngIf="agentTransactionObject.dependent.firstName" class="list-group-item"><strong>First Name: </strong><span class="form-data">{{ agentTransactionObject.dependent.firstName }}</span></li>
@@ -384,7 +394,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="agentTransactionObject.forfeit.moscowSilver" class="list-group-item"><strong>Amount in Moscow Silver: </strong><span class="form-data">{{ agentTransactionObject.forfeit.moscowSilver.rubli }}</span> rubli <span class="form-data">{{ agentTransactionObject.forfeit.moscowSilver.altyny }}</span> altyny <span class="form-data">{{ agentTransactionObject.forfeit.moscowSilver.dengi }}</span> den'gi</li>
                                         <li *ngIf="agentTransactionObject.forfeit.chekhi" class="list-group-item"><strong>Amount in Chekhi: </strong><span class="form-data">{{ agentTransactionObject.forfeit.chekhi.rubli }}</span> rubli <span class="form-data">{{ agentTransactionObject.forfeit.chekhi.altyny }}</span> altyny <span class="form-data">{{ agentTransactionObject.forfeit.chekhi.dengi }}</span> den'gi</li>
@@ -399,7 +409,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="agentTransactionObject.fugitiveSouls.juridicalStatus" class="list-group-item"><strong>Family Status: </strong><span class="form-data">{{ agentTransactionObject.fugitiveSouls.juridicalStatus }}</span></li>
                                         <li *ngIf="agentTransactionObject.fugitiveSouls.numberOfSouls" class="list-group-item"><strong>Number of Souls: </strong><span class="form-data">{{ agentTransactionObject.fugitiveSouls.numberOfSouls.male }}</span> male / <span class="form-data">{{ agentTransactionObject.fugitiveSouls.numberOfSouls.female }}</span> female <span class="form-data">{{ agentTransactionObject.fugitiveSouls.numberOfSouls.operator }} {{ agentTransactionObject.fugitiveSouls.numberOfSouls.households }}</span> households</li>
@@ -416,7 +426,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="agentTransactionObject.goods.type" class="list-group-item"><strong>Type: </strong><span class="form-data">{{ agentTransactionObject.goods.type }}</span></li>
                                         <li *ngIf="agentTransactionObject.goods.description" class="list-group-item"><strong>Type: </strong><span class="form-data">{{ agentTransactionObject.goods.description }}</span></li>
@@ -433,7 +443,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="agentTransactionObject.immovableProperty.type" class="list-group-item"><strong>Type: </strong><span class="form-data">{{ agentTransactionObject.immovableProperty.type }}</span></li>
                                         <li *ngIf="agentTransactionObject.immovableProperty.otherImmovablePropertyType" class="list-group-item"><strong>Other Type: </strong><span class="form-data">{{ agentTransactionObject.immovableProperty.otherImmovablePropertyType }}</span></li>
@@ -459,7 +469,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="agentTransactionObject.money.amount.moscowSilver" class="list-group-item"><strong>Amount in Moscow Silver: </strong><span class="form-data">{{ agentTransactionObject.forfeit.moscowSilver.rubli }}</span> rubli <span class="form-data">{{ agentTransactionObject.forfeit.moscowSilver.altyny }}</span> altyny <span class="form-data">{{ agentTransactionObject.forfeit.moscowSilver.dengi }}</span> den'gi</li>
                                         <li *ngIf="agentTransactionObject.money.amount.chekhi" class="list-group-item"><strong>Amount in Chekhi: </strong><span class="form-data">{{ agentTransactionObject.forfeit.chekhi.rubli }}</span> rubli <span class="form-data">{{ agentTransactionObject.forfeit.chekhi.altyny }}</span> altyny <span class="form-data">{{ agentTransactionObject.forfeit.chekhi.dengi }}</span> den'gi</li>
@@ -474,7 +484,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="agentTransactionObject.parent.coAgentNumber" class="list-group-item"><strong>Co-Agent Number: </strong><span class="form-data">{{ agentTransactionObject.parent.coAgentNumber }}</span></li>
                                     </ul>
@@ -488,7 +498,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="agentTransactionObject.responsibilities.description" class="list-group-item"><strong>Description: </strong><span class="form-data">{{ agentTransactionObject.responsibilities.description }}</span></li>
                                     </ul>
@@ -502,7 +512,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="agentTransactionObject.shareFromEstate.share" class="list-group-item"><strong>Share: </strong><span class="form-data">{{ agentTransactionObject.shareFromEstate.share }}</span></li>
                                         <li *ngIf="agentTransactionObject.shareFromEstate.otherShareFromEstate" class="list-group-item"><strong>Other Share: </strong><span class="form-data">{{ agentTransactionObject.shareFromEstate.otherShareFromEstate }}</span></li>
@@ -518,7 +528,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="agentTransactionObject.souls.juridicalStatus" class="list-group-item"><strong>Juridical Status: </strong><span class="form-data">{{ agentTransactionObject.souls.juridicalStatus }}</span></li>
                                         <li *ngIf="agentTransactionObject.souls.numberOfSouls" class="list-group-item"><strong>Number of Souls: </strong><span class="form-data">{{ agentTransactionObject.souls.numberOfSouls.male }}</span> male / <span class="form-data">{{ agentTransactionObject.souls.numberOfSouls.female }}</span> female <span class="form-data">{{ agentTransactionObject.souls.numberOfSouls.operator }} {{ agentTransactionObject.souls.numberOfSouls.households }}</span> households</li>
@@ -535,7 +545,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="agentTransactionObject.other" class="list-group-item"><strong>Other: </strong><span class="form-data">{{ agentTransactionObject.other }}</span></li>
                                     </ul>
@@ -549,7 +559,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="agentTransactionObject.toDoWhat" class="list-group-item"><strong>To Do: </strong><span class="form-data">{{ agentTransactionObject.toDoWhat }}</span></li>
                                     </ul>
@@ -563,7 +573,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="agentTransactionObject.withFamily" class="list-group-item"><strong>With Family: </strong><span class="form-data">{{ agentTransactionObject.withFamily }}</span></li>
                                     </ul>
@@ -577,7 +587,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="agentTransactionObject.activity" class="list-group-item"><strong>Activity: </strong><span class="form-data">{{ agentTransactionObject.activity }}</span></li>
                                     </ul>
@@ -591,7 +601,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="agentTransactionObject.type" class="list-group-item"><strong>Type: </strong><span class="form-data">{{ agentTransactionObject.type }}</span></li>
                                         <li *ngIf="agentTransactionObject.description" class="list-group-item"><strong>Description: </strong><span class="form-data">{{ agentTransactionObject.description }}</span></li>
@@ -607,7 +617,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="agentTransactionObject.other" class="list-group-item"><strong>Other: </strong><span class="form-data">{{ agentTransactionObject.other }}</span></li>
                                     </ul>
@@ -633,7 +643,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="counterAgentTransactionObject.chattels.type" class="list-group-item"><strong>Chattels Type: </strong><span class="form-data">{{ counterAgentTransactionObject.chattels.type }}</span></li>
                                         <li *ngIf="counterAgentTransactionObject.chattels.origin" class="list-group-item"><strong>Chattels Origin: </strong><span class="form-data">{{ counterAgentTransactionObject.chattels.origin }}</span></li>
@@ -650,7 +660,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="counterAgentTransactionObject.debt.amount.moscowSilver" class="list-group-item"><strong>Amount in Moscow Silver: </strong><span class="form-data">{{ counterAgentTransactionObject.debt.amount.moscowSilver.rubli }}</span> rubli <span class="form-data">{{ counterAgentTransactionObject.debt.amount.moscowSilver.altyny }}</span> altyny <span class="form-data">{{ counterAgentTransactionObject.debt.amount.moscowSilver.dengi }}</span> den'gi</li>
                                         <li *ngIf="counterAgentTransactionObject.debt.amount.chekhi" class="list-group-item"><strong>Amount in Chekhi: </strong><span class="form-data">{{ counterAgentTransactionObject.debt.amount.chekhi.rubli }}</span> rubli <span class="form-data">{{ counterAgentTransactionObject.debt.amount.chekhi.altyny }}</span> altyny <span class="form-data">{{ counterAgentTransactionObject.debt.amount.chekhi.dengi }}</span> den'gi</li>
@@ -667,7 +677,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="counterAgentTransactionObject.dependent.familyStatus" class="list-group-item"><strong>Family Status: </strong><span class="form-data">{{ counterAgentTransactionObject.dependent.familyStatus }}</span></li>
                                         <li *ngIf="counterAgentTransactionObject.dependent.firstName" class="list-group-item"><strong>First Name: </strong><span class="form-data">{{ counterAgentTransactionObject.dependent.firstName }}</span></li>
@@ -685,7 +695,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="counterAgentTransactionObject.forfeit.moscowSilver" class="list-group-item"><strong>Amount in Moscow Silver: </strong><span class="form-data">{{ counterAgentTransactionObject.forfeit.moscowSilver.rubli }}</span> rubli <span class="form-data">{{ counterAgentTransactionObject.forfeit.moscowSilver.altyny }}</span> altyny <span class="form-data">{{ counterAgentTransactionObject.forfeit.moscowSilver.dengi }}</span> den'gi</li>
                                         <li *ngIf="counterAgentTransactionObject.forfeit.chekhi" class="list-group-item"><strong>Amount in Chekhi: </strong><span class="form-data">{{ counterAgentTransactionObject.forfeit.chekhi.rubli }}</span> rubli <span class="form-data">{{ counterAgentTransactionObject.forfeit.chekhi.altyny }}</span> altyny <span class="form-data">{{ counterAgentTransactionObject.forfeit.chekhi.dengi }}</span> den'gi</li>
@@ -700,7 +710,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="counterAgentTransactionObject.fugitiveSouls.juridicalStatus" class="list-group-item"><strong>Family Status: </strong><span class="form-data">{{ counterAgentTransactionObject.fugitiveSouls.juridicalStatus }}</span></li>
                                         <li *ngIf="counterAgentTransactionObject.fugitiveSouls.numberOfSouls" class="list-group-item"><strong>Number of Souls: </strong><span class="form-data">{{ counterAgentTransactionObject.fugitiveSouls.numberOfSouls.male }}</span> male / <span class="form-data">{{ counterAgentTransactionObject.fugitiveSouls.numberOfSouls.female }}</span> female <span class="form-data">{{ counterAgentTransactionObject.fugitiveSouls.numberOfSouls.operator }} {{ counterAgentTransactionObject.fugitiveSouls.numberOfSouls.households }}</span> households</li>
@@ -717,7 +727,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="counterAgentTransactionObject.goods.type" class="list-group-item"><strong>Type: </strong><span class="form-data">{{ counterAgentTransactionObject.goods.type }}</span></li>
                                         <li *ngIf="counterAgentTransactionObject.goods.description" class="list-group-item"><strong>Type: </strong><span class="form-data">{{ counterAgentTransactionObject.goods.description }}</span></li>
@@ -734,7 +744,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="counterAgentTransactionObject.immovableProperty.type" class="list-group-item"><strong>Type: </strong><span class="form-data">{{ counterAgentTransactionObject.immovableProperty.type }}</span></li>
                                         <li *ngIf="counterAgentTransactionObject.immovableProperty.otherImmovablePropertyType" class="list-group-item"><strong>Other Type: </strong><span class="form-data">{{ counterAgentTransactionObject.immovableProperty.otherImmovablePropertyType }}</span></li>
@@ -760,7 +770,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="counterAgentTransactionObject.money.amount.moscowSilver" class="list-group-item"><strong>Amount in Moscow Silver: </strong><span class="form-data">{{ counterAgentTransactionObject.money.amount.moscowSilver.rubli }}</span> rubli <span class="form-data">{{ counterAgentTransactionObject.money.amount.moscowSilver.altyny }}</span> altyny <span class="form-data">{{ counterAgentTransactionObject.money.amount.moscowSilver.dengi }}</span> den'gi</li>
                                         <li *ngIf="counterAgentTransactionObject.money.amount.chekhi" class="list-group-item"><strong>Amount in Chekhi: </strong><span class="form-data">{{ counterAgentTransactionObject.money.amount.chekhi.rubli }}</span> rubli <span class="form-data">{{ counterAgentTransactionObject.money.amount.chekhi.altyny }}</span> altyny <span class="form-data">{{ counterAgentTransactionObject.money.amount.chekhi.dengi }}</span> den'gi</li>
@@ -775,7 +785,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="counterAgentTransactionObject.parent.coCounterAgentNumber" class="list-group-item"><strong>Co-Counter Agent Number: </strong><span class="form-data">{{ counterAgentTransactionObject.parent.coCounterAgentNumber }}</span></li>
                                     </ul>
@@ -789,7 +799,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="counterAgentTransactionObject.responsibilities.description" class="list-group-item"><strong>Description: </strong><span class="form-data">{{ counterAgentTransactionObject.responsibilities.description }}</span></li>
                                     </ul>
@@ -803,7 +813,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="counterAgentTransactionObject.shareFromEstate.share" class="list-group-item"><strong>Share: </strong><span class="form-data">{{ counterAgentTransactionObject.shareFromEstate.share }}</span></li>
                                         <li *ngIf="counterAgentTransactionObject.shareFromEstate.otherShareFromEstate" class="list-group-item"><strong>Other Share: </strong><span class="form-data">{{ counterAgentTransactionObject.shareFromEstate.otherShareFromEstate }}</span></li>
@@ -819,7 +829,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="counterAgentTransactionObject.souls.juridicalStatus" class="list-group-item"><strong>Juridical Status: </strong><span class="form-data">{{ counterAgentTransactionObject.souls.juridicalStatus }}</span></li>
                                         <li *ngIf="counterAgentTransactionObject.souls.numberOfSouls" class="list-group-item"><strong>Number of Souls: </strong><span class="form-data">{{ counterAgentTransactionObject.souls.numberOfSouls.male }}</span> male / <span class="form-data">{{ counterAgentTransactionObject.souls.numberOfSouls.female }}</span> female <span class="form-data">{{ counterAgentTransactionObject.souls.numberOfSouls.operator }} {{ counterAgentTransactionObject.souls.numberOfSouls.households }}</span> households</li>
@@ -836,7 +846,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="counterAgentTransactionObject.other" class="list-group-item"><strong>Other: </strong><span class="form-data">{{ counterAgentTransactionObject.other }}</span></li>
                                     </ul>
@@ -850,7 +860,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="counterAgentTransactionObject.toDoWhat" class="list-group-item"><strong>To Do: </strong><span class="form-data">{{ counterAgentTransactionObject.toDoWhat }}</span></li>
                                     </ul>
@@ -864,7 +874,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="counterAgentTransactionObject.withFamily" class="list-group-item"><strong>With Family: </strong><span class="form-data">{{ counterAgentTransactionObject.withFamily }}</span></li>
                                     </ul>
@@ -878,7 +888,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="counterAgentTransactionObject.activity" class="list-group-item"><strong>Activity: </strong><span class="form-data">{{ counterAgentTransactionObject.activity }}</span></li>
                                     </ul>
@@ -892,7 +902,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="counterAgentTransactionObject.type" class="list-group-item"><strong>Type: </strong><span class="form-data">{{ counterAgentTransactionObject.type }}</span></li>
                                         <li *ngIf="counterAgentTransactionObject.description" class="list-group-item"><strong>Description: </strong><span class="form-data">{{ counterAgentTransactionObject.description }}</span></li>
@@ -908,7 +918,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-body">
                                     <ul class="list-group">
                                         <li *ngIf="counterAgentTransactionObject.other" class="list-group-item"><strong>Other: </strong><span class="form-data">{{ counterAgentTransactionObject.other }}</span></li>
                                     </ul>
@@ -918,12 +928,12 @@
                     </div>
                 </div>
             </ng-template>
-        </div> <!-- END TRANSACTIONS CARD-BLOCK-->
+        </div> <!-- END TRANSACTIONS card-body-->
     </div> <!-- END TRANSACTIONS CARD-->
 
     <!-- ACCESSORIES TO CONTRACT -->
     <div class="card shadow mb-3">
-        <div class="card-block">
+        <div class="card-body">
             <div class="text-center">
                 <h3><i class="fa fa-eye"></i> Accessories to contract</h3>
                 <hr class="mt-2 mb-2">
@@ -938,7 +948,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-block">
+                        <div class="card-body">
                             <ul class="list-group">
                                 <li *ngIf="whitness.whitness.geogrStatus" class="list-group-item"><strong>Geogr Status: </strong><span class="form-data">{{ whitness.whitness.geogrStatus }}</span></li>
                                 <li *ngIf="whitness.whitness.socialStatus" class="list-group-item"><strong>Social Status: </strong><span class="form-data">{{ whitness.whitness.socialStatus }}</span></li>
@@ -961,7 +971,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-block">
+                        <div class="card-body">
                             <ul class="list-group">
                                 <li *ngIf="surety.surety.geogrStatus" class="list-group-item"><strong>Geogr Status: </strong><span class="form-data">{{ surety.surety.geogrStatus }}</span></li>
                                 <li *ngIf="surety.surety.socialStatus" class="list-group-item"><strong>Social Status: </strong><span class="form-data">{{ surety.surety.socialStatus }}</span></li>
@@ -982,7 +992,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-block">
+                <div class="card-body">
                     <ul class="list-group">
                         <li *ngIf="deed.scribe.geogrStatus" class="list-group-item"><strong>Geogr Status: </strong><span class="form-data">{{ deed.scribe.geogrStatus }}</span></li>
                         <li *ngIf="deed.scribe.socialStatus" class="list-group-item"><strong>Social Status: </strong><span class="form-data">{{ deed.scribe.socialStatus }}</span></li>
@@ -1003,7 +1013,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-block">
+                        <div class="card-body">
                             <ul class="list-group">
                                 <li *ngIf="otherParticipant.otherParticipant.role" class="list-group-item"><strong>Role: </strong><span class="form-data">{{ otherParticipant.otherParticipant.role }}</span></li>
                                 <li *ngIf="otherParticipant.otherParticipant.geogrStatus" class="list-group-item"><strong>Geogr Status: </strong><span class="form-data">{{ otherParticipant.otherParticipant.geogrStatus }}</span></li>
@@ -1019,14 +1029,14 @@
             </div>
 
 
-        </div> <!-- END CARD-BLOCK ACCESSORIES TO CONTRACT -->
+        </div> <!-- END card-body ACCESSORIES TO CONTRACT -->
     </div> <!-- END CARD ACCESSORIES TO CONTRACT -->
 
 
 
     <!-- REGISTRATION -->
     <div class="card shadow mb-3">
-        <div class="card-block">
+        <div class="card-body">
             <div class="text-center">
                 <h3><i class="fa fa-pencil-square-o"></i> Registration</h3>
                 <hr class="mt-2 mb-2">
@@ -1042,7 +1052,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-block">
+                <div class="card-body">
                     <ul class="list-group">
                         <li *ngIf="deed.registrator.firstName" class="list-group-item"><strong>First Name: </strong><span class="form-data">{{ deed.registrator.firstName }}</span></li>
                         <li *ngIf="deed.registrator.patronyme" class="list-group-item"><strong>Patronyme: </strong><span class="form-data">{{ deed.registrator.patronyme }}</span></li>
@@ -1059,7 +1069,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-block">
+                <div class="card-body">
                     <ul class="list-group">
                         <li *ngIf="deed.fees.tax" class="list-group-item"><strong>Tax: </strong><span class="form-data">{{ deed.fees.tax.roubles }}</span> roubles <span class="form-data">{{ deed.fees.tax.altyn }}</span> altyn <span class="form-data">{{ deed.fees.tax.denga }}</span> den'ga</li>
                         <li *ngIf="deed.fees.fee" class="list-group-item"><strong>Fee: </strong><span class="form-data">{{ deed.fees.fee.roubles }}</span> roubles <span class="form-data">{{ deed.fees.fee.altyn }}</span> altyn <span class="form-data">{{ deed.fees.fee.denga }}</span> den'ga</li>
@@ -1068,6 +1078,6 @@
             </div>
 
 
-        </div> <!-- END CARD-BLOCK REGISTRATION TO CONTRACT -->
+        </div> <!-- END card-body REGISTRATION TO CONTRACT -->
     </div> <!-- END CARD REGISTRATION TO CONTRACT -->
 </div>

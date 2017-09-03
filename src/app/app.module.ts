@@ -1,13 +1,18 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { SelectModule } from 'ng2-select';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MdDialogModule } from '@angular/material';
 import { MdProgressSpinnerModule } from '@angular/material';
+import { MdSlideToggleModule } from '@angular/material';
+import { MdButtonModule } from '@angular/material';
+import { MdIconModule } from '@angular/material';
+import { MdTooltipModule } from '@angular/material';
+import { MdMenuModule } from '@angular/material';
+import { MdCardModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -55,12 +60,18 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
     HttpModule,
     AppRoutingModule,
     SelectModule,
-    NgbModule.forRoot(),
     MdDialogModule,
-    MdProgressSpinnerModule
+    MdProgressSpinnerModule,
+    MdSlideToggleModule,
+    MdButtonModule,
+    MdIconModule,
+    MdTooltipModule,
+    MdMenuModule,
+    MdCardModule
   ],
   entryComponents: [ConfirmDialogComponent],
   providers: [DeedService, SchemaService, SearchService, PagerService, AuthService],
+  schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

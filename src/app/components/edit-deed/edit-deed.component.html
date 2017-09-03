@@ -3,43 +3,44 @@
 <div class="container main-container">
 		
 <div *ngIf="deed">
-	<div class="pull-right">
-        <a routerLink="/deed/{{ id }}" class="btn btn-warning">Cancel</a>
-    </div>
-	<h1 class="page-header">Edit Deed</h1>
-
-	<div class="alert alert-warning">Deed saved in the database with id <strong> {{ id }} </strong></div>
 
 	<form (keydown.enter)="$event.preventDefault()" [formGroup]="deedForm" (ngSubmit)="onSubmit()" novalidate>
 
 		<!-- Default dropup button -->
-	<div class="actions">
-		<div class="dropup">
-			<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus" aria-hidden="true"></i> ADD</button>
-			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
-				<button class="dropdown-item" type="button" (click)="addCoAgent()">Co-Agent</button>
-				<button *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" class="dropdown-item" type="button">Collective Co-Agent</button>
-				<button class="dropdown-item" type="button" (click)="addCoCounterAgent()">Co-Counter Agent</button>
-				<button *ngIf="!collectiveCoCounterAgentOn" class="dropdown-item" type="button" (click)="addCollectiveCoCounterAgent()">Collective Co-Counter Agent</button>
-				<div class="dropdown-divider"></div>
-				<button class="dropdown-item" type="button" (click)="addTransaction()">Transaction</button>
-				<div class="dropdown-divider"></div>
-				<button type="button" (click)="addWhitness()" class="dropdown-item">Whitness</button>
-				<button type="button" (click)="addSurety()" class="dropdown-item">Surety</button>
-				<button *ngIf="!scribeOn" type="button" (click)="addScribe()" class="dropdown-item">Scribe</button>
-				<button type="button" (click)="addOtherParticipant()" class="dropdown-item">Other Participant</button>
-				<div class="dropdown-divider"></div>
-				<button *ngIf="!registratorOn" class="dropdown-item" type="button" (click)="addRegistrator()">Registrator</button>
-
-			</div>
+		<div class="cancel-button">
+			<button md-fab type="button" color="primary" mdTooltip="Cancel" mdTooltipPosition="left" routerLink="/deed/{{ id }}">
+				<md-icon class="md-24" style="color:white" aria-label="Cancel">cancel</md-icon>
+			</button>
 		</div>
-	</div>
-	
-	<button type="submit" [disabled]="deedForm.invalid" class="submit btn btn-success btn-lg center-block">UPDATE</button>
+		<div class="actions">
+				<button md-fab type="button" [mdMenuTriggerFor]="menu" mdTooltip="Add an input" mdTooltipPosition="left">
+					<md-icon class="md-24" style="color:white">add</md-icon>
+				</button>
+				<md-menu #menu="mdMenu" xPosition="before" [overlapTrigger]="false">
+				  <button md-menu-item type="button" (click)="addCoAgent()">Co-Agent</button>
+				  <button md-menu-item *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" type="button">Collective Co-Agent</button>
+				  <button md-menu-item type="button" (click)="addCoCounterAgent()">Co-Counter Agent</button>
+				  <button md-menu-item *ngIf="!collectiveCoCounterAgentOn" type="button" (click)="addCollectiveCoCounterAgent()">Collective Co-Counter Agent</button>
+				  <div class="dropdown-divider"></div>			  
+				  <button md-menu-item type="button" (click)="addTransaction()">Transaction</button>
+				  <div class="dropdown-divider"></div>			  
+				  <button md-menu-item type="button" (click)="addWhitness()">Whitness</button>
+				  <button md-menu-item type="button" (click)="addSurety()" class="dropdown-item">Surety</button>
+				  <button md-menu-item *ngIf="!scribeOn" type="button" (click)="addScribe()">Scribe</button>
+				  <button md-menu-item type="button" (click)="addOtherParticipant()">Other Participant</button>
+				  <div class="dropdown-divider"></div>			  
+				  <button md-menu-item *ngIf="!registratorOn" type="button" (click)="addRegistrator()">Registrator</button>
+				</md-menu>
+			</div>
+			<div class="submit-button">
+				<button md-fab type="submit" [disabled]="deedForm.invalid" mdTooltip="Save the deed" mdTooltipPosition="left">
+					<md-icon class="md-24" style="color:white" aria-label="Submit the form">save</md-icon>
+				</button>
+			</div>
 
 	<!--DEED REFERENCES-->
 	<div class="card shadow mb-3">
-		<div class="card-block">
+		<div class="card-body">
 			<div class="text-center">
 				<h3><i class="fa fa-info-circle"></i> Deed Information</h3>
 				<hr class="mt-2 mb-2">
@@ -50,7 +51,7 @@
 					<div class="input-group">
 						<input class="form-control" formControlName="deedCode" required>
 						<span class="input-group-btn">
-							<button type="button" (click)="insertLastDeedCode()" class="btn btn-sm btn-info" placement="bottom" ngbTooltip="Click to insert the code of the last deed saved in the database"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Last Code</button>
+							<button type="button" (click)="insertLastDeedCode()" class="btn btn-secondary" placement="bottom" ngbTooltip="Click to insert the code of the last deed saved in the database"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Last Code</button>
 						</span>
 					</div>
 				</div>
@@ -59,7 +60,7 @@
 					<div class="input-group">
 						<input class="form-control" formControlName="deedRef" required>
 						<span class="input-group-btn">
-							<button type="button" (click)="insertLastDeedRef()" class="btn btn-sm btn-info" placement="bottom" ngbTooltip="Click to insert the reference of the last deed saved in the database"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Last Reference</button>
+							<button type="button" (click)="insertLastDeedRef()" class="btn btn-secondary" placement="bottom" ngbTooltip="Click to insert the reference of the last deed saved in the database"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Last Reference</button>
 						</span>
 					</div>
 				</div>
@@ -82,7 +83,7 @@
 	</div>
 	<!-- CONTRACTING PARTIES -->
 	<div class="card shadow mb-3">
-		<div class="card-block">
+		<div class="card-body">
 			<div class="text-center">
 				<h3><i class="fa fa-users"></i> Contracting Parties</h3>
 				<hr class="mt-2 mb-2">
@@ -92,7 +93,7 @@
 				<div class="card-header teal lighten-3">
 					<h4 class="text-center">Agent</h4>
 				</div>
-				<div class="card-block">
+				<div class="card-body">
 					<div class="form-group">
 						<label>Agent Type</label>
 						<div>
@@ -162,7 +163,7 @@
 									<div class="card-header">
 										<h5 class="text-center">Referent Male</h5>
 									</div>
-									<div class="card-block">
+									<div class="card-body">
 										<div class="row">
 											<div class="form-group col">
 												<label>Relationship To Agent</label>
@@ -255,7 +256,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="card-block" [formGroupName]="i">
+					<div class="card-body" [formGroupName]="i">
 						<div class="row">
 							<div class="form-group col">
 								<label>Co-Agent Type</label>
@@ -332,7 +333,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="card-block">
+										<div class="card-body">
 											<div class="row">
 												<div class="form-group col">
 													<label>Relationship To coAgent</label>
@@ -425,7 +426,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="card-block">
+					<div class="card-body">
 						<div class="form-group">
 							<label>Relation To Agent</label>
 							<select class="form-control" formControlName="relationToAgent" (change)="updateRelationToAgent()">
@@ -454,7 +455,7 @@
 				<div class="card-header amber lighten-3">
 					<h4 class="text-center">Counter Agent</h4>
 				</div>
-				<div class="card-block">
+				<div class="card-body">
 					<div class="form-group">
 						<label>Counter Agent Type</label>
 						<div>
@@ -524,7 +525,7 @@
 									<div class="card-header">
 										<h5 class="text-center">Referent Male</h5>
 									</div>
-									<div class="card-block">
+									<div class="card-body">
 										<div class="row">
 											<div class="form-group col">
 												<label>Relationship To Counter Agent</label>
@@ -617,7 +618,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="card-block" [formGroupName]="i">
+					<div class="card-body" [formGroupName]="i">
 						<div class="row">
 							<div class="form-group col">
 								<label>Co-Counter Agent Type</label>
@@ -694,7 +695,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="card-block">
+										<div class="card-body">
 											<div class="row">
 												<div class="form-group col">
 													<label>Relationship To Co-Counter Agent</label>
@@ -787,7 +788,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="card-block">
+					<div class="card-body">
 						<div class="form-group">
 							<label>Relation To Counter Agent</label>
 							<select class="form-control" formControlName="relationToCounterAgent" (change)="updateRelationToCounterAgent()">
@@ -814,7 +815,7 @@
 
 	<!-- TRANSACTION -->
 	<div class="card shadow mb-3">
-		<div class="card-block">
+		<div class="card-body">
 			<div class="text-center">
 				<h3><i class="fa fa-handshake-o"></i> Transactions</h3>
 				<hr class="mt-2 mb-2">
@@ -833,7 +834,7 @@
 						</div>
 					</div>
 
-					<div class="card-block" [formGroupName]="i">
+					<div class="card-body" [formGroupName]="i">
 
 						<!-- AGENT TRANSACTION -->
 
@@ -905,7 +906,7 @@
 												</div>
 											</div>
 										</div>
-										<div formGroupName="chattels" class="card-block">
+										<div formGroupName="chattels" class="card-body">
 											<div class="row">
 												<div class="form-group col">
 													<label>Type</label>
@@ -939,7 +940,7 @@
 												</div>
 											</div>
 										</div>
-										<div formGroupName="debt" class="card-block">
+										<div formGroupName="debt" class="card-body">
 											<div formGroupName="amount">
 												<div class="form-group row" formGroupName="moscowSilver">
 													<label class="col-3">Amount in Moscow Silver</label>
@@ -995,7 +996,7 @@
 												</div>
 											</div>
 										</div>
-										<div formGroupName="dependent" class="card-block">
+										<div formGroupName="dependent" class="card-body">
 											<div class="row">
 												<div class="form-group col">
 													<label>Family Status</label>
@@ -1033,7 +1034,7 @@
 												</div>
 											</div>
 										</div>
-										<div formGroupName="forfeit" class="card-block">
+										<div formGroupName="forfeit" class="card-body">
 											<div class="form-group row" formGroupName="moscowSilver">
 												<label class="col-3">Amount in Moscow Silver: </label>
 												<div class="col-2">
@@ -1077,7 +1078,7 @@
 												</div>
 											</div>
 										</div>
-										<div formGroupName="fugitiveSouls" class="card-block">
+										<div formGroupName="fugitiveSouls" class="card-body">
 											<div class="form-group">
 												<label>Juridical Status</label>
 												<input class="form-control" formControlName="juridicalStatus">
@@ -1130,7 +1131,7 @@
 												</div>
 											</div>
 										</div>
-										<div formGroupName="goods" class="card-block">
+										<div formGroupName="goods" class="card-body">
 											<div class="row">
 												<div class="form-group col-4">
 													<label>Type</label>
@@ -1186,7 +1187,7 @@
 												</div>
 											</div>
 										</div>
-										<div formGroupName="immovableProperty" class="card-block">
+										<div formGroupName="immovableProperty" class="card-body">
 											<div class="row">
 												<div class="form-group col">
 													<label>Type</label>
@@ -1298,7 +1299,7 @@
 												</div>
 											</div>
 										</div>
-										<div formGroupName="money" class="card-block">
+										<div formGroupName="money" class="card-body">
 											<div formGroupName="amount">
 												<div class="form-group row" formGroupName="moscowSilver">
 													<label class="col-3">Amount in Moscow Silver: </label>
@@ -1344,7 +1345,7 @@
 												</div>
 											</div>
 										</div>
-										<div formGroupName="parent" class="card-block">
+										<div formGroupName="parent" class="card-body">
 											<div class="form-group">
 												<label>Co-Agent</label>
 												<select class="form-control" formControlName="coAgentNumber">
@@ -1364,7 +1365,7 @@
 												</div>
 											</div>
 										</div>
-										<div formGroupName="responsabilities" class="card-block">
+										<div formGroupName="responsabilities" class="card-body">
 											<div class="form-group">
 												<label>Description</label>
 												<input type="text" class="form-control" formControlName="description">
@@ -1382,7 +1383,7 @@
 												</div>
 											</div>
 										</div>
-										<div formGroupName="shareFromEstate" class="card-block">
+										<div formGroupName="shareFromEstate" class="card-body">
 											<div class="form-group">
 												<label>Share</label>
 												<select class="form-control" formControlName="share">
@@ -1410,7 +1411,7 @@
 												</div>
 											</div>
 										</div>
-										<div formGroupName="souls" class="card-block">
+										<div formGroupName="souls" class="card-body">
 											<div class="form-group">
 												<label>Juridical Status</label>
 												<input class="form-control" formControlName="juridicalStatus">
@@ -1461,7 +1462,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="form-group" class="card-block">
+										<div class="form-group" class="card-body">
 											<label>Other</label>
 											<input type="text" class="form-control" formControlName="other">
 										</div>
@@ -1608,7 +1609,7 @@
 												</div>
 											</div>
 										</div>
-										<div formGroupName="chattels" class="card-block">
+										<div formGroupName="chattels" class="card-body">
 											<div class="row">
 												<div class="form-group col">
 													<label>Type</label>
@@ -1642,7 +1643,7 @@
 												</div>
 											</div>
 										</div>
-										<div formGroupName="debt" class="card-block">
+										<div formGroupName="debt" class="card-body">
 											<div formGroupName="amount">
 												<div class="form-group row" formGroupName="moscowSilver">
 													<label class="col-3">Amount in Moscow Silver</label>
@@ -1698,7 +1699,7 @@
 												</div>
 											</div>
 										</div>
-										<div formGroupName="dependent" class="card-block">
+										<div formGroupName="dependent" class="card-body">
 											<div class="row">
 												<div class="form-group col">
 													<label>Family Status</label>
@@ -1736,7 +1737,7 @@
 												</div>
 											</div>
 										</div>
-										<div formGroupName="forfeit" class="card-block">
+										<div formGroupName="forfeit" class="card-body">
 											<div class="form-group row" formGroupName="moscowSilver">
 												<label class="col-3">Amount in Moscow Silver: </label>
 												<div class="col-2">
@@ -1780,7 +1781,7 @@
 												</div>
 											</div>
 										</div>
-										<div formGroupName="fugitiveSouls" class="card-block">
+										<div formGroupName="fugitiveSouls" class="card-body">
 											<div class="form-group">
 												<label>Juridical Status</label>
 												<input class="form-control" formControlName="juridicalStatus">
@@ -1833,7 +1834,7 @@
 												</div>
 											</div>
 										</div>
-										<div formGroupName="goods" class="card-block">
+										<div formGroupName="goods" class="card-body">
 											<div class="row">
 												<div class="form-group col-4">
 													<label>Type</label>
@@ -1889,7 +1890,7 @@
 												</div>
 											</div>
 										</div>
-										<div formGroupName="immovableProperty" class="card-block">
+										<div formGroupName="immovableProperty" class="card-body">
 											<div class="row">
 												<div class="form-group col">
 													<label>Type</label>
@@ -2001,7 +2002,7 @@
 												</div>
 											</div>
 										</div>
-										<div formGroupName="money" class="card-block">
+										<div formGroupName="money" class="card-body">
 											<div formGroupName="amount">
 												<div class="form-group row" formGroupName="moscowSilver">
 													<label class="col-3">Amount in Moscow Silver: </label>
@@ -2047,7 +2048,7 @@
 												</div>
 											</div>
 										</div>
-										<div formGroupName="parent" class="card-block">
+										<div formGroupName="parent" class="card-body">
 											<div class="form-group">
 												<label>Co-Counter Agent</label>
 												<select class="form-control" formControlName="coCounterAgentNumber">
@@ -2067,7 +2068,7 @@
 												</div>
 											</div>
 										</div>
-										<div formGroupName="responsabilities" class="card-block">
+										<div formGroupName="responsabilities" class="card-body">
 											<div class="form-group">
 												<label>Description</label>
 												<input type="text" class="form-control" formControlName="description">
@@ -2085,7 +2086,7 @@
 												</div>
 											</div>
 										</div>
-										<div formGroupName="shareFromEstate" class="card-block">
+										<div formGroupName="shareFromEstate" class="card-body">
 											<div class="form-group">
 												<label>Share</label>
 												<select class="form-control" formControlName="share">
@@ -2113,7 +2114,7 @@
 												</div>
 											</div>
 										</div>
-										<div formGroupName="souls" class="card-block">
+										<div formGroupName="souls" class="card-body">
 											<div class="form-group">
 												<label>Juridical Status</label>
 												<input class="form-control" formControlName="juridicalStatus">
@@ -2164,7 +2165,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="form-group" class="card-block">
+										<div class="form-group" class="card-body">
 											<label>Other</label>
 											<input type="text" class="form-control" formControlName="other">
 										</div>
@@ -2239,7 +2240,7 @@
 							<div class="card-header">
 								<h5 class="text-center">Contract Information</h5>
 							</div>
-							<div class="card-block">
+							<div class="card-body">
 								<div class="form-group row">
 									<label class="col-2">Advance Payment</label>
 									<div class="col-10">
@@ -2283,7 +2284,7 @@
 
 	<!-- ACCESSORIES TO CONTRACT -->
 	<div class="card shadow mb-3">
-		<div class="card-block">
+		<div class="card-body">
 			<div class="text-center">
 				<h3><i class="fa fa-eye"></i> Accessories to contract</h3>
 				<hr class="mt-2 mb-2">
@@ -2307,7 +2308,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="card-block" [formGroupName]="i">
+					<div class="card-body" [formGroupName]="i">
 						<div formGroupName="whitness">
 							<div class="row">
 								<div class="form-group col">
@@ -2356,7 +2357,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="card-block" [formGroupName]="i">
+					<div class="card-body" [formGroupName]="i">
 						<div formGroupName="surety">
 							<div class="row">
 								<div class="form-group col">
@@ -2404,7 +2405,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="card-block">
+					<div class="card-body">
 						<div class="row">
 							<div class="form-group col">
 								<label>Geogr Status</label>
@@ -2451,7 +2452,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="card-block" [formGroupName]="i">
+					<div class="card-body" [formGroupName]="i">
 						<div formGroupName="otherParticipant">
 							<div class="form-group">
 								<label>Role</label>
@@ -2499,7 +2500,7 @@
 	
 	<!-- REGISTRATION -->
 	<div class="card shadow mb-3">
-		<div class="card-block">
+		<div class="card-body">
 			<div class="text-center">
 				<h3><i class="fa fa-pencil-square-o"></i> Registration</h3>
 				<hr class="mt-2 mb-2">
@@ -2526,7 +2527,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="card-block">
+					<div class="card-body">
 						<div class="row">
 							<div class="form-group col">
 								<label>First Name</label>
@@ -2557,7 +2558,7 @@
 				<div class="card-header">
 					<h5 class="text-center">Fees</h5>
 				</div>
-				<div class="card-block">
+				<div class="card-body">
 					<div formGroupName="tax">
 						<div class="form-group">
 							<label>Tax</label>
@@ -2634,7 +2635,7 @@
 	<!-- ANNEXES -->
 
 	<div class="card shadow mb-3">
-		<div class="card-block">
+		<div class="card-body">
 			<div class="text-center">
 				<h3><i class="fa fa-question-circle"></i> Annexes</h3>
 				<hr class="mt-2 mb-2">
@@ -2652,7 +2653,7 @@
 	</div>
 
 	<div class="card shadow mb-3">
-		<div class="card-block">
+		<div class="card-body">
 			<div class="text-center">
 				<h4>Is the form complete ?</h4>
 				<!-- Rounded switch -->
