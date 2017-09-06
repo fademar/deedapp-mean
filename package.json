@@ -2,7 +2,7 @@
   "name": "deedapp-mean",
   "version": "0.0.0",
   "engines": {
-    "node": "7.10.1"
+    "node": "7"
   },
   "license": "MIT",
   "scripts": {
