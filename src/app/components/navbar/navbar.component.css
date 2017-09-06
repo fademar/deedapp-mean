@@ -5,4 +5,7 @@
 button:focus, button:active {
 	outline: none !important;
 }
-  
+
+.logout-menu {
+	color: #3F51B5;
+}

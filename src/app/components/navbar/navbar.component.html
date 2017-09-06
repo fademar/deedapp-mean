@@ -18,20 +18,10 @@
 			<a class="nav-link" [routerLink]="['/deed/add']">Add a new Deed</a>
 		</li>
     </ul>
-
-    <button md-icon-button [mdMenuTriggerFor]="menu">
-        <md-icon style="color:white">account_circle</md-icon>
+        
+    <button md-raised-button (click)="auth.logout()">
+        <md-icon style="color:#3F51B5">power_settings_new</md-icon> <span class="logout-menu">LOG OUT</span>
     </button>
-    <md-menu #menu="mdMenu" xPosition="before" [overlapTrigger]="false">
-      <button md-menu-item>
-        <md-icon>person_outline</md-icon>
-        <span>Edit Profile</span>
-      </button>
-      <button md-menu-item (click)="auth.logout()">
-        <md-icon>power_settings_new</md-icon>
-        <span>Logout</span>
-      </button>
-    </md-menu>
   </div>
   </div>
   
