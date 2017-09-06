@@ -1,67 +1,50 @@
 <app-navbar></app-navbar>
 <div class="container main-container">
-		
 	<div class="card shadow mb-3">
 		<div class="card-body">
 			<div class="text-center">
 				<h3><i class="fa fa-list"></i> All Deeds</h3>
 				<hr class="mt-2 mb-2">
 			</div>
+			<md-table #table [dataSource]="dataSource" mdSort>
+				<!-- Position Column -->
+				<ng-container mdColumnDef="deedCode">
+					<md-header-cell *mdHeaderCellDef md-sort-header> code </md-header-cell>
+					<md-cell *mdCellDef="let deed"> {{deed.deedCode}} </md-cell>
+				</ng-container>
+				<!-- Name Column -->
+				<ng-container mdColumnDef="deedRef">
+					<md-header-cell *mdHeaderCellDef md-sort-header> ref </md-header-cell>
+					<md-cell *mdCellDef="let deed"> {{deed.deedRef}} </md-cell>
+				</ng-container>
+				<!-- Position Column -->
+				<ng-container mdColumnDef="deedDate">
+					<md-header-cell *mdHeaderCellDef md-sort-header> date </md-header-cell>
+					<md-cell *mdCellDef="let deed"> {{deed.deedDate}} </md-cell>
+				</ng-container>
+				<!-- Name Column -->
+				<ng-container mdColumnDef="deedName">
+					<md-header-cell *mdHeaderCellDef md-sort-header> name </md-header-cell>
+					<md-cell *mdCellDef="let deed"> {{deed.deedName}} </md-cell>
+				</ng-container>
+				<ng-container mdColumnDef="complete">
+					<md-header-cell *mdHeaderCellDef> complete </md-header-cell>
+					<md-cell *mdCellDef="let deed"> <md-icon *ngIf="deed.complete" class="md-24">check</md-icon> </md-cell>
+				</ng-container>
+				<ng-container mdColumnDef="details">
+						<md-header-cell *mdHeaderCellDef> </md-header-cell>
+						<md-cell *mdCellDef="let deed"><a md-raised-button color="primary" routerLink="/deed/{{ deed._id }}">Details</a></md-cell>
+					</ng-container>
+				<md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+				<md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+			</md-table>
 
-			<div class="deeds">
-				<div class="table-responsive">
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>Deed Code</th>
-								<th>Deed Ref</th>
-								<th>Deed Date<br><em>Registration Date</em></th>
-								<th>Deed Name</th>
-								<th>Agent Name</th>
-								<th>Complete</th>
-
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr *ngFor='let deed of pagedDeeds'>
-								<td>{{ deed.deedCode }}</td>
-								<td>{{ deed.deedRef }}</td>
-								<td><span *ngIf="deed.deedDate">{{ deed.deedDate }}</span><span *ngIf="!deed.deedDate && deed.registrationDate"><em>{{ deed.registrationDate }}</em></span></td>
-								<td><span *ngIf="deed.deedName">{{ deed.deedName }}</span></td>
-								<td><span *ngIf="deed.agent.firstName">{{ deed.agent.firstName }}</span> <span *ngIf="deed.agent.lastName">{{ deed.agent.lastName }}</span> <span *ngIf="deed.agent.corporationName">{{ deed.agent.corporationName }}</span></td>
-								<td style="text-align:center"><md-icon *ngIf="deed.complete" class="md-24">check</md-icon></td>
-								<td>
-									<a md-raised-button color="primary" routerLink="/deed/{{ deed._id }}">Details</a>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<!-- pager -->
-				<div class="row justify-content-center p-5">
-					<nav aria-label="page navigation col-4">
-						<ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-							<li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
-								<a class="page-link" (click)="setPage(1)">First</a>
-							</li>
-							<li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
-								<a class="page-link" (click)="setPage(pager.currentPage - 1)">Previous</a>
-							</li>
-							<li *ngFor="let page of pager.pages" class="page-item" [ngClass]="{active:pager.currentPage === page}">
-								<a class="page-link" (click)="setPage(page)">{{page}}</a>
-							</li>
-							<li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-								<a class="page-link" (click)="setPage(pager.currentPage + 1)">Next</a>
-							</li>
-							<li class="page-item" [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-								<a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
-							</li>
-						</ul>
-					</nav>
-				</div>
-			</div>
-			<!-- pager -->
+			<md-paginator #paginator
+				[length]="length"
+				[pageIndex]="0"
+				[pageSize]="10"
+				[pageSizeOptions]="[5, 10, 25, 100]">
+			</md-paginator>	
 		</div>
 	</div>
 </div>

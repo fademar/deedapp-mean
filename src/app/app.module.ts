@@ -13,6 +13,9 @@ import { MdIconModule } from '@angular/material';
 import { MdTooltipModule } from '@angular/material';
 import { MdMenuModule } from '@angular/material';
 import { MdCardModule } from '@angular/material';
+import { MdPaginatorModule } from '@angular/material';
+import { MdTableModule } from '@angular/material';
+import { MdSortModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -67,7 +70,10 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
     MdIconModule,
     MdTooltipModule,
     MdMenuModule,
-    MdCardModule
+    MdCardModule,
+    MdPaginatorModule,
+    MdTableModule,
+    MdSortModule
   ],
   entryComponents: [ConfirmDialogComponent],
   providers: [DeedService, SchemaService, SearchService, PagerService, AuthService],
