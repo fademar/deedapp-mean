@@ -2,3 +2,14 @@
     background-color: #3F51B5;
     border-color: #3F51B5;
 }
+
+.clear-button {
+    display: block;  
+    position: fixed;
+    top: 230px;
+    right: 80px;
+  }
+  
+  .clear-button>button:focus, .clear-button>button:active {
+    outline: none !important;
+  }

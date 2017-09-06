@@ -4,9 +4,9 @@
 <div *ngIf="deed">
     
     <div class="edit-button">
-        <button md-fab type="button" routerLink="/deed/edit/{{ deed._id }}" mdTooltip="Edit the deed" mdTooltipPosition="left">
+        <a md-fab routerLink="/deed/edit/{{ deed._id }}" mdTooltip="Edit the deed" mdTooltipPosition="left">
             <md-icon class="md-24" style="color:white">mode_edit</md-icon>
-        </button>
+        </a>
     </div>
     <div class="delete-button">
         <button md-fab type="button" color="warn" (click)="onDeleteClick(deed._id)" mdTooltip="Delete the deed" mdTooltipPosition="left">
@@ -14,9 +14,9 @@
         </button>
     </div>
     <div class="back-button" *ngIf="term">
-        <button md-fab type="button" color="primary" mdTooltip="Back to results" mdTooltipPosition="left" routerLink="/search" [queryParams]="{resultFor: term}">
+        <a md-fab color="primary" mdTooltip="Back to results" mdTooltipPosition="left" routerLink="/search" [queryParams]="{resultFor: term}">
             <md-icon class="md-24" style="color:white">arrow_back</md-icon>
-        </button>
+        </a>
     </div>
     
     <md-card *ngIf="!deed.complete" class="bg-yellow-500 mb-3"><span class="message"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> There is more data in the manuscript</span></md-card>

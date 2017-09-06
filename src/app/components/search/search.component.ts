@@ -59,6 +59,9 @@ export class SearchComponent implements OnInit {
         localStorage.setItem('results', JSON.stringify(this.loadData(this.term)));
     }
 
-
+    clearResults() {
+        this.searchForm.reset();
+        this.results = '';
+    }
 
 }

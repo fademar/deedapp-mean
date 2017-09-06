@@ -147,12 +147,6 @@ export class DeedDetailsComponent implements OnInit {
       this.dialogRef = null;
     });
 
-
-
-    
-  
-
-
   }
 
   getCoAgentSex(i) {
