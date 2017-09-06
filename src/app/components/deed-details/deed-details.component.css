@@ -11,3 +11,25 @@ md-card {
 	font-size: 1.2em;
 	text-align: center;
 }
+
+.edit-button {
+  display: block;  
+  position: fixed;
+  top: 80px;
+  right: 80px;
+}
+
+.edit-button>button:focus, .edit-button>button:active {
+outline: none !important;
+}
+
+.delete-button {
+  display: block;  
+  position: fixed;
+  top: 150px;
+  right: 80px;
+}
+
+.delete-button>button:focus, .delete-button>button:active {
+outline: none !important;
+}

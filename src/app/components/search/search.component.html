@@ -1,51 +1,65 @@
 <app-navbar></app-navbar>
 <div class="container main-container">
-  <h1 class="page-header">Search Deeds</h1>
   <form class="form-horizontal" [formGroup]="searchForm" (ngSubmit)="onSubmit()" novalidat>
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Search in all fields</label>
-      <div class="col-sm-8">
-        <input class="form-control" formControlName="searchTerm">
-      </div>
-      <div class="col-sm-2">
-        <button type="submit" class="btn btn-info">Search</button>
+    <div class="card shadow mb-3">
+      <div class="card-body">
+        <div class="form-group col">
+          <label>Search a term in all fields</label>
+          <div class="input-group">
+            <input class="form-control" formControlName="searchTerm">
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   </form>
   <div *ngIf="results">
-    <h2>{{ results.length }} deeds found in the database</h2>
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Deed Code</th>
-            <th>Deed Ref</th>
-            <th>Deed Date</th>
-            <th>Deed Name</th>
-            <th>Agent Name</th>
-            <th>To Do</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor='let result of results'>
-            <td>{{ result.deedCode }}</td>
-            <td>{{ result.deedRef }}</td>
-            <td>{{ result.deedDate }}</td>
-            <td>{{ result.deedName }}</td>
-            <td>
-              <span *ngIf="result.agent">
-              <span *ngIf="result.agent.firstName"> {{ result.agent.firstName }}</span> <span *ngIf="result.agent.lastName">{{ result.agent.lastName }}</span>
-              <span *ngIf="result.agent.corporationName">{{result.agent.corporationName}}</span>
-              </span>
-            </td>
-            <td> <i *ngIf="result.incomplete" class="glyphicon glyphicon-ok"></i></td>
-
-            <td>
-              <a routerLink="/deed/{{ result._id }}" [queryParams]="{resultFor: term}" class="btn btn-primary">Details</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="card shadow mb-3">
+      <div class="card-body">
+        <div class="text-center">
+          <h4 *ngIf="results.length > 1">{{ results.length }} deeds found in the database for "{{ term }}"</h4>
+          <h4 *ngIf="results.length === 1">{{ results.length }} deed found in the database for "{{ term }}"</h4>
+          <h4 *ngIf="results.length === 0">No match found in the database for "{{ term }}"</h4>
+          
+          <hr class="mt-2 mb-2">
+        </div>
+  
+        <div class="deeds">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Deed Code</th>
+                  <th>Deed Ref</th>
+                  <th>Deed Date<br><em>Registration Date</em></th>
+                  <th>Deed Name</th>
+                  <th>Agent Name</th>
+                  <th>Complete</th>
+  
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor='let result of results'>
+                  <td>{{ result.deedCode }}</td>
+                  <td>{{ result.deedRef }}</td>
+                  <td><span *ngIf="result.deedDate">{{ result.deedDate }}</span><span *ngIf="!result.deedDate && result.registrationDate"><em>{{ result.registrationDate }}</em></span></td>
+                  <td><span *ngIf="result.deedName">{{ result.deedName }}</span></td>
+                  <td><span *ngIf="result.agent.firstName">{{ result.agent.firstName }}</span> <span *ngIf="result.agent.lastName">{{ result.agent.lastName }}</span> <span *ngIf="result.agent.corporationName">{{ result.agent.corporationName }}</span></td>
+                  <td style="text-align:center"><md-icon *ngIf="result.complete" class="md-24">check</md-icon></td>
+                  <td>
+                    <button md-raised-button color="primary" routerLink="/deed/{{ result._id }}" [queryParams]="{resultFor: term}">Details</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+  
+        </div>
+      </div>
     </div>
   </div>
-</div>
+    
+   

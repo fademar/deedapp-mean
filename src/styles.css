@@ -32,75 +32,7 @@ label {
   font-weight: bold;
 }
 
-.submit-button {
-    display: block;  
-    position: fixed;
-    top: 150px;
-    right: 80px;
-}
 
-.submit-button>button:focus, .submit-button>button:active {
-  outline: none !important;
-}
-
-.submit-button>button:enabled {
-  background-color: #4CAF50;
-}
-
-.actions {
-	display: block;
-	position: fixed;
-	top: 80px;
-	right: 80px;
-}
-
-.actions>button:focus, .actions>button:active {
-  outline: none !important;
-}
-
-.edit-button {
-  display: block;  
-  position: fixed;
-  top: 80px;
-  right: 80px;
-}
-
-.edit-button>button:focus, .edit-button>button:active {
-outline: none !important;
-}
-
-.delete-button {
-  display: block;  
-  position: fixed;
-  top: 150px;
-  right: 80px;
-}
-
-.delete-button>button:focus, .delete-button>button:active {
-outline: none !important;
-}
-
-.back-button {
-  display: block;  
-  position: fixed;
-  top: 220px;
-  right: 80px;
-}
-
-.back-button>button:focus, .back-button>button:active {
-outline: none !important;
-}
-
-.cancel-button {
-  display: block;  
-  position: fixed;
-  top: 220px;
-  right: 80px;
-}
-
-.cancel-button>button:focus, .cancel-button>button:active {
-  outline: none !important;
-}
 
 /* default .loading styles, .loading should be invisible, opacity: 0, z-index: -1 */
 .loading {
