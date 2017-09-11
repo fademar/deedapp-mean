@@ -11,7 +11,7 @@ import { CallbackComponent } from './components/callback/callback.component';
 import { HomeComponent } from './components/home/home.component';
 
 const appRoutes: Routes = [
-  {path: 'home', component:HomeComponent},
+  {path: '/', component:HomeComponent},
   {path: 'list', component:DeedsComponent},
   {path: 'deed/add', component:AddDeedComponent},
   {path: 'deed/:id', component:DeedDetailsComponent},
