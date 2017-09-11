@@ -27,12 +27,12 @@ app.use(function (req, res, next) {
 });
 
 // Create link to Angular build directory
-// const distDir = __dirname + "/dist/";
-// app.use(express.static(distDir));
+const distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
 
-// app.get('/*', function(req, res) {
-//   res.sendFile(path.join(__dirname + '/dist/index.html'));
-// });
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname + '/dist/index.html'));
+});
 
 // Create a db const to reuse the connection
 var db;
