@@ -40,7 +40,6 @@ export class SearchComponent implements OnInit {
             .subscribe(params => {
                 this.term = params['resultFor'];
                 if(this.term) {
-                    console.log(this.term);
                     this.loadData(this.term);
                 }
             });
