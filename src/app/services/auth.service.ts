@@ -28,10 +28,7 @@ export class AuthService {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
         this.setSession(authResult);
-        this.router.navigate(['/home']);
-        setTimeout(() => {
-          this.router.navigate(['/list']);
-        }, 1500);
+        this.router.navigate(['/list']);
       } else if (err) {
         this.router.navigate(['/home']);
         console.log(err);

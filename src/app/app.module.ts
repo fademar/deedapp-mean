@@ -36,6 +36,7 @@ import { SchemaService } from './services/schema.service';
 import { SearchService } from './services/search.service';
 import { PagerService } from './services/pager.service';
 import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/guard.service';
 
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 
@@ -76,7 +77,7 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
     MdSortModule
   ],
   entryComponents: [ConfirmDialogComponent],
-  providers: [DeedService, SchemaService, SearchService, PagerService, AuthService],
+  providers: [DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard],
   schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent]
 })
