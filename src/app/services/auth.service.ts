@@ -13,7 +13,7 @@ export class AuthService {
     domain: 'cercec.eu.auth0.com',
     responseType: 'token id_token',
     audience: 'https://cercec.eu.auth0.com/userinfo',
-    redirectUri: 'http://194.57.136.170/callback',      
+    redirectUri: 'https://russian-deeds.herokuapp.com/callback',      
     scope: 'openid'
   });
 
