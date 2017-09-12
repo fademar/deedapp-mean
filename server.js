@@ -38,7 +38,7 @@ app.get('/*', function(req, res) {
 var db;
 
 // Connection to the database
-mongodb.MongoClient.connect(dbURL, (err, database) => {
+mongodb.MongoClient.connect(process.env.MONGODB_URI, (err, database) => {
 	if (err) {
 		console.log('the connection with the databas is impossible: ' + err);
 		process.exit(1);
