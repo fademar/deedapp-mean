@@ -40,7 +40,7 @@ var db;
 // Connection to the database
 mongodb.MongoClient.connect(dbURL, (err, database) => {
 	if (err) {
-		console.log(err);
+		console.log('the connection with the databas is impossible: ' + err);
 		process.exit(1);
 	}
 
