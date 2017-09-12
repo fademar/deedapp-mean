@@ -10,17 +10,17 @@ export class DeedService {
   constructor(private http: Http) { }
 
   	getDeeds() {
-  		return this.http.get('api/deeds').map(res => res.json());  		
+  		return this.http.get('/api/deeds').map(res => res.json());  		
   	}
 
 	saveDeed(deed) {
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/json');
-		return this.http.post('api/deeds', deed, {headers: headers}).map(res => res.json());
+		return this.http.post('/api/deeds', deed, {headers: headers}).map(res => res.json());
 	}
 
 	getDeed(id) {
-  		return this.http.get('api/deed/'+id).map(res => res.json());  		
+  		return this.http.get('/api/deed/'+id).map(res => res.json());  		
   	}
 
 	updateDeed(id, deed) {

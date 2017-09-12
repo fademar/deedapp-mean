@@ -156,14 +156,6 @@ app.get('/api/lastdeed', (req, res) => {
 	});
 });
 
-// Load JSON schema file
-
-app.get('/api/schema', (req, res) => {
-	let jsonFile = fs.readFileSync('./deed-schema copie.json', { encoding: 'utf8' });
-	let jsonSchema = JSON.parse(jsonFile);
-	res.status(200).json(jsonSchema);
-});
-
 app.get('/api/search', (req, res) => {
 	let arrayBody = [];
 	db.collection(deedsCollection).find({}).toArray((err, docs) => {
