@@ -27,8 +27,8 @@ app.use(function (req, res, next) {
 });
 
 // Create link to Angular build directory
-// const distDir = __dirname + "/dist/";
-// app.use(express.static(distDir));
+const distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
 
 // app.get('/*', function(req, res) {
 //   res.sendFile(path.join(__dirname + '/dist/index.html'));
@@ -40,7 +40,7 @@ var db;
 // Connection to the database
 mongodb.MongoClient.connect(dbURL, (err, database) => {
 	if (err) {
-		console.log(err);
+		console.log('the connection with the databas is impossible: ' + err);
 		process.exit(1);
 	}
 
