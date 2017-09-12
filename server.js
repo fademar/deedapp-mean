@@ -14,7 +14,7 @@ const deedsCollection = 'Deeds';
 const app = express();
 app.use(bodyParser.json());
 
-const dbURL = "mongodb://fadem:886682@ds061248.mlab.com:61248/dbdeeds"
+const dbURL = "mongodb://localhost:27017/dbdeeds2"
 
 
 
