@@ -43,6 +43,7 @@ export class DeedsComponent implements OnInit {
 	ngOnInit() {
 		this.deedService.getDeeds().subscribe(deeds => {
 			this.deeds = deeds;
+			console.log(this.deeds);
 			this.length = deeds.length;
 			this.setPage(1);
 		})
