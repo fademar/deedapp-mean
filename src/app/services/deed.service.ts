@@ -10,6 +10,9 @@ export class DeedService {
   constructor(private http: Http) { }
 
   	getDeeds() {
+		this.http.get('/api/deeds').map(res => {
+			console.log(res);
+		});
   		return this.http.get('/api/deeds').map(res => res.json());  		
   	}
 
