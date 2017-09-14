@@ -14,9 +14,6 @@ const deedsCollection = 'Deeds';
 const app = express();
 app.use(bodyParser.json());
 
-const dbURL = "mongodb://localhost:27017/dbdeeds2"
-
-
 
 // Enable CORS 
 app.use(function (req, res, next) {
@@ -30,15 +27,15 @@ app.use(function (req, res, next) {
 const distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
-// app.get('/*', function(req, res) {
-//   res.sendFile(path.join(__dirname + '/dist/index.html'));
-// });
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname + '/dist/index.html'));
+});
 
 // Create a db const to reuse the connection
 var db;
 
 // Connection to the database
-mongodb.MongoClient.connect(dbURL, (err, database) => {
+mongodb.MongoClient.connect(process.env.MONGODB_URI, (err, database) => {
 	if (err) {
 		console.log('the connection with the databas is impossible: ' + err);
 		process.exit(1);
@@ -51,7 +48,7 @@ mongodb.MongoClient.connect(dbURL, (err, database) => {
 	db.collection(deedsCollection).createIndex({"$**":"text"});
 
 	// Initialize the app.
-	var server = app.listen(process.env.PORT || 3000, () => {
+	var server = app.listen(process.env.PORT || 8080, () => {
 		console.log('App now running on port', process.env.PORT);
 	});
 
