@@ -52,7 +52,7 @@
                   <td>{{ result.deedRef }}</td>
                   <td><span *ngIf="result.deedDate">{{ result.deedDate }}</span><span *ngIf="!result.deedDate && result.registrationDate"><em>{{ result.registrationDate }}</em></span></td>
                   <td><span *ngIf="result.deedName">{{ result.deedName }}</span></td>
-                  <td><span *ngIf="result.agent.firstName">{{ result.agent.firstName }}</span> <span *ngIf="result.agent.lastName">{{ result.agent.lastName }}</span> <span *ngIf="result.agent.corporationName">{{ result.agent.corporationName }}</span></td>
+                  <td><span *ngIf="result.agent"><span *ngIf="result.agent.firstName">{{ result.agent.firstName }}</span> <span *ngIf="result.agent.lastName">{{ result.agent.lastName }}</span> <span *ngIf="result.agent.corporationName">{{ result.agent.corporationName }}</span></span></td>
                   <td style="text-align:center"><md-icon *ngIf="result.complete" class="md-24">check</md-icon></td>
                   <td>
                     <button md-raised-button color="primary" routerLink="/deed/{{ result._id }}" [queryParams]="{resultFor: term}">Details</button>
