@@ -48,7 +48,10 @@ export class SearchComponent implements OnInit {
     }
 
     loadData(q) {
-        this.searchService.searchEntries(q).subscribe(results => this.results = results);
+        this.searchService.searchEntries(q).subscribe(results => {
+            this.results = results;
+            console.log(this.results);
+        });
     }
 
     onSubmit() {
