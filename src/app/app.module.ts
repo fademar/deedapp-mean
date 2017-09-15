@@ -16,6 +16,8 @@ import { MdCardModule } from '@angular/material';
 import { MdPaginatorModule } from '@angular/material';
 import { MdTableModule } from '@angular/material';
 import { MdSortModule } from '@angular/material';
+import { AngularFireModule} from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -40,6 +42,14 @@ import { AuthGuard } from './services/guard.service';
 
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 
+export const firebaseConfig = {
+  apiKey: "AIzaSyAbbEEJFqFRDQULzIRtlMmE2jPIUuRzhwU",
+  authDomain: "deed-app-6e04b.firebaseapp.com",
+  databaseURL: "https://deed-app-6e04b.firebaseio.com",
+  projectId: "deed-app-6e04b",
+  storageBucket: "deed-app-6e04b.appspot.com",
+  messagingSenderId: "747360239848"
+};
 
 @NgModule({
   declarations: [
@@ -74,7 +84,9 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
     MdCardModule,
     MdPaginatorModule,
     MdTableModule,
-    MdSortModule
+    MdSortModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule
   ],
   entryComponents: [ConfirmDialogComponent],
   providers: [DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard],
