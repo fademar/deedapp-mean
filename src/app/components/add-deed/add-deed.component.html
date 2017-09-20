@@ -40,7 +40,7 @@
 				<div class="form-group col">
 					<label>Deed Code <small class="text-danger pl-2" *ngIf="deedForm.controls.deedCode.errors">This field is required</small></label>
 					<div class="input-group">
-						<input class="form-control" formControlName="deedCode" required>
+						<input class="form-control" formControlName="deedCode" placeholder="fond-opis-delo-list" required>
 						<span class="input-group-btn">
 							<button type="button" (click)="insertLastDeedCode()" class="btn btn-secondary" mdTooltip="Click to insert the code of the last deed saved in the database"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Last Code</button>
 						</span>
@@ -49,7 +49,7 @@
 				<div class="form-group col">
 					<label>Deed Reference <small class="text-danger pl-2" *ngIf="deedForm.controls.deedRef.errors">This field is required</small></label>
 					<div class="input-group">
-						<input class="form-control" formControlName="deedRef" required>
+						<input class="form-control" formControlName="deedRef" placeholder="scan number" required>
 						<span class="input-group-btn">
 							<button type="button" (click)="insertLastDeedRef()" class="btn btn-secondary" mdTooltip="Click to insert the reference of the last deed saved in the database"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Last Reference</button>
 						</span>
