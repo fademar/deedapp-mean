@@ -2,13 +2,13 @@ const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongodb = require('mongodb');
-const elasticsearch = require('elasticsearch');
 const path = require('path');
 
 var ObjectID = mongodb.ObjectID;
 
 // Db Collection and URI
 const deedsCollection = 'Deeds';
+const MONGODB_URI = 'mongodb://localhost:27017/dbdeeds';
 
 // App Init
 const app = express();
@@ -24,20 +24,20 @@ app.use(function (req, res, next) {
 });
 
 // Create link to Angular build directory
-const distDir = __dirname + "/dist/";
-app.use(express.static(distDir));
+// const distDir = __dirname + "/dist/";
+// app.use(express.static(distDir));
 
-app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/dist/index.html'));
-});
+// app.get('*', function(req, res) {
+//   res.sendFile(path.join(__dirname + '/dist/index.html'));
+// });
 
 // Create a db const to reuse the connection
 var db;
 
 // Connection to the database
-mongodb.MongoClient.connect(process.env.MONGODB_URI, (err, database) => {
+mongodb.MongoClient.connect(MONGODB_URI, (err, database) => {
 	if (err) {
-		console.log('the connection with the databas is impossible: ' + err);
+		console.log('the connection with the database is impossible: ' + err);
 		process.exit(1);
 	}
 
@@ -48,7 +48,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, (err, database) => {
 	db.collection(deedsCollection).createIndex({"$**":"text"});
 
 	// Initialize the app.
-	var server = app.listen(process.env.PORT || 8080, () => {
+	var server = app.listen(process.env.PORT || 3000, () => {
 		console.log('App now running on port', process.env.PORT);
 	});
 

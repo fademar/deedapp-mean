@@ -18,9 +18,11 @@ export class AuthService {
     
       login() {
         this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+        console.log(this.user);
       }
     
       logout() {
+        console.log(this.user);     
         this.afAuth.auth.signOut();
       }
 

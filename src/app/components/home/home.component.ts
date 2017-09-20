@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   constructor(public auth: AuthService, private router: Router) { }
 
   ngOnInit() {
-    if (this.auth.isAuthenticated) {
+    if (this.auth.user) {
       this.router.navigate(['/list']);
     }
   }
