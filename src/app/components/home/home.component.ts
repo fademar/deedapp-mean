@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     if (this.auth.user) {
+      console.log(this.auth.user);
       this.router.navigate(['/list']);
     }
   }

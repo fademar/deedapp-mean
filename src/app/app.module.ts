@@ -41,6 +41,7 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/guard.service';
 
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
+import { LoginComponent } from './components/login/login.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAbbEEJFqFRDQULzIRtlMmE2jPIUuRzhwU",
@@ -63,7 +64,8 @@ export const firebaseConfig = {
     SearchComponent,
     ConfirmDialogComponent,
     CallbackComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
