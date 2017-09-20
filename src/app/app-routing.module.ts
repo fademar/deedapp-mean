@@ -10,18 +10,17 @@ import { SearchComponent } from './components/search/search.component';
 import { CallbackComponent } from './components/callback/callback.component';
 import { HomeComponent } from './components/home/home.component';
 
-import { AuthGuard } from './services/guard.service';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component:HomeComponent},
-  {path: 'list', component:DeedsComponent, canActivate: [AuthGuard]},
-  {path: 'deed/add', component:AddDeedComponent, canActivate: [AuthGuard]},
-  {path: 'deed/:id', component:DeedDetailsComponent, canActivate: [AuthGuard]},
-  {path: 'deed/edit/:id', component:EditDeedComponent, canActivate: [AuthGuard]},
-  {path: 'schema', component:SchemaComponent, canActivate: [AuthGuard]},
-  {path: 'search', component:SearchComponent, canActivate: [AuthGuard]},
-  {path: 'callback', component:CallbackComponent},
+  {path: 'list', component:DeedsComponent},
+  {path: 'deed/add', component:AddDeedComponent},
+  {path: 'deed/:id', component:DeedDetailsComponent},
+  {path: 'deed/edit/:id', component:EditDeedComponent},
+  {path: 'schema', component:SchemaComponent},
+  {path: 'search', component:SearchComponent},
+  {path: 'implicit/callback', component:CallbackComponent},
 ]
 
 

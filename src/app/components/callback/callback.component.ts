@@ -1,15 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
-@Component({
-  selector: 'app-callback',
-  templateUrl: './callback.component.html',
-  styleUrls: ['./callback.component.css']
-})
-export class CallbackComponent implements OnInit {
+@Component({ template: `` })
+export class CallbackComponent {
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private okta: AuthService) {
+    // Handles the response from Okta and parses tokens
+    okta.handleAuthentication();
   }
-
 }

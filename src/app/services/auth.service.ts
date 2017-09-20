@@ -2,64 +2,52 @@
 
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import 'rxjs/add/operator/filter';
-import * as auth0 from 'auth0-js';
+import * as OktaAuth from '@okta/okta-auth-js/dist/okta-auth-js.min.js';
 
 @Injectable()
 export class AuthService {
 
-  auth0 = new auth0.WebAuth({
-    clientID: 'RlqH0baoNguqnJ1X9BG2cbFTqRUy271I',
-    domain: 'cercec.eu.auth0.com',
-    responseType: 'token id_token',
-    audience: 'https://cercec.eu.auth0.com/userinfo',
-    redirectUri: 'https://russian-deeds.herokuapp.com/callback',      
-    scope: 'openid'
+  oktaAuth = new OktaAuth({
+    url: 'https://dev-509758.oktapreview.com/',
+    clientId: '0oac3eow3i09gMIb00h7',
+    issuer: 'https://dev-509758.oktapreview.com/oauth2/default',
+    redirectUri: 'https://russian-deeds.herokuapp.com/implicit/callback',
   });
 
-  constructor(public router: Router) {}
+  constructor(private router: Router) {}
 
-  public login(): void {
-    this.auth0.authorize();
+  isAuthenticated() {
+    // Checks if there is a current accessToken in the TokenManger.
+    return !!this.oktaAuth.tokenManager.get('accessToken');
   }
 
-  public handleAuthentication(): void {
-    this.auth0.parseHash((err, authResult) => {
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        window.location.hash = '';
-        this.setSession(authResult);
-        this.router.navigate(['/list']);
-      } else if (err) {
-        this.router.navigate(['/home']);
-        console.log(err);
+  login() {
+    // Launches the login redirect.
+    this.oktaAuth.token.getWithRedirect({ 
+      responseType: ['id_token', 'token'],
+      scopes: ['openid', 'email', 'profile']
+    });
+  }
+
+  async handleAuthentication() {
+    const tokens = await this.oktaAuth.token.parseFromUrl();
+    tokens.forEach(token => {
+      if (token.idToken) {
+        this.oktaAuth.tokenManager.add('idToken', token);
+      }
+      if (token.accessToken) {
+        this.oktaAuth.tokenManager.add('accessToken', token);
       }
     });
   }
 
-  private setSession(authResult): void {
-    // Set the time that the access token will expire at
-    const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
-    localStorage.setItem('access_token', authResult.accessToken);
-    localStorage.setItem('id_token', authResult.idToken);
-    localStorage.setItem('expires_at', expiresAt);
+  getAccessToken() {
+    // Return the token from the accessToken object.
+    return this.oktaAuth.tokenManager.get("accessToken").accessToken;
   }
 
-  public logout(): void {
-    // Remove tokens and expiry time from localStorage
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('expires_at');
-    // Go back to the home route
-    this.router.navigate(['/home']);
+  async logout() {
+    this.oktaAuth.tokenManager.clear();
+    await this.oktaAuth.signOut();
   }
-
-  public isAuthenticated(): boolean {
-    // Check whether the current time is past the
-    // access token's expiry time
-    const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-    return new Date().getTime() < expiresAt;
-  }
-
-
-
 }
