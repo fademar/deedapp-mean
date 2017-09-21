@@ -74,6 +74,7 @@ export class AddDeedComponent implements OnInit {
     lastDeed;
     lastDeedCode;
     lastDeedRef;
+    lastDeedDate;
     selectedObject;
     value;
     indexValues = [];
@@ -199,6 +200,31 @@ export class AddDeedComponent implements OnInit {
                 this.lastDeedRef = this.lastDeed[0].deedRef;
                 this.deedForm.patchValue({
                     deedRef: this.lastDeedRef
+                });
+            }
+        });
+    }
+
+    insertLastDeedDate() {
+        this.deedService.getLastDeed().subscribe(result => {
+            this.lastDeed = result;
+            if (this.lastDeed.length < 1) {
+                this.deedForm.patchValue({
+                    deedDate: {
+                        day: "no",
+                        month: "deed",
+                        year: "saved"
+                    }
+                });
+            }
+            else {
+                this.lastDeedDate = this.lastDeed[0].deedDate;
+                this.deedForm.patchValue({
+                    deedRef: {
+                        day: this.lastDeedDate.day,
+                        month: this.lastDeedDate.month,
+                        year: this.lastDeedDate.year
+                    }
                 });
             }
         });

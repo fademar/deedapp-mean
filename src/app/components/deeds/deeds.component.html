@@ -20,7 +20,7 @@
 				<!-- Position Column -->
 				<ng-container mdColumnDef="deedDate">
 					<md-header-cell *mdHeaderCellDef md-sort-header> date </md-header-cell>
-					<md-cell *mdCellDef="let deed"> {{deed.deedDate}} </md-cell>
+					<md-cell *mdCellDef="let deed"> {{deed.deedDate.day}}-{{deed.deedDate.month}}-{{deed.deedDate.year}} </md-cell>
 				</ng-container>
 				<!-- Name Column -->
 				<ng-container mdColumnDef="deedName">
