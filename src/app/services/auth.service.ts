@@ -11,7 +11,7 @@ export class AuthService {
     url: 'https://dev-509758.oktapreview.com/',
     clientId: '0oac3eow3i09gMIb00h7',
     issuer: 'https://dev-509758.oktapreview.com/oauth2/default',
-    redirectUri: '/implicit/callback',
+    redirectUri: 'https://russian-deeds.herokuapp.com/implicit/callback',
   });
 
   constructor(private router: Router) {}
