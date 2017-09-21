@@ -179,5 +179,5 @@ app.get('/api/search/:term', (req, res) => {
 });
 
 app.get('*', function(req, res) {
-	res.sendFile(path.join(__dirname + 'dist/index.html'));
+	res.sendFile(path.join(__dirname + '/dist/index.html'));
 });
