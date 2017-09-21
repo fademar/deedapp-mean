@@ -67,17 +67,17 @@
 				<div class="form-group col" formGroupName="deedDate">
 					<label>Deed Date</label>
 					<div class="row">
-						<div class="col-2">
+						<div class="col">
 							<input type="text" class="form-control" formControlName="day">
 						</div>
-						<div class="col-2">
+						<div class="col">
 							<input type="text" class="form-control" formControlName="month">
 						</div>
-						<div class="col input-group">
+						<div class="col">
 							<input type="text" class="form-control" formControlName="year">
-							<span class="input-group-btn">
-								<button type="button" (click)="insertLastDeedDate()" class="btn btn-secondary" mdTooltip="Click to insert the date of the last deed saved in the database"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Date</button>
-							</span>
+						</div>
+						<div class="col">
+							<button type="button" (click)="insertLastDeedDate()" class="btn btn-secondary" mdTooltip="Click to insert the date of the last deed saved in the database"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Date</button>
 						</div>
 					</div>
 				</div>
