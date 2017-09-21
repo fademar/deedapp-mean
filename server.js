@@ -8,10 +8,12 @@ var ObjectID = mongodb.ObjectID;
 
 // Db Collection and URI
 const deedsCollection = 'Deeds';
+const MONGODB_URI = 'mongodb://localhost:27017/dbdeeds';
 
 // App Init
 const app = express();
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 
 // Enable CORS 
@@ -26,15 +28,12 @@ app.use(function (req, res, next) {
 const distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
-app.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/dist/index.html'));
-});
 
 // Create a db const to reuse the connection
 var db;
 
 // Connection to the database
-mongodb.MongoClient.connect(process.env.MONGODB_URI, (err, database) => {
+mongodb.MongoClient.connect(MONGODB_URI, (err, database) => {
 	if (err) {
 		console.log('the connection with the databas is impossible: ' + err);
 		process.exit(1);
@@ -47,12 +46,11 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, (err, database) => {
 	db.collection(deedsCollection).createIndex({"$**":"text"});
 
 	// Initialize the app.
-	var server = app.listen(process.env.PORT || 8080, () => {
+	var server = app.listen(process.env.PORT || 3000, () => {
 		console.log('App now running on port', process.env.PORT);
 	});
 
 });
-
 
 
 // DEEDS API ROUTES BELOW
@@ -62,11 +60,6 @@ function handleError(res, reason, message, code) {
 	console.log('ERROR: ' + reason);
 	res.status(code || 500).json({ 'error': message });
 }
-
-// Redirect / to /api/deeds
-app.get('/', (req, res) => {
-	res.send('Please use /api/deeds');
-});
 
 /*  '/api/deeds'
  *    GET: finds all deeds
@@ -180,4 +173,9 @@ app.get('/api/search/:term', (req, res) => {
 			res.status(200).json(docs);
 		}
 	});
+});
+
+
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname, 'dist/index.html'));
 });

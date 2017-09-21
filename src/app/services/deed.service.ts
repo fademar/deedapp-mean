@@ -9,37 +9,39 @@ export class DeedService {
 
   constructor(private http: Http) { }
 
+  
   	getDeeds() {
-		let result;
-		this.http.get('/api/deeds').map(res => {
-			console.log(res);
-			result = res.json()
-		});
-		return result;		
-  	}
+  		return this.http.get('http://localhost:3000/api/deeds', { headers: this.getHeaders() }).map(res => res.json());  		
+	}
+	  
+	private getHeaders(){
+		let headers = new Headers();
+		headers.append('Accept', 'application/json');
+		return headers;
+	}
 
 	saveDeed(deed) {
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/json');
-		return this.http.post('/api/deeds', deed, {headers: headers}).map(res => res.json());
+		return this.http.post('http://localhost:3000/api/deeds', deed, {headers: headers}).map(res => res.json());
 	}
 
 	getDeed(id) {
-  		return this.http.get('/api/deed/'+id).map(res => res.json());  		
+  		return this.http.get('http://localhost:3000/api/deed/'+id).map(res => res.json());  		
   	}
 
 	updateDeed(id, deed) {
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/json');
-		return this.http.put('/api/deed/'+id, deed, {headers: headers}).map(res => res.json());
+		return this.http.put('http://localhost:3000/api/deed/'+id, deed, {headers: headers}).map(res => res.json());
 	}
 
 	deleteDeed(id) {
-  		return this.http.delete('/api/deed/'+id).map(res => res.json());  		
+  		return this.http.delete('http://localhost:3000/api/deed/'+id).map(res => res.json());  		
   	}
 
 	getLastDeed() {
-		return this.http.get('/api/lastdeed/').map(res => res.json());
+		return this.http.get('http://localhost:3000/api/lastdeed/').map(res => res.json());
 	}
 
 

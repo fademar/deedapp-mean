@@ -41,11 +41,14 @@ export class DeedsComponent implements OnInit {
 	@ViewChild(MdSort) sort: MdSort;
 	
 	ngOnInit() {
-		this.deedService.getDeeds().subscribe(deeds => {
-			this.deeds = deeds;
-			this.length = deeds.length;
-			this.setPage(1);
-		})
+		this.deedService.getDeeds().subscribe(
+			data => {
+				console.log(data);
+				this.deeds = data;
+				this.length = data.length;
+				this.setPage(1);
+			}, 
+			err => console.log(err));
 		this.dataSource = new MyDataSource(this.dataList, this.paginator, this.sort);
 	}
 
