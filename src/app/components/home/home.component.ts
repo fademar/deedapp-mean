@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
 
@@ -10,12 +9,10 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public auth: AuthService, private router: Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
-    if (this.auth.isAuthenticated) {
-      this.router.navigate(['/list']);
-    }
+    
   }
 
 }

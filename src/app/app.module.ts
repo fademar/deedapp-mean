@@ -26,7 +26,6 @@ import { EditDeedComponent } from './components/edit-deed/edit-deed.component';
 import { DeedDetailsComponent } from './components/deed-details/deed-details.component';
 import { SchemaComponent } from './components/schema/schema.component';
 import { SearchComponent } from './components/search/search.component';
-import { CallbackComponent } from './components/callback/callback.component';
 import { HomeComponent } from './components/home/home.component';
 
 
@@ -34,8 +33,6 @@ import { DeedService } from './services/deed.service';
 import { SchemaService } from './services/schema.service';
 import { SearchService } from './services/search.service';
 import { PagerService } from './services/pager.service';
-import { AuthService } from './services/auth.service';
-import { AuthGuard } from './services/guard.service';
 
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 
@@ -51,7 +48,6 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
     SchemaComponent,
     SearchComponent,
     ConfirmDialogComponent,
-    CallbackComponent,
     HomeComponent
   ],
   imports: [
@@ -75,7 +71,7 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
     MdSortModule
   ],
   entryComponents: [ConfirmDialogComponent],
-  providers: [DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard],
+  providers: [DeedService, SchemaService, SearchService, PagerService],
   schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent]
 })
