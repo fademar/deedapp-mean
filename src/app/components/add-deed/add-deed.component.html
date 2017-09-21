@@ -37,7 +37,7 @@
 				<hr class="mt-2 mb-2">
 			</div>
 			<div class="row">
-				<div class="form-group col-3">
+				<div class="form-group col">
 					<label>Deed Code <small class="text-danger pl-2" *ngIf="deedForm.controls.deedCode.errors">This field is required</small></label>
 					<div class="input-group">
 						<input class="form-control" formControlName="deedCode" placeholder="fond-opis-delo-list" required>
@@ -46,7 +46,7 @@
 						</span>
 					</div>
 				</div>
-				<div class="form-group col-3">
+				<div class="form-group col">
 					<label>Deed Reference <small class="text-danger pl-2" *ngIf="deedForm.controls.deedRef.errors">This field is required</small></label>
 					<div class="input-group">
 						<input class="form-control" formControlName="deedRef" placeholder="scan number" required>
@@ -55,19 +55,19 @@
 						</span>
 					</div>
 				</div>
-				<div class="form-group col-6" formGroupName="deedDate">
+				<div class="form-group col" formGroupName="deedDate">
 					<label>Deed Date</label>
 					<div class="row">
-						<div class="col">
+						<div class="col-2">
 							<input type="text" class="form-control" formControlName="day">
 						</div>
-						<div class="col">
+						<div class="col-2">
 							<input type="text" class="form-control" formControlName="month">
 						</div>
-						<div class="col">
+						<div class="col-4">
 							<input type="text" class="form-control" formControlName="year">
 						</div>
-						<div class="col">
+						<div class="col-4">
 							<button type="button" (click)="insertLastDeedDate()" class="btn btn-secondary" mdTooltip="Click to insert the date of the last deed saved in the database"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Date</button>
 						</div>
 					</div>
