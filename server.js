@@ -2,7 +2,6 @@ const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongodb = require('mongodb');
-const elasticsearch = require('elasticsearch');
 const path = require('path');
 
 var ObjectID = mongodb.ObjectID;
@@ -27,9 +26,9 @@ app.use(function (req, res, next) {
 const distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
-// app.get('*', function(req, res) {
-//   res.sendFile(path.join(__dirname + '/dist/index.html'));
-// });
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname + '/dist/index.html'));
+});
 
 // Create a db const to reuse the connection
 var db;
