@@ -1198,7 +1198,7 @@ export class EditDeedComponent implements OnInit {
             else {
                 this.lastDeedDate = this.lastDeed[0].deedDate;
                 this.deedForm.patchValue({
-                    deedRef: {
+                    deedDate: {
                         day: this.lastDeedDate.day,
                         month: this.lastDeedDate.month,
                         year: this.lastDeedDate.year
