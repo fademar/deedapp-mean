@@ -66,20 +66,10 @@
 				</div>
 				<div class="form-group col" formGroupName="deedDate">
 					<label>Deed Date</label>
-					<div class="row">
-						<div class="col-2">
-							<input type="text" class="form-control" formControlName="day">
-						</div>
-						<div class="col-2">
-							<input type="text" class="form-control" formControlName="month">
-						</div>
-						<div class="col-4">
-							<input type="text" class="form-control" formControlName="year">
-						</div>
-						<div class="col-4">
-							<button type="button" (click)="insertLastDeedDate()" class="btn btn-secondary" mdTooltip="Click to insert the date of the last deed saved in the database"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Date</button>
-						</div>
-					</div>
+					<input type="text" class="form-control" formControlName="day">
+					<input type="text" class="form-control" formControlName="month">
+					<input type="text" class="form-control" formControlName="year">
+					<button type="button" (click)="insertLastDeedDate()" class="btn btn-secondary" mdTooltip="Click to insert the date of the last deed saved in the database"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Date</button>
 				</div>
 			</div>
 			<div class="row">
