@@ -4,7 +4,6 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { SimpleNotificationsModule } from 'angular2-notifications';
-import { SelectModule } from 'ng2-select';
 import { MdDialogModule } from '@angular/material';
 import { MdProgressSpinnerModule } from '@angular/material';
 import { MdSlideToggleModule } from '@angular/material';
@@ -63,7 +62,6 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
     ReactiveFormsModule,
     HttpModule,
     AppRoutingModule,
-    SelectModule,
     MdDialogModule,
     MdProgressSpinnerModule,
     MdSlideToggleModule,
