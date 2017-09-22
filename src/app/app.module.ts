@@ -15,8 +15,9 @@ import { MdCardModule } from '@angular/material';
 import { MdPaginatorModule } from '@angular/material';
 import { MdTableModule } from '@angular/material';
 import { MdSortModule } from '@angular/material';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { MdAutocompleteModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -76,7 +77,8 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
     MdCardModule,
     MdPaginatorModule,
     MdTableModule,
-    MdSortModule
+    MdSortModule,
+    MdAutocompleteModule
   ],
   entryComponents: [ConfirmDialogComponent],
   providers: [DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard],
