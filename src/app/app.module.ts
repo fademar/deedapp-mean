@@ -15,6 +15,7 @@ import { MdCardModule } from '@angular/material';
 import { MdPaginatorModule } from '@angular/material';
 import { MdTableModule } from '@angular/material';
 import { MdSortModule } from '@angular/material';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -58,6 +59,7 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
     BrowserModule,
     BrowserAnimationsModule, 
     SimpleNotificationsModule.forRoot(),
+    NgbModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
