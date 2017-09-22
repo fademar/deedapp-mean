@@ -615,10 +615,10 @@ export class AddDeedComponent implements OnInit {
     }
 
 
-    updateAgentAction(i: number, e: TypeaheadMatch): void {
+    updateAgentAction(i: number) {
         
         this.agentAction = this.deedForm.controls.transactions['controls'][i].get('agentAction').value;
-        console.log(e.value);
+        console.log(this.agentAction);
         this.deedForm.controls.transactions['controls'][i].controls.counterAgentAction.reset();
 
         if (this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.length > 0) {

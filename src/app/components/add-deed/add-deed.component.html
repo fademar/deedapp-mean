@@ -848,9 +848,6 @@
 							<!-- <select class="form-control" formControlName="agentAction" (change)="updateAgentAction(i)">
 								<option *ngFor="let action of agentActionsList" [value]="action">{{ action }}</option>
 							</select> -->
-							<md-form-field>
-									<input type="text" mdInput [formControl]="myControl">
-								 </md-form-field>
 						</div>
 						<div [ngSwitch]="selectedAction">
 							<div *ngSwitchCase="'other'">
