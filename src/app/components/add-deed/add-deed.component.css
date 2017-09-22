@@ -67,3 +67,7 @@ outline: none !important;
 .cancel-button>button:focus, .cancel-button>button:active {
   outline: none !important;
 }
+
+.date {
+    width: 33%;
+}
