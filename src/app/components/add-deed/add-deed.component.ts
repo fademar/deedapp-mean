@@ -8,6 +8,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
+import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 
 @Component({
     selector: 'app-add-deed',
@@ -614,9 +615,10 @@ export class AddDeedComponent implements OnInit {
     }
 
 
-    updateAgentAction(i: number) {
+    updateAgentAction(i: number, e: TypeaheadMatch): void {
+        
         this.agentAction = this.deedForm.controls.transactions['controls'][i].get('agentAction').value;
-        console.log(this.agentAction);
+        console.log(e.value);
         this.deedForm.controls.transactions['controls'][i].controls.counterAgentAction.reset();
 
         if (this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.length > 0) {
