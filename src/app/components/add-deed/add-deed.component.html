@@ -233,7 +233,7 @@
 									</div>
 									<div class="form-group col-4">
 										<label>Number of Participants</label>
-										<input type="text" class="form-control" formControlName="nbParticipants">
+										<input type="number" min="0" class="form-control" formControlName="nbParticipants">
 									</div>
 								</div>
 								<div class="row">
@@ -403,7 +403,7 @@
 										</div>
 										<div class="form-group col-4">
 											<label>Number of Participants</label>
-											<input type="text" class="form-control" formControlName="nbParticipants">
+											<input type="number" min="0" class="form-control" formControlName="nbParticipants">
 										</div>
 									</div>
 									<div class="row">
@@ -443,7 +443,7 @@
 						</div>
 						<div class="form-group">
 							<label>Number of Participants</label>
-							<input type="text" class="form-control" formControlName="numberOfParticipants">
+							<input type="number" min="0" class="form-control" formControlName="numberOfParticipants">
 						</div>
 						<div class="form-group">
 							<label>Statuses and Names</label>
@@ -595,7 +595,7 @@
 									</div>
 									<div class="form-group col-4">
 										<label>Number of Participants</label>
-										<input type="text" class="form-control" formControlName="nbParticipants">
+										<input type="number" min="0" class="form-control" formControlName="nbParticipants">
 									</div>
 								</div>
 								<div class="row">
@@ -805,7 +805,7 @@
 						</div>
 						<div class="form-group">
 							<label>Number of Participants</label>
-							<input type="text" class="form-control" formControlName="numberOfParticipants">
+							<input type="number" min="0" class="form-control" formControlName="numberOfParticipants">
 						</div>
 						<div class="form-group">
 							<label>Statuses and Names</label>
@@ -949,30 +949,30 @@
 												<div class="form-group row" formGroupName="moscowSilver">
 													<label class="col-3">Amount in Moscow Silver</label>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="rubli">
+														<input type="number" min="0" class="form-control" formControlName="rubli">
 													</div>
 													<div class="col-1 small-label">rubli</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="altyny">
+														<input type="number" min="0" class="form-control" formControlName="altyny">
 													</div>
 													<div class="col-1 small-label">altyny</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="dengi">
+														<input type="number" min="0" class="form-control" formControlName="dengi">
 													</div>
 													<div class="col-1 small-label">den'gi</div>
 												</div>
 												<div class="form-group row" formGroupName="chekhi">
 													<label class="col-3">Amount in Chekhi</label>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="rubli">
+														<input type="number" min="0" class="form-control" formControlName="rubli">
 													</div>
 													<div class="col-1 small-label">rubli</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="altyny">
+														<input type="number" min="0" class="form-control" formControlName="altyny">
 													</div>
 													<div class="col-1 small-label">altyny</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="dengi">
+														<input type="number" min="0" class="form-control" formControlName="dengi">
 													</div>
 													<div class="col-1 small-label">den'gi</div>
 												</div>
@@ -1042,30 +1042,30 @@
 											<div class="form-group row" formGroupName="moscowSilver">
 												<label class="col-3">Amount in Moscow Silver: </label>
 												<div class="col-2">
-													<input type="number" class="form-control" formControlName="rubli">
+													<input type="number" min="0" class="form-control" formControlName="rubli">
 												</div>
 												<div class="col-1">rubli</div>
 												<div class="col-2">
-													<input type="number" class="form-control" formControlName="altyny">
+													<input type="number" min="0" class="form-control" formControlName="altyny">
 												</div>
 												<div class="col-1">altyny</div>
 												<div class="col-2">
-													<input type="number" class="form-control" formControlName="dengi">
+													<input type="number" min="0" class="form-control" formControlName="dengi">
 												</div>
 												<div class="col-1">den'gi</div>
 											</div>
 											<div class="form-group row" formGroupName="chekhi">
 												<label class="col-3">Amount in Chekhi:</label>
 												<div class="col-2">
-													<input type="number" class="form-control" formControlName="rubli">
+													<input type="number" min="0" class="form-control" formControlName="rubli">
 												</div>
 												<div class="col-1">rubli</div>
 												<div class="col-2">
-													<input type="number" class="form-control" formControlName="altyny">
+													<input type="number" min="0" class="form-control" formControlName="altyny">
 												</div>
 												<div class="col-1">altyny</div>
 												<div class="col-2">
-													<input type="number" class="form-control" formControlName="dengi">
+													<input type="number" min="0" class="form-control" formControlName="dengi">
 												</div>
 												<div class="col-1">den'gi</div>
 											</div>
@@ -1090,11 +1090,11 @@
 											<div class="form-group row" formGroupName="numberOfSouls">
 												<label class="col-2">Number of Souls: </label>
 												<div class="col-1">
-													<input class="form-control" formControlName="male">
+													<input type="number" min="0" class="form-control" formControlName="male">
 												</div>
 												<div class="col-1">male</div>
 												<div class="col-1">
-													<input class="form-control" formControlName="female">
+													<input type="number" min="0" class="form-control" formControlName="female">
 												</div>
 												<div class="col-1">female</div>
 												<div class="col-2">
@@ -1110,7 +1110,7 @@
 													</div>
 												</div>
 												<div class="col-2">
-													<input type="number" class="form-control" formControlName="households">
+													<input type="number" min="0" class="form-control" formControlName="households">
 												</div>
 												<div class="col-1">households</div>
 											</div>
@@ -1120,7 +1120,7 @@
 											</div>
 											<div class="form-group">
 												<label>Years of rent</label>
-												<input type="number" class="form-control" formControlName="yearsOfRent">
+												<input type="number" min="0" class="form-control" formControlName="yearsOfRent">
 											</div>
 										</div>
 									</div>
@@ -1150,30 +1150,30 @@
 												<div class="form-group row" formGroupName="moscowSilver">
 													<label class="col-3 control-label">Price in Moscow Silver: </label>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="rubli">
+														<input type="number" min="0" class="form-control" formControlName="rubli">
 													</div>
 													<div class="col-1">rubli</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="altyny">
+														<input type="number" min="0" class="form-control" formControlName="altyny">
 													</div>
 													<div class="col-1">altyny</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="dengi">
+														<input type="number" min="0" class="form-control" formControlName="dengi">
 													</div>
 													<div class="col-1">den'gi</div>
 												</div>
 												<div class="form-group row" formGroupName="chekhi">
 													<label class="col-3 control-label">Price in Chekhi:</label>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="rubli">
+														<input type="number" min="0" class="form-control" formControlName="rubli">
 													</div>
 													<div class="col-1">rubli</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="altyny">
+														<input type="number" min="0" class="form-control" formControlName="altyny">
 													</div>
 													<div class="col-1">altyny</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="dengi">
+														<input type="number" min="0" class="form-control" formControlName="dengi">
 													</div>
 													<div class="col-1">den'gi</div>
 												</div>
@@ -1233,18 +1233,18 @@
 												<label>Surface</label>
 												<div class="row">
 													<div class="col-3">
-														<input type="number" class="form-control" formControlName="chetiVpole">
+														<input type="number" min="0" class="form-control" formControlName="chetiVpole">
 													</div>
 													<div class="col-2">cheti v pole</div>
 													<div class="col-1 text-center">OR</div>
 													<div formGroupName="sazheni" class="col-6">
 														<div class="row">
 															<div class="col-3">
-																<input type="number" class="form-control" formControlName="x">
+																<input type="number" min="0" class="form-control" formControlName="x">
 															</div>
 															<div class="col-1 text-center">x</div>
 															<div class="col-3">
-																<input type="number" class="form-control" formControlName="y">
+																<input type="number" min="0" class="form-control" formControlName="y">
 															</div>
 															<div class="col-1">sazheni</div>
 														</div>
@@ -1255,11 +1255,11 @@
 												<label>Population (souls)</label>
 												<div class="row">
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="male">
+														<input type="number" min="0" class="form-control" formControlName="male">
 													</div>
 													<div class="col-1">male</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="female">
+														<input type="number" min="0" class="form-control" formControlName="female">
 													</div>
 													<div class="col-1">female</div>
 													<div class="col-2">
@@ -1275,7 +1275,7 @@
 														</div>
 													</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="households">
+														<input type="number" min="0" class="form-control" formControlName="households">
 													</div>
 													<div class="col-1">households</div>
 												</div>
@@ -1308,30 +1308,30 @@
 												<div class="form-group row" formGroupName="moscowSilver">
 													<label class="col-3">Amount in Moscow Silver: </label>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="rubli">
+														<input type="number" min="0" class="form-control" formControlName="rubli">
 													</div>
 													<div class="col-1">rubli</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="altyny">
+														<input type="number" min="0" class="form-control" formControlName="altyny">
 													</div>
 													<div class="col-1">altyny</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="dengi">
+														<input type="number" min="0" class="form-control" formControlName="dengi">
 													</div>
 													<div class="col-1">den'gi</div>
 												</div>
 												<div class="form-group row" formGroupName="chekhi">
 													<label class="col-3">Amount in Chekhi:</label>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="rubli">
+														<input type="number" min="0" class="form-control" formControlName="rubli">
 													</div>
 													<div class="col-1">rubli</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="altyny">
+														<input type="number" min="0" class="form-control" formControlName="altyny">
 													</div>
 													<div class="col-1">altyny</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="dengi">
+														<input type="number" min="0" class="form-control" formControlName="dengi">
 													</div>
 													<div class="col-1">den'gi</div>
 												</div>
@@ -1424,11 +1424,11 @@
 												<label>Number of Souls</label>
 												<div class="row">
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="male">
+														<input type="number" min="0" class="form-control" formControlName="male">
 													</div>
 													<div class="col-1">male</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="female">
+														<input type="number" min="0" class="form-control" formControlName="female">
 													</div>
 													<div class="col-1">female</div>
 													<div class="col-2">
@@ -1444,7 +1444,7 @@
 														</div>
 													</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="households">
+														<input type="number" min="0" class="form-control" formControlName="households">
 													</div>
 													<div class="col-1">households</div>
 												</div>
@@ -1517,15 +1517,15 @@
 													<label>Annual Rent</label>
 													<div class="row">
 														<div class="col-2">
-															<input type="number" class="form-control" formControlName="rubli">
+															<input type="number" min="0" class="form-control" formControlName="rubli">
 														</div>
 														<div class="col-1">rubli</div>
 														<div class="col-2">
-															<input type="number" class="form-control" formControlName="altyny">
+															<input type="number" min="0" class="form-control" formControlName="altyny">
 														</div>
 														<div class="col-1">altyny</div>
 														<div class="col-2">
-															<input type="number" class="form-control" formControlName="dengi">
+															<input type="number" min="0" class="form-control" formControlName="dengi">
 														</div>
 														<div class="col-1">den'gi</div>
 													</div>
@@ -1631,7 +1631,7 @@
 												</div>
 												<div class="form-group col-4">
 													<label>Price</label>
-													<input type="text" class="form-control" formControlName="price">
+													<input type="number" min="0" class="form-control" formControlName="price">
 												</div>
 											</div>
 										</div>
@@ -1652,30 +1652,30 @@
 												<div class="form-group row" formGroupName="moscowSilver">
 													<label class="col-3">Amount in Moscow Silver</label>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="rubli">
+														<input type="number" min="0" class="form-control" formControlName="rubli">
 													</div>
 													<div class="col-1 small-label">rubli</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="altyny">
+														<input type="number" min="0" class="form-control" formControlName="altyny">
 													</div>
 													<div class="col-1 small-label">altyny</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="dengi">
+														<input type="number" min="0" class="form-control" formControlName="dengi">
 													</div>
 													<div class="col-1 small-label">den'gi</div>
 												</div>
 												<div class="form-group row" formGroupName="chekhi">
 													<label class="col-3">Amount in Chekhi</label>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="rubli">
+														<input type="number" min="0" class="form-control" formControlName="rubli">
 													</div>
 													<div class="col-1 small-label">rubli</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="altyny">
+														<input type="number" min="0" class="form-control" formControlName="altyny">
 													</div>
 													<div class="col-1 small-label">altyny</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="dengi">
+														<input type="number" min="0" class="form-control" formControlName="dengi">
 													</div>
 													<div class="col-1 small-label">den'gi</div>
 												</div>
@@ -1745,30 +1745,30 @@
 											<div class="form-group row" formGroupName="moscowSilver">
 												<label class="col-3">Amount in Moscow Silver: </label>
 												<div class="col-2">
-													<input type="number" class="form-control" formControlName="rubli">
+													<input type="number" min="0" class="form-control" formControlName="rubli">
 												</div>
 												<div class="col-1">rubli</div>
 												<div class="col-2">
-													<input type="number" class="form-control" formControlName="altyny">
+													<input type="number" min="0" class="form-control" formControlName="altyny">
 												</div>
 												<div class="col-1">altyny</div>
 												<div class="col-2">
-													<input type="number" class="form-control" formControlName="dengi">
+													<input type="number" min="0" class="form-control" formControlName="dengi">
 												</div>
 												<div class="col-1">den'gi</div>
 											</div>
 											<div class="form-group row" formGroupName="chekhi">
 												<label class="col-3">Amount in Chekhi:</label>
 												<div class="col-2">
-													<input type="number" class="form-control" formControlName="rubli">
+													<input type="number" min="0" class="form-control" formControlName="rubli">
 												</div>
 												<div class="col-1">rubli</div>
 												<div class="col-2">
-													<input type="number" class="form-control" formControlName="altyny">
+													<input type="number" min="0" class="form-control" formControlName="altyny">
 												</div>
 												<div class="col-1">altyny</div>
 												<div class="col-2">
-													<input type="number" class="form-control" formControlName="dengi">
+													<input type="number" min="0" class="form-control" formControlName="dengi">
 												</div>
 												<div class="col-1">den'gi</div>
 											</div>
@@ -1793,11 +1793,11 @@
 											<div class="form-group row" formGroupName="numberOfSouls">
 												<label class="col-2">Number of Souls: </label>
 												<div class="col-1">
-													<input class="form-control" formControlName="male">
+													<input type="number" min="0" class="form-control" formControlName="male">
 												</div>
 												<div class="col-1">male</div>
 												<div class="col-1">
-													<input class="form-control" formControlName="female">
+													<input type="number" min="0" class="form-control" formControlName="female">
 												</div>
 												<div class="col-1">female</div>
 												<div class="col-2">
@@ -1813,7 +1813,7 @@
 													</div>
 												</div>
 												<div class="col-2">
-													<input type="number" class="form-control" formControlName="households">
+													<input type="number" min="0" class="form-control" formControlName="households">
 												</div>
 												<div class="col-1">households</div>
 											</div>
@@ -1823,7 +1823,7 @@
 											</div>
 											<div class="form-group">
 												<label>Years of rent</label>
-												<input type="number" class="form-control" formControlName="yearsOfRent">
+												<input type="number" min="0" class="form-control" formControlName="yearsOfRent">
 											</div>
 										</div>
 									</div>
@@ -1853,30 +1853,30 @@
 												<div class="form-group row" formGroupName="moscowSilver">
 													<label class="col-3 control-label">Price in Moscow Silver: </label>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="rubli">
+														<input type="number" min="0" class="form-control" formControlName="rubli">
 													</div>
 													<div class="col-1">rubli</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="altyny">
+														<input type="number" min="0" class="form-control" formControlName="altyny">
 													</div>
 													<div class="col-1">altyny</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="dengi">
+														<input type="number" min="0" class="form-control" formControlName="dengi">
 													</div>
 													<div class="col-1">den'gi</div>
 												</div>
 												<div class="form-group row" formGroupName="chekhi">
 													<label class="col-3 control-label">Price in Chekhi:</label>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="rubli">
+														<input type="number" min="0" class="form-control" formControlName="rubli">
 													</div>
 													<div class="col-1">rubli</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="altyny">
+														<input type="number" min="0" class="form-control" formControlName="altyny">
 													</div>
 													<div class="col-1">altyny</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="dengi">
+														<input type="number" min="0" class="form-control" formControlName="dengi">
 													</div>
 													<div class="col-1">den'gi</div>
 												</div>
@@ -1936,18 +1936,18 @@
 												<label>Surface</label>
 												<div class="row">
 													<div class="col-3">
-														<input type="number" class="form-control" formControlName="chetiVpole">
+														<input type="number" min="0" class="form-control" formControlName="chetiVpole">
 													</div>
 													<div class="col-2">cheti v pole</div>
 													<div class="col-1 text-center">OR</div>
 													<div formGroupName="sazheni" class="col-6">
 														<div class="row">
 															<div class="col-3">
-																<input type="number" class="form-control" formControlName="x">
+																<input type="number" min="0" class="form-control" formControlName="x">
 															</div>
 															<div class="col-1 text-center">x</div>
 															<div class="col-3">
-																<input type="number" class="form-control" formControlName="y">
+																<input type="number" min="0" class="form-control" formControlName="y">
 															</div>
 															<div class="col-1">sazheni</div>
 														</div>
@@ -1958,11 +1958,11 @@
 												<label>Population (souls)</label>
 												<div class="row">
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="male">
+														<input type="number" min="0" class="form-control" formControlName="male">
 													</div>
 													<div class="col-1">male</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="female">
+														<input type="number" min="0" class="form-control" formControlName="female">
 													</div>
 													<div class="col-1">female</div>
 													<div class="col-2">
@@ -1978,7 +1978,7 @@
 														</div>
 													</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="households">
+														<input type="number" min="0" class="form-control" formControlName="households">
 													</div>
 													<div class="col-1">households</div>
 												</div>
@@ -2011,30 +2011,30 @@
 												<div class="form-group row" formGroupName="moscowSilver">
 													<label class="col-3">Amount in Moscow Silver: </label>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="rubli">
+														<input type="number" min="0" class="form-control" formControlName="rubli">
 													</div>
 													<div class="col-1">rubli</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="altyny">
+														<input type="number" min="0" class="form-control" formControlName="altyny">
 													</div>
 													<div class="col-1">altyny</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="dengi">
+														<input type="number" min="0" class="form-control" formControlName="dengi">
 													</div>
 													<div class="col-1">den'gi</div>
 												</div>
 												<div class="form-group row" formGroupName="chekhi">
 													<label class="col-3">Amount in Chekhi:</label>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="rubli">
+														<input type="number" min="0" class="form-control" formControlName="rubli">
 													</div>
 													<div class="col-1">rubli</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="altyny">
+														<input type="number" min="0" class="form-control" formControlName="altyny">
 													</div>
 													<div class="col-1">altyny</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="dengi">
+														<input type="number" min="0" class="form-control" formControlName="dengi">
 													</div>
 													<div class="col-1">den'gi</div>
 												</div>
@@ -2127,11 +2127,11 @@
 												<label>Number of Souls</label>
 												<div class="row">
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="male">
+														<input type="number" min="0" class="form-control" formControlName="male">
 													</div>
 													<div class="col-1">male</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="female">
+														<input type="number" min="0" class="form-control" formControlName="female">
 													</div>
 													<div class="col-1">female</div>
 													<div class="col-2">
@@ -2147,7 +2147,7 @@
 														</div>
 													</div>
 													<div class="col-2">
-														<input type="number" class="form-control" formControlName="households">
+														<input type="number" min="0" class="form-control" formControlName="households">
 													</div>
 													<div class="col-1">households</div>
 												</div>
@@ -2220,15 +2220,15 @@
 													<label>Annual Rent</label>
 													<div class="row">
 														<div class="col-2">
-															<input type="number" class="form-control" formControlName="rubli">
+															<input type="number" min="0" class="form-control" formControlName="rubli">
 														</div>
 														<div class="col-1">rubli</div>
 														<div class="col-2">
-															<input type="number" class="form-control" formControlName="altyny">
+															<input type="number" min="0" class="form-control" formControlName="altyny">
 														</div>
 														<div class="col-1">altyny</div>
 														<div class="col-2">
-															<input type="number" class="form-control" formControlName="dengi">
+															<input type="number" min="0" class="form-control" formControlName="dengi">
 														</div>
 														<div class="col-1">den'gi</div>
 													</div>
@@ -2568,15 +2568,15 @@
 							<label>Tax</label>
 							<div class="row">
 								<div class="col-2">
-									<input type="number" class="form-control" formControlName="roubles">
+									<input type="number" min="0" class="form-control" formControlName="roubles">
 								</div>
 								<div class="col-1">roubles</div>
 								<div class="col-2">
-									<input type="text" class="form-control" formControlName="altyn">
+									<input type="number" min="0" class="form-control" formControlName="altyn">
 								</div>
 								<div class="col-1">altyn</div>
 								<div class="col-2">
-									<input type="text" class="form-control" formControlName="denga">
+									<input type="number" min="0" class="form-control" formControlName="denga">
 								</div>
 								<div class="col-1">denga</div>
 								<div class="col-1">Collected: </div>
@@ -2600,15 +2600,15 @@
 							<label>Fee</label>
 							<div class="row">
 								<div class="col-2">
-									<input type="number" class="form-control" formControlName="roubles">
+									<input type="number" min="0" class="form-control" formControlName="roubles">
 								</div>
 								<div class="col-1">roubles</div>
 								<div class="col-2">
-									<input type="text" class="form-control" formControlName="altyn">
+									<input type="number" min="0" class="form-control" formControlName="altyn">
 								</div>
 								<div class="col-1">altyn</div>
 								<div class="col-2">
-									<input type="text" class="form-control" formControlName="denga">
+									<input type="number" min="0" class="form-control" formControlName="denga">
 								</div>
 								<div class="col-1">denga</div>
 								<div class="col-1">Collected: </div>
