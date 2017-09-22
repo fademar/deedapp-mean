@@ -844,7 +844,7 @@
 
 						<div class="form-group">
 							<label>What the Agent does ?</label>
-							<input type="text" class="form-control" formControlName="agentAction" [ngbTypeahead]="searchAgentAction" (input)="updateAgentAction(i)"/>
+							<input type="text" class="form-control" formControlName="agentAction" [ngbTypeahead]="searchAgentAction" (change)="updateAgentAction(i)"/>
 							<!-- <select class="form-control" formControlName="agentAction" (change)="updateAgentAction(i)">
 								<option *ngFor="let action of agentActionsList" [value]="action">{{ action }}</option>
 							</select> -->
