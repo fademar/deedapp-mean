@@ -16,6 +16,7 @@ import { MdPaginatorModule } from '@angular/material';
 import { MdTableModule } from '@angular/material';
 import { MdSortModule } from '@angular/material';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -60,6 +61,7 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
     BrowserAnimationsModule, 
     SimpleNotificationsModule.forRoot(),
     NgbModule.forRoot(),
+    TypeaheadModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
