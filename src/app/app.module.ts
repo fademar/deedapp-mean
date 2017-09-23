@@ -4,20 +4,20 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { SimpleNotificationsModule } from 'angular2-notifications';
-import { MdDialogModule } from '@angular/material';
-import { MdProgressSpinnerModule } from '@angular/material';
-import { MdSlideToggleModule } from '@angular/material';
-import { MdButtonModule } from '@angular/material';
-import { MdIconModule } from '@angular/material';
-import { MdTooltipModule } from '@angular/material';
-import { MdMenuModule } from '@angular/material';
-import { MdCardModule } from '@angular/material';
-import { MdPaginatorModule } from '@angular/material';
-import { MdTableModule } from '@angular/material';
-import { MdSortModule } from '@angular/material';
+import { MatDialogModule } from '@angular/material';
+import { MatProgressSpinnerModule } from '@angular/material';
+import { MatSlideToggleModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material';
+import { MatIconModule } from '@angular/material';
+import { MatTooltipModule } from '@angular/material';
+import { MatMenuModule } from '@angular/material';
+import { MatCardModule } from '@angular/material';
+import { MatPaginatorModule } from '@angular/material';
+import { MatTableModule } from '@angular/material';
+import { MatSortModule } from '@angular/material';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
-import { MdAutocompleteModule } from '@angular/material';
+import { MatAutocompleteModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -67,18 +67,18 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
     ReactiveFormsModule,
     HttpModule,
     AppRoutingModule,
-    MdDialogModule,
-    MdProgressSpinnerModule,
-    MdSlideToggleModule,
-    MdButtonModule,
-    MdIconModule,
-    MdTooltipModule,
-    MdMenuModule,
-    MdCardModule,
-    MdPaginatorModule,
-    MdTableModule,
-    MdSortModule,
-    MdAutocompleteModule
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    MatSlideToggleModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatMenuModule,
+    MatCardModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule,
+    MatAutocompleteModule
   ],
   entryComponents: [ConfirmDialogComponent],
   providers: [DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard],
