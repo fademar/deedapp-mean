@@ -18,6 +18,7 @@ import { MatSortModule } from '@angular/material';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { MatAutocompleteModule } from '@angular/material';
+import { MatInputModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -78,7 +79,8 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatInputModule
   ],
   entryComponents: [ConfirmDialogComponent],
   providers: [DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard],
