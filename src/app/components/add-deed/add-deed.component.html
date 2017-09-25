@@ -845,10 +845,10 @@
 						<div class="form-group">
 							<label>What the Agent does ?</label>
 							<input type="text" class="form-control" formControlName="agentAction" list="action-list" (change)="updateAgentAction(i)"/>
-							<datalist id="action-list" class="form-control">
-								<option *ngFor="let action of agentActionsList" [value]="action">{{ action }}</option>
-							</datalist>
 						</div>
+						<datalist id="action-list">
+							<option *ngFor="let action of agentActionsList" [value]="action">{{ action }}</option>
+						</datalist>
 						<div [ngSwitch]="selectedAction">
 							<div *ngSwitchCase="'other'">
 								<div class="form-group">
