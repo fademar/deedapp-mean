@@ -615,11 +615,12 @@ export class AddDeedComponent implements OnInit {
     }
 
     searchAgentAction = (text$: Observable<string>) =>
-    text$
-      .debounceTime(200)
-      .distinctUntilChanged()
-      .map(term => term.length < 2 ? []
-        : agentActionsList.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
+        text$
+        .debounceTime(200)
+        .distinctUntilChanged()
+        .map(term => term.length < 1 ? []
+            : agentActionsList.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
+
 
     updateAgentAction(i: number) {
         
