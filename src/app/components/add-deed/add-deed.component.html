@@ -844,11 +844,8 @@
 
 						<div class="form-group">
 							<label>What the Agent does ?</label>
-							<input type="text" class="form-control" formControlName="agentAction" list="action-list" (change)="updateAgentAction(i)"/>
+							<input type="text" class="form-control" formControlName="agentAction" [typeahead]="agentActionsList" (change)="updateAgentAction(i)"/>
 						</div>
-						<datalist id="action-list">
-							<option *ngFor="let action of agentActionsList" [value]="action">{{ action }}</option>
-						</datalist>
 						<div [ngSwitch]="selectedAction">
 							<div *ngSwitchCase="'other'">
 								<div class="form-group">
