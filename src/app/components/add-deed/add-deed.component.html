@@ -844,7 +844,7 @@
 
 						<div class="form-group">
 							<label>What the Agent does ?</label>
-							<input type="text" class="form-control" formControlName="agentAction" [typeahead]="agentActionsList" (keypress)="updateAgentAction(i)"/>
+							<input type="text" class="form-control" formControlName="agentAction" [ngbTypeahead]="searchAgentAction"/>
 						</div>
 						<div [ngSwitch]="selectedAction">
 							<div *ngSwitchCase="'other'">
