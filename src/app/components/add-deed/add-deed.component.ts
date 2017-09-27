@@ -627,6 +627,7 @@ export class AddDeedComponent implements OnInit {
         this.agentAction = this.deedForm.controls.transactions['controls'][i].get('agentAction').value;
         console.log(this.agentAction);
         console.log(e);
+        console.log(e.target.value);
         console.log(e.item);
         this.deedForm.controls.transactions['controls'][i].controls.counterAgentAction.reset();
 
