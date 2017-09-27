@@ -846,7 +846,7 @@
 						 </md-form-field>
 						 
 						 <md-autocomplete #autoAgentAction="mdAutocomplete">
-							<md-option *ngFor="let action of searchAgentAction | async" [value]="action">
+							<md-option *ngFor="let action of agentActionsList" [value]="action">
 							   {{ action }}
 							</md-option>
 						 </md-autocomplete>
