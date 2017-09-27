@@ -620,7 +620,7 @@ export class AddDeedComponent implements OnInit {
         .distinctUntilChanged()
         .map(term => term.length < 1 ? []
             : agentActionsList.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
-
+    
 
     updateAgentAction(i: number) {
         

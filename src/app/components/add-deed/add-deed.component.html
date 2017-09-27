@@ -841,11 +841,20 @@
 					<div class="card-body" [formGroupName]="i">
 
 						<!-- AGENT TRANSACTION -->
+						<md-form-field>
+							<input type="text" mdInput placeholder="What does the Agent ?" [formControl]="agentAction" [mdAutocomplete]="autoaAgentAction">
+						 </md-form-field>
+						 
+						 <md-autocomplete #autoAgentAction="mdAutocomplete">
+							<md-option *ngFor="let action of searchAgentAction | async" [value]="action">
+							   {{ action }}
+							</md-option>
+						 </md-autocomplete>
 
-						<div class="form-group">
+						<!-- <div class="form-group">
 							<label>What the Agent does ?</label>
 							<input type="text" class="form-control" formControlName="agentAction" [ngbTypeahead]="searchAgentAction" (change)="updateAgentAction(i)"/>
-						</div>
+						</div> -->
 						<div [ngSwitch]="selectedAction">
 							<div *ngSwitchCase="'other'">
 								<div class="form-group">
