@@ -127,6 +127,7 @@ export class AddDeedComponent implements OnInit {
         this.initForm();
         this.selectedAction = '';
         this.selectedCounterAction = '';
+        this.counterAgentField = 'text';
     }
 
     // Create the form
