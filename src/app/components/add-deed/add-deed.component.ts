@@ -754,7 +754,7 @@ export class AddDeedComponent implements OnInit {
             default: {
                 this.selectedAction = '';
                 this.selectedCounterAction = '';
-                this.counterAgentField = '';				
+                this.counterAgentField = 'text';				
                 break;
             }
         }
