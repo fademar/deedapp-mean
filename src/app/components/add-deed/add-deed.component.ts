@@ -83,6 +83,7 @@ export class AddDeedComponent implements OnInit {
     selectedObject;
     value;
     indexValues = [];
+    selectedAgentActionItem = '';
     
     gender = gender;
     socialBody = socialBody;
@@ -622,14 +623,17 @@ export class AddDeedComponent implements OnInit {
             : agentActionsList.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
     
     selectedAgentAction(e) {
-        console.log(e.item);        
+        this.selectedAgentActionItem = e.item;        
     }
 
     updateAgentAction(i: number) {
         
-        this.agentAction = this.deedForm.controls.transactions['controls'][i].get('agentAction').value;
-        console.log(this.agentAction);
-
+        if (this.selectedAgentActionItem) {
+            this.agentAction = this.selectedAgentActionItem;
+        } else {
+            this.agentAction = this.deedForm.controls.transactions['controls'][i].get('agentAction').value;            
+        }
+     
         this.deedForm.controls.transactions['controls'][i].controls.counterAgentAction.reset();
 
         if (this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.length > 0) {
