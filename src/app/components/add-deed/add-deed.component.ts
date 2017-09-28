@@ -621,12 +621,14 @@ export class AddDeedComponent implements OnInit {
         .map(term => term.length < 1 ? []
             : agentActionsList.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
     
+    selectedAgentAction(e) {
+        console.log(e.item);        
+    }
 
-    updateAgentAction(i: number, e) {
+    updateAgentAction(i: number) {
         
         this.agentAction = this.deedForm.controls.transactions['controls'][i].get('agentAction').value;
         console.log(this.agentAction);
-        console.log(e.item);
 
         this.deedForm.controls.transactions['controls'][i].controls.counterAgentAction.reset();
 
