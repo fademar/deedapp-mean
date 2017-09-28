@@ -626,6 +626,7 @@ export class AddDeedComponent implements OnInit {
 
     updateAgentAction(i: number, e) {
         
+        console.log(e);
         if (e.item) {
             this.agentAction = e.item;
         } else {
