@@ -132,7 +132,11 @@ export class EditDeedComponent implements OnInit {
             this.deedForm.patchValue({
                 deedCode: this.deed.deedCode,
                 deedRef: this.deed.deedRef,
-                deedDate: this.deed.deedDate,
+                deedDate: this.fb.group({
+                    day: [''],
+                    month: [''],
+                    year: ['']
+                }),
                 deedName: this.deed.deedName,
                 deedLanguage: this.deed.deedLanguage,
                 registrationDate: this.deed.registrationDate,
