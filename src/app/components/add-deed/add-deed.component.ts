@@ -83,6 +83,7 @@ export class AddDeedComponent implements OnInit {
     selectedObject;
     value;
     indexValues = [];
+    selectedAgentActionItem = '';
     
     gender = gender;
     socialBody = socialBody;
@@ -126,6 +127,7 @@ export class AddDeedComponent implements OnInit {
         this.initForm();
         this.selectedAction = '';
         this.selectedCounterAction = '';
+        this.counterAgentField = 'text';
     }
 
     // Create the form
@@ -620,12 +622,17 @@ export class AddDeedComponent implements OnInit {
         .distinctUntilChanged()
         .map(term => term.length < 1 ? []
             : agentActionsList.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
+    
 
-
-    updateAgentAction(i: number) {
+    updateAgentAction(i: number, e) {
         
-        this.agentAction = this.deedForm.controls.transactions['controls'][i].get('agentAction').value;
-        console.log(this.agentAction);
+        console.log(e);
+        if (e.item) {
+            this.agentAction = e.item;
+        } else {
+            this.agentAction = this.deedForm.controls.transactions['controls'][i].get('agentAction').value;            
+        }
+     
         this.deedForm.controls.transactions['controls'][i].controls.counterAgentAction.reset();
 
         if (this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.length > 0) {
@@ -749,7 +756,7 @@ export class AddDeedComponent implements OnInit {
             default: {
                 this.selectedAction = '';
                 this.selectedCounterAction = '';
-                this.counterAgentField = '';				
+                this.counterAgentField = 'text';				
                 break;
             }
         }
