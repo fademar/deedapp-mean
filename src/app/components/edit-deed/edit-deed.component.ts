@@ -1116,7 +1116,11 @@ export class EditDeedComponent implements OnInit {
         this.deedForm = this.fb.group({
             deedCode: ['', Validators.required],
             deedRef: ['', Validators.required],
-            deedDate: [''],
+            deedDate: this.fb.group({
+                day: [''],
+                month: [''],
+                year: ['']
+            }),
             deedName: [''],
             deedLanguage: ['russian'],
             agentSex: [''],
