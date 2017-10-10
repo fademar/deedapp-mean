@@ -19,7 +19,7 @@
         </a>
     </div>
     
-    <md-card *ngIf="!deed.complete" class="bg-yellow-500 mb-3"><span class="message"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> There is more data in the manuscript</span></md-card>
+    <div *ngIf="!deed.complete" class="card shadow bg-yellow-500 mb-3"><span class="message"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> There is more data in the manuscript</span></div>
     
     <div class="card shadow mb-3">
         <div class="card-body">
