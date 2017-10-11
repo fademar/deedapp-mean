@@ -6,6 +6,8 @@ const path = require('path');
 
 var ObjectID = mongodb.ObjectID;
 
+const MONGODB_URI = 'mongodb://localhost:27007/dbdeeds';
+
 // Db Collection and URI
 const deedsCollection = 'Deeds';
 
@@ -30,7 +32,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 var db;
 
 // Connection to the database
-mongodb.MongoClient.connect(process.env.MONGODB_URI, (err, database) => {
+mongodb.MongoClient.connect(MONGODB_URI, (err, database) => {
 	if (err) {
 		console.log('the connection with the databas is impossible: ' + err);
 		process.exit(1);
