@@ -29,7 +29,7 @@
 				</ng-container>
 				<ng-container mdColumnDef="complete">
 					<md-header-cell *mdHeaderCellDef> complete </md-header-cell>
-					<md-cell *mdCellDef="let deed"> <md-icon *ngIf="deed.complete" class="md-24">check</md-icon> </md-cell>
+					<md-cell *mdCellDef="let deed"> <md-icon *ngIf="deed.complete === 'true'" class="md-24">check</md-icon> </md-cell>
 				</ng-container>
 				<ng-container mdColumnDef="details">
 						<md-header-cell *mdHeaderCellDef> </md-header-cell>
