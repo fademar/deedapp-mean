@@ -99,6 +99,7 @@ export class AddDeedComponent implements OnInit {
     activityList = activityList;
     typeTaxList = typeTaxList;
     counterAgentActionsList = counterAgentActionsList;
+    registratorList = [];
 
     collectiveCoAgentOn = this.collectiveCoAgentOn;
     collectiveCoCounterAgentOn = this.collectiveCoCounterAgentOn;
@@ -1530,8 +1531,20 @@ export class AddDeedComponent implements OnInit {
             lastName: [''],
             relatedTo: ['']
         });
-
         this.deedForm.addControl('registrator', this.registrator);
+
+        this.deedService.getDeeds().subscribe(deeds => {
+
+            deeds.forEach(deed => {
+                
+                if (deed.registrator) {
+                    console.log(deed.registrator);
+                }
+
+            });
+
+        });
+
         return this.registratorOn = true;
     }
 
@@ -1539,6 +1552,15 @@ export class AddDeedComponent implements OnInit {
         this.deedForm.removeControl('registrator');
         return this.registratorOn = false;
     }
+
+
+
+    searchRegistrator = (text$: Observable<string>) =>
+    text$
+    .debounceTime(200)
+    .distinctUntilChanged()
+    .map(term => term.length < 0 ? []
+        : agentActionsList.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
 
 
      // Submit the form
