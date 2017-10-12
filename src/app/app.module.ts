@@ -20,6 +20,7 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { MatAutocompleteModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 import { MatRadioModule } from '@angular/material';
+import { MatButtonToggleModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -82,7 +83,8 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
     MatSortModule,
     MatAutocompleteModule,
     MatInputModule,
-    MatRadioModule
+    MatRadioModule,
+    MatButtonToggleModule
   ],
   entryComponents: [ConfirmDialogComponent],
   providers: [DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard],
