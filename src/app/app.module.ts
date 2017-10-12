@@ -19,6 +19,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { MatAutocompleteModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
+import { MatRadioModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -80,7 +81,8 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
     MatTableModule,
     MatSortModule,
     MatAutocompleteModule,
-    MatInputModule
+    MatInputModule,
+    MatRadioModule
   ],
   entryComponents: [ConfirmDialogComponent],
   providers: [DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard],
