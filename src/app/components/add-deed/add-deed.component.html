@@ -2659,22 +2659,15 @@
 			<div class="text-center">
 				<h4>Is the form complete ?</h4>
 				<md-button-toggle-group formControlName="complete">
-					<md-button-toggle value="false">
-						NO
-					</md-button-toggle>
-					<md-button-toggle value="true">
-						YES
-					</md-button-toggle>
+					<div class="row">
+						<div class="col">							
+							<md-button-toggle value="false">NO</md-button-toggle>
+						</div>
+						<div class="col">
+							<md-button-toggle value="true">YES</md-button-toggle>
+						</div>
+					</div>
 				</md-button-toggle-group>
-				<md-radio-group >
-					<md-radio-button value="false">No</md-radio-button>
-					<md-radio-button value="true">Yes</md-radio-button>
-				</md-radio-group>
-			</div>
-			<div class="row justify-content-center p-2">
-				<div class="col-2">
-					    
-				</div>
 			</div>
 		</div>
 	</div>
