@@ -1556,6 +1556,10 @@ export class AddDeedComponent implements OnInit {
         return this.registratorOn = false;
     }
 
+    updateRegistrator(e) {
+        console.log(e);
+    }
+
 
 
     searchRegistrator = (text$: Observable<string>) =>
@@ -1563,7 +1567,7 @@ export class AddDeedComponent implements OnInit {
     .debounceTime(200)
     .distinctUntilChanged()
     .map(term => term.length < 0 ? []
-        : agentActionsList.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
+        : this.registratorList.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
 
 
      // Submit the form
