@@ -35,6 +35,7 @@ label {
   font-weight: bold;
 }
 
+.md-button-toggle-checked .md-button-toggle-label-content{ background-color:#E91E63 !important; }
 
 
 /* default .loading styles, .loading should be invisible, opacity: 0, z-index: -1 */

@@ -2658,7 +2658,15 @@
 		<div class="card-body">
 			<div class="text-center">
 				<h4>Is the form complete ?</h4>
-				<md-radio-group formControlName="complete">
+				<md-button-toggle-group formControlName="complete">
+					<md-button-toggle value="false">
+						NO
+					</md-button-toggle>
+					<md-button-toggle value="true">
+						YES
+					</md-button-toggle>
+				</md-button-toggle-group>
+				<md-radio-group >
 					<md-radio-button value="false">No</md-radio-button>
 					<md-radio-button value="true">Yes</md-radio-button>
 				</md-radio-group>
