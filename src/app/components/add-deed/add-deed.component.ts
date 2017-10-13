@@ -617,21 +617,9 @@ export class AddDeedComponent implements OnInit {
         });
     }
 
-    searchAgentAction = (text$: Observable<string>) =>
-        text$
-        .debounceTime(200)
-        .distinctUntilChanged()
-        .map(term => term.length < 0 ? []
-            : agentActionsList.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
-    
-
-    updateAgentAction(i: number, e) {
-        if (e.item) {
-            this.agentAction = e.item;
-        } else {
-            this.agentAction = this.deedForm.controls.transactions['controls'][i].get('agentAction').value;            
-        }
-     
+    updateAgentAction(i) {
+        this.agentAction = this.deedForm.controls.transactions['controls'][i].get('agentAction').value;            
+             
         this.deedForm.controls.transactions['controls'][i].controls.counterAgentAction.reset();
 
         if (this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.length > 0) {
