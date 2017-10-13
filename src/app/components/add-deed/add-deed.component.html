@@ -2535,7 +2535,7 @@
 						<div class="row">
 							<label>Choose a registrator in the list</label>
 							<select class="form-control" (change)="updateRegistrator($event.target.value)">
-								<option *ngFor="let registrator of registratorList" [value]="deed._id">{{registrator.firstName}} {{registrator.patronyme}} {{registrator.lastName}}</option>
+								<option *ngFor="let registrator of registratorList">{{registrator.firstName}} {{registrator.patronyme}} {{registrator.lastName}}</option>
 							</select>
 						</div>
 						<div class="row">

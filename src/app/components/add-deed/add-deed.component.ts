@@ -1527,7 +1527,7 @@ export class AddDeedComponent implements OnInit {
             deeds.forEach(deed => {
                 
                 if (deed.registrator) {
-                    
+                        console.log(deed);
                         this.registratorList.push(deed.registrator);
                 }
 
