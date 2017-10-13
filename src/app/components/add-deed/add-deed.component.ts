@@ -1528,7 +1528,7 @@ export class AddDeedComponent implements OnInit {
                 
                 if (deed.registrator) {
                         console.log(deed);
-                        this.registratorList.push(deed.registrator);
+                        this.registratorList.push(deed);
                 }
 
             });
