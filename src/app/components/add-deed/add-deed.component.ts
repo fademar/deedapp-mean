@@ -1547,8 +1547,8 @@ export class AddDeedComponent implements OnInit {
         return this.registratorOn = false;
     }
 
-    updateRegistrator(e) {
-        console.log(e);
+    updateRegistrator(registrator) {
+        console.log(JSON.parse(registrator));
     }
 
 
