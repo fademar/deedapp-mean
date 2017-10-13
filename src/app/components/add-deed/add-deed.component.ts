@@ -1538,7 +1538,7 @@ export class AddDeedComponent implements OnInit {
             deeds.forEach(deed => {
                 
                 if (deed.registrator) {
-                    this.registratorList.push(deed.registrator.firstName + ' ' + deed.registrator.lastName);
+                    this.registratorList.push(deed.registrator.firstName + ' ' + deed.registrator.patronyme + ' ' + deed.registrator.lastName + ', related to: ' + deed.registrator.relatedTo);
                 }
 
             });
@@ -1553,6 +1553,7 @@ export class AddDeedComponent implements OnInit {
 
     removeRegistrator() {
         this.deedForm.removeControl('registrator');
+        this.registratorList = [];
         return this.registratorOn = false;
     }
 
