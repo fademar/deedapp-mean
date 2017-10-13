@@ -2537,7 +2537,7 @@
 								<label>Choose a registrator in the list</label>
 								<select class="form-control" (click)="updateRegistrator($event.target.value)">
 									<option value=""></option>
-									<option *ngFor="let deed of registratorList" [value]="deed.registrator">{{deed.registrator.firstName}} {{deed.registrator.patronyme}} {{deed.registrator.lastName}}<span *ngIf="deed.registrator.relatedTo"> ,related to {{deed.registrator.relatedTo}}</span></option>
+									<option *ngFor="let deed of registratorList; let i=index" [value]="i">{{deed.registrator.firstName}} {{deed.registrator.patronyme}} {{deed.registrator.lastName}}<span *ngIf="deed.registrator.relatedTo">, related to {{deed.registrator.relatedTo}}</span></option>
 								</select>
 							</div>
 						</div>
