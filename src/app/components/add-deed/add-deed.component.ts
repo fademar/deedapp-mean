@@ -1527,9 +1527,8 @@ export class AddDeedComponent implements OnInit {
             deeds.forEach(deed => {
                 
                 if (deed.registrator) {
-                    if ((this.registratorList === []) || ((this.registratorList['firstName'] ==! deed.registrator.firstName) && (this.registrator['lastName'] ==! deed.registrator.lastName))) {
+                    
                         this.registratorList.push(deed.registrator);
-                    }
                 }
 
             });
@@ -1552,14 +1551,6 @@ export class AddDeedComponent implements OnInit {
         console.log(e);
     }
 
-
-
-    searchRegistrator = (text$: Observable<string>) =>
-    text$
-    .debounceTime(200)
-    .distinctUntilChanged()
-    .map(term => term.length < 0 ? []
-        : this.registratorList.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
 
 
      // Submit the form
