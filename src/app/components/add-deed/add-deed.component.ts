@@ -1549,8 +1549,7 @@ export class AddDeedComponent implements OnInit {
 
     updateRegistrator(i) {
         console.log(i);
-        this.deed.registrator.patchValue(this.registratorList[i]);
-
+        this.deedForm.patchValue({registrator: this.registratorList[i]});
     }
 
 
