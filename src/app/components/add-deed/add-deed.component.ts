@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'app-add-deed',
@@ -1529,17 +1530,8 @@ export class AddDeedComponent implements OnInit {
                 
                 if (deed.registrator) {
 
-                    if (this.registratorList.length === 0) {
+                    if (!_.includes(this.registratorList, deed.registrator)) {
                         this.registratorList.push(deed);
-                        console.log('push vide' + this.registratorList);
-                    } else { 
-                        
-                        this.registratorList.forEach(element => {
-                            if ((deed.registrator.firstName !== element.registrator.firstName) && (deed.registrator.patronyme !== element.registrator.patronyme) && (deed.registrator.lastName !== element.registrator.lastName) && (deed.registrator.relatedTo !== element.registrator.relatedTo)){
-                                this.registratorList.push(deed);   
-                            }
-                        })
-                    
                     }
                         
                 }
