@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
-import * as _ from 'underscore';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'app-add-deed',

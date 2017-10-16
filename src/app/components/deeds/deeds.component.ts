@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DeedService } from '../../services/deed.service';
-import * as _ from 'underscore';
+import * as _ from 'lodash';
 import { PagerService } from '../../services/pager.service';
 
 import {DataSource} from '@angular/cdk/collections';
