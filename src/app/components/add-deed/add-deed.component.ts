@@ -99,7 +99,7 @@ export class AddDeedComponent implements OnInit {
     activityList = activityList;
     typeTaxList = typeTaxList;
     counterAgentActionsList = counterAgentActionsList;
-    registratorList = [];
+    registratorList = this.registratorList;
     selectedRegistrators;
 
     collectiveCoAgentOn = this.collectiveCoAgentOn;
@@ -1521,20 +1521,22 @@ export class AddDeedComponent implements OnInit {
             relatedTo: ['']
         });
         this.deedForm.addControl('registrator', this.registrator);
+        this.registratorList = [];
 
         this.deedService.getDeeds().subscribe(deeds => {
 
             deeds.forEach(deed => {
                 
                 if (deed.registrator) {
-                    console.log(deed);
+
                     if (this.registratorList.length === 0) {
                         this.registratorList.push(deed);
                         console.log('push vide' + this.registratorList);
                     } else { 
                         
+
                         this.registratorList.forEach(element => {
-                            if (deed.registrator !== element.registrator){
+                            if ((deed.registrator.firstName !== element.registrator.firstName) && (deed.registrator.patronyme !== element.registrator.patronyme) && (deed.registrator.lastName !== element.registrator.lastName) && (deed.registrator.relatedTo !== element.registrator.relatedTo)){
                                 this.registratorList.push(deed);   
                             }
                         })
