@@ -1530,7 +1530,7 @@ export class AddDeedComponent implements OnInit {
                 
                 if (deed.registrator) {
 
-                    if (!_.includes(this.registratorList, deed.registrator)) {
+                    if (!_.includes(this.registratorList, deed)) {
                         this.registratorList.push(deed);
                     }
                         
