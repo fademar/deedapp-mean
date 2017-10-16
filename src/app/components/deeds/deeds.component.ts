@@ -33,7 +33,7 @@ export class DeedsComponent implements OnInit {
 	dataSource: MyDataSource | null;
 	dataList = new DataList(this.deedService);
 
-	displayedColumns = ['deedCode','deedRef','deedDate','deedName','complete','details'];
+	displayedColumns = ['deedCode','deedRef','deedDate','deedName','complete','details', 'download'];
 
 	constructor(private deedService: DeedService, private pagerService: PagerService) { }
 

@@ -32,9 +32,13 @@
 					<md-cell *mdCellDef="let deed"> <md-icon *ngIf="deed.complete === 'true'" class="md-24">check</md-icon> </md-cell>
 				</ng-container>
 				<ng-container mdColumnDef="details">
-						<md-header-cell *mdHeaderCellDef> </md-header-cell>
-						<md-cell *mdCellDef="let deed"><a md-raised-button color="primary" routerLink="/deed/{{ deed._id }}">Details</a></md-cell>
-					</ng-container>
+					<md-header-cell *mdHeaderCellDef> </md-header-cell>
+					<md-cell *mdCellDef="let deed"><a md-raised-button color="primary" routerLink="/deed/{{ deed._id }}">Details</a></md-cell>
+				</ng-container>
+				<ng-container mdColumnDef="download">
+					<md-header-cell *mdHeaderCellDef> </md-header-cell>
+					<md-cell *mdCellDef="let deed"><a md-raised-button color="accent" routerLink="/deed/{{ deed._id }}">Download</a></md-cell>
+				</ng-container>
 				<md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
 				<md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
 			</md-table>
