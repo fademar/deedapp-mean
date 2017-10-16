@@ -1527,8 +1527,19 @@ export class AddDeedComponent implements OnInit {
             deeds.forEach(deed => {
                 
                 if (deed.registrator) {
-                        console.log(deed);
+                    console.log(deed);
+                    if (this.registratorList.length === 0) {
                         this.registratorList.push(deed);
+                    } else {
+                        
+                        this.registratorList.forEach(element => {
+                            if (!(deed.registrator === element.registrator)){
+                                this.registratorList.push(deed);   
+                            }
+                        })
+                    
+                    }
+                        
                 }
 
             });

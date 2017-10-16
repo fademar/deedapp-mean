@@ -105,6 +105,7 @@ export class EditDeedComponent implements OnInit {
     selectedAsWhomValue = this.selectedAsWhomValue;
     selectedCounterAction = this.selectedCounterAction;
     counterAgentField = this.counterAgentField;
+    registratorList = [];
 
     public options = {
         position: ['bottom', 'left'],
@@ -2481,22 +2482,47 @@ export class EditDeedComponent implements OnInit {
 
 
     addRegistrator() {
-
-        this.registrator = this.fb.group({
-            firstName: [''],
-            patronyme: [''],
-            lastName: [''],
-            relatedTo: ['']
-        });
-
-        this.deedForm.addControl('registrator', this.registrator);
-        return this.registratorOn = true;
-    }
-
-    removeRegistrator() {
-        this.deedForm.removeControl('registrator');
-        return this.registratorOn = false;
-    }
+        
+                this.registrator = this.fb.group({
+                    firstName: [''],
+                    patronyme: [''],
+                    lastName: [''],
+                    relatedTo: ['']
+                });
+                this.deedForm.addControl('registrator', this.registrator);
+        
+                this.deedService.getDeeds().subscribe(deeds => {
+        
+                    deeds.forEach(deed => {
+                        
+                        if (deed.registrator) {
+                                console.log(deed);
+                                this.registratorList.push(deed);
+                        }
+        
+                    });
+        
+                    console.log(this.registratorList);
+                    
+        
+                });
+        
+                return this.registratorOn = true;
+            }
+        
+            removeRegistrator() {
+                this.deedForm.removeControl('registrator');
+                this.registratorList = [];
+                return this.registratorOn = false;
+            }
+        
+            updateRegistrator(i) {
+                this.deedForm.controls.registrator.reset();
+                this.deedForm.patchValue({
+                    registrator: this.registratorList[i].registrator
+                });
+            }
+        
 
 
     // Submit the form
