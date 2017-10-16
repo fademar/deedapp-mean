@@ -1530,10 +1530,11 @@ export class AddDeedComponent implements OnInit {
                     console.log(deed);
                     if (this.registratorList.length === 0) {
                         this.registratorList.push(deed);
-                    } else {
+                        console.log('push vide' + this.registratorList);
+                    } else { 
                         
                         this.registratorList.forEach(element => {
-                            if (!(deed.registrator === element.registrator)){
+                            if (deed.registrator !== element.registrator){
                                 this.registratorList.push(deed);   
                             }
                         })
