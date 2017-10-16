@@ -1533,7 +1533,7 @@ export class AddDeedComponent implements OnInit {
                 }
                         
             });
-            _.sortBy(this.registratorList, ['firstName', 'patronyme', 'lastName']);
+            _.sortBy(this.registratorList, ['firstName', 'patronyme', 'lastName', 'relatedTo']);
             console.log(this.registratorList);
         
         });
