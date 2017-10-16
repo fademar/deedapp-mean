@@ -1534,7 +1534,6 @@ export class AddDeedComponent implements OnInit {
                         console.log('push vide' + this.registratorList);
                     } else { 
                         
-
                         this.registratorList.forEach(element => {
                             if ((deed.registrator.firstName !== element.registrator.firstName) && (deed.registrator.patronyme !== element.registrator.patronyme) && (deed.registrator.lastName !== element.registrator.lastName) && (deed.registrator.relatedTo !== element.registrator.relatedTo)){
                                 this.registratorList.push(deed);   
