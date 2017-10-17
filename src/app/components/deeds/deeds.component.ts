@@ -1,17 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DeedService } from '../../services/deed.service';
-import * as _ from 'lodash';
-import { PagerService } from '../../services/pager.service';
-
 import {DataSource} from '@angular/cdk/collections';
 import {MdPaginator} from '@angular/material';
 import {MdSort} from '@angular/material';
-
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
+import * as _ from 'lodash';
+
+import { DeedService } from '../../services/deed.service';
+import { PagerService } from '../../services/pager.service';
+import { DownloadService } from '../../services/download.service';
 
 
 @Component({
@@ -33,7 +33,7 @@ export class DeedsComponent implements OnInit {
 	dataSource: MyDataSource | null;
 	dataList = new DataList(this.deedService);
 
-	displayedColumns = ['deedCode','deedRef','deedDate','deedName','complete','details', 'download'];
+	displayedColumns = ['deedCode','deedRef','deedDate','deedName','complete','details'];
 
 	constructor(private deedService: DeedService, private pagerService: PagerService) { }
 
@@ -47,6 +47,10 @@ export class DeedsComponent implements OnInit {
 			this.setPage(1);
 		})
 		this.dataSource = new MyDataSource(this.dataList, this.paginator, this.sort);
+	
+		
+	
+	
 	}
 
 	setPage(page: number) {
@@ -105,7 +109,7 @@ export class MyDataSource extends DataSource<any> {
 		});
 	  }
 	
-	  disconnect (  ): void {
+	  disconnect (): void {
 	
 	  }
 

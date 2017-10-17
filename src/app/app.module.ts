@@ -42,6 +42,7 @@ import { SearchService } from './services/search.service';
 import { PagerService } from './services/pager.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/guard.service';
+import { DownloadService } from './services/download.service';
 
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 
@@ -87,7 +88,7 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
     MatButtonToggleModule
   ],
   entryComponents: [ConfirmDialogComponent],
-  providers: [DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard],
+  providers: [DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard, DownloadService],
   schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent]
 })

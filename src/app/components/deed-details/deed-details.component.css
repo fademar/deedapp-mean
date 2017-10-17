@@ -20,8 +20,20 @@ md-card {
 }
 
 .edit-button>button:focus, .edit-button>button:active {
-outline: none !important;
+  outline: none !important;
 }
+
+.back-button {
+  display: block;  
+  position: fixed;
+  top: 290px;
+  right: 80px;
+}
+
+.back-button>button:focus, .back-button>button:active {
+  outline: none !important;
+}
+
 
 .delete-button {
   display: block;  
@@ -31,5 +43,16 @@ outline: none !important;
 }
 
 .delete-button>button:focus, .delete-button>button:active {
-outline: none !important;
+  outline: none !important;
+}
+
+.download-button {
+  display: block;  
+  position: fixed;
+  top: 220px;
+  right: 80px;
+}
+
+.download-button>button:focus, .download-button>button:active {
+  outline: none !important;
 }
