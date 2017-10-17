@@ -20,7 +20,7 @@
 			</li>
 		</ul>
 		<md-icon class="md-24 mr-4" style="color:white" [mdMenuTriggerFor]="menu" placement="bottom" ngbTooltip="Add an input">add_circle</md-icon>
-		<md-menu #menu="mdMenu" xPosition="before" [overlapTrigger]="false" class="mt-3">
+		<md-menu #menu="mdMenu" style="top: 60px" xPosition="before" [overlapTrigger]="false" class="mt-3">
 			<button md-menu-item type="button" (click)="addCoAgent()">Co-Agent</button>
 			<button md-menu-item *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" type="button">Collective Co-Agent</button>
 			<button md-menu-item type="button" (click)="addCoCounterAgent()">Co-Counter Agent</button>
