@@ -2483,45 +2483,44 @@ export class EditDeedComponent implements OnInit {
 
     addRegistrator() {
         
-                this.registrator = this.fb.group({
-                    firstName: [''],
-                    patronyme: [''],
-                    lastName: [''],
-                    relatedTo: ['']
-                });
-                this.deedForm.addControl('registrator', this.registrator);
-        
-                this.deedService.getDeeds().subscribe(deeds => {
-        
-                    deeds.forEach(deed => {
+        this.registrator = this.fb.group({
+            firstName: [''],
+            patronyme: [''],
+            lastName: [''],
+            relatedTo: ['']
+        });
+        this.deedForm.addControl('registrator', this.registrator);
+        this.registratorList = [];
+
+        this.deedService.getDeeds().subscribe(deeds => {
+
+            deeds.forEach(deed => {
+                
+                if (deed.registrator && !_.some(this.registratorList, deed.registrator)) {
+                    this.registratorList.push(deed.registrator);
+                }
                         
-                        if (deed.registrator) {
-                                console.log(deed);
-                                this.registratorList.push(deed);
-                        }
+            });
+            this.registratorList = _.sortBy(this.registratorList, ['firstName', 'patronyme', 'lastName']);
+            console.log(this.registratorList);
         
-                    });
-        
-                    console.log(this.registratorList);
-                    
-        
-                });
-        
-                return this.registratorOn = true;
-            }
-        
-            removeRegistrator() {
-                this.deedForm.removeControl('registrator');
-                this.registratorList = [];
-                return this.registratorOn = false;
-            }
-        
-            updateRegistrator(i) {
-                this.deedForm.controls.registrator.reset();
-                this.deedForm.patchValue({
-                    registrator: this.registratorList[i].registrator
-                });
-            }
+        });
+
+        return this.registratorOn = true;
+    }
+
+    removeRegistrator() {
+        this.deedForm.removeControl('registrator');
+        this.registratorList = [];
+        return this.registratorOn = false;
+    }
+
+    updateRegistrator(i) {
+        this.deedForm.controls.registrator.reset();
+        this.deedForm.patchValue({
+            registrator: this.registratorList[i]
+        });
+    }
         
 
 
