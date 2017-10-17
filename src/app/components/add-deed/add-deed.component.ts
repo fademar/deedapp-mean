@@ -4,12 +4,13 @@ import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@ang
 import { Router } from '@angular/router';
 import { Male, Female, BodyCorporate, OtherParticipant, Registrator, Fee, gender, transactionTypes, currencies, socialBody, relationtoagents, agentActionsList, whatList, immovablePropertyList, shareList, whomList, asWhomList, activityList, typeTaxList, counterAgentActionsList } from '../../models/deed-model'
 import { NotificationsService } from 'angular2-notifications';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 import * as _ from 'lodash';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
     selector: 'app-add-deed',
@@ -124,7 +125,8 @@ export class AddDeedComponent implements OnInit {
     constructor(private fb: FormBuilder, 
                 private deedService: DeedService, 
                 private router: Router, 
-                private notificationsService: NotificationsService) { }
+                private notificationsService: NotificationsService,
+                public auth: AuthService) { }
 
     ngOnInit() {
         this.initForm();
