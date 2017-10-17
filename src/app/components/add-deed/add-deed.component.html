@@ -37,7 +37,7 @@
 			<div class="dropdown-divider"></div>			  
 			<button md-menu-item *ngIf="!registratorOn" type="button" (click)="addRegistrator()">Registrator</button>
 		</md-menu>
-		<button md-button color="primary" type="submit" [disabled]="deedForm.invalid" placement="bottom" ngbTooltip="save the deed" class="mr-4">
+		<button md-raised-button color="primary" type="submit" [disabled]="deedForm.invalid" placement="bottom" ngbTooltip="save the deed" class="mr-4">
 			<md-icon style="color:#3F51B5" aria-label="Submit the form">save</md-icon> <span class="save-menu">SAVE</span>
 		</button>
 		<md-icon style="color:#FFFFFF" (click)="auth.logout()">power_settings_new</md-icon>
