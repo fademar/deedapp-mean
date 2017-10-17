@@ -16,9 +16,7 @@
 			<a class="nav-link" [routerLink]="['/deed/add']">Add a new Deed</a>
 		</li>
 	</ul>
-	<button md-fab type="button" [mdMenuTriggerFor]="menu" mdTooltip="Add an input" mdTooltipPosition="left">
-		<md-icon class="md-24" style="color:white">add</md-icon>
-	</button>
+	<md-icon class="md-24" style="color:white" [mdMenuTriggerFor]="menu" mdTooltip="Add an input" mdTooltipPosition="left">add-circle</md-icon>
 	<md-menu #menu="mdMenu" xPosition="before" [overlapTrigger]="false">
 		<button md-menu-item type="button" (click)="addCoAgent()">Co-Agent</button>
 		<button md-menu-item *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" type="button">Collective Co-Agent</button>
