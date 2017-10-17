@@ -19,9 +19,7 @@
 				<a class="nav-link" [routerLink]="['/deed/add']">Add a new Deed</a>
 			</li>
 		</ul>
-		<button type="button" class="btn btn-outline-light">
-			<md-icon class="md-24 mr-4" style="color:#ffffff" [mdMenuTriggerFor]="menu" placement="left" ngbTooltip="Add an input">add_circle</md-icon> <span class="add-menu">ADD AN INPUT</span>
-		</button>
+		<md-icon class="md-24 mr-4" style="color:white" [mdMenuTriggerFor]="menu" placement="left" ngbTooltip="Add an input">add_circle</md-icon>
 		<md-menu #menu="mdMenu" style="top: 60px" xPosition="before" [overlapTrigger]="false" class="mt-3">
 			<button md-menu-item type="button" (click)="addCoAgent()">Co-Agent</button>
 			<button md-menu-item *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" type="button">Collective Co-Agent</button>
@@ -37,7 +35,7 @@
 			<div class="dropdown-divider"></div>			  
 			<button md-menu-item *ngIf="!registratorOn" type="button" (click)="addRegistrator()">Registrator</button>
 		</md-menu>
-		<button md-raised-button color="primary" type="submit" [disabled]="deedForm.invalid" placement="bottom" ngbTooltip="save the deed" class="mr-4">
+		<button md-raised-button type="submit" [disabled]="deedForm.invalid" placement="bottom" ngbTooltip="save the deed" class="mr-4">
 			<md-icon style="color:#3F51B5" aria-label="Submit the form">save</md-icon> <span class="save-menu">SAVE</span>
 		</button>
 		<md-icon style="color:#FFFFFF" (click)="auth.logout()">power_settings_new</md-icon>
