@@ -47,6 +47,10 @@ button:focus, button:active {
 	color: #3F51B5;
 }
 
+.add-menu {
+  color: #FFFFFF;
+}
+
 
 /* default .loading styles, .loading should be invisible, opacity: 0, z-index: -1 */
 .loading {
