@@ -1,5 +1,6 @@
 <simple-notifications [options]="options"></simple-notifications>
 <form (keydown.enter)="$event.preventDefault()" [formGroup]="deedForm" (ngSubmit)="onSubmit()" novalidate>
+		
 <nav class="navbar navbar-expand-lg navbar-dark bg-indigo-500 fixed-top">	
 	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	<span class="navbar-toggler-icon"></span>
@@ -34,13 +35,40 @@
 			<div class="dropdown-divider"></div>			  
 			<button md-menu-item *ngIf="!registratorOn" type="button" (click)="addRegistrator()">Registrator</button>
 		</md-menu>
-		<button md-raised-button type="submit" [disabled]="deedForm.invalid" placement="bottom" ngbTooltip="Save the deed" class="mr-4">
+		<button md-raised-button type="submit" [disabled]="deedForm.invalid" placement="bottom" ngbTooltip="save the deed" class="mr-4">
 			<md-icon style="color:#3F51B5" aria-label="Submit the form">save</md-icon> <span class="save-menu">SAVE</span>
 		</button>
 		<md-icon style="color:#FFFFFF" (click)="auth.logout()">power_settings_new</md-icon>
 	</div>
 </nav>
 <div class="container main-container">
+	
+		<div class="actions">
+	    	<button md-fab type="button" [mdMenuTriggerFor]="menu" mdTooltip="Add an input" mdTooltipPosition="left">
+				<md-icon class="md-24" style="color:white">add</md-icon>
+			</button>
+			<md-menu #menu="mdMenu" xPosition="before" [overlapTrigger]="false">
+			  <button md-menu-item type="button" (click)="addCoAgent()">Co-Agent</button>
+			  <button md-menu-item *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" type="button">Collective Co-Agent</button>
+			  <button md-menu-item type="button" (click)="addCoCounterAgent()">Co-Counter Agent</button>
+			  <button md-menu-item *ngIf="!collectiveCoCounterAgentOn" type="button" (click)="addCollectiveCoCounterAgent()">Collective Co-Counter Agent</button>
+			  <div class="dropdown-divider"></div>			  
+			  <button md-menu-item type="button" (click)="addTransaction()">Transaction</button>
+			  <div class="dropdown-divider"></div>			  
+			  <button md-menu-item type="button" (click)="addWhitness()">Whitness</button>
+			  <button md-menu-item type="button" (click)="addSurety()" class="dropdown-item">Surety</button>
+			  <button md-menu-item *ngIf="!scribeOn" type="button" (click)="addScribe()">Scribe</button>
+			  <button md-menu-item type="button" (click)="addOtherParticipant()">Other Participant</button>
+			  <div class="dropdown-divider"></div>			  
+			  <button md-menu-item *ngIf="!registratorOn" type="button" (click)="addRegistrator()">Registrator</button>
+			</md-menu>
+		</div>
+		<div class="submit-button">
+			<button md-fab type="submit" [disabled]="deedForm.invalid" mdTooltip="Save the deed" mdTooltipPosition="left">
+				<md-icon class="md-24" style="color:white" aria-label="Submit the form">save</md-icon>
+			</button>
+		</div>
+		
 	<!--DEED REFERENCES-->
 	<div class="card shadow mb-3">
 		<div class="card-body">
@@ -2693,10 +2721,11 @@
 			</div>
 		</div>
 	</div>
-</form>
 
 <div class="card shadow mt-5 p-5">
 	<h2 class="text-center">Current Json Document</h2>
 	<pre>{{ deedForm.value | json }}</pre>
 </div>
 </div>
+
+</form>
