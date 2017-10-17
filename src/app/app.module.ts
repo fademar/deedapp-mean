@@ -21,6 +21,7 @@ import { MatAutocompleteModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 import { MatRadioModule } from '@angular/material';
 import { MatButtonToggleModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -85,7 +86,8 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
     MatAutocompleteModule,
     MatInputModule,
     MatRadioModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    FlexLayoutModule
   ],
   entryComponents: [ConfirmDialogComponent],
   providers: [DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard, DownloadService],

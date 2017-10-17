@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DeedService } from '../../services/deed.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MdDialog, MdDialogRef } from '@angular/material';
+import { AuthService } from '../../services/auth.service';
 
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 
@@ -24,7 +25,7 @@ export class DeedDetailsComponent implements OnInit {
   dialogRef: MdDialogRef<ConfirmDialogComponent>;
 
   term = this.term;
-  constructor(private deedService:DeedService, private router: Router, private route: ActivatedRoute, public dialog: MdDialog) { }
+  constructor(private deedService:DeedService, private router: Router, private route: ActivatedRoute, public dialog: MdDialog, public auth: AuthService) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
