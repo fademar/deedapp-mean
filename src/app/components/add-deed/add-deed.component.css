@@ -68,6 +68,6 @@ outline: none !important;
   outline: none !important;
 }
 
-#cdk-overlay-0 {
+::ng-deep #cdk-overlay-0 {
   top: 60px !important;
 }
