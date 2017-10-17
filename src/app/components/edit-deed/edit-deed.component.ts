@@ -1,8 +1,12 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import { DeedService } from '../../services/deed.service';
+import * as _ from 'lodash';
+
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { OtherParticipant, Registrator, Fee, gender, transactionTypes, currencies, socialBody, relationtoagents, agentActionsList, whatList, immovablePropertyList, shareList, whomList, asWhomList, activityList, typeTaxList, counterAgentActionsList } from '../../models/deed-model'
+
+
+import { DeedService } from '../../services/deed.service';
 import { NotificationsService } from 'angular2-notifications';
 
 
