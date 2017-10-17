@@ -35,6 +35,17 @@ label {
   font-weight: bold;
 }
 
+.navbar {
+	background-color: #3F51B5;
+}
+
+button:focus, button:active {
+	outline: none !important;
+}
+
+.save-menu {
+	color: #3F51B5;
+}
 
 
 /* default .loading styles, .loading should be invisible, opacity: 0, z-index: -1 */
