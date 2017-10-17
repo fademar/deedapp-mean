@@ -1,4 +1,32 @@
-<app-navbar></app-navbar>
+<nav class="navbar navbar-expand-lg navbar-dark bg-indigo-500 fixed-top">
+	
+	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="navbar-brand">Deed App</div>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+	<ul class="navbar-nav mr-auto">
+		<li class="nav-item" routerLinkActive="active">
+		<a class="nav-link" [routerLink]="['/list']">List</a>
+		</li>
+		<li class="nav-item" routerLinkActive="active"> 
+		<a class="nav-link" [routerLink]="['/search']">Search</a>
+		</li>
+		<li class="nav-item" routerLinkActive="active">
+			<a class="nav-link" [routerLink]="['/deed/add']">Add a new Deed</a>
+		</li>
+	</ul>
+	
+	<button md-fab type="submit" [disabled]="deedForm.invalid" mdTooltip="Save the deed" mdTooltipPosition="bottom">
+		<md-icon class="md-24" style="color:#3F51B5" aria-label="Submit the form">SAVE</md-icon>
+	</button>
+
+	
+	<md-icon style="color:#FFFFFF" (click)="auth.logout()">power_settings_new</md-icon>
+	</div>
+	
+</nav>
 <simple-notifications [options]="options"></simple-notifications>
 <div class="container main-container">
 <form (keydown.enter)="$event.preventDefault()" [formGroup]="deedForm" (ngSubmit)="onSubmit()" novalidate>
