@@ -8,7 +8,7 @@ import { OtherParticipant, Registrator, Fee, gender, transactionTypes, currencie
 
 import { DeedService } from '../../services/deed.service';
 import { NotificationsService } from 'angular2-notifications';
-
+import { AuthService } from '../../services/auth.service';
 
 
 
@@ -120,7 +120,7 @@ export class EditDeedComponent implements OnInit {
     }
 
 
-    constructor(private fb: FormBuilder, private deedService: DeedService, private router: Router, private route: ActivatedRoute, private notificationsService: NotificationsService) {
+    constructor(private fb: FormBuilder, private deedService: DeedService, private router: Router, private route: ActivatedRoute, private notificationsService: NotificationsService, public auth: AuthService) {
         this.initForm();
     }
 
