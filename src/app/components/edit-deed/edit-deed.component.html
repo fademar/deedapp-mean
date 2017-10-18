@@ -20,6 +20,9 @@
 			</li>
 
 		</ul>
+		<a mat-button color="#3F51B5" style="border: 1px solid #FFFFFF" placement="bottom" ngbTooltip="Edit the deed" class="mr-4" routerLink="/deed/{{ id }}">
+			<mat-icon class="mat-24" style="color:white" aria-label="Cancel">undo</mat-icon><span class="text-menu">CANCEL</span>
+		</a>
 		<button mat-button type="button" color="#3F51B5" style="border: 1px solid #FFFFFF" [matMenuTriggerFor]="menu" placement="left" ngbTooltip="Add an input" class="mr-4">
 			<mat-icon class="md-light">add_circle_outline</mat-icon> <span class="add-menu">ADD FIELDS</span>
 		</button>
@@ -47,38 +50,6 @@
 <div class="container main-container">
 		
 <div *ngIf="deed">
-		<!-- Default dropup button -->
-		<div class="cancel-button">
-			<a mat-fab color="primary" matTooltip="Cancel" matTooltipPosition="left" routerLink="/deed/{{ id }}">
-				<mat-icon class="mat-24" style="color:white" aria-label="Cancel">undo</mat-icon>
-			</a>
-		</div>
-		<div class="actions">
-				<button mat-fab type="button" [matMenuTriggerFor]="menu" matTooltip="Add an input" matTooltipPosition="left">
-					<mat-icon class="mat-24" style="color:white">add</mat-icon>
-				</button>
-				<mat-menu #menu="matMenu" xPosition="before" [overlapTrigger]="false">
-				  <button mat-menu-item type="button" (click)="addCoAgent()">Co-Agent</button>
-				  <button mat-menu-item *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" type="button">Collective Co-Agent</button>
-				  <button mat-menu-item type="button" (click)="addCoCounterAgent()">Co-Counter Agent</button>
-				  <button mat-menu-item *ngIf="!collectiveCoCounterAgentOn" type="button" (click)="addCollectiveCoCounterAgent()">Collective Co-Counter Agent</button>
-				  <div class="dropdown-divider"></div>			  
-				  <button mat-menu-item type="button" (click)="addTransaction()">Transaction</button>
-				  <div class="dropdown-divider"></div>			  
-				  <button mat-menu-item type="button" (click)="addWhitness()">Whitness</button>
-				  <button mat-menu-item type="button" (click)="addSurety()" class="dropdown-item">Surety</button>
-				  <button mat-menu-item *ngIf="!scribeOn" type="button" (click)="addScribe()">Scribe</button>
-				  <button mat-menu-item type="button" (click)="addOtherParticipant()">Other Participant</button>
-				  <div class="dropdown-divider"></div>			  
-				  <button mat-menu-item *ngIf="!registratorOn" type="button" (click)="addRegistrator()">Registrator</button>
-				</mat-menu>
-			</div>
-			<div class="submit-button">
-				<button mat-fab type="submit" [disabled]="deedForm.invalid" matTooltip="Save the deed" matTooltipPosition="left">
-					<mat-icon class="mat-24" style="color:white" aria-label="Submit the form">save</mat-icon>
-				</button>
-			</div>
-
 	<!--DEED REFERENCES-->
 	<div class="card shadow mb-3">
 		<div class="card-body">

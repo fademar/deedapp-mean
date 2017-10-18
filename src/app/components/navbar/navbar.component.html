@@ -8,14 +8,15 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/deed/add']">Create</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/list']">List</a>
       </li>
-	  <li class="nav-item" routerLinkActive="active"> 
+	    <li class="nav-item" routerLinkActive="active"> 
         <a class="nav-link" [routerLink]="['/search']">Search</a>
       </li>
-		<li class="nav-item" routerLinkActive="active">
-			<a class="nav-link" [routerLink]="['/deed/add']">Add a new Deed</a>
-		</li>
+
     </ul>
         
     <mat-icon style="color:#FFFFFF" (click)="auth.logout()">power_settings_new</mat-icon>

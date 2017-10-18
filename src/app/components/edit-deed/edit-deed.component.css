@@ -35,3 +35,7 @@
 .cancel-button>button:focus, .cancel-button>button:active {
   outline: none !important;
 }
+
+::ng-deep .cdk-overlay-pane {
+  top: 60px !important;
+}

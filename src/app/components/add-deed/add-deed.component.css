@@ -72,12 +72,3 @@ outline: none !important;
   top: 60px !important;
 }
 
-::ng-deep .btn-primary {
-  color: #3F51B5;
-  background-color: #ffffff;
-  border-color: #FFFFFF;
-}
-
-.add-menu {
-  color: #ffffff;
-}
