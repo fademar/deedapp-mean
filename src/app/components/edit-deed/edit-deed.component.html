@@ -1,3 +1,4 @@
+<div *ngIf="deed">
 <simple-notifications [options]="options"></simple-notifications>
 <form (keydown.enter)="$event.preventDefault()" [formGroup]="deedForm" (ngSubmit)="onSubmit()" novalidate>
 		
@@ -24,7 +25,7 @@
 			<mat-icon class="mat-24" style="color:white" aria-label="Cancel">undo</mat-icon><span class="text-menu">CANCEL</span>
 		</a>
 		<button mat-button type="button" color="#3F51B5" style="border: 1px solid #FFFFFF" [matMenuTriggerFor]="menu" placement="left" ngbTooltip="Add an input" class="mr-4">
-			<mat-icon class="md-light">add_circle_outline</mat-icon> <span class="add-menu">ADD FIELDS</span>
+			<mat-icon class="md-light">add_circle_outline</mat-icon> <span class="text-menu">ADD FIELDS</span>
 		</button>
 		<mat-menu #menu="matMenu" xPosition="before" [overlapTrigger]="false">
 			<button mat-menu-item type="button" (click)="addCoAgent()">Co-Agent</button>
@@ -49,7 +50,7 @@
 </nav>
 <div class="container main-container">
 		
-<div *ngIf="deed">
+
 	<!--DEED REFERENCES-->
 	<div class="card shadow mb-3">
 		<div class="card-body">
@@ -2706,7 +2707,7 @@
 
 
 </div>
-</div>
+
 
 
 <div class="card shadow mt-5 p-5">
@@ -2714,3 +2715,4 @@
 	<pre>{{ deedForm.value | json }}</pre>
 </div>
 </form>
+</div>
