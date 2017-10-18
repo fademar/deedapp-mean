@@ -72,9 +72,10 @@ outline: none !important;
   top: 60px !important;
 }
 
-::ng-deep .add-button {
-  background-color: #3F51B5;
-  border: 1px solid #ffffff;
+::ng-deep .btn-primary {
+  color: #3F51B5;
+  background-color: #ffffff;
+  border-color: #FFFFFF;
 }
 
 .add-menu {
