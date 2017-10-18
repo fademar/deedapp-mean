@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {DataSource} from '@angular/cdk/collections';
-import {MdPaginator} from '@angular/material';
-import {MdSort} from '@angular/material';
+import {MatPaginator} from '@angular/material';
+import {MatSort} from '@angular/material';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
@@ -37,8 +37,8 @@ export class DeedsComponent implements OnInit {
 
 	constructor(private deedService: DeedService, private pagerService: PagerService) { }
 
-	@ViewChild(MdPaginator) paginator: MdPaginator;
-	@ViewChild(MdSort) sort: MdSort;
+	@ViewChild(MatPaginator) paginator: MatPaginator;
+	@ViewChild(MatSort) sort: MatSort;
 	
 	ngOnInit() {
 		this.deedService.getDeeds().subscribe(deeds => {
@@ -89,7 +89,7 @@ export class DataList {
 
 export class MyDataSource extends DataSource<any> {
 	
-	  constructor(private _dataList: DataList, private _paginator: MdPaginator, private _sort: MdSort) {
+	  constructor(private _dataList: DataList, private _paginator: MatPaginator, private _sort: MatSort) {
 		super();
 	  }
 	

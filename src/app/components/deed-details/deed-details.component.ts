@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DeedService } from '../../services/deed.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { AuthService } from '../../services/auth.service';
 
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
@@ -10,7 +10,7 @@ import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dial
   selector: 'app-deed-details',
   templateUrl: './deed-details.component.html',
   styleUrls: ['./deed-details.component.css'],
-  providers: [MdDialog]
+  providers: [MatDialog]
 })
 export class DeedDetailsComponent implements OnInit {
   
@@ -22,7 +22,7 @@ export class DeedDetailsComponent implements OnInit {
   selectedCounterActions = this.selectedCounterActions;
   selectedCounterAction;
   
-  dialogRef: MdDialogRef<ConfirmDialogComponent>;
+  dialogRef: MatDialogRef<ConfirmDialogComponent>;
 
   term = this.term;
   constructor(private deedService:DeedService, private router: Router, private route: ActivatedRoute, public dialog: MdDialog, public auth: AuthService) { }
