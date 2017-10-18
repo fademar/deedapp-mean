@@ -2,8 +2,8 @@
 <div class="container main-container">
   <form class="form-horizontal" [formGroup]="searchForm" (ngSubmit)="onSubmit()" novalidat>
     <div class="clear-button" *ngIf="results">
-        <button md-fab type="button" color="accent" (click)="clearResults()" mdTooltip="Clear results" mdTooltipPosition="left">
-          <md-icon class="md-24" style="color:white" aria-label="Clear">clear</md-icon>
+        <button mat-fab type="button" color="accent" (click)="clearResults()" matTooltip="Clear results" matTooltipPosition="left">
+          <mat-icon class="mat-24" style="color:white" aria-label="Clear">clear</mat-icon>
         </button>
     </div>
     <div class="card shadow mb-3">
@@ -53,9 +53,9 @@
                   <td><span *ngIf="result.deedDate">{{ result.deedDate }}</span><span *ngIf="!result.deedDate && result.registrationDate"><em>{{ result.registrationDate }}</em></span></td>
                   <td><span *ngIf="result.deedName">{{ result.deedName }}</span></td>
                   <td><span *ngIf="result.agent"><span *ngIf="result.agent.firstName">{{ result.agent.firstName }}</span> <span *ngIf="result.agent.lastName">{{ result.agent.lastName }}</span> <span *ngIf="result.agent.corporationName">{{ result.agent.corporationName }}</span></span></td>
-                  <td style="text-align:center"><md-icon *ngIf="result.complete" class="md-24">check</md-icon></td>
+                  <td style="text-align:center"><mat-icon *ngIf="result.complete" class="mat-24">check</mat-icon></td>
                   <td>
-                    <button md-raised-button color="primary" routerLink="/deed/{{ result._id }}" [queryParams]="{resultFor: term}">Details</button>
+                    <button mat-raised-button color="primary" routerLink="/deed/{{ result._id }}" [queryParams]="{resultFor: term}">Details</button>
                   </td>
                 </tr>
               </tbody>

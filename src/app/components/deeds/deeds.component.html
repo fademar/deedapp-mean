@@ -6,45 +6,45 @@
 				<h3><i class="fa fa-list"></i> All Deeds</h3>
 				<hr class="mt-2 mb-2">
 			</div>
-			<md-table #table [dataSource]="dataSource" mdSort>
+			<mat-table #table [dataSource]="dataSource" matSort>
 				<!-- Position Column -->
-				<ng-container mdColumnDef="deedCode">
-					<md-header-cell *mdHeaderCellDef md-sort-header> code </md-header-cell>
-					<md-cell *mdCellDef="let deed"> {{deed.deedCode}} </md-cell>
+				<ng-container matColumnDef="deedCode">
+					<mat-header-cell *matHeaderCellDef mat-sort-header> code </mat-header-cell>
+					<mat-cell *matCellDef="let deed"> {{deed.deedCode}} </mat-cell>
 				</ng-container>
 				<!-- Name Column -->
-				<ng-container mdColumnDef="deedRef">
-					<md-header-cell *mdHeaderCellDef md-sort-header> ref </md-header-cell>
-					<md-cell *mdCellDef="let deed"> {{deed.deedRef}} </md-cell>
+				<ng-container matColumnDef="deedRef">
+					<mat-header-cell *matHeaderCellDef mat-sort-header> ref </mat-header-cell>
+					<mat-cell *matCellDef="let deed"> {{deed.deedRef}} </mat-cell>
 				</ng-container>
 				<!-- Position Column -->
-				<ng-container mdColumnDef="deedDate">
-					<md-header-cell *mdHeaderCellDef md-sort-header> date </md-header-cell>
-					<md-cell *mdCellDef="let deed"> <span *ngIf="deed.deedDate.day">{{deed.deedDate.day}}-</span><span *ngIf="deed.deedDate.month">{{deed.deedDate.month}}-</span><span *ngIf="deed.deedDate.year">{{deed.deedDate.year}}</span></md-cell>
+				<ng-container matColumnDef="deedDate">
+					<mat-header-cell *matHeaderCellDef mat-sort-header> date </mat-header-cell>
+					<mat-cell *matCellDef="let deed"> <span *ngIf="deed.deedDate.day">{{deed.deedDate.day}}-</span><span *ngIf="deed.deedDate.month">{{deed.deedDate.month}}-</span><span *ngIf="deed.deedDate.year">{{deed.deedDate.year}}</span></mat-cell>
 				</ng-container>
 				<!-- Name Column -->
-				<ng-container mdColumnDef="deedName">
-					<md-header-cell *mdHeaderCellDef md-sort-header> name </md-header-cell>
-					<md-cell *mdCellDef="let deed"> {{deed.deedName}} </md-cell>
+				<ng-container matColumnDef="deedName">
+					<mat-header-cell *matHeaderCellDef mat-sort-header> name </mat-header-cell>
+					<mat-cell *matCellDef="let deed"> {{deed.deedName}} </mat-cell>
 				</ng-container>
-				<ng-container mdColumnDef="complete">
-					<md-header-cell *mdHeaderCellDef> complete </md-header-cell>
-					<md-cell *mdCellDef="let deed"> <md-icon *ngIf="deed.complete === 'true'" class="md-24">check</md-icon> </md-cell>
+				<ng-container matColumnDef="complete">
+					<mat-header-cell *matHeaderCellDef> complete </mat-header-cell>
+					<mat-cell *matCellDef="let deed"> <mat-icon *ngIf="deed.complete === 'true'" class="mat-24">check</mat-icon> </mat-cell>
 				</ng-container>
-				<ng-container mdColumnDef="details">
-					<md-header-cell *mdHeaderCellDef> </md-header-cell>
-					<md-cell *mdCellDef="let deed"><a md-raised-button color="primary" routerLink="/deed/{{ deed._id }}">Details</a></md-cell>
+				<ng-container matColumnDef="details">
+					<mat-header-cell *matHeaderCellDef> </mat-header-cell>
+					<mat-cell *matCellDef="let deed"><a mat-raised-button color="primary" routerLink="/deed/{{ deed._id }}">Details</a></mat-cell>
 				</ng-container>
-				<md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
-				<md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
-			</md-table>
+				<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+				<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+			</mat-table>
 
-			<md-paginator #paginator
+			<mat-paginator #paginator
 				[length]="length"
 				[pageIndex]="0"
 				[pageSize]="10"
 				[pageSizeOptions]="[5, 10, 25, 100]">
-			</md-paginator>	
+			</mat-paginator>	
 		</div>
 	</div>
 </div>

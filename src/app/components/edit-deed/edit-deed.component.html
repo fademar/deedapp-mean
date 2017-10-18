@@ -8,33 +8,33 @@
 
 		<!-- Default dropup button -->
 		<div class="cancel-button">
-			<a md-fab color="primary" mdTooltip="Cancel" mdTooltipPosition="left" routerLink="/deed/{{ id }}">
-				<md-icon class="md-24" style="color:white" aria-label="Cancel">undo</md-icon>
+			<a mat-fab color="primary" matTooltip="Cancel" matTooltipPosition="left" routerLink="/deed/{{ id }}">
+				<mat-icon class="mat-24" style="color:white" aria-label="Cancel">undo</mat-icon>
 			</a>
 		</div>
 		<div class="actions">
-				<button md-fab type="button" [mdMenuTriggerFor]="menu" mdTooltip="Add an input" mdTooltipPosition="left">
-					<md-icon class="md-24" style="color:white">add</md-icon>
+				<button mat-fab type="button" [matMenuTriggerFor]="menu" matTooltip="Add an input" matTooltipPosition="left">
+					<mat-icon class="mat-24" style="color:white">add</mat-icon>
 				</button>
-				<md-menu #menu="mdMenu" xPosition="before" [overlapTrigger]="false">
-				  <button md-menu-item type="button" (click)="addCoAgent()">Co-Agent</button>
-				  <button md-menu-item *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" type="button">Collective Co-Agent</button>
-				  <button md-menu-item type="button" (click)="addCoCounterAgent()">Co-Counter Agent</button>
-				  <button md-menu-item *ngIf="!collectiveCoCounterAgentOn" type="button" (click)="addCollectiveCoCounterAgent()">Collective Co-Counter Agent</button>
+				<mat-menu #menu="matMenu" xPosition="before" [overlapTrigger]="false">
+				  <button mat-menu-item type="button" (click)="addCoAgent()">Co-Agent</button>
+				  <button mat-menu-item *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" type="button">Collective Co-Agent</button>
+				  <button mat-menu-item type="button" (click)="addCoCounterAgent()">Co-Counter Agent</button>
+				  <button mat-menu-item *ngIf="!collectiveCoCounterAgentOn" type="button" (click)="addCollectiveCoCounterAgent()">Collective Co-Counter Agent</button>
 				  <div class="dropdown-divider"></div>			  
-				  <button md-menu-item type="button" (click)="addTransaction()">Transaction</button>
+				  <button mat-menu-item type="button" (click)="addTransaction()">Transaction</button>
 				  <div class="dropdown-divider"></div>			  
-				  <button md-menu-item type="button" (click)="addWhitness()">Whitness</button>
-				  <button md-menu-item type="button" (click)="addSurety()" class="dropdown-item">Surety</button>
-				  <button md-menu-item *ngIf="!scribeOn" type="button" (click)="addScribe()">Scribe</button>
-				  <button md-menu-item type="button" (click)="addOtherParticipant()">Other Participant</button>
+				  <button mat-menu-item type="button" (click)="addWhitness()">Whitness</button>
+				  <button mat-menu-item type="button" (click)="addSurety()" class="dropdown-item">Surety</button>
+				  <button mat-menu-item *ngIf="!scribeOn" type="button" (click)="addScribe()">Scribe</button>
+				  <button mat-menu-item type="button" (click)="addOtherParticipant()">Other Participant</button>
 				  <div class="dropdown-divider"></div>			  
-				  <button md-menu-item *ngIf="!registratorOn" type="button" (click)="addRegistrator()">Registrator</button>
-				</md-menu>
+				  <button mat-menu-item *ngIf="!registratorOn" type="button" (click)="addRegistrator()">Registrator</button>
+				</mat-menu>
 			</div>
 			<div class="submit-button">
-				<button md-fab type="submit" [disabled]="deedForm.invalid" mdTooltip="Save the deed" mdTooltipPosition="left">
-					<md-icon class="md-24" style="color:white" aria-label="Submit the form">save</md-icon>
+				<button mat-fab type="submit" [disabled]="deedForm.invalid" matTooltip="Save the deed" matTooltipPosition="left">
+					<mat-icon class="mat-24" style="color:white" aria-label="Submit the form">save</mat-icon>
 				</button>
 			</div>
 
@@ -77,7 +77,7 @@
 							<input type="text" class="form-control" formControlName="year" placeholder="year">
 						</div>
 						<div class="col">
-							<button type="button" (click)="insertLastDeedDate()" class="btn btn-secondary" mdTooltip="Click to insert the date of the last deed saved in the database"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Date</button>
+							<button type="button" (click)="insertLastDeedDate()" class="btn btn-secondary" matTooltip="Click to insert the date of the last deed saved in the database"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Date</button>
 						</div>
 					</div>
 				</div>
@@ -2683,10 +2683,10 @@
 		<div class="card-body">
 			<div class="text-center">
 				<h4>Is the form complete ?</h4>
-				<md-radio-group formControlName="complete">
-					<md-radio-button value="false">No</md-radio-button>
-					<md-radio-button value="true">Yes</md-radio-button>
-				</md-radio-group>
+				<mat-radio-group formControlName="complete">
+					<mat-radio-button value="false">No</mat-radio-button>
+					<mat-radio-button value="true">Yes</mat-radio-button>
+				</mat-radio-group>
 			</div>
 		</div>
 	</div>

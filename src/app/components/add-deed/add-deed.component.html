@@ -20,28 +20,28 @@
 			</li>
 
 		</ul>
-		<button type="button" [mdMenuTriggerFor]="menu" placement="left" ngbTooltip="Add an input" class="btn btn-outline-light mr-4">
-			<md-icon class="md-light">add_circle_outline</md-icon> <span class="add-menu">ADD FIELDS</span>
+		<button type="button" [matMenuTriggerFor]="menu" placement="left" ngbTooltip="Add an input" class="btn btn-outline-light mr-4">
+			<mat-icon class="md-light">add_circle_outline</mat-icon> <span class="add-menu">ADD FIELDS</span>
 		</button>
-		<md-menu #menu="mdMenu" xPosition="before" [overlapTrigger]="false">
-			<button md-menu-item type="button" (click)="addCoAgent()">Co-Agent</button>
-			<button md-menu-item *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" type="button">Collective Co-Agent</button>
-			<button md-menu-item type="button" (click)="addCoCounterAgent()">Co-Counter Agent</button>
-			<button md-menu-item *ngIf="!collectiveCoCounterAgentOn" type="button" (click)="addCollectiveCoCounterAgent()">Collective Co-Counter Agent</button>
+		<mat-menu #menu="matMenu" xPosition="before" [overlapTrigger]="false">
+			<button mat-menu-item type="button" (click)="addCoAgent()">Co-Agent</button>
+			<button mat-menu-item *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" type="button">Collective Co-Agent</button>
+			<button mat-menu-item type="button" (click)="addCoCounterAgent()">Co-Counter Agent</button>
+			<button mat-menu-item *ngIf="!collectiveCoCounterAgentOn" type="button" (click)="addCollectiveCoCounterAgent()">Collective Co-Counter Agent</button>
 			<div class="dropdown-divider"></div>			  
-			<button md-menu-item type="button" (click)="addTransaction()">Transaction</button>
+			<button mat-menu-item type="button" (click)="addTransaction()">Transaction</button>
 			<div class="dropdown-divider"></div>			  
-			<button md-menu-item type="button" (click)="addWhitness()">Whitness</button>
-			<button md-menu-item type="button" (click)="addSurety()" class="dropdown-item">Surety</button>
-			<button md-menu-item *ngIf="!scribeOn" type="button" (click)="addScribe()">Scribe</button>
-			<button md-menu-item type="button" (click)="addOtherParticipant()">Other Participant</button>
+			<button mat-menu-item type="button" (click)="addWhitness()">Whitness</button>
+			<button mat-menu-item type="button" (click)="addSurety()" class="dropdown-item">Surety</button>
+			<button mat-menu-item *ngIf="!scribeOn" type="button" (click)="addScribe()">Scribe</button>
+			<button mat-menu-item type="button" (click)="addOtherParticipant()">Other Participant</button>
 			<div class="dropdown-divider"></div>			  
-			<button md-menu-item *ngIf="!registratorOn" type="button" (click)="addRegistrator()">Registrator</button>
-		</md-menu>
+			<button mat-menu-item *ngIf="!registratorOn" type="button" (click)="addRegistrator()">Registrator</button>
+		</mat-menu>
 		<button type="submit" [disabled]="deedForm.invalid" placement="bottom" ngbTooltip="save the deed" class="btn btn-primary mr-4">
-			<md-icon style="color:#3F51B5" aria-label="Submit the form">save</md-icon> <span class="save-menu">SAVE</span>
+			<mat-icon style="color:#3F51B5" aria-label="Submit the form">save</mat-icon> <span class="save-menu">SAVE</span>
 		</button>
-		<md-icon class="md-light" (click)="auth.logout()">power_settings_new</md-icon>
+		<mat-icon class="md-light" (click)="auth.logout()">power_settings_new</mat-icon>
 	</div>
 </nav>
 <div class="container main-container">
@@ -58,7 +58,7 @@
 					<div class="input-group">
 						<input class="form-control" formControlName="deedCode" placeholder="fond-opis-delo-list" required>
 						<span class="input-group-btn">
-							<button type="button" (click)="insertLastDeedCode()" class="btn btn-secondary" mdTooltip="Click to insert the code of the last deed saved in the database"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Code</button>
+							<button type="button" (click)="insertLastDeedCode()" class="btn btn-secondary" matTooltip="Click to insert the code of the last deed saved in the database"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Code</button>
 						</span>
 					</div>
 				</div>
@@ -67,7 +67,7 @@
 					<div class="input-group">
 						<input class="form-control" formControlName="deedRef" placeholder="scan number" required>
 						<span class="input-group-btn">
-							<button type="button" (click)="insertLastDeedRef()" class="btn btn-secondary" mdTooltip="Click to insert the reference of the last deed saved in the database"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Ref.</button>
+							<button type="button" (click)="insertLastDeedRef()" class="btn btn-secondary" matTooltip="Click to insert the reference of the last deed saved in the database"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Ref.</button>
 						</span>
 					</div>
 				</div>
@@ -84,7 +84,7 @@
 							<input type="text" class="form-control" formControlName="year" placeholder="year">
 						</div>
 						<div class="col">
-							<button type="button" (click)="insertLastDeedDate()" class="btn btn-secondary" mdTooltip="Click to insert the date of the last deed saved in the database"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Date</button>
+							<button type="button" (click)="insertLastDeedDate()" class="btn btn-secondary" matTooltip="Click to insert the date of the last deed saved in the database"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Date</button>
 						</div>
 					</div>
 				</div>
@@ -2690,10 +2690,10 @@
 		<div class="card-body">
 			<div class="text-center">
 				<h4>Is the form complete ?</h4>
-				<md-button-toggle-group formControlName="complete">							
-					<md-button-toggle value="false">no</md-button-toggle>
-					<md-button-toggle value="true">yes</md-button-toggle>
-				</md-button-toggle-group>
+				<mat-button-toggle-group formControlName="complete">							
+					<mat-button-toggle value="false">no</mat-button-toggle>
+					<mat-button-toggle value="true">yes</mat-button-toggle>
+				</mat-button-toggle-group>
 			</div>
 		</div>
 	</div>
