@@ -68,7 +68,7 @@ outline: none !important;
   outline: none !important;
 }
 
-::ng-deep .cdk-overlay-pane {
+::ng-deep .mat-menu-panel {
   top: 60px !important;
 }
 
