@@ -3,7 +3,7 @@ import { DeedService } from '../../services/deed.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { AuthService } from '../../services/auth.service';
-
+import { DomSanitizer } from '@angular/platform-browser';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -21,20 +21,26 @@ export class DeedDetailsComponent implements OnInit {
   selectedAction;
   selectedCounterActions = this.selectedCounterActions;
   selectedCounterAction;
+  downloadUri = this.downloadUri;
   
   dialogRef: MatDialogRef<ConfirmDialogComponent>;
 
   term = this.term;
-  constructor(private deedService:DeedService, private router: Router, private route: ActivatedRoute, public dialog: MatDialog, public auth: AuthService) { }
+  constructor(private deedService:DeedService, private router: Router, private route: ActivatedRoute, public dialog: MatDialog, public auth: AuthService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     
     this.deedService.getDeed(this.id).subscribe(deed => {
       this.deed = deed;
+
+      let json = JSON.stringify(this.deed);
+      let uri = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(json));
+      this.downloadUri = uri;
+      
       this.selectedActions = [];
       this.selectedCounterActions = [];
-
+    
       this.deed.transactions.forEach(transaction => {
         switch (transaction.agentAction) {
 
