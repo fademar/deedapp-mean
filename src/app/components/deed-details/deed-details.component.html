@@ -28,7 +28,7 @@
         <a mat-button routerLink="/deed/edit/{{ deed._id }}" color="#3F51B5" style="border: 1px solid #FFFFFF" placement="bottom" ngbTooltip="Edit the deed" class="mr-2">
             <mat-icon class="md-24 md-light" style="color:white">mode_edit</mat-icon> <span class="text-menu">EDIT</span>
         </a>
-        <a mat-button color="#3F51B5" style="border: 1px solid #FFFFFF" placement="bottom" ngbTooltip="Download the deed" class="mr-2" [href]="downloadUri" download="download.json">
+        <a mat-button color="#3F51B5" style="border: 1px solid #FFFFFF" placement="bottom" ngbTooltip="Download the deed" class="mr-2" [href]="downloadUri" [download]="downloadName">
             <mat-icon class="md-24 md-light" style="color:white">get_app</mat-icon><span class="text-menu">DOWNLOAD</span>
         </a>
         <button mat-raised-button type="button" color="warn" (click)="onDeleteClick(deed._id)" placement="bottom" ngbTooltip="Delete the deed" class="mr-2">

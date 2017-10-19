@@ -22,6 +22,7 @@ export class DeedDetailsComponent implements OnInit {
   selectedCounterActions = this.selectedCounterActions;
   selectedCounterAction;
   downloadUri = this.downloadUri;
+  downloadName = this.downloadName;
   
   dialogRef: MatDialogRef<ConfirmDialogComponent>;
 
@@ -32,100 +33,104 @@ export class DeedDetailsComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     
     this.deedService.getDeed(this.id).subscribe(deed => {
-      this.deed = deed;
+        this.deed = deed;
 
-      let json = JSON.stringify(this.deed);
-      let uri = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(json));
-      this.downloadUri = uri;
-      
-      this.selectedActions = [];
-      this.selectedCounterActions = [];
-    
-      this.deed.transactions.forEach(transaction => {
-        switch (transaction.agentAction) {
+        // Download Button Function
+        let json = JSON.stringify(this.deed);
+        let uri = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(json));
+        this.downloadUri = uri;
+        this.downloadName = deed.code + '_' + deed.ref + '.json';
+        
 
-            case 'cedes': {
-                this.selectedAction = 'what';
-                this.selectedCounterAction = 'what';
-                break;
+        // Populate the dom
+        this.selectedActions = [];
+        this.selectedCounterActions = [];
+        
+        this.deed.transactions.forEach(transaction => {
+            switch (transaction.agentAction) {
+
+                case 'cedes': {
+                    this.selectedAction = 'what';
+                    this.selectedCounterAction = 'what';
+                    break;
+                }
+                case 'exchanges': {
+                    this.selectedAction = 'what';
+                    this.selectedCounterAction = 'what';
+                    break;
+                }
+                case 'mortgages': {
+                    this.selectedAction = 'what';
+                    this.selectedCounterAction = 'what';
+                    break;
+                }
+                case 'puts to rent': {
+                    this.selectedAction = 'what';
+                    this.selectedCounterAction = 'what';
+                    break;
+                }
+                case 'sells': {
+                    this.selectedAction = 'what';
+                    this.selectedCounterAction = 'what';
+                    break;
+                }
+                case 'donates':
+                case 'borrows': {
+                    this.selectedAction = 'what';
+                    this.selectedCounterAction = '';
+                    break;
+                }
+                case 'agrees to marry-off': {
+                    this.selectedAction = 'whom';
+                    break;
+                }
+                case 'engages': {
+                    this.selectedAction = 'asWhom';
+                    this.selectedCounterAction = 'what';
+                    break;
+                }
+                case 'bequeaths': {
+                    this.selectedAction = 'bequeaths';
+                    break;
+                }
+                case 'settles': {
+                    this.selectedAction = 'settles';
+                    this.selectedCounterAction = 'settles';
+                    
+                    break;
+                }
+                case 'agrees to marry': {
+                    this.selectedAction = '';
+                    break;
+                }
+                case 'manumits': {
+                    this.selectedAction = '';
+                    this.selectedCounterAction = 'what';
+                    break;
+                }
+                case 'agrees to divorce':
+                case 'promises':
+                case 'elects':
+                case 'signs receipt': {
+                    this.selectedAction = '';
+                    this.selectedCounterAction = '';
+                    break;
+                }
+                case 'other': {
+                    this.selectedAction = 'other';         
+                    break;
+                }
+                default: {
+                    this.selectedAction = '';
+                    this.selectedCounterAction = '';
+                    break;
+                }
             }
-            case 'exchanges': {
-                this.selectedAction = 'what';
-                this.selectedCounterAction = 'what';
-                break;
-            }
-            case 'mortgages': {
-                this.selectedAction = 'what';
-                this.selectedCounterAction = 'what';
-                break;
-            }
-            case 'puts to rent': {
-                this.selectedAction = 'what';
-                this.selectedCounterAction = 'what';
-                break;
-            }
-            case 'sells': {
-                this.selectedAction = 'what';
-                this.selectedCounterAction = 'what';
-                break;
-            }
-            case 'donates':
-            case 'borrows': {
-                this.selectedAction = 'what';
-                this.selectedCounterAction = '';
-                break;
-            }
-            case 'agrees to marry-off': {
-                this.selectedAction = 'whom';
-                break;
-            }
-            case 'engages': {
-                this.selectedAction = 'asWhom';
-                this.selectedCounterAction = 'what';
-                break;
-            }
-            case 'bequeaths': {
-                this.selectedAction = 'bequeaths';
-                break;
-            }
-            case 'settles': {
-                this.selectedAction = 'settles';
-                this.selectedCounterAction = 'settles';
-                
-                break;
-            }
-            case 'agrees to marry': {
-                this.selectedAction = '';
-                break;
-            }
-            case 'manumits': {
-                this.selectedAction = '';
-                this.selectedCounterAction = 'what';
-                break;
-            }
-            case 'agrees to divorce':
-            case 'promises':
-            case 'elects':
-            case 'signs receipt': {
-                this.selectedAction = '';
-                this.selectedCounterAction = '';
-                break;
-            }
-            case 'other': {
-                this.selectedAction = 'other';         
-                break;
-            }
-            default: {
-                this.selectedAction = '';
-                this.selectedCounterAction = '';
-                break;
-            }
-        }
-      
-      
-        this.selectedActions.push(this.selectedAction);
-        this.selectedCounterActions.push(this.selectedCounterAction);  
-      });
+        
+        
+            this.selectedActions.push(this.selectedAction);
+            this.selectedCounterActions.push(this.selectedCounterAction);  
+        });
 
       
 
