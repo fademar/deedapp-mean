@@ -25,14 +25,14 @@
                 <mat-icon class="md-24 md-light" style="color:white">arrow_back</mat-icon><span class="text-menu">BACK TO RESULTS</span>
             </a>
         </div>
-        <a mat-button routerLink="/deed/edit/{{ deed._id }}" color="#3F51B5" style="border: 1px solid #FFFFFF" placement="bottom" ngbTooltip="Edit the deed" class="mr-2">
-            <mat-icon class="md-24 md-light" style="color:white">mode_edit</mat-icon> <span class="text-menu">EDIT</span>
+        <a mat-raised button routerLink="/deed/edit/{{ deed._id }}" placement="bottom" ngbTooltip="Edit the deed" class="mr-2">
+            <mat-icon class="md-24" style="color:white">mode_edit</mat-icon> <span>EDIT</span>
         </a>
-        <a mat-button color="#3F51B5" style="border: 1px solid #FFFFFF" placement="bottom" ngbTooltip="Download the deed" class="mr-2" [href]="downloadUri" [download]="downloadName">
-            <mat-icon class="md-24 md-light" style="color:white">get_app</mat-icon><span class="text-menu">DOWNLOAD</span>
+        <a mat-raised-button placement="bottom" ngbTooltip="Download the deed" class="mr-2" [href]="downloadUri" [download]="downloadName">
+            <mat-icon class="md-24" style="color:white">get_app</mat-icon><span>DOWNLOAD</span>
         </a>
         <button mat-raised-button type="button" color="warn" (click)="onDeleteClick(deed._id)" placement="bottom" ngbTooltip="Delete the deed" class="mr-2">
-            <mat-icon class="md-24 md-light" style="color:white">delete</mat-icon><span class="text-menu">DELETE</span>
+            <mat-icon class="md-24" style="color:white">delete</mat-icon><span>DELETE</span>
         </button>
 		<mat-icon class="md-light" (click)="auth.logout()">power_settings_new</mat-icon>
 	</div>
