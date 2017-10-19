@@ -36,7 +36,7 @@ export class DeedDetailsComponent implements OnInit {
         this.deed = deed;
 
         // Download Button Function
-        let json = JSON.stringify(this.deed);
+        let json = this.deed;
         let uri = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(json));
         this.downloadUri = uri;
         this.downloadName = this.deed.deedCode + '_' + this.deed.deedRef + '.json';
