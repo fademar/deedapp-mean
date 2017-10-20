@@ -55,7 +55,8 @@ export class DeedsComponent implements OnInit {
 			let json = JSON.stringify(this.deeds);
 			this.downloadUri = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(json));
 			let date = new Date;
-			this.downloadName = date.getDate() + '-' + date.getMonth() + '-' + date.getFullYear() + '_' + date.getHours() + '-' + date.getMinutes() + '-' + date.getSeconds() + '.json';
+			let month = date.getMonth() + 1;
+			this.downloadName = date.getDate() + '-' + month + '-' + date.getFullYear() + '_' + date.getHours() + '-' + date.getMinutes() + '-' + date.getSeconds() + '.json';
 		
 		
 		
