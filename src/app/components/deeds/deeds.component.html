@@ -17,7 +17,7 @@
 			</li>
 
         </ul>
-        <a mat-raised-button placement="bottom" ngbTooltip="Download the deed" class="mr-5" [href]="downloadUri" [download]="downloadName">
+        <a mat-raised-button placement="bottom" ngbTooltip="Download the deed" class="mr-5" [href]="downloadUri" [download]="downloadName" (click)="updateDate()">
             <mat-icon class="md-24" style="color:#3F51B5">file_download</mat-icon><span class="text-menu">DOWNLOAD ALL</span>
         </a>
 		<mat-icon class="md-light ml-5" (click)="auth.logout()">power_settings_new</mat-icon>

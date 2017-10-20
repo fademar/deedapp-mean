@@ -54,12 +54,7 @@ export class DeedsComponent implements OnInit {
 			// Download Button Function
 			let json = JSON.stringify(this.deeds);
 			this.downloadUri = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(json));
-			let date = new Date;
-			let month = date.getMonth() + 1;
-			this.downloadName = date.getDate() + '-' + month + '-' + date.getFullYear() + '_' + date.getHours() + '-' + date.getMinutes() + '-' + date.getSeconds() + '.json';
-		
-		
-		
+
 		})
 		this.dataSource = new MyDataSource(this.dataList, this.paginator, this.sort);
 		
@@ -80,6 +75,12 @@ export class DeedsComponent implements OnInit {
  
         // get current page of items
         this.pagedDeeds = this.deeds.slice(this.pager.startIndex, this.pager.endIndex + 1);
+	}
+
+	updateDate() {
+		let date = new Date;
+		let month = date.getMonth() + 1;
+		this.downloadName = date.getDate() + '-' + month + '-' + date.getFullYear() + '_' + date.getHours() + '-' + date.getMinutes() + '-' + date.getSeconds() + '.json';
 	}
 
 }
