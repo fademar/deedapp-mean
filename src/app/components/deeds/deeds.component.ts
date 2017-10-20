@@ -8,10 +8,10 @@ import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
 import * as _ from 'lodash';
-
 import { DeedService } from '../../services/deed.service';
 import { PagerService } from '../../services/pager.service';
 import { DownloadService } from '../../services/download.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -23,6 +23,8 @@ import { DownloadService } from '../../services/download.service';
 export class DeedsComponent implements OnInit {
 	deeds;
 	length;
+	downloadUri;
+	downloadName;
 
 	// pager object
  	pager: any = {};
@@ -32,10 +34,11 @@ export class DeedsComponent implements OnInit {
 
 	dataSource: MyDataSource | null;
 	dataList = new DataList(this.deedService);
+	
 
 	displayedColumns = ['deedCode','deedRef','deedDate','deedName','complete','details'];
 
-	constructor(private deedService: DeedService, private pagerService: PagerService) { }
+	constructor(private deedService: DeedService, private pagerService: PagerService, private sanitizer: DomSanitizer) { }
 
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	@ViewChild(MatSort) sort: MatSort;
@@ -45,9 +48,20 @@ export class DeedsComponent implements OnInit {
 			this.deeds = deeds;
 			this.length = deeds.length;
 			this.setPage(1);
+			
+			// Download Button Function
+			let json = JSON.stringify(this.deeds);
+			this.downloadUri = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(json));
+			let today = Date.now();
+			this.downloadName = today + '.json';
+		
+		
+		
 		})
 		this.dataSource = new MyDataSource(this.dataList, this.paginator, this.sort);
-	
+		
+
+
 		
 	
 	
