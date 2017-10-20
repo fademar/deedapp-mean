@@ -8,10 +8,12 @@ import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
 import * as _ from 'lodash';
+import { DomSanitizer } from '@angular/platform-browser';
+
 import { DeedService } from '../../services/deed.service';
 import { PagerService } from '../../services/pager.service';
 import { DownloadService } from '../../services/download.service';
-import { DomSanitizer } from '@angular/platform-browser';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -38,7 +40,7 @@ export class DeedsComponent implements OnInit {
 
 	displayedColumns = ['deedCode','deedRef','deedDate','deedName','complete','details'];
 
-	constructor(private deedService: DeedService, private pagerService: PagerService, private sanitizer: DomSanitizer) { }
+	constructor(private deedService: DeedService, private pagerService: PagerService, private sanitizer: DomSanitizer, public auth: AuthService) { }
 
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	@ViewChild(MatSort) sort: MatSort;
