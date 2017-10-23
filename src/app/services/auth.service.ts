@@ -26,6 +26,7 @@ export class AuthService {
   public handleAuthentication(): void {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
+        this.getUserInfo(authResult);
         window.location.hash = '';
         this.setSession(authResult);
         this.router.navigate(['/list']);
