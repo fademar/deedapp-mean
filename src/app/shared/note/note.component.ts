@@ -40,7 +40,7 @@ export class NoteComponent implements OnInit {
   }
 
   getUser() {
-    this.auth.getUserInfo();
+    console.log(localStorage.getItem('userName'));
   }
 
 
