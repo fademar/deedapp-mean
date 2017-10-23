@@ -19,7 +19,7 @@ export class NoteComponent implements OnInit {
   note;
   notes;
 
-  constructor(public dialogRef: MatDialogRef<NoteComponent>, private noteService: NoteService, private fb: FormBuilder, private auth: AuthService) { }
+  constructor(public dialogRef: MatDialogRef<NoteComponent>, private noteService: NoteService, private fb: FormBuilder, public auth: AuthService) { }
 
 
   ngOnInit() {
@@ -34,7 +34,7 @@ export class NoteComponent implements OnInit {
   initForm() {
     this.noteForm = this.fb.group({
       user: [''],
-      time: [''],
+      date: [''],
       content: ['']
     })
   }

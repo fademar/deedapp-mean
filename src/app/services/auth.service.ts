@@ -28,6 +28,7 @@ export class AuthService {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
         this.setSession(authResult);
+        this.getUserInfo(authResult);
         this.router.navigate(['/list']);
       } else if (err) {
         this.router.navigate(['/home']);
@@ -60,14 +61,10 @@ export class AuthService {
     return new Date().getTime() < expiresAt;
   }
 
-  public getUserInfo() {
-    this.auth0.parseHash(window.location.hash, function(err, authResult) {
-      if (err) {
-        return console.log(err);
-      }
+  private getUserInfo(authResult) {
       this.auth0.client.userInfo(authResult.accessToken, function(err, user) {
-          console.log(user);
-      });
+        localStorage.setItem('userName', user.email);
+        console.log(user.email);
     });
   }
 
