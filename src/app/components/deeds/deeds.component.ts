@@ -57,11 +57,6 @@ export class DeedsComponent implements OnInit {
 
 		})
 		this.dataSource = new MyDataSource(this.dataList, this.paginator, this.sort);
-		
-
-
-		
-	
 	
 	}
 

@@ -8,6 +8,7 @@ var ObjectID = mongodb.ObjectID;
 
 // Db Collection and URI
 const deedsCollection = 'Deeds';
+const notesCollection = 'Notes';
 
 // App Init
 const app = express();
@@ -156,6 +157,67 @@ app.get('/api/schema', (req, res) => {
 	res.status(200).json(jsonSchema);
 });
 
+/*  '/api/notes'
+ *    GET: finds all notes
+ *    POST: creates a new note
+ * 	  PUT: update the note
+ */
+
+app.get('/api/notes', (req, res) => {
+	db.collection(notesCollection).find({}).toArray((err, doc) => {
+		if (err) {
+			handleError(res, err.message, 'Failed to get notes.');
+		} else {
+			res.status(200).json(doc);
+		}
+	});
+});
+
+app.post('/api/notes', (req, res) => {
+	var newNote = req.body;
+
+	db.collection(notesCollection).insertOne(newNote, (err, doc) => {
+		if (err) {
+			handleError(res, err.message, 'Failed to create new note.');
+		} else {
+			res.status(201).json(doc.ops[0]);
+		}
+	});
+});
+
+app.put('/api/note/:id', (req, res) => {
+	var updateNote = req.body;
+	delete updateNote._id;
+
+	db.collection(noteCollection).updateOne({ _id: new ObjectID(req.params.id) }, updateDoc, (err, doc) => {
+		if (err) {
+			handleError(res, err.message, 'Failed to update deed');
+		} else {
+			res.status(200).json(updateDoc);
+		}
+	});
+});
+
+app.delete('/api/note/:id', (req, res) => {
+	db.collection(notesCollection).deleteOne({ _id: new ObjectID(req.params.id) }, (err, result) => {
+		if (err) {
+			handleError(res, err.message, 'Failed to delete note');
+		} else {
+			res.status(200).json(req.params.id);
+		}
+	});
+});
+
+
+
+
+/*  '/api/search'
+ *    GET: search the db
+ *
+ */
+
+
+
 app.get('/api/search', (req, res) => {
 	let arrayBody = [];
 	db.collection(deedsCollection).find({}).toArray((err, docs) => {
@@ -177,6 +239,8 @@ app.get('/api/search/:term', (req, res) => {
 		}
 	});
 });
+
+
 
 app.get('*', function(req, res) {
 	res.sendFile(path.join(__dirname + '/dist/index.html'));

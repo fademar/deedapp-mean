@@ -44,8 +44,10 @@ import { PagerService } from './services/pager.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/guard.service';
 import { DownloadService } from './services/download.service';
+import { NoteService } from './services/note.service';
 
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
+import { NoteComponent } from './shared/note/note.component';
 
 
 @NgModule({
@@ -60,7 +62,8 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
     SearchComponent,
     ConfirmDialogComponent,
     CallbackComponent,
-    HomeComponent
+    HomeComponent,
+    NoteComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +93,7 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
     FlexLayoutModule
   ],
   entryComponents: [ConfirmDialogComponent],
-  providers: [DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard, DownloadService],
+  providers: [DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, NoteService],
   schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent]
 })
