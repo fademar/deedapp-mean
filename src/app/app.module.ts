@@ -92,7 +92,7 @@ import { NoteComponent } from './shared/note/note.component';
     MatButtonToggleModule,
     FlexLayoutModule
   ],
-  entryComponents: [ConfirmDialogComponent],
+  entryComponents: [ConfirmDialogComponent, NoteComponent],
   providers: [DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, NoteService],
   schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent]

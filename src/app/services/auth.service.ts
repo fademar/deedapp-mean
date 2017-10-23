@@ -60,6 +60,16 @@ export class AuthService {
     return new Date().getTime() < expiresAt;
   }
 
+  public getUserInfo() {
+    this.auth0.parseHash(window.location.hash, function(err, authResult) {
+      if (err) {
+        return console.log(err);
+      }
+      this.auth0.client.userInfo(authResult.accessToken, function(err, user) {
+          console.log(user);
+      });
+    });
+  }
 
 
 }

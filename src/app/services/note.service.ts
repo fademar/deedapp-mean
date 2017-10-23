@@ -15,7 +15,7 @@ export class NoteService {
     saveNote(note) {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      return this.http.post('/api/deeds', note, {headers: headers}).map(res => res.json());
+      return this.http.post('/api/notes', note, {headers: headers}).map(res => res.json());
     }
   
     getNote(id) {
