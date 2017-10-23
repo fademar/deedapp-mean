@@ -63,8 +63,9 @@ export class AuthService {
 
   private getUserInfo(authResult) {
       this.auth0.client.userInfo(authResult.accessToken, function(err, user) {
-        localStorage.setItem('userName', user.email);
-        console.log(user.email);
+        console.log(user);
+        localStorage.setItem('userName', user.name);
+        
     });
   }
 
