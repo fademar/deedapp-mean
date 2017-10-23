@@ -13,7 +13,7 @@ export class NoteComponent implements OnInit {
 
   noteForm: FormGroup;
   user: FormControl;
-  date: FormControl;
+  date: FormGroup;
   content: FormControl;
   noteValue;
   note;
@@ -34,7 +34,7 @@ export class NoteComponent implements OnInit {
   initForm() {
     this.noteForm = this.fb.group({
       user: [''],
-      date: [''],
+      time: [''],
       content: ['']
     })
   }
@@ -43,7 +43,10 @@ export class NoteComponent implements OnInit {
     this.auth.getUserInfo();
   }
 
+
   onSubmit() {
+    let time = Date.now()
+		this.noteForm.patchValue({date: time});
     this.noteValue = JSON.stringify(this.noteForm.value);
     this.noteService.saveNote(this.noteValue).subscribe(note => {
         this.note = note;

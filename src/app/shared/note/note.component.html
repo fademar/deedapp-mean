@@ -3,7 +3,7 @@
       <div *ngIf="notes">
         <div *ngFor="let note of notes">
             <p>{{ note.user }}</p>
-            <p>{{ note.date }}</p>
+            <p>{{ note.time }}</p>
             <p>{{ note.content }}</p>
         </div>
       </div>
@@ -15,7 +15,7 @@
       </div>
 
       <button mat-raised-button type="submit" color="primary">SAVE</button>
-      <button mat-raised-button type="button" color="primary" (click)="getUser()">CLOSE</button>
+      <button mat-raised-button type="button" color="primary" (click)="getUser()">USER</button>
      
       <button mat-raised-button type="button" color="primary" (click)="onCloseClick()">CLOSE</button>
     </div>
