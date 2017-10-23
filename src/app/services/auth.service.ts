@@ -28,7 +28,6 @@ export class AuthService {
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
         this.setSession(authResult);
-        this.getUserInfo(authResult);
         this.router.navigate(['/list']);
       } else if (err) {
         this.router.navigate(['/home']);
@@ -63,6 +62,7 @@ export class AuthService {
 
   private getUserInfo(authResult) {
       this.auth0.client.userInfo(authResult.accessToken, function(err, user) {
+        console.log(err);
         console.log(user);
         localStorage.setItem('userName', user.name);
         
