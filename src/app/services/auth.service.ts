@@ -20,7 +20,7 @@ export class AuthService {
     scope: 'openid%20profile'
   });
 
-  constructor(public router: Router, public dialogNoteRef: MatDialogRef<NoteDialog>, public dialogConfirmRef: MatDialogRef<ConfirmDialogComponent>) {}
+  constructor(public router: Router, public dialogNoteRef: MatDialogRef<NoteDialog>) {}
 
   public login(): void {
     this.auth0.authorize();
@@ -54,7 +54,6 @@ export class AuthService {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     this.dialogNoteRef.close();
-    this.dialogConfirmRef.close();
     // Go back to the home route
     this.router.navigate(['/home']);
   }
