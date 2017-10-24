@@ -67,7 +67,6 @@ export class NoteDialog implements OnInit {
   showNotes() {
     this.noteService.getNotes().subscribe(notes => {
       this.notes = notes;
-      console.log(this.notes);
     });
   }
 
@@ -84,10 +83,17 @@ export class NoteDialog implements OnInit {
       user: userName
     });
     this.noteValue = JSON.stringify(this.noteForm.value);
-    this.noteService.saveNote(this.noteValue).subscribe(note => {
-        this.note = note;
-    });
-    this.showNotes();
+    if (this.editMode) {
+      this.noteService.updateNote(this.noteId, this.noteValue).subscribe(note => {
+        this.showNotes();
+        this.noteId = null;
+        this.editMode = false;
+      });
+    } else {
+      this.noteService.saveNote(this.noteValue).subscribe(note => {
+        this.showNotes();
+      });
+    }
     this.noteForm.controls.content === null;
   }
 
@@ -98,8 +104,7 @@ export class NoteDialog implements OnInit {
   onEditClick(id) {
     this.editMode = true;
     this.noteId = id;
-    console.log(this.noteId);
-    this.noteService.getNote(this.noteId).subscribe(note => {
+    this.noteService.getNote(id).subscribe(note => {
       this.noteForm.patchValue({
         content: note.content
       });
@@ -107,11 +112,9 @@ export class NoteDialog implements OnInit {
   }
 
   onDeleteClick(id) {
-    console.log(id);
     this.noteService.deleteNote(id).subscribe(note => {
       this.showNotes();
     });
-    
   }
 
 }
