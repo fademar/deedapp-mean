@@ -4,6 +4,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/filter';
 import * as auth0 from 'auth0-js';
+import { MatDialog, MatDialogRef } from '@angular/material';
+import { NoteDialog } from '../shared/note/note.component';
+import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
 
 @Injectable()
 export class AuthService {
@@ -17,7 +20,7 @@ export class AuthService {
     scope: 'openid%20profile'
   });
 
-  constructor(public router: Router) {}
+  constructor(public router: Router, public dialogNoteRef: MatDialogRef<NoteDialog>, public dialogConfirmRef: MatDialogRef<ConfirmDialogComponent>) {}
 
   public login(): void {
     this.auth0.authorize();
@@ -50,6 +53,8 @@ export class AuthService {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    this.dialogNoteRef.close();
+    this.dialogConfirmRef.close();
     // Go back to the home route
     this.router.navigate(['/home']);
   }
