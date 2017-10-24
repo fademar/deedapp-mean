@@ -65,12 +65,6 @@ export class NoteDialog implements OnInit {
   showNotes() {
     this.noteService.getNotes().subscribe(notes => {
       this.notes = notes;
-      console.log(this.notes);
-      console.log(this.getUser())
-      if (this.notes.user === this.getUser()) {
-        this.contentClass = 'highlight';
-        console.log(this.contentClass);
-      }
     });
   }
 

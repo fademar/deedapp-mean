@@ -11,7 +11,7 @@
         <mat-dialog-content>
             <div *ngIf="notes">
                 <div *ngFor="let note of notes">
-                    <p [ngClass]="contentClass"><span class="info">{{ note.user }} | {{ note.date | date:'shortDate' }}</span> {{ note.content }}</p>
+                    <p [ngClass]="{'hightlight': note.user === getUser()}"><span class="info">{{ note.user }} | {{ note.date | date:'shortDate' }}</span> {{ note.content }}</p>
                 </div>
             </div>
         </mat-dialog-content>
