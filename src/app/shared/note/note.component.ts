@@ -67,6 +67,7 @@ export class NoteDialog implements OnInit {
   showNotes() {
     this.noteService.getNotes().subscribe(notes => {
       this.notes = notes;
+      console.log(this.notes);
     });
   }
 
@@ -108,9 +109,9 @@ export class NoteDialog implements OnInit {
   onDeleteClick(id) {
     console.log(id);
     this.noteService.deleteNote(id).subscribe(note => {
-      this.note = note;
+      this.showNotes();
     });
-    this.showNotes();
+    
   }
 
 }
