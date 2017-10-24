@@ -6,8 +6,15 @@
         <h2 mat-dialog-title>Notes</h2>
         <mat-dialog-content>
             <div *ngIf="notes">
-                <div *ngFor="let note of notes">
-                    <p [ngClass]="{'hightlight': note.user === getUser()}"><span class="info">{{ note.user }} | {{ note.date | date:'shortDate' }}</span> {{ note.content }}</p>
+                <div *ngFor="let note of notes" [ngClass]="{'hightlight': note.user === getUser()}">
+                    <button mat-icon-button mat-dialog-close class="pull-right" (click)="onEditClick(note._id)">
+                            <mat-icon aria-label="edit">mode_edit</mat-icon>
+                    </button>
+                    <button mat-icon-button mat-dialog-close class="pull-right" (click)="onDeleteClick(note._id)">
+                            <mat-icon aria-label="delete">delete</mat-icon>
+                    </button>
+                    <span class="info">{{ note.user }} | {{ note.date | date:'shortDate' }}</span>
+                    <p>{{ note.content }}</p>
                 </div>
             </div>
         </mat-dialog-content>
@@ -15,7 +22,7 @@
             <textarea rows="3" class="form-control" formControlName="content" placeholder="Write your note here"></textarea>
         </div>
         <mat-dialog-actions>
-            <div class="col">
+            <div class="col text-center">
                 <button mat-raised-button type="submit" color="primary">SAVE</button>
             </div>
         </mat-dialog-actions>

@@ -85,12 +85,25 @@ export class NoteDialog implements OnInit {
         this.note = note;
     });
     this.showNotes();
+    this.noteForm.controls.content === null;
   }
 
   onCloseClick(): void {
     this.dialogRef.close();
   }
 
+  onEditClick(id) {
+    this.noteService.getNote(id).subscribe(note => {
+      this.noteForm.patchValue({
+        content: note.content
+      });
+    });
+  }
 
+  onDeleteClick(id) {
+    this.noteService.deleteNote(id).subscribe(note => {
+      this.showNotes();
+    });
+  }
 
 }
