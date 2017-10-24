@@ -44,6 +44,8 @@ export class NoteDialog implements OnInit {
   note;
   notes;
   contentClass = this.contentClass;
+  editMode = false;
+  noteId = null;
 
   constructor(public dialogRef: MatDialogRef<NoteDialog>, private noteService: NoteService, private fb: FormBuilder, public auth: AuthService) { }
 
@@ -81,10 +83,16 @@ export class NoteDialog implements OnInit {
       user: userName
     });
     this.noteValue = JSON.stringify(this.noteForm.value);
-    this.noteService.saveNote(this.noteValue).subscribe(note => {
-        this.note = note;
-    });
-    this.showNotes();
+    if (this.editMode) {
+      this.noteService.updateNote(this.noteId, this.noteValue).subscribe(note => {
+        this.showNotes();
+        this.noteId = null;
+      });
+    } else {
+      this.noteService.saveNote(this.noteValue).subscribe(note => {
+        this.showNotes();
+      });
+    }
     this.noteForm.controls.content === null;
   }
 
@@ -93,6 +101,8 @@ export class NoteDialog implements OnInit {
   }
 
   onEditClick(id) {
+    this.editMode = true;
+    this.noteId = id;
     this.noteService.getNote(id).subscribe(note => {
       this.noteForm.patchValue({
         content: note.content
