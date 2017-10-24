@@ -4,8 +4,7 @@
         <mat-dialog-content>
             <div *ngIf="notes">
                 <div *ngFor="let note of notes">
-                    <p>{{ note.userName }}</p>
-                    <p>{{ note.date | date:'shortDate' }}</p>
+                    <p class="info">{{ note.user }} | {{ note.date | date:'shortDate' }}</p>
                     <p>{{ note.content }}</p>
                 </div>
             </div>
