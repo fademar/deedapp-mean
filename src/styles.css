@@ -94,6 +94,11 @@ button:focus, button:active {
   color: #FFFFFF;
 }
 
+.cdk-overlay-pane {
+  z-index: 1040px !important;
+}
+
+
 
 /* default .loading styles, .loading should be invisible, opacity: 0, z-index: -1 */
 .loading {
