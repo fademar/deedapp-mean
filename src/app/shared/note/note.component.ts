@@ -43,7 +43,7 @@ export class NoteDialog implements OnInit {
   noteValue;
   note;
   notes;
-  contentClass;
+  public contentClass;
 
   constructor(public dialogRef: MatDialogRef<NoteDialog>, private noteService: NoteService, private fb: FormBuilder, public auth: AuthService) { }
 

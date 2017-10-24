@@ -1,5 +1,10 @@
-<form (keydown.enter)="$event.preventDefault()" [formGroup]="noteForm" (ngSubmit)="onSubmit()" novalidate>
-    <h2 mat-dialog-title>Notes</h2>
+<form [formGroup]="noteForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="row">
+        <h2 mat-dialog-title>Notes</h2>
+        <button mat-icon-button mat-dialog-close class="pull-right">
+                <mat-icon aria-label="Close">close</mat-icon>
+        </button>
+    </div>
     <mat-dialog-content>
         <div *ngIf="notes">
             <div *ngFor="let note of notes">
@@ -11,7 +16,8 @@
         <textarea rows="3" class="form-control" formControlName="content" placeholder="Write your note here"></textarea>
     </div>
     <mat-dialog-actions>
+        <div class="col">
             <button mat-raised-button type="submit" color="primary">SAVE</button>
-            <button mat-raised-button mat-dialog-close type="button" color="primary" (click)="onCloseClick()">CLOSE</button>
+        </div>
     </mat-dialog-actions>
 </form>
