@@ -1,23 +1,27 @@
 <form [formGroup]="noteForm" (ngSubmit)="onSubmit()" novalidate>
-    <div class="row">
-        <h2 mat-dialog-title>Notes</h2>
-        <button mat-icon-button mat-dialog-close class="pull-right">
-                <mat-icon aria-label="Close">close</mat-icon>
-        </button>
-    </div>
-    <mat-dialog-content>
-        <div *ngIf="notes">
-            <div *ngFor="let note of notes">
-                <p [ngClass]="contentClass"><span class="info">{{ note.user }} | {{ note.date | date:'shortDate' }}</span> {{ note.content }}</p>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2 mat-dialog-title>Notes</h2>
+                <button mat-icon-button mat-dialog-close class="pull-right">
+                        <mat-icon aria-label="Close">close</mat-icon>
+                </button>
             </div>
         </div>
-    </mat-dialog-content>
-    <div class="form-group">
-        <textarea rows="3" class="form-control" formControlName="content" placeholder="Write your note here"></textarea>
-    </div>
-    <mat-dialog-actions>
-        <div class="col">
-            <button mat-raised-button type="submit" color="primary">SAVE</button>
+        <mat-dialog-content>
+            <div *ngIf="notes">
+                <div *ngFor="let note of notes">
+                    <p [ngClass]="contentClass"><span class="info">{{ note.user }} | {{ note.date | date:'shortDate' }}</span> {{ note.content }}</p>
+                </div>
+            </div>
+        </mat-dialog-content>
+        <div class="form-group">
+            <textarea rows="3" class="form-control" formControlName="content" placeholder="Write your note here"></textarea>
         </div>
-    </mat-dialog-actions>
+        <mat-dialog-actions>
+            <div class="col">
+                <button mat-raised-button type="submit" color="primary">SAVE</button>
+            </div>
+        </mat-dialog-actions>
+    </div>
 </form>
