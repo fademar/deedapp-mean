@@ -63,10 +63,7 @@ export class AuthService {
 
   private getUserInfo(authResult) {
       this.auth0.client.userInfo(authResult.accessToken, function(err, user) {
-        console.log(err);
-        console.log(user);
-        localStorage.setItem('userName', user.name);
-        
+        localStorage.setItem('userName', user.nickname);
     });
   }
 

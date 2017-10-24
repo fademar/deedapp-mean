@@ -19,8 +19,6 @@ export class NoteComponent implements OnInit {
 
   openNotes(): void {
     let dialogRef = this.dialog.open(NoteDialog, {
-      width: '80%',
-      height: '80%',
       disableClose: false
     });
 
