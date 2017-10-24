@@ -105,8 +105,9 @@ export class NoteDialog implements OnInit {
     this.editMode = true;
     this.noteId = id;
     this.noteService.getNote(id).subscribe(note => {
+      this.note = note;
       this.noteForm.patchValue({
-        content: note.content
+        content: this.note.content
       });
     });
   }
