@@ -1,13 +1,9 @@
 <form [formGroup]="noteForm" (ngSubmit)="onSubmit()" novalidate>
+    <button mat-icon-button mat-dialog-close class="pull-right">
+            <mat-icon aria-label="Close">close</mat-icon>
+    </button>
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <h2 mat-dialog-title>Notes</h2>
-                <button mat-icon-button mat-dialog-close class="pull-right">
-                        <mat-icon aria-label="Close">close</mat-icon>
-                </button>
-            </div>
-        </div>
+        <h2 mat-dialog-title>Notes</h2>
         <mat-dialog-content>
             <div *ngIf="notes">
                 <div *ngFor="let note of notes">
