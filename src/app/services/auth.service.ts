@@ -4,9 +4,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/filter';
 import * as auth0 from 'auth0-js';
-import { MatDialog, MatDialogRef } from '@angular/material';
-import { NoteDialog } from '../shared/note/note.component';
-import { ConfirmDialogComponent } from '../shared/confirm-dialog/confirm-dialog.component';
 
 @Injectable()
 export class AuthService {
@@ -17,10 +14,10 @@ export class AuthService {
     responseType: 'token id_token',
     audience: 'https://cercec.eu.auth0.com/userinfo',
     redirectUri: 'https://russian-deeds.herokuapp.com/callback',      
-    scope: 'openid%20profile'
+    scope: 'openid'
   });
 
-  constructor(public router: Router, public dialogNoteRef: MatDialogRef<NoteDialog>) {}
+  constructor(public router: Router) {}
 
   public login(): void {
     this.auth0.authorize();
@@ -53,7 +50,6 @@ export class AuthService {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
-    this.dialogNoteRef.close();
     // Go back to the home route
     this.router.navigate(['/home']);
   }
@@ -69,7 +65,7 @@ export class AuthService {
       this.auth0.client.userInfo(authResult.accessToken, function(err, user) {
         console.log(err);
         console.log(user);
-        localStorage.setItem('userName', user.nickname);
+        localStorage.setItem('userName', user.name);
         
     });
   }
