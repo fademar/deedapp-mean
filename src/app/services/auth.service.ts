@@ -14,7 +14,7 @@ export class AuthService {
     responseType: 'token id_token',
     audience: 'https://cercec.eu.auth0.com/userinfo',
     redirectUri: 'https://russian-deeds.herokuapp.com/callback',      
-    scope: 'openid profile'
+    scope: 'openid%20profile'
   });
 
   constructor(public router: Router) {}
