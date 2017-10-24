@@ -4,15 +4,15 @@
         <mat-dialog-content>
             <div *ngIf="notes">
                 <div *ngFor="let note of notes">
-                    <p>{{ note.user }}</p>
-                    <p>{{ note.time }}</p>
+                    <p>{{ note.userName }}</p>
+                    <p>{{ note.date | date:'shortDate' }}</p>
                     <p>{{ note.content }}</p>
                 </div>
             </div>
-            <div class="form-group">
-                <textarea rows="5" class="form-control" formControlName="content" placeholder="Write your note here"></textarea>
-            </div>
         </mat-dialog-content>
+        <div class="form-group">
+            <textarea rows="3" class="form-control" formControlName="content" placeholder="Write your note here"></textarea>
+        </div>
         <mat-dialog-actions>
                 <button mat-raised-button type="submit" color="primary">SAVE</button>
                 <button mat-raised-button mat-dialog-close type="button" color="primary" (click)="onCloseClick()">CLOSE</button>

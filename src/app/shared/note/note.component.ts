@@ -3,7 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { NoteService } from '../../services/note.service';
-
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-note',
@@ -19,7 +19,7 @@ export class NoteComponent implements OnInit {
 
   openNotes(): void {
     let dialogRef = this.dialog.open(NoteDialog, {
-      width: '400px',
+      width: '780px',
       disableClose: false
     });
 
@@ -69,15 +69,15 @@ export class NoteDialog implements OnInit {
 
 
   getUser() {
-    return localStorage.getItem('nickName');
+    return localStorage.getItem('userName');
   }
 
   onSubmit() {
     let time = Date.now()
-    let nickName = this.getUser();
+    let userName = this.getUser();
 		this.noteForm.patchValue({
       date: time, 
-      user: nickName
+      user: userName
     });
     this.noteValue = JSON.stringify(this.noteForm.value);
     this.noteService.saveNote(this.noteValue).subscribe(note => {
