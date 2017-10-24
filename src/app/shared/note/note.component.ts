@@ -87,6 +87,7 @@ export class NoteDialog implements OnInit {
       this.noteService.updateNote(this.noteId, this.noteValue).subscribe(note => {
         this.showNotes();
         this.noteId = null;
+        this.editMode = false;
       });
     } else {
       this.noteService.saveNote(this.noteValue).subscribe(note => {
