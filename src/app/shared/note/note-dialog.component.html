@@ -8,10 +8,10 @@
             <div *ngIf="notes">
                 <div *ngFor="let note of notes" [ngClass]="{'hightlight': note.user === getUser()}">
                     <div *ngIf="note.user === getUser()">
-                        <button mat-icon-button class="pull-right" (click)="onEditClick(note._id)">
+                        <button mat-icon-button type="button" class="pull-right" (click)="onEditClick(note._id)">
                                 <mat-icon aria-label="edit" class="md-18">mode_edit</mat-icon>
                         </button>
-                        <button mat-icon-button class="pull-right" (click)="onDeleteClick(note._id)">
+                        <button mat-icon-button type="button" class="pull-right" (click)="onDeleteClick(note._id)">
                                 <mat-icon aria-label="delete" class="md-18">delete</mat-icon>
                         </button>
                     </div>
