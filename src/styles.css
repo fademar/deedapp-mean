@@ -95,7 +95,7 @@ button:focus, button:active {
 }
 
 .cdk-overlay-pane {
-  z-index: 1040px !important;
+  z-index: 1040 !important;
 }
 
 
