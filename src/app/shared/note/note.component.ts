@@ -19,6 +19,7 @@ export class NoteComponent implements OnInit {
 
   openNotes(): void {
     let dialogRef = this.dialog.open(NoteDialog, {
+      width: '800px',
       disableClose: false
     });
 
@@ -41,6 +42,7 @@ export class NoteDialog implements OnInit {
   noteValue;
   note;
   notes;
+  contentClass;
 
   constructor(public dialogRef: MatDialogRef<NoteDialog>, private noteService: NoteService, private fb: FormBuilder, public auth: AuthService) { }
 
@@ -62,7 +64,9 @@ export class NoteDialog implements OnInit {
   showNotes() {
     this.noteService.getNotes().subscribe(notes => {
       this.notes = notes;
-      console.log(this.notes);
+      if (this.notes.user === this.getUser()) {
+        this.contentClass = 'highlight';
+      }
     });
   }
 
