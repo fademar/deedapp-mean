@@ -19,7 +19,11 @@ export class NoteService {
     }
   
     getNote(id) {
-        return this.http.get('/api/note/'+id).map(res => res.json());  		
+      console.log(id);
+      return this.http.get('/api/note/'+id).map(res => {
+        console.log(res.json());
+        res.json()
+      });  		
     }
   
     updateNote(id, note) {

@@ -94,7 +94,7 @@ export class NoteDialog implements OnInit {
         this.showNotes();
       });
     }
-    this.noteForm.controls.content === null;
+    this.noteForm.reset();
   }
 
   onCloseClick(): void {
