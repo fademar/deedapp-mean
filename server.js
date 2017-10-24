@@ -192,7 +192,7 @@ app.post('/api/notes', (req, res) => {
  */
 
 app.get('/api/note/:id', (req, res) => {
-	db.collection(noteCollection).findOne({ _id: new ObjectID(req.params.id) }, (err, doc) => {
+	db.collection(notesCollection).findOne({ _id: new ObjectID(req.params.id) }, (err, doc) => {
 		if (err) {
 			handleError(res, err.message, 'Failed to get note');
 		} else {
@@ -205,7 +205,7 @@ app.put('/api/note/:id', (req, res) => {
 	var updateNote = req.body;
 	delete updateNote._id;
 
-	db.collection(noteCollection).updateOne({ _id: new ObjectID(req.params.id) }, updateDoc, (err, doc) => {
+	db.collection(notesCollection).updateOne({ _id: new ObjectID(req.params.id) }, updateDoc, (err, doc) => {
 		if (err) {
 			handleError(res, err.message, 'Failed to update deed');
 		} else {
