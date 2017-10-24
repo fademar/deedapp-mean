@@ -83,17 +83,17 @@ export class NoteDialog implements OnInit {
       user: userName
     });
     this.noteValue = JSON.stringify(this.noteForm.value);
-    if (this.editMode) {
-      this.noteService.updateNote(this.noteId, this.noteValue).subscribe(note => {
-        this.showNotes();
-        this.noteId = null;
-        this.editMode = false;
-      });
-    } else {
+    // if (this.editMode) {
+    //   this.noteService.updateNote(this.noteId, this.noteValue).subscribe(note => {
+    //     this.showNotes();
+    //     this.noteId = null;
+    //     this.editMode = false;
+    //   });
+    // } else {
       this.noteService.saveNote(this.noteValue).subscribe(note => {
         this.showNotes();
       });
-    }
+    // }
     this.noteForm.controls.content === null;
   }
 
