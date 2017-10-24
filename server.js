@@ -114,7 +114,7 @@ app.get('/api/deed/:id', (req, res) => {
 });
 
 app.put('/api/deed/:id', (req, res) => {
-	var updateDoc = req.body;
+	let updateDoc = req.body;
 	delete updateDoc._id;
 
 	db.collection(deedsCollection).updateOne({ _id: new ObjectID(req.params.id) }, updateDoc, (err, doc) => {
@@ -202,14 +202,14 @@ app.get('/api/note/:id', (req, res) => {
 });
 
 app.put('/api/note/:id', (req, res) => {
-	var updateNote = req.body;
+	let updateNote = req.body;
 	delete updateNote._id;
 
-	db.collection(notesCollection).updateOne({ _id: new ObjectID(req.params.id) }, updateDoc, (err, doc) => {
+	db.collection(notesCollection).updateOne({ _id: new ObjectID(req.params.id) }, updateNote, (err, doc) => {
 		if (err) {
 			handleError(res, err.message, 'Failed to update deed');
 		} else {
-			res.status(200).json(updateDoc);
+			res.status(200).json(updateNote);
 		}
 	});
 });
