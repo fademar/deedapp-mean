@@ -48,7 +48,7 @@ import { NoteService } from './services/note.service';
 
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 import { NoteComponent } from './shared/note/note.component';
-
+import { NoteDialog } from './shared/note/note.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +63,8 @@ import { NoteComponent } from './shared/note/note.component';
     ConfirmDialogComponent,
     CallbackComponent,
     HomeComponent,
-    NoteComponent
+    NoteComponent,
+    NoteDialog
   ],
   imports: [
     BrowserModule,
@@ -92,7 +93,7 @@ import { NoteComponent } from './shared/note/note.component';
     MatButtonToggleModule,
     FlexLayoutModule
   ],
-  entryComponents: [ConfirmDialogComponent, NoteComponent],
+  entryComponents: [ConfirmDialogComponent, NoteDialog],
   providers: [DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, NoteService],
   schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent]
