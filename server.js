@@ -160,7 +160,6 @@ app.get('/api/schema', (req, res) => {
 /*  '/api/notes'
  *    GET: finds all notes
  *    POST: creates a new note
- * 	  PUT: update the note
  */
 
 app.get('/api/notes', (req, res) => {
@@ -181,6 +180,23 @@ app.post('/api/notes', (req, res) => {
 			handleError(res, err.message, 'Failed to create new note.');
 		} else {
 			res.status(201).json(doc.ops[0]);
+		}
+	});
+});
+
+
+/*  '/api/note/:id'
+ *    GET: find note by id
+ *    PUT: update note by id
+ *    DELETE: deletes note by id
+ */
+
+app.get('/api/note/:id', (req, res) => {
+	db.collection(noteCollection).findOne({ _id: new ObjectID(req.params.id) }, (err, doc) => {
+		if (err) {
+			handleError(res, err.message, 'Failed to get note');
+		} else {
+			res.status(200).json(doc);
 		}
 	});
 });
