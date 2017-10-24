@@ -13,7 +13,7 @@
                     <button mat-icon-button mat-dialog-close class="pull-right" (click)="onDeleteClick(note._id)">
                             <mat-icon aria-label="delete">delete</mat-icon>
                     </button>
-                    <span class="info">{{ note.user }} | {{ note.date | date:'shortDate' }}</span>
+                    <span class="info">{{ note.user }} | {{ note.date | date:'dMyHm' }}</span>
                     <p>{{ note.content }}</p>
                 </div>
             </div>
