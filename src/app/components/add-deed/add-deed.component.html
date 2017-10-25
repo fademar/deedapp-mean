@@ -1,10 +1,10 @@
 <simple-notifications [options]="options"></simple-notifications>
 <app-note></app-note>
-<app-nav></app-nav>
+<app-navbar></app-navbar>
 <form (keydown.enter)="$event.preventDefault()" [formGroup]="deedForm" (ngSubmit)="onSubmit()" novalidate>
 
 	<div class="d-flex flex-column actions">
-		<button mat-fab-button type="button" color="primary" [matMenuTriggerFor]="menu" placement="left" ngbTooltip="Add an input" class="mr-2">
+		<button mat-fab type="button" color="primary" [matMenuTriggerFor]="menu" placement="left" ngbTooltip="Add an input">
 			<mat-icon class="md-light">add_circle_outline</mat-icon><span class="text-menu">ADD FIELDS</span>
 		</button>
 		<mat-menu #menu="matMenu" xPosition="before" [overlapTrigger]="false">
@@ -22,7 +22,7 @@
 			<div class="dropdown-divider"></div>			  
 			<button mat-menu-item *ngIf="!registratorOn" type="button" (click)="addRegistrator()">Registrator</button>
 		</mat-menu>
-		<button mat-fab-button type="submit" [disabled]="deedForm.invalid" placement="bottom" ngbTooltip="save the deed" class="mr-5">
+		<button mat-fab type="submit" [disabled]="deedForm.invalid" placement="bottom" ngbTooltip="save the deed">
 			<mat-icon aria-label="Submit the form">save</mat-icon><span class="save-menu">SAVE</span>
 		</button>
 	</div>

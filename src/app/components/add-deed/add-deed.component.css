@@ -67,7 +67,4 @@ outline: none !important;
   outline: none !important;
 }
 
-::ng-deep .mat-menu-panel {
-  top: 60px !important;
-}
 
