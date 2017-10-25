@@ -1,35 +1,5 @@
-.submit-button {
-    display: block;  
-    position: fixed;
-    top: 220px;
-    right: 80px;
-}
-
-.submit-button>button:focus, .submit-button>button:active {
-  outline: none !important;
-}
-
-.submit-button>button:enabled {
-  background-color: #4CAF50;
-}
-
-.actions {
-	display: block;
-	position: fixed;
-	top: 150px;
-	right: 80px;
-}
-
-.actions>button:focus, .actions>button:active {
-  outline: none !important;
-}
-
-
 .cancel-button {
-  display: block;  
-  position: fixed;
-  top: 80px;
-  right: 80px;
+  background-color: #FFFFFF !important;
 }
 
 .cancel-button>button:focus, .cancel-button>button:active {

@@ -85,17 +85,10 @@ button:focus, button:active {
 	outline: none !important;
 }
 
-
-
 .actions {
 	position: fixed;
 	top: 15%;
 	left: 90%;
-}
-
-
-.submit-button>button:enabled {
-  background-color: #4CAF50 !important;
 }
 
 
