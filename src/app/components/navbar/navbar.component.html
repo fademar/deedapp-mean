@@ -1,15 +1,15 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="nav-bar" id="cssmenu">
   <mat-toolbar-row>
     <span>Deed App</span>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/deed/add']">Create</a>
+    <ul>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/deed/add']">Create</a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/list']">List</a>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/list']">List</a>
       </li>
-	    <li class="nav-item" routerLinkActive="active"> 
-        <a class="nav-link" [routerLink]="['/search']">Search</a>
+	    <li routerLinkActive="active"> 
+        <a [routerLink]="['/search']">Search</a>
       </li>
     </ul>
     <span class="spacer"></span>
