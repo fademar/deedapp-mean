@@ -9,3 +9,12 @@ button:focus, button:active {
 .logout-menu {
 	color: #3F51B5;
 }
+
+
+.nav-icon {
+	padding: 0 14px;
+}
+  
+.spacer {
+	flex: 1 1 auto;
+}
