@@ -96,8 +96,8 @@ button:focus, button:active {
 
 
 .tooltip {
-  background-color: #000000;
-  font-size: 1em;
+  background-color: #000000 !important;
+  font-size: 1em !important;
 }
 
 
