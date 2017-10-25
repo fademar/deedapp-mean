@@ -85,20 +85,25 @@ button:focus, button:active {
 	outline: none !important;
 }
 
-.save-menu {
-	color: #3F51B5;
-}
-
-
-.text-menu {
-  color: #FFFFFF;
-}
-
-
 .tooltip {
   background-color: #000000 !important;
   font-size: 1em !important;
 }
+
+.actions {
+	position: fixed;
+	top: 15%;
+	left: 90%;
+}
+
+.submit-button>button:focus, .submit-button>button:active {
+  outline: none !important;
+}
+
+.submit-button>button:enabled {
+  background-color: #4CAF50;
+}
+
 
 
 
