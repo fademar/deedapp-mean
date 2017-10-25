@@ -94,8 +94,10 @@ button:focus, button:active {
   color: #FFFFFF;
 }
 
-.cdk-overlay-pane {
-  z-index: 1040 !important;
+
+.tooltip {
+  background-color: #000000;
+  font-size: 1em;
 }
 
 
