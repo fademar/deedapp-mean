@@ -4,6 +4,10 @@
 	z-index: 200;	
 }
 
+.nav-brand {
+	color: #FFFFFF;
+}
+
   #cssmenu ul {
 	list-style: none;
 	margin: 0;
@@ -36,7 +40,6 @@
 	text-decoration: none;
 	display: block;
 	padding: 15px 25px;
-	font-family: 'Open Sans', sans-serif;
 	font-weight: 700;
 	text-transform: uppercase;
 	font-size: 14px;
@@ -48,7 +51,7 @@
 	transition: color .25s;
   }
   #cssmenu ul li a:hover {
-	color: #E91E63;
+	color: #FFFFFF;
   }
   #cssmenu ul li a:hover:before {
 	width: 100%;
@@ -121,15 +124,9 @@
   }
 
 
-
-
-
-
-
-
-
 .nav-icon {
 	padding: 0 14px;
+	color: #FFFFFF;
 }
 
 
