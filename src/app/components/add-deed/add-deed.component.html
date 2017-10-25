@@ -2672,9 +2672,28 @@
 		<div class="card-body">
 			<div class="text-center">
 				<h4>Is the form complete ?</h4>
-				<div class="d-flex justify-content-center align-items-center">
-					<span class="slideLabel">NO</span><mat-slide-toggle formControlName="complete" aria-label="complete"></mat-slide-toggle><span [ngClass]="classComplete()">YES</span>
-				</div>
+				<mat-button-toggle-group >							
+					<mat-button-toggle value="false">no</mat-button-toggle>
+					<mat-button-toggle value="true">yes</mat-button-toggle>
+				</mat-button-toggle-group>
+
+				<bSwitch
+						[switch-base-class]="baseClass"
+						[switch-wrapper-class]="wrapperClass"
+						[switch-label-width]="labelWidth"
+						[switch-label-text]="labelText"
+						[switch-off-text]="'NO'"
+						[switch-on-text]="'YES'"
+						[switch-on-color]="primary"
+						[switch-off-color]="default"
+						[switch-size]="large"
+						[switch-animate]="true"
+						formControlName="complete"
+						[switch-base-class]="'bootstrap-switch'">
+				</bSwitch>
+
+
+
 			</div>
 		</div>
 	</div>
