@@ -3,18 +3,18 @@
 <app-note></app-note>
 <div class="d-flex flex-column actions">     
     <div *ngIf="term">
-        <a mat-fab color="primary" matTooltip="Back to results" matTooltipPosition="before" matTooltipClass="tooltip" class="mb-2" routerLink="/search" [queryParams]="{resultFor: term}">
-            <mat-icon class="md-light">arrow_back</mat-icon>
+        <a mat-fab matTooltip="Back to results" matTooltipPosition="before" matTooltipClass="'tooltip'" class="mb-2 basic" routerLink="/search" [queryParams]="{resultFor: term}">
+            <mat-icon class="md-dark">arrow_back</mat-icon>
         </a>
     </div>
-    <a mat-fab routerLink="/deed/edit/{{ deed._id }}" color="primary" matTooltip="Edit the deed" matTooltipPosition="before" matTooltipClass="tooltip" class="mb-2">
+    <a mat-fab routerLink="/deed/edit/{{ deed._id }}" color="primary" matTooltip="Edit the deed" matTooltipPosition="before" matTooltipClass="'tooltip'" class="mb-2">
         <mat-icon class="md-light">mode_edit</mat-icon>
     </a>
-    <a mat-fab matTooltip="Download the deed" matTooltipPosition="before" matTooltipClass="tooltip" class="mb-2 download-button" [href]="downloadUri" [download]="downloadName">
+    <a mat-fab matTooltip="Download the deed" matTooltipPosition="before" matTooltipClass="'tooltip'" class="mb-2 basic" [href]="downloadUri" [download]="downloadName">
         <mat-icon class="md-dark">file_download</mat-icon>
     </a>
-    <button mat-fab type="button" color="warn" (click)="onDeleteClick(deed._id)" matTooltip="Delete the deed" matTooltipPosition="before" matTooltipClass="tooltip" class="mb-2">
-        <mat-icon class="delete-icon">delete</mat-icon>
+    <button mat-fab type="button" class="mb-2 basic" (click)="onDeleteClick(deed._id)" matTooltip="Delete the deed" matTooltipPosition="before" matTooltipClass="'tooltip'" class="mb-2">
+        <mat-icon class="md-dark">delete</mat-icon>
     </button>
 </div>
 
