@@ -1,5 +1,5 @@
 .btn-note {
-   position: fixed;
+   position: relative;
    bottom: 50px;
    right: 50px; 
 }
