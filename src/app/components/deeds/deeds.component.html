@@ -1,5 +1,10 @@
 <app-navbar></app-navbar>
 <app-note></app-note>
+<div class="d-flex flex-column actions">	
+	<a mat-fab matTooltip="Download the deed" class="mb-2 download-button" matTooltipPosition="before" matTooltipClass="'tooltip'" [href]="downloadUri" [download]="downloadName" (click)="updateDate()">
+		<mat-icon class="md-dark">archive</mat-icon>
+	</a>
+</div>
 <div class="container main-container">
 	<div class="card shadow mb-3">
 		<div class="card-body">
