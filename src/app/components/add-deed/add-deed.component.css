@@ -14,10 +14,9 @@
 }
 
 .actions {
-	display: block;
 	position: fixed;
-	top: 80px;
-	right: 80px;
+	top: 20%;
+	right: 90%;
 }
 
 .actions>button:focus, .actions>button:active {

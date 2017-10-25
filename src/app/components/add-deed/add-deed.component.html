@@ -1,27 +1,10 @@
 <simple-notifications [options]="options"></simple-notifications>
 <app-note></app-note>
+<app-nav></app-nav>
 <form (keydown.enter)="$event.preventDefault()" [formGroup]="deedForm" (ngSubmit)="onSubmit()" novalidate>
-		
-<nav class="navbar navbar-expand-lg navbar-dark bg-indigo-500 fixed-top">	
-	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="navbar-brand">Deed App</div>
 
-	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item" routerLinkActive="active">
-				<a class="nav-link" [routerLink]="['/deed/add']">Create</a>
-			</li>
-			<li class="nav-item" routerLinkActive="active">
-			<a class="nav-link" [routerLink]="['/list']">List</a>
-			</li>
-			<li class="nav-item" routerLinkActive="active"> 
-			<a class="nav-link" [routerLink]="['/search']">Search</a>
-			</li>
-
-		</ul>
-		<button mat-button type="button" color="#3F51B5" style="border: 1px solid #FFFFFF" [matMenuTriggerFor]="menu" placement="left" ngbTooltip="Add an input" class="mr-2">
+	<div class="d-flex flex-column actions">
+		<button mat-fab-button type="button" color="primary" [matMenuTriggerFor]="menu" placement="left" ngbTooltip="Add an input" class="mr-2">
 			<mat-icon class="md-light">add_circle_outline</mat-icon><span class="text-menu">ADD FIELDS</span>
 		</button>
 		<mat-menu #menu="matMenu" xPosition="before" [overlapTrigger]="false">
@@ -39,12 +22,10 @@
 			<div class="dropdown-divider"></div>			  
 			<button mat-menu-item *ngIf="!registratorOn" type="button" (click)="addRegistrator()">Registrator</button>
 		</mat-menu>
-		<button mat-button style="background-color: #FFFFFF; border: 1px solid #FFFFFF" type="submit" [disabled]="deedForm.invalid" placement="bottom" ngbTooltip="save the deed" class="mr-5">
-			<mat-icon style="color:#3F51B5" aria-label="Submit the form">save</mat-icon><span class="save-menu">SAVE</span>
+		<button mat-fab-button type="submit" [disabled]="deedForm.invalid" placement="bottom" ngbTooltip="save the deed" class="mr-5">
+			<mat-icon aria-label="Submit the form">save</mat-icon><span class="save-menu">SAVE</span>
 		</button>
-		<mat-icon class="md-light ml-5" (click)="auth.logout()">power_settings_new</mat-icon>
 	</div>
-</nav>
 <div class="container main-container">
 	<!--DEED REFERENCES-->
 	<div class="card shadow mb-3">
