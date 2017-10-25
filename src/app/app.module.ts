@@ -21,7 +21,6 @@ import { MatAutocompleteModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 import { MatRadioModule } from '@angular/material';
 import { MatButtonToggleModule } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -92,7 +91,6 @@ import { NoteDialog } from './shared/note/note.component';
     MatInputModule,
     MatRadioModule,
     MatButtonToggleModule,
-    FlexLayoutModule,
     MatToolbarModule
   ],
   entryComponents: [ConfirmDialogComponent, NoteDialog],
