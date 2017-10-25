@@ -4,10 +4,7 @@
 }
 
 .clear-button {
-    display: block;  
-    position: fixed;
-    top: 230px;
-    right: 80px;
+    background-color: #FFFFFF;
   }
   
   .clear-button>button:focus, .clear-button>button:active {

@@ -3,8 +3,8 @@
 <div class="container main-container">
   <form class="form-horizontal" [formGroup]="searchForm" (ngSubmit)="onSubmit()" novalidat>
     <div class="actions" *ngIf="results">
-        <button mat-fab type="button" color="accent" (click)="clearResults()" matTooltip="Clear results" matTooltipPosition="before">
-          <mat-icon class="mat-24" style="color:white" aria-label="Clear">clear</mat-icon>
+        <button mat-fab type="button" color="accent" class="clear-button" (click)="clearResults()" matTooltip="Clear results" matTooltipPosition="before">
+          <mat-icon class="md-dark" aria-label="Clear">clear</mat-icon>
         </button>
     </div>
     <div class="card shadow mb-3">
