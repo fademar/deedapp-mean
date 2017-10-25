@@ -137,6 +137,10 @@ button:focus, button:active {
 	color: #3F51B5;
 }
 
+.logout-button {
+	cursor: pointer;
+}
+
 
 .spacer {
 	flex: 1 1 auto;
