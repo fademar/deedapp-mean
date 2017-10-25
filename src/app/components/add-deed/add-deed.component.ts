@@ -178,7 +178,7 @@ export class AddDeedComponent implements OnInit {
             }),
             verbatimCitations: [''],
             researcherNotes: [''],
-            complete: ['false']
+            complete: [false]
         })
 
     }
