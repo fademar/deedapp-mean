@@ -59,9 +59,6 @@ export class AddDeedComponent implements OnInit {
 	otherImmovablePropertyShare: FormControl;
     otherShareFromEstate: FormControl;
 	asWhomValue;
-    whitnesses: FormArray;
-    sureties: FormArray;
-    otherParticipants: FormArray;
 
 	deed;
     deedValue = '';
@@ -161,6 +158,9 @@ export class AddDeedComponent implements OnInit {
             transactions: this.fb.array([
                 this.initTransaction(),
             ]),
+            whitnesses: this.fb.array([]),
+            sureties: this.fb.array([]),
+            otherParticipants: this.fb.array([]),
             registrationDate: [''],
             fees: this.fb.group({
 				tax: this.fb.group({
@@ -1425,8 +1425,6 @@ export class AddDeedComponent implements OnInit {
     }
 
     addWhitness() {
-        this.whitnesses = this.fb.array([]);
-        this.deedForm.addControl('whitnesses', this.whitnesses);
         const control = <FormArray>this.deedForm.controls['whitnesses'];
         control.push(this.initWhitness());
     }
@@ -1434,9 +1432,6 @@ export class AddDeedComponent implements OnInit {
     removeWhitness(i: number) {
         const control = <FormArray>this.deedForm.controls['whitnesses'];
         control.removeAt(i);
-        if (i === 0) {
-            this.deedForm.removeControl('whitnesses');
-        }
     }
 
 
@@ -1541,6 +1536,7 @@ export class AddDeedComponent implements OnInit {
                         
             });
             this.registratorList = _.sortBy(this.registratorList, ['firstName', 'patronyme', 'lastName']);
+            console.log(this.registratorList);
         
         });
 
