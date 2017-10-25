@@ -15,8 +15,8 @@
 
 .actions {
 	position: fixed;
-	top: 20%;
-	right: 90%;
+	top: 15%;
+	left: 90%;
 }
 
 .actions>button:focus, .actions>button:active {
