@@ -2,8 +2,8 @@
 <app-note></app-note>
 <div class="container main-container">
   <form class="form-horizontal" [formGroup]="searchForm" (ngSubmit)="onSubmit()" novalidat>
-    <div class="clear-button" *ngIf="results">
-        <button mat-fab type="button" color="accent" (click)="clearResults()" matTooltip="Clear results" matTooltipPosition="left">
+    <div class="actions" *ngIf="results">
+        <button mat-fab type="button" color="accent" (click)="clearResults()" matTooltip="Clear results" matTooltipPosition="before">
           <mat-icon class="mat-24" style="color:white" aria-label="Clear">clear</mat-icon>
         </button>
     </div>
@@ -51,7 +51,7 @@
                 <tr *ngFor='let result of results'>
                   <td>{{ result.deedCode }}</td>
                   <td>{{ result.deedRef }}</td>
-                  <td><span *ngIf="result.deedDate">{{ result.deedDate }}</span><span *ngIf="!result.deedDate && result.registrationDate"><em>{{ result.registrationDate }}</em></span></td>
+                  <td><span *ngIf="deed.deedDate.day">{{deed.deedDate.day}}-</span><span *ngIf="deed.deedDate.month">{{deed.deedDate.month}}-</span><span *ngIf="deed.deedDate.year">{{deed.deedDate.year}}</span><span *ngIf="!result.deedDate && result.registrationDate"><em>{{ result.registrationDate }}</em></span></td>
                   <td><span *ngIf="result.deedName">{{ result.deedName }}</span></td>
                   <td><span *ngIf="result.agent"><span *ngIf="result.agent.firstName">{{ result.agent.firstName }}</span> <span *ngIf="result.agent.lastName">{{ result.agent.lastName }}</span> <span *ngIf="result.agent.corporationName">{{ result.agent.corporationName }}</span></span></td>
                   <td style="text-align:center"><mat-icon *ngIf="result.complete" class="mat-24">check</mat-icon></td>
