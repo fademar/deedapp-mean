@@ -1,43 +1,23 @@
-
-        
 <div *ngIf="deed">
-<nav class="navbar navbar-expand-lg navbar-dark bg-indigo-500 fixed-top">	
-	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="navbar-brand">Deed App</div>
-
-	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item" routerLinkActive="active">
-				<a class="nav-link" [routerLink]="['/deed/add']">Create</a>
-			</li>
-			<li class="nav-item" routerLinkActive="active">
-			<a class="nav-link" [routerLink]="['/list']">List</a>
-			</li>
-			<li class="nav-item" routerLinkActive="active"> 
-			<a class="nav-link" [routerLink]="['/search']">Search</a>
-			</li>
-
-        </ul>
-        <div class="back-button" *ngIf="term">
-            <a mat-button color="#3F51B5" style="border: 1px solid #FFFFFF" placement="bottom" ngbTooltip="Back to results" class="mr-2" routerLink="/search" [queryParams]="{resultFor: term}">
-                <mat-icon class="md-24 md-light" style="color:white">arrow_back</mat-icon><span class="text-menu">BACK TO RESULTS</span>
-            </a>
-        </div>
-        <a mat-raised-button routerLink="/deed/edit/{{ deed._id }}" placement="bottom" ngbTooltip="Edit the deed" class="mr-2">
-            <mat-icon class="md-24" style="color:#3F51B5">mode_edit</mat-icon> <span class="text-menu">EDIT</span>
-        </a>
-        <a mat-raised-button placement="bottom" ngbTooltip="Download the deed" class="mr-2" [href]="downloadUri" [download]="downloadName">
-            <mat-icon class="md-24" style="color:#3F51B5">file_download</mat-icon><span class="text-menu">DOWNLOAD</span>
-        </a>
-        <button mat-raised-button type="button" color="warn" (click)="onDeleteClick(deed._id)" placement="bottom" ngbTooltip="Delete the deed" class="mr-5">
-            <mat-icon class="md-24" style="color:white">delete</mat-icon><span class="white-menu">DELETE</span>
-        </button>
-		<mat-icon class="md-light ml-5" (click)="auth.logout()">power_settings_new</mat-icon>
-	</div>
-</nav>
+<app-navbar></app-navbar>
 <app-note></app-note>
+<div class="d-flex flex-column actions">     
+    <div *ngIf="term">
+        <a mat-fab color="primary" matTooltip="Back to results" matTooltipPosition="before" matTooltipClass="tooltip" class="mb-2" routerLink="/search" [queryParams]="{resultFor: term}">
+            <mat-icon class="md-light">arrow_back</mat-icon>
+        </a>
+    </div>
+    <a mat-fab routerLink="/deed/edit/{{ deed._id }}" matTooltip="Edit the deed" matTooltipPosition="before" matTooltipClass="tooltip" class="mb-2">
+        <mat-icon class="md-light">mode_edit</mat-icon>
+    </a>
+    <a mat-fab matTooltip="Download the deed" matTooltipPosition="before" matTooltipClass="tooltip" class="mb-2" [href]="downloadUri" [download]="downloadName">
+        <mat-icon class="md-light">file_download</mat-icon>
+    </a>
+    <button mat-fab type="button" color="warn" (click)="onDeleteClick(deed._id)" matTooltip="Delete the deed" matTooltipPosition="before" matTooltipClass="tooltip" class="mb-2">
+        <mat-icon class="md-light">delete</mat-icon>
+    </button>
+</div>
+
 <div class="container main-container">
    
  
