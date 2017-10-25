@@ -35,7 +35,7 @@
 				</ng-container>
 				<ng-container matColumnDef="complete">
 					<mat-header-cell *matHeaderCellDef> complete </mat-header-cell>
-					<mat-cell *matCellDef="let deed"> <mat-icon *ngIf="deed.complete === 'true'" class="mat-24">check</mat-icon> </mat-cell>
+					<mat-cell *matCellDef="let deed"> <mat-icon *ngIf="deed.complete === true" class="mat-24">check</mat-icon> </mat-cell>
 				</ng-container>
 				<ng-container matColumnDef="details">
 					<mat-header-cell *matHeaderCellDef> </mat-header-cell>
