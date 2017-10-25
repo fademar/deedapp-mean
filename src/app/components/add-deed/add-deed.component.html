@@ -2672,10 +2672,7 @@
 		<div class="card-body">
 			<div class="text-center">
 				<h4>Is the form complete ?</h4>
-				<mat-button-toggle-group formControlName="complete">							
-					<mat-button-toggle value="false">no</mat-button-toggle>
-					<mat-button-toggle value="true">yes</mat-button-toggle>
-				</mat-button-toggle-group>
+				<span>NO</span><md-slide-toggle formControlName="complete"><span [ngClass]="{'labeltrue': complete.value === 'true'}">YES</span></md-slide-toggle>
 			</div>
 		</div>
 	</div>
