@@ -22,6 +22,7 @@ import { MatInputModule } from '@angular/material';
 import { MatRadioModule } from '@angular/material';
 import { MatButtonToggleModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatToolbarModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -91,7 +92,8 @@ import { NoteDialog } from './shared/note/note.component';
     MatInputModule,
     MatRadioModule,
     MatButtonToggleModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatToolbarModule
   ],
   entryComponents: [ConfirmDialogComponent, NoteDialog],
   providers: [DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, NoteService],
