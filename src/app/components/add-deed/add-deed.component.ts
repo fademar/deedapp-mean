@@ -184,7 +184,7 @@ export class AddDeedComponent implements OnInit {
     }
 
     classComplete() {
-        if (this.deedForm.controls.complete.value === 'true') {
+        if (this.deedForm.get('complete').value === 'true') {
             return 'labelTrue';
         }
     }
