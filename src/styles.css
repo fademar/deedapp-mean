@@ -85,10 +85,7 @@ button:focus, button:active {
 	outline: none !important;
 }
 
-.tooltip {
-  background-color: #000000 !important;
-  font-size: 1em !important;
-}
+
 
 .actions {
 	position: fixed;
@@ -96,12 +93,9 @@ button:focus, button:active {
 	left: 90%;
 }
 
-.submit-button>button:focus, .submit-button>button:active {
-  outline: none !important;
-}
 
 .submit-button>button:enabled {
-  background-color: #4CAF50;
+  background-color: #4CAF50 !important;
 }
 
 

@@ -12,23 +12,6 @@ md-card {
 	text-align: center;
 }
 
-.edit-button {
-  display: block;  
-  position: fixed;
-  top: 80px;
-  right: 80px;
-}
-
-.edit-button>button:focus, .edit-button>button:active {
-  outline: none !important;
-}
-
-.back-button {
-  display: block;  
-  position: fixed;
-  top: 290px;
-  right: 80px;
-}
 
 .back-button>button:focus, .back-button>button:active {
   outline: none !important;
@@ -36,10 +19,7 @@ md-card {
 
 
 .delete-button {
-  display: block;  
-  position: fixed;
-  top: 150px;
-  right: 80px;
+  background-color: #FFFFFF !important;
 }
 
 .delete-button>button:focus, .delete-button>button:active {
@@ -47,20 +27,13 @@ md-card {
 }
 
 .download-button {
-  display: block;  
-  position: fixed;
-  top: 220px;
-  right: 80px;
+  background-color: #FFFFFF !important;
 }
 
 .download-button>button:focus, .download-button>button:active {
   outline: none !important;
 }
 
-.text-menu {
-  color: #3F51B5;
-}
-
-.white-menu {
-  color: #FFFFFF;
+.delete-icon {
+  color: #F44336;
 }
