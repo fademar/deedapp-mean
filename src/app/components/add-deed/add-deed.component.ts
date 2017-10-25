@@ -189,6 +189,10 @@ export class AddDeedComponent implements OnInit {
         }
     }
 
+    setToggleNo() {
+        this.deedForm.patchValue({complete: false});
+    }
+
     insertLastDeedCode() {
         this.deedService.getLastDeed().subscribe(result => {
             this.lastDeed = result;

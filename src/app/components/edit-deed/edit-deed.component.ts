@@ -1158,6 +1158,16 @@ export class EditDeedComponent implements OnInit {
 
     }
 
+    classComplete() {
+        if (this.deedForm.get('complete').value === true) {
+            return 'labelTrue';
+        }
+    }
+
+    setToggleNo() {
+        this.deedForm.patchValue({complete: false});
+    }
+
     insertLastDeedCode() {
         this.deedService.getLastDeed().subscribe(result => {
             this.lastDeed = result;

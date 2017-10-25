@@ -2681,23 +2681,20 @@
 		<div class="card-body">
 			<div class="text-center">
 				<h4>Is the form complete ?</h4>
-				<mat-radio-group formControlName="complete">
-					<mat-radio-button value="false">No</mat-radio-button>
-					<mat-radio-button value="true">Yes</mat-radio-button>
-				</mat-radio-group>
+				<span class="slideLabel" (click)=setToggleNo()>NO</span><mat-slide-toggle formControlName="complete"><span [ngClass]="classComplete()">YES</span></mat-slide-toggle>
 			</div>
 		</div>
 	</div>
 	
 
-
+	<div class="card shadow mt-5 p-5">
+		<h2 class="text-center">Current Json Document</h2>
+		<pre>{{ deedForm.value | json }}</pre>
+	</div>
 </div>
 
 
 
-<div class="card shadow mt-5 p-5">
-	<h2 class="text-center">Current Json Document</h2>
-	<pre>{{ deedForm.value | json }}</pre>
-</div>
+
 </form>
 </div>

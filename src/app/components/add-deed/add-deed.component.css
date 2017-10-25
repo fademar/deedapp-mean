@@ -6,3 +6,17 @@
 .labelTrue {
   color: #E91E63;
 }
+
+.slideLabel {
+  font-style: normal;
+  font-variant-ligatures: normal;
+  font-variant-caps: normal;
+  font-variant-numeric: normal;
+  font-weight: 400;
+  font-stretch: normal;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  cursor: pointer;
+  margin-right: 8px;
+}
