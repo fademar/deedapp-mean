@@ -33,7 +33,3 @@ md-card {
 .download-button>button:focus, .download-button>button:active {
   outline: none !important;
 }
-
-.delete-icon {
-  color: #F44336;
-}
