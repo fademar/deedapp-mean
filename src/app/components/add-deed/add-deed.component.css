@@ -19,4 +19,11 @@
   font-family: Roboto, "Helvetica Neue", sans-serif;
   cursor: pointer;
   margin-right: 8px;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0%;
+  flex-direction: row;
+  align-items: center;
 }
