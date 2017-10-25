@@ -2672,7 +2672,7 @@
 		<div class="card-body">
 			<div class="text-center">
 				<h4>Is the form complete ?</h4>
-				<span>NO</span><md-slide-toggle formControlName="complete"><span [ngClass]="{'labeltrue': complete.value === 'true'}">YES</span></md-slide-toggle>
+				<span>NO</span><md-slide-toggle formControlName="complete"><span [ngClass]="classComplete()">YES</span></md-slide-toggle>
 			</div>
 		</div>
 	</div>

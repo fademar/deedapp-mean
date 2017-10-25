@@ -183,6 +183,12 @@ export class AddDeedComponent implements OnInit {
 
     }
 
+    classComplete() {
+        if (this.deedForm.controls.complete.value === 'true') {
+            return 'labelTrue';
+        }
+    }
+
     insertLastDeedCode() {
         this.deedService.getLastDeed().subscribe(result => {
             this.lastDeed = result;
