@@ -1,7 +1,6 @@
 .btn-note {
-   position: relative;
-   bottom: 50px;
-   right: 50px; 
+   position: absolute;
+   right: -10px; 
 }
 
 .icon-note {
