@@ -58,6 +58,13 @@
   #cssmenu ul li a:after {
 	content: "";
 	display: block;
+	position: absolute;
+	right: -3px;
+	top: 19px;
+	height: 6px;
+	width: 6px;
+	background: #ffffff;
+	opacity: .5;
   }
   #cssmenu ul li a:before {
 	content: "";
