@@ -15,11 +15,15 @@
   font-variant-ligatures: normal;
   font-variant-caps: normal;
   font-variant-numeric: normal;
-  font-weight: 400;
   font-stretch: normal;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 24px;
+  height: 24px;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   cursor: pointer;
-  margin-right: 8px;
+  margin: 0 8px 3px 0;
+}
+
+.complete-toggle {
+  font-weight: 700 !important;
 }
