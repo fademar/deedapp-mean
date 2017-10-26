@@ -2672,11 +2672,7 @@
 		<div class="card-body">
 			<div class="text-center">
 				<h4>Is the form complete ?</h4>
-				<mat-button-toggle-group >							
-					<mat-button-toggle value="false">no</mat-button-toggle>
-					<mat-button-toggle value="true">yes</mat-button-toggle>
-				</mat-button-toggle-group>
-				<div class="slideLabel">NO</div><mat-slide-toggle formControlName="complete"><span [ngClass]="classComplete()">YES</span></mat-slide-toggle>
+				<span class="slideLabel">NO</span><mat-slide-toggle formControlName="complete"><span [ngClass]="classComplete()">YES</span></mat-slide-toggle>
 			</div>
 		</div>
 	</div>
