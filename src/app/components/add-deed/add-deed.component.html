@@ -2672,7 +2672,9 @@
 		<div class="card-body">
 			<div class="text-center">
 				<h4>Is the form complete ?</h4>
-				<span class="slideLabel" (click)="setToggleNo()">NO</span><mat-slide-toggle formControlName="complete"><span [ngClass]="classComplete()">YES</span></mat-slide-toggle>
+				<div class="d-inline-flex">
+					<span class="slideLabel" (click)="setToggleNo()">NO</span><mat-slide-toggle formControlName="complete"><span [ngClass]="classComplete()">YES</span></mat-slide-toggle>
+				</div>
 			</div>
 		</div>
 	</div>
