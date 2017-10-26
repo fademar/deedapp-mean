@@ -5,6 +5,8 @@ const mongodb = require('mongodb');
 const path = require('path');
 
 var ObjectID = mongodb.ObjectID;
+const MONGODB_URI = "mongodb://deeduser:!?z:'GqdXZ]CXJ2-@#D6*]kRL!5p#_@localhost:27017/dbdeeds";
+const PORT = 3000;
 
 // Db Collection and URI
 const deedsCollection = 'Deeds';
@@ -31,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 var db;
 
 // Connection to the database
-mongodb.MongoClient.connect(process.env.MONGODB_URI, (err, database) => {
+mongodb.MongoClient.connect(MONGODB_URI, (err, database) => {
 	if (err) {
 		console.log('the connection with the databas is impossible: ' + err);
 		process.exit(1);
@@ -44,7 +46,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, (err, database) => {
 	db.collection(deedsCollection).createIndex({"$**":"text"});
 
 	// Initialize the app.
-	var server = app.listen(process.env.PORT || 8080, () => {
+	var server = app.listen(process.env.PORT || 3000, () => {
 		console.log('App now running on port', process.env.PORT);
 	});
 
