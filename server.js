@@ -46,8 +46,8 @@ mongodb.MongoClient.connect(MONGODB_URI, (err, database) => {
 	db.collection(deedsCollection).createIndex({"$**":"text"});
 
 	// Initialize the app.
-	var server = app.listen(process.env.PORT || 3000, () => {
-		console.log('App now running on port', process.env.PORT);
+	var server = app.listen(PORT || 3000, () => {
+		console.log('App now running on port', PORT);
 	});
 
 });
