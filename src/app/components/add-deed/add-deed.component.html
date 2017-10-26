@@ -2676,20 +2676,7 @@
 					<mat-button-toggle value="false">no</mat-button-toggle>
 					<mat-button-toggle value="true">yes</mat-button-toggle>
 				</mat-button-toggle-group>
-
-				<bSwitch
-						[switch-off-text]="'NO'"
-						[switch-on-text]="'YES'"
-						[switch-on-color]="'primary'"
-						[switch-off-color]="'default'"
-						[switch-size]="'large'"
-						[switch-animate]="true"
-						formControlName="complete"
-						[switch-base-class]="'bootstrap-switch'">
-				</bSwitch>
-
-
-
+				<div class="slideLabel">NO</div><mat-slide-toggle formControlName="complete"><span [ngClass]="classComplete()">YES</span></mat-slide-toggle>
 			</div>
 		</div>
 	</div>
