@@ -5,7 +5,7 @@ const mongodb = require('mongodb');
 const path = require('path');
 
 var ObjectID = mongodb.ObjectID;
-const MONGODB_URI = "mongodb://deeduser:!?z:'GqdXZ]CXJ2-@#D6*]kRL!5p#_@localhost:27017/dbdeeds";
+const MONGODB_URI = "mongodb://deeduser:K86d7A32a!#PvKqXPnBM@localhost:27017/dbdeeds";
 const PORT = 3000;
 
 // Db Collection and URI
