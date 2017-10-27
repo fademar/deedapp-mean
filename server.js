@@ -62,10 +62,6 @@ function handleError(res, reason, message, code) {
 	res.status(code || 500).json({ 'error': message });
 }
 
-// Redirect / to /api/deeds
-app.get('/', (req, res) => {
-	res.send('Please use /api/deeds');
-});
 
 /*  '/api/deeds'
  *    GET: finds all deeds
@@ -258,7 +254,9 @@ app.get('/api/search/:term', (req, res) => {
 	});
 });
 
-
+app.get('/.well-known/acme-challenge/:fileid', function(req, res){
+	res.send('Requesting '+fileid)
+})
 
 app.get('*', function(req, res) {
 	res.sendFile(path.join(__dirname + '/dist/index.html'));
