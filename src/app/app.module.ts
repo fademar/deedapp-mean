@@ -47,9 +47,12 @@ import { AuthGuard } from './services/guard.service';
 import { DownloadService } from './services/download.service';
 import { NoteService } from './services/note.service';
 
+
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 import { NoteComponent } from './shared/note/note.component';
 import { NoteDialog } from './shared/note/note.component';
+import { NotesComponent } from './components/notes/notes.component';
+import { NewWindowDirective } from './directives/new-window.directive';
 
 @NgModule({
   declarations: [
@@ -65,7 +68,9 @@ import { NoteDialog } from './shared/note/note.component';
     CallbackComponent,
     HomeComponent,
     NoteComponent,
-    NoteDialog
+    NoteDialog,
+    NotesComponent,
+    NewWindowDirective
   ],
   imports: [
     BrowserModule,
@@ -96,7 +101,7 @@ import { NoteDialog } from './shared/note/note.component';
     JWBootstrapSwitchModule
   ],
   entryComponents: [ConfirmDialogComponent, NoteDialog],
-  providers: [DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, NoteService],
+  providers: [DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, WindowRefService, NoteService],
   schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent]
 })

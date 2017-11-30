@@ -13,7 +13,9 @@ import { NgClass } from '@angular/common';
 })
 export class NoteComponent implements OnInit {
   
-  constructor(public dialog: MatDialog) {}
+
+  constructor(public dialog: MatDialog) {
+  }
 
   ngOnInit() {
   }
