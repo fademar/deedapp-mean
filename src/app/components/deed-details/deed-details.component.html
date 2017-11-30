@@ -1,6 +1,5 @@
 <div *ngIf="deed">
 <app-navbar></app-navbar>
-<app-note></app-note>
 <div class="d-flex flex-column actions">     
     <div *ngIf="term">
         <a mat-fab matTooltip="Back to results" matTooltipPosition="before" matTooltipClass="'tooltip'" class="mb-2 basic" routerLink="/search" [queryParams]="{resultFor: term}">
