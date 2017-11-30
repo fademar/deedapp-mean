@@ -22,7 +22,6 @@ import { MatInputModule } from '@angular/material';
 import { MatRadioModule } from '@angular/material';
 import { MatButtonToggleModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material';
-import { JWBootstrapSwitchModule } from 'jw-bootstrap-switch-ng2';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
