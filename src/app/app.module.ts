@@ -96,11 +96,10 @@ import { NewWindowDirective } from './directives/new-window.directive';
     MatInputModule,
     MatRadioModule,
     MatButtonToggleModule,
-    MatToolbarModule,
-    JWBootstrapSwitchModule
+    MatToolbarModule
   ],
   entryComponents: [ConfirmDialogComponent, NoteDialog],
-  providers: [DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, WindowRefService, NoteService],
+  providers: [DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, NoteService],
   schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent]
 })
