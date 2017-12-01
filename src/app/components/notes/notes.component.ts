@@ -26,6 +26,7 @@ export class NotesComponent implements OnInit {
   constructor(private noteService: NoteService, private fb: FormBuilder, public auth: AuthService) { }
 
   ngOnInit() {
+    console.log(localStorage.getItem('userName'));
     this.initForm();
     this.showNotes();
   }
