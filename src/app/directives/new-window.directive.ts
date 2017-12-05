@@ -5,7 +5,7 @@ function getWindow (): any {
 }
 
 @Directive({
-  selector: this.newFunction()
+  selector: '[appNewWindow]'
 })
 export class NewWindowDirective {
 
@@ -13,10 +13,6 @@ export class NewWindowDirective {
 
   constructor(private el: ElementRef) {
   }
-
-    private newFunction(): string {
-        return '[appNewWindow]';
-    }
 
   @HostListener('mousedown') onMouseEnter() {
       getWindow().open(this.link || '');
