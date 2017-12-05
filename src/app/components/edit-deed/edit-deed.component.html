@@ -1,9 +1,8 @@
 
 <div *ngIf="deed">
 	<app-navbar></app-navbar>
-	<app-note></app-note>
 	<simple-notifications [options]="options"></simple-notifications>
-<form (keydown.enter)="$event.preventDefault()" [formGroup]="deedForm" (ngSubmit)="onSubmit()" novalidate>
+	<form (keydown.enter)="$event.preventDefault()" [formGroup]="deedForm" (ngSubmit)="onSubmit()" novalidate>
 		
 
 		
@@ -33,7 +32,7 @@
 				<mat-icon aria-label="Submit the form">save</mat-icon>
 			</button>
 		</div>
-<div class="container main-container">
+		<div class="container main-container">
 		
 
 	<!--DEED REFERENCES-->

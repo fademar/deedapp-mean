@@ -22,7 +22,6 @@ import { MatInputModule } from '@angular/material';
 import { MatRadioModule } from '@angular/material';
 import { MatButtonToggleModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material';
-import { JWBootstrapSwitchModule } from 'jw-bootstrap-switch-ng2';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -50,6 +49,8 @@ import { NoteService } from './services/note.service';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 import { NoteComponent } from './shared/note/note.component';
 import { NoteDialog } from './shared/note/note.component';
+import { NotesComponent } from './components/notes/notes.component';
+import { NewWindowDirective } from './directives/new-window.directive';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,9 @@ import { NoteDialog } from './shared/note/note.component';
     CallbackComponent,
     HomeComponent,
     NoteComponent,
-    NoteDialog
+    NoteDialog,
+    NotesComponent,
+    NewWindowDirective
   ],
   imports: [
     BrowserModule,
@@ -92,8 +95,7 @@ import { NoteDialog } from './shared/note/note.component';
     MatInputModule,
     MatRadioModule,
     MatButtonToggleModule,
-    MatToolbarModule,
-    JWBootstrapSwitchModule
+    MatToolbarModule
   ],
   entryComponents: [ConfirmDialogComponent, NoteDialog],
   providers: [DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, NoteService],

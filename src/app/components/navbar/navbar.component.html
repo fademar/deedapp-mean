@@ -10,6 +10,9 @@
 	    <li routerLinkActive="active"> 
         <a [routerLink]="['/search']">Search</a>
       </li>
+      <li routerLinkActive="active"> 
+        <a [routerLink]="['/notes']" appNewWindow>Notes</a>
+      </li>
     </ul>
     <span class="spacer"></span>
     <button mat-icon-button class="logout-button" (click)="auth.logout()">
