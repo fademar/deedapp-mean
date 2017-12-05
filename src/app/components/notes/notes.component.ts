@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@ang
 import { AuthService } from '../../services/auth.service';
 import { NoteService } from '../../services/note.service';
 import { DatePipe } from '@angular/common';
-import { NgClass } from '@angular/common';
+// import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-notes',
