@@ -1,10 +1,11 @@
-<form [formGroup]="noteForm" (ngSubmit)="onSubmit()" novalidate>
+
+<app-navbar></app-navbar>
+<form (keydown.enter)="$event.preventDefault()" [formGroup]="noteForm" (ngSubmit)="onSubmit()" novalidate>
   <div class="container main-container">
     <div class="card shadow mb-3">
       <div class="card-body">
           <div *ngIf="notes">
-              <div *ngFor="let note of notes">
-                    <!-- [ngClass]="{'hightlight': note.user === getUser()}" -->
+              <div *ngFor="let note of notes" [ngClass]="{'hightlight': note.user === getUser()}">
                   <div *ngIf="note.user === getUser()">
                       <button mat-icon-button type="button" class="pull-right" (click)="onEditClick(note._id)">
                               <mat-icon aria-label="edit" class="md-18">mode_edit</mat-icon>
