@@ -22,6 +22,7 @@ import { MatInputModule } from '@angular/material';
 import { MatRadioModule } from '@angular/material';
 import { MatButtonToggleModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -96,7 +97,9 @@ import { NewWindowDirective } from './directives/new-window.directive';
     MatInputModule,
     MatRadioModule,
     MatButtonToggleModule,
-    MatToolbarModule
+    MatToolbarModule, 
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot()
   ],
   entryComponents: [ConfirmDialogComponent, NoteDialog],
   providers: [DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, NoteService],
