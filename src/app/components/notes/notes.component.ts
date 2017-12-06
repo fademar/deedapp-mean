@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { NoteService } from '../../services/note.service';
@@ -10,7 +10,9 @@ import { NgClass } from '@angular/common';
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.css']
 })
-export class NotesComponent implements OnInit {
+export class NotesComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  @Output() onEditorKeyup = new EventEmitter<any>();
 
   noteForm: FormGroup;
   user: FormControl;
@@ -22,14 +24,34 @@ export class NotesComponent implements OnInit {
   contentClass = this.contentClass;
   editMode = false;
   noteId = null;
+  editor;
 
   constructor(private noteService: NoteService, private fb: FormBuilder, public auth: AuthService) { }
 
   ngOnInit() {
-    console.log(localStorage.getItem('userName'));
     this.initForm();
     this.showNotes();
   }
+
+  ngAfterViewInit() {
+    tinymce.init({
+      selector: '#editor',
+      plugins: ['link', 'paste', 'table'],
+      skin_url: 'assets/skins/lightgray',
+      setup: editor => {
+        this.editor = editor;
+        editor.on('keyup', () => {
+          const content = editor.getContent();
+          this.onEditorKeyup.emit(content);
+        });
+      },
+    });
+  }
+
+  ngOnDestroy() {
+    tinymce.remove(this.editor);
+  }
+
 
   initForm() {
     this.noteForm = this.fb.group({
