@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title }     from '@angular/platform-browser';
 import { DeedService } from '../../services/deed.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material';
@@ -27,9 +28,10 @@ export class DeedDetailsComponent implements OnInit {
   dialogRef: MatDialogRef<ConfirmDialogComponent>;
 
   term = this.term;
-  constructor(private deedService:DeedService, private router: Router, private route: ActivatedRoute, public dialog: MatDialog, public auth: AuthService, private sanitizer: DomSanitizer) { }
+  constructor(private titleService: Title, private deedService:DeedService, private router: Router, private route: ActivatedRoute, public dialog: MatDialog, public auth: AuthService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
+    this.titleService.setTitle('DETAILS - Russian Deeds App');
     this.id = this.route.snapshot.params['id'];
     
     this.deedService.getDeed(this.id).subscribe(deed => {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title }     from '@angular/platform-browser';
 import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { NoteService } from '../../services/note.service';
@@ -24,9 +25,10 @@ export class NotesComponent implements OnInit {
   noteId = null;
   editor;
 
-  constructor(private noteService: NoteService, private fb: FormBuilder, public auth: AuthService) { }
+  constructor(private titleService: Title, private noteService: NoteService, private fb: FormBuilder, public auth: AuthService) { }
 
   ngOnInit() {
+    this.titleService.setTitle('NOTES - Russian Deeds App');
     this.initForm();
     this.showNotes();
   }

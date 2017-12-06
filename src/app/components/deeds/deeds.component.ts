@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Title }     from '@angular/platform-browser';
 import {DataSource} from '@angular/cdk/collections';
 import {MatPaginator} from '@angular/material';
 import {MatSort} from '@angular/material';
@@ -40,12 +41,13 @@ export class DeedsComponent implements OnInit {
 
 	displayedColumns = ['deedCode','deedRef','deedDate','deedName','complete','details'];
 
-	constructor(private deedService: DeedService, private pagerService: PagerService, private sanitizer: DomSanitizer, public auth: AuthService) { }
+	constructor(private titleService: Title, private deedService: DeedService, private pagerService: PagerService, private sanitizer: DomSanitizer, public auth: AuthService) { }
 
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	@ViewChild(MatSort) sort: MatSort;
 	
 	ngOnInit() {
+		this.titleService.setTitle('LIST - Russian Deeds App');
 		this.deedService.getDeeds().subscribe(deeds => {
 			this.deeds = deeds;
 			this.length = deeds.length;

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Title }     from '@angular/platform-browser';
 import { DeedService } from '../../services/deed.service';
 import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -126,9 +127,11 @@ export class AddDeedComponent implements OnInit {
                 private deedService: DeedService, 
                 private router: Router, 
                 private notificationsService: NotificationsService,
-                public auth: AuthService) { }
+                public auth: AuthService,
+                private titleService: Title) { }
 
     ngOnInit() {
+        this.titleService.setTitle('ADD - Russian Deeds App');
         this.initForm();
         this.selectedAction = '';
         this.selectedCounterAction = '';
