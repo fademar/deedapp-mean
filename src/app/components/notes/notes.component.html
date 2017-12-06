@@ -1,5 +1,16 @@
 
-<app-navbar></app-navbar>
+<mat-toolbar color="primary" class="nav-bar" id="cssmenu">
+    <span class="nav-brand mr-5">Deed App</span>
+    <ul>
+      <li routerLinkActive="active"> 
+        <a [routerLink]="['/notes']">Notes</a>
+      </li>
+    </ul>
+    <span class="spacer"></span>
+    <button mat-icon-button class="logout-button" (click)="auth.logout()">
+      <mat-icon class="nav-icon md-24" aria-label="Logout">power_settings_new</mat-icon>
+    </button>
+</mat-toolbar>
 <form (keydown.enter)="$event.preventDefault()" [formGroup]="noteForm" (ngSubmit)="onSubmit()" novalidate>
   <div class="container main-container">
     <div class="card shadow mb-3">
