@@ -21,7 +21,7 @@ mat-sidenav {
     width: 250px;
 }
 
-mat-sidenav-container {
+html, body, mat-sidenav-container, .main-content {
     margin: 0;
     width: 100%;
     height: 100%;
