@@ -11,6 +11,8 @@
       <mat-icon class="nav-icon md-24" aria-label="Logout">power_settings_new</mat-icon>
     </button>
 </mat-toolbar>
+<div class="container main-container">
+ 
 <mat-sidenav-container>
     <mat-sidenav mode="side" opened="true">
         <!-- sidenav content -->
@@ -32,7 +34,6 @@
     </mat-sidenav>
     <!-- primary content -->
     <form (keydown.enter)="$event.preventDefault()" [formGroup]="noteForm" (ngSubmit)="onSubmit()" novalidate>
-        <div class="container main-content">
           <div class="card shadow mb-3">
             <div class="card-body">
                
@@ -44,6 +45,6 @@
                 </div>
               </div>
             </div>
-        </div>
       </form>
 </mat-sidenav-container>
+</div>
