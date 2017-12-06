@@ -13,9 +13,15 @@
     left: 90%; 
  }
  
- .icon-note {
+.icon-note {
      color: #FFFFFF;
- }
+}
+
+mat-sidenav {
+    width: 200px;
+}
+
+
 
  .nav-bar {
 	position: fixed;
