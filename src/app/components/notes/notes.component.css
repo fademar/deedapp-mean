@@ -22,7 +22,7 @@ mat-sidenav-container {
 }
 
 mat-sidenav {
-	width: 250px;
+	width: 280px;
 	padding: 80px 10px 0 10px;
 }
 
@@ -33,7 +33,10 @@ mat-sidenav-container, .main-content {
 }
 
 
-
+.noteSide:hover {
+	background-color: #3F51B5;
+	color: #FFFFFF;
+}
 
  .nav-bar {
 	position: fixed;

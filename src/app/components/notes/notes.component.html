@@ -16,7 +16,7 @@
         <div>Notes</div>
         <!-- sidenav content -->
         <div *ngIf="notes">
-            <div *ngFor="let note of notes" [ngClass]="{'hightlight': note.user === getUser()}">
+            <div class="noteSide" *ngFor="let note of notes" [ngClass]="{'hightlight': note.user === getUser()}" (click)=showFullNote(note._id)>
                 <div *ngIf="note.user === getUser()">
                     <button mat-icon-button type="button" class="pull-right" (click)="onEditClick(note._id)">
                             <mat-icon aria-label="edit" class="md-18">mode_edit</mat-icon>
@@ -25,7 +25,7 @@
                             <mat-icon aria-label="delete" class="md-18">delete</mat-icon>
                     </button>
                 </div>
-                <p>{{ note.content | excerpt:200 }}</p>
+                <p>{{ note.content | excerpt:150 }}</p>
                 <span class="info">par {{ note.user }} | {{ note.date | date:'d/M/y HH:mm' }}</span>
                 <hr>
             </div>
