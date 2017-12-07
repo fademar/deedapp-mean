@@ -53,6 +53,7 @@ import { NoteComponent } from './shared/note/note.component';
 import { NoteDialog } from './shared/note/note.component';
 import { NotesComponent } from './components/notes/notes.component';
 import { NewWindowDirective } from './directives/new-window.directive';
+import { ExcerptPipe } from './pipes/excerpt.pipe';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { NewWindowDirective } from './directives/new-window.directive';
     NoteComponent,
     NoteDialog,
     NotesComponent,
-    NewWindowDirective
+    NewWindowDirective,
+    ExcerptPipe
   ],
   imports: [
     BrowserModule,

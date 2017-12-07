@@ -25,8 +25,8 @@
                             <mat-icon aria-label="delete" class="md-18">delete</mat-icon>
                     </button>
                 </div>
-                <span class="info">{{ note.user }} | {{ note.date | date:'d/M/y HH:mm' }}</span>
-                <p>{{ note.content }}</p>
+                <p>{{ note.content | excerpt:200 }}</p>
+                <span class="info">par {{ note.user }} | {{ note.date | date:'d/M/y HH:mm' }}</span>
                 <hr>
             </div>
         </div>
