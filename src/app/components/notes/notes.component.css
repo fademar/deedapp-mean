@@ -26,7 +26,7 @@ mat-sidenav {
 	padding-top: 80px;
 }
 
-mat-sidenav-container, .main-content {
+mat-sidenav-container, .main-content, #note-text {
   margin: 0;
   width: 100%;
   height: 100%;
