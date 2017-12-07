@@ -34,6 +34,7 @@ mat-sidenav-container, .main-content {
 
 .note-side {
 	padding: 5px 10px;
+	border-bottom: 0.8px solid #ebedef;
 }
 
 .note-side:hover {
