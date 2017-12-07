@@ -1,44 +1,41 @@
-
-<mat-toolbar color="primary" class="nav-bar" id="cssmenu">
-    <span class="nav-brand mr-5">Deed App</span>
-    <ul>
-      <li routerLinkActive="active"> 
-        <a [routerLink]="['/notes']">Notes</a>
-      </li>
-    </ul>
-    <span class="spacer"></span>
-    <button mat-icon-button class="logout-button" (click)="auth.logout()">
-      <mat-icon class="nav-icon md-24" aria-label="Logout">power_settings_new</mat-icon>
-    </button>
-</mat-toolbar>
-<mat-sidenav-container>
-    <mat-sidenav mode="side" opened="true">
-        <!-- sidenav content -->
-        <div *ngIf="notes">
-            <div class="note-side" *ngFor="let note of notes" [ngClass]="{'hightlight': note.user === getUser()}" (click)=showFullNote(note._id)>
-                <div *ngIf="note.user === getUser()">
-                    <button mat-icon-button type="button" class="pull-right" (click)="onEditClick(note._id)">
-                            <mat-icon aria-label="edit" class="md-18">mode_edit</mat-icon>
-                    </button>
-                    <button mat-icon-button type="button" class="pull-right" (click)="onDeleteClick(note._id)">
-                            <mat-icon aria-label="delete" class="md-18">delete</mat-icon>
-                    </button>
+<form (keydown.enter)="$event.preventDefault()" [formGroup]="noteForm" (ngSubmit)="onSubmit()" novalidate>      
+    <mat-toolbar color="primary" class="nav-bar" id="cssmenu">
+        <span class="nav-brand mr-5">Deed App</span>
+        <ul>
+        <li routerLinkActive="active"> 
+            <a [routerLink]="['/notes']">Notes</a>
+        </li>
+        </ul>
+        <span class="spacer"></span>
+        <button mat-raised-button type="submit">SAVE</button>
+        <button mat-icon-button class="logout-button" (click)="auth.logout()">
+        <mat-icon class="nav-icon md-24" aria-label="Logout">power_settings_new</mat-icon>
+        </button>
+    </mat-toolbar>
+    <mat-sidenav-container>
+        <mat-sidenav mode="side" opened="true">
+            <!-- sidenav content -->
+            <div *ngIf="notes">
+                <div class="note-side" *ngFor="let note of notes" [ngClass]="{'hightlight': note.user === getUser()}" (click)="onEditClick(note._id)">
+                    <p>{{ note.content | excerpt:150 }}</p>
+                    <span class="info">par {{ note.user }} | {{ note.date | date:'d/M/y HH:mm' }}</span>
+                    <div *ngIf="note.user === getUser()">
+                        <button mat-icon-button type="button" class="pull-right" (click)="onDeleteClick(note._id)">
+                                <mat-icon aria-label="delete" class="md-18">delete</mat-icon>
+                        </button>
+                    </div>
                 </div>
-                <p>{{ note.content | excerpt:150 }}</p>
-                <span class="info">par {{ note.user }} | {{ note.date | date:'d/M/y HH:mm' }}</span>
+            </div>
+        </mat-sidenav>
+        <!-- primary content -->
+        <div class="main-content">
+            <div class="card shadow mb-3">
+                <div class="card-body">  
+                    <div class="form-group">
+                        <textarea rows="30" class="form-control" formControlName="content" placeholder="Write your note here"></textarea>
+                    </div>
+                </div>
             </div>
         </div>
-    </mat-sidenav>
-    <!-- primary content -->
-    <div class="main-content">
-        <form (keydown.enter)="$event.preventDefault()" [formGroup]="noteForm" (ngSubmit)="onSubmit()" novalidate>
-               
-            <div class="form-group">
-                <textarea rows="10" class="form-control" formControlName="content" placeholder="Write your note here"></textarea>
-            </div>
-            <div class="col text-center">
-                <button mat-raised-button type="submit" color="primary">SAVE</button>
-            </div>
-        </form>
-    </div>
-</mat-sidenav-container>
+    </mat-sidenav-container>
+</form>
