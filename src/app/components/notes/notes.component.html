@@ -13,6 +13,7 @@
 </mat-toolbar>
 <mat-sidenav-container>
     <mat-sidenav mode="side" opened="true">
+        <div>Notes</div>
         <!-- sidenav content -->
         <div *ngIf="notes">
             <div *ngFor="let note of notes" [ngClass]="{'hightlight': note.user === getUser()}">
