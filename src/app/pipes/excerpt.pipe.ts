@@ -5,15 +5,15 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ExcerptPipe implements PipeTransform {
 
-  transform(text: any, length?: any): any {
+  transform(text: any, length: number): any {
     if (!text || !length) {
       return text;
     }
     if (text.length > length) {
-      return text.substr(0, length) + '...'
+      return text.substr(0, length) + '...';
     }
     
-    return null;
+    return text;
   }
 
 }
