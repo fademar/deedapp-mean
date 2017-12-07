@@ -23,7 +23,7 @@ mat-sidenav-container {
 
 mat-sidenav {
 	width: 280px;
-	padding: 80px 10px 0 10px;
+	padding-top: 80px;
 }
 
 mat-sidenav-container, .main-content {
@@ -32,8 +32,11 @@ mat-sidenav-container, .main-content {
   height: 100%;
 }
 
+.note-side {
+	padding: 5px 10px;
+}
 
-.noteSide:hover {
+.note-side:hover {
 	background-color: #3F51B5;
 	color: #FFFFFF;
 }
