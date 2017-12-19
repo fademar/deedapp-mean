@@ -49,8 +49,6 @@ import { NoteService } from './services/note.service';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 import { NoteComponent } from './shared/note/note.component';
 import { NoteDialog } from './shared/note/note.component';
-import { NotesComponent } from './components/notes/notes.component';
-import { NewWindowDirective } from './directives/new-window.directive';
 
 @NgModule({
   declarations: [
@@ -66,9 +64,7 @@ import { NewWindowDirective } from './directives/new-window.directive';
     CallbackComponent,
     HomeComponent,
     NoteComponent,
-    NoteDialog,
-    NotesComponent,
-    NewWindowDirective
+    NoteDialog
   ],
   imports: [
     BrowserModule,
