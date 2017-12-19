@@ -40,6 +40,7 @@ mat-sidenav-container, .main-content, #note-text {
 .note-side:hover {
 	background-color: #3F51B5;
 	color: #FFFFFF;
+	cursor: pointer;
 }
 
  .nav-bar {
