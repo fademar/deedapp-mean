@@ -81,6 +81,7 @@ export class EditDeedComponent implements OnInit {
     lastDeedCode;
     lastDeedRef;
     lastDeedDate;
+    lastDeedRegistrationDate;
     selectedObject;
     value;
     indexValues = [];
@@ -1226,6 +1227,25 @@ export class EditDeedComponent implements OnInit {
             }
         });
     }
+
+    
+    insertLastResgitrationDate() {
+        this.deedService.getLastDeed().subscribe(result => {
+            this.lastDeed = result;
+            if (this.lastDeed.length < 1) {
+                this.deedForm.patchValue({
+                    deedRef: "No deed saved yet"
+                });
+            }
+            else {
+                this.lastDeedRegistrationDate = this.lastDeed[0].registrationDate;
+                this.deedForm.patchValue({
+                    registrationDate: this.lastDeedRegistrationDate
+                });
+            }
+        });
+    }
+
 
     // AGENT METHODS
 
