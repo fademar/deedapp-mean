@@ -29,7 +29,7 @@
         <!-- primary content -->
         <div class="main-content">
                 <form [formGroup]="noteForm" (ngSubmit)="onSubmit()" novalidate>                      
-                    <textarea style="height: 100%" formControlName="content" placeholder="Write your note here"></textarea>
+                    <textarea class="form-control" rows="1" style="height: 100%; width: 100%" formControlName="content" placeholder="Write your note here"></textarea>
                 </form>
         </div>
     </mat-sidenav-container>
