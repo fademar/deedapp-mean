@@ -1,4 +1,3 @@
-<form (keydown.enter)="$event.preventDefault()" [formGroup]="noteForm" (ngSubmit)="onSubmit()" novalidate>      
     <mat-toolbar color="primary" class="nav-bar" id="cssmenu">
         <span class="nav-brand mr-5">Deed App</span>
         <ul>
@@ -29,7 +28,8 @@
         </mat-sidenav>
         <!-- primary content -->
         <div class="main-content">
-            <textarea style="height: 100%" formControlName="content" placeholder="Write your note here"></textarea>
+                <form [formGroup]="noteForm" (ngSubmit)="onSubmit()" novalidate>                      
+                    <textarea style="height: 100%" formControlName="content" placeholder="Write your note here"></textarea>
+                </form>
         </div>
     </mat-sidenav-container>
-</form>
