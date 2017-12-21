@@ -1,20 +1,7 @@
-.info {
-    font-size: 0.8em;
-    font-style: italic;
-}
-
-.hightlight {
-    color: #3F51B5;
-}
-
-.btn-note {
-    position: fixed;
-    top: 90%;
-    left: 90%; 
- }
- 
-.icon-note {
-     color: #FFFFFF;
+app-note, mat-sidenav-container, .main-content {
+	margin: 0;
+  width: 100%;
+  height: 100%;
 }
 
 mat-sidenav-container {
@@ -26,16 +13,19 @@ mat-sidenav {
 	padding-top: 80px;
 }
 
-app-note, mat-sidenav-container, .main-content, #note-text {
-	margin: 0;
-  width: 100%;
-  height: 100%;
+.main-content {
+	padding: 30px;
 }
 
 textarea {
 	width: 100%;
 	height: 100%;
 }
+
+
+
+
+/* Side container CSS */
 
 .note-side {
 	padding: 10px 10px;
@@ -47,6 +37,30 @@ textarea {
 	color: #FFFFFF;
 	cursor: pointer;
 }
+
+/* Text of side notes CSS */
+
+.info {
+	font-size: 0.8em;
+	font-style: italic;
+}
+
+.hightlight {
+	color: #3F51B5;
+}
+
+.btn-note {
+	position: fixed;
+	top: 90%;
+	left: 90%; 
+}
+
+.icon-note {
+	 color: #FFFFFF;
+}
+
+
+/* Navigation CSS */
 
  .nav-bar {
 	position: fixed;
@@ -178,7 +192,6 @@ textarea {
 }
 
 
-
 button:focus, button:active {
 	outline: none !important;
 }
@@ -190,7 +203,6 @@ button:focus, button:active {
 .logout-button {
 	cursor: pointer;
 }
-
 
 .spacer {
 	flex: 1 1 auto;
