@@ -24,6 +24,7 @@ import { MatButtonToggleModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material';
 import { MatSidenavModule } from '@angular/material';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { QuillEditorModule } from 'ng2-quill-editor';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -103,7 +104,8 @@ import { ExcerptPipe } from './pipes/excerpt.pipe';
     MatToolbarModule, 
     MatSidenavModule, 
     FroalaEditorModule.forRoot(), 
-    FroalaViewModule.forRoot() 
+    FroalaViewModule.forRoot(),
+    QuillEditorModule 
   ],
   entryComponents: [ConfirmDialogComponent, NoteDialog],
   providers: [Title, DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, NoteService],
