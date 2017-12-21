@@ -29,8 +29,16 @@
         <!-- primary content -->
         <div class="main-content">
             <form [formGroup]="noteForm" (ngSubmit)="onSubmit()" novalidate>                      
-                <button mat-raised-button type="submit">SAVE</button>
-                <textarea class="form-control" rows="8" formControlName="content" placeholder="Write your note here"></textarea>
+                <div class="row">
+                    <div class="col">
+                        <button mat-raised-button type="submit">SAVE</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <textarea class="form-control" formControlName="content" placeholder="Write your note here"></textarea>
+                    </div>
+                </div>
             </form>
         </div>
     </mat-sidenav-container>
