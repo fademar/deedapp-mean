@@ -1,3 +1,5 @@
+<form [formGroup]="noteForm" (ngSubmit)="onSubmit()" novalidate>                      
+    
     <mat-toolbar color="primary" class="nav-bar" id="cssmenu">
         <span class="nav-brand mr-5">Deed App</span>
         <ul>
@@ -20,7 +22,7 @@
                     <span class="info">par {{ note.user }} | {{ note.date | date:'d/M/y HH:mm' }}</span>
                     <div *ngIf="note.user === getUser()">
                         <button mat-icon-button type="button" class="pull-right" (click)="onDeleteClick(note._id)">
-                                <mat-icon aria-label="delete" class="md-18">delete</mat-icon>
+                            <mat-icon aria-label="delete" class="md-18">delete</mat-icon>
                         </button>
                     </div>
                 </div>
@@ -28,8 +30,9 @@
         </mat-sidenav>
         <!-- primary content -->
         <div class="main-content">
-                <form [formGroup]="noteForm" (ngSubmit)="onSubmit()" novalidate>                      
-                    <textarea class="form-control" rows="1" style="height: 100%; width: 100%" formControlName="content" placeholder="Write your note here"></textarea>
-                </form>
+            <div class="form-group">
+                <textarea class="form-control" rows="8" formControlName="content" placeholder="Write your note here"></textarea>
+            </div>
         </div>
     </mat-sidenav-container>
+</form>

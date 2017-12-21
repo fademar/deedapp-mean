@@ -32,6 +32,11 @@ app-note, mat-sidenav-container, .main-content, #note-text {
   height: 100%;
 }
 
+textarea {
+	width: 100%;
+	height: 100%;
+}
+
 .note-side {
 	padding: 10px 10px;
 	border-bottom: 0.8px solid #ebedef;
@@ -169,7 +174,7 @@ app-note, mat-sidenav-container, .main-content, #note-text {
 
 
 .nav-icon {
-	color: #FFFFFF;
+	color: #3F51B5;
 }
 
 
