@@ -1084,4 +1084,23 @@
 
         </div> <!-- END card-body REGISTRATION TO CONTRACT -->
     </div> <!-- END CARD REGISTRATION TO CONTRACT -->
+
+    <!-- ANNEXES -->
+
+	<div *ngIf="deed.verbatimCitations || deed.researcherNotes" class="card shadow mb-3">
+        <div class="card-header">
+            <div class="row justify-content-center">
+                <div class="col-4">
+                    <h5 class="text-center">Annexes</h5>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                <li *ngIf="deed.verbatimCitations" class="list-group-item"><strong>Verbatim Citations: </strong><span class="form-data">{{ deed.verbatimCitations }}</span></li>
+                <li *ngIf="deed.researcherNotes" class="list-group-item"><strong>Researcher Notes: </strong><span class="form-data">{{ deed.researcherNotes }}</span></li>                
+            </ul>
+        </div>
+    </div>
+    
 </div>

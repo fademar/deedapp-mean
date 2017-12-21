@@ -714,6 +714,11 @@ export class AddDeedComponent implements OnInit {
                 this.counterAgentField = '';
                 break;
             }
+            case 'agrees to divide property': {
+                this.selectedAction = '';
+                this.deedForm.controls.transactions['controls'][i].controls.counterAgentAction.patchValue('agrees to divide property');
+                break;
+            }
             case 'agrees to marry-off': {
                 this.selectedAction = 'whom';
                 this.counterAgentField = 'selectMarry';

@@ -532,6 +532,11 @@ export class EditDeedComponent implements OnInit {
                             this.counterAgentField = 'selectMarry';
                             break;
                         }
+                        case 'agrees to divide property': {
+                            this.selectedAction = '';
+                            this.deedForm.controls.transactions['controls'][i].controls.counterAgentAction.patchValue('agrees to divide property');
+                            break;
+                        }
                         case 'manumits': {
                             this.deedForm.controls.transactions['controls'][i].controls.counterAgentAction.patchValue('pays');
                             this.selectedAction = '';

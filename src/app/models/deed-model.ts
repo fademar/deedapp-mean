@@ -64,7 +64,7 @@ export const currencies = ['', 'rouble', 'altyn', 'denga'];
 
 export const relationtoagents = ['', 'parents', 'corporation members', 'companions', 'other'];
 
-export const agentActionsList = ['', 'agrees to divorce', 'agrees to marry', 'agrees to marry-off', 'bequeaths', 'borrows', 'cedes', 'donates', 'elects', 'engages', 'exchanges', 'manumits', 'mortgages', 'promises', 'puts to rent', 'sells', 'settles', 'signs receipt'];
+export const agentActionsList = ['', 'agrees to divide property', 'agrees to divorce', 'agrees to marry', 'agrees to marry-off', 'bequeaths', 'borrows', 'cedes', 'donates', 'elects', 'engages', 'exchanges', 'manumits', 'mortgages', 'promises', 'puts to rent', 'sells', 'settles', 'signs receipt'];
 
 export const whatList = ['', 'chattels', 'debt', 'dependent', 'forfeit', 'fugitive souls', 'goods', 'immovable property', 'money', 'parent', 'responsibilities', 'share from estate', 'souls'];
 
@@ -80,4 +80,4 @@ export const activityList = ['', 'транспорт', 'строительств
 
 export const typeTaxList = ['', 'мельница', 'рыбная ловля', 'конская площадка', 'мост и перевоз', 'other'];
 
-export const counterAgentActionsList = ['', 'agrees to marry', 'agrees to marry-off', 'cedes', 'exchanges', 'lends', 'pays', 'settles'];
+export const counterAgentActionsList = ['', 'agrees to divide property', 'agrees to marry', 'agrees to marry-off', 'cedes', 'exchanges', 'lends', 'pays', 'settles'];
