@@ -23,6 +23,7 @@ import { MatRadioModule } from '@angular/material';
 import { MatButtonToggleModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material';
 import { MatSidenavModule } from '@angular/material';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -100,7 +101,9 @@ import { ExcerptPipe } from './pipes/excerpt.pipe';
     MatRadioModule,
     MatButtonToggleModule,
     MatToolbarModule, 
-    MatSidenavModule 
+    MatSidenavModule, 
+    FroalaEditorModule.forRoot(), 
+    FroalaViewModule.forRoot() 
   ],
   entryComponents: [ConfirmDialogComponent, NoteDialog],
   providers: [Title, DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, NoteService],

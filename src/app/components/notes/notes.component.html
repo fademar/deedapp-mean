@@ -30,12 +30,12 @@
         <div class="main-content">
             <form [formGroup]="noteForm" (ngSubmit)="onSubmit()" style="height: 100%" novalidate>                      
                 <div class="row">
-                    <div class="col">
-                        <button mat-raised-button type="submit">SAVE</button>
+                    <div class="col text-right">
+                        <button mat-raised-button color="primary" type="submit">SAVE</button>
                     </div>
                 </div>
                 <div class="row" style="height: 100%">
-                    <div class="col" style="height: 100%; padding: 0.5em">
+                    <div [froalaEditor] class="col" style="height: 100%; padding: 1em">
                         <textarea class="form-control" formControlName="content" placeholder="Write your note here"></textarea>
                     </div>
                 </div>
