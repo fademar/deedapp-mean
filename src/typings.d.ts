@@ -3,5 +3,4 @@ declare var module: NodeModule;
 interface NodeModule {
   id: string;
 }
-declare var tinymce: any;
-declare var require: NodeRequire;
+declare var require: any;
