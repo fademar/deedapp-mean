@@ -17,7 +17,7 @@
             <div *ngIf="notes">
                 <div class="note-side" *ngFor="let note of notes" [ngClass]="{'hightlight': note.user === getUser()}" (click)="onEditClick(note._id)">
                     <p>{{ note.content | excerpt:150 }}</p>
-                    <span class="info">par {{ note.user }} | {{ note.date | date:'d/M/y HH:mm' }}</span>
+                    <span class="info">modifiée le {{ note.date | date:'d/M/y HH:mm' }}<br>par {{ note.user }}</span>
                 </div>
             </div>
         </mat-sidenav>
@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col text-right pb-3">
                         <button *ngIf="note.user === getUser()" mat-icon-button type="button" (click)="onDeleteClick(note._id)">
-                            <mat-icon aria-label="delete" class="md-18">delete</mat-icon>
+                            <mat-icon aria-label="delete" class="md-18" color="warn">delete</mat-icon>
                         </button>
                         <button mat-raised-button color="primary" type="submit">SAVE</button>
                     </div>
