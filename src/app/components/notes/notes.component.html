@@ -33,8 +33,10 @@
                     </div>
                 </div>
                 <div class="row" style="height: 100%">
-                    <div *ngIf="note.user !== getUser()">{{ note.content }}</div>
-                    <quill-editor *ngIf="note.user === getUser()" formControlName="content" style="width: 100%"></quill-editor>
+                    <div *ngIf="note">
+                        <div *ngIf="note.user !== getUser()">{{ note.content }}</div>
+                        <quill-editor *ngIf="note.user === getUser()" formControlName="content" style="width: 100%"></quill-editor>
+                    </div>
                 </div>
             </form>
         </div>
