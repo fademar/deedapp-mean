@@ -76,7 +76,7 @@ export const whomList = ['', 'parent', 'dependent'];
 
 export const asWhomList = ['', 'as hired worker', 'in household', 'as son-in-law', 'as bondman', 'as peasant', 'as contractor', 'as tax-farmer', 'other'];
 
-export const activityList = ['', 'транспорт', 'строительство', 'поставка вина', 'поставка хлеба', 'other'];
+export const activityList = ['', 'транспорт', 'строительство', 'поставка вина', 'поставка хлеба', 'поставка разных товаров', 'поставка сала', 'изготовление/поставка ремесленных изделий', 'other'];
 
 export const typeTaxList = ['', 'мельница', 'рыбная ловля', 'конская площадка', 'мост и перевоз', 'other'];
 
