@@ -929,6 +929,23 @@
                                 </div>
                             </div>
                         </ng-template>
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <div class="row justify-content-center">
+                                    <div class="col-4">
+                                        <h5 class="text-center">Contract Information</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group">
+                                    <li *ngIf="transaction.advancePayment" class="list-group-item"><strong>Advance Payment: </strong><span class="form-data">{{ transaction.advancePayment }}</span></li>
+                                    <li *ngIf="transaction.contractConditions" class="list-group-item"><strong>Contract Conditions: </strong><span class="form-data">{{ transaction.contractConditions }}</span></li>
+                                    <li *ngIf="transaction.contractDuration" class="list-group-item"><strong>Contract Duration: </strong><span class="form-data">{{ transaction.contractDuration }}</span></li>
+                                    <li *ngIf="transaction.forfeit" class="list-group-item"><strong>Forfeit: </strong><span class="form-data">{{ transaction.forfeit }}</span></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </ng-template>
