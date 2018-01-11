@@ -277,7 +277,6 @@ export class AddDeedComponent implements OnInit {
 
     updateAgent() {
         this.agentSex = this.deedForm.get('agentSex').value;
-        this.agent.reset();
         switch (this.agentSex) {
             case 'male': {
                 this.agent = this.fb.group({
