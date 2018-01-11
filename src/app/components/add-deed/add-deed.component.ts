@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChildren } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Title }     from '@angular/platform-browser';
 import { DeedService } from '../../services/deed.service';
 import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
@@ -1435,7 +1435,6 @@ export class AddDeedComponent implements OnInit {
 
 
     // Whitnesses Methods (init, add, remove)
-    @ViewChildren('whitnessGeogrStatus') vc;
 
     initWhitness() {
 
@@ -1454,7 +1453,6 @@ export class AddDeedComponent implements OnInit {
     addWhitness() {
         const control = <FormArray>this.deedForm.controls['whitnesses'];
         control.push(this.initWhitness());
-        this.vc.first.nativeElement.focus();
 
     }
 
