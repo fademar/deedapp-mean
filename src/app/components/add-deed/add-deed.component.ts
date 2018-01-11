@@ -153,10 +153,24 @@ export class AddDeedComponent implements OnInit {
             deedName: [''],
             deedLanguage: ['russian'],
             agentSex: ['male'],
-            agent: this.fb.group({}),
+            agent: this.fb.group({
+                geogrStatus: [''],
+                socialStatus: [''],
+                firstName: [''],
+                patronyme: [''],
+                lastName: [''],
+                relatedTo: ['']
+            }),
             coAgents: this.fb.array([]),
             counterAgentSex: ['male'],
-            counterAgent: this.fb.group({}),
+            counterAgent: this.fb.group({
+                geogrStatus: [''],
+                socialStatus: [''],
+                firstName: [''],
+                patronyme: [''],
+                lastName: [''],
+                relatedTo: ['']
+            }),
             coCounterAgents: this.fb.array([]),
             transactions: this.fb.array([
                 this.initTransaction(),
@@ -263,7 +277,7 @@ export class AddDeedComponent implements OnInit {
 
     updateAgent() {
         this.agentSex = this.deedForm.get('agentSex').value;
-
+        this.agent.reset();
         switch (this.agentSex) {
             case 'male': {
                 this.agent = this.fb.group({
