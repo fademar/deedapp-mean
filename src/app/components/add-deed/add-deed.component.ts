@@ -151,10 +151,24 @@ export class AddDeedComponent implements OnInit {
             deedName: [''],
             deedLanguage: ['russian'],
             agentSex: ['male'],
-            agent: this.fb.group({}),
+            agent: this.fb.group({
+                geogrStatus: [''],
+                socialStatus: [''],
+                firstName: [''],
+                patronyme: [''],
+                lastName: [''],
+                relatedTo: ['']
+            }),
             coAgents: this.fb.array([]),
             counterAgentSex: ['male'],
-            counterAgent: this.fb.group({}),
+            counterAgent: this.fb.group({
+                geogrStatus: [''],
+                socialStatus: [''],
+                firstName: [''],
+                patronyme: [''],
+                lastName: [''],
+                relatedTo: ['']
+            }),
             coCounterAgents: this.fb.array([]),
             transactions: this.fb.array([
                 this.initTransaction(),
