@@ -86,6 +86,7 @@ export class EditDeedComponent implements OnInit {
     value;
     indexValues = [];
     resultFor;
+    sub;
 
     gender = gender;
     socialBody = socialBody;
@@ -130,6 +131,14 @@ export class EditDeedComponent implements OnInit {
 
     ngOnInit() {
         this.id = this.route.snapshot.params['id'];
+        this.sub = this.route
+            .queryParams
+            .subscribe(params => {
+                if (params['resultFor']) {
+                    this.resultFor = params['resultFor'];
+                }
+            });
+            
         this.deedService.getDeed(this.id).subscribe(deed => {
 
             // Getting deed values from db
@@ -2582,7 +2591,7 @@ export class EditDeedComponent implements OnInit {
             }
         });
         setTimeout(() => {
-            this.resultFor = this.route.snapshot.params['resultFor'];
+           
             if (this.resultFor) {
                 this.router.navigate(['/deed/' + this.id], {queryParams: {'resultFor': this.resultFor}});
             }
