@@ -27,6 +27,7 @@ export class DeedDetailsComponent implements OnInit {
   dialogRef: MatDialogRef<ConfirmDialogComponent>;
 
   term = this.term;
+  
   constructor(private deedService:DeedService, private router: Router, private route: ActivatedRoute, public dialog: MatDialog, public auth: AuthService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {

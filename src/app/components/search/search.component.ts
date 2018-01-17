@@ -50,13 +50,13 @@ export class SearchComponent implements OnInit {
     loadData(q) {
         this.searchService.searchEntries(q).subscribe(results => {
             this.results = results;
-            console.log(this.results);
         });
     }
 
     onSubmit() {
         this.term = this.searchForm.controls.searchTerm.value;
         this.searchService.clearCache();
+        this.router.navigate(['/search'], {queryParams: {'resultsFor': this.term}});
         this.loadData(this.term);
         localStorage.setItem('results', JSON.stringify(this.loadData(this.term)));
     }
