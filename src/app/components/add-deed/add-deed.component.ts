@@ -718,7 +718,7 @@ export class AddDeedComponent implements OnInit {
             }
             case 'sells': {
                 this.selectedAction = 'what';
-                this.selectedCounterAction = 'what';
+                this.selectedCounterAction = 'whatM';
                 this.counterAgentField = 'select';
                 this.deedForm.controls.transactions['controls'][i].controls.counterAgentAction.patchValue('pays');
                 break;
