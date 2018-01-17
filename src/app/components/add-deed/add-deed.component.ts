@@ -657,6 +657,7 @@ export class AddDeedComponent implements OnInit {
             counterAgentTransactionObjects: this.fb.array([]),
             counterAgentTransactionObjectType: [''],
             advancePayment: ['no'],
+            partialAdvance: ['no'],
             contractConditions: [''],
             contractDuration: [''],
             forfeit: ['']

@@ -437,11 +437,14 @@ export class EditDeedComponent implements OnInit {
                     if (i !== 0) {
                         control.push(this.initTransaction());
                     }
-
+                    if (transaction.partialAdvance === 'undefined') {
+                        transaction.partialAdvance = null;
+                    }
                     this.deedForm.controls['transactions']['controls'][i].patchValue({
                         agentAction: transaction.agentAction,
                         counterAgentAction: transaction.counterAgentAction,
                         advancePayment: transaction.advancePayment,
+                        partialAdvance: transaction.partialAdvance,
                         contractConditions: transaction.contractConditions,
                         contractDuration: transaction.contractDuration,
                         forfeit: transaction.forfeit
@@ -1621,6 +1624,7 @@ export class EditDeedComponent implements OnInit {
             counterAgentTransactionObjects: this.fb.array([]),
             counterAgentTransactionObjectType: [''],
             advancePayment: ['no'],
+            partialAdvance: ['no'],
             contractConditions: [''],
             contractDuration: [''],
             forfeit: ['']
