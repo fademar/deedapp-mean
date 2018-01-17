@@ -49,6 +49,7 @@ import { NoteService } from './services/note.service';
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 import { NoteComponent } from './shared/note/note.component';
 import { NoteDialog } from './shared/note/note.component';
+import { AutofocusDirective } from './shared/autofocus/autofocus.directive';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { NoteDialog } from './shared/note/note.component';
     CallbackComponent,
     HomeComponent,
     NoteComponent,
-    NoteDialog
+    NoteDialog,
+    AutofocusDirective
   ],
   imports: [
     BrowserModule,
