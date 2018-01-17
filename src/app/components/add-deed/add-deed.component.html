@@ -1576,6 +1576,14 @@
 										</select>
 									</div>
 								</div>
+								<div *ngSwitchCase="'whatM'">
+									<div class="form-group">
+										<label>What ?</label>
+										<select class="form-control" formControlName="counterAgentTransactionObjectType" (change)="selectedCounterWhat(i)">
+											<option *ngFor="let what of whatListM" [value]="what">{{ what }}</option>
+										</select>
+									</div>
+								</div>
 								<div *ngSwitchCase="'whom'">
 									<div class="form-group">
 										<label>Whom ?</label>

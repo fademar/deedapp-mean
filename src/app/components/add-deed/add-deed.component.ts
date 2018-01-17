@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { DeedService } from '../../services/deed.service';
 import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Male, Female, BodyCorporate, OtherParticipant, Registrator, Fee, gender, transactionTypes, currencies, socialBody, relationtoagents, agentActionsList, whatList, immovablePropertyList, shareList, whomList, asWhomList, activityList, typeTaxList, counterAgentActionsList } from '../../models/deed-model'
+import { Male, Female, BodyCorporate, OtherParticipant, Registrator, Fee, gender, transactionTypes, currencies, socialBody, relationtoagents, agentActionsList, whatList, whatListM, immovablePropertyList, shareList, whomList, asWhomList, activityList, typeTaxList, counterAgentActionsList } from '../../models/deed-model'
 import { NotificationsService } from 'angular2-notifications';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -92,6 +92,7 @@ export class AddDeedComponent implements OnInit {
     socialBody = socialBody;
     agentActionsList = agentActionsList;
     whatList = whatList;
+    whatListM = whatListM;
     transactionTypes = transactionTypes;
     relationtoagents = relationtoagents;
     currencies = currencies;
@@ -807,9 +808,12 @@ export class AddDeedComponent implements OnInit {
 
             case 'cedes':
             case 'exchanges':
-            case 'lends':
-            case 'pays': {
+            case 'lends': {
                 this.selectedCounterAction = 'what';
+                break;
+            }
+            case 'pays': {
+                this.selectedCounterAction = 'whatM';
                 break;
             }
             case 'agrees to marry-off': {
