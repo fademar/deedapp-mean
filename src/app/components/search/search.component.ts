@@ -56,7 +56,7 @@ export class SearchComponent implements OnInit {
     onSubmit() {
         this.term = this.searchForm.controls.searchTerm.value;
         this.searchService.clearCache();
-        this.router.navigate(['/search'], {queryParams: {'resultsFor': this.term}});
+        this.router.navigate(['/search'], {queryParams: {'resultFor': this.term}});
         this.loadData(this.term);
         localStorage.setItem('results', JSON.stringify(this.loadData(this.term)));
     }
@@ -64,6 +64,7 @@ export class SearchComponent implements OnInit {
     clearResults() {
         this.searchForm.reset();
         this.results = '';
+        this.router.navigate(['/search']);
     }
 
 }

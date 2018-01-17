@@ -85,6 +85,7 @@ export class EditDeedComponent implements OnInit {
     selectedObject;
     value;
     indexValues = [];
+    resultFor;
 
     gender = gender;
     socialBody = socialBody;
@@ -2581,7 +2582,13 @@ export class EditDeedComponent implements OnInit {
             }
         });
         setTimeout(() => {
-            this.router.navigate(['/deed/' + this.id]);
+            this.resultFor = this.route.snapshot.params['resultFor'];
+            if (this.resultFor) {
+                this.router.navigate(['/deed/' + this.id], {queryParams: {'resultFor': this.resultFor}});
+            }
+            else {
+                this.router.navigate(['/deed/' + this.id]);
+            }
         }, 2000);
     }
 
