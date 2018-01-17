@@ -150,10 +150,10 @@ export class AddDeedComponent implements OnInit {
             }),
             deedName: [''],
             deedLanguage: ['russian'],
-            agentSex: [''],
+            agentSex: ['male'],
             agent: this.fb.group({}),
             coAgents: this.fb.array([]),
-            counterAgentSex: [''],
+            counterAgentSex: ['male'],
             counterAgent: this.fb.group({}),
             coCounterAgents: this.fb.array([]),
             transactions: this.fb.array([
