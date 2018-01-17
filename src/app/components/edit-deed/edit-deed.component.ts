@@ -438,7 +438,7 @@ export class EditDeedComponent implements OnInit {
                         control.push(this.initTransaction());
                     }
                     if (transaction.partialAdvance === 'undefined') {
-                        transaction.partialAdvance = null;
+                        transaction.partialAdvance = 'no';
                     }
                     this.deedForm.controls['transactions']['controls'][i].patchValue({
                         agentAction: transaction.agentAction,
