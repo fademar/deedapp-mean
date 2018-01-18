@@ -7,6 +7,7 @@ import { AuthService } from '../../services/auth.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 import { HighlightPipe } from '../../pipes/highlight.pipe';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-deed-details',
@@ -42,15 +43,19 @@ export class DeedDetailsComponent implements OnInit {
             .queryParams
             .subscribe(params => {
                 this.term = params['resultFor'] || null;
-                if(params['resultFor']){
-                    console.log(params['resultFor']);
-                    console.log(deed);
-                    this.strDeed = this.highlight.transform(JSON.stringify(deed), params['resultFor']);
-                    this.deed = JSON.parse(this.strDeed);
-                } else {
-                    this.deed = deed;
-                }
+        });
+
+        if(this.term){
+            console.log(this.term);
+            console.log(deed);
+            _.forIn(deed, function(value, key) {
+                console.log(value);
+                value = this.highlight.transform(value, this.term);
             });
+
+        } else {
+            this.deed = deed;
+        }
 
         // Download Button Function
         let json = JSON.stringify(this.deed);
