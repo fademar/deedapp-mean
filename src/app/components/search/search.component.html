@@ -51,7 +51,7 @@
                 <tr *ngFor='let result of results'>
                   <td>{{ result.deedCode }}</td>
                   <td>{{ result.deedRef }}</td>
-                  <td><span *ngIf="result.deedDate.day">{{deed.deedDate.day}}-</span><span *ngIf="result.deedDate.month">{{deed.deedDate.month}}-</span><span *ngIf="result.deedDate.year">{{deed.deedDate.year}}</span><span *ngIf="!result.deedDate && result.registrationDate"><em>{{ result.registrationDate }}</em></span></td>
+                  <td><span *ngIf="result.deedDate.day">{{result.deedDate.day}}-</span><span *ngIf="result.deedDate.month">{{result.deedDate.month}}-</span><span *ngIf="result.deedDate.year">{{result.deedDate.year}}</span><span *ngIf="!result.deedDate && result.registrationDate"><em>{{ result.registrationDate }}</em></span></td>
                   <td><span *ngIf="result.deedName">{{ result.deedName }}</span></td>
                   <td><span *ngIf="result.agent"><span *ngIf="result.agent.firstName">{{ result.agent.firstName }}</span> <span *ngIf="result.agent.lastName">{{ result.agent.lastName }}</span> <span *ngIf="result.agent.corporationName">{{ result.agent.corporationName }}</span></span></td>
                   <td style="text-align:center"><mat-icon *ngIf="result.complete" class="mat-24">check</mat-icon></td>
