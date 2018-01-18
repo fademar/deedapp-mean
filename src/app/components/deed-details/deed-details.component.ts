@@ -37,14 +37,17 @@ export class DeedDetailsComponent implements OnInit {
     
     this.deedService.getDeed(this.id).subscribe(deed => {
         
-        this.route.queryParams.subscribe((params)=> {
-            if(params['resultFor']){
-                console.log(params['resultFor']);
-              this.deed = this.highlight.transform(deed, params['resultFor']);
-            } else {
-              this.deed = deed;
-            }
-        });
+        this.sub = this.route
+            .queryParams
+            .subscribe(params => {
+                this.term = params['resultFor'] || null;
+                if(params['resultFor']){
+                    console.log(params['resultFor']);
+                  this.deed = this.highlight.transform(deed, params['resultFor']);
+                } else {
+                  this.deed = deed;
+                }
+            });
 
         // Download Button Function
         let json = JSON.stringify(this.deed);
@@ -147,11 +150,7 @@ export class DeedDetailsComponent implements OnInit {
 
     });
 
-    this.sub = this.route
-      .queryParams
-      .subscribe(params => {
-        this.term = params['resultFor'] || null;
-      });
+    
   }
  
  onDeleteClick(id) {
