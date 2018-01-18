@@ -94,7 +94,9 @@ button:focus, button:active {
 	left: 90%;
 }
 
-
+:host ::ng-deep .search-highlight{
+  background-color: #F2E366;
+}
 
 
 /* default .loading styles, .loading should be invisible, opacity: 0, z-index: -1 */
