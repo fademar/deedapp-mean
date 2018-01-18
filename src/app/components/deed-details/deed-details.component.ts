@@ -12,7 +12,7 @@ import { HighlightPipe } from '../../pipes/highlight.pipe';
   selector: 'app-deed-details',
   templateUrl: './deed-details.component.html',
   styleUrls: ['./deed-details.component.css'],
-  providers: [MatDialog]
+  providers: [MatDialog, HighlightPipe]
 })
 export class DeedDetailsComponent implements OnInit {
   
