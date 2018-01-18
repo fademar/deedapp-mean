@@ -39,6 +39,7 @@ export class DeedDetailsComponent implements OnInit {
         
         this.route.queryParams.subscribe((params)=> {
             if(params['resultFor']){
+                console.log(params['resultFor']);
               this.deed = this.highlight.transform(deed, params['resultFor']);
             } else {
               this.deed = deed;
