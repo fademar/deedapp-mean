@@ -45,8 +45,8 @@ export class DeedDetailsComponent implements OnInit {
                 if(params['resultFor']){
                     console.log(params['resultFor']);
                     console.log(deed);
-                    this.strDeed = this.highlight.transform(deed.stringify(), params['resultFor']);
-                    this.deed = this.strDeed.parse();
+                    this.strDeed = this.highlight.transform(JSON.stringify(deed), params['resultFor']);
+                    this.deed = JSON.parse(this.strDeed);
                 } else {
                     this.deed = deed;
                 }
