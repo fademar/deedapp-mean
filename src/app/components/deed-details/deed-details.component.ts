@@ -43,9 +43,10 @@ export class DeedDetailsComponent implements OnInit {
                 this.term = params['resultFor'] || null;
                 if(params['resultFor']){
                     console.log(params['resultFor']);
-                  this.deed = this.highlight.transform(deed, params['resultFor']);
+                    console.log(deed);
+                    this.deed = this.highlight.transform(deed, params['resultFor']);
                 } else {
-                  this.deed = deed;
+                    this.deed = deed;
                 }
             });
 
