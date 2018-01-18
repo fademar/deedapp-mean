@@ -19,6 +19,7 @@ export class DeedDetailsComponent implements OnInit {
   id: string;
   deed;
   sub;
+  strDeed;
   selectedActions = this.selectedActions;
   selectedAction;
   selectedCounterActions = this.selectedCounterActions;
@@ -44,7 +45,8 @@ export class DeedDetailsComponent implements OnInit {
                 if(params['resultFor']){
                     console.log(params['resultFor']);
                     console.log(deed);
-                    this.deed = this.highlight.transform(deed, params['resultFor']);
+                    this.strDeed = this.highlight.transform(deed.stringify(), params['resultFor']);
+                    this.deed = this.strDeed.parse();
                 } else {
                     this.deed = deed;
                 }
