@@ -50,7 +50,8 @@ export class DeedDetailsComponent implements OnInit {
             console.log(deed);
             _.forIn(deed, function(value, key) {
                 console.log(value);
-                value = this.highlight.transform(value, this.term);
+                this.highlight.transform(value, this.term);
+                console.log(value);
             });
 
         } else {
