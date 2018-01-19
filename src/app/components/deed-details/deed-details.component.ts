@@ -46,13 +46,12 @@ export class DeedDetailsComponent implements OnInit {
         });
 
         if(this.term){
-            console.log(this.term);
+            console.log('search term: ' + this.term);
             console.log(deed);
-            _.forIn(deed, function(value, key) {
-                console.log(value);
-                // this.highlight.transform(value, this.term);
-                // console.log(value);
-            });
+            for (let prop in deed) {
+                console.log(prop);
+            }
+            this.deed = deed;
 
         } else {
             this.deed = deed;
