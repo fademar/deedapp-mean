@@ -33,6 +33,25 @@ export class DeedDetailsComponent implements OnInit {
   term = this.term;
   constructor(private titleService: Title, private deedService:DeedService, private router: Router, private route: ActivatedRoute, public dialog: MatDialog, public auth: AuthService, private sanitizer: DomSanitizer, private highlight: HighlightPipe) { }
 
+
+  loop(obj) {
+      _.forIn(obj, function(value, key){
+        if (Array.isArray(value)) {
+            _.forEach(value, function(value) {
+                _.forIn(value, function(value, key){
+                    console.log(key + ' : ' + value);
+                });
+            });
+        } else if (typeof value === 'object' && value !== null) {
+            _.forIn(value, function(value, key){
+                console.log(key + ' : ' + value);
+            });
+        } else {
+            console.log(key + ' : ' + value);
+        }
+      });
+  }
+
   ngOnInit() {
     this.titleService.setTitle('DETAILS - Russian Deeds App');
     this.id = this.route.snapshot.params['id'];
@@ -46,10 +65,9 @@ export class DeedDetailsComponent implements OnInit {
         });
 
         if(this.term){
-            let strdeed = JSON.stringify(deed);
-            console.log(strdeed);
-            _.replace(strdeed, this.term, 'BYEBYE');
+            this.loop(deed);
             
+
             this.deed = deed;
 
         } else {
