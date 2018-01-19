@@ -48,9 +48,9 @@ export class DeedDetailsComponent implements OnInit {
         if(this.term){
             console.log('search term: ' + this.term);
             console.log(deed);
-            for (let prop in deed) {
-                console.log(prop);
-            }
+            _.forIn(deed, function(value, key) {
+                console.log(key + ' : ' + value);
+            });
             this.deed = deed;
 
         } else {
