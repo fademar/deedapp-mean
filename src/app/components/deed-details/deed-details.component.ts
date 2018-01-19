@@ -31,26 +31,9 @@ export class DeedDetailsComponent implements OnInit {
   dialogRef: MatDialogRef<ConfirmDialogComponent>;
 
   term = this.term;
-  constructor(private titleService: Title, private deedService:DeedService, private router: Router, private route: ActivatedRoute, public dialog: MatDialog, public auth: AuthService, private sanitizer: DomSanitizer, private highlight: HighlightPipe) { }
 
+  constructor(private titleService: Title, private deedService:DeedService, private router: Router, private route: ActivatedRoute, public dialog: MatDialog, public auth: AuthService, private sanitizer: DomSanitizer, public highlight: HighlightPipe) { }
 
-//   loop(obj) {
-//       _.forIn(obj, function(value, key){
-//         if (Array.isArray(value)) {
-//             _.forEach(value, function(value) {
-//                 _.forIn(value, function(value, key){
-//                     console.log(key + ' : ' + value);
-//                 });
-//             });
-//         } else if (typeof value === 'object' && value !== null) {
-//             _.forIn(value, function(value, key){
-//                 console.log(key + ' : ' + value);
-//             });
-//         } else {
-//             console.log(key + ' : ' + value);
-//         }
-//       });
-//   }
 
   ngOnInit() {
     this.titleService.setTitle('DETAILS - Russian Deeds App');
@@ -64,15 +47,8 @@ export class DeedDetailsComponent implements OnInit {
                 this.term = params['resultFor'] || null;
         });
 
-        if(this.term){
-            // this.loop(deed);
-            
+        this.deed = deed;
 
-            this.deed = deed;
-
-        } else {
-            this.deed = deed;
-        }
 
         // Download Button Function
         let json = JSON.stringify(this.deed);
