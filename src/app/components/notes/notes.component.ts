@@ -20,6 +20,7 @@ export class NotesComponent implements OnInit {
   noteValue;
   note;
   notes;
+  noteFull;
   contentClass = this.contentClass;
   editMode = false;
   noteId = null;
@@ -91,6 +92,12 @@ export class NotesComponent implements OnInit {
   onDeleteClick(id) {
     this.noteService.deleteNote(id).subscribe(note => {
       this.showNotes();
+    });
+  }
+
+  showNote(id) {
+    this.noteService.getNote(id).subscribe(note => {
+      this.noteFull = note;
     });
   }
 

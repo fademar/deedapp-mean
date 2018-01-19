@@ -15,7 +15,7 @@
         <mat-sidenav mode="side" opened="true">
             <!-- sidenav content -->
             <div *ngIf="notes">
-                <div class="note-side" *ngFor="let note of notes" [ngClass]="{'hightlight': note.user === getUser()}" (click)="onEditClick(note._id)">
+                <div class="note-side" *ngFor="let note of notes" [ngClass]="{'highlight': note.user === getUser()}" (click)="showNote(note._id)">
                     <p>{{ note.content | excerpt:150 }}</p>
                     <span class="info">modifiée le {{ note.date | date:'d/M/y HH:mm' }}<br>par {{ note.user }}</span>
                 </div>
@@ -33,9 +33,9 @@
                     </div>
                 </div>
                 <div class="row" style="height: 100%">
-                    <div *ngIf="note">
-                        <div *ngIf="note.user !== getUser()">{{ note.content }}</div>
-                        <quill-editor *ngIf="note.user === getUser()" formControlName="content" style="width: 100%"></quill-editor>
+                    <div *ngIf="noteFull">
+                        <div *ngIf="noteFull.user !== getUser()">{{ note.content }}</div>
+                        <quill-editor *ngIf="noteFull.user === getUser()" formControlName="content" style="width: 100%"></quill-editor>
                     </div>
                 </div>
             </form>
