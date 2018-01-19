@@ -76,7 +76,7 @@ export const shareList = ['', '1/2', '1/3', '1/4', 'other'];
 
 export const whomList = ['', 'parent', 'dependent'];
 
-export const asWhomList = ['', 'as hired worker', 'in household', 'as son-in-law', 'as bondman', 'as peasant', 'as contractor', 'as tax-farmer', 'other'];
+export const asWhomList = ['', 'as hired worker', 'in household', 'as son-in-law', 'as bondman', 'as peasant', 'as contractor', 'as tax-farmer', 'as teacher', 'other'];
 
 export const activityList = ['', 'транспорт', 'строительство', 'поставка вина', 'поставка хлеба', 'поставка разных товаров', 'поставка сала', 'изготовление/поставка ремесленных изделий', 'other'];
 
