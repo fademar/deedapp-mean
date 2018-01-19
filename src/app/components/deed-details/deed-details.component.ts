@@ -46,16 +46,9 @@ export class DeedDetailsComponent implements OnInit {
         });
 
         if(this.term){
-            console.log('search term: ' + this.term);
-            console.log(deed);
-            _.forIn(deed, function(value, key) {
-                if (typeof value === 'object' && value !== null) {
-                    _.forIn(value, function(value, key) {
-                        console.log(key + ' : ' + value);       
-                    });
-                }    
-                console.log(key + ' : ' + value);
-            });
+            let jsondeed = JSON.stringify(deed);
+            console.log(jsondeed);
+            
             this.deed = deed;
 
         } else {
