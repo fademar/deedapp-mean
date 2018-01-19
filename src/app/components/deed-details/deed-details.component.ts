@@ -46,8 +46,9 @@ export class DeedDetailsComponent implements OnInit {
         });
 
         if(this.term){
-            let jsondeed = JSON.stringify(deed);
-            console.log(jsondeed);
+            let strdeed = JSON.stringify(deed);
+            console.log(strdeed);
+            _.replace(strdeed, this.term, 'BYEBYE');
             
             this.deed = deed;
 
@@ -158,6 +159,8 @@ export class DeedDetailsComponent implements OnInit {
 
     
   }
+
+
  
  onDeleteClick(id) {
     this.dialogRef = this.dialog.open(ConfirmDialogComponent, {
