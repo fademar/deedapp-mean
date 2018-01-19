@@ -31,7 +31,7 @@
             <ul class="list-group">
                 <li class="list-group-item"><strong>Deed Code: </strong> <span class="form-data">{{ deed.deedCode | highlight: term }}</span></li>
                 <li class="list-group-item"><strong>Deed Ref: </strong> <span class="form-data">{{ deed.deedRef | highlight: term }}</span></li>
-                <li *ngIf="deed.deedName" class="list-group-item"><strong>Deed Name: </strong> <span class="form-data">{{ deed.deedName | highlight: term }}</span></li>
+                <li *ngIf="deed.deedName" class="list-group-item"><strong>Deed Name: </strong> <span class="form-data" [innerHTML]="deed.deedName | highlight: term"></span></li>
                 <li *ngIf="deed.deedLanguage" class="list-group-item"><strong>Deed Language: </strong> <span class="form-data">{{ deed.deedLanguage }}</span></li>
                 <li *ngIf="deed.deedDate.day || deed.deedDate.month || deed.deedDate.year" class="list-group-item"><strong>Deed Date: </strong><span *ngIf="deed.deedDate.day" class="form-data">{{ deed.deedDate.day }} - </span><span *ngIf="deed.deedDate.month" class="form-data">{{ deed.deedDate.month }} - </span><span *ngIf="deed.deedDate.year" class="form-data">{{ deed.deedDate.year }}</span></li>
                 
