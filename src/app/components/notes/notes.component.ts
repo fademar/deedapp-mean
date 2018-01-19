@@ -20,7 +20,7 @@ export class NotesComponent implements OnInit {
   noteValue;
   note;
   notes;
-  noteFull;
+  noteFull = this.noteFull;
   contentClass = this.contentClass;
   editMode = false;
   noteId = null;

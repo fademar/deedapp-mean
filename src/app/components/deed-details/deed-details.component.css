@@ -34,6 +34,6 @@ md-card {
   outline: none !important;
 }
 
-:host .search-highlight{
+:host ::ng-deep .search-highlight{
   background-color: #F2E366;
 }
