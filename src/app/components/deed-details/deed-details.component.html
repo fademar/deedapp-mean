@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-3"><strong>Deed Code: </strong> <span class="form-data">{{ deed.deedCode | highlight: term }}</span></div>
                 <div class="col-3"><strong>Deed Ref: </strong> <span class="form-data">{{ deed.deedRef | highlight: term }}</span></div>
-                <div *ngIf="deed.deedDate.day || deed.deedDate.month || deed.deedDate.year" class="col-3"><strong>Deed Date: </strong><span *ngIf="deed.deedDate.day" class="form-data">{{ deed.deedDate.day }} - </span><span *ngIf="deed.deedDate.month" class="form-data">{{ deed.deedDate.month }} - </span><span *ngIf="deed.deedDate.year" class="form-data">{{ deed.deedDate.year }}</span></div>
+                <div *ngIf="deed.deedDate.day || deed.deedDate.month || deed.deedDate.year" class="col-3"><strong>Deed Date: </strong><span *ngIf="deed.deedDate.day" class="form-data">{{ deed.deedDate.day }}-</span><span *ngIf="deed.deedDate.month" class="form-data">{{ deed.deedDate.month }}-</span><span *ngIf="deed.deedDate.year" class="form-data">{{ deed.deedDate.year }}</span></div>
                 <div *ngIf="deed.deedLanguage" class="col-3"><strong>Deed Language: </strong> <span class="form-data">{{ deed.deedLanguage }}</span></div>
                 <div *ngIf="deed.deedName" class="col"><strong>Deed Name: </strong> <span class="form-data" [innerHTML]="deed.deedName | highlight: term"></span></div>
             </div>
