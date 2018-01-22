@@ -49,8 +49,9 @@
             </div>
 
             <!-- AGENTS -->
-
-            <div *ngIf="deed.agentSex" class="card mb-3 col-6">
+            <div class="row">
+                <div class="col">
+            <div *ngIf="deed.agentSex" class="card mb-3">
                 <div class="card-header teal lighten-3">
                     <h4 class="text-center">Agent</h4>
                 </div>
@@ -101,8 +102,9 @@
                     </ul>
                 </div>
             </div>
-
-            <div *ngIf="deed.counterAgentSex" class="card mb-3 col-6">
+        </div>
+            <div class="col">
+            <div *ngIf="deed.counterAgentSex" class="card mb-3">
                     <div class="card-header amber lighten-3">
                         <h4 class="text-center">Counter-Agent</h4>
                     </div>
@@ -153,6 +155,8 @@
                         </ul>
                     </div>
                 </div>
+            </div>
+            </div>
 
             <div *ngIf="deed.coAgents.length > 0">
                 <ng-template ngFor let-coAgent [ngForOf]="deed.coAgents" let-i="index">
