@@ -108,7 +108,8 @@ import { HighlightPipe } from './pipes/highlight.pipe';
     MatSidenavModule, 
     FroalaEditorModule.forRoot(), 
     FroalaViewModule.forRoot(),
-    QuillModule 
+    QuillModule,
+    MatExpansionModule
   ],
   entryComponents: [ConfirmDialogComponent, NoteDialog],
   providers: [Title, DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, NoteService],
