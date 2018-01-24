@@ -30,8 +30,8 @@
                 <hr class="mt-2 mb-2">
             </div>
             <div class="row">
-                <div class="col-3"><span class="pr-3">Code:</span><span class="form-data" [innerHTML]="deed.deedCode | highlight: term"></span></div>
-                <div class="col-3"><span class="pr-3">Reference:</span><span class="form-data" [innerHTML]="deed.deedRef | highlight: term"></span></div>
+                <div class="col-3">Code:<span class="form-data" [innerHTML]="deed.deedCode | highlight: term"></span></div>
+                <div class="col-3">Reference:<span class="form-data" [innerHTML]="deed.deedRef | highlight: term"></span></div>
                 <div *ngIf="deed.deedDate.day || deed.deedDate.month || deed.deedDate.year" class="col-3">Date:
                     <span *ngIf="deed.deedDate.day" class="form-data">{{ deed.deedDate.day }}-</span>
                     <span *ngIf="deed.deedDate.month" class="form-data">{{ deed.deedDate.month }}-</span>
