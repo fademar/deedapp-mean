@@ -62,46 +62,46 @@
                 </div>
                 <div class="card-body">
                     <ul class="list-group">
-                        <li *ngIf="deed.agentSex" class="list-group-item"><strong>Agent Type: </strong> <span class="form-data">{{ deed.agentSex }}</span></li>
+                        <li *ngIf="deed.agentSex" class="list-group-item">Agent Type:<span class="form-data" [innerHTML]="deed.agentSex | highlight: term"></span></li>
                         <div [ngSwitch]="deed.agentSex">
                             <div *ngSwitchCase="'male'">
-                                <li *ngIf="deed.agent.geogrStatus" class="list-group-item"><strong>Geogr Status: </strong> <span class="form-data">{{ deed.agent.geogrStatus }}</span></li>
-                                <li *ngIf="deed.agent.socialStatus" class="list-group-item"><strong>Social Status: </strong> <span class="form-data">{{ deed.agent.socialStatus }}</span></li>
-                                <li *ngIf="deed.agent.firstName" class="list-group-item"><strong>First Name: </strong> <span class="form-data">{{ deed.agent.firstName }}</span></li>
-                                <li *ngIf="deed.agent.patronyme" class="list-group-item"><strong>Patronyme: </strong> <span class="form-data">{{ deed.agent.patronyme }}</span></li>
-                                <li *ngIf="deed.agent.lastName" class="list-group-item"><strong>Last Name: </strong> <span class="form-data">{{ deed.agent.lastName }}</span></li>
-                                <li *ngIf="deed.agent.relatedTo" class="list-group-item"><strong>Related To: </strong> <span class="form-data">{{ deed.agent.relatedTo }}</span></li>
+                                <li *ngIf="deed.agent.geogrStatus" class="list-group-item">Geogr Status:<span class="form-data" [innerHTML}="deed.agent.geogrStatus | highlight: term"></span></li>
+                                <li *ngIf="deed.agent.socialStatus" class="list-group-item">Social Status:<span class="form-data" [innerHTML}="deed.agent.socialStatus | highlight: term"></span></li>
+                                <li *ngIf="deed.agent.firstName" class="list-group-item">First Name:<span class="form-data" [innerHTML}="deed.agent.firstName | highlight: term"></span></li>
+                                <li *ngIf="deed.agent.patronyme" class="list-group-item">Patronyme:<span class="form-data" [innerHTML}="deed.agent.patronyme | highlight: term"></span></li>
+                                <li *ngIf="deed.agent.lastName" class="list-group-item">Last Name:<span class="form-data" [innerHTML}="deed.agent.lastName | highlight: term"></span></li>
+                                <li *ngIf="deed.agent.relatedTo" class="list-group-item">Related To:<span class="form-data" [innerHTML}="deed.agent.relatedTo | highlight: term"></span></li>
                             </div>
                             <div *ngSwitchCase="'female'">
-                                <li *ngIf="deed.agent.familyStatus" class="list-group-item"><strong>Family Status: </strong> <span class="form-data">{{ deed.agent.familyStatus }}</span></li>
-                                <li *ngIf="deed.agent.firstName" class="list-group-item"><strong>First Name: </strong> <span class="form-data">{{ deed.agent.firstName }}</span></li>
-                                <li *ngIf="deed.agent.patronyme" class="list-group-item"><strong>Patronyme: </strong> <span class="form-data">{{ deed.agent.patronyme }}</span></li>
-                                <li *ngIf="deed.agent.relatedTo" class="list-group-item"><strong>Related To: </strong> <span class="form-data">{{ deed.agent.relatedTo }}</span></li>
+                                <li *ngIf="deed.agent.familyStatus" class="list-group-item">Family Status:<span class="form-data" [innerHTML}="deed.agent.familyStatus | highlight: term">{{  }}</span></li>
+                                <li *ngIf="deed.agent.firstName" class="list-group-item">First Name:<span class="form-data" [innerHTML}="deed.agent.firstName | highlight: term"></span></li>
+                                <li *ngIf="deed.agent.patronyme" class="list-group-item">Patronyme:<span class="form-data" [innerHTML}="deed.agent.patronyme | highlight: term"></span></li>
+                                <li *ngIf="deed.agent.relatedTo" class="list-group-item">Related To:<span class="form-data" [innerHTML}="deed.agent.relatedTo | highlight: term"></span></li>
                                 <div *ngIf="deed.agent.referentMale" class="card mb-3">
                                     <div class="card-header">
                                         <h5 class="text-center">Referent Male</h5>
                                     </div>
                                     <div class="card-body">
                                         <ul class="list-group">
-                                            <li *ngIf="deed.agent.referentMale.relationshipToAgent" class="list-group-item"><strong>Relationship To Agent: </strong><span class="form-data">{{ deed.agent.referentMale.relationshipToAgent }}</span></li>
-                                            <li *ngIf="deed.agent.referentMale.geogrStatus" class="list-group-item"><strong>Geogr Status: </strong><span class="form-data">{{ deed.agent.referentMale.geogrStatus }}</span></li>
-                                            <li *ngIf="deed.agent.referentMale.socialStatus" class="list-group-item"><strong>Social Status: </strong><span class="form-data">{{ deed.agent.referentMale.socialStatus }}</span></li>
-                                            <li *ngIf="deed.agent.referentMale.firstName" class="list-group-item"><strong>First Name: </strong><span class="form-data">{{ deed.agent.referentMale.firstName }}</span></li>
-                                            <li *ngIf="deed.agent.referentMale.patronyme" class="list-group-item"><strong>Patronyme: </strong><span class="form-data">{{ deed.agent.referentMale.patronyme }}</span></li>
-                                            <li *ngIf="deed.agent.referentMale.lastName" class="list-group-item"><strong>Last Name: </strong><span class="form-data">{{ deed.agent.referentMale.lastName }}</span></li>
-                                            <li *ngIf="deed.agent.referentMale.relatedTo" class="list-group-item"><strong>Related To: </strong><span class="form-data">{{ deed.agent.referentMale.relatedTo }}</span></li>
+                                            <li *ngIf="deed.agent.referentMale.relationshipToAgent" class="list-group-item">Relationship To Agent:<span class="form-data" [innerHTML]="deed.agent.referentMale.relationshipToAgent | highlight: term"></span></li>
+                                            <li *ngIf="deed.agent.referentMale.geogrStatus" class="list-group-item">Geogr Status:<span class="form-data" [innerHTML]="deed.agent.referentMale.geogrStatus | highlight: term"></span></li>
+                                            <li *ngIf="deed.agent.referentMale.socialStatus" class="list-group-item">Social Status:<span class="form-data" [innerHTML]="deed.agent.referentMale.socialStatus | highlight: term"></span></li>
+                                            <li *ngIf="deed.agent.referentMale.firstName" class="list-group-item">First Name:<span class="form-data" [innerHTML]="deed.agent.referentMale.firstName | highlight: term"></span></li>
+                                            <li *ngIf="deed.agent.referentMale.patronyme" class="list-group-item">Patronyme:<span class="form-data" [innerHTML]="deed.agent.referentMale.patronyme | highlight: term"></span></li>
+                                            <li *ngIf="deed.agent.referentMale.lastName" class="list-group-item">Last Name:<span class="form-data" [innerHTML]="deed.agent.referentMale.lastName | highlight: term"></span></li>
+                                            <li *ngIf="deed.agent.referentMale.relatedTo" class="list-group-item">Related To:<span class="form-data" [innerHTML]="deed.agent.referentMale.relatedTo | highlight: term"></span></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             <div *ngSwitchCase="'body-corporate'">
-                                <li *ngIf="deed.agent.geogrStatus" class="list-group-item"><strong>Geogr Status: </strong><span class="form-data">{{ deed.agent.geogrStatus }}</span></li>
-                                <li *ngIf="deed.agent.socialStatus" class="list-group-item"><strong>Social Status: </strong><span class="form-data">{{ deed.agent.socialStatus }}</span></li>
-                                <li *ngIf="deed.agent.otherSocialStatus" class="list-group-item"><strong>Other Social Status: </strong><span class="form-data">{{ deed.agent.otherSocialStatus }}</span></li>
-                                <li *ngIf="deed.agent.corporationName" class="list-group-item"><strong>Corporation Name: </strong><span class="form-data">{{ deed.agent.corporationName }}</span></li>
-                                <li *ngIf="deed.agent.patronyme" class="list-group-item"><strong>Patronyme: </strong><span class="form-data">{{ deed.agent.patronyme }}</span></li>
-                                <li *ngIf="deed.agent.nbParticipants" class="list-group-item"><strong>Number Of Participants: </strong><span class="form-data">{{ deed.agent.nbParticipants }}</span></li>
-                                <li *ngIf="deed.agent.names" class="list-group-item"><strong>Names: </strong><span class="form-data">{{ deed.agent.names }}</span></li>
+                                <li *ngIf="deed.agent.geogrStatus" class="list-group-item">Geogr Status:<span class="form-data" [innerHTML]="deed.agent.geogrStatus | highlight: term"></span></li>
+                                <li *ngIf="deed.agent.socialStatus" class="list-group-item">Social Status:<span class="form-data" [innerHTML]="deed.agent.socialStatus | highlight: term"></span></li>
+                                <li *ngIf="deed.agent.otherSocialStatus" class="list-group-item">Other Social Status:<span class="form-data" [innerHTML]="deed.agent.otherSocialStatus | highlight: term"></span></li>
+                                <li *ngIf="deed.agent.corporationName" class="list-group-item">Corporation Name:<span class="form-data" [innerHTML]="deed.agent.corporationName | highlight: term"></span></li>
+                                <li *ngIf="deed.agent.patronyme" class="list-group-item">Patronyme:<span class="form-data" [innerHTML]="deed.agent.patronyme | highlight: term"></span></li>
+                                <li *ngIf="deed.agent.nbParticipants" class="list-group-item">Number Of Participants:<span class="form-data" [innerHTML]="deed.agent.nbParticipants | highlight: term"></span></li>
+                                <li *ngIf="deed.agent.names" class="list-group-item">Names:<span class="form-data" [innerHTML]="deed.agent.names | highlight: term"></span></li>
                             </div>
                         </div>
                     </ul>
@@ -115,46 +115,46 @@
                     </div>
                     <div class="card-body">
                         <ul class="list-group">
-                            <li *ngIf="deed.counterAgentSex" class="list-group-item"><strong>Counter-Agent Type: </strong> <span class="form-data">{{ deed.counterAgentSex }}</span></li>
+                            <li *ngIf="deed.counterAgentSex" class="list-group-item">Counter-Agent Type:<span class="form-data" [innerHTML]="deed.counterAgentSex | highlight: term"></span></li>
                             <div [ngSwitch]="deed.agentSex">
                                 <div *ngSwitchCase="'male'">
-                                    <li *ngIf="deed.counterAgent.geogrStatus" class="list-group-item"><strong>Geogr Status: </strong> <span class="form-data">{{ deed.counterAgent.geogrStatus }}</span></li>
-                                    <li *ngIf="deed.counterAgent.socialStatus" class="list-group-item"><strong>Social Status: </strong> <span class="form-data">{{ deed.counterAgent.socialStatus }}</span></li>
-                                    <li *ngIf="deed.counterAgent.firstName" class="list-group-item"><strong>First Name: </strong> <span class="form-data">{{ deed.counterAgent.firstName }}</span></li>
-                                    <li *ngIf="deed.counterAgent.patronyme" class="list-group-item"><strong>Patronyme: </strong> <span class="form-data">{{ deed.counterAgent.patronyme }}</span></li>
-                                    <li *ngIf="deed.counterAgent.lastName" class="list-group-item"><strong>Last Name: </strong> <span class="form-data">{{ deed.counterAgent.lastName }}</span></li>
-                                    <li *ngIf="deed.counterAgent.relatedTo" class="list-group-item"><strong>Related To: </strong> <span class="form-data">{{ deed.counterAgent.relatedTo }}</span></li>
+                                    <li *ngIf="deed.counterAgent.geogrStatus" class="list-group-item">Geogr Status:<span class="form-data" [innerHTML]="deed.counterAgent.geogrStatus | highlight: term"></span></li>
+                                    <li *ngIf="deed.counterAgent.socialStatus" class="list-group-item">Social Status:<span class="form-data" [innerHTML]="deed.counterAgent.socialStatus | highlight: term"></span></li>
+                                    <li *ngIf="deed.counterAgent.firstName" class="list-group-item">First Name:<span class="form-data" [innerHTML]="deed.counterAgent.firstName | highlight: term"></span></li>
+                                    <li *ngIf="deed.counterAgent.patronyme" class="list-group-item">Patronyme:<span class="form-data" [innerHTML]="deed.counterAgent.patronyme | highlight: term"></span></li>
+                                    <li *ngIf="deed.counterAgent.lastName" class="list-group-item">Last Name:<span class="form-data" [innerHTML]="deed.counterAgent.lastName | highlight: term"></span></li>
+                                    <li *ngIf="deed.counterAgent.relatedTo" class="list-group-item">Related To:<span class="form-data" [innerHTML]="deed.counterAgent.relatedTo | highlight: term"></span></li>
                                 </div>
                                 <div *ngSwitchCase="'female'">
-                                    <li *ngIf="deed.counterAgent.familyStatus" class="list-group-item"><strong>Family Status: </strong> <span class="form-data">{{ deed.counterAgent.familyStatus }}</span></li>
-                                    <li *ngIf="deed.counterAgent.firstName" class="list-group-item"><strong>First Name: </strong> <span class="form-data">{{ deed.counterAgent.firstName }}</span></li>
-                                    <li *ngIf="deed.counterAgent.patronyme" class="list-group-item"><strong>Patronyme: </strong> <span class="form-data">{{ deed.counterAgent.patronyme }}</span></li>
-                                    <li *ngIf="deed.counterAgent.relatedTo" class="list-group-item"><strong>Related To: </strong> <span class="form-data">{{ deed.counterAgent.relatedTo }}</span></li>
+                                    <li *ngIf="deed.counterAgent.familyStatus" class="list-group-item">Family Status:<span class="form-data" [innerHTML]="deed.counterAgent.familyStatus | highlight: term"></span></li>
+                                    <li *ngIf="deed.counterAgent.firstName" class="list-group-item">First Name:<span class="form-data" [innerHTML]="deed.counterAgent.firstName | highlight: term"></span></li>
+                                    <li *ngIf="deed.counterAgent.patronyme" class="list-group-item">Patronyme:<span class="form-data" [innerHTML]="deed.counterAgent.patronyme | highlight: term"></span></li>
+                                    <li *ngIf="deed.counterAgent.relatedTo" class="list-group-item">Related To:<span class="form-data" [innerHTML]="deed.counterAgent.relatedTo | highlight: term"></span></li>
                                     <div *ngIf="deed.counterAgent.referentMale" class="card mb-3">
                                         <div class="card-header">
                                             <h5 class="text-center">Referent Male</h5>
                                         </div>
                                         <div class="card-body">
                                             <ul class="list-group">
-                                                <li *ngIf="deed.counterAgent.referentMale.relationshipToAgent" class="list-group-item"><strong>Relationship To Agent: </strong><span class="form-data">{{ deed.counterAgent.referentMale.relationshipToAgent }}</span></li>
-                                                <li *ngIf="deed.counterAgent.referentMale.geogrStatus" class="list-group-item"><strong>Geogr Status: </strong><span class="form-data">{{ deed.counterAgent.referentMale.geogrStatus }}</span></li>
-                                                <li *ngIf="deed.counterAgent.referentMale.socialStatus" class="list-group-item"><strong>Social Status: </strong><span class="form-data">{{ deed.counterAgent.referentMale.socialStatus }}</span></li>
-                                                <li *ngIf="deed.counterAgent.referentMale.firstName" class="list-group-item"><strong>First Name: </strong><span class="form-data">{{ deed.counterAgent.referentMale.firstName }}</span></li>
-                                                <li *ngIf="deed.counterAgent.referentMale.patronyme" class="list-group-item"><strong>Patronyme: </strong><span class="form-data">{{ deed.counterAgent.referentMale.patronyme }}</span></li>
-                                                <li *ngIf="deed.counterAgent.referentMale.lastName" class="list-group-item"><strong>Last Name: </strong><span class="form-data">{{ deed.counterAgent.referentMale.lastName }}</span></li>
-                                                <li *ngIf="deed.counterAgent.referentMale.relatedTo" class="list-group-item"><strong>Related To: </strong><span class="form-data">{{ deed.counterAgent.referentMale.relatedTo }}</span></li>
+                                                <li *ngIf="deed.counterAgent.referentMale.relationshipToAgent" class="list-group-item">Relationship To Agent:<span class="form-data" [innerHTML]="deed.counterAgent.referentMale.relationshipToAgent | highlight: term"></span></li>
+                                                <li *ngIf="deed.counterAgent.referentMale.geogrStatus" class="list-group-item">Geogr Status:<span class="form-data" [innerHTML]="deed.counterAgent.referentMale.geogrStatus | highlight: term"></span></li>
+                                                <li *ngIf="deed.counterAgent.referentMale.socialStatus" class="list-group-item">Social Status:<span class="form-data" [innerHTML]="deed.counterAgent.referentMale.socialStatus | highlight: term"></span></li>
+                                                <li *ngIf="deed.counterAgent.referentMale.firstName" class="list-group-item">First Name:<span class="form-data" [innerHTML]="deed.counterAgent.referentMale.firstName | highlight: term"></span></li>
+                                                <li *ngIf="deed.counterAgent.referentMale.patronyme" class="list-group-item">Patronyme:<span class="form-data" [innerHTML]="deed.counterAgent.referentMale.patronyme | highlight: term"></span></li>
+                                                <li *ngIf="deed.counterAgent.referentMale.lastName" class="list-group-item">Last Name:<span class="form-data" [innerHTML]="deed.counterAgent.referentMale.lastName | highlight: term"></span></li>
+                                                <li *ngIf="deed.counterAgent.referentMale.relatedTo" class="list-group-item">Related To:<span class="form-data" [innerHTML]="deed.counterAgent.referentMale.relatedTo | highlight: term"></span></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                                 <div *ngSwitchCase="'body-corporate'">
-                                    <li *ngIf="deed.counterAgent.geogrStatus" class="list-group-item"><strong>Geogr Status: </strong><span class="form-data">{{ deed.counterAgent.geogrStatus }}</span></li>
-                                    <li *ngIf="deed.counterAgent.socialStatus" class="list-group-item"><strong>Social Status: </strong><span class="form-data">{{ deed.counterAgent.socialStatus }}</span></li>
-                                    <li *ngIf="deed.counterAgent.otherSocialStatus" class="list-group-item"><strong>Other Social Status: </strong><span class="form-data">{{ deed.counterAgent.otherSocialStatus }}</span></li>
-                                    <li *ngIf="deed.counterAgent.corporationName" class="list-group-item"><strong>Corporation Name: </strong><span class="form-data">{{ deed.counterAgent.corporationName }}</span></li>
-                                    <li *ngIf="deed.counterAgent.patronyme" class="list-group-item"><strong>Patronyme: </strong><span class="form-data">{{ deed.counterAgent.patronyme }}</span></li>
-                                    <li *ngIf="deed.counterAgent.nbParticipants" class="list-group-item"><strong>Number Of Participants: </strong><span class="form-data">{{ deed.counterAgent.nbParticipants }}</span></li>
-                                    <li *ngIf="deed.counterAgent.names" class="list-group-item"><strong>Names: </strong><span class="form-data">{{ deed.counterAgent.names }}</span></li>
+                                    <li *ngIf="deed.counterAgent.geogrStatus" class="list-group-item">Geogr Status:<span class="form-data" [innerHTML]="deed.counterAgent.geogrStatus | highlight: term"></span></li>
+                                    <li *ngIf="deed.counterAgent.socialStatus" class="list-group-item">Social Status:<span class="form-data" [innerHTML]="deed.counterAgent.socialStatus | highlight: term"></span></li>
+                                    <li *ngIf="deed.counterAgent.otherSocialStatus" class="list-group-item">Other Social Status:<span class="form-data" [innerHTML]="deed.counterAgent.otherSocialStatus | highlight: term"></span></li>
+                                    <li *ngIf="deed.counterAgent.corporationName" class="list-group-item">Corporation Name:<span class="form-data" [innerHTML]="deed.counterAgent.corporationName | highlight: term"></span></li>
+                                    <li *ngIf="deed.counterAgent.patronyme" class="list-group-item">Patronyme:<span class="form-data" [innerHTML]="deed.counterAgent.patronyme | highlight: term"></span></li>
+                                    <li *ngIf="deed.counterAgent.nbParticipants" class="list-group-item">Number Of Participants:<span class="form-data" [innerHTML]="deed.counterAgent.nbParticipants | highlight: term"></span></li>
+                                    <li *ngIf="deed.counterAgent.names" class="list-group-item">Names:<span class="form-data" [innerHTML]="deed.counterAgent.names | highlight: term"></span></li>
                                 </div>
                             </div>
                         </ul>
