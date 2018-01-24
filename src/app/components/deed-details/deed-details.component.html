@@ -19,28 +19,31 @@
 
 <div class="container main-container">
    
- 
+    <!-- ALERTE MORE DATA -->
     <div *ngIf="deed.complete === false" class="card shadow bg-yellow-500 mb-3 p-3 text-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> There is more data in the manuscript</div>
     
+    <!-- DEED INFORMATION -->
     <div class="card shadow mb-3">
         <div class="card-body">
             <div class="text-center">
-                <h3><i class="fa fa-info-circle"></i> Deed Information</h3>
+                <h4><i class="fa fa-info-circle"></i> Deed Information</h4>
                 <hr class="mt-2 mb-2">
             </div>
             <div class="row">
-                <div class="col-3"><span class="pr-3">Deed Code:</span><span class="form-data"><strong>{{ deed.deedCode | highlight: term }}</strong></span></div>
-                <div class="col-3"><span class="pr-3">Deed Ref:</span><span class="form-data"><strong>{{ deed.deedRef | highlight: term }}</strong></span></div>
-                <div *ngIf="deed.deedDate.day || deed.deedDate.month || deed.deedDate.year" class="col-3">Deed Date:
-                    <span *ngIf="deed.deedDate.day" class="form-data"><strong>{{ deed.deedDate.day }}-</strong></span>
-                    <span *ngIf="deed.deedDate.month" class="form-data"><strong>{{ deed.deedDate.month }}-</strong></span>
-                    <span *ngIf="deed.deedDate.year" class="form-data"><strong>{{ deed.deedDate.year }}</strong></span>
+                <div class="col-3"><span class="pr-3">Code:</span><span class="form-data" [innerHTML]="deed.deedCode | highlight: term"></span></div>
+                <div class="col-3"><span class="pr-3">Reference:</span><span class="form-data" [innerHTML]="deed.deedRef | highlight: term"></span></div>
+                <div *ngIf="deed.deedDate.day || deed.deedDate.month || deed.deedDate.year" class="col-3">Date:
+                    <span *ngIf="deed.deedDate.day" class="form-data">{{ deed.deedDate.day }}-</span>
+                    <span *ngIf="deed.deedDate.month" class="form-data">{{ deed.deedDate.month }}-</span>
+                    <span *ngIf="deed.deedDate.year" class="form-data">{{ deed.deedDate.year }}</span>
                 </div>
-                <div *ngIf="deed.deedLanguage" class="col-3"><strong>Deed Language: </strong> <span class="form-data">{{ deed.deedLanguage }}</span></div>
-                <div *ngIf="deed.deedName" class="col"><strong>Deed Name: </strong> <span class="form-data" [innerHTML]="deed.deedName | highlight: term"></span></div>
+                <div *ngIf="deed.deedLanguage" class="col-3">Language:<span class="form-data" [innerHTML]="deed.deedLanguage | highlight: term"></span></div>
+                <div *ngIf="deed.deedName" class="col">Name:<span class="form-data" [innerHTML]="deed.deedName | highlight: term"></span></div>
             </div>
         </div>
     </div>
+
+    <!-- CONTRACTING PARTIES -->
     <div class="card shadow mb-3">
         <div class="card-body">
             <div class="text-center">
@@ -48,7 +51,7 @@
                 <hr class="mt-2 mb-2">
             </div>
 
-            <!-- AGENTS -->
+            <!-- AGENT & COUNTER AGENT-->
             <div class="row">
                 <div class="col">
             <div *ngIf="deed.agentSex" class="card mb-3">
@@ -157,7 +160,6 @@
                 </div>
             </div>
             </div>
-
             <div *ngIf="deed.coAgents.length > 0">
                 <ng-template ngFor let-coAgent [ngForOf]="deed.coAgents" let-i="index">
                     <div class="card mb-3">
