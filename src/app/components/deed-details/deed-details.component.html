@@ -49,7 +49,7 @@
     <div class="card shadow mb-3">
         <div class="card-body">
             <div class="text-center">
-                <h3><i class="fa fa-users"></i> Contracting Parties</h3>
+                <h4><i class="fa fa-users"></i> Contracting Parties</h4>
                 <hr class="mt-2 mb-2">
             </div>
 
@@ -57,12 +57,17 @@
             <div class="row">
                 <div class="col">
             <div *ngIf="deed.agentSex" class="card mb-3">
-                <div class="card-header teal lighten-3">
-                    <h4 class="text-center">Agent</h4>
+                <div class="card-header">
+                    <h4 class="text-center">Agent 
+                        <span *ngIf="deed.agentSex" [ngSwitch]="deed.agentSex">
+                            <span *ngSwitchCase="'male'">(M)</span>
+                            <span *ngSwitchCase="'female'">(F)</span>
+                            <span *ngSwitchCase="'body-corporate'">(B-C)</span>
+                        </span>
+                    </h4>
                 </div>
                 <div class="card-body">
                     <ul class="list-group">
-                        <li *ngIf="deed.agentSex" class="list-group-item">Agent Type:<span class="form-data" [innerHTML]="deed.agentSex | highlight: term"></span></li>
                         <div [ngSwitch]="deed.agentSex">
                             <div *ngSwitchCase="'male'">
                                 <li *ngIf="deed.agent.geogrStatus" class="list-group-item">Geogr Status:<span class="form-data" [innerHTML]="deed.agent.geogrStatus | highlight: term"></span></li>
@@ -110,13 +115,18 @@
         </div>
             <div class="col">
             <div *ngIf="deed.counterAgentSex" class="card mb-3">
-                    <div class="card-header amber lighten-3">
-                        <h4 class="text-center">Counter-Agent</h4>
+                    <div class="card-header">
+                        <h4 class="text-center">Agent 
+                            <span *ngIf="deed.counterAgentSex" [ngSwitch]="deed.counterAgentSex">
+                                <span *ngSwitchCase="'male'">(M)</span>
+                                <span *ngSwitchCase="'female'">(F)</span>
+                                <span *ngSwitchCase="'body-corporate'">(B-C)</span>
+                            </span>
+                        </h4>
                     </div>
                     <div class="card-body">
                         <ul class="list-group">
-                            <li *ngIf="deed.counterAgentSex" class="list-group-item">Counter-Agent Type:<span class="form-data" [innerHTML]="deed.counterAgentSex | highlight: term"></span></li>
-                            <div [ngSwitch]="deed.agentSex">
+                            <div [ngSwitch]="deed.counterAgentSex">
                                 <div *ngSwitchCase="'male'">
                                     <li *ngIf="deed.counterAgent.geogrStatus" class="list-group-item">Geogr Status:<span class="form-data" [innerHTML]="deed.counterAgent.geogrStatus | highlight: term"></span></li>
                                     <li *ngIf="deed.counterAgent.socialStatus" class="list-group-item">Social Status:<span class="form-data" [innerHTML]="deed.counterAgent.socialStatus | highlight: term"></span></li>
@@ -162,63 +172,63 @@
                 </div>
             </div>
             </div>
+            <!-- COAGENTS -->
             <div *ngIf="deed.coAgents.length > 0">
                 <ng-template ngFor let-coAgent [ngForOf]="deed.coAgents" let-i="index">
-                    <div class="card mb-3">
-                        <div class="card-header teal lighten-4">
-                            <div class="row justify-content-center">
-                                <div class="col">
-                                    <h4 class="text-center">Co-Agent {{i + 1}}</h4>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <h5 class="text-center">Co-Agent {{i + 1}} 
+                                    <span *ngIf="coAgent.coAgentSex" [ngSwitch]="coAgent.coAgentSex">
+                                        <span *ngSwitchCase="'male'">(M)</span>
+                                        <span *ngSwitchCase="'female'">(F)</span>
+                                        <span *ngSwitchCase="'body-corporate'">(B-C)</span>
+                                    </span>
+                                </h5>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div [ngSwitch]="coAgent.coAgentSex">
+                                <div *ngSwitchCase="'male'">
+                                    <li *ngIf="coAgent.coAgent.geogrStatus" class="list-group-item"><strong>Geogr Status: </strong><span class="form-data">{{ coAgent.coAgent.geogrStatus }}</span></li>
+                                    <li *ngIf="coAgent.coAgent.socialStatus" class="list-group-item"><strong>Social Status: </strong><span class="form-data">{{ coAgent.coAgent.socialStatus }}</span></li>
+                                    <li *ngIf="coAgent.coAgent.firstName" class="list-group-item"><strong>First Name: </strong><span class="form-data">{{ coAgent.coAgent.firstName }}</span></li>
+                                    <li *ngIf="coAgent.coAgent.patronyme" class="list-group-item"><strong>Patronyme: </strong><span class="form-data">{{ coAgent.coAgent.patronyme }}</span></li>
+                                    <li *ngIf="coAgent.coAgent.lastName" class="list-group-item"><strong>Last Name: </strong><span class="form-data">{{ coAgent.coAgent.lastName }}</span></li>
+                                    <li *ngIf="coAgent.coAgent.relatedTo" class="list-group-item"><strong>Related To: </strong><span class="form-data">{{ coAgent.coAgent.relatedTo }}</span></li>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <ul class="list-group">
-                                <li *ngIf="coAgent.coAgentSex" class="list-group-item"><strong>Co-Agent type: </strong> <span class="form-data">{{ coAgent.coAgentSex }}</span></li>
-                                <div [ngSwitch]="coAgent.coAgentSex">
-                                    <div *ngSwitchCase="'male'">
-                                        <li *ngIf="coAgent.coAgent.geogrStatus" class="list-group-item"><strong>Geogr Status: </strong><span class="form-data">{{ coAgent.coAgent.geogrStatus }}</span></li>
-                                        <li *ngIf="coAgent.coAgent.socialStatus" class="list-group-item"><strong>Social Status: </strong><span class="form-data">{{ coAgent.coAgent.socialStatus }}</span></li>
-                                        <li *ngIf="coAgent.coAgent.firstName" class="list-group-item"><strong>First Name: </strong><span class="form-data">{{ coAgent.coAgent.firstName }}</span></li>
-                                        <li *ngIf="coAgent.coAgent.patronyme" class="list-group-item"><strong>Patronyme: </strong><span class="form-data">{{ coAgent.coAgent.patronyme }}</span></li>
-                                        <li *ngIf="coAgent.coAgent.lastName" class="list-group-item"><strong>Last Name: </strong><span class="form-data">{{ coAgent.coAgent.lastName }}</span></li>
-                                        <li *ngIf="coAgent.coAgent.relatedTo" class="list-group-item"><strong>Related To: </strong><span class="form-data">{{ coAgent.coAgent.relatedTo }}</span></li>
-                                    </div>
-                                    <div *ngSwitchCase="'female'">
-                                        <li *ngIf="coAgent.coAgent.familyStatus" class="list-group-item"><strong>Family Status: </strong><span class="form-data">{{ coAgent.coAgent.familyStatus }}</span></li>
-                                        <li *ngIf="coAgent.coAgent.firstName" class="list-group-item"><strong>First Name: </strong><span class="form-data">{{ coAgent.coAgent.firstName }}</span></li>
-                                        <li *ngIf="coAgent.coAgent.patronyme" class="list-group-item"><strong>Patronyme: </strong><span class="form-data">{{ coAgent.coAgent.patronyme }}</span></li>
-                                        <li *ngIf="coAgent.coAgent.relatedTo" class="list-group-item"><strong>Related To: </strong><span class="form-data">{{ coAgent.coAgent.relatedTo }}</span></li>
-                                        <div *ngIf="coAgent.coAgent.referentMale" class="card mb-3">
-                                            <div class="card-header">
-                                                <h5 class="text-center">Referent Male</h5>
-                                            </div>
-                                            <div class="card-body">
-                                                <ul class="list-group">
-                                                    <li *ngIf="coAgent.coAgent.referentMale.relationshipToAgent" class="list-group-item"><strong>Relationship To Co-Agent: </strong><span class="form-data">{{ coAgent.coAgent.referentMale.relationshipToAgent }}</span></li>
-                                                    <li *ngIf="coAgent.coAgent.referentMale.geogrStatus" class="list-group-item"><strong>Geogr Status: </strong><span class="form-data">{{ coAgent.coAgent.referentMale.geogrStatus }}</span></li>
-                                                    <li *ngIf="coAgent.coAgent.referentMale.socialStatus" class="list-group-item"><strong>Social Status: </strong><span class="form-data">{{ coAgent.coAgent.referentMale.socialStatus }}</span></li>
-                                                    <li *ngIf="coAgent.coAgent.referentMale.firstName" class="list-group-item"><strong>First Name: </strong><span class="form-data">{{ coAgent.coAgent.referentMale.firstName }}</span></li>
-                                                    <li *ngIf="coAgent.coAgent.referentMale.patronyme" class="list-group-item"><strong>Patronyme: </strong><span class="form-data">{{ coAgent.coAgent.referentMale.patronyme }}</span></li>
-                                                    <li *ngIf="coAgent.coAgent.referentMale.lastName" class="list-group-item"><strong>Last Name: </strong><span class="form-data">{{ coAgent.coAgent.referentMale.lastName }}</span></li>
-                                                    <li *ngIf="coAgent.coAgent.referentMale.relatedTo" class="list-group-item"><strong>Related To: </strong><span class="form-data">{{ coAgent.coAgent.referentMale.relatedTo }}</span></li>
-                                                </ul>
-                                            </div>
+                                <div *ngSwitchCase="'female'">
+                                    <li *ngIf="coAgent.coAgent.familyStatus" class="list-group-item"><strong>Family Status: </strong><span class="form-data">{{ coAgent.coAgent.familyStatus }}</span></li>
+                                    <li *ngIf="coAgent.coAgent.firstName" class="list-group-item"><strong>First Name: </strong><span class="form-data">{{ coAgent.coAgent.firstName }}</span></li>
+                                    <li *ngIf="coAgent.coAgent.patronyme" class="list-group-item"><strong>Patronyme: </strong><span class="form-data">{{ coAgent.coAgent.patronyme }}</span></li>
+                                    <li *ngIf="coAgent.coAgent.relatedTo" class="list-group-item"><strong>Related To: </strong><span class="form-data">{{ coAgent.coAgent.relatedTo }}</span></li>
+                                    <div *ngIf="coAgent.coAgent.referentMale" class="card mb-3">
+                                        <div class="card-header">
+                                            <h5 class="text-center">Referent Male</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <ul class="list-group">
+                                                <li *ngIf="coAgent.coAgent.referentMale.relationshipToAgent" class="list-group-item"><strong>Relationship To Co-Agent: </strong><span class="form-data">{{ coAgent.coAgent.referentMale.relationshipToAgent }}</span></li>
+                                                <li *ngIf="coAgent.coAgent.referentMale.geogrStatus" class="list-group-item"><strong>Geogr Status: </strong><span class="form-data">{{ coAgent.coAgent.referentMale.geogrStatus }}</span></li>
+                                                <li *ngIf="coAgent.coAgent.referentMale.socialStatus" class="list-group-item"><strong>Social Status: </strong><span class="form-data">{{ coAgent.coAgent.referentMale.socialStatus }}</span></li>
+                                                <li *ngIf="coAgent.coAgent.referentMale.firstName" class="list-group-item"><strong>First Name: </strong><span class="form-data">{{ coAgent.coAgent.referentMale.firstName }}</span></li>
+                                                <li *ngIf="coAgent.coAgent.referentMale.patronyme" class="list-group-item"><strong>Patronyme: </strong><span class="form-data">{{ coAgent.coAgent.referentMale.patronyme }}</span></li>
+                                                <li *ngIf="coAgent.coAgent.referentMale.lastName" class="list-group-item"><strong>Last Name: </strong><span class="form-data">{{ coAgent.coAgent.referentMale.lastName }}</span></li>
+                                                <li *ngIf="coAgent.coAgent.referentMale.relatedTo" class="list-group-item"><strong>Related To: </strong><span class="form-data">{{ coAgent.coAgent.referentMale.relatedTo }}</span></li>
+                                            </ul>
                                         </div>
                                     </div>
-                                    <div *ngSwitchCase="'body-corporate'">
-                                        <li *ngIf="coAgent.coAgent.geogrStatus" class="list-group-item"><strong>Geogr Status: </strong><span class="form-data">{{ coAgent.coAgent.geogrStatus }}</span></li>
-                                        <li *ngIf="coAgent.coAgent.socialStatus" class="list-group-item"><strong>Social Status: </strong><span class="form-data">{{ coAgent.coAgent.socialStatus }}</span></li>
-                                        <li *ngIf="coAgent.coAgent.otherSocialStatus" class="list-group-item"><strong>Other Social Status: </strong><span class="form-data">{{ coAgent.coAgent.otherSocialStatus }}</span></li>
-                                        <li *ngIf="coAgent.coAgent.corporationName" class="list-group-item"><strong>Corporation Name: </strong><span class="form-data">{{ coAgent.coAgent.corporationName }}</span></li>
-                                        <li *ngIf="coAgent.coAgent.patronyme" class="list-group-item"><strong>Patronyme: </strong><span class="form-data">{{ coAgent.coAgent.patronyme }}</span></li>
-                                        <li *ngIf="coAgent.coAgent.nbParticipants" class="list-group-item"><strong>Number Of Participants: </strong><span class="form-data">{{ coAgent.coAgent.nbParticipants }}</span></li>
-                                        <li *ngIf="coAgent.coAgent.names" class="list-group-item"><strong>Names: </strong><span class="form-data">{{ coAgent.coAgent.names }}</span></li>
-                                    </div>
                                 </div>
-                            </ul>
-                        </div>
-                    </div>
+                                <div *ngSwitchCase="'body-corporate'">
+                                    <li *ngIf="coAgent.coAgent.geogrStatus" class="list-group-item"><strong>Geogr Status: </strong><span class="form-data">{{ coAgent.coAgent.geogrStatus }}</span></li>
+                                    <li *ngIf="coAgent.coAgent.socialStatus" class="list-group-item"><strong>Social Status: </strong><span class="form-data">{{ coAgent.coAgent.socialStatus }}</span></li>
+                                    <li *ngIf="coAgent.coAgent.otherSocialStatus" class="list-group-item"><strong>Other Social Status: </strong><span class="form-data">{{ coAgent.coAgent.otherSocialStatus }}</span></li>
+                                    <li *ngIf="coAgent.coAgent.corporationName" class="list-group-item"><strong>Corporation Name: </strong><span class="form-data">{{ coAgent.coAgent.corporationName }}</span></li>
+                                    <li *ngIf="coAgent.coAgent.patronyme" class="list-group-item"><strong>Patronyme: </strong><span class="form-data">{{ coAgent.coAgent.patronyme }}</span></li>
+                                    <li *ngIf="coAgent.coAgent.nbParticipants" class="list-group-item"><strong>Number Of Participants: </strong><span class="form-data">{{ coAgent.coAgent.nbParticipants }}</span></li>
+                                    <li *ngIf="coAgent.coAgent.names" class="list-group-item"><strong>Names: </strong><span class="form-data">{{ coAgent.coAgent.names }}</span></li>
+                                </div>
+                            </div>
+                    </mat-expansion-panel>
                 </ng-template>
             </div>
             <div *ngIf="deed.collectiveCoAgent">
