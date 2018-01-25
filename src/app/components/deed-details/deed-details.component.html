@@ -248,27 +248,15 @@
                                     </div>
                                 </div>
                     </ng-template>
-
-                </div>
-            </div>
-            <div *ngIf="deed.collectiveCoAgent">
-                <div class="card mb-3">
-                    <div class="card-header">
-                        <div class="row justify-content-center">
-                            <div class="col-4">
-                                <h4 class="text-center">Collective Co-Agent</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-group">
-                            <li *ngIf="deed.collectiveCoAgent.relationToAgent" class="list-group-item"><strong>Collective Co-Agent Relation to Agent: </strong><span class="form-data">{{ deed.collectiveCoAgent.relationToAgent }}</span></li>
-                            <li *ngIf="deed.collectiveCoAgent.numberOfParticipants" class="list-group-item"><strong>Collective Co-Agent Number of Participants: </strong><span class="form-data">{{ deed.collectiveCoAgent.numberOfParticipants }}</span></li>
-                            <li *ngIf="deed.collectiveCoAgent.statusesNames" class="list-group-item"><strong>Collective Co-Agent Statuses Names: </strong><span class="form-data">{{ deed.collectiveCoAgent.statusesNames }}</span></li>
-                        </ul>
+                    <div *ngIf="deed.collectiveCoAgent" class="row no-gutters mb-3">
+                        <h4 class="text-center">Collective Co-Agent</h4>
+                        <div *ngIf="deed.collectiveCoAgent.relationToAgent" class="list-group-item col-8">Relation to Agent:<span class="form-data" [innerHTML]="deed.collectiveCoAgent.relationToAgent"></span></div>
+                        <div *ngIf="deed.collectiveCoAgent.numberOfParticipants" class="list-group-item col-4">Number of Participants:<span class="form-data" [innerHTML]="deed.collectiveCoAgent.numberOfParticipants"></span></div>
+                        <div *ngIf="deed.collectiveCoAgent.statusesNames" class="list-group-item col-12">Statuses Names:<span class="form-data" [innerHTML]="deed.collectiveCoAgent.statusesNames"></span></div>
                     </div>
                 </div>
             </div>
+            
             
             <!-- COUNTER AGENTS -->
 
