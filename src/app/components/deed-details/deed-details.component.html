@@ -217,7 +217,7 @@
                                         <div *ngIf="coAgent.coAgent.referentMale" class="row no-gutters mb-3">
                                             <h6 class="text-center col-12"><em>Referent Male</em></h6>
                                             <div class="col-6">
-                                                <div *ngIf="coAgent.coAgent.referentMale.relationshipToAgent" class="list-group-item">Relationship To Co-Agent:<span class="form-data" [innerHTML]="coAgent.coAgent.referentMale.relationshipToAgent | highlight: term"></span></div>
+                                                <div *ngIf="coAgent.coAgent.referentMale.relationshipToCoAgent" class="list-group-item">Relationship To Co-Agent:<span class="form-data" [innerHTML]="coAgent.coAgent.referentMale.relationshipToCoAgent | highlight: term"></span></div>
                                                 <div *ngIf="coAgent.coAgent.referentMale.socialStatus" class="list-group-item">Social Status:<span class="form-data" [innerHTML]="coAgent.coAgent.referentMale.socialStatus | highlight: term"></span></div>
                                                 <div *ngIf="coAgent.coAgent.referentMale.patronyme" class="list-group-item">Patronyme:<span class="form-data" [innerHTML]="coAgent.coAgent.referentMale.patronyme | highlight: term"></span></div>
                                             </div>
