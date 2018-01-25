@@ -173,7 +173,7 @@
             </div>
             </div>
             <!-- COAGENTS -->
-            <div *ngIf="deed.coAgents.length > 0 || deed.coCounterAgents.length > 0 || deed.collectiveCoAgent" class="card mb-3">
+            <div *ngIf="deed.coAgents.length > 0" class="card mb-3">
                 <div class="card-header">
                     <div class="row justify-content-center">
                         <div class="col-4">
@@ -183,18 +183,13 @@
                 </div>
                 <div class="card-body">
                     <ng-template ngFor let-coAgent [ngForOf]="deed.coAgents" let-i="index">
-                        <mat-expansion-panel>
-                            <mat-expansion-panel-header>
-                                <mat-panel-title>
-                                    <h5 class="text-center">Co-Agent {{i + 1}} 
-                                        <span *ngIf="coAgent.coAgentSex" [ngSwitch]="coAgent.coAgentSex">
-                                            <span *ngSwitchCase="'male'">(M)</span>
-                                            <span *ngSwitchCase="'female'">(F)</span>
-                                            <span *ngSwitchCase="'body-corporate'">(B-C)</span>
-                                        </span>
-                                    </h5>
-                                </mat-panel-title>
-                            </mat-expansion-panel-header>
+                            <h5 class="text-center">Co-Agent {{i + 1}} 
+                                <span *ngIf="coAgent.coAgentSex" [ngSwitch]="coAgent.coAgentSex">
+                                    <span *ngSwitchCase="'male'">(M)</span>
+                                    <span *ngSwitchCase="'female'">(F)</span>
+                                    <span *ngSwitchCase="'body-corporate'">(B-C)</span>
+                                </span>
+                            </h5>
                             <div [ngSwitch]="coAgent.coAgentSex">
                                     <div *ngSwitchCase="'male'">
                                         <div class="row no-gutters">
@@ -244,7 +239,6 @@
                                         <li *ngIf="coAgent.coAgent.names" class="list-group-item"><strong>Names: </strong><span class="form-data">{{ coAgent.coAgent.names }}</span></li>
                                     </div>
                                 </div>
-                        </mat-expansion-panel>
                     </ng-template>
 
                 </div>
