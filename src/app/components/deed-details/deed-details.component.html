@@ -194,7 +194,7 @@
                 <div class="card-body">
                     <div *ngIf="deed.coAgents.length > 0">
                         <ng-template ngFor let-coAgent [ngForOf]="deed.coAgents" let-i="index">
-                                <h5 class="text-center">Co-Agent {{i + 1}} 
+                                <h5 class="text-center bg-grey">Co-Agent {{i + 1}} 
                                     <span *ngIf="coAgent.coAgentSex" [ngSwitch]="coAgent.coAgentSex">
                                         <span *ngSwitchCase="'male'">(M)</span>
                                         <span *ngSwitchCase="'female'">(F)</span>
@@ -261,7 +261,7 @@
                         </ng-template>
                     </div>
                     <div *ngIf="deed.collectiveCoAgent">
-                        <h5 class="text-center">Collective Co-Agent</h5>
+                        <h5 class="text-center bg-grey">Collective Co-Agent</h5>
                         <div class="row no-gutters mb-3">
                             <div class="col-8">
                                 <div *ngIf="deed.collectiveCoAgent.relationToAgent" class="list-group-item">Relation to Agent:<span class="form-data" [innerHTML]="deed.collectiveCoAgent.relationToAgent"></span></div>
@@ -276,7 +276,7 @@
                     </div>
                     <div *ngIf="deed.coCounterAgents.length > 0">
                             <ng-template ngFor let-coCounterAgent [ngForOf]="deed.coCounterAgents" let-i="index">
-                                <h5 class="text-center">Co-Counter Agent {{i + 1}}<span *ngIf="coCounterAgent.coCounterAgentSex" [ngSwitch]="coCounterAgent.coCounterAgentSex">
+                                <h5 class="text-center bg-grey">Co-Counter Agent {{i + 1}}<span *ngIf="coCounterAgent.coCounterAgentSex" [ngSwitch]="coCounterAgent.coCounterAgentSex">
                                         <span *ngSwitchCase="'male'">(M)</span>
                                         <span *ngSwitchCase="'female'">(F)</span>
                                         <span *ngSwitchCase="'body-corporate'">(B-C)</span>
@@ -338,7 +338,7 @@
                             </ng-template>
                         </div>
                         <div *ngIf="deed.collectiveCoCounterAgent">
-                            <h5 class="text-center">Collective Co-Counter Agent</h5>
+                            <h5 class="text-center bg-grey">Collective Co-Counter Agent</h5>
                             <div class="row no-gutters mb-3">
                                 <div class="col-8">
                                     <div *ngIf="deed.collectiveCoCounterAgent.relationToAgent" class="list-group-item"><strong>Relation to Agent: </strong><span class="form-data">{{ deed.collectiveCoCounterAgent.relationToAgent }}</span></div>

@@ -38,3 +38,7 @@ md-card {
 :host ::ng-deep .search-highlight{
   background-color: #F2E366;
 }
+
+.bg-grey {
+  background-color: #F5F5F5;
+}
