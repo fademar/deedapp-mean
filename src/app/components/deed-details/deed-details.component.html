@@ -30,17 +30,27 @@
                 <hr class="mt-2 mb-2">
             </div>
             <div class="row no-gutters">
-                <div class="list-group-item col-3">Code:<span class="form-data" [innerHTML]="deed.deedCode | highlight: term"></span></div>
-                <div class="list-group-itemcol-3">Reference:<span class="form-data" [innerHTML]="deed.deedRef | highlight: term"></span></div>
-                <div *ngIf="deed.deedDate.day || deed.deedDate.month || deed.deedDate.year" class="list-group-item col-3">Date:
-                    <span class="form-data">
-                        <span *ngIf="deed.deedDate.day" [innerHTML]="deed.deedDate.day | highlight: term">-</span>
-                        <span *ngIf="deed.deedDate.month" [innerHTML]="deed.deedDate.month | highlight: term">-</span>
-                        <span *ngIf="deed.deedDate.year" [innerHTML]="deed.deedDate.year | highlight: term"></span>
-                    </span>
+                <div class="col-3">
+                    <div class="list-group-item">Code:<span class="form-data" [innerHTML]="deed.deedCode | highlight: term"></span></div>
                 </div>
-                <div *ngIf="deed.deedLanguage" class="list-group-item col-3">Language:<span class="form-data" [innerHTML]="deed.deedLanguage | highlight: term"></span></div>
-                <div *ngIf="deed.deedName" class="list-group-item col-12">Name:<span class="form-data" [innerHTML]="deed.deedName | highlight: term"></span></div>
+                <div class="col-3">
+                    <div class="list-group-item">Reference:<span class="form-data" [innerHTML]="deed.deedRef | highlight: term"></span></div>
+                </div>
+                <div class="col-3">
+                    <div *ngIf="deed.deedDate.day || deed.deedDate.month || deed.deedDate.year" class="list-group-item">Date:
+                        <span class="form-data">
+                            <span *ngIf="deed.deedDate.day" [innerHTML]="deed.deedDate.day | highlight: term">-</span>
+                            <span *ngIf="deed.deedDate.month" [innerHTML]="deed.deedDate.month | highlight: term">-</span>
+                            <span *ngIf="deed.deedDate.year" [innerHTML]="deed.deedDate.year | highlight: term"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div *ngIf="deed.deedLanguage" class="list-group-item col-3">Language:<span class="form-data" [innerHTML]="deed.deedLanguage | highlight: term"></span></div>
+                </div>
+                <div class="col-12">
+                    <div *ngIf="deed.deedName" class="list-group-item col-12">Name:<span class="form-data" [innerHTML]="deed.deedName | highlight: term"></span></div>
+                </div>
             </div>
         </div>
     </div>
@@ -251,9 +261,15 @@
                     <div *ngIf="deed.collectiveCoAgent">
                         <h6 class="text-center">Collective Co-Agent</h6>
                         <div class="row no-gutters mb-3">
-                            <div *ngIf="deed.collectiveCoAgent.relationToAgent" class="list-group-item col-8">Relation to Agent:<span class="form-data" [innerHTML]="deed.collectiveCoAgent.relationToAgent"></span></div>
-                            <div *ngIf="deed.collectiveCoAgent.numberOfParticipants" class="list-group-item col-4">Number of Participants:<span class="form-data" [innerHTML]="deed.collectiveCoAgent.numberOfParticipants"></span></div>
-                            <div *ngIf="deed.collectiveCoAgent.statusesNames" class="list-group-item col-12">Statuses Names:<span class="form-data" [innerHTML]="deed.collectiveCoAgent.statusesNames"></span></div>
+                            <div class="col-8">
+                                <div *ngIf="deed.collectiveCoAgent.relationToAgent" class="list-group-item">Relation to Agent:<span class="form-data" [innerHTML]="deed.collectiveCoAgent.relationToAgent"></span></div>
+                            </div>
+                            <div class="col-4">
+                                <div *ngIf="deed.collectiveCoAgent.numberOfParticipants" class="list-group-item col-4">Number of Participants:<span class="form-data" [innerHTML]="deed.collectiveCoAgent.numberOfParticipants"></span></div>
+                            </div>
+                            <div class="col-12">
+                                <div *ngIf="deed.collectiveCoAgent.statusesNames" class="list-group-item col-12">Statuses Names:<span class="form-data" [innerHTML]="deed.collectiveCoAgent.statusesNames"></span></div>
+                            </div>
                         </div>
                     </div>
                 </div>
