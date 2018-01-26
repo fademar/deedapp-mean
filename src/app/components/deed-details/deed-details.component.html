@@ -378,7 +378,7 @@
 
                         <!-- AGENT TRANSACTION -->
                         <div *ngIf="transaction.agentAction" class="alert alert-info">
-                            <h5 class="text-center p-3">The Agent <span class="text-uppercase" [innerHTML]="transaction.agentAction | highlight: term"></span></h5>
+                            <h5 class="text-center p-3">The Agent <span [innerHTML]="transaction.agentAction | highlight: term"></span></h5>
                         </div>
                         <div *ngIf="transaction.otherAgentAction" class="list-group-item">Other Agent Action:<span class="form-data" [innerHTML]="transaction.otherAgentAction | highlight: term"></span></div>
                         <div *ngIf="transaction.accusationAgainstAgent" class="list-group-item">Accusation against Agent:<span class="form-data" [innerHTML]="transaction.accusationAgainstAgent | highlight: term"></span></div> 
