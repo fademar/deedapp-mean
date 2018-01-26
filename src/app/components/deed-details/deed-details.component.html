@@ -396,31 +396,35 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <ul class="list-group">
-                                        <li *ngIf="agentTransactionObject.chattels.type" class="list-group-item"><strong>Chattels Type: </strong><span class="form-data">{{ agentTransactionObject.chattels.type }}</span></li>
-                                        <li *ngIf="agentTransactionObject.chattels.origin" class="list-group-item"><strong>Chattels Origin: </strong><span class="form-data">{{ agentTransactionObject.chattels.origin }}</span></li>
-                                        <li *ngIf="agentTransactionObject.chattels.description" class="list-group-item"><strong>Chattels Description: </strong><span class="form-data">{{ agentTransactionObject.chattels.description }}</span></li>
-                                        <li *ngIf="agentTransactionObject.chattels.price" class="list-group-item"><strong>Chattels Price: </strong><span class="form-data">{{ agentTransactionObject.chattels.price }}</span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div *ngIf="agentTransactionObject.debt" class="card mb-3">
-                                <div class="card-header">
-                                    <div class="row justify-content-center">
-                                        <div class="col-4">
-                                            <h5 class="text-center">Debt</h5>
+                                        <div class="row no-gutters mb-3">
+                                                <div class="col-6">
+                                                    <div *ngIf="agentTransactionObject.chattels.type" class="list-group-item">Chattels Type:<span class="form-data" [innerHTML]="agentTransactionObject.chattels.type | highlight: term"></span></div>
+                                                    <div *ngIf="agentTransactionObject.chattels.origin" class="list-group-item">Chattels Origin:<span class="form-data" [innerHTML]="agentTransactionObject.chattels.origin | highlight: term"></span></div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div *ngIf="agentTransactionObject.chattels.description" class="list-group-item">Chattels Description:<span class="form-data" [innerHTML]="agentTransactionObject.chattels.description | highlight: term"></span></div>
+                                                    <div *ngIf="agentTransactionObject.chattels.price" class="list-group-item">Chattels Price:<span class="form-data" [innerHTML]="agentTransactionObject.chattels.price | highlight: term"></span></div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card-body">
-                                    <ul class="list-group">
-                                        <li *ngIf="agentTransactionObject.debt.amount.moscowSilver" class="list-group-item"><strong>Amount in Moscow Silver: </strong><span class="form-data">{{ agentTransactionObject.debt.amount.moscowSilver.rubli }}</span> rubli <span class="form-data">{{ agentTransactionObject.debt.amount.moscowSilver.altyny }}</span> altyny <span class="form-data">{{ agentTransactionObject.debt.amount.moscowSilver.dengi }}</span> den'gi</li>
-                                        <li *ngIf="agentTransactionObject.debt.amount.chekhi" class="list-group-item"><strong>Amount in Chekhi: </strong><span class="form-data">{{ agentTransactionObject.debt.amount.chekhi.rubli }}</span> rubli <span class="form-data">{{ agentTransactionObject.debt.amount.chekhi.altyny }}</span> altyny <span class="form-data">{{ agentTransactionObject.debt.amount.chekhi.dengi }}</span> den'gi</li>
-                                        <li *ngIf="agentTransactionObject.debt.debtorName" class="list-group-item"><strong>Debtor Name: </strong><span class="form-data">{{ agentTransactionObject.debt.debtorName }}</span></li>
-                                        <li *ngIf="agentTransactionObject.debt.debtDate" class="list-group-item"><strong>Debt Date: </strong><span class="form-data">{{ agentTransactionObject.debt.debtDate }}</span></li>
-                                    </ul>
-                                </div>
-                            </div>
+                                    <div *ngIf="agentTransactionObject.debt" class="card mb-3">
+                                        <div class="card-header">
+                                            <div class="row justify-content-center">
+                                                <div class="col-4">
+                                                    <h5 class="text-center">Debt</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row no-gutters mb-3">
+                                                <div *ngIf="agentTransactionObject.debt.amount.moscowSilver" class="list-group-item">Amount in Moscow Silver:<span *ngIf="agentTransactionObject.debt.amount.moscowSilver.rubli" class="form-data" [innerHTML]="agentTransactionObject.debt.amount.moscowSilver.rubli | highlight: term + ' rubli'"><span *ngIf="agentTransactionObject.debt.amount.moscowSilver.altyny" class="form-data" [innerHTML]="agentTransactionObject.debt.amount.moscowSilver.altyny | highlight: term + ' altyny'"></span><span *ngIf="agentTransactionObject.debt.amount.moscowSilver.dengi" class="form-data" [innerHTML]="agentTransactionObject.debt.amount.moscowSilver.dengi | highlight: term + ' deng\'i'"></span></div>
+                                                <div *ngIf="agentTransactionObject.debt.amount.chekhi" class="list-group-item">Amount in Chekhi:<span class="form-data">{{ agentTransactionObject.debt.amount.chekhi.rubli }}</span> rubli <span class="form-data">{{ agentTransactionObject.debt.amount.chekhi.altyny }}</span> altyny <span class="form-data">{{ agentTransactionObject.debt.amount.chekhi.dengi }}</span> den'gi</div>
+                                                <div *ngIf="agentTransactionObject.debt.debtorName" class="list-group-item">Debtor Name:<span class="form-data">{{ agentTransactionObject.debt.debtorName }}</span></div>
+                                                <div *ngIf="agentTransactionObject.debt.debtDate" class="list-group-item">Debt Date:<span class="form-data">{{ agentTransactionObject.debt.debtDate }}</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
                             <div *ngIf="agentTransactionObject.dependent" class="card mb-3">
                                 <div class="card-header">
                                     <div class="row justify-content-center">
