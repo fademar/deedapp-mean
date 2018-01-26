@@ -50,6 +50,7 @@ import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.c
 import { NoteComponent } from './shared/note/note.component';
 import { NoteDialog } from './shared/note/note.component';
 import { AutofocusDirective } from './shared/autofocus/autofocus.directive';
+import { HighlightPipe } from './pipes/highlight.pipe';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { AutofocusDirective } from './shared/autofocus/autofocus.directive';
     HomeComponent,
     NoteComponent,
     NoteDialog,
-    AutofocusDirective
+    AutofocusDirective,
+    HighlightPipe
   ],
   imports: [
     BrowserModule,

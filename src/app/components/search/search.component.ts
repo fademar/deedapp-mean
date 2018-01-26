@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-
-
+import { Title }     from '@angular/platform-browser';
 import { SearchService } from '../../services/search.service';
 import { Subject } from 'rxjs/Subject';
 
@@ -26,11 +25,12 @@ export class SearchComponent implements OnInit {
     results;
     sub;
 
-    constructor(private fb: FormBuilder, private searchService: SearchService, private router: Router, private route: ActivatedRoute) { 
+    constructor(private titleService: Title, private fb: FormBuilder, private searchService: SearchService, private router: Router, private route: ActivatedRoute) { 
         
     }
 
     ngOnInit() {
+        this.titleService.setTitle('SEARCH - Russian Deeds App');
         this.searchForm = this.fb.group({
             searchTerm: ['']
         })

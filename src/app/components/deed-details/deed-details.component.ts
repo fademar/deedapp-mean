@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { Title }     from '@angular/platform-browser';
 import { DeedService } from '../../services/deed.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { AuthService } from '../../services/auth.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
+import { HighlightPipe } from '../../pipes/highlight.pipe';
 
 @Component({
   selector: 'app-deed-details',
   templateUrl: './deed-details.component.html',
   styleUrls: ['./deed-details.component.css'],
-  providers: [MatDialog]
+  providers: [MatDialog, HighlightPipe]
 })
 export class DeedDetailsComponent implements OnInit {
   
@@ -28,12 +30,15 @@ export class DeedDetailsComponent implements OnInit {
 
   term = this.term;
   
-  constructor(private deedService:DeedService, private router: Router, private route: ActivatedRoute, public dialog: MatDialog, public auth: AuthService, private sanitizer: DomSanitizer) { }
+  constructor(private titleService: Title, private deedService:DeedService, private router: Router, private route: ActivatedRoute, public dialog: MatDialog, public auth: AuthService, private sanitizer: DomSanitizer, public highlight: HighlightPipe) { }
 
   ngOnInit() {
+    this.titleService.setTitle('DETAILS - Russian Deeds App');
     this.id = this.route.snapshot.params['id'];
     
     this.deedService.getDeed(this.id).subscribe(deed => {
+        
+              
         this.deed = deed;
 
         // Download Button Function

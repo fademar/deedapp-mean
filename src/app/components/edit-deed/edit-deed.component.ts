@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import * as _ from 'lodash';
-
+import { Title }     from '@angular/platform-browser';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { OtherParticipant, Registrator, Fee, gender, transactionTypes, currencies, socialBody, relationtoagents, agentActionsList, whatList, immovablePropertyList, shareList, whomList, asWhomList, activityList, typeTaxList, counterAgentActionsList } from '../../models/deed-model'
@@ -123,13 +123,14 @@ export class EditDeedComponent implements OnInit {
     }
 
 
-    constructor(private fb: FormBuilder, private deedService: DeedService, private router: Router, private route: ActivatedRoute, private notificationsService: NotificationsService, public auth: AuthService) {
+    constructor(private titleService: Title, private fb: FormBuilder, private deedService: DeedService, private router: Router, private route: ActivatedRoute, private notificationsService: NotificationsService, public auth: AuthService) {
         this.initForm();
     }
 
 
 
     ngOnInit() {
+        this.titleService.setTitle('EDIT - Russian Deeds App');
         this.id = this.route.snapshot.params['id'];
         this.sub = this.route
             .queryParams
