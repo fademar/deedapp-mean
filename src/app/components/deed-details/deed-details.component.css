@@ -33,3 +33,11 @@ md-card {
 .download-button>button:focus, .download-button>button:active {
   outline: none !important;
 }
+
+:host ::ng-deep .search-highlight {
+  background-color: #F2E366;
+}
+
+.bg-grey {
+  background-color: #F5F5F5;
+}
