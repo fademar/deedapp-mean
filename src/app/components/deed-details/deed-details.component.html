@@ -658,15 +658,27 @@
                     <div class="row no-gutters mb-3">
                       <div *ngIf="agentTransactionObject.debt.amount.moscowSilver.rubli || agentTransactionObject.debt.amount.moscowSilver.altyny || agentTransactionObject.debt.amount.moscowSilver.dengi"
                         class="list-group-item">Amount in Moscow Silver:
-                        <span *ngIf="agentTransactionObject.debt.amount.moscowSilver.rubli" class="form-data" [innerHTML]="agentTransactionObject.debt.amount.moscowSilver.rubli | highlight: term + ' rubli'"></span>
-                        <span *ngIf="agentTransactionObject.debt.amount.moscowSilver.altyny" class="form-data" [innerHTML]="agentTransactionObject.debt.amount.moscowSilver.altyny | highlight: term + ' altyny'"></span>
-                        <span *ngIf="agentTransactionObject.debt.amount.moscowSilver.dengi" class="form-data" [innerHTML]="agentTransactionObject.debt.amount.moscowSilver.dengi | highlight: term + ' den\'gi'"></span>
+                        <span *ngIf="agentTransactionObject.debt.amount.moscowSilver.rubli" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.debt.amount.moscowSilver.rubli | highlight: term"></span> rubli
+                        </span>
+                        <span *ngIf="agentTransactionObject.debt.amount.moscowSilver.altyny" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.debt.amount.moscowSilver.altyny | highlight: term"></span> altyny
+                        </span>
+                        <span *ngIf="agentTransactionObject.debt.amount.moscowSilver.dengi" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.debt.amount.moscowSilver.dengi | highlight: term"></span> den'gi
+                        </span>
                       </div>
                       <div *ngIf="agentTransactionObject.debt.amount.chekhi.rubli || agentTransactionObject.debt.amount.chekhi.altyny || agentTransactionObject.debt.amount.chekhi.dengi"
                         class="list-group-item">Amount in Chekhi:
-                        <span *ngIf="agentTransactionObject.debt.amount.chekhi.rubli" class="form-data" [innerHTML]="agentTransactionObject.debt.amount.chekhi.rubli | highlight: term + ' rubli'"></span>
-                        <span *ngIf="agentTransactionObject.debt.amount.chekhi.altyny" class="form-data" [innerHTML]="agentTransactionObject.debt.amount.chekhi.altyny | highlight: term + ' altyny'"></span>
-                        <span *ngIf="agentTransactionObject.debt.amount.chekhi.dengi" class="form-data" [innerHTML]="agentTransactionObject.debt.amount.chekhi.dengi | highlight: term + ' den\'gi'"></span>
+                        <span *ngIf="agentTransactionObject.debt.amount.chekhi.rubli" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.debt.amount.chekhi.rubli | highlight: term"></span> rubli
+                        </span>
+                        <span *ngIf="agentTransactionObject.debt.amount.chekhi.altyny" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.debt.amount.chekhi.altyny | highlight: term"></span> altyny
+                        </span>
+                        <span *ngIf="agentTransactionObject.debt.amount.chekhi.dengi" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.debt.amount.chekhi.dengi | highlight: term"></span> den'gi
+                        </span>
                       </div>
                       <div *ngIf="agentTransactionObject.debt.debtorName" class="list-group-item">Debtor Name:
                         <span class="form-data" [innerHTML]="agentTransactionObject.debt.debtorName | highlight: term"></span>
@@ -724,16 +736,28 @@
                       <li *ngIf="agentTransactionObject.forfeit.moscowSilver.rubli || agentTransactionObject.forfeit.moscowSilver.altyny || agentTransactionObject.forfeit.moscowSilver.dengi"
                         class="list-group-item">
                         Amount in Moscow Silver:
-                        <span *ngIf="agentTransactionObject.forfeit.moscowSilver.rubli" class="form-data" [innerHTML]="agentTransactionObject.forfeit.moscowSilver.rubli | highlight: term + ' rubli'"></span>
-                        <span *ngIf="agentTransactionObject.forfeit.moscowSilver.altyny" class="form-data" [innerHTML]="agentTransactionObject.forfeit.moscowSilver.altyny | highlight: term + ' altyny'"></span>
-                        <span *ngIf="agentTransactionObject.forfeit.moscowSilver.dengi" class="form-data" [innerHTML]="agentTransactionObject.forfeit.moscowSilver.dengi | highlight: term + ' den\'gi'"></span>
+                        <span *ngIf="agentTransactionObject.forfeit.moscowSilver.rubli" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.forfeit.moscowSilver.rubli | highlight: term"></span> rubli
+                        </span>
+                        <span *ngIf="agentTransactionObject.forfeit.moscowSilver.altyny" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.forfeit.moscowSilver.altyny | highlight: term"></span> altyny
+                        </span>
+                        <span *ngIf="agentTransactionObject.forfeit.moscowSilver.dengi" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.forfeit.moscowSilver.dengi | highlight: term"></span> den'gi
+                        </span>
                       </li>
                       <li *ngIf="agentTransactionObject.forfeit.chekhi.rubli || agentTransactionObject.forfeit.chekhi.altyny || agentTransactionObject.forfeit.chekhi.dengi"
                         class="list-group-item">
                         Amount in Chekhi:
-                        <span *ngIf="agentTransactionObject.forfeit.chekhi.rubli" class="form-data" [innerHTML]="agentTransactionObject.forfeit.chekhi.rubli | highlight: term + ' rubli'"></span>
-                        <span *ngIf="agentTransactionObject.forfeit.chekhi.altyny" class="form-data" [innerHTML]="agentTransactionObject.forfeit.chekhi.altyny | highlight: term + ' altyny'"></span>
-                        <span *ngIf="agentTransactionObject.forfeit.chekhi.dengi" class="form-data" [innerHTML]="agentTransactionObject.forfeit.chekhi.altyny | highlight: term + ' den\'gi'"></span>
+                        <span *ngIf="agentTransactionObject.forfeit.chekhi.rubli" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.forfeit.chekhi.rubli | highlight: term"></span> rubli
+                        </span>
+                        <span *ngIf="agentTransactionObject.forfeit.chekhi.altyny" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.forfeit.chekhi.altyny | highlight: term"></span> altyny
+                        </span>
+                        <span *ngIf="agentTransactionObject.forfeit.chekhi.dengi" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.forfeit.chekhi.altyny | highlight: term"></span> den'gi
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -755,9 +779,16 @@
                       <li *ngIf="agentTransactionObject.fugitiveSouls.numberOfSouls.male || agentTransactionObject.fugitiveSouls.numberOfSouls.female || agentTransactionObject.fugitiveSouls.numberOfSouls.households"
                         class="list-group-item">
                         Number of Souls:
-                        <span *ngIf="agentTransactionObject.fugitiveSouls.numberOfSouls.male" class="form-data" [innerHTML]="agentTransactionObject.fugitiveSouls.numberOfSouls.male | highlight: term + ' male /'"></span>
-                        <span *ngIf="agentTransactionObject.fugitiveSouls.numberOfSouls.female" class="form-data" [innerHTML]="agentTransactionObject.fugitiveSouls.numberOfSouls.female | highlight: term + ' female'"></span>
-                        <span *ngIf="agentTransactionObject.fugitiveSouls.numberOfSouls.households" class="form-data" [innerHTML]="agentTransactionObject.fugitiveSouls.numberOfSouls.operator + ' ' + agentTransactionObject.fugitiveSouls.numberOfSouls.households | highlight: term">
+                        <span *ngIf="agentTransactionObject.fugitiveSouls.numberOfSouls.male" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.fugitiveSouls.numberOfSouls.male | highlight: term"></span> male /
+                        </span>
+                        <span *ngIf="agentTransactionObject.fugitiveSouls.numberOfSouls.female" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.fugitiveSouls.numberOfSouls.female | highlight: term"></span> female
+                        </span>
+                        <span *ngIf="agentTransactionObject.fugitiveSouls.numberOfSouls.households" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.fugitiveSouls.numberOfSouls.operator"></span>
+                          <span [innerHTML]="agentTransactionObject.fugitiveSouls.numberOfSouls.households | highlight: term"></span>
+                          households
                         </span>
                       </li>
                       <li *ngIf="agentTransactionObject.fugitiveSouls.names" class="list-group-item">
@@ -792,16 +823,28 @@
                       <li *ngIf="agentTransactionObject.goods.price.moscowSilver.rubli || agentTransactionObject.goods.price.moscowSilver.altyny || agentTransactionObject.goods.price.moscowSilver.dengi"
                         class="list-group-item">
                         Price in Moscow Silver:
-                        <span class="form-data" [innerHTML]="agentTransactionObject.goods.price.moscowSilver.rubli | highlight: term + ' rubli'"></span>
-                        <span class="form-data" [innerHTML]="agentTransactionObject.goods.price.moscowSilver.altyny | highlight: term + ' altyny'"></span>
-                        <span class="form-data" [innerHTML]="agentTransactionObject.goods.price.moscowSilver.dengi | highlight: term + ' den\'gi'"></span>
+                        <span *ngIf="agentTransactionObject.goods.price.moscowSilver.rubli" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.goods.price.moscowSilver.rubli | highlight: term"></span> rubli
+                        </span>
+                        <span *ngIf="agentTransactionObject.goods.price.moscowSilver.altyny" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.goods.price.moscowSilver.altyny | highlight: term"></span> altyny
+                        </span>
+                        <span *ngIf="agentTransactionObject.goods.price.moscowSilver.dengi" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.goods.price.moscowSilver.dengi | highlight: term"></span> den'gi
+                        </span>
                       </li>
                       <li *ngIf="agentTransactionObject.goods.price.chekhi.rubli || agentTransactionObject.goods.price.chekhi.altyny || agentTransactionObject.goods.price.chekhi.dengi"
                         class="list-group-item">
                         Price in Chekhi:
-                        <span class="form-data" [innerHTML]="agentTransactionObject.goods.price.chekhi.rubli | highlight: term + ' rubli'"></span>
-                        <span class="form-data" [innerHTML]="agentTransactionObject.goods.price.chekhi.altyny | highlight: term + ' altyny'"></span>
-                        <span class="form-data" [innerHTML]="agentTransactionObject.goods.price.chekhi.dengi | highlight: term + ' den\'gi'"></span>
+                        <span *ngIf="agentTransactionObject.goods.price.chekhi.rubli" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.goods.price.chekhi.rubli | highlight: term"></span> rubli
+                        </span>
+                        <span *ngIf="agentTransactionObject.goods.price.chekhi.altyny" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.goods.price.chekhi.altyny | highlight: term"></span> altyny
+                        </span>
+                        <span *ngIf="agentTransactionObject.goods.price.chekhi.dengi" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.goods.price.chekhi.dengi | highlight: term"></span> den'gi
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -846,15 +889,27 @@
                       </li>
                       <li *ngIf="agentTransactionObject.immovableProperty.surface" class="list-group-item">
                         Surface:
-                        <span *ngIf="agentTransactionObject.immovableProperty.surface.chetiVpole" class="form-data" [innerHTML]="agentTransactionObject.immovableProperty.surface.chetiVpole | highlight: term + ' cheti v pole'"></span>
-                        <span *ngIf="agentTransactionObject.immovableProperty.surface.sazheni.x" class="form-data" [innerHTML]="agentTransactionObject.immovableProperty.surface.sazheni.x | highlight: term + ' X ' + agentTransactionObject.immovableProperty.surface.sazheni.y | highlight: term + ' sazheni'"></span>
+                        <span *ngIf="agentTransactionObject.immovableProperty.surface.chetiVpole" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.immovableProperty.surface.chetiVpole | highlight: term"></span> cheti v pole
+                        </span>
+                        <span *ngIf="agentTransactionObject.immovableProperty.surface.sazheni.x" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.immovableProperty.surface.sazheni.x | highlight: term"></span> X
+                          <span [innerHTML]="agentTransactionObject.immovableProperty.surface.sazheni.y | highlight: term + ' sazheni'"></span>
+                        </span>
                       </li>
                       <li *ngIf="agentTransactionObject.immovableProperty.population.male || agentTransactionObject.immovableProperty.population.female || agentTransactionObject.immovableProperty.population.households"
                         class="list-group-item">
                         Population (souls):
-                        <span *ngIf="agentTransactionObject.immovableProperty.population.male" class="form-data" [innerHTML]="agentTransactionObject.immovableProperty.population.male | highlight: term + ' male'"></span>
-                        <span *ngIf="agentTransactionObject.immovableProperty.population.female" class="form-data" [innerHTML]="agentTransactionObject.immovableProperty.population.female | highlight: term + ' female'"></span>
-                        <span *ngIf="agentTransactionObject.immovableProperty.population.households" class="form-data" [innerHTML]="agentTransactionObject.immovableProperty.population.operator + ' ' + agentTransactionObject.immovableProperty.population.households | highlight: term + ' households'"></span>
+                        <span *ngIf="agentTransactionObject.immovableProperty.population.male" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.immovableProperty.population.male | highlight: term"></span> male /
+                        </span>
+                        <span *ngIf="agentTransactionObject.immovableProperty.population.female" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.immovableProperty.population.female | highlight: term"></span> female
+                        </span>
+                        <span *ngIf="agentTransactionObject.immovableProperty.population.households" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.immovableProperty.population.operator"></span>
+                          <span [innerHTML]="agentTransactionObject.immovableProperty.population.households | highlight: term"></span> households
+                        </span>
                       </li>
                       <li *ngIf="agentTransactionObject.immovableProperty.buildings" class="list-group-item">
                         Buildings:
@@ -880,16 +935,28 @@
                       <li *ngIf="agentTransactionObject.money.amount.moscowSilver.rubli || agentTransactionObject.money.amount.moscowSilver.altyny || agentTransactionObject.money.amount.moscowSilver.dengi"
                         class="list-group-item">
                         Amount in Moscow Silver:
-                        <span *ngIf="agentTransactionObject.money.amount.moscowSilver.rubli" class="form-data" [innerHTML]="agentTransactionObject.money.amount.moscowSilver.rubli | highlight: term + ' rubli'"></span>
-                        <span *ngIf="agentTransactionObject.money.amount.moscowSilver.altyny" class="form-data" [innerHTML]="agentTransactionObject.money.amount.moscowSilver.altyny | highlight: term + ' altyny'"></span>
-                        <span *ngIf="agentTransactionObject.money.amount.moscowSilver.dengi" class="form-data" [innerHTML]="agentTransactionObject.money.amount.moscowSilver.dengi | highlight: term + ' den\'gi'"></span>
+                        <span *ngIf="agentTransactionObject.money.amount.moscowSilver.rubli" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.money.amount.moscowSilver.rubli | highlight: term"></span> rubli
+                        </span>
+                        <span *ngIf="agentTransactionObject.money.amount.moscowSilver.altyny" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.money.amount.moscowSilver.altyny | highlight: term"></span> altyny
+                        </span>
+                        <span *ngIf="agentTransactionObject.money.amount.moscowSilver.dengi" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.money.amount.moscowSilver.dengi | highlight: term"></span> den'gi
+                        </span>
                       </li>
                       <li *ngIf="agentTransactionObject.money.amount.chekhi.rubli || agentTransactionObject.money.amount.chekhi.altyny || agentTransactionObject.money.amount.chekhi.dengi"
                         class="list-group-item">
                         Amount in Chekhi:
-                        <span *ngIf="agentTransactionObject.money.amount.chekhi.rubli" class="form-data" [innerHTML]="agentTransactionObject.money.amount.chekhi.rubli | highlight: term + ' rubli'"></span>
-                        <span *ngIf="agentTransactionObject.money.amount.chekhi.altyny" class="form-data" [innerHTML]="agentTransactionObject.money.amount.chekhi.altyny | highlight: term + ' altyny'"></span>
-                        <span *ngIf="agentTransactionObject.money.amount.chekhi.dengi" class="form-data" [innerHTML]="agentTransactionObject.money.amount.chekhi.dengi | highlight: term + ' den\'gi'"></span>
+                        <span *ngIf="agentTransactionObject.money.amount.chekhi.rubli" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.money.amount.chekhi.rubli | highlight: term"></span> rubli
+                        </span>
+                        <span *ngIf="agentTransactionObject.money.amount.chekhi.altyny" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.money.amount.chekhi.altyny | highlight: term"></span> altyny
+                        </span>
+                        <span *ngIf="agentTransactionObject.money.amount.chekhi.dengi" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.money.amount.chekhi.dengi | highlight: term"></span> den'gi
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -970,9 +1037,16 @@
                       <li *ngIf="agentTransactionObject.souls.numberOfSouls.male || agentTransactionObject.souls.numberOfSouls.female || agentTransactionObject.souls.numberOfSouls.households"
                         class="list-group-item">
                         Number of Souls:
-                        <span *ngIf="agentTransactionObject.souls.numberOfSouls.male" class="form-data" [innerHTML]="agentTransactionObject.souls.numberOfSouls.male | highlight: term + ' male /'"></span>
-                        <span *ngIf="agentTransactionObject.souls.numberOfSouls.female" class="form-data" [innerHTML]="agentTransactionObject.souls.numberOfSouls.female | highlight: term + ' female'"></span>
-                        <span *ngIf="agentTransactionObject.souls.numberOfSouls.households" class="form-data" [innerHTML]="agentTransactionObject.souls.numberOfSouls.operator + ' ' + agentTransactionObject.souls.numberOfSouls.households | highlight: term"></span>
+                        <span *ngIf="agentTransactionObject.souls.numberOfSouls.male" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.souls.numberOfSouls.male | highlight: term"></span> male
+                        </span>
+                        <span *ngIf="agentTransactionObject.souls.numberOfSouls.female" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.souls.numberOfSouls.female | highlight: term"></span> female
+                        </span>
+                        <span *ngIf="agentTransactionObject.souls.numberOfSouls.households" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.souls.numberOfSouls.operator"></span>
+                          <span [innerHTML]="agentTransactionObject.souls.numberOfSouls.households | highlight: term"></span> households
+                        </span>
                       </li>
                       <li *ngIf="agentTransactionObject.souls.names" class="list-group-item">
                         Names:
@@ -1073,9 +1147,15 @@
                       </li>
                       <li *ngIf="agentTransactionObject.annualRent" class="list-group-item">
                         Annual Rent:
-                        <span *ngIf="agentTransactionObject.annualRent.rubli" class="form-data" [innerHTML]="agentTransactionObject.annualRent.rubli | highlight: term + ' rubli'"></span>
-                        <span *ngIf="agentTransactionObject.annualRent.altyny" class="form-data" [innerHTML]="agentTransactionObject.annualRent.altyny | highlight: term + ' altyny'"></span>
-                        <span *ngIf="agentTransactionObject.annualRent.dengi" class="form-data" [innerHTML]="agentTransactionObject.annualRent.dengi | highlight: term + ' den\'gi'"></span>
+                        <span *ngIf="agentTransactionObject.annualRent.rubli" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.annualRent.rubli | highlight: term"></span> rubli
+                        </span>
+                        <span *ngIf="agentTransactionObject.annualRent.altyny" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.annualRent.altyny | highlight: term"></span> altyny
+                        </span>
+                        <span *ngIf="agentTransactionObject.annualRent.dengi" class="form-data">
+                          <span [innerHTML]="agentTransactionObject.annualRent.dengi | highlight: term"></span> den'gi
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -1162,16 +1242,28 @@
                       <li *ngIf="counterAgentTransactionObject.debt.amount.moscowSilver.rubli || counterAgentTransactionObject.debt.amount.moscowSilver.altyny || counterAgentTransactionObject.debt.amount.moscowSilver.dengi"
                         class="list-group-item">
                         Amount in Moscow Silver:
-                        <span *ngIf="counterAgentTransactionObject.debt.amount.moscowSilver.rubli" class="form-data" [innerHTML]="counterAgentTransactionObject.debt.amount.moscowSilver.rubli | highlight: term + ' rubli'"></span>
-                        <span *ngIf="counterAgentTransactionObject.debt.amount.moscowSilver.altyny" class="form-data" [innerHTML]="counterAgentTransactionObject.debt.amount.moscowSilver.altyny | highlight: term + ' altyny'"></span>
-                        <span *ngIf="counterAgentTransactionObject.debt.amount.moscowSilver.dengi" class="form-data" [innerHTML]="counterAgentTransactionObject.debt.amount.moscowSilver.dengi | highlight: term + ' den\'gi'"></span>
+                        <span *ngIf="counterAgentTransactionObject.debt.amount.moscowSilver.rubli" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.debt.amount.moscowSilver.rubli | highlight: term"></span> rubli
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.debt.amount.moscowSilver.altyny" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.debt.amount.moscowSilver.altyny | highlight: term"></span> altyny
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.debt.amount.moscowSilver.dengi" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.debt.amount.moscowSilver.dengi | highlight: term"></span> den'gi
+                        </span>
                       </li>
                       <li *ngIf="counterAgentTransactionObject.debt.amount.chekhi.rubli || counterAgentTransactionObject.debt.amount.chekhi.altyny || counterAgentTransactionObject.debt.amount.chekhi.dengi"
                         class="list-group-item">
                         Amount in Chekhi:
-                        <span *ngIf="counterAgentTransactionObject.debt.amount.chekhi.rubli" class="form-data" [innerHTML]="counterAgentTransactionObject.debt.amount.chekhi.rubli | highlight: term + ' rubli'"></span>
-                        <span *ngIf="counterAgentTransactionObject.debt.amount.chekhi.altyny" class="form-data" [innerHTML]="counterAgentTransactionObject.debt.amount.chekhi.altyny | highlight: term + ' altyny'"></span>
-                        <span *ngIf="counterAgentTransactionObject.debt.amount.chekhi.dengi" class="form-data" [innerHTML]="counterAgentTransactionObject.debt.amount.chekhi.dengi | highlight: term + ' den\'gi'"></span>
+                        <span *ngIf="counterAgentTransactionObject.debt.amount.chekhi.rubli" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.debt.amount.chekhi.rubli | highlight: term"></span> rubli
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.debt.amount.chekhi.altyny" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.debt.amount.chekhi.altyny | highlight: term"></span> altyny
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.debt.amount.chekhi.dengi" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.debt.amount.chekhi.dengi | highlight: term"></span> den'gi
+                        </span>
                       </li>
                       <li *ngIf="counterAgentTransactionObject.debt.debtorName" class="list-group-item">
                         Debtor Name:
@@ -1230,16 +1322,28 @@
                       <li *ngIf="counterAgentTransactionObject.forfeit.moscowSilver.rubli || counterAgentTransactionObject.forfeit.moscowSilver.altyny || counterAgentTransactionObject.forfeit.moscowSilver.dengi"
                         class="list-group-item">
                         Amount in Moscow Silver:
-                        <span class="form-data" [innerHTML]="counterAgentTransactionObject.forfeit.moscowSilver.rubli | highlight: term + ' rubli'"></span>
-                        <span class="form-data" [innerHTML]="counterAgentTransactionObject.forfeit.moscowSilver.altyny | highlight: term + ' altyny'"></span>
-                        <span class="form-data" [innerHTML]="counterAgentTransactionObject.forfeit.moscowSilver.dengi | highlight: term + ' den\'gi'"></span>
+                        <span *ngIf="counterAgentTransactionObject.forfeit.moscowSilver.rubli" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.forfeit.moscowSilver.rubli | highlight: term"></span> rubli
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.forfeit.moscowSilver.altyny" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.forfeit.moscowSilver.altyny | highlight: term"></span> altyny
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.forfeit.moscowSilver.dengi" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.forfeit.moscowSilver.dengi | highlight: term"></span> den'gi
+                        </span>
                       </li>
                       <li *ngIf="counterAgentTransactionObject.forfeit.chekhi.rubli || counterAgentTransactionObject.forfeit.chekhi.altyny || counterAgentTransactionObject.forfeit.chekhi.dengi"
                         class="list-group-item">
                         Amount in Chekhi:
-                        <span class="form-data" [innerHTML]="counterAgentTransactionObject.forfeit.chekhi.rubli | highlight: term + ' rubli'"></span>
-                        <span class="form-data" [innerHTML]="counterAgentTransactionObject.forfeit.chekhi.altyny | highlight: term + ' altyny'"></span>
-                        <span class="form-data" [innerHTML]="counterAgentTransactionObject.forfeit.chekhi.dengi | highlight: term + ' den\'gi'"></span>
+                        <span *ngIf="counterAgentTransactionObject.forfeit.chekhi.rubli" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.forfeit.chekhi.rubli | highlight: term"></span> rubli
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.forfeit.chekhi.altyny" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.forfeit.chekhi.altyny | highlight: term"></span> altyny
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.forfeit.chekhi.dengi" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.forfeit.chekhi.dengi | highlight: term"></span> den'gi
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -1260,9 +1364,16 @@
                       </li>
                       <li *ngIf="counterAgentTransactionObject.fugitiveSouls.numberOfSouls" class="list-group-item">
                         Number of Souls:
-                        <span *ngIf="counterAgentTransactionObject.fugitiveSouls.numberOfSouls.male" class="form-data" [innerHTML]="counterAgentTransactionObject.fugitiveSouls.numberOfSouls.male | highlight: term + ' male'"></span>
-                        <span *ngIf="counterAgentTransactionObject.fugitiveSouls.numberOfSouls.female" class="form-data" [innerHTML]="counterAgentTransactionObject.fugitiveSouls.numberOfSouls.female | highlight: term + ' female'"></span>
-                        <span *ngIf="counterAgentTransactionObject.fugitiveSouls.numberOfSouls.households" class="form-data" [innerHTML]="counterAgentTransactionObject.fugitiveSouls.numberOfSouls.operator + '  ' + counterAgentTransactionObject.fugitiveSouls.numberOfSouls.households | highlight: term + ' households'"></span>
+                        <span *ngIf="counterAgentTransactionObject.fugitiveSouls.numberOfSouls.male" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.fugitiveSouls.numberOfSouls.male | highlight: term"></span> male /
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.fugitiveSouls.numberOfSouls.female" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.fugitiveSouls.numberOfSouls.female | highlight: term"></span> female
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.fugitiveSouls.numberOfSouls.households" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.fugitiveSouls.numberOfSouls.operator"></span>
+                          <span [innerHTML]=">counterAgentTransactionObject.fugitiveSouls.numberOfSouls.households | highlight: term"></span> households
+                        </span>
                       </li>
                       <li *ngIf="counterAgentTransactionObject.fugitiveSouls.names" class="list-group-item">
                         Names:
@@ -1296,16 +1407,28 @@
                       <li *ngIf="counterAgentTransactionObject.goods.price.moscowSilver.rubli || counterAgentTransactionObject.goods.price.moscowSilver.altyny || counterAgentTransactionObject.goods.price.moscowSilver.dengi"
                         class="list-group-item">
                         Price in Moscow Silver:
-                        <span class="form-data" [innerHTML]="counterAgentTransactionObject.goods.price.moscowSilver.rubli | highlight: term + ' rubli'"></span>
-                        <span class="form-data" [innerHTML]="counterAgentTransactionObject.goods.price.moscowSilver.altyny | highlight: term + ' altyny'"></span>
-                        <span class="form-data" [innerHTML]="counterAgentTransactionObject.goods.price.moscowSilver.dengi | highlight: term + ' den\'gi'"></span>
+                        <span *ngIf="counterAgentTransactionObject.goods.price.moscowSilver.rubli" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.goods.price.moscowSilver.rubli | highlight: term"></span> rubli
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.goods.price.moscowSilver.altyny" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.goods.price.moscowSilver.altyny | highlight: term"></span> altyny
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.goods.price.moscowSilver.dengi" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.goods.price.moscowSilver.dengi | highlight: term"></span> den'gi
+                        </span>
                       </li>
                       <li *ngIf="counterAgentTransactionObject.goods.price.chekhi.rubli || counterAgentTransactionObject.goods.price.chekhi.altyny || counterAgentTransactionObject.goods.price.chekhi.dengi"
                         class="list-group-item">
                         Price in Chekhi:
-                        <span class="form-data" [innerHTML]="counterAgentTransactionObject.goods.price.chekhi.rubli | highlight: term + ' rubli'"></span>
-                        <span class="form-data" [innerHTML]="counterAgentTransactionObject.goods.price.chekhi.altyny | highlight: term + ' altyny'"></span>
-                        <span class="form-data" [innerHTML]="counterAgentTransactionObject.goods.price.chekhi.dengi | highlight: term + ' den\'gi'"></span>
+                        <span *ngIf="counterAgentTransactionObject.goods.price.chekhi.rubli" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.goods.price.chekhi.rubli | highlight: term"></span> rubli
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.goods.price.chekhi.altyny" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.goods.price.chekhi.altyny | highlight: term"></span> altyny
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.goods.price.chekhi.dengi" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.goods.price.chekhi.dengi | highlight: term"></span> den'gi
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -1350,15 +1473,27 @@
                       </li>
                       <li *ngIf="counterAgentTransactionObject.immovableProperty.surface" class="list-group-item">
                         Surface:
-                        <span *ngIf="counterAgentTransactionObject.immovableProperty.surface.chetiVpole" class="form-data" [innerHTML]="counterAgentTransactionObject.immovableProperty.surface.chetiVpole | highlight: term + ' cheti v pole'"></span>
-                        <span *ngIf="counterAgentTransactionObject.immovableProperty.surface.sazheni.x" class="form-data" [innerHTML]="counterAgentTransactionObject.immovableProperty.surface.sazheni.x | highlight: term + ' X ' + counterAgentTransactionObject.immovableProperty.surface.sazheni.y | highlight: term + ' sazheni'"></span>
+                        <span *ngIf="counterAgentTransactionObject.immovableProperty.surface.chetiVpole" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.immovableProperty.surface.chetiVpole | highlight: term"></span> cheti v pole
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.immovableProperty.surface.sazheni.x" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.immovableProperty.surface.sazheni.x | highlight: term"></span> X
+                          <span [innerHTML]="counterAgentTransactionObject.immovableProperty.surface.sazheni.y | highlight: term"></span> sazheni
+                        </span>
                       </li>
                       <li *ngIf="counterAgentTransactionObject.immovableProperty.population.male || counterAgentTransactionObject.immovableProperty.population.female || counterAgentTransactionObject.immovableProperty.population.households"
                         class="list-group-item">
                         Population (souls):
-                        <span *ngIf="counterAgentTransactionObject.immovableProperty.population.male" class="form-data" [innerHTML]="counterAgentTransactionObject.immovableProperty.population.male | highlight: term + ' male'"></span>
-                        <span *ngIf="counterAgentTransactionObject.immovableProperty.population.female" class="form-data" [innerHTML]="counterAgentTransactionObject.immovableProperty.population.female | highlight: term + ' female'"></span>
-                        <span *ngIf="counterAgentTransactionObject.immovableProperty.population.households" class="form-data" [innerHTML]="counterAgentTransactionObject.immovableProperty.population.operator + ' ' + counterAgentTransactionObject.immovableProperty.population.households | highlight: term + ' households'"></span>
+                        <span *ngIf="counterAgentTransactionObject.immovableProperty.population.male" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.immovableProperty.population.male | highlight: term"></span> male /
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.immovableProperty.population.female" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.immovableProperty.population.female | highlight: term"></span> female
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.immovableProperty.population.households" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.immovableProperty.population.operator"></span>
+                          <span [innerHTML]="counterAgentTransactionObject.immovableProperty.population.households | highlight: term"></span> households
+                        </span>
                       </li>
                       <li *ngIf="counterAgentTransactionObject.immovableProperty.buildings" class="list-group-item">
                         Buildings:
@@ -1384,16 +1519,28 @@
                       <li *ngIf="counterAgentTransactionObject.money.amount.moscowSilver.rubli || counterAgentTransactionObject.money.amount.moscowSilver.altyny || counterAgentTransactionObject.money.amount.moscowSilver.dengi"
                         class="list-group-item">
                         Amount in Moscow Silver:
-                        <span *ngIf="counterAgentTransactionObject.money.amount.moscowSilver.rubli" class="form-data" [innerHTML]="counterAgentTransactionObject.money.amount.moscowSilver.rubli + ' rubli'"></span>
-                        <span *ngIf="counterAgentTransactionObject.money.amount.moscowSilver.altyny" class="form-data" [innerHTML]="counterAgentTransactionObject.money.amount.moscowSilver.altyny | highlight: term + ' altyny'"></span>
-                        <span *ngIf="counterAgentTransactionObject.money.amount.moscowSilver.dengi" class="form-data" [innerHTML]="counterAgentTransactionObject.money.amount.moscowSilver.dengi | highlight: term + ' den\'gi'"></span>
+                        <span *ngIf="counterAgentTransactionObject.money.amount.moscowSilver.rubli" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.money.amount.moscowSilver.rubli | highlight: term"></span> rubli
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.money.amount.moscowSilver.altyny" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.money.amount.moscowSilver.altyny | highlight: term"></span> altyny
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.money.amount.moscowSilver.dengi" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.money.amount.moscowSilver.dengi | highlight: term"></span> den'gi
+                        </span>
                       </li>
                       <li *ngIf="counterAgentTransactionObject.money.amount.chekhi.rubli || counterAgentTransactionObject.money.amount.chekhi.altyny || counterAgentTransactionObject.money.amount.chekhi.dengi"
                         class="list-group-item">
                         Amount in Chekhi:
-                        <span *ngIf="counterAgentTransactionObject.money.amount.chekhi.rubli" class="form-data" [innerHTML]="counterAgentTransactionObject.money.amount.chekhi.rubli | highlight: term + ' rubli'"></span>
-                        <span *ngIf="counterAgentTransactionObject.money.amount.chekhi.altyny" class="form-data" [innerHTML]="counterAgentTransactionObject.money.amount.chekhi.altyny | highlight: term + ' altyny'"></span>
-                        <span *ngIf="counterAgentTransactionObject.money.amount.chekhi.dengi" class="form-data" [innerHTML]="counterAgentTransactionObject.money.amount.chekhi.dengi | highlight: term + ' den\'gi'"></span>
+                        <span *ngIf="counterAgentTransactionObject.money.amount.chekhi.rubli" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.money.amount.chekhi.rubli | highlight: term"></span> rubli
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.money.amount.chekhi.altyny" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.money.amount.chekhi.altyny | highlight: term"></span> altyny
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.money.amount.chekhi.dengi" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.money.amount.chekhi.dengi | highlight: term"></span> den'gi
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -1474,9 +1621,15 @@
                       <li *ngIf="counterAgentTransactionObject.souls.numberOfSouls.male || counterAgentTransactionObject.souls.numberOfSouls.female || counterAgentTransactionObject.souls.numberOfSouls.households"
                         class="list-group-item">
                         Number of Souls:
-                        <span *ngIf="counterAgentTransactionObject.souls.numberOfSouls.male" class="form-data" [innerHTML]="counterAgentTransactionObject.souls.numberOfSouls.male | highlight: term + ' male /'"></span>
-                        <span *ngIf="counterAgentTransactionObject.souls.numberOfSouls.female" class="form-data" [innerHTML]="counterAgentTransactionObject.souls.numberOfSouls.female | highlight: term + ' female'"></span>
-                        <span *ngIf="counterAgentTransactionObject.souls.numberOfSouls.households" class="form-data" [innerHTML]="counterAgentTransactionObject.souls.numberOfSouls.operator + ' ' + counterAgentTransactionObject.souls.numberOfSouls.households | highlight: term">
+                        <span *ngIf="counterAgentTransactionObject.souls.numberOfSouls.male" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.souls.numberOfSouls.male | highlight: term"></span> male /
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.souls.numberOfSouls.female" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.souls.numberOfSouls.female | highlight: term"></span> female
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.souls.numberOfSouls.households" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.souls.numberOfSouls.operator"></span>
+                          <span [innerHTML]="counterAgentTransactionObject.souls.numberOfSouls.households | highlight: term"></span> households
                         </span>
                       </li>
                       <li *ngIf="counterAgentTransactionObject.souls.names" class="list-group-item">
@@ -1578,9 +1731,15 @@
                       </li>
                       <li *ngIf="counterAgentTransactionObject.annualRent" class="list-group-item">
                         Annual Rent:
-                        <span *ngIf="counterAgentTransactionObject.annualRent.rubli" class="form-data" [innerHTML]="counterAgentTransactionObject.annualRent.rubli | highlight: term + ' rubli'"></span>
-                        <span *ngIf="counterAgentTransactionObject.annualRent.altyny" class="form-data" [innerHTML]="counterAgentTransactionObject.annualRent.altyny | highlight: term + ' altyny'"></span>
-                        <span *ngIf="counterAgentTransactionObject.annualRent.dengi" class="form-data" [innerHTML]="counterAgentTransactionObject.annualRent.dengi | highlight: term + ' den\'gi'"></span>
+                        <span *ngIf="counterAgentTransactionObject.annualRent.rubli" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.annualRent.rubli | highlight: term"></span> rubli
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.annualRent.altyny" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.annualRent.altyny | highlight: term"></span> altyny
+                        </span>
+                        <span *ngIf="counterAgentTransactionObject.annualRent.dengi" class="form-data">
+                          <span [innerHTML]="counterAgentTransactionObject.annualRent.dengi | highlight: term"></span> den'gi
+                        </span>
                       </li>
                     </ul>
                   </div>
@@ -1880,15 +2039,27 @@
             <ul class="list-group">
               <li *ngIf="deed.fees.tax.roubles || deed.fees.tax.altyn || deed.fees.tax.denga" class="list-group-item">
                 Tax:
-                <span *ngIf="deed.fees.tax.roubles" class="form-data" [innerHTML]="deed.fees.tax.roubles | highlight: term + ' roubles'"></span>
-                <span *ngIf="deed.fees.tax.altyn" class="form-data" [innerHTML]="deed.fees.tax.altyn | highlight: term + ' altyn'"></span>
-                <span *ngIf="deed.fees.tax.denga" class="form-data" [innerHTML]="deed.fees.tax.denga | highlight: term + ' denga'"></span>
+                <span *ngIf="deed.fees.tax.roubles" class="form-data">
+                  <span [innerHTML]="deed.fees.tax.roubles | highlight: term"></span> roubles
+                </span>
+                <span *ngIf="deed.fees.tax.altyn" class="form-data">
+                  <span [innerHTML]="deed.fees.tax.altyn | highlight: term"></span> altyn
+                </span>
+                <span *ngIf="deed.fees.tax.denga" class="form-data">
+                  <span [innerHTML]="deed.fees.tax.denga | highlight: term"></span> denga
+                </span>
               </li>
               <li *ngIf="deed.fees.fee.roubles || deed.fees.fee.altyn || deed.fees.fee.denga" class="list-group-item">
                 Fee:
-                <span *ngIf="deed.fees.fee.roubles" class="form-data" [innerHTML]="deed.fees.fee.roubles | highlight: term + ' roubles'"></span>
-                <span *ngIf="deed.fees.fee.altyn" class="form-data" [innerHTML]="deed.fees.fee.altyn | highlight: term + ' altyn'"></span>
-                <span *ngIf="deed.fees.fee.denga" class="form-data" [innerHTML]="deed.fees.fee.denga | highlight: term + ' denga'"></span>
+                <span *ngIf="deed.fees.fee.roubles" class="form-data">
+                  <span [innerHTML]="deed.fees.fee.roubles | highlight: term"></span> roubles
+                </span>
+                <span *ngIf="deed.fees.fee.altyn" class="form-data">
+                  <span [innerHTML]="deed.fees.fee.altyn | highlight: term"></span> altyn
+                </span>
+                <span *ngIf="deed.fees.fee.denga" class="form-data">
+                  <span [innerHTML]="deed.fees.fee.denga | highlight: term"></span> denga
+                </span>
               </li>
             </ul>
           </div>
