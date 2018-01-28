@@ -854,7 +854,7 @@
                         Population (souls):
                         <span *ngIf="agentTransactionObject.immovableProperty.population.male" class="form-data" [innerHTML]="agentTransactionObject.immovableProperty.population.male | highlight: term + ' male'"></span>
                         <span *ngIf="agentTransactionObject.immovableProperty.population.female" class="form-data" [innerHTML]="agentTransactionObject.immovableProperty.population.female | highlight: term + ' female'"></span>
-                        <span *ngIf="agentTransactionObject.immovableProperty.population.households" class="form-data" [innerHTML]="agentTransactionObject.immovableProperty.population.operator + ' ' + agentTransactionObject.immovableProperty.population.households | highlight: term + ' households'">
+                        <span *ngIf="agentTransactionObject.immovableProperty.population.households" class="form-data" [innerHTML]="agentTransactionObject.immovableProperty.population.operator + ' ' + agentTransactionObject.immovableProperty.population.households | highlight: term + ' households'"></span>
                       </li>
                       <li *ngIf="agentTransactionObject.immovableProperty.buildings" class="list-group-item">
                         Buildings:
@@ -972,8 +972,7 @@
                         Number of Souls:
                         <span *ngIf="agentTransactionObject.souls.numberOfSouls.male" class="form-data" [innerHTML]="agentTransactionObject.souls.numberOfSouls.male | highlight: term + ' male /'"></span>
                         <span *ngIf="agentTransactionObject.souls.numberOfSouls.female" class="form-data" [innerHTML]="agentTransactionObject.souls.numberOfSouls.female | highlight: term + ' female'"></span>
-                        <span *ngIf="agentTransactionObject.souls.numberOfSouls.households" class="form-data" [innerHTML]="agentTransactionObject.souls.numberOfSouls.operator + ' ' + agentTransactionObject.souls.numberOfSouls.households | highlight: term">
-                        </span>
+                        <span *ngIf="agentTransactionObject.souls.numberOfSouls.households" class="form-data" [innerHTML]="agentTransactionObject.souls.numberOfSouls.operator + ' ' + agentTransactionObject.souls.numberOfSouls.households | highlight: term"></span>
                       </li>
                       <li *ngIf="agentTransactionObject.souls.names" class="list-group-item">
                         Names:
@@ -1359,7 +1358,7 @@
                         Population (souls):
                         <span *ngIf="counterAgentTransactionObject.immovableProperty.population.male" class="form-data" [innerHTML]="counterAgentTransactionObject.immovableProperty.population.male | highlight: term + ' male'"></span>
                         <span *ngIf="counterAgentTransactionObject.immovableProperty.population.female" class="form-data" [innerHTML]="counterAgentTransactionObject.immovableProperty.population.female | highlight: term + ' female'"></span>
-                        <span *ngIf="counterAgentTransactionObject.immovableProperty.population.households" class="form-data" [innerHTML]="counterAgentTransactionObject.immovableProperty.population.operator + ' ' + counterAgentTransactionObject.immovableProperty.population.households | highlight: term + ' households'">
+                        <span *ngIf="counterAgentTransactionObject.immovableProperty.population.households" class="form-data" [innerHTML]="counterAgentTransactionObject.immovableProperty.population.operator + ' ' + counterAgentTransactionObject.immovableProperty.population.households | highlight: term + ' households'"></span>
                       </li>
                       <li *ngIf="counterAgentTransactionObject.immovableProperty.buildings" class="list-group-item">
                         Buildings:
