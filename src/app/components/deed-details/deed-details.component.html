@@ -1384,7 +1384,7 @@
                       <li *ngIf="counterAgentTransactionObject.money.amount.moscowSilver.rubli || counterAgentTransactionObject.money.amount.moscowSilver.altyny || counterAgentTransactionObject.money.amount.moscowSilver.dengi"
                         class="list-group-item">
                         Amount in Moscow Silver:
-                        <span *ngIf="counterAgentTransactionObject.money.amount.moscowSilver.rubli" class="form-data" [innerHTML]="counterAgentTransactionObject.money.amount.moscowSilver.rubli | highlight: term + ' rubli'"></span>
+                        <span *ngIf="counterAgentTransactionObject.money.amount.moscowSilver.rubli" class="form-data" [innerHTML]="counterAgentTransactionObject.money.amount.moscowSilver.rubli + ' rubli'"></span>
                         <span *ngIf="counterAgentTransactionObject.money.amount.moscowSilver.altyny" class="form-data" [innerHTML]="counterAgentTransactionObject.money.amount.moscowSilver.altyny | highlight: term + ' altyny'"></span>
                         <span *ngIf="counterAgentTransactionObject.money.amount.moscowSilver.dengi" class="form-data" [innerHTML]="counterAgentTransactionObject.money.amount.moscowSilver.dengi | highlight: term + ' den\'gi'"></span>
                       </li>
