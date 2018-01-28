@@ -889,7 +889,7 @@
                         Amount in Chekhi:
                         <span *ngIf="agentTransactionObject.money.amount.chekhi.rubli" class="form-data" [innerHTML]="agentTransactionObject.money.amount.chekhi.rubli | highlight: term + ' rubli'"></span>
                         <span *ngIf="agentTransactionObject.money.amount.chekhi.altyny" class="form-data" [innerHTML]="agentTransactionObject.money.amount.chekhi.altyny | highlight: term + ' altyny'"></span>
-                        <span *ngIf="agentTransactionObject.money.amount.chekhi.dengi" class="form-data" [innerHTML]="agentTransactionObject.money.amount.chekhi.dengi | higlight: term + ' den\'gi'"></span>
+                        <span *ngIf="agentTransactionObject.money.amount.chekhi.dengi" class="form-data" [innerHTML]="agentTransactionObject.money.amount.chekhi.dengi | highlight: term + ' den\'gi'"></span>
                       </li>
                     </ul>
                   </div>
@@ -1918,7 +1918,7 @@
           </li>
           <li *ngIf="deed.researcherNotes" class="list-group-item">
             Researcher Notes:
-            <span class="form-data" [innerHTML]="deed.researcherNotes || highlight: term"></span>
+            <span class="form-data" [innerHTML]="deed.researcherNotes | highlight: term"></span>
           </li>
         </ul>
       </div>
