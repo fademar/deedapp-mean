@@ -1372,7 +1372,7 @@
                         </span>
                         <span *ngIf="counterAgentTransactionObject.fugitiveSouls.numberOfSouls.households" class="form-data">
                           <span [innerHTML]="counterAgentTransactionObject.fugitiveSouls.numberOfSouls.operator"></span>
-                          <span [innerHTML]=">counterAgentTransactionObject.fugitiveSouls.numberOfSouls.households | highlight: term"></span> households
+                          <span [innerHTML]="counterAgentTransactionObject.fugitiveSouls.numberOfSouls.households | highlight: term"></span> households
                         </span>
                       </li>
                       <li *ngIf="counterAgentTransactionObject.fugitiveSouls.names" class="list-group-item">
