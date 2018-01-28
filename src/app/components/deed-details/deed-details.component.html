@@ -1388,7 +1388,7 @@
                         <span *ngIf="counterAgentTransactionObject.money.amount.moscowSilver.altyny" class="form-data" [innerHTML]="counterAgentTransactionObject.money.amount.moscowSilver.altyny | highlight: term + ' altyny'"></span>
                         <span *ngIf="counterAgentTransactionObject.money.amount.moscowSilver.dengi" class="form-data" [innerHTML]="counterAgentTransactionObject.money.amount.moscowSilver.dengi | highlight: term + ' den\'gi'"></span>
                       </li>
-                      <li *ngIf="counterAgentTransactionObject.money.amount.chekhi.rubli || agentTransactionObject.money.amount.chekhi.altyny || agentTransactionObject.money.amount.chekhi.dengi"
+                      <li *ngIf="counterAgentTransactionObject.money.amount.chekhi.rubli || counterAgentTransactionObject.money.amount.chekhi.altyny || counterAgentTransactionObject.money.amount.chekhi.dengi"
                         class="list-group-item">
                         Amount in Chekhi:
                         <span *ngIf="counterAgentTransactionObject.money.amount.chekhi.rubli" class="form-data" [innerHTML]="counterAgentTransactionObject.money.amount.chekhi.rubli | highlight: term + ' rubli'"></span>
