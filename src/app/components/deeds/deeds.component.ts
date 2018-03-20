@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Title }     from '@angular/platform-browser';
-import {DataSource} from '@angular/cdk/collections';
-import {MatPaginator} from '@angular/material';
-import {MatSort} from '@angular/material';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {Observable} from 'rxjs/Observable';
+import { Title } from '@angular/platform-browser';
+import { DataSource } from '@angular/cdk/collections';
+import { MatPaginator } from '@angular/material';
+import { MatSort } from '@angular/material';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
@@ -30,48 +30,48 @@ export class DeedsComponent implements OnInit {
 	downloadName;
 
 	// pager object
- 	pager: any = {};
- 	
+	pager: any = {};
+
 	// paged items
-    pagedDeeds: any[];
+	pagedDeeds: any[];
 
 	dataSource: MyDataSource | null;
 	dataList = new DataList(this.deedService);
-	
 
-	displayedColumns = ['deedCode','deedRef','deedDate','deedName','complete','details'];
 
-	constructor(private  titleService: Title, private deedService: DeedService, private pagerService: PagerService, private sanitizer: DomSanitizer, public auth: AuthService) { }
+	displayedColumns = ['deedCode', 'deedRef', 'deedDate', 'deedName', 'complete', 'details'];
+
+	constructor(private titleService: Title, private deedService: DeedService, private pagerService: PagerService, private sanitizer: DomSanitizer, public auth: AuthService) { }
 
 	@ViewChild(MatPaginator) paginator: MatPaginator;
 	@ViewChild(MatSort) sort: MatSort;
-	
+
 	ngOnInit() {
 		this.titleService.setTitle('LIST - Russian Deeds App');
 		this.deedService.getDeeds().subscribe(deeds => {
 			this.deeds = deeds;
 			this.length = deeds.length;
 			this.setPage(1);
-			
+
 			// Download Button Function
 			let json = JSON.stringify(this.deeds);
 			this.downloadUri = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(json));
 
 		})
 		this.dataSource = new MyDataSource(this.dataList, this.paginator, this.sort);
-	
+
 	}
 
 	setPage(page: number) {
 		if (page < 1 || page > this.pager.totalPages) {
-            return;
-        }
- 
-        // get pager object from service
-        this.pager = this.pagerService.getPager(this.deeds.length, page);
- 
-        // get current page of items
-        this.pagedDeeds = this.deeds.slice(this.pager.startIndex, this.pager.endIndex + 1);
+			return;
+		}
+
+		// get pager object from service
+		this.pager = this.pagerService.getPager(this.deeds.length, page);
+
+		// get current page of items
+		this.pagedDeeds = this.deeds.slice(this.pager.startIndex, this.pager.endIndex + 1);
 	}
 
 	updateDate() {
@@ -97,45 +97,45 @@ export class DataList {
 
 	constructor(private deedService: DeedService) {
 		this.deedService.getDeeds().subscribe(deeds => {
-			this.dataChange.next(deeds)		
+			this.dataChange.next(deeds)
 		});
 	}
 }
 
 export class MyDataSource extends DataSource<any> {
-	
-	  constructor(private _dataList: DataList, private _paginator: MatPaginator, private _sort: MatSort) {
+
+	constructor(private _dataList: DataList, private _paginator: MatPaginator, private _sort: MatSort) {
 		super();
-	  }
-	
-	  connect(): Observable<DeedData[]> {
+	}
+
+	connect(): Observable<DeedData[]> {
 		const displayDataChanges = [
-		  this._dataList.dataChange,
-		  this._paginator.page,
-		  this._sort.sortChange,		  
+			this._dataList.dataChange,
+			this._paginator.page,
+			this._sort.sortChange,
 		];
-	
+
 		return Observable.merge(...displayDataChanges).map(() => {
-		  const sortedData = this.getSortedData();
-	
-		  // Grab the page's slice of data.
-		  const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
-		  return sortedData.splice(startIndex, this._paginator.pageSize);
+			const sortedData = this.getSortedData();
+
+			// Grab the page's slice of data.
+			const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
+			return sortedData.splice(startIndex, this._paginator.pageSize);
 		});
-	  }
-	
-	  disconnect (): void {
-	
-	  }
+	}
 
-	  	/** Returns a sorted copy of the database data. */
-		getSortedData(): DeedData[] {
-			const data = this._dataList.data.slice();
-			if (!this._sort.active || this._sort.direction == '') { return data; }
+	disconnect(): void {
 
-			return data.sort((a, b) => {
-			let propertyA: number|string = '';
-			let propertyB: number|string = '';
+	}
+
+	/** Returns a sorted copy of the database data. */
+	getSortedData(): DeedData[] {
+		const data = this._dataList.data.slice();
+		if (!this._sort.active || this._sort.direction == '') { return data; }
+
+		return data.sort((a, b) => {
+			let propertyA: number | string = '';
+			let propertyB: number | string = '';
 
 			switch (this._sort.active) {
 				case 'deedCode': [propertyA, propertyB] = [a.deedCode, b.deedCode]; break;
@@ -148,7 +148,7 @@ export class MyDataSource extends DataSource<any> {
 			let valueB = isNaN(+propertyB) ? propertyB : +propertyB;
 
 			return (valueA < valueB ? -1 : 1) * (this._sort.direction == 'asc' ? 1 : -1);
-			});
-		}
-	
+		});
+	}
+
 }

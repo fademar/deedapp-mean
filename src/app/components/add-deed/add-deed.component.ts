@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Title }     from '@angular/platform-browser';
+import { Title } from '@angular/platform-browser';
 import { DeedService } from '../../services/deed.service';
 import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -56,15 +56,15 @@ export class AddDeedComponent implements OnInit {
     whoInherits: FormControl;
     coAgentNumberWhoInherits: FormControl;
     otherAgentAction: FormControl;
-	otherImmovablePropertyType: FormControl;
-	otherImmovablePropertyShare: FormControl;
+    otherImmovablePropertyType: FormControl;
+    otherImmovablePropertyShare: FormControl;
     otherShareFromEstate: FormControl;
-	asWhomValue;
+    asWhomValue;
 
-	deed;
+    deed;
     deedValue = '';
     agentSex = '';
-	agentData;
+    agentData;
     counterAgentData;
     socialStatus;
     relationToAgent;
@@ -88,7 +88,7 @@ export class AddDeedComponent implements OnInit {
     value;
     indexValues = [];
     selectedAgentActionItem = '';
-    
+
     gender = gender;
     socialBody = socialBody;
     agentActionsList = agentActionsList;
@@ -116,7 +116,7 @@ export class AddDeedComponent implements OnInit {
     selectedAsWhomValue = this.selectedAsWhomValue;
     selectedCounterAction = this.selectedCounterAction;
     counterAgentField = this.counterAgentField;
-    
+
     public options = {
         position: ['bottom', 'left'],
         timeOut: 2000,
@@ -126,11 +126,11 @@ export class AddDeedComponent implements OnInit {
     }
 
     constructor(private titleService: Title,
-                private fb: FormBuilder, 
-                private deedService: DeedService, 
-                private router: Router, 
-                private notificationsService: NotificationsService,
-                public auth: AuthService) { }
+        private fb: FormBuilder,
+        private deedService: DeedService,
+        private router: Router,
+        private notificationsService: NotificationsService,
+        public auth: AuthService) { }
 
     ngOnInit() {
         this.titleService.setTitle('ADD - Russian Deeds App');
@@ -182,18 +182,18 @@ export class AddDeedComponent implements OnInit {
             otherParticipants: this.fb.array([]),
             registrationDate: [''],
             fees: this.fb.group({
-				tax: this.fb.group({
-					roubles: [''],
-					altyn: [''],
-					denga: [''],
-					collected: ['yes']	
-				}),
-				fee: this.fb.group({
-					roubles: [''],
-					altyn: [''],
-					denga: [''],
-					collected: ['yes']
-				})
+                tax: this.fb.group({
+                    roubles: [''],
+                    altyn: [''],
+                    denga: [''],
+                    collected: ['yes']
+                }),
+                fee: this.fb.group({
+                    roubles: [''],
+                    altyn: [''],
+                    denga: [''],
+                    collected: ['yes']
+                })
             }),
             verbatimCitations: [''],
             researcherNotes: [''],
@@ -209,7 +209,7 @@ export class AddDeedComponent implements OnInit {
     }
 
     setToggleNo() {
-        this.deedForm.patchValue({complete: false});
+        this.deedForm.patchValue({ complete: false });
     }
 
     insertLastDeedCode() {
@@ -501,10 +501,10 @@ export class AddDeedComponent implements OnInit {
         }
     }
 
-	insertAgentData(i) {
-		this.agentData = this.deedForm.get('agent').value;
-		this.deedForm.controls['coAgents']['controls'][i]['controls'].coAgent.controls.referentMale.patchValue(this.agentData); 
-	}
+    insertAgentData(i) {
+        this.agentData = this.deedForm.get('agent').value;
+        this.deedForm.controls['coAgents']['controls'][i]['controls'].coAgent.controls.referentMale.patchValue(this.agentData);
+    }
 
     // Co-Counter Agents Methods (init, add and remove)
 
@@ -588,9 +588,9 @@ export class AddDeedComponent implements OnInit {
     }
 
     insertCounterAgentData(i) {
-		this.counterAgentData = this.deedForm.get('counterAgent').value;
-		this.deedForm.controls['coCounterAgents']['controls'][i]['controls'].coCounterAgent.controls.referentMale.patchValue(this.counterAgentData); 
-	}
+        this.counterAgentData = this.deedForm.get('counterAgent').value;
+        this.deedForm.controls['coCounterAgents']['controls'][i]['controls'].coCounterAgent.controls.referentMale.patchValue(this.counterAgentData);
+    }
 
     // Collective Co-Agent Methods
 
@@ -669,8 +669,8 @@ export class AddDeedComponent implements OnInit {
     }
 
     updateAgentAction(i) {
-        this.agentAction = this.deedForm.controls.transactions['controls'][i].get('agentAction').value;            
-             
+        this.agentAction = this.deedForm.controls.transactions['controls'][i].get('agentAction').value;
+
         this.deedForm.controls.transactions['controls'][i].controls.counterAgentAction.reset();
 
         if (this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.length > 0) {
@@ -683,11 +683,11 @@ export class AddDeedComponent implements OnInit {
             this.deedForm.controls.transactions['controls'][i].setControl('counterAgentTransactionObjects', this.counterAgentTransactionObjects);
         }
 
-		if (this.deedForm.controls.transactions['controls'][i].controls.accusationAgainstAgent) {
-			this.deedForm.controls.transactions['controls'][i].removeControl('accusationAgainstAgent');
-			this.deedForm.controls.transactions['controls'][i].removeControl('accusationAgainstCounterAgent');
+        if (this.deedForm.controls.transactions['controls'][i].controls.accusationAgainstAgent) {
+            this.deedForm.controls.transactions['controls'][i].removeControl('accusationAgainstAgent');
+            this.deedForm.controls.transactions['controls'][i].removeControl('accusationAgainstCounterAgent');
             this.deedForm.controls.transactions['controls'][i].removeControl('juridicalProcedureStage');
-		}
+        }
 
         switch (this.agentAction) {
 
@@ -786,20 +786,20 @@ export class AddDeedComponent implements OnInit {
             case 'signs receipt': {
                 this.selectedAction = '';
                 this.selectedCounterAction = '';
-                this.counterAgentField = 'text';				
+                this.counterAgentField = 'text';
                 break;
             }
             case 'other': {
                 this.otherAgentAction = new FormControl;
                 this.deedForm.controls.transactions['controls'][i].addControl('otherAgentAction', this.otherAgentAction);
                 this.counterAgentField = 'text';
-                this.selectedAction = 'other'; 				
+                this.selectedAction = 'other';
                 break;
             }
             default: {
                 this.selectedAction = '';
                 this.selectedCounterAction = '';
-                this.counterAgentField = 'text';				
+                this.counterAgentField = 'text';
                 break;
             }
         }
@@ -833,12 +833,12 @@ export class AddDeedComponent implements OnInit {
             }
         }
     }
-	
-	
-	// AGENT AS WHOM methods
-	
-	selectedAsWhom(i:number, value) {
-        
+
+
+    // AGENT AS WHOM methods
+
+    selectedAsWhom(i: number, value) {
+
         if (this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.length > 0) {
             this.removedAsWhom(i);
         }
@@ -906,7 +906,7 @@ export class AddDeedComponent implements OnInit {
         this.value = value;
     }
 
-    selectedWhom(value: any, i:number) {
+    selectedWhom(value: any, i: number) {
         if (this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.length > 0) {
             this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.removeAt(0);
         }
@@ -945,7 +945,7 @@ export class AddDeedComponent implements OnInit {
     // AGENT WHAT Select Methods
 
 
-    selectedWhat(i:number) {
+    selectedWhat(i: number) {
         switch (this.deedForm.controls.transactions['controls'][i].get('agentTransactionObjectType').value) {
             case 'chattels': {
                 this.agentTransactionObject = this.fb.group({
@@ -1050,7 +1050,7 @@ export class AddDeedComponent implements OnInit {
                     immovableProperty: this.fb.group({
                         type: [''],
                         share: [''],
-                        origin: [''], 
+                        origin: [''],
                         localisation: [''],
                         neighbours: [''],
                         surface: this.fb.group({
@@ -1140,52 +1140,52 @@ export class AddDeedComponent implements OnInit {
 
         } // END SWITCH
 
-		if (this.deedForm.controls.transactions['controls'][i].get('agentAction').value === 'bequeaths') {
-			this.whoInherits = new FormControl;
-        	this.agentTransactionObject.addControl('whoInherits', this.whoInherits);
-		}
+        if (this.deedForm.controls.transactions['controls'][i].get('agentAction').value === 'bequeaths') {
+            this.whoInherits = new FormControl;
+            this.agentTransactionObject.addControl('whoInherits', this.whoInherits);
+        }
         this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
-		this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjectType.reset();
+        this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjectType.reset();
     }
 
-	removeAgentTransactionObject(i, j) {
+    removeAgentTransactionObject(i, j) {
         this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjectType.reset();
         this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.removeAt(j);
     }
 
 
-	// IMMOVABLE PROPERTY ACTIONS
+    // IMMOVABLE PROPERTY ACTIONS
 
 
-	updateAgentImmovablePropertyType(i: number, j:number) {
+    updateAgentImmovablePropertyType(i: number, j: number) {
         if (this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.immovableProperty.get('type').value === 'other') {
             this.otherImmovablePropertyType = new FormControl;
             this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.immovableProperty.addControl('otherImmovablePropertyType', this.otherImmovablePropertyType);
-			return true;
+            return true;
         }
-	}
-	updateCounterAgentImmovablePropertyType(i: number, j:number) {
-		if (this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.immovableProperty.get('type').value === 'other') {
+    }
+    updateCounterAgentImmovablePropertyType(i: number, j: number) {
+        if (this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.immovableProperty.get('type').value === 'other') {
             this.otherImmovablePropertyType = new FormControl;
             this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.immovableProperty.addControl('otherImmovablePropertyType', this.otherImmovablePropertyType);
-			return true;
+            return true;
         }
-	}
+    }
 
-	updateAgentImmovablePropertyShare(i: number, j:number) {
+    updateAgentImmovablePropertyShare(i: number, j: number) {
         if (this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.immovableProperty.get('share').value === 'other') {
             this.otherImmovablePropertyShare = new FormControl;
             this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.immovableProperty.addControl('otherImmovablePropertyShare', this.otherImmovablePropertyShare);
-			return true;
+            return true;
         }
-	}
-	updateCounterAgentImmovablePropertyShare(i: number, j:number) {
-		if (this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.immovableProperty.get('share').value === 'other') {
+    }
+    updateCounterAgentImmovablePropertyShare(i: number, j: number) {
+        if (this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.immovableProperty.get('share').value === 'other') {
             this.otherImmovablePropertyShare = new FormControl;
             this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.immovableProperty.addControl('otherImmovablePropertyShare', this.otherImmovablePropertyShare);
-			return true;
+            return true;
         }
-	}
+    }
 
     // SHARE FROM ESTATE ACTIONS
     updateAgentShareFromEstate(i: number, j: number) {
@@ -1196,7 +1196,7 @@ export class AddDeedComponent implements OnInit {
         }
     }
 
-    updateCounterAgentShareFromEstate(i: number, j:number) {
+    updateCounterAgentShareFromEstate(i: number, j: number) {
         if (this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.shareFromEstate.get('share').value === 'other') {
             this.otherShareFromEstate = new FormControl;
             this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.shareFromEstate.addControl('otherShareFromEstate', this.otherShareFromEstate);
@@ -1207,9 +1207,9 @@ export class AddDeedComponent implements OnInit {
     // COUNTER AGENT WHOM Select Methods
 
 
-    selectedCounterWhom(value: any, i:number) {
+    selectedCounterWhom(value: any, i: number) {
         console.log(value);
-		if (this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects.length > 0) {
+        if (this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects.length > 0) {
             this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects.removeAt(0);
         }
         switch (value) {
@@ -1246,7 +1246,7 @@ export class AddDeedComponent implements OnInit {
 
     // WHAT Select Methods
 
-    selectedCounterWhat(i:number) {
+    selectedCounterWhat(i: number) {
         switch (this.deedForm.controls.transactions['controls'][i].get('counterAgentTransactionObjectType').value) {
             case 'chattels': {
                 this.counterAgentTransactionObject = this.fb.group({
@@ -1351,7 +1351,7 @@ export class AddDeedComponent implements OnInit {
                     immovableProperty: this.fb.group({
                         type: [''],
                         share: [''],
-                        origin: [''], 
+                        origin: [''],
                         localisation: [''],
                         neighbours: [''],
                         surface: this.fb.group({
@@ -1445,7 +1445,7 @@ export class AddDeedComponent implements OnInit {
         this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjectType.reset();
     }
 
-	removeCounterAgentTransactionObject(i, j) {
+    removeCounterAgentTransactionObject(i, j) {
         this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjectType.reset();
         this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects.removeAt(j);
     }
@@ -1584,15 +1584,15 @@ export class AddDeedComponent implements OnInit {
         this.deedService.getDeeds().subscribe(deeds => {
 
             deeds.forEach(deed => {
-                
+
                 if (deed.registrator && !_.some(this.registratorList, deed.registrator)) {
                     this.registratorList.push(deed.registrator);
                 }
-                        
+
             });
             this.registratorList = _.sortBy(this.registratorList, ['firstName', 'patronyme', 'lastName']);
             console.log(this.registratorList);
-        
+
         });
 
         return this.registratorOn = true;
@@ -1613,7 +1613,7 @@ export class AddDeedComponent implements OnInit {
 
 
 
-     // Submit the form
+    // Submit the form
 
     onSubmit() {
         this.deedValue = JSON.stringify(this.deedForm.value);
