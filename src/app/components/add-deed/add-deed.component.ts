@@ -424,7 +424,7 @@ export class AddDeedComponent implements OnInit {
 
     initCoAgent() {
         return this.fb.group({
-            coAgentSex: ['']
+            coAgentSex: ['male']
         });
     }
 
@@ -510,7 +510,7 @@ export class AddDeedComponent implements OnInit {
 
     initCoCounterAgent() {
         return this.fb.group({
-            coCounterAgentSex: ['']
+            coCounterAgentSex: ['male']
         });
     }
 
@@ -596,7 +596,7 @@ export class AddDeedComponent implements OnInit {
 
     addCollectiveCoAgent() {
         this.collectiveCoAgent = this.fb.group({
-            relationToAgent: [''],
+            relationToAgent: ['companions'],
             numberOfParticipants: [''],
             statusesNames: ['']
         });
@@ -624,7 +624,7 @@ export class AddDeedComponent implements OnInit {
 
     addCollectiveCoCounterAgent() {
         this.collectiveCoCounterAgent = this.fb.group({
-            relationToCounterAgent: [''],
+            relationToCounterAgent: ['companions'],
             numberOfParticipants: [''],
             statusesNames: ['']
         });
