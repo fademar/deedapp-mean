@@ -1352,6 +1352,7 @@
 												<label>Co-Agent</label>
 												<select class="form-control" formControlName="coAgentNumber">
 													<option *ngFor="let value of deedForm['controls'].coAgents['controls']; let i=index" [value]="'coAgent' + (i+1)">Co-Agent {{ i + 1 }}</option>
+													<option [value]="'collective coAgent'">Collective Co-Agent</option>
 												</select>
 											</div>
 										</div>
@@ -2063,6 +2064,7 @@
 												<label>Co-Counter Agent</label>
 												<select class="form-control" formControlName="coCounterAgentNumber">
 													<option *ngFor="let value of deedForm['controls'].coCounterAgents['controls']; let i=index" [value]="'coCounterAgent' + (i+1)">Co-Counter Agent {{ i + 1 }}</option>
+													<option [value]="'collective coCounterAgent'">Collective Co-Counter Agent</option>
 												</select>
 											</div>
 										</div>
