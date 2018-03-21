@@ -70,7 +70,7 @@ export const whatList = ['', 'chattels', 'debt', 'dependent', 'forfeit', 'fugiti
 
 export const whatListM = ['', 'money', 'chattels', 'debt', 'dependent', 'forfeit', 'fugitive souls', 'goods', 'immovable property', 'parent', 'responsibilities', 'share from estate', 'souls'];
 
-export const immovablePropertyList = ['', 'поместье', 'вотчина', 'двор городской', 'двор сельский', 'лавочное место', 'огородное место', 'мельница', 'винница', 'пасека', 'лес', 'сенные покосы', 'деревня', 'починок', 'жилое помещение', 'займище', 'участок земли'];
+export const immovablePropertyList = ['', 'поместье', 'вотчина', 'двор городской', 'двор сельский', 'лавочное место', 'огородное место', 'мельница', 'винница', 'пасека', 'лес', 'сенные покосы', 'деревня', 'починок', 'жилое помещение', 'займище', 'участок земли', 'колодец'];
 
 export const shareList = ['', '1/2', '1/3', '1/4', 'other'];
 
