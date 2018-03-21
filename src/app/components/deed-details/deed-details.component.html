@@ -1225,7 +1225,7 @@
               </ng-template>
 
 
-              <!-- COUNTER AGENT TRANSACTION -->
+              <!-- COUNTER AGENT ACTION -->
               <div *ngIf="transaction.counterAgentAction" class="alert alert-info">
                 <h5 class="text-center p-3">The Counter Agent
                   <span class="text-uppercase" [innerHTML]="transaction.counterAgentAction | highlight: term"></span>
@@ -1881,6 +1881,10 @@
                     <li *ngIf="transaction.forfeit" class="list-group-item">
                       Forfeit:
                       <span class="form-data" [innerHTML]="transaction.forfeit | highlight: term"></span>
+                    </li>
+                    <li *ngIf="transaction.notesOnReverseSide" class="list-group-item">
+                      Notes on reverse side:
+                      <span class="form-data" [innerHTML]="transaction.notesOnReverseSide | highlight: term"></span>
                     </li>
                   </ul>
                 </div>

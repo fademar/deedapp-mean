@@ -1638,7 +1638,8 @@ export class EditDeedComponent implements OnInit {
             partialAdvance: ['no'],
             contractConditions: [''],
             contractDuration: [''],
-            forfeit: ['']
+            forfeit: [''],
+            notesOnReverseSide: ['']
         });
     }
 

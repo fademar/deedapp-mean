@@ -664,7 +664,8 @@ export class AddDeedComponent implements OnInit {
             partialAdvance: ['no'],
             contractConditions: [''],
             contractDuration: [''],
-            forfeit: ['']
+            forfeit: [''],
+            notesOnReverseSide: ['']
         });
     }
 
