@@ -1196,6 +1196,15 @@
                     </div>
                   </div>
                 </div>
+                <div *ngIf="agentTransactionObject.asWhom === 'as neighbour'" class="card mb-3">
+                  <div class="card-header">
+                    <div class="row justify-content-center">
+                      <div class="col-4">
+                        <h5 class="text-center">As Neighbour</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div *ngIf="agentTransactionObject.asWhom === 'other'" class="card mb-3">
                   <div class="card-header">
                     <div class="row justify-content-center">
@@ -1812,6 +1821,15 @@
                     <div class="row justify-content-center">
                       <div class="col-4">
                         <h5 class="text-center">As Teacher</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="counterAgentTransactionObject.asWhom === 'as neighbour'" class="card mb-3">
+                  <div class="card-header">
+                    <div class="row justify-content-center">
+                      <div class="col-4">
+                        <h5 class="text-center">As Neighbour</h5>
                       </div>
                     </div>
                   </div>
