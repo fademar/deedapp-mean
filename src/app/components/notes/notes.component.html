@@ -1,44 +1,43 @@
-    
-    <mat-toolbar color="primary" class="nav-bar" id="cssmenu">
-        <span class="nav-brand mr-5">Deed App</span>
-        <ul>
-        <li routerLinkActive="active"> 
-            <a [routerLink]="['/notes']">Notes</a>
-        </li>
-        </ul>
-        <span class="spacer"></span>
-        <button mat-icon-button class="logout-button" (click)="auth.logout()">
-        <mat-icon class="nav-icon md-24" aria-label="Logout">power_settings_new</mat-icon>
-        </button>
-    </mat-toolbar>
-    <mat-sidenav-container>
-        <mat-sidenav mode="side" opened="true">
-            <!-- sidenav content -->
-            <div *ngIf="notes">
-                <div class="note-side" *ngFor="let note of notes" [ngClass]="{'highlight': note.user === getUser()}" (click)="showNote(note._id)">
-                    <p>{{ note.content | excerpt:150 }}</p>
-                    <span class="info">modifiée le {{ note.date | date:'d/M/y HH:mm' }}<br>par {{ note.user }}</span>
-                </div>
-            </div>
-        </mat-sidenav>
-        <!-- primary content -->
-        <div class="main-content">
-            <form [formGroup]="noteForm" (ngSubmit)="onSubmit()" style="height: 100%" novalidate>                      
-                <div class="row">
-                    <div class="col text-right pb-3">
-                        <button *ngIf="noteFull.user === getUser()" mat-icon-button type="button" (click)="onDeleteClick(note._id)">
-                            <mat-icon aria-label="delete" class="md-18" color="warn">delete</mat-icon>
-                        </button>
-                        <button mat-raised-button color="primary" type="submit">SAVE</button>
-                    </div>
-                </div>
-                <div class="row" style="height: 100%">
-                    <div *ngIf="noteFull">
-                        <div *ngIf="noteFull.user !== getUser()">{{ note.content }}</div>
-                        <quill-editor *ngIf="noteFull.user === getUser()" formControlName="content" style="width: 100%"></quill-editor>
-                    </div>
-                </div>
-            </form>
+<mat-toolbar color="primary" class="nav-bar" id="cssmenu">
+  <span class="nav-brand mr-5">Deed App</span>
+  <ul>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/notes']">Notes</a>
+    </li>
+  </ul>
+  <span class="spacer"></span>
+  <button mat-icon-button class="logout-button" (click)="auth.logout()">
+    <mat-icon class="nav-icon md-24" aria-label="Logout">power_settings_new</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened="true">
+    <!-- sidenav content -->
+    <div *ngIf="notes">
+      <div class="note-side" *ngFor="let note of notes" (click)="showNote(note._id)">
+        <p>{{ note.content | excerpt:150 }}</p>
+        <span class="info">modifiée le {{ note.date | date:'d/M/y HH:mm' }}
+          <!-- <br>par {{ note.user }}</span> -->
+      </div>
+    </div>
+  </mat-sidenav>
+  <!-- primary content -->
+  <div class="main-content">
+    <form [formGroup]="noteForm" (ngSubmit)="onSubmit()" style="height: 100%" novalidate>
+      <div class="row">
+        <div class="col text-right pb-3">
+          <button *ngIf="noteFull.user === getUser()" mat-icon-button type="button" (click)="onDeleteClick(note._id)">
+            <mat-icon aria-label="delete" class="md-18" color="warn">delete</mat-icon>
+          </button>
+          <button mat-raised-button color="primary" type="submit">SAVE</button>
         </div>
-    </mat-sidenav-container>
-
+      </div>
+      <div class="row" style="height: 100%">
+        <div *ngIf="noteFull">
+          <div *ngIf="noteFull.user !== getUser()">{{ note.content }}</div>
+          <quill-editor *ngIf="noteFull.user === getUser()" formControlName="content" style="width: 100%"></quill-editor>
+        </div>
+      </div>
+    </form>
+  </div>
+</mat-sidenav-container>
