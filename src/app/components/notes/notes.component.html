@@ -17,7 +17,8 @@
       <div class="note-side" *ngFor="let note of notes" (click)="showNote(note._id)">
         <p>{{ note.content | excerpt:150 }}</p>
         <span class="info">modifiée le {{ note.date | date:'d/M/y HH:mm' }}
-          <!-- <br>par {{ note.user }}</span> -->
+          <!-- <br>par {{ note.user }} -->
+        </span>
       </div>
     </div>
   </mat-sidenav>
