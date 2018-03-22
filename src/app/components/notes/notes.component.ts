@@ -46,6 +46,7 @@ export class NotesComponent implements OnInit {
 
   showNotes() {
     this.noteService.getNotes().subscribe(notes => {
+      console.log(notes);
       this.notes = notes;
     });
   }

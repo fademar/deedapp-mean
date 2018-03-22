@@ -34,8 +34,10 @@
         </div>
       </div>
       <div class="row" style="height: 100%">
-        <div>{{ noteFull.content }}</div>
-        <!-- <quill-editor formControlName="content" style="width: 100%"></quill-editor> -->
+        <div *ngIf="noteFull">
+          <div>{{ noteFull.content }}</div>
+          <quill-editor formControlName="content" style="width: 100%"></quill-editor>
+        </div>
       </div>
     </form>
   </div>
