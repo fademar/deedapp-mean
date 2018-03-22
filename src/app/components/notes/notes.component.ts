@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Title }     from '@angular/platform-browser';
+import { Title } from '@angular/platform-browser';
 import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { NoteService } from '../../services/note.service';
@@ -52,14 +52,16 @@ export class NotesComponent implements OnInit {
 
 
   getUser() {
-    return localStorage.getItem('userName');
+    let username = localStorage.getItem('userName');
+    console.log(username);
+    return username;
   }
 
   onSubmit() {
     let time = Date.now()
     let userName = this.getUser();
-		this.noteForm.patchValue({
-      date: time, 
+    this.noteForm.patchValue({
+      date: time,
       user: userName
     });
     this.noteValue = JSON.stringify(this.noteForm.value);
