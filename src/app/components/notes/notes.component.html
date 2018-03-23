@@ -15,7 +15,7 @@
     <mat-sidenav mode="side" opened="true">
       <!-- sidenav content -->
       <div *ngIf="notes">
-        <div class="note-side" *ngFor="let note of notes" (click)="showNote(note._id)">
+        <div class="note-side" *ngFor="let note of notes" (click)="onEditClick(note._id)">
           <p>{{ note.content | excerpt:150 }}</p>
           <span class="info">modifiée le {{ note.date | date:'d/M/y HH:mm' }}
             <br>par {{ note.user }}
@@ -25,10 +25,6 @@
     </mat-sidenav>
     <!-- primary content -->
     <div class="main-content">
-      <div *ngIf="!noteFull">
-        <h2>Click on a note on the left to see the full text</h2>
-      </div>
-      <div *ngIf="noteFull">
         <div class="row">
           <div class="col text-right pb-3">
             <button mat-icon-button type="button" (click)="onDeleteClick(noteFull._id)">
@@ -38,10 +34,8 @@
           </div>
         </div>
         <div class="row" style="height: 100%">
-          <div>{{ noteFull.content }}</div>
           <quill-editor formControlName="content" style="width: 100%"></quill-editor>
         </div>
-      </div>
     </div>
   </mat-sidenav-container>
 </form>

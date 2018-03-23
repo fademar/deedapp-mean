@@ -84,9 +84,9 @@ export class NotesComponent implements OnInit {
     this.editMode = true;
     this.noteId = id;
     this.noteService.getNote(id).subscribe(note => {
-      this.note = note;
+      this.noteFull = note;
       this.noteForm.patchValue({
-        content: this.note.content
+        content: this.noteFull.content
       });
     });
   }
@@ -96,15 +96,4 @@ export class NotesComponent implements OnInit {
       this.showNotes();
     });
   }
-
-  showNote(id) {
-    this.noteService.getNote(id).subscribe(note => {
-      this.noteFull = note;
-      this.noteForm.patchValue({
-        content: this.noteFull.content
-      });
-    });
-  }
-
-
 }
