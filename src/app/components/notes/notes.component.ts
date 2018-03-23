@@ -54,7 +54,6 @@ export class NotesComponent implements OnInit {
 
   getUser() {
     let username = localStorage.getItem('userName');
-    console.log(username);
     return username;
   }
 
@@ -101,7 +100,9 @@ export class NotesComponent implements OnInit {
   showNote(id) {
     this.noteService.getNote(id).subscribe(note => {
       this.noteFull = note;
-      console.log(this.noteFull);
+      this.noteForm.patchValue({
+        content: this.noteFull.content
+      });
     });
   }
 
