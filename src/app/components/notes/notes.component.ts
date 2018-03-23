@@ -25,6 +25,8 @@ export class NotesComponent implements OnInit {
   editMode = false;
   noteId = null;
   editor;
+  currentUser;
+  isNotUser = false;
 
   constructor(private titleService: Title, private noteService: NoteService, private fb: FormBuilder, public auth: AuthService) { }
 
@@ -83,8 +85,12 @@ export class NotesComponent implements OnInit {
   onEditClick(id) {
     this.editMode = true;
     this.noteId = id;
+    this.currentUser = this.getUser();
     this.noteService.getNote(id).subscribe(note => {
       this.noteFull = note;
+      if (this.noteFull.user !== this.currentUser) {
+        this.isNotUser = true;
+      }
       this.noteForm.patchValue({
         content: this.noteFull.content
       });
