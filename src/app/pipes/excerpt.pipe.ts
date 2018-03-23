@@ -7,10 +7,10 @@ export class ExcerptPipe implements PipeTransform {
 
   transform(text: any, length: number): any {
     if (!text || !length) {
-      return text.replace(/<\/?[^>]+>/gi, '');
+      return text.replace(/(<([^>]+)>)/ig,'');
     }
     if (text.length > length) {
-      text.replace(/<\/?[^>]+>/gi, '')
+      text.replace(/(<([^>]+)>)/ig,'')
       return text.substr(0, length) + '...';
     }
     

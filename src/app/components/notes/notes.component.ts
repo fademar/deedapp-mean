@@ -94,6 +94,7 @@ export class NotesComponent implements OnInit {
   onDeleteClick(id) {
     this.noteService.deleteNote(id).subscribe(note => {
       this.showNotes();
+      this.noteForm.reset();
     });
   }
 }
