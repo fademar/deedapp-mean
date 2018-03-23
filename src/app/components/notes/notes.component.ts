@@ -101,6 +101,7 @@ export class NotesComponent implements OnInit {
   showNote(id) {
     this.noteService.getNote(id).subscribe(note => {
       this.noteFull = note;
+      console.log(this.noteFull);
     });
   }
 
