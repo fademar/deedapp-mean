@@ -58,6 +58,7 @@ import { NotesComponent } from './components/notes/notes.component';
 import { NewWindowDirective } from './directives/new-window.directive';
 import { ExcerptPipe } from './pipes/excerpt.pipe';
 import { HighlightPipe } from './pipes/highlight.pipe';
+import { SortPipe } from './pipes/sort.pipe';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { HighlightPipe } from './pipes/highlight.pipe';
     NotesComponent,
     NewWindowDirective,
     ExcerptPipe,
-    HighlightPipe
+    HighlightPipe,
+    SortPipe
   ],
   imports: [
     BrowserModule,
