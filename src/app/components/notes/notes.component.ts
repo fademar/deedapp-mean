@@ -55,9 +55,7 @@ export class NotesComponent implements OnInit {
 
   showNotes() {
     this.noteService.getNotes().subscribe(notes => {
-      console.log(notes);
       this.notes = _.orderBy(notes, 'date', 'desc');
-      console.log(this.notes);
     });
   }
 
@@ -92,6 +90,7 @@ export class NotesComponent implements OnInit {
 
   onEditClick(id) {
     this.editMode = true;
+    this.isNotUser = false;
     this.noteId = id;
     this.currentUser = this.getUser();
     this.noteService.getNote(id).subscribe(note => {

@@ -5,12 +5,12 @@ app-note, mat-sidenav-container, .main-content {
 }
 
 mat-sidenav-container {
-	padding-top: 30px;
+	padding-top: 80px;
 }
 
 mat-sidenav {
-	width: 280px;
-	padding-top: 30px;
+	width: 30%;
+	padding-top: 80px;
 }
 
 .main-content {
