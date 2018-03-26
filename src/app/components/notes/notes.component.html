@@ -15,7 +15,7 @@
     <mat-sidenav mode="side" opened="true">
       <!-- sidenav content -->
       <div *ngIf="notes">
-        <div class="note-side" *ngFor="let note of notes | sort:[date, DESC]" (click)="onEditClick(note._id)">
+        <div class="note-side" *ngFor="let note of notes" (click)="onEditClick(note._id)">
           <p>{{ note.content | excerpt:150 }}</p>
           <span class="info">modifiée le {{ note.date | date:'d/M/y HH:mm' }}
             <br>par {{ note.user }}

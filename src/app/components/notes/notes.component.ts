@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth.service';
 import { NoteService } from '../../services/note.service';
 import { DatePipe } from '@angular/common';
 import { NgClass } from '@angular/common';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-notes',
@@ -49,7 +50,8 @@ export class NotesComponent implements OnInit {
   showNotes() {
     this.noteService.getNotes().subscribe(notes => {
       console.log(notes);
-      this.notes = notes;
+      this.notes = _.orderBy(notes, 'date', 'desc');
+      console.log(this.notes);
     });
   }
 
