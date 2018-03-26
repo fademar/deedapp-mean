@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { Title }     from '@angular/platform-browser';
 import { DeedService } from '../../services/deed.service';
 import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
@@ -104,6 +104,7 @@ export class AddDeedComponent implements OnInit {
     counterAgentActionsList = counterAgentActionsList;
     registratorList = this.registratorList;
     selectedRegistrators;
+    preventSubmit = false;
 
     collectiveCoAgentOn = this.collectiveCoAgentOn;
     collectiveCoCounterAgentOn = this.collectiveCoCounterAgentOn;
@@ -136,6 +137,17 @@ export class AddDeedComponent implements OnInit {
         this.selectedAction = '';
         this.selectedCounterAction = '';
         this.counterAgentField = 'text';
+        this.preventSubmit = true;
+    }
+
+    ngOnChange() {
+        if (this.deedForm.valid) {
+            this.preventSubmit = false;
+        }
+    }
+
+    validSubmit() {
+        this.preventSubmit = true;
     }
 
     // Create the form
@@ -1589,7 +1601,6 @@ export class AddDeedComponent implements OnInit {
 
     onSubmit() {
         this.deedValue = JSON.stringify(this.deedForm.value);
-        this.deedForm.clearValidators();
         this.deedService.saveDeed(this.deedValue).subscribe(deed => {
             this.deed = deed;
             if (this.deed._id) {
