@@ -6,11 +6,15 @@ import { NoteService } from '../../services/note.service';
 import { DatePipe } from '@angular/common';
 import { NgClass } from '@angular/common';
 import * as _ from 'lodash';
+import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
+import { MatDialog, MatDialogRef } from '@angular/material';
+
 
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
-  styleUrls: ['./notes.component.css']
+  styleUrls: ['./notes.component.css'],
+  providers: [MatDialog]
 })
 export class NotesComponent implements OnInit {
 
@@ -29,7 +33,9 @@ export class NotesComponent implements OnInit {
   currentUser;
   isNotUser = false;
 
-  constructor(private titleService: Title, private noteService: NoteService, private fb: FormBuilder, public auth: AuthService) { }
+  dialogRef: MatDialogRef<ConfirmDialogComponent>;
+
+  constructor(private titleService: Title, private noteService: NoteService, private fb: FormBuilder, public auth: AuthService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.titleService.setTitle('NOTES - Russian Deeds App');
@@ -100,9 +106,19 @@ export class NotesComponent implements OnInit {
   }
 
   onDeleteClick(id) {
-    this.noteService.deleteNote(id).subscribe(note => {
-      this.showNotes();
-      this.noteForm.reset();
+    this.dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      disableClose: false
+    });
+    this.dialogRef.componentInstance.confirmMessage = "Are you sure you want to delete this note?"
+
+    this.dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.noteService.deleteNote(id).subscribe(note => {
+          this.showNotes();
+          this.noteForm.reset();
+        })
+      }
+      this.dialogRef = null;
     });
   }
 }
