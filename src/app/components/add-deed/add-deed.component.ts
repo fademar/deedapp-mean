@@ -104,7 +104,6 @@ export class AddDeedComponent implements OnInit {
     counterAgentActionsList = counterAgentActionsList;
     registratorList = this.registratorList;
     selectedRegistrators;
-    preventSubmit = false;
 
     collectiveCoAgentOn = this.collectiveCoAgentOn;
     collectiveCoCounterAgentOn = this.collectiveCoCounterAgentOn;
@@ -137,18 +136,8 @@ export class AddDeedComponent implements OnInit {
         this.selectedAction = '';
         this.selectedCounterAction = '';
         this.counterAgentField = 'text';
-        this.preventSubmit = true;
     }
 
-    ngOnChange() {
-        if (this.deedForm.valid) {
-            this.preventSubmit = false;
-        }
-    }
-
-    validSubmit() {
-        this.preventSubmit = true;
-    }
 
     // Create the form
 
