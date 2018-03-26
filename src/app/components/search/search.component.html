@@ -1,5 +1,16 @@
-<app-navbar></app-navbar>
 <app-note></app-note>
+<mat-toolbar color="primary" class="nav-bar" id="cssmenu">
+  <span class="nav-brand mr-5">Deed App</span>
+  <ul>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/search']">Search</a>
+    </li>
+  </ul>
+  <span class="spacer"></span>
+  <button mat-icon-button class="logout-button" (click)="auth.logout()">
+    <mat-icon class="nav-icon md-24" aria-label="Logout">power_settings_new</mat-icon>
+  </button>
+</mat-toolbar>
 <div class="container main-container">
   <form class="form-horizontal" [formGroup]="searchForm" (ngSubmit)="onSubmit()" novalidat>
     <div class="actions" *ngIf="results">
