@@ -1589,6 +1589,7 @@ export class AddDeedComponent implements OnInit {
 
     onSubmit() {
         this.deedValue = JSON.stringify(this.deedForm.value);
+        this.deedForm.clearValidators();
         this.deedService.saveDeed(this.deedValue).subscribe(deed => {
             this.deed = deed;
             if (this.deed._id) {
