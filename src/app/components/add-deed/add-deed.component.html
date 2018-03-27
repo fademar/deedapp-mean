@@ -21,7 +21,7 @@
 			<div class="dropdown-divider"></div>			  
 			<button mat-menu-item *ngIf="!registratorOn" type="button" (click)="addRegistrator()">Registrator</button>
 		</mat-menu>
-		<button mat-fab type="submit" [disabled]="disableSubmit" placement="bottom" matTooltip="Save the deed" matTooltipPosition="before" matTooltipClass="'tooltip'" (click)="checkPristine()" class="mb-2 submit-button">
+		<button mat-fab type="submit" [disabled]="disableSubmit" placement="bottom" matTooltip="Save the deed" matTooltipPosition="before" matTooltipClass="'tooltip'" class="mb-2 submit-button">
 			<mat-icon aria-label="Submit the form">save</mat-icon>
 		</button>
 	</div>

@@ -1587,26 +1587,25 @@ export class AddDeedComponent implements OnInit {
         });
     }
 
-    checkPristine() {
-        if (this.deedForm.pristine) {
-            this.notificationsService.info(
-                'Info',
-                'No change in the form has been detected',
-            );
-            this.disableSubmit = true;
-
-        }
-    }
+       
 
     // Submit the form
 
     onSubmit() {
 
-        if (this.deedForm.invalid) {
-            this.notificationsService.warn(
-                'Warning',
-                'Fields Deed Code and Deed Ref are required',
-            );
+        if (this.deedForm.invalid || this.deedForm.pristine) {
+            if (this.deedForm.invalid) {
+                this.notificationsService.warn(
+                    'Warning',
+                    'Fields Deed Code and Deed Ref are required',
+                );
+            }
+            if (this.deedForm.pristine) {
+                this.notificationsService.info(
+                    'Info',
+                    'No change in the form has been detected',
+                );
+            }
         } else {
             this.deedValue = JSON.stringify(this.deedForm.value);
             this.deedService.saveDeed(this.deedValue).subscribe(deed => {
