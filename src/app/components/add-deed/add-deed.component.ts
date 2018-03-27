@@ -115,8 +115,6 @@ export class AddDeedComponent implements OnInit {
     selectedCounterAction = this.selectedCounterAction;
     counterAgentField = this.counterAgentField;
     
-    
-
     public options = {
         position: ['bottom', 'left'],
         timeOut: 2000,
@@ -139,7 +137,6 @@ export class AddDeedComponent implements OnInit {
         this.selectedCounterAction = '';
         this.counterAgentField = 'text';
     }
-
 
     // Create the form
 
