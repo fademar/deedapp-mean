@@ -115,12 +115,14 @@ export class AddDeedComponent implements OnInit {
     selectedCounterAction = this.selectedCounterAction;
     counterAgentField = this.counterAgentField;
 
+    disableSubmit = false;
+
     public options = {
-        position: ['bottom', 'left'],
+        position: ['top', 'middle'],
         timeOut: 2000,
         showProgressBar: false,
         pauseOnHover: false,
-        animate: 'fromLeft'
+        animate: 'fromTop'
     }
 
     constructor(private fb: FormBuilder,
@@ -1583,21 +1585,25 @@ export class AddDeedComponent implements OnInit {
         });
     }
 
+    checkPristine() {
+        if (this.deedForm.pristine) {
+            this.notificationsService.info(
+                'Info',
+                'No change in the form has been detected',
+            );
+            this.disableSubmit = true;
 
+        }
+    }
 
     // Submit the form
 
     onSubmit() {
 
         if (this.deedForm.invalid) {
-            this.notificationsService.warn(
+            this.notificationsService.error(
                 'Warning',
                 'Fields Deed Code and Deed Ref are required',
-            );
-        } else if (this.deedForm.pristine) {
-            this.notificationsService.info(
-                'Info',
-                'No change in the form has been detected',
             );
         } else {
             this.deedValue = JSON.stringify(this.deedForm.value);
