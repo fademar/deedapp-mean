@@ -118,11 +118,11 @@ export class AddDeedComponent implements OnInit {
     disableSubmit = false;
 
     public options = {
-        position: ['top', 'middle'],
+        position: ['middle', 'center'],
         timeOut: 2000,
         showProgressBar: false,
         pauseOnHover: false,
-        animate: 'fromTop'
+        animate: 'fade'
     }
 
     constructor(private fb: FormBuilder,
@@ -225,6 +225,7 @@ export class AddDeedComponent implements OnInit {
                 this.deedForm.patchValue({
                     deedCode: this.lastDeedCode
                 });
+                this.deedForm.controls.deedCode.markAsDirty({ onlySelf: true });
             }
         });
     }
@@ -242,6 +243,7 @@ export class AddDeedComponent implements OnInit {
                 this.deedForm.patchValue({
                     deedRef: this.lastDeedRef
                 });
+                this.deedForm.controls.deedRef.markAsDirty({ onlySelf: true });
             }
         });
     }
@@ -1601,7 +1603,7 @@ export class AddDeedComponent implements OnInit {
     onSubmit() {
 
         if (this.deedForm.invalid) {
-            this.notificationsService.error(
+            this.notificationsService.warn(
                 'Warning',
                 'Fields Deed Code and Deed Ref are required',
             );
