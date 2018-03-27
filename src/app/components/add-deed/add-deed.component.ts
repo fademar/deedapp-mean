@@ -225,7 +225,7 @@ export class AddDeedComponent implements OnInit {
                 this.deedForm.patchValue({
                     deedCode: this.lastDeedCode
                 });
-                this.deedForm.controls.deedCode.markAsDirty({ onlySelf: true });
+                this.deedForm.markAsDirty({ onlySelf: true });
             }
         });
     }
@@ -243,7 +243,7 @@ export class AddDeedComponent implements OnInit {
                 this.deedForm.patchValue({
                     deedRef: this.lastDeedRef
                 });
-                this.deedForm.controls.deedRef.markAsDirty({ onlySelf: true });
+                this.deedForm.markAsDirty({ onlySelf: true });
             }
         });
     }
