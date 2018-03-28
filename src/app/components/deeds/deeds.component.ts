@@ -160,7 +160,7 @@ export class MyDataSource extends DataSource<any> {
 					return -1 * (this._sort.direction == 'asc' ? 1 : -1);
 				}
 				else {
-
+					console.log(arrayB);
 					let valueAA = isNaN(+arrayA[index++]) ? arrayA[index++] : +arrayA[index++];
 					let valueBB = isNaN(+arrayB[index++]) ? arrayB[index++] : +arrayB[index++];
 					console.log('valueAA:' + valueAA);
