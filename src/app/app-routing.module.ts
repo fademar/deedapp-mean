@@ -9,6 +9,7 @@ import { SchemaComponent } from './components/schema/schema.component';
 import { SearchComponent } from './components/search/search.component';
 import { CallbackComponent } from './components/callback/callback.component';
 import { HomeComponent } from './components/home/home.component';
+import { NotesComponent } from './components/notes/notes.component';
 
 import { AuthGuard } from './services/guard.service';
 
@@ -21,6 +22,7 @@ const appRoutes: Routes = [
   {path: 'deed/edit/:id', component:EditDeedComponent, canActivate: [AuthGuard]},
   {path: 'schema', component:SchemaComponent, canActivate: [AuthGuard]},
   {path: 'search', component:SearchComponent, canActivate: [AuthGuard]},
+  {path: 'notes', component:NotesComponent, canActivate: [AuthGuard]},
   {path: 'callback', component:CallbackComponent},
 ]
 
