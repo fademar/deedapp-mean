@@ -2581,36 +2581,27 @@ export class EditDeedComponent implements OnInit {
 
     // Submit the form
 
-    onSubmit(submitBtn: HTMLButtonElement): void {
+    onSubmit() {
+        this.deedValue = JSON.stringify(this.deedForm.value);
+        this.deedService.updateDeed(this.id, this.deedValue).subscribe(deed => {
 
-        if (this.deedForm.invalid) {
-                this.notificationsService.warn(
-                    'Warning',
-                    'Fields Deed Code and Deed Ref are required',
+            if (deed) {
+                this.notificationsService.success(
+                    'Success',
+                    'The deed with id ' + this.id + ' has been successfully updated',
                 );
+            }
+        });
+        setTimeout(() => {
            
-        } else {
-            submitBtn.disabled = true;
-            this.deedValue = JSON.stringify(this.deedForm.value);
-            this.deedService.updateDeed(this.id, this.deedValue).subscribe(deed => {
-                if (deed) {
-                    this.notificationsService.success(
-                        'Success',
-                        'The deed with id ' + this.id + ' has been successfully updated',
-                    );
-                }
-            });
-            setTimeout(() => {
-                if (this.resultFor) {
-                    this.router.navigate(['/deed/' + this.id], {queryParams: {'resultFor': this.resultFor}});
-                }
-                else {
-                    this.router.navigate(['/deed/' + this.id]);
-                }
-            }, 2000);
-        }
+            if (this.resultFor) {
+                this.router.navigate(['/deed/' + this.id], {queryParams: {'resultFor': this.resultFor}});
+            }
+            else {
+                this.router.navigate(['/deed/' + this.id]);
+            }
+        }, 2000);
     }
-    
 
 
 
