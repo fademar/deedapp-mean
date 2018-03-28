@@ -3,7 +3,7 @@
 @import "https://fonts.googleapis.com/css?family=Roboto:300,400,500";
 
 /* You can add global styles to this file, and also import other style files */
-body {
+html, body {
   background-color: #eceff1;
   width: 100%;
   height: 100%;
