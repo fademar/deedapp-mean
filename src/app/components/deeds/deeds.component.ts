@@ -147,10 +147,22 @@ export class MyDataSource extends DataSource<any> {
 			let arrayA = _.split(propertyA, '-', propertyA.length);
 			let arrayB = _.split(propertyB, '-', propertyB.length);
 
-			for (let index = 0; index < arrayA.length; index++) {
-				const valueA = isNaN(+arrayA[index]) ? arrayA[index] : +arrayA[index];
-				const valueB = isNaN(+arrayB[index]) ? arrayB[index] : +arrayB[index];
-				return (valueA < valueB ? -1 : 1) * (this._sort.direction == 'asc' ? 1 : -1);
+			for (let index = 0; index < arrayA.length - 1; index++) {
+					
+				let valueA = isNaN(+arrayA[index]) ? arrayA[index] : +arrayA[index];
+				let valueB = isNaN(+arrayB[index]) ? arrayB[index] : +arrayB[index];
+				
+				if (valueA < valueB) {
+					return -1 * (this._sort.direction == 'asc' ? 1 : -1);
+				}
+				else {
+					
+					let valueAA = isNaN(+arrayA[index++]) ? arrayA[index++] : +arrayA[index++];
+					let valueBB = isNaN(+arrayB[index++]) ? arrayB[index++] : +arrayB[index++];
+
+					return (valueAA < valueBB ? -1 : 1) * (this._sort.direction == 'asc' ? 1 : -1);
+				}
+
 			}
 			
 			
