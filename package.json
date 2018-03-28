@@ -52,7 +52,8 @@
     "tether": "1.4.0",
     "typescript": "2.3.4",
     "underscore": "1.8.3",
-    "zone.js": "0.8.4"
+    "zone.js": "0.8.4",
+    "ngx-quill": "1.6.0"
   },
   "devDependencies": {
     "@angular/compiler-cli": "^4.0.0",

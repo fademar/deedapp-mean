@@ -1,0 +1,30 @@
+<form [formGroup]="noteForm" (ngSubmit)="onSubmit()" style="height: 100%" novalidate>
+  <mat-toolbar color="primary" class="nav-bar" id="cssmenu">
+    <span class="nav-brand mr-5">Deed App <em>Notes</em></span>
+  </mat-toolbar>
+  <mat-sidenav-container>
+    <mat-sidenav mode="side" opened="true">
+      <!-- sidenav content -->
+      <div *ngIf="notes">
+        <div class="note-side" *ngFor="let note of notes" (click)="onEditClick(note._id)">
+          <p>{{ note.content | excerpt:150 }}</p>
+          <span class="info">modifiée le {{ note.date | date:'d/M/y HH:mm' }}
+            <br>par {{ note.user }}
+          </span>
+        </div>
+      </div>
+    </mat-sidenav>
+    <!-- primary content -->
+    <div class="main-content">
+        <div class="row">
+          <div class="col text-right pb-3">
+            <button mat-raised-button type="button" color="warn" [disabled]="isNotUser" (click)="onDeleteClick(noteFull._id)">DELETE</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="isNotUser">SAVE</button>
+          </div>
+        </div>
+        <div class="row" style="height: 100%">
+          <quill-editor formControlName="content" style="width: 100%"></quill-editor>
+        </div>
+    </div>
+  </mat-sidenav-container>
+</form>

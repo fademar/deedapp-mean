@@ -22,6 +22,9 @@ import { MatInputModule } from '@angular/material';
 import { MatRadioModule } from '@angular/material';
 import { MatButtonToggleModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material';
+import { MatSidenavModule } from '@angular/material';
+import { MatExpansionModule } from '@angular/material';
+import { QuillModule } from 'ngx-quill';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -35,6 +38,7 @@ import { SchemaComponent } from './components/schema/schema.component';
 import { SearchComponent } from './components/search/search.component';
 import { CallbackComponent } from './components/callback/callback.component';
 import { HomeComponent } from './components/home/home.component';
+import { NotesComponent } from './components/notes/notes.component';
 
 
 import { DeedService } from './services/deed.service';
@@ -51,6 +55,8 @@ import { NoteComponent } from './shared/note/note.component';
 import { NoteDialog } from './shared/note/note.component';
 import { AutofocusDirective } from './shared/autofocus/autofocus.directive';
 import { HighlightPipe } from './pipes/highlight.pipe';
+import { ExcerptPipe } from './pipes/excerpt.pipe';
+import { SortPipe } from './pipes/sort.pipe';
 
 @NgModule({
   declarations: [
@@ -66,9 +72,12 @@ import { HighlightPipe } from './pipes/highlight.pipe';
     CallbackComponent,
     HomeComponent,
     NoteComponent,
+    NotesComponent,
     NoteDialog,
     AutofocusDirective,
-    HighlightPipe
+    HighlightPipe,
+    ExcerptPipe,
+    SortPipe
   ],
   imports: [
     BrowserModule,
@@ -95,7 +104,10 @@ import { HighlightPipe } from './pipes/highlight.pipe';
     MatInputModule,
     MatRadioModule,
     MatButtonToggleModule,
-    MatToolbarModule
+    MatToolbarModule,
+    QuillModule,
+    MatSidenavModule,
+    MatExpansionModule
   ],
   entryComponents: [ConfirmDialogComponent, NoteDialog],
   providers: [DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, NoteService],

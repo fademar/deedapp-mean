@@ -1616,20 +1616,30 @@ export class AddDeedComponent implements OnInit {
 
     // Submit the form
 
-    onSubmit() {
-        this.deedValue = JSON.stringify(this.deedForm.value);
-        this.deedService.saveDeed(this.deedValue).subscribe(deed => {
-            this.deed = deed;
-            if (this.deed._id) {
-                this.notificationsService.success(
-                    'Success',
-                    'The deed has been successfully saved in the database with id ' + this.deed._id,
+    onSubmit(submitBtn: HTMLButtonElement): void {
+
+        if (this.deedForm.invalid) {
+                this.notificationsService.warn(
+                    'Warning',
+                    'Fields Deed Code and Deed Ref are required',
                 );
-            }
-        });
-        setTimeout(() => {
-            this.router.navigate(['/list']);
-        }, 2000);
+           
+        } else {
+            submitBtn.disabled = true;
+            this.deedValue = JSON.stringify(this.deedForm.value);
+            this.deedService.saveDeed(this.deedValue).subscribe(deed => {
+                this.deed = deed;
+                if (this.deed._id) {
+                    this.notificationsService.success(
+                        'Success',
+                        'The deed has been successfully saved in the database with id ' + this.deed._id,
+                    );
+                }
+            });
+            setTimeout(() => {
+                this.router.navigate(['/list']);
+            }, 2000);
+        }
     }
 
 
