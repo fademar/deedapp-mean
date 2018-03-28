@@ -159,13 +159,15 @@ export class MyDataSource extends DataSource<any> {
 				if (valueA < valueB) {
 					return -1 * (this._sort.direction == 'asc' ? 1 : -1);
 				}
-				else {
-					console.log(arrayB);
+				else if (valueA = valueB) {
 					let valueAA = isNaN(+arrayA[index + 1]) ? arrayA[index + 1] : +arrayA[index + 1];
 					let valueBB = isNaN(+arrayB[index + 1]) ? arrayB[index + 1] : +arrayB[index + 1];
 					console.log('valueAA:' + valueAA);
 					console.log('valueBB:' + valueBB);
 					return (valueAA < valueBB ? -1 : 1) * (this._sort.direction == 'asc' ? 1 : -1);
+				}
+				else {
+					return 1 * (this._sort.direction == 'asc' ? 1 : -1);
 				}
 
 			}
