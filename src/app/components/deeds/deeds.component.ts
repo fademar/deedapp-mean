@@ -151,7 +151,8 @@ export class MyDataSource extends DataSource<any> {
 					
 				let valueA = isNaN(+arrayA[index]) ? arrayA[index] : +arrayA[index];
 				let valueB = isNaN(+arrayB[index]) ? arrayB[index] : +arrayB[index];
-				
+				console.log(valueA);
+				console.log(valueB);
 				if (valueA < valueB) {
 					return -1 * (this._sort.direction == 'asc' ? 1 : -1);
 				}
@@ -159,7 +160,8 @@ export class MyDataSource extends DataSource<any> {
 					
 					let valueAA = isNaN(+arrayA[index++]) ? arrayA[index++] : +arrayA[index++];
 					let valueBB = isNaN(+arrayB[index++]) ? arrayB[index++] : +arrayB[index++];
-
+					console.log(valueAA);
+					console.log(valueBB);
 					return (valueAA < valueBB ? -1 : 1) * (this._sort.direction == 'asc' ? 1 : -1);
 				}
 
