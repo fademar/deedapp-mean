@@ -143,14 +143,17 @@ export class MyDataSource extends DataSource<any> {
 				case 'deedDate': [propertyA, propertyB] = [a.deedDate, b.deedDate]; break;
 				case 'deedName': [propertyA, propertyB] = [a.deedName, b.deedName]; break;
 			}
+			
+			let arrayA = _.split(propertyA, '-', propertyA.length);
+			let arrayB = _.split(propertyB, '-', propertyB.length);
 
-			console.log(_.split(propertyA, '-', propertyA.length));
-			console.log(_.split(propertyB, '-', propertyB.length));
-
-			let valueA = isNaN(+propertyA) ? propertyA : +propertyA;
-			let valueB = isNaN(+propertyB) ? propertyB : +propertyB;
-
-			return (valueA < valueB ? -1 : 1) * (this._sort.direction == 'asc' ? 1 : -1);
+			for (let index = 0; index < arrayA.length; index++) {
+				const valueA = isNaN(+arrayA[index]) ? arrayA[index] : +arrayA[index];
+				const valueB = isNaN(+arrayB[index]) ? arrayB[index] : +arrayB[index];
+				return (valueA < valueB ? -1 : 1) * (this._sort.direction == 'asc' ? 1 : -1);
+			}
+			
+			
 			});
 		}
 	
