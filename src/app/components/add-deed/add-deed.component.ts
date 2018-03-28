@@ -1591,22 +1591,16 @@ export class AddDeedComponent implements OnInit {
 
     // Submit the form
 
-    onSubmit() {
+    onSubmit(submitBtn: HTMLButtonElement): void {
 
-        if (this.deedForm.invalid || this.deedForm.pristine) {
-            if (this.deedForm.invalid) {
+        if (this.deedForm.invalid) {
                 this.notificationsService.warn(
                     'Warning',
                     'Fields Deed Code and Deed Ref are required',
                 );
-            }
-            if (this.deedForm.pristine) {
-                this.notificationsService.info(
-                    'Info',
-                    'No change in the form has been detected',
-                );
-            }
+           
         } else {
+            submitBtn.disabled = true;
             this.deedValue = JSON.stringify(this.deedForm.value);
             this.deedService.saveDeed(this.deedValue).subscribe(deed => {
                 this.deed = deed;
