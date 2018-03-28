@@ -25,6 +25,7 @@ import { MatToolbarModule } from '@angular/material';
 import { MatSidenavModule } from '@angular/material';
 import { MatExpansionModule } from '@angular/material';
 import { QuillModule } from 'ngx-quill';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -107,7 +108,8 @@ import { SortPipe } from './pipes/sort.pipe';
     MatToolbarModule,
     QuillModule,
     MatSidenavModule,
-    MatExpansionModule
+    MatExpansionModule,
+    AngularFontAwesomeModule
   ],
   entryComponents: [ConfirmDialogComponent, NoteDialog],
   providers: [DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, NoteService],
