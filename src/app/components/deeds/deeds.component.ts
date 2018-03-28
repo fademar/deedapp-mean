@@ -143,15 +143,9 @@ export class MyDataSource extends DataSource<any> {
 				case 'deedDate': [propertyA, propertyB] = [a.deedDate, b.deedDate]; break;
 				case 'deedName': [propertyA, propertyB] = [a.deedName, b.deedName]; break;
 			}
-			console.log(propertyA.length);
-			let arrayA = _.split(propertyA, '-', propertyA.length);
-			let arrayB = _.split(propertyB, '-', propertyB.length);
 
-
-
-			arrayA.forEach(element => {
-
-			});
+			let arrayA = _.split(propertyA, '-', 3);
+			let arrayB = _.split(propertyB, '-', 3);
 
 			for (let index = 0; index < arrayA.length - 2; index++) {
 
@@ -168,13 +162,10 @@ export class MyDataSource extends DataSource<any> {
 					if (valueAA < valueBB) {
 						return -1 * (this._sort.direction == 'asc' ? 1 : -1);
 					}
-					else if ((index + 2) <= arrayA.length) {
+					else {
 						let valueAAA = isNaN(+arrayA[index + 2]) ? arrayA[index + 2] : +arrayA[index + 2];
 						let valueBBB = isNaN(+arrayB[index + 2]) ? arrayB[index + 2] : +arrayB[index + 2];
 						return (valueAAA < valueBBB ? -1 : 1) * (this._sort.direction == 'asc' ? 1 : -1);
-					}
-					else {
-						return 1 * (this._sort.direction == 'asc' ? 1 : -1);
 					}
 				}
 
