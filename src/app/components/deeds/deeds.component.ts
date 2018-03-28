@@ -139,15 +139,13 @@ export class MyDataSource extends DataSource<any> {
 
 			switch (this._sort.active) {
 				case 'deedCode': [propertyA, propertyB] = [a.deedCode, b.deedCode]; break;
-				case 'deedRef': {
-					let refA = Number(a.deedRef.replace(/-/g, ''));
-					let refB = Number(b.deedRef.replace(/-/g, ''));
-					[propertyA, propertyB] = [refA, refB]; 
-					break;
-				}
+				case 'deedRef': [propertyA, propertyB] = [a.deedRef, b.deedRef]; break;
 				case 'deedDate': [propertyA, propertyB] = [a.deedDate, b.deedDate]; break;
 				case 'deedName': [propertyA, propertyB] = [a.deedName, b.deedName]; break;
 			}
+
+			console.log(_.split(propertyA, '-', propertyA.length));
+			console.log(_.split(propertyB, '-', propertyB.length));
 
 			let valueA = isNaN(+propertyA) ? propertyA : +propertyA;
 			let valueB = isNaN(+propertyB) ? propertyB : +propertyB;
