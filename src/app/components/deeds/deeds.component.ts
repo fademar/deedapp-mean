@@ -143,29 +143,39 @@ export class MyDataSource extends DataSource<any> {
 				case 'deedDate': [propertyA, propertyB] = [a.deedDate, b.deedDate]; break;
 				case 'deedName': [propertyA, propertyB] = [a.deedName, b.deedName]; break;
 			}
-
+			console.log(propertyA.length);
 			let arrayA = _.split(propertyA, '-', propertyA.length);
 			let arrayB = _.split(propertyB, '-', propertyB.length);
-			console.log('arrayA:' + arrayA);
-			console.log('arrayB:' + arrayB);
 
-			for (let index = 0; index < arrayA.length - 1; index++) {
+
+
+			arrayA.forEach(element => {
+
+			});
+
+			for (let index = 0; index < arrayA.length - 2; index++) {
 
 				let valueA = isNaN(+arrayA[index]) ? arrayA[index] : +arrayA[index];
 				let valueB = isNaN(+arrayB[index]) ? arrayB[index] : +arrayB[index];
-				console.log('valueA:' + valueA);
-				console.log('valueB:' + valueB);
 
 				if (valueA < valueB) {
 					return -1 * (this._sort.direction == 'asc' ? 1 : -1);
 				}
 				else {
-					console.log(arrayB);
 					let valueAA = isNaN(+arrayA[index + 1]) ? arrayA[index + 1] : +arrayA[index + 1];
 					let valueBB = isNaN(+arrayB[index + 1]) ? arrayB[index + 1] : +arrayB[index + 1];
-					console.log('valueAA:' + valueAA);
-					console.log('valueBB:' + valueBB);
-					return (valueAA < valueBB ? -1 : 1) * (this._sort.direction == 'asc' ? 1 : -1);
+
+					if (valueAA < valueBB) {
+						return -1 * (this._sort.direction == 'asc' ? 1 : -1);
+					}
+					else if ((index + 2) <= arrayA.length) {
+						let valueAAA = isNaN(+arrayA[index + 2]) ? arrayA[index + 2] : +arrayA[index + 2];
+						let valueBBB = isNaN(+arrayB[index + 2]) ? arrayB[index + 2] : +arrayB[index + 2];
+						return (valueAAA < valueBBB ? -1 : 1) * (this._sort.direction == 'asc' ? 1 : -1);
+					}
+					else {
+						return 1 * (this._sort.direction == 'asc' ? 1 : -1);
+					}
 				}
 
 			}
