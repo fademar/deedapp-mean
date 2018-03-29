@@ -144,36 +144,38 @@ export class MyDataSource extends DataSource<any> {
 				case 'deedName': [propertyA, propertyB] = [a.deedName, b.deedName]; break;
 			}
 
-			let arrayA = _.split(propertyA, '-', propertyA.length);
-			let arrayB = _.split(propertyB, '-', propertyB.length);
-			console.log('arrayA:' + arrayA);
-			console.log('arrayB:' + arrayB);
+			return propertyA.localeCompare(propertyB);
 
-			for (let index = 0; index < arrayA.length - 1; index++) {
+			// let arrayA = _.split(propertyA, '-', propertyA.length);
+			// let arrayB = _.split(propertyB, '-', propertyB.length);
+			// console.log('arrayA:' + arrayA);
+			// console.log('arrayB:' + arrayB);
 
-				let valueA = isNaN(+arrayA[index]) ? arrayA[index] : +arrayA[index];
-				let valueB = isNaN(+arrayB[index]) ? arrayB[index] : +arrayB[index];
-				let valueAA = isNaN(+arrayA[index + 1]) ? arrayA[index + 1] : +arrayA[index + 1];
-				let valueBB = isNaN(+arrayB[index + 1]) ? arrayB[index + 1] : +arrayB[index + 1];
+			// for (let index = 0; index < arrayA.length - 1; index++) {
+
+			// 	let valueA = isNaN(+arrayA[index]) ? arrayA[index] : +arrayA[index];
+			// 	let valueB = isNaN(+arrayB[index]) ? arrayB[index] : +arrayB[index];
+			// 	let valueAA = isNaN(+arrayA[index + 1]) ? arrayA[index + 1] : +arrayA[index + 1];
+			// 	let valueBB = isNaN(+arrayB[index + 1]) ? arrayB[index + 1] : +arrayB[index + 1];
 				
 
-				if ((valueA < valueB)) {
-					return -1 * (this._sort.direction == 'asc' ? 1 : -1);
-				}
+			// 	if ((valueA < valueB)) {
+			// 		return -1 * (this._sort.direction == 'asc' ? 1 : -1);
+			// 	}
 				
-				if ((valueA = valueB) && (valueAA < valueBB)) {
-					return -1 * (this._sort.direction == 'asc' ? 1 : -1);
-				}
+			// 	if ((valueA = valueB) && (valueAA < valueBB)) {
+			// 		return -1 * (this._sort.direction == 'asc' ? 1 : -1);
+			// 	}
 
-				if ((valueA = valueB) && (valueAA >= valueBB)) {
-					return 1 * (this._sort.direction == 'asc' ? 1 : -1);
-				}
+			// 	if ((valueA = valueB) && (valueAA >= valueBB)) {
+			// 		return 1 * (this._sort.direction == 'asc' ? 1 : -1);
+			// 	}
 				
-				if (valueA > valueB) {
-					return 1 * (this._sort.direction == 'asc' ? 1 : -1);
-				}
+			// 	if (valueA > valueB) {
+			// 		return 1 * (this._sort.direction == 'asc' ? 1 : -1);
+			// 	}
 
-			}
+			// }
 
 
 		});
