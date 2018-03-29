@@ -4,10 +4,10 @@
 <form (keydown.enter)="$event.preventDefault()" [formGroup]="deedForm" (ngSubmit)="onSubmit(submitBtn)" novalidate>
 
 	<div class="d-flex flex-column actions">
-		<button mat-fab type="button" color="primary" [matMenuTriggerFor]="menu" matTooltip="Add fields" matTooltipPosition="before" matTooltipClass="'tooltip'" class="mb-2">
+		<button mat-fab type="button" color="primary" [matMenuTriggerFor]="menu" menuOpen="true" matTooltip="Add fields" matTooltipPosition="before" matTooltipClass="'tooltip'" class="mb-2">
 			<mat-icon class="md-light">add</mat-icon>
 		</button>
-		<mat-menu #menu="matMenu" xPosition="before" [overlapTrigger]="false">
+		<mat-menu #menu="matMenu" xPosition="before" [overlapTrigger]="true">
 			<button mat-menu-item type="button" (click)="addCoAgent()">Co-Agent</button>
 			<button mat-menu-item *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" type="button">Collective Co-Agent</button>
 			<button mat-menu-item type="button" (click)="addCoCounterAgent()">Co-Counter Agent</button>
@@ -94,6 +94,7 @@
 			<div class="card mb-3">
 				<div class="card-header">
 					<h4 class="text-center">Agent</h4>
+
 				</div>
 				<div class="card-body">
 					<div class="form-group">

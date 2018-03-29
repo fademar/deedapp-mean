@@ -22,6 +22,7 @@ import { AuthService } from '../../services/auth.service';
 export class AddDeedComponent implements OnInit {
 
     deedForm: FormGroup;
+    
     agent: FormGroup;
     counterAgent: FormGroup;
     coAgent: FormGroup;
