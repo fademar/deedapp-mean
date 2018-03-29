@@ -93,8 +93,11 @@ export interface DeedData {
 
 export class DataList {
 	dataChange: BehaviorSubject<DeedData[]> = new BehaviorSubject<DeedData[]>([]);
-	get data(): DeedData[] { return this.dataChange.value; }
-
+	get data(): DeedData[] { 
+		console.log(this.dataChange.value);
+		return this.dataChange.value; 
+	}
+	
 	constructor(private deedService: DeedService) {
 		this.deedService.getDeeds().subscribe(deeds => {
 			this.dataChange.next(deeds)
@@ -131,6 +134,7 @@ export class MyDataSource extends DataSource<any> {
 	/** Returns a sorted copy of the database data. */
 	getSortedData(): DeedData[] {
 		const data = this._dataList.data.slice();
+		console.log(data);
 		if (!this._sort.active || this._sort.direction == '') { return data; }
 
 		return data.sort((a, b) => {
