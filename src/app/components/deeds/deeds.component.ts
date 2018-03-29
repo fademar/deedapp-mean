@@ -134,17 +134,24 @@ export class MyDataSource extends DataSource<any> {
 		if (!this._sort.active || this._sort.direction == '') { return data; }
 
 		return data.sort((a, b) => {
-			let propertyA: number | string = '';
-			let propertyB: number | string = '';
-
+			let result = 0;
+			
 			switch (this._sort.active) {
-				case 'deedCode': [propertyA, propertyB] = [a.deedCode, b.deedCode]; break;
-				case 'deedRef': [propertyA, propertyB] = [a.deedRef, b.deedRef]; break;
-				case 'deedDate': [propertyA, propertyB] = [a.deedDate, b.deedDate]; break;
-				case 'deedName': [propertyA, propertyB] = [a.deedName, b.deedName]; break;
+				case 'deedCode': 
+					result = (a.deedCode.localeCompare(b.deedCode, 'en', {numeric: true})) * (this._sort.direction == 'asc' ? 1 : -1);
+					break;
+				case 'deedRef': 
+					result = (a.deedRef.localeCompare(b.deedRef, 'en', {numeric: true})) * (this._sort.direction == 'asc' ? 1 : -1);
+					break;
+				case 'deedDate': 
+					result = (a.deedDate.localeCompare(b.deedDate, 'en', {numeric: true})) * (this._sort.direction == 'asc' ? 1 : -1);
+					break;
+				case 'deedName': 
+					result = (a.deedName.localeCompare(b.deedName, 'ru')) * (this._sort.direction == 'asc' ? 1 : -1);	
+					break;
 			}
 
-			return (propertyA.localeCompare(propertyB, 'en', {numeric: true})) * (this._sort.direction == 'asc' ? 1 : -1);
+			return result;
 		});
 	}
 

@@ -28,11 +28,7 @@
         <!-- Position Column -->
         <ng-container matColumnDef="deedDate">
           <mat-header-cell *matHeaderCellDef mat-sort-header> date </mat-header-cell>
-          <mat-cell *matCellDef="let deed">
-            <span *ngIf="deed.deedDate.day">{{deed.deedDate.day}}-</span>
-            <span *ngIf="deed.deedDate.month">{{deed.deedDate.month}}-</span>
-            <span *ngIf="deed.deedDate.year">{{deed.deedDate.year}}</span>
-          </mat-cell>
+          <mat-cell *matCellDef="let deed"> {{deed.deedDate.day}} {{deed.deedDate.month}} {{deed.deedDate.year}}</mat-cell>
         </ng-container>
         <!-- Name Column -->
         <ng-container matColumnDef="deedName">
