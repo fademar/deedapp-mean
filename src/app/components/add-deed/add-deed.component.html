@@ -6,19 +6,19 @@
     <mat-card>
       <mat-card-title>ADD</mat-card-title>
       <mat-card-content>
-        <button type="button" (click)="addCoAgent()">Co-Agent</button>
-        <button *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" type="button">Collective Co-Agent</button>
-        <button type="button" (click)="addCoCounterAgent()">Co-Counter Agent</button>
-        <button *ngIf="!collectiveCoCounterAgentOn" type="button" (click)="addCollectiveCoCounterAgent()">Collective Co-Counter Agent</button>
+        <button mat-button type="button" (click)="addCoAgent()">Co-Agent</button>
+        <button mat-button *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" type="button">Collective Co-Agent</button>
+        <button mat-button type="button" (click)="addCoCounterAgent()">Co-Counter Agent</button>
+        <button mat-button *ngIf="!collectiveCoCounterAgentOn" type="button" (click)="addCollectiveCoCounterAgent()">Collective Co-Counter Agent</button>
         <div class="dropdown-divider"></div>
-        <button type="button" (click)="addTransaction()">Transaction</button>
+        <button mat-button type="button" (click)="addTransaction()">Transaction</button>
         <div class="dropdown-divider"></div>
-        <button type="button" (click)="addWhitness()">Whitness</button>
-        <button type="button" (click)="addSurety()" class="dropdown-item">Surety</button>
-        <button *ngIf="!scribeOn" type="button" (click)="addScribe()">Scribe</button>
-        <button type="button" (click)="addOtherParticipant()">Other Participant</button>
+        <button mat-button type="button" (click)="addWhitness()">Whitness</button>
+        <button mat-button type="button" (click)="addSurety()" class="dropdown-item">Surety</button>
+        <button mat-button *ngIf="!scribeOn" type="button" (click)="addScribe()">Scribe</button>
+        <button mat-button type="button" (click)="addOtherParticipant()">Other Participant</button>
         <div class="dropdown-divider"></div>
-        <button *ngIf="!registratorOn" type="button" (click)="addRegistrator()">Registrator</button>
+        <button mat-button *ngIf="!registratorOn" type="button" (click)="addRegistrator()">Registrator</button>
       </mat-card-content>
     </mat-card>
     <button mat-fab type="submit" #submitBtn [disabled]="disableSubmit" placement="bottom" matTooltip="Save the deed" matTooltipPosition="before"
