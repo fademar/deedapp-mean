@@ -86,7 +86,7 @@ export interface DeedData {
 	id: string;
 	deedCode: string;
 	deedRef: string;
-	deedDate: string;
+	deedDate: any;
 	deedName: string;
 	complete: boolean;
 }
@@ -94,7 +94,6 @@ export interface DeedData {
 export class DataList {
 	dataChange: BehaviorSubject<DeedData[]> = new BehaviorSubject<DeedData[]>([]);
 	get data(): DeedData[] { 
-		console.log(this.dataChange.value);
 		return this.dataChange.value; 
 	}
 	
@@ -138,49 +137,24 @@ export class MyDataSource extends DataSource<any> {
 		if (!this._sort.active || this._sort.direction == '') { return data; }
 
 		return data.sort((a, b) => {
-			let propertyA: number | string = '';
-			let propertyB: number | string = '';
-
+			let result = 0;
+			
 			switch (this._sort.active) {
-				case 'deedCode': [propertyA, propertyB] = [a.deedCode, b.deedCode]; break;
-				case 'deedRef': [propertyA, propertyB] = [a.deedRef, b.deedRef]; break;
-				case 'deedDate': [propertyA, propertyB] = [a.deedDate, b.deedDate]; break;
-				case 'deedName': [propertyA, propertyB] = [a.deedName, b.deedName]; break;
+				case 'deedCode': 
+					result = (a.deedCode.localeCompare(b.deedCode, 'en', {numeric: true})) * (this._sort.direction == 'asc' ? 1 : -1);
+					break;
+				case 'deedRef': 
+					result = (a.deedRef.localeCompare(b.deedRef, 'en', {numeric: true})) * (this._sort.direction == 'asc' ? 1 : -1);
+					break;
+				case 'deedDate': 
+					result = ((a.deedDate.day + '-' + a.deedDate.month + '-' + a.deedDate.year).localeCompare(b.deedDate.day + '-' + b.deedDate.month + '-' + b.deedDate.year, 'en', {numeric: true})) * (this._sort.direction == 'asc' ? 1 : -1);
+					break;
+				case 'deedName': 
+					result = (a.deedName.localeCompare(b.deedName, 'ru')) * (this._sort.direction == 'asc' ? 1 : -1);	
+					break;
 			}
 
-			return (propertyA.localeCompare(propertyB, 'en', {numeric: true})) * (this._sort.direction == 'asc' ? 1 : -1);
-
-			// let arrayA = _.split(propertyA, '-', propertyA.length);
-			// let arrayB = _.split(propertyB, '-', propertyB.length);
-			// console.log('arrayA:' + arrayA);
-			// console.log('arrayB:' + arrayB);
-
-			// for (let index = 0; index < arrayA.length - 1; index++) {
-
-			// 	let valueA = isNaN(+arrayA[index]) ? arrayA[index] : +arrayA[index];
-			// 	let valueB = isNaN(+arrayB[index]) ? arrayB[index] : +arrayB[index];
-			// 	let valueAA = isNaN(+arrayA[index + 1]) ? arrayA[index + 1] : +arrayA[index + 1];
-			// 	let valueBB = isNaN(+arrayB[index + 1]) ? arrayB[index + 1] : +arrayB[index + 1];
-				
-
-			// 	if ((valueA < valueB)) {
-			// 		return -1 * (this._sort.direction == 'asc' ? 1 : -1);
-			// 	}
-				
-			// 	if ((valueA = valueB) && (valueAA < valueBB)) {
-			// 		return -1 * (this._sort.direction == 'asc' ? 1 : -1);
-			// 	}
-
-			// 	if ((valueA = valueB) && (valueAA >= valueBB)) {
-			// 		return 1 * (this._sort.direction == 'asc' ? 1 : -1);
-			// 	}
-				
-			// 	if (valueA > valueB) {
-			// 		return 1 * (this._sort.direction == 'asc' ? 1 : -1);
-			// 	}
-
-			// }
-
+			return result;
 
 		});
 	}
