@@ -86,7 +86,7 @@ export interface DeedData {
 	id: string;
 	deedCode: string;
 	deedRef: string;
-	deedDate: string;
+	deedDate: any;
 	deedName: string;
 	complete: boolean;
 }
@@ -144,7 +144,7 @@ export class MyDataSource extends DataSource<any> {
 					result = (a.deedRef.localeCompare(b.deedRef, 'en', {numeric: true})) * (this._sort.direction == 'asc' ? 1 : -1);
 					break;
 				case 'deedDate': 
-					result = (a.deedDate.localeCompare(b.deedDate, 'en', {numeric: true})) * (this._sort.direction == 'asc' ? 1 : -1);
+					result = ((a.deedDate.year + '-' + a.deedDate.month + '-' + a.deedDate.day).localeCompare(b.deedDate.year + '-' + b.deedDate.month + '-' + b.deedDate.day, 'en', {numeric: true})) * (this._sort.direction == 'asc' ? 1 : -1);
 					break;
 				case 'deedName': 
 					result = (a.deedName.localeCompare(b.deedName, 'ru')) * (this._sort.direction == 'asc' ? 1 : -1);	
