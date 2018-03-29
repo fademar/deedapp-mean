@@ -153,20 +153,23 @@ export class MyDataSource extends DataSource<any> {
 
 				let valueA = isNaN(+arrayA[index]) ? arrayA[index] : +arrayA[index];
 				let valueB = isNaN(+arrayB[index]) ? arrayB[index] : +arrayB[index];
-				console.log('valueA:' + valueA);
-				console.log('valueB:' + valueB);
+				let valueAA = isNaN(+arrayA[index + 1]) ? arrayA[index + 1] : +arrayA[index + 1];
+				let valueBB = isNaN(+arrayB[index + 1]) ? arrayB[index + 1] : +arrayB[index + 1];
+				
 
-				if (valueA < valueB) {
+				if ((valueA < valueB)) {
 					return -1 * (this._sort.direction == 'asc' ? 1 : -1);
 				}
-				else if (valueA = valueB) {
-					let valueAA = isNaN(+arrayA[index + 1]) ? arrayA[index + 1] : +arrayA[index + 1];
-					let valueBB = isNaN(+arrayB[index + 1]) ? arrayB[index + 1] : +arrayB[index + 1];
-					console.log('valueAA:' + valueAA);
-					console.log('valueBB:' + valueBB);
-					return (valueAA < valueBB ? -1 : 1) * (this._sort.direction == 'asc' ? 1 : -1);
+				
+				if ((valueA = valueB) && (valueAA < valueBB)) {
+					return -1 * (this._sort.direction == 'asc' ? 1 : -1);
 				}
-				else {
+
+				if ((valueA = valueB) && (valueAA >= valueBB)) {
+					return 1 * (this._sort.direction == 'asc' ? 1 : -1);
+				}
+				
+				if (valueA > valueB) {
 					return 1 * (this._sort.direction == 'asc' ? 1 : -1);
 				}
 
