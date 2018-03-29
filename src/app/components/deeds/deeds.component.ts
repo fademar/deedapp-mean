@@ -144,7 +144,7 @@ export class MyDataSource extends DataSource<any> {
 				case 'deedName': [propertyA, propertyB] = [a.deedName, b.deedName]; break;
 			}
 
-			return propertyA.localeCompare(propertyB);
+			return (propertyA.localeCompare(propertyB, 'en', {numeric: true})) * (this._sort.direction == 'asc' ? 1 : -1);
 
 			// let arrayA = _.split(propertyA, '-', propertyA.length);
 			// let arrayB = _.split(propertyB, '-', propertyB.length);
