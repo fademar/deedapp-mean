@@ -118,7 +118,7 @@ export class AddDeedComponent implements OnInit {
     disableSubmit = false;
 
     public options = {
-        position: ['middle', 'center'],
+        position: ['bottom', 'right'],
         timeOut: 2000,
         showProgressBar: false,
         pauseOnHover: false,
