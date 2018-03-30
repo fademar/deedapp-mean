@@ -24,3 +24,16 @@
 .complete-toggle {
   font-weight: 700 !important;
 }
+
+.actionsroot {
+  display: flex;
+  height: 0px;
+  justify-content: flex-end;
+  position: relative;
+  width: 100%;
+}
+
+.actionspanel {
+  position: absolute;
+  right: -69px;
+}
