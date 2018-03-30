@@ -11,7 +11,8 @@ html, body {
 }
 
 .main-container {
-	padding-top: 80px;
+  padding-top: 15px;
+  margin: 0px !important;
 }
 
 .material-icons {
@@ -57,7 +58,7 @@ html, body {
 
 
 .container {
-  width: 840px;
+  width: 80%;
 }
 
 button {
