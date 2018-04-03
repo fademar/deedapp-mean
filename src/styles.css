@@ -115,6 +115,11 @@ button:active {
   left: 90%;
 }
 
+.action-button {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 /* default .loading styles, .loading should be invisible, opacity: 0, z-index: -1 */
 
 .loading {

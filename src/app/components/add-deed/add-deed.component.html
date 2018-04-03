@@ -475,9 +475,11 @@
           </div>
         </div>
 
-        <mat-toolbar class="action-button mb-3">
-          <button mat-raised-button type="button" (click)="addCoAgent()">Co-Agent</button>
-          <button mat-raised-button *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" type="button">Collective Co-Agent</button>
+        <mat-toolbar class="mb-3">
+          <div class="action-button">
+            <button mat-raised-button type="button" (click)="addCoAgent()">Co-Agent</button>
+            <button mat-raised-button *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" type="button">Collective Co-Agent</button>
+          </div>
         </mat-toolbar>
 
 
