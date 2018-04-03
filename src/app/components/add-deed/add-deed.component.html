@@ -475,6 +475,12 @@
           </div>
         </div>
 
+        <div class="d-flex justify-content-around">
+          <button mat-raised-button class="text-left" type="button" (click)="addCoAgent()">Co-Agent</button>
+          <button mat-raised-button class="text-left" *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" type="button">Collective Co-Agent</button>
+        </div>
+
+
         <!-- Main Counter Agent -->
 
         <div class="card mb-3">
