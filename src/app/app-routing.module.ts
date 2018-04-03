@@ -1,5 +1,5 @@
-import { NgModule }              from '@angular/core';
-import { RouterModule, Routes }  from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 import { DeedsComponent } from './components/deeds/deeds.component';
 import { AddDeedComponent } from './components/add-deed/add-deed.component';
@@ -10,20 +10,22 @@ import { SearchComponent } from './components/search/search.component';
 import { CallbackComponent } from './components/callback/callback.component';
 import { HomeComponent } from './components/home/home.component';
 import { NotesComponent } from './components/notes/notes.component';
+import { FormComponent } from './components/form/form.component';
 
 import { AuthGuard } from './services/guard.service';
 
 const appRoutes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'home', component:HomeComponent},
-  {path: 'list', component:DeedsComponent, canActivate: [AuthGuard]},
-  {path: 'deed/add', component:AddDeedComponent, canActivate: [AuthGuard]},
-  {path: 'deed/:id', component:DeedDetailsComponent, canActivate: [AuthGuard]},
-  {path: 'deed/edit/:id', component:EditDeedComponent, canActivate: [AuthGuard]},
-  {path: 'schema', component:SchemaComponent, canActivate: [AuthGuard]},
-  {path: 'search', component:SearchComponent, canActivate: [AuthGuard]},
-  {path: 'callback', component:CallbackComponent},
-  {path: 'notes', component:NotesComponent, canActivate: [AuthGuard]}
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'list', component: DeedsComponent, canActivate: [AuthGuard] },
+  { path: 'deed/add', component: AddDeedComponent, canActivate: [AuthGuard] },
+  { path: 'deed/:id', component: DeedDetailsComponent, canActivate: [AuthGuard] },
+  { path: 'deed/edit/:id', component: EditDeedComponent, canActivate: [AuthGuard] },
+  { path: 'schema', component: SchemaComponent, canActivate: [AuthGuard] },
+  { path: 'search', component: SearchComponent, canActivate: [AuthGuard] },
+  { path: 'callback', component: CallbackComponent },
+  { path: 'notes', component: NotesComponent, canActivate: [AuthGuard] },
+  { path: 'form/:id', component: FormComponent, canActivate: [AuthGuard] }
 ]
 
 
@@ -35,4 +37,4 @@ const appRoutes: Routes = [
     RouterModule
   ]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

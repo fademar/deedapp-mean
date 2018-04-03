@@ -1,6 +1,6 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
-import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { SimpleNotificationsModule } from 'angular2-notifications';
@@ -39,6 +39,8 @@ import { SchemaComponent } from './components/schema/schema.component';
 import { SearchComponent } from './components/search/search.component';
 import { CallbackComponent } from './components/callback/callback.component';
 import { HomeComponent } from './components/home/home.component';
+import { FormComponent } from './components/form/form.component';
+
 
 
 import { DeedService } from './services/deed.service';
@@ -76,6 +78,7 @@ import { SortPipe } from './pipes/sort.pipe';
     NoteComponent,
     NoteDialog,
     NotesComponent,
+    FormComponent,
     NewWindowDirective,
     ExcerptPipe,
     HighlightPipe,
@@ -83,7 +86,7 @@ import { SortPipe } from './pipes/sort.pipe';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     SimpleNotificationsModule.forRoot(),
     NgbModule.forRoot(),
     TypeaheadModule.forRoot(),
@@ -106,9 +109,9 @@ import { SortPipe } from './pipes/sort.pipe';
     MatInputModule,
     MatRadioModule,
     MatButtonToggleModule,
-    MatToolbarModule, 
-    MatSidenavModule, 
-    FroalaEditorModule.forRoot(), 
+    MatToolbarModule,
+    MatSidenavModule,
+    FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
     QuillModule,
     MatExpansionModule

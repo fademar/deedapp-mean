@@ -11,7 +11,7 @@
       </a>
     </div>
     <a mat-fab color="primary" matTooltip="Edit the deed" matTooltipPosition="before" matTooltipClass="'tooltip'" class="mb-2"
-      routerLink="/deed/edit/{{ deed._id }}" [queryParams]="term?{resultFor: term}:{}">
+      routerLink="/form/{{ deed._id }}" [queryParams]="term?{resultFor: term}:{}">
       <mat-icon class="md-light">mode_edit</mat-icon>
     </a>
     <a mat-fab matTooltip="Download the deed" matTooltipPosition="before" matTooltipClass="'tooltip'" class="mb-2 basic" [href]="downloadUri"
@@ -663,8 +663,7 @@
                     <div class="row no-gutters mb-3">
                       <div *ngIf="agentTransactionObject.debt.amount.moscowSilver.rubli || agentTransactionObject.debt.amount.moscowSilver.altyny || agentTransactionObject.debt.amount.moscowSilver.dengi"
                         class="list-group-item">Amount in Moscow Silver:
-                        <span *ngIf="agentTransactionObject.debt.amount.moscowSilver.rubli" class="form-data"
-                          [innerHTML]="agentTransactionObject.debt.amount.moscowSilver.rubli | highlight: term + ' rubli'"></span>
+                        <span *ngIf="agentTransactionObject.debt.amount.moscowSilver.rubli" class="form-data" [innerHTML]="agentTransactionObject.debt.amount.moscowSilver.rubli | highlight: term + ' rubli'"></span>
                         <span *ngIf="agentTransactionObject.debt.amount.moscowSilver.altyny" class="form-data" [innerHTML]="agentTransactionObject.debt.amount.moscowSilver.altyny | highlight: term + ' altyny'"></span>
                         <span *ngIf="agentTransactionObject.debt.amount.moscowSilver.dengi" class="form-data" [innerHTML]="agentTransactionObject.debt.amount.moscowSilver.dengi | highlight: term + ' deng\'i'"></span>
                       </div>
@@ -756,7 +755,8 @@
                         <span class="form-data">{{ agentTransactionObject.fugitiveSouls.numberOfSouls.male }}</span> male /
                         <span class="form-data">{{ agentTransactionObject.fugitiveSouls.numberOfSouls.female }}</span> female
                         <span class="form-data">{{ agentTransactionObject.fugitiveSouls.numberOfSouls.operator }} {{ agentTransactionObject.fugitiveSouls.numberOfSouls.households
-                          }}</span> households</li>
+                          }}
+                        </span> households</li>
                       <li *ngIf="agentTransactionObject.fugitiveSouls.names" class="list-group-item">
                         <strong>Names: </strong>
                         <span class="form-data">{{ agentTransactionObject.fugitiveSouls.names }}</span>
@@ -849,7 +849,8 @@
                         <span class="form-data">{{ agentTransactionObject.immovableProperty.population.male }}</span> male /
                         <span class="form-data">{{ agentTransactionObject.immovableProperty.population.female }}</span> female
                         <span class="form-data">{{ agentTransactionObject.immovableProperty.population.operator }} {{ agentTransactionObject.immovableProperty.population.households
-                          }}</span> households</li>
+                          }}
+                        </span> households</li>
                       <li *ngIf="agentTransactionObject.immovableProperty.buildings" class="list-group-item">
                         <strong>Buildings: </strong>
                         <span class="form-data">{{ agentTransactionObject.immovableProperty.buildings }}</span>
@@ -962,7 +963,8 @@
                         <span class="form-data">{{ agentTransactionObject.souls.numberOfSouls.male }}</span> male /
                         <span class="form-data">{{ agentTransactionObject.souls.numberOfSouls.female }}</span> female
                         <span class="form-data">{{ agentTransactionObject.souls.numberOfSouls.operator }} {{ agentTransactionObject.souls.numberOfSouls.households
-                          }}</span> households</li>
+                          }}
+                        </span> households</li>
                       <li *ngIf="agentTransactionObject.souls.names" class="list-group-item">
                         <strong>Names: </strong>
                         <span class="form-data">{{ agentTransactionObject.souls.names }}</span>
@@ -1243,7 +1245,8 @@
                         <span class="form-data">{{ counterAgentTransactionObject.fugitiveSouls.numberOfSouls.male }}</span> male /
                         <span class="form-data">{{ counterAgentTransactionObject.fugitiveSouls.numberOfSouls.female }}</span> female
                         <span class="form-data">{{ counterAgentTransactionObject.fugitiveSouls.numberOfSouls.operator }} {{ counterAgentTransactionObject.fugitiveSouls.numberOfSouls.households
-                          }}</span> households</li>
+                          }}
+                        </span> households</li>
                       <li *ngIf="counterAgentTransactionObject.fugitiveSouls.names" class="list-group-item">
                         <strong>Names: </strong>
                         <span class="form-data">{{ counterAgentTransactionObject.fugitiveSouls.names }}</span>
@@ -1329,15 +1332,15 @@
                       <li *ngIf="counterAgentTransactionObject.immovableProperty.surface" class="list-group-item">
                         <strong>Surface: </strong>
                         <span class="form-data">{{ counterAgentTransactionObject.immovableProperty.surface.chetiVpole }}</span> cheti v pole
-                        <span
-                          class="form-data">{{ counterAgentTransactionObject.immovableProperty.surface.sazheni.x }}</span> X
-                          <span class="form-data">{{ counterAgentTransactionObject.immovableProperty.surface.sazheni.y }}</span> sazheni</li>
+                        <span class="form-data">{{ counterAgentTransactionObject.immovableProperty.surface.sazheni.x }}</span> X
+                        <span class="form-data">{{ counterAgentTransactionObject.immovableProperty.surface.sazheni.y }}</span> sazheni</li>
                       <li *ngIf="counterAgentTransactionObject.immovableProperty.population" class="list-group-item">
                         <strong>Population (souls): </strong>
                         <span class="form-data">{{ counterAgentTransactionObject.immovableProperty.population.male }}</span> male /
                         <span class="form-data">{{ counterAgentTransactionObject.immovableProperty.population.female }}</span> female
                         <span class="form-data">{{ counterAgentTransactionObject.immovableProperty.population.operator }} {{ counterAgentTransactionObject.immovableProperty.population.households
-                          }}</span> households</li>
+                          }}
+                        </span> households</li>
                       <li *ngIf="counterAgentTransactionObject.immovableProperty.buildings" class="list-group-item">
                         <strong>Buildings: </strong>
                         <span class="form-data">{{ counterAgentTransactionObject.immovableProperty.buildings }}</span>
@@ -1450,7 +1453,8 @@
                         <span class="form-data">{{ counterAgentTransactionObject.souls.numberOfSouls.male }}</span> male /
                         <span class="form-data">{{ counterAgentTransactionObject.souls.numberOfSouls.female }}</span> female
                         <span class="form-data">{{ counterAgentTransactionObject.souls.numberOfSouls.operator }} {{ counterAgentTransactionObject.souls.numberOfSouls.households
-                          }}</span> households</li>
+                          }}
+                        </span> households</li>
                       <li *ngIf="counterAgentTransactionObject.souls.names" class="list-group-item">
                         <strong>Names: </strong>
                         <span class="form-data">{{ counterAgentTransactionObject.souls.names }}</span>
