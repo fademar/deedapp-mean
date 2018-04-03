@@ -39,8 +39,6 @@ import { SchemaComponent } from './components/schema/schema.component';
 import { SearchComponent } from './components/search/search.component';
 import { CallbackComponent } from './components/callback/callback.component';
 import { HomeComponent } from './components/home/home.component';
-import { FormComponent } from './components/form/form.component';
-
 
 
 import { DeedService } from './services/deed.service';
@@ -78,7 +76,6 @@ import { SortPipe } from './pipes/sort.pipe';
     NoteComponent,
     NoteDialog,
     NotesComponent,
-    FormComponent,
     NewWindowDirective,
     ExcerptPipe,
     HighlightPipe,
