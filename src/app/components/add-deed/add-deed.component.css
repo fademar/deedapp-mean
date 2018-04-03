@@ -33,3 +33,7 @@
   width: 100%;
   top: 80px;
 }
+
+.action-button {
+  justify-content: space-evenly !important;
+}
