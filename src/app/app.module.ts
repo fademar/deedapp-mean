@@ -59,6 +59,7 @@ import { NewWindowDirective } from './directives/new-window.directive';
 import { ExcerptPipe } from './pipes/excerpt.pipe';
 import { HighlightPipe } from './pipes/highlight.pipe';
 import { SortPipe } from './pipes/sort.pipe';
+import { FormComponent } from './components/form/form.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { SortPipe } from './pipes/sort.pipe';
     NewWindowDirective,
     ExcerptPipe,
     HighlightPipe,
-    SortPipe
+    SortPipe,
+    FormComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { DeedService } from '../../services/deed.service';
 import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
@@ -1587,18 +1587,18 @@ export class AddDeedComponent implements OnInit {
         });
     }
 
-       
+
 
     // Submit the form
 
     onSubmit(submitBtn: HTMLButtonElement): void {
 
         if (this.deedForm.invalid) {
-                this.notificationsService.warn(
-                    'Warning',
-                    'Fields Deed Code and Deed Ref are required',
-                );
-           
+            this.notificationsService.warn(
+                'Warning',
+                'Fields Deed Code and Deed Ref are required',
+            );
+
         } else {
             submitBtn.disabled = true;
             this.deedValue = JSON.stringify(this.deedForm.value);
