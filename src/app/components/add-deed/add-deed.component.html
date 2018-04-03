@@ -475,14 +475,10 @@
           </div>
         </div>
 
-        <div class="mb-3">
-          <mat-toolbar>
-            <span class="action-button">
-              <button mat-raised-button type="button" (click)="addCoAgent()">Co-Agent</button>
-              <button mat-raised-button *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" type="button">Collective Co-Agent</button>
-            </span>
-          </mat-toolbar>
-        </div>
+        <mat-toolbar class="action-button mb-3">
+          <button mat-raised-button type="button" (click)="addCoAgent()">Co-Agent</button>
+          <button mat-raised-button *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" type="button">Collective Co-Agent</button>
+        </mat-toolbar>
 
 
         <!-- Main Counter Agent -->

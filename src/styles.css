@@ -116,8 +116,7 @@ button:active {
 }
 
 .action-button {
-  display: flex;
-  justify-content: space-evenly;
+  justify-content: space-evenly !important;
 }
 
 /* default .loading styles, .loading should be invisible, opacity: 0, z-index: -1 */
