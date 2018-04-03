@@ -476,10 +476,10 @@
         </div>
 
         <mat-toolbar>
-          <div class="d-flex justify-content-around">
-            <button mat-raised-button class="text-left" type="button" (click)="addCoAgent()">Co-Agent</button>
-            <button mat-raised-button class="text-left" *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" type="button">Collective Co-Agent</button>
-          </div>
+          <span class="d-flex justify-content-around">
+            <button mat-raised-button type="button" (click)="addCoAgent()">Co-Agent</button>
+            <button mat-raised-button *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" type="button">Collective Co-Agent</button>
+          </span>
         </mat-toolbar>
 
 
