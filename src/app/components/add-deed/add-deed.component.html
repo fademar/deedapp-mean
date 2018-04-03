@@ -8,16 +8,16 @@
         <mat-card-title>ADD</mat-card-title>
         <mat-card-content>
           <div class="d-flex flex-column">
-            <button mat-raised-button class="mb-1 text-left" type="button" (click)="addCoAgent()">Co-Agent</button>
-            <button mat-raised-button class="mb-1 text-left" *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" type="button">Collective Co-Agent</button>
-            <button mat-raised-button class="mb-1 text-left" type="button" (click)="addCoCounterAgent()">Co-Counter Agent</button>
-            <button mat-raised-button class="mb-1 text-left" *ngIf="!collectiveCoCounterAgentOn" type="button" (click)="addCollectiveCoCounterAgent()">Collective Co-Counter Agent</button>
-            <button mat-raised-button class="mb-1 text-left" type="button" (click)="addTransaction()">Transaction</button>
-            <button mat-raised-button class="mb-1 text-left" type="button" (click)="addWhitness()">Whitness</button>
-            <button mat-raised-button class="mb-1 text-left" type="button" (click)="addSurety()">Surety</button>
-            <button mat-raised-button class="mb-1 text-left" *ngIf="!scribeOn" type="button" (click)="addScribe()">Scribe</button>
-            <button mat-raised-button class="mb-1 text-left" type="button" (click)="addOtherParticipant()">Other Participant</button>
-            <button mat-raised-button class="mb-1 text-left" *ngIf="!registratorOn" type="button" (click)="addRegistrator()">Registrator</button>
+            <button mat-raised-button class="text-left" type="button" (click)="addCoAgent()">Co-Agent</button>
+            <button mat-raised-button class="text-left" *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" type="button">Collective Co-Agent</button>
+            <button mat-raised-button class="text-left" type="button" (click)="addCoCounterAgent()">Co-Counter Agent</button>
+            <button mat-raised-button class="mb-2 text-left" *ngIf="!collectiveCoCounterAgentOn" type="button" (click)="addCollectiveCoCounterAgent()">Collective Co-Counter Agent</button>
+            <button mat-raised-button class="mb-2 text-left" type="button" (click)="addTransaction()">Transaction</button>
+            <button mat-raised-button class="text-left" type="button" (click)="addWhitness()">Whitness</button>
+            <button mat-raised-button class="text-left" type="button" (click)="addSurety()">Surety</button>
+            <button mat-raised-button class="text-left" *ngIf="!scribeOn" type="button" (click)="addScribe()">Scribe</button>
+            <button mat-raised-button class="text-left" type="button" (click)="addOtherParticipant()">Other Participant</button>
+            <button mat-raised-button class="text-left" *ngIf="!registratorOn" type="button" (click)="addRegistrator()">Registrator</button>
           </div>
           <div class="d-flex flex-column pt-3">
             <button mat-raised-button color="accent" type="submit" #submitBtn [disabled]="disableSubmit" placement="bottom" matTooltip="Save the deed"

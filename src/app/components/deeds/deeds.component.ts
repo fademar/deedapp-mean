@@ -93,10 +93,10 @@ export interface DeedData {
 
 export class DataList {
 	dataChange: BehaviorSubject<DeedData[]> = new BehaviorSubject<DeedData[]>([]);
-	get data(): DeedData[] { 
-		return this.dataChange.value; 
+	get data(): DeedData[] {
+		return this.dataChange.value;
 	}
-	
+
 	constructor(private deedService: DeedService) {
 		this.deedService.getDeeds().subscribe(deeds => {
 			this.dataChange.next(deeds)
@@ -133,24 +133,23 @@ export class MyDataSource extends DataSource<any> {
 	/** Returns a sorted copy of the database data. */
 	getSortedData(): DeedData[] {
 		const data = this._dataList.data.slice();
-		console.log(data);
 		if (!this._sort.active || this._sort.direction == '') { return data; }
 
 		return data.sort((a, b) => {
 			let result = 0;
-			
+
 			switch (this._sort.active) {
-				case 'deedCode': 
-					result = (a.deedCode.localeCompare(b.deedCode, 'en', {numeric: true})) * (this._sort.direction == 'asc' ? 1 : -1);
+				case 'deedCode':
+					result = (a.deedCode.localeCompare(b.deedCode, 'en', { numeric: true })) * (this._sort.direction == 'asc' ? 1 : -1);
 					break;
-				case 'deedRef': 
-					result = (a.deedRef.localeCompare(b.deedRef, 'en', {numeric: true})) * (this._sort.direction == 'asc' ? 1 : -1);
+				case 'deedRef':
+					result = (a.deedRef.localeCompare(b.deedRef, 'en', { numeric: true })) * (this._sort.direction == 'asc' ? 1 : -1);
 					break;
-				case 'deedDate': 
-					result = ((a.deedDate.year + '-' + a.deedDate.month + '-' + a.deedDate.day).localeCompare(b.deedDate.year + '-' + b.deedDate.month + '-' + b.deedDate.day, 'en', {numeric: true})) * (this._sort.direction == 'asc' ? 1 : -1);
+				case 'deedDate':
+					result = ((a.deedDate.year + '-' + a.deedDate.month + '-' + a.deedDate.day).localeCompare(b.deedDate.year + '-' + b.deedDate.month + '-' + b.deedDate.day, 'en', { numeric: true })) * (this._sort.direction == 'asc' ? 1 : -1);
 					break;
-				case 'deedName': 
-					result = (a.deedName.localeCompare(b.deedName, 'ru')) * (this._sort.direction == 'asc' ? 1 : -1);	
+				case 'deedName':
+					result = (a.deedName.localeCompare(b.deedName, 'ru')) * (this._sort.direction == 'asc' ? 1 : -1);
 					break;
 			}
 
