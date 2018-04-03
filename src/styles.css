@@ -116,7 +116,6 @@ button:active {
 }
 
 .action-button {
-  flex: 0 0 auto;
   justify-content: space-evenly;
 }
 
