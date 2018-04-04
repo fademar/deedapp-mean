@@ -142,15 +142,17 @@ export class AddDeedComponent implements OnInit {
         this.counterAgentField = 'text';
 
         this.deedService.getDeeds().subscribe(deeds => {
+            console.log(deeds);
             deeds.forEach(element => {
+                console.log(element);
                 if (element.agent.agentSex === 'male') {
+                    console.log(element.agent.firstName);
                     this.firstNamesMale.push(element.agent.firstName);
                 }
                 if (element.agent.agentSex === 'female') {
                     this.firstNamesFemale.push(element.agent.firstName);
                 }
             });
-            console.log(this.firstNamesMale);
         });
     }
 
