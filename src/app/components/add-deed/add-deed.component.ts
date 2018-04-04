@@ -154,6 +154,7 @@ export class AddDeedComponent implements OnInit {
                 }
             });
         });
+        console.log(this.firstNamesMale);
     }
 
     // Create the form
