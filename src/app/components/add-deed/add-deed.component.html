@@ -1,7 +1,32 @@
 <simple-notifications [options]="options"></simple-notifications>
-<app-navbar></app-navbar>
 <form (keydown.enter)="$event.preventDefault()" [formGroup]="deedForm" (ngSubmit)="onSubmit(submitBtn)" novalidate>
 
+  <mat-toolbar color="primary" class="nav-bar" id="cssmenu">
+
+    <span class="nav-brand mr-5">Deed App</span>
+    <ul>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/list']">List</a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/deed/form']">New Deed</a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/search']" appNewWindow>Search</a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/notes']" target="_blank">Notes</a>
+      </li>
+    </ul>
+    <span class="spacer"></span>
+    <button mat-raised-button type="submit" #submitBtn [disabled]="disableSubmit" placement="bottom" matTooltip="Save the deed"
+      matTooltipPosition="before" matTooltipClass="'tooltip'" class="mb-2 submit-button">
+      <mat-icon aria-label="Submit the form">save</mat-icon> SAVE
+    </button>
+    <button mat-icon-button class="logout-button" (click)="auth.logout()">
+      <mat-icon class="nav-icon md-24" aria-label="Logout">power_settings_new</mat-icon>
+    </button>
+  </mat-toolbar>
   <div class="actionsroot">
     <div class="actionspanel">
       <mat-card>
@@ -20,10 +45,7 @@
             <button mat-raised-button class="text-left" *ngIf="!registratorOn" type="button" (click)="addRegistrator()">Registrator</button>
           </div>
           <div class="d-flex flex-column pt-3">
-            <button mat-raised-button color="accent" type="submit" #submitBtn [disabled]="disableSubmit" placement="bottom" matTooltip="Save the deed"
-              matTooltipPosition="before" matTooltipClass="'tooltip'" class="mb-2 submit-button">
-              <mat-icon aria-label="Submit the form">save</mat-icon> SAVE
-            </button>
+
           </div>
         </mat-card-content>
       </mat-card>
