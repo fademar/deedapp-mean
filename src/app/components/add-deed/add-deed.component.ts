@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
-import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
+import 'rxjs/add/observable/of';
 import * as _ from 'lodash';
 import { AuthService } from '../../services/auth.service';
 
@@ -60,6 +60,7 @@ export class AddDeedComponent implements OnInit {
     otherImmovablePropertyShare: FormControl;
     otherShareFromEstate: FormControl;
     asWhomValue;
+    firstNames: string[];
 
     deed;
     deedValue = '';
@@ -138,6 +139,10 @@ export class AddDeedComponent implements OnInit {
         this.selectedAction = '';
         this.selectedCounterAction = '';
         this.counterAgentField = 'text';
+
+        this.deedService.getDeeds().subscribe(deeds => {
+            this.firstNames = deeds.firstName;
+        });
     }
 
     // Create the form
