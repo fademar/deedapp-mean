@@ -150,6 +150,7 @@ export class AddDeedComponent implements OnInit {
                     this.firstNamesFemale.push(element.agent.firstName);
                 }
             });
+            console.log(this.firstNamesMale);
         });
     }
 
