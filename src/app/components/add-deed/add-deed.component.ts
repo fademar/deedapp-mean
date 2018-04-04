@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { DeedService } from '../../services/deed.service';
 import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Male, Female, BodyCorporate, OtherParticipant, Registrator, Fee, gender, transactionTypes, currencies, socialBody, relationtoagents, agentActionsList, whatList, immovablePropertyList, shareList, whomList, asWhomList, activityList, typeTaxList, counterAgentActionsList } from '../../models/deed-model'
 import { NotificationsService } from 'angular2-notifications';
 import { Observable } from 'rxjs/Observable';
@@ -63,6 +63,7 @@ export class AddDeedComponent implements OnInit {
     firstNamesMale = [];
     firstNamesFemale = [];
 
+    id = this.id;
     deed;
     deedValue = '';
     agentSex = '';
@@ -130,6 +131,7 @@ export class AddDeedComponent implements OnInit {
     constructor(private fb: FormBuilder,
         private deedService: DeedService,
         private router: Router,
+        private route: ActivatedRoute,
         private notificationsService: NotificationsService,
         public auth: AuthService,
         private titleService: Title) { }
@@ -141,20 +143,23 @@ export class AddDeedComponent implements OnInit {
         this.selectedCounterAction = '';
         this.counterAgentField = 'text';
 
+        // Create Typeahead arrays for firstnames
         this.deedService.getDeeds().subscribe(deeds => {
-            console.log(deeds);
             deeds.forEach(element => {
-                console.log(element);
                 if (element.agentSex === 'male' && element.agent.firstName) {
-                    console.log(element.agent.firstName);
                     this.firstNamesMale.push(element.agent.firstName);
                 }
                 if (element.agentSex === 'female' && element.agent.firstName) {
                     this.firstNamesFemale.push(element.agent.firstName);
                 }
             });
-            console.log(this.firstNamesMale);
         });
+
+        if (this.route.snapshot.params['id']) {
+            this.id = this.route.snapshot.params['id'];
+            console.log(this.id);
+        }
+
     }
 
     // Create the form
