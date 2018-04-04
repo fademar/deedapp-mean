@@ -145,16 +145,16 @@ export class AddDeedComponent implements OnInit {
             console.log(deeds);
             deeds.forEach(element => {
                 console.log(element);
-                if (element.agent.agentSex === 'male') {
+                if (element.agentSex === 'male' && element.agent.firstName) {
                     console.log(element.agent.firstName);
                     this.firstNamesMale.push(element.agent.firstName);
                 }
-                if (element.agent.agentSex === 'female') {
+                if (element.agentSex === 'female' && element.agent.firstName) {
                     this.firstNamesFemale.push(element.agent.firstName);
                 }
             });
+            console.log(this.firstNamesMale);
         });
-        console.log(this.firstNamesMale);
     }
 
     // Create the form
