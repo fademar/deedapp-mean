@@ -18,6 +18,7 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'list', component: DeedsComponent, canActivate: [AuthGuard] },
   { path: 'deed/form/:id', component: AddDeedComponent, canActivate: [AuthGuard] },
+  { path: 'deed/form', component: AddDeedComponent, canActivate: [AuthGuard] },
   { path: 'deed/:id', component: DeedDetailsComponent, canActivate: [AuthGuard] },
   { path: 'deed/edit/:id', component: EditDeedComponent, canActivate: [AuthGuard] },
   { path: 'schema', component: SchemaComponent, canActivate: [AuthGuard] },
