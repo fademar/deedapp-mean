@@ -1,35 +1,36 @@
 <div *ngIf="!auth.isAuthenticated()" class="wrapper">
   <div class="page-header clear-filter" filter-color="blue">
-      <div class="page-header-image" data-parallax="true" style="background-image: url('/assets/img/scandeed6.jpg');">
-      </div>
-      <div class="container">
-          <div class="content-center brand">
-              <h1 class="h1-seo">The Deed App</h1>
-              <h3 class="mb-5">Indexing the books of deeds in the reign of Peter the Great</h3>
-              <p class="mt-5">A project developed by the Center for Studies of the Russian, Caucasian and Central European Worlds (EHESS/CNRS)<br> with the support of the LabEx TEPSIS.
-              </p>
-              <div class="row justify-content-center mt-5">
-                  <!-- <div class="col-4">
+    <div class="page-header-image" data-parallax="true" style="background-image: url('./assets/img/scandeed6.jpg');">
+    </div>
+    <div class="container">
+      <div class="content-center brand">
+        <h1 class="h1-seo">The Deed App</h1>
+        <h3 class="mb-5">Indexing the books of deeds in the reign of Peter the Great</h3>
+        <p class="mt-5">A project developed by the Center for Studies of the Russian, Caucasian and Central European Worlds (EHESS/CNRS)
+          <br> with the support of the LabEx TEPSIS.
+        </p>
+        <div class="row justify-content-center mt-5">
+          <!-- <div class="col-4">
                       <button class="btn btn-lg btn-block btn-outline-light">Learn more</button>                
                   </div> -->
-                  <div class="col-4">
-                      <button class="btn btn-lg btn-block btn-primary" (click)="auth.login()">Login</button>                
-                  </div>
-                </div>
+          <div class="col-4">
+            <button class="btn btn-lg btn-block btn-primary" (click)="auth.login()">Login</button>
           </div>
+        </div>
       </div>
+    </div>
   </div>
 </div>
 
-  <div *ngIf="auth.isAuthenticated()" class="wrapper">
-      <div class="page-header clear-filter" filter-color="blue">
-          <div class="page-header-image" data-parallax="true" style="background-image: url('/assets/img/scandeed6.jpg');">
-          </div>
-          <div class="container">
-              <div class="content-center brand">
-                  <h1 class="h1-seo">You are now logged in!</h1>
-                  <h3 class="mb-5">You will be redirected soon</h3>
-              </div>
-          </div>
+<div *ngIf="auth.isAuthenticated()" class="wrapper">
+  <div class="page-header clear-filter" filter-color="blue">
+    <div class="page-header-image" data-parallax="true" style="background-image: url('./assets/img/scandeed6.jpg');">
+    </div>
+    <div class="container">
+      <div class="content-center brand">
+        <h1 class="h1-seo">You are now logged in!</h1>
+        <h3 class="mb-5">You will be redirected soon</h3>
       </div>
+    </div>
   </div>
+</div>
