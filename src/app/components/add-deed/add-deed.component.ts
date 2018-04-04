@@ -60,8 +60,8 @@ export class AddDeedComponent implements OnInit {
     otherImmovablePropertyShare: FormControl;
     otherShareFromEstate: FormControl;
     asWhomValue;
-    firstNamesMale: string[];
-    firstNamesFemale: string[];
+    firstNamesMale = [];
+    firstNamesFemale = [];
 
     deed;
     deedValue = '';
