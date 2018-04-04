@@ -60,7 +60,8 @@ export class AddDeedComponent implements OnInit {
     otherImmovablePropertyShare: FormControl;
     otherShareFromEstate: FormControl;
     asWhomValue;
-    firstNames: string[];
+    firstNamesMale: string[];
+    firstNamesFemale: string[];
 
     deed;
     deedValue = '';
@@ -141,7 +142,14 @@ export class AddDeedComponent implements OnInit {
         this.counterAgentField = 'text';
 
         this.deedService.getDeeds().subscribe(deeds => {
-            this.firstNames = deeds.firstName;
+            deeds.forEach(element => {
+                if (element.agent.agentSex === 'male') {
+                    this.firstNamesMale.push(element.agent.firstName);
+                }
+                if (element.agent.agentSex === 'female') {
+                    this.firstNamesFemale.push(element.agent.firstName);
+                }
+            });
         });
     }
 
