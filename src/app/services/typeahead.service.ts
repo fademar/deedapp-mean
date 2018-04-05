@@ -49,6 +49,7 @@ export class TypeaheadService {
     });
     this.firstNamesMale.sort();
     this.firstNamesMale = _.sortedUniq(this.firstNamesMale);
+    console.log(this.firstNamesMale);
     return this.firstNamesMale;
   }
 

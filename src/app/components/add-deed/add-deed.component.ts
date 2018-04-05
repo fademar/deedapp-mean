@@ -147,6 +147,7 @@ export class AddDeedComponent implements OnInit {
 
         // Create Typeahead arrays for firstnames
         this.firstNamesMale = this.typeaheadService.getFirstNamesMale();
+        console.log(this.firstNamesMale);
         this.firstNamesFemale = this.typeaheadService.getFirstNamesFemale();
 
         if (this.route.snapshot.params['id']) {
