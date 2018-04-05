@@ -46,11 +46,9 @@ export class TypeaheadService {
           });
         }
       });
-      this.firstNamesMale.sort();
-      this.firstNamesMale = _.sortedUniq(this.firstNamesMale);
-
     });
-
+    this.firstNamesMale.sort();
+    this.firstNamesMale = _.sortedUniq(this.firstNamesMale);
     return this.firstNamesMale;
   }
 
@@ -82,11 +80,11 @@ export class TypeaheadService {
           });
         }
       });
-      this.firstNamesFemale.sort();
-      this.firstNamesFemale = _.sortedUniq(this.firstNamesFemale.sort());
+
 
     });
-       
+    this.firstNamesFemale.sort();
+    this.firstNamesFemale = _.sortedUniq(this.firstNamesFemale.sort());
     return this.firstNamesFemale;
   }
 
