@@ -19,7 +19,7 @@ const appRoutes: Routes = [
   {path: 'list', component:DeedsComponent, canActivate: [AuthGuard]},
   {path: 'deed/add', component:AddDeedComponent, canActivate: [AuthGuard]},
   {path: 'deed/:id', component:DeedDetailsComponent, canActivate: [AuthGuard]},
-  {path: 'deed/edit/:id', component:EditDeedComponent, canActivate: [AuthGuard]},
+  {path: 'deed/edit/:id', component:AddDeedComponent, canActivate: [AuthGuard]},
   {path: 'schema', component:SchemaComponent, canActivate: [AuthGuard]},
   {path: 'search', component:SearchComponent, canActivate: [AuthGuard]},
   {path: 'notes', component:NotesComponent, canActivate: [AuthGuard]},
