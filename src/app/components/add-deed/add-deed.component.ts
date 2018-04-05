@@ -450,7 +450,15 @@ export class AddDeedComponent implements OnInit {
 
     initCoAgent() {
         return this.fb.group({
-            coAgentSex: ['male']
+            coAgentSex: ['male'],
+            coAgent: this.fb.group({
+                geogrStatus: [''],
+                socialStatus: [''],
+                firstName: [''],
+                patronyme: [''],
+                lastName: [''],
+                relatedTo: ['']
+            })
         });
     }
 
