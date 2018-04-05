@@ -123,6 +123,8 @@ export class AddDeedComponent implements OnInit {
     firstNamesMale = [];
     firstNamesFemale = [];
 
+    disableSubmit = false;
+
     public options = {
         position: ['bottom', 'left'],
         timeOut: 2000,
