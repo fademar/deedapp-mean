@@ -153,7 +153,7 @@ export class AddDeedComponent implements OnInit {
                     this.firstNamesFemale.push(element.agent.firstName);
                 }
             });
-            this.firstNamesMale.sort();
+            this.firstNamesMale = this.firstNamesMale.sort();
             console.log(this.firstNamesMale);
             this.firstNamesMale = _.sortedUniq(this.firstNamesMale);
             console.log(this.firstNamesMale);
