@@ -158,8 +158,7 @@
                   <div class="row">
                     <div class="form-group col">
                       <label>First Name</label>
-                      <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesMale" [typeaheadOptionsLimit]="7"
-                        [typeaheadMinLength]="0">
+                      <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesMale"  [typeaheadMinLength]="0" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
                     </div>
                     <div class="form-group col">
                       <label>Patronyme</label>
@@ -187,7 +186,7 @@
                     </div>
                     <div class="form-group col">
                       <label>First Name</label>
-                      <input type="text" class="form-control" formControlName="firstName">
+                      <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesFemale"  [typeaheadMinLength]="0" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
                     </div>
                   </div>
                   <div class="row">
