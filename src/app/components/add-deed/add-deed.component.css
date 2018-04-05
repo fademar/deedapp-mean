@@ -193,3 +193,7 @@ button:active {
 .spacer {
   flex: 1 1 auto;
 }
+
+.submit-button {
+  color: #3F51B5;
+}
