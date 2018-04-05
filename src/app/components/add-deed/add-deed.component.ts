@@ -149,7 +149,7 @@ export class AddDeedComponent implements OnInit {
                 if (element.agentSex === 'male' && element.agent.firstName) {
                     this.firstNamesMale.push(element.agent.firstName);
                     console.log(this.firstNamesMale);
-                    this.firstNamesMale = this.firstNamesMale.sort();
+                    this.firstNamesMale.sort();
                     console.log(this.firstNamesMale);
                     this.firstNamesMale = _.sortedUniq(this.firstNamesMale);
                     console.log(this.firstNamesMale);
@@ -163,7 +163,6 @@ export class AddDeedComponent implements OnInit {
 
         if (this.route.snapshot.params['id']) {
             this.id = this.route.snapshot.params['id'];
-            console.log(this.id);
             this.editForm(this.id);
         }
 
