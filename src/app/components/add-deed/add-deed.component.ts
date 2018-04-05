@@ -148,17 +148,17 @@ export class AddDeedComponent implements OnInit {
             deeds.forEach(element => {
                 if (element.agentSex === 'male' && element.agent.firstName) {
                     this.firstNamesMale.push(element.agent.firstName);
-                    console.log(this.firstNamesMale);
-                    this.firstNamesMale.sort();
-                    console.log(this.firstNamesMale);
-                    this.firstNamesMale = _.sortedUniq(this.firstNamesMale);
-                    console.log(this.firstNamesMale);
                 }
                 if (element.agentSex === 'female' && element.agent.firstName) {
                     this.firstNamesFemale.push(element.agent.firstName);
-                    this.firstNamesFemale = _.sortedUniq(this.firstNamesFemale.sort());
                 }
             });
+            this.firstNamesMale.sort();
+            console.log(this.firstNamesMale);
+            this.firstNamesMale = _.sortedUniq(this.firstNamesMale);
+            console.log(this.firstNamesMale);
+            this.firstNamesFemale.sort();
+            this.firstNamesFemale = _.sortedUniq(this.firstNamesFemale.sort());
         });
 
         if (this.route.snapshot.params['id']) {
