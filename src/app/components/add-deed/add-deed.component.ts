@@ -142,7 +142,11 @@ export class AddDeedComponent implements OnInit {
         public auth: AuthService) { }
 
     ngOnInit() {
-        this.titleService.setTitle('ADD - Russian Deeds App');
+        if (this.route.snapshot.params['id']) {
+            this.titleService.setTitle('EDIT - Russian Deeds App');
+        } else {
+            this.titleService.setTitle('ADD - Russian Deeds App');
+        }
         this.initForm();
         this.selectedAction = '';
         this.selectedCounterAction = '';
@@ -150,14 +154,45 @@ export class AddDeedComponent implements OnInit {
 
         // Create Typeahead arrays for firstnames
         this.deedService.getDeeds().subscribe(deeds => {
-            deeds.forEach(element => {
-                if (element.agentSex === 'male' && element.agent.firstName) {
-                    this.firstNamesMale.push(element.agent.firstName);
+            deeds.forEach(deed => {
+                if (deed.agentSex === 'male' && deed.agent.firstName) {
+                    this.firstNamesMale.push(deed.agent.firstName);
                 }
-                if (element.agentSex === 'female' && element.agent.firstName) {
-                    this.firstNamesFemale.push(element.agent.firstName);
+                if (deed.agentSex === 'female' && deed.agent.firstName) {
+                    this.firstNamesFemale.push(deed.agent.firstName);
+                }
+                if (deed.counterAgentSex === 'male' && deed.counterAgent.firstName) {
+                    this.firstNamesMale.push(deed.counterAgent.firstName);
+                }
+                if (deed.counterAgentSex === 'female' && deed.counterAgent.firstName) {
+                    this.firstNamesFemale.push(deed.counterAgent.firstName);
+                }
+                if (deed.coAgents.length > 0) {
+                    deed.coAgents.forEach(element => {
+                        if (element.coAgentSex === 'male' && element.coAgent.firstName) {
+                            this.firstNamesMale.push(element.coAgent.firstName);
+                        }
+                        if (element.coAgentSex === 'female' && element.coAgent.firstName) {
+                            this.firstNamesFemale.push(element.coAgent.firstName);
+                        }       
+                    });
+                }
+                if (deed.coCounterAgents.length > 0) {
+                    deed.coCounterAgents.forEach(element => {
+                        if (element.coCounterAgentSex === 'male' && element.coCounterAgent.firstName) {
+                            this.firstNamesMale.push(element.coCounterAgent.firstName);
+                        }
+                        if (element.coCounterAgentSex === 'female' && element.coCounterAgent.firstName) {
+                            this.firstNamesFemale.push(element.coCounterAgent.firstName);
+                        }       
+                    });
                 }
             });
+
+            this.firstNamesMale.sort();
+            this.firstNamesMale = _.sortedUniq(this.firstNamesMale);
+            this.firstNamesFemale.sort();
+            this.firstNamesFemale = _.sortedUniq(this.firstNamesFemale.sort());
         });
 
         if (this.route.snapshot.params['id']) {
