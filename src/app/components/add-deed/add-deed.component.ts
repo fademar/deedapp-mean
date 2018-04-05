@@ -154,9 +154,7 @@ export class AddDeedComponent implements OnInit {
                 }
             });
             this.firstNamesMale.sort();
-            console.log(this.firstNamesMale);
             this.firstNamesMale = _.sortedUniq(this.firstNamesMale);
-            console.log(this.firstNamesMale);
             this.firstNamesFemale.sort();
             this.firstNamesFemale = _.sortedUniq(this.firstNamesFemale.sort());
         });
