@@ -148,11 +148,11 @@ export class AddDeedComponent implements OnInit {
             deeds.forEach(element => {
                 if (element.agentSex === 'male' && element.agent.firstName) {
                     this.firstNamesMale.push(element.agent.firstName);
-                    this.firstNamesMale = _.uniq(this.firstNamesMale);
+                    this.firstNamesMale = _.sortedUniq(this.firstNamesMale.sort());
                 }
                 if (element.agentSex === 'female' && element.agent.firstName) {
                     this.firstNamesFemale.push(element.agent.firstName);
-                    this.firstNamesFemale = _.uniq(this.firstNamesFemale);
+                    this.firstNamesFemale = _.sortedUniq(this.firstNamesFemale.sort());
                 }
             });
         });
