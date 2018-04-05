@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { DeedService } from '../../services/deed.service';
+import { TypeaheadService } from '../../services/typeahead.service';
 import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Male, Female, BodyCorporate, OtherParticipant, Registrator, Fee, gender, transactionTypes, currencies, socialBody, relationtoagents, agentActionsList, whatList, immovablePropertyList, shareList, whomList, asWhomList, activityList, typeTaxList, counterAgentActionsList } from '../../models/deed-model'
@@ -134,7 +135,8 @@ export class AddDeedComponent implements OnInit {
         private route: ActivatedRoute,
         private notificationsService: NotificationsService,
         public auth: AuthService,
-        private titleService: Title) { }
+        private titleService: Title,
+        private typeaheadService: TypeaheadService) { }
 
     ngOnInit() {
         this.titleService.setTitle('ADD - Russian Deeds App');
@@ -144,46 +146,8 @@ export class AddDeedComponent implements OnInit {
         this.counterAgentField = 'text';
 
         // Create Typeahead arrays for firstnames
-        this.deedService.getDeeds().subscribe(deeds => {
-            deeds.forEach(deed => {
-                if (deed.agentSex === 'male' && deed.agent.firstName) {
-                    this.firstNamesMale.push(deed.agent.firstName);
-                }
-                if (deed.agentSex === 'female' && deed.agent.firstName) {
-                    this.firstNamesFemale.push(deed.agent.firstName);
-                }
-                if (deed.counterAgentSex === 'male' && deed.counterAgent.firstName) {
-                    this.firstNamesMale.push(deed.counterAgent.firstName);
-                }
-                if (deed.counterAgentSex === 'female' && deed.counterAgent.firstName) {
-                    this.firstNamesFemale.push(deed.counterAgent.firstName);
-                }
-                if (deed.coAgents.length > 0) {
-                    deed.coAgents.forEach(element => {
-                        if (element.coAgentSex === 'male' && element.coAgent.firstName) {
-                            this.firstNamesMale.push(element.coAgent.firstName);
-                        }
-                        if (element.coAgentSex === 'female' && element.coAgent.firstName) {
-                            this.firstNamesFemale.push(element.coAgent.firstName);
-                        }       
-                    });
-                }
-                if (deed.coCounterAgents.length > 0) {
-                    deed.coCounterAgents.forEach(element => {
-                        if (element.coCounterAgentSex === 'male' && element.coCounterAgent.firstName) {
-                            this.firstNamesMale.push(element.coCounterAgent.firstName);
-                        }
-                        if (element.coCounterAgentSex === 'female' && element.coCounterAgent.firstName) {
-                            this.firstNamesFemale.push(element.coCounterAgent.firstName);
-                        }       
-                    });
-                }
-            });
-            this.firstNamesMale.sort();
-            this.firstNamesMale = _.sortedUniq(this.firstNamesMale);
-            this.firstNamesFemale.sort();
-            this.firstNamesFemale = _.sortedUniq(this.firstNamesFemale.sort());
-        });
+        this.firstNamesMale = this.typeaheadService.getFirstNamesMale();
+        this.firstNamesFemale = this.typeaheadService.getFirstNamesFemale();
 
         if (this.route.snapshot.params['id']) {
             this.id = this.route.snapshot.params['id'];
