@@ -2652,6 +2652,8 @@ export class AddDeedComponent implements OnInit {
             this.firstNamesMale = _.sortedUniq(this.firstNamesMale);
             this.firstNamesFemale.sort();
             this.firstNamesFemale = _.sortedUniq(this.firstNamesFemale);
+            this.firstNamesDependent.sort();
+            this.firstNamesDependent = _.sortedUniq(this.firstNamesDependent);
             this.firstNamesMF = _.concat(this.firstNamesDependent, this.firstNamesMale, this.firstNamesFemale);
             this.firstNamesMF.sort();
             this.firstNamesMF = _.sortedUniq(this.firstNamesMF);
