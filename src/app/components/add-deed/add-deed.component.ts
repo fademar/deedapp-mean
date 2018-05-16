@@ -2631,6 +2631,7 @@ export class AddDeedComponent implements OnInit {
                         if (transaction.agentTransactionObjects.length > 0) {
                             transaction.agentTransactionObjects.forEach(agentTransactionObject => {
                                 if (agentTransactionObject.dependent && agentTransactionObject.dependent.firstName !== '') {
+                                    console.log(agentTransactionObject.dependent.firstName);
                                     this.firstNamesDependent.push(_.trim(agentTransactionObject.dependent.firstName)) 
                                 }
                             });
