@@ -2631,7 +2631,6 @@ export class AddDeedComponent implements OnInit {
                         if (transaction.agentTransactionObjects.length > 0) {
                             transaction.agentTransactionObjects.forEach(agentTransactionObject => {
                                 if (agentTransactionObject.dependent && agentTransactionObject.dependent.firstName !== '') {
-                                    console.log(agentTransactionObject.dependent.firstName);
                                     this.firstNamesDependent.push(_.trim(agentTransactionObject.dependent.firstName)) 
                                 }
                             });
@@ -2657,6 +2656,10 @@ export class AddDeedComponent implements OnInit {
             this.firstNamesMF = _.concat(this.firstNamesDependent, this.firstNamesMale, this.firstNamesFemale);
             this.firstNamesMF.sort();
             this.firstNamesMF = _.sortedUniq(this.firstNamesMF);
+            console.log('MF:' + this.firstNamesMF);
+            console.log('Male:' + this.firstNamesMale);
+            console.log('female' + this.firstNamesFemale);
+            console.log('dependent' + this.firstNamesDependent);
         });
     }
 
