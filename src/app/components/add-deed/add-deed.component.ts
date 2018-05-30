@@ -935,6 +935,35 @@ export class AddDeedComponent implements OnInit {
 
     // AGENT WHAT Select Methods
 
+    initMoney() {
+        return this.fb.group({
+            coins: ['unspecified'],
+            rubli: [''],
+            altyny: [''],
+            dengi: ['']
+        })
+    }
+
+    addMoneyMoneyAgent(i: number, j:number) {
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.money;
+        control.push(this.initMoney());
+    }
+
+    removeMoneyMoneyAgent(i: number, j: number, k: number) {
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.money;
+        control.removeAt(k);
+    }
+
+    addMoneyDebtAgent(i: number, j: number) {
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.debt['amount'];
+        control.push(this.initTransaction());
+    }
+
+    removeMoneyDebtAgent(i: number, j: number, k: number) {
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.debt['amount'];
+        control.removeAt(k);
+    }
+
 
     selectedWhat(i: number) {
         switch (this.deedForm.controls.transactions['controls'][i].get('agentTransactionObjectType').value) {
@@ -952,18 +981,9 @@ export class AddDeedComponent implements OnInit {
             case 'debt': {
                 this.agentTransactionObject = this.fb.group({
                     debt: this.fb.group({
-                        amount: this.fb.group({
-                            moscowSilver: this.fb.group({
-                                rubli: [''],
-                                altyny: [''],
-                                dengi: ['']
-                            }),
-                            chekhi: this.fb.group({
-                                rubli: [''],
-                                altyny: [''],
-                                dengi: ['']
-                            })
-                        }),
+                        amount: this.fb.array([
+                            this.initMoney()
+                        ]),
                         debtorName: [''],
                         debtDate: ['']
                     })
@@ -984,18 +1004,9 @@ export class AddDeedComponent implements OnInit {
             }
             case 'forfeit': {
                 this.agentTransactionObject = this.fb.group({
-                    forfeit: this.fb.group({
-                        moscowSilver: this.fb.group({
-                            rubli: [''],
-                            altyny: [''],
-                            dengi: ['']
-                        }),
-                        chekhi: this.fb.group({
-                            rubli: [''],
-                            altyny: [''],
-                            dengi: ['']
-                        })
-                    })
+                    forfeit: this.fb.array([
+                        this.initMoney()
+                    ])
                 });
                 break;
             }
@@ -1020,18 +1031,9 @@ export class AddDeedComponent implements OnInit {
                     goods: this.fb.group({
                         type: [''],
                         description: [''],
-                        price: this.fb.group({
-                            moscowSilver: this.fb.group({
-                                rubli: [''],
-                                altyny: [''],
-                                dengi: ['']
-                            }),
-                            chekhi: this.fb.group({
-                                rubli: [''],
-                                altyny: [''],
-                                dengi: ['']
-                            })
-                        })
+                        price: this.fb.array([
+                            this.initMoney()
+                        ])
                     })
                 });
                 break;
@@ -1065,20 +1067,9 @@ export class AddDeedComponent implements OnInit {
             }
             case 'money': {
                 this.agentTransactionObject = this.fb.group({
-                    money: this.fb.group({
-                        amount: this.fb.group({
-                            moscowSilver: this.fb.group({
-                                rubli: [''],
-                                altyny: [''],
-                                dengi: ['']
-                            }),
-                            chekhi: this.fb.group({
-                                rubli: [''],
-                                altyny: [''],
-                                dengi: ['']
-                            })
-                        })
-                    })
+                    money: this.fb.array([
+                        this.initMoney()
+                    ])
                 });
                 break;
             }
@@ -1367,17 +1358,11 @@ export class AddDeedComponent implements OnInit {
             case 'money': {
                 this.counterAgentTransactionObject = this.fb.group({
                     money: this.fb.group({
+                        coins: ['unspecified'],
                         amount: this.fb.group({
-                            moscowSilver: this.fb.group({
-                                rubli: [''],
-                                altyny: [''],
-                                dengi: ['']
-                            }),
-                            chekhi: this.fb.group({
-                                rubli: [''],
-                                altyny: [''],
-                                dengi: ['']
-                            })
+                            rubli: [''],
+                            altyny: [''],
+                            dengi: ['']
                         })
                     })
                 });
