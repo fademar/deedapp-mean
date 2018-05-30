@@ -122,8 +122,16 @@ export class AddDeedComponent implements OnInit {
 
     firstNamesMale = [];
     firstNamesFemale = [];
-    firstNamesDependent = [];
     firstNamesMF = [];
+
+    lastNamesMale = [];
+    lastNamesFemale = [];
+    lastNamesMF = [];
+
+    patronymesMale = [];
+    patronymesFemale = [];
+    patronymesMF = [];
+
 
     disableSubmit = false;
 
@@ -153,79 +161,7 @@ export class AddDeedComponent implements OnInit {
         this.selectedAction = '';
         this.selectedCounterAction = '';
         this.counterAgentField = 'text';
-
-        // Create Typeahead arrays for firstnames
-        this.deedService.getDeeds().subscribe(deeds => {
-            deeds.forEach(deed => {
-                if (deed.agentSex === 'male' && deed.agent.firstName) {
-                    this.firstNamesMale.push(_.trim(deed.agent.firstName));
-                    this.firstNamesMF.push(_.trim(deed.agent.firstName));
-                }
-                if (deed.agentSex === 'female' && deed.agent.firstName) {
-                    this.firstNamesFemale.push(_.trim(deed.agent.firstName));
-                    this.firstNamesMF.push(_.trim(deed.agent.firstName));
-                }
-                if (deed.counterAgentSex === 'male' && deed.counterAgent.firstName) {
-                    this.firstNamesMale.push(_.trim(deed.counterAgent.firstName));
-                    this.firstNamesMF.push(_.trim(deed.counterAgent.firstName));
-                }
-                if (deed.counterAgentSex === 'female' && deed.counterAgent.firstName) {
-                    this.firstNamesFemale.push(_.trim(deed.counterAgent.firstName));
-                    this.firstNamesMF.push(_.trim(deed.counterAgent.firstName));
-                }
-                if (deed.coAgents.length > 0) {
-                    deed.coAgents.forEach(element => {
-                        if (element.coAgentSex === 'male' && element.coAgent.firstName) {
-                            this.firstNamesMale.push(_.trim(element.coAgent.firstName));
-                            this.firstNamesMF.push(_.trim(element.coAgent.firstName));
-                        }
-                        if (element.coAgentSex === 'female' && element.coAgent.firstName) {
-                            this.firstNamesFemale.push(_.trim(element.coAgent.firstName));
-                            this.firstNamesMF.push(_.trim(element.coAgent.firstName));
-                        }       
-                    });
-                }
-                if (deed.coCounterAgents.length > 0) {
-                    deed.coCounterAgents.forEach(element => {
-                        if (element.coCounterAgentSex === 'male' && element.coCounterAgent.firstName) {
-                            this.firstNamesMale.push(_.trim(element.coCounterAgent.firstName));
-                            this.firstNamesMF.push(_.trim(element.coCounterAgent.firstName));
-                        }
-                        if (element.coCounterAgentSex === 'female' && element.coCounterAgent.firstName) {
-                            this.firstNamesFemale.push(_.trim(element.coCounterAgent.firstName));
-                            this.firstNamesMF.push(_.trim(element.coCounterAgent.firstName));
-                        }       
-                    });
-                }
-                if (deed.transactions.length > 0) {
-                    deed.transactions.forEach(transaction => {
-                        if (transaction.agentTransactionObjects.length > 0) {
-                            transaction.agentTransactionObjects.forEach(agentTransactionObject => {
-                                if (agentTransactionObject.dependent && agentTransactionObject.dependent.firstName !== '') {
-                                    this.firstNamesMF.push(_.trim(agentTransactionObject.dependent.firstName)) 
-                                }
-                            });
-                        }
-                        if (transaction.counterAgentTransactionObjects.length > 0) {
-                            transaction.counterAgentTransactionObjects.forEach(counterAgentTransactionObject => {
-                                if (counterAgentTransactionObject.dependent && counterAgentTransactionObject.dependent.firstName !== '') {
-                                    this.firstNamesMF.push(_.trim(counterAgentTransactionObject.dependent.firstName)) 
-                                }
-                            });
-                        }
-                    });
-                }
-
-            });
-
-            this.firstNamesMale.sort();
-            this.firstNamesMale = _.sortedUniq(this.firstNamesMale);
-            this.firstNamesFemale.sort();
-            this.firstNamesFemale = _.sortedUniq(this.firstNamesFemale);
-            this.firstNamesMF.sort();
-            this.firstNamesMF = _.sortedUniq(this.firstNamesMF);
-
-        });
+        
 
 
         if (this.route.snapshot.params['id']) {
@@ -2703,6 +2639,180 @@ export class AddDeedComponent implements OnInit {
             }
 
 
+
+        });
+    }
+
+    // Typeahead method
+    
+    typeahead() {
+        // Create Typeahead arrays for firstnames
+        this.deedService.getDeeds().subscribe(deeds => {
+            deeds.forEach(deed => {
+                // Create lists of male firstnames, lastnames and patronymes
+                if (deed.agentSex === 'male' && deed.agent.firstName) {
+                    this.firstNamesMale.push(_.trim(deed.agent.firstName));
+                    this.firstNamesMF.push(_.trim(deed.agent.firstName));
+                }
+                if (deed.agentSex === 'male' && deed.agent.lastName) {
+                    this.lastNamesMale.push(_.trim(deed.agent.lastName));
+                    this.lastNamesMF.push(_.trim(deed.agent.lastName));
+                }                
+                if (deed.agentSex === 'male' && deed.agent.patronyme) {
+                    this.patronymesMale.push(_.trim(deed.agent.patronyme));
+                    this.patronymesMF.push(_.trim(deed.agent.patronyme));
+                }
+                // Create lists of female firstnames, lastnames and patronymes
+                if (deed.agentSex === 'female' && deed.agent.firstName) {
+                    this.firstNamesFemale.push(_.trim(deed.agent.firstName));
+                    this.firstNamesMF.push(_.trim(deed.agent.firstName));
+                }
+                if (deed.agentSex === 'female' && deed.agent.lastName) {
+                    this.lastNamesFemale.push(_.trim(deed.agent.lastName));
+                    this.lastNamesMF.push(_.trim(deed.agent.lastName));
+                }                
+                if (deed.agentSex === 'female' && deed.agent.patronyme) {
+                    this.patronymesFemale.push(_.trim(deed.agent.patronyme));
+                    this.patronymesMF.push(_.trim(deed.agent.patronyme));
+                }
+
+                if (deed.counterAgentSex === 'male' && deed.counterAgent.firstName) {
+                    this.firstNamesMale.push(_.trim(deed.counterAgent.firstName));
+                    this.firstNamesMF.push(_.trim(deed.counterAgent.firstName));
+                }
+                if (deed.counterAgentSex === 'male' && deed.counterAgent.lastName) {
+                    this.lastNamesMale.push(_.trim(deed.counterAgent.lastName));
+                    this.lastNamesMF.push(_.trim(deed.counterAgent.lastName));
+                }                
+                if (deed.counterAgentSex === 'male' && deed.counterAgent.patronyme) {
+                    this.patronymesMale.push(_.trim(deed.counterAgent.patronyme));
+                    this.patronymesMF.push(_.trim(deed.counterAgent.patronyme));
+                }
+
+                if (deed.counterAgentSex === 'female' && deed.counterAgent.firstName) {
+                    this.firstNamesFemale.push(_.trim(deed.counterAgent.firstName));
+                    this.firstNamesMF.push(_.trim(deed.counterAgent.firstName));
+                }
+                if (deed.counterAgentSex === 'female' && deed.counterAgent.lastName) {
+                    this.lastNamesFemale.push(_.trim(deed.counterAgent.lastName));
+                    this.lastNamesMF.push(_.trim(deed.counterAgent.lastName));
+                }                
+                if (deed.counterAgentSex === 'female' && deed.counterAgent.patronyme) {
+                    this.patronymesFemale.push(_.trim(deed.counterAgent.patronyme));
+                    this.patronymesMF.push(_.trim(deed.counterAgent.patronyme));
+                }
+
+                if (deed.coAgents.length > 0) {
+                    deed.coAgents.forEach(element => {
+                        if (element.coAgentSex === 'male' && element.coAgent.firstName) {
+                            this.firstNamesMale.push(_.trim(element.coAgent.firstName));
+                            this.firstNamesMF.push(_.trim(element.coAgent.firstName));
+                        }
+                        if (element.coAgentSex === 'male' && element.coAgent.lastName) {
+                            this.lastNamesMale.push(_.trim(element.coAgent.lastName));
+                            this.lastNamesMF.push(_.trim(element.coAgent.lastName));
+                        }                
+                        if (element.coAgentSex === 'male' && element.coAgent.patronyme) {
+                            this.patronymesMale.push(_.trim(element.coAgent.patronyme));
+                            this.patronymesMF.push(_.trim(element.coAgent.patronyme));
+                        }
+
+                        if (element.coAgentSex === 'female' && element.coAgent.firstName) {
+                            this.firstNamesFemale.push(_.trim(element.coAgent.firstName));
+                            this.firstNamesMF.push(_.trim(element.coAgent.firstName));
+                        }
+                        if (element.coAgentSex === 'female' && element.coAgent.lastName) {
+                            this.lastNamesFemale.push(_.trim(element.coAgent.lastName));
+                            this.lastNamesMF.push(_.trim(element.coAgent.lastName));
+                        }                
+                        if (element.coAgentSex === 'female' && element.coAgent.patronyme) {
+                            this.patronymesFemale.push(_.trim(element.coAgent.patronyme));
+                            this.patronymesMF.push(_.trim(element.coAgent.patronyme));
+                        }       
+                    });
+                }
+                if (deed.coCounterAgents.length > 0) {
+                    deed.coCounterAgents.forEach(element => {
+                        if (element.coCounterAgentSex === 'male' && element.coCounterAgent.firstName) {
+                            this.firstNamesMale.push(_.trim(element.coCounterAgent.firstName));
+                            this.firstNamesMF.push(_.trim(element.coCounterAgent.firstName));
+                        }
+                        if (element.coCounterAgentSex === 'male' && element.coCounterAgent.lastName) {
+                            this.lastNamesMale.push(_.trim(element.coCounterAgent.lastName));
+                            this.lastNamesMF.push(_.trim(element.coCounterAgent.lastName));
+                        }                
+                        if (element.coCounterAgentSex === 'male' && element.coCounterAgent.patronyme) {
+                            this.patronymesMale.push(_.trim(element.coCounterAgent.patronyme));
+                            this.patronymesMF.push(_.trim(element.coCounterAgent.patronyme));
+                        }
+
+                        if (element.coCounterAgentSex === 'female' && element.coCounterAgent.firstName) {
+                            this.firstNamesFemale.push(_.trim(element.coCounterAgent.firstName));
+                            this.firstNamesMF.push(_.trim(element.coCounterAgent.firstName));
+                        }
+                        if (element.coCounterAgentSex === 'female' && element.coCounterAgent.lastName) {
+                            this.lastNamesFemale.push(_.trim(element.coCounterAgent.lastName));
+                            this.lastNamesMF.push(_.trim(element.coCounterAgent.lastName));
+                        }                
+                        if (element.coCounterAgentSex === 'female' && element.coCounterAgent.patronyme) {
+                            this.patronymesFemale.push(_.trim(element.coCounterAgent.patronyme));
+                            this.patronymesMF.push(_.trim(element.coCounterAgent.patronyme));
+                        }    
+                    });
+                }
+                if (deed.transactions.length > 0) {
+                    deed.transactions.forEach(transaction => {
+                        if (transaction.agentTransactionObjects.length > 0) {
+                            transaction.agentTransactionObjects.forEach(agentTransactionObject => {
+                                if (agentTransactionObject.dependent && agentTransactionObject.dependent.firstName !== '') {
+                                    this.firstNamesMF.push(_.trim(agentTransactionObject.dependent.firstName)) 
+                                }
+                                if (agentTransactionObject.dependent && agentTransactionObject.dependent.lastName !== '') {
+                                    this.lastNamesMF.push(_.trim(agentTransactionObject.dependent.lastName)) 
+                                }
+                                if (agentTransactionObject.dependent && agentTransactionObject.dependent.patronyme !== '') {
+                                    this.patronymesMF.push(_.trim(agentTransactionObject.dependent.patronymes)) 
+                                }
+                            });
+                        }
+                        if (transaction.counterAgentTransactionObjects.length > 0) {
+                            transaction.counterAgentTransactionObjects.forEach(counterAgentTransactionObject => {
+                                if (counterAgentTransactionObject.dependent && counterAgentTransactionObject.dependent.firstName !== '') {
+                                    this.firstNamesMF.push(_.trim(counterAgentTransactionObject.dependent.firstName)) 
+                                }
+                                if (counterAgentTransactionObject.dependent && counterAgentTransactionObject.dependent.lastName !== '') {
+                                    this.lastNamesMF.push(_.trim(counterAgentTransactionObject.dependent.lastName)) 
+                                }
+                                if (counterAgentTransactionObject.dependent && counterAgentTransactionObject.dependent.patronyme !== '') {
+                                    this.patronymesMF.push(_.trim(counterAgentTransactionObject.dependent.patronymes)) 
+                                }
+                            });
+                        }
+                    });
+                }
+
+            });
+
+            this.firstNamesMale.sort();
+            this.firstNamesMale = _.sortedUniq(this.firstNamesMale);
+            this.firstNamesFemale.sort();
+            this.firstNamesFemale = _.sortedUniq(this.firstNamesFemale);
+            this.firstNamesMF.sort();
+            this.firstNamesMF = _.sortedUniq(this.firstNamesMF);
+
+            this.lastNamesMale.sort();
+            this.lastNamesMale = _.sortedUniq(this.lastNamesMale);
+            this.lastNamesFemale.sort();
+            this.lastNamesFemale = _.sortedUniq(this.lastNamesFemale);
+            this.lastNamesMF.sort();
+            this.lastNamesMF = _.sortedUniq(this.lastNamesMF);
+
+            this.patronymesMale.sort();
+            this.patronymesMale = _.sortedUniq(this.patronymesMale);
+            this.patronymesFemale.sort();
+            this.patronymesFemale = _.sortedUniq(this.patronymesFemale);
+            this.patronymesMF.sort();
+            this.patronymesMF = _.sortedUniq(this.patronymesMF);
 
         });
     }
