@@ -1014,7 +1014,7 @@
                       </div>
                       <div formGroupName="debt" class="card-body">
                         <div formArrayName="amount">
-                          <div *ngFor="let amountDebt of transactionObject['controls']['debt']['amount']; let k=index">
+                          <div *ngFor="let amountDebt of transactionObject['controls']['debt']['amount']['controls']; let k=index">
                             <div formGroupName="k">
                                 <div class="form-group row">
                                   <label class="col-1">Coins</label>
@@ -1026,19 +1026,19 @@
                                         <option [value]="chekhi">Chekhi</option>
                                     </select>
                                   </div>
-                                  <div class="col-1">
+                                  <div class="col-2">
                                     <input type="number" min="0" class="form-control" formControlName="rubli">
                                   </div>
                                   <div class="col-1 small-label">rubli</div>
-                                  <div class="col-1">
+                                  <div class="col-2">
                                     <input type="number" min="0" class="form-control" formControlName="altyny">
                                   </div>
                                   <div class="col-1 small-label">altyny</div>
-                                  <div class="col-1">
+                                  <div class="col-2">
                                     <input type="number" min="0" class="form-control" formControlName="dengi">
                                   </div>
                                   <div class="col-1 small-label">den'gi</div>
-                                  <div class="col-2">
+                                  <div class="col-1">
                                     <i class="fa fa-plus" (click)="addMoneyDebtAgent(i, j)" aria-hidden="true"></i>
                                     <i class="fa fa-times pull-right" (click)="removeMoneyDebtAgent(i, j, k)" aria-hidden="true"></i>
                                   </div>
