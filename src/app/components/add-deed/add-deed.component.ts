@@ -1128,6 +1128,7 @@ export class AddDeedComponent implements OnInit {
         }
         this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
         this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjectType.reset();
+        console.log(this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects);
     }
 
     removeAgentTransactionObject(i, j) {
