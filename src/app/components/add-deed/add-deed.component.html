@@ -1016,8 +1016,12 @@
                         <div formArrayName="amount">
                           <div *ngFor="let amountDebt of transactionObject['controls']['debt']['controls']['amount']['controls']; let k=index">
                             <div formGroupName="k">
-                                <div class="form-group row">
-                                  <label class="col-1">Coins</label>
+                                <div class="row">
+                                    <div class="form-group col">
+                                        <label>Debtor Name</label>
+                                    </div>
+                                </div>
+                                <div class="row">
                                   <div class="col-2">
                                     <select class="form-control" formControlName="coins">
                                         <option [value]="unspecified">Unspecified</option>

@@ -955,12 +955,12 @@ export class AddDeedComponent implements OnInit {
     }
 
     addMoneyDebtAgent(i: number, j: number) {
-        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.debt['amount'];
-        control.push(this.initTransaction());
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.debt.controls.amount;
+        control.push(this.initMoney());
     }
 
     removeMoneyDebtAgent(i: number, j: number, k: number) {
-        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.debt['amount'];
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.debt.amount;
         control.removeAt(k);
     }
 
