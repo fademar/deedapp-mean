@@ -1017,7 +1017,7 @@
                           <div *ngFor="let amountDebt of transactionObject['controls']['debt']['controls']['amount']['controls']; let k=index">
                             <div [formGroupName]="k">
                                     <div class="form-group">
-                                      <label>Amounts</label>
+                                      <label>Amount in</label>
                                       <div class="row">
                                         <div class="col-2">
                                           <select class="form-control" formControlName="coins">
@@ -1040,8 +1040,8 @@
                                         </div>
                                         <div class="col-1 small-label">den'gi</div>
                                         <div class="col-1">
-                                          <i class="fa fa-plus" (click)="addMoneyDebtAgent(i, j)" aria-hidden="true"></i>
-                                          <i class="fa fa-times" (click)="removeMoneyDebtAgent(i, j, k)" aria-hidden="true"></i>
+                                          <i class="fas fa-plus-circle fa-2x mr-2" (click)="addMoneyDebtAgent(i, j)" aria-hidden="true"></i>
+                                          <i class="fas fa-ban fa-2x" (click)="removeMoneyDebtAgent(i, j, k)" aria-hidden="true"></i>
                                         </div>
                                       </div>
                                   </div>
