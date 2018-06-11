@@ -960,7 +960,7 @@ export class AddDeedComponent implements OnInit {
     }
 
     removeMoneyDebtAgent(i: number, j: number, k: number) {
-        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.debt.controls.amount.controls;
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.debt.controls.amount;
         control.removeAt(k);
     }
 
