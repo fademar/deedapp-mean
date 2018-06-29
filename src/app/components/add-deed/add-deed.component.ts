@@ -933,27 +933,28 @@ export class AddDeedComponent implements OnInit {
         this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.removeAt(0);
     }
 
-    // AGENT WHAT Select Methods
+   // AGENT MONEY Methods
+   initMoney() {
+    return this.fb.group({
+        coins: ['unspecified'],
+        rubli: [''],
+        altyny: [''],
+        dengi: ['']
+    })
+}
 
-    initMoney() {
-        return this.fb.group({
-            coins: ['unspecified'],
-            rubli: [''],
-            altyny: [''],
-            dengi: ['']
-        })
-    }
-
-    addMoneyMoneyAgent(i: number, j:number) {
-        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.money;
+    // Agent Chattels
+    addMoneyChattelsAgent(i: number, j: number) {
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.chattels.controls.price;
         control.push(this.initMoney());
     }
 
-    removeMoneyMoneyAgent(i: number, j: number, k: number) {
-        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.money;
+    removeMoneyChattelsAgent(i: number, j: number, k: number) {
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.chattels.controls.price;
         control.removeAt(k);
     }
 
+    // Agent Debt
     addMoneyDebtAgent(i: number, j: number) {
         const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.debt.controls.amount;
         control.push(this.initMoney());
@@ -965,6 +966,40 @@ export class AddDeedComponent implements OnInit {
     }
 
 
+    // Agent Forfeit
+    addMoneyForfeitAgent(i: number, j:number) {
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.forfeit;
+        control.push(this.initMoney());
+    }
+
+    removeMoneyForfeitAgent(i: number, j: number, k: number) {
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.forfeit;
+        control.removeAt(k);
+    }
+
+    // Agent Goods
+    addMoneyGoodsAgent(i: number, j:number) {
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.goods.controls.price;
+        control.push(this.initMoney());
+    }
+
+    removeMoneyGoodsAgent(i: number, j: number, k: number) {
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.goods.controls.price;
+        control.removeAt(k);
+    }
+
+
+    // Agent Money
+    addMoneyMoneyAgent(i: number, j:number) {
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.money;
+        control.push(this.initMoney());
+    }
+
+    removeMoneyMoneyAgent(i: number, j: number, k: number) {
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects['controls'][j].controls.money;
+        control.removeAt(k);
+    }
+
     selectedWhat(i: number) {
         switch (this.deedForm.controls.transactions['controls'][i].get('agentTransactionObjectType').value) {
             case 'chattels': {
@@ -973,7 +1008,9 @@ export class AddDeedComponent implements OnInit {
                         type: [''],
                         origin: [''],
                         description: [''],
-                        price: ['']
+                        price: this.fb.array([
+                            this.initMoney()
+                        ])
                     })
                 });
                 break;
@@ -981,18 +1018,9 @@ export class AddDeedComponent implements OnInit {
             case 'debt': {
                 this.agentTransactionObject = this.fb.group({
                     debt: this.fb.group({
-                        amount: this.fb.group({
-                            moscowSilver: this.fb.group({
-                                rubli: [''],
-                                altyny: [''],
-                                dengi: ['']
-                            }),
-                            chekhi: this.fb.group({
-                                rubli: [''],
-                                altyny: [''],
-                                dengi: ['']
-                            })
-                        }),
+                        amount: this.fb.array([
+                            this.initMoney()
+                        ]),
                         debtorName: [''],
                         debtDate: ['']
                     })
@@ -1013,18 +1041,9 @@ export class AddDeedComponent implements OnInit {
             }
             case 'forfeit': {
                 this.agentTransactionObject = this.fb.group({
-                    forfeit: this.fb.group({
-                        moscowSilver: this.fb.group({
-                            rubli: [''],
-                            altyny: [''],
-                            dengi: ['']
-                        }),
-                        chekhi: this.fb.group({
-                            rubli: [''],
-                            altyny: [''],
-                            dengi: ['']
-                        })
-                    })
+                    forfeit: this.fb.array([
+                        this.initMoney()
+                    ])
                 });
                 break;
             }
@@ -1049,18 +1068,9 @@ export class AddDeedComponent implements OnInit {
                     goods: this.fb.group({
                         type: [''],
                         description: [''],
-                        price: this.fb.group({
-                            moscowSilver: this.fb.group({
-                                rubli: [''],
-                                altyny: [''],
-                                dengi: ['']
-                            }),
-                            chekhi: this.fb.group({
-                                rubli: [''],
-                                altyny: [''],
-                                dengi: ['']
-                            })
-                        })
+                        price: this.fb.array([
+                            this.initMoney()
+                        ])
                     })
                 });
                 break;
@@ -1255,6 +1265,62 @@ export class AddDeedComponent implements OnInit {
     }
 
     // WHAT Select Methods
+    // Counter Agent Chattels
+    addMoneyChattelsCounterAgent(i: number, j: number) {
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.chattels.controls.price;
+        control.push(this.initMoney());
+    }
+
+    removeMoneyChattelsCounterAgent(i: number, j: number, k: number) {
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.chattels.controls.price;
+        control.removeAt(k);
+    }
+
+    // Counter Agent Debt
+    addMoneyDebtCounterAgent(i: number, j: number) {
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.debt.controls.amount;
+        control.push(this.initMoney());
+    }
+
+    removeMoneyDebtCounterAgent(i: number, j: number, k: number) {
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.debt.controls.amount;
+        control.removeAt(k);
+    }
+
+
+    // Counter Agent Forfeit
+    addMoneyForfeitCounterAgent(i: number, j:number) {
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.forfeit;
+        control.push(this.initMoney());
+    }
+
+    removeMoneyForfeitCounterAgent(i: number, j: number, k: number) {
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.forfeit;
+        control.removeAt(k);
+    }
+
+    // Counter Agent Goods
+    addMoneyGoodsCounterAgent(i: number, j:number) {
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.goods.controls.price;
+        control.push(this.initMoney());
+    }
+
+    removeMoneyGoodsCounterAgent(i: number, j: number, k: number) {
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.goods.controls.price;
+        control.removeAt(k);
+    }
+
+
+    // Counter Agent Money
+    addMoneyMoneyCounterAgent(i: number, j:number) {
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.money;
+        control.push(this.initMoney());
+    }
+
+    removeMoneyMoneyCounterAgent(i: number, j: number, k: number) {
+        const control = <FormArray>this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects['controls'][j].controls.money;
+        control.removeAt(k);
+    }
 
     selectedCounterWhat(i: number) {
         switch (this.deedForm.controls.transactions['controls'][i].get('counterAgentTransactionObjectType').value) {
@@ -1264,7 +1330,9 @@ export class AddDeedComponent implements OnInit {
                         type: [''],
                         origin: [''],
                         description: [''],
-                        price: ['']
+                        price: this.fb.array([
+                            this.initMoney()
+                        ])
                     })
                 });
                 break;
@@ -1272,18 +1340,9 @@ export class AddDeedComponent implements OnInit {
             case 'debt': {
                 this.counterAgentTransactionObject = this.fb.group({
                     debt: this.fb.group({
-                        amount: this.fb.group({
-                            moscowSilver: this.fb.group({
-                                rubli: [''],
-                                altyny: [''],
-                                dengi: ['']
-                            }),
-                            chekhi: this.fb.group({
-                                rubli: [''],
-                                altyny: [''],
-                                dengi: ['']
-                            })
-                        }),
+                        amount: this.fb.array([
+                            this.initMoney()
+                        ]),
                         debtorName: [''],
                         debtDate: ['']
                     })
@@ -1304,18 +1363,9 @@ export class AddDeedComponent implements OnInit {
             }
             case 'forfeit': {
                 this.counterAgentTransactionObject = this.fb.group({
-                    forfeit: this.fb.group({
-                        moscowSilver: this.fb.group({
-                            rubli: [''],
-                            altyny: [''],
-                            dengi: ['']
-                        }),
-                        chekhi: this.fb.group({
-                            rubli: [''],
-                            altyny: [''],
-                            dengi: ['']
-                        })
-                    })
+                    forfeit: this.fb.array([
+                        this.initMoney()
+                    ])
                 });
                 break;
             }
@@ -1340,18 +1390,9 @@ export class AddDeedComponent implements OnInit {
                     goods: this.fb.group({
                         type: [''],
                         description: [''],
-                        price: this.fb.group({
-                            moscowSilver: this.fb.group({
-                                rubli: [''],
-                                altyny: [''],
-                                dengi: ['']
-                            }),
-                            chekhi: this.fb.group({
-                                rubli: [''],
-                                altyny: [''],
-                                dengi: ['']
-                            })
-                        })
+                        price: this.fb.array([
+                            this.initMoney()
+                        ])
                     })
                 });
                 break;
@@ -1385,13 +1426,9 @@ export class AddDeedComponent implements OnInit {
             }
             case 'money': {
                 this.counterAgentTransactionObject = this.fb.group({
-                    money: this.fb.group({
-                        amount: this.fb.group({
-                            rubli: [''],
-                            altyny: [''],
-                            dengi: ['']
-                        })
-                    })
+                    money: this.fb.array([
+                        this.initMoney()
+                    ])
                 });
                 break;
             }
@@ -2091,6 +2128,8 @@ export class AddDeedComponent implements OnInit {
                                             price: ['']
                                         })
                                     });
+                                    this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+                                    this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
                                     break;
                                 }
                                 case 'debt': {
@@ -2112,6 +2151,8 @@ export class AddDeedComponent implements OnInit {
                                             debtDate: ['']
                                         })
                                     });
+                                    this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+                                    this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
                                     break;
                                 }
                                 case 'dependent': {
@@ -2124,6 +2165,8 @@ export class AddDeedComponent implements OnInit {
                                             relationToAgent: ['']
                                         })
                                     });
+                                    this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+                                    this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
                                     break;
                                 }
                                 case 'forfeit': {
@@ -2140,7 +2183,9 @@ export class AddDeedComponent implements OnInit {
                                                 dengi: ['']
                                             })
                                         })
-                                    });
+                                    });                            
+                                    this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+                                    this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
                                     break;
                                 }
                                 case 'fugitiveSouls': {
@@ -2157,27 +2202,27 @@ export class AddDeedComponent implements OnInit {
                                             yearsOfRent: ['']
                                         })
                                     });
+                                    this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+                                    this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
                                     break;
                                 }
                                 case 'goods': {
+                                    
                                     this.agentTransactionObject = this.fb.group({
                                         goods: this.fb.group({
                                             type: [''],
                                             description: [''],
-                                            price: this.fb.group({
-                                                moscowSilver: this.fb.group({
-                                                    rubli: [''],
-                                                    altyny: [''],
-                                                    dengi: ['']
-                                                }),
-                                                chekhi: this.fb.group({
-                                                    rubli: [''],
-                                                    altyny: [''],
-                                                    dengi: ['']
-                                                })
-                                            })
+                                            price: this.fb.array([
+                                                this.initMoney()
+                                            ])
                                         })
                                     });
+
+                                    // if (transaction.agentTransactionObjects[index].goods.price.moscowSilver) {
+                                    //     this.agentTransactionObject.controls.goods.
+                                    // }
+                                    this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+                                    this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
                                     break;
                                 }
                                 case 'immovableProperty': {
@@ -2205,6 +2250,8 @@ export class AddDeedComponent implements OnInit {
                                             appurtenances: ['']
                                         })
                                     });
+                                    this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+                                    this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
                                     break;
                                 }
                                 case 'money': {
@@ -2224,6 +2271,8 @@ export class AddDeedComponent implements OnInit {
                                             })
                                         })
                                     });
+                                    this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+                                    this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
                                     break;
                                 }
                                 case 'parent': {
@@ -2232,6 +2281,8 @@ export class AddDeedComponent implements OnInit {
                                             coAgentNumber: ['']
                                         })
                                     });
+                                    this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+                                    this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
                                     break;
                                 }
                                 case 'responsibilities': {
@@ -2240,6 +2291,8 @@ export class AddDeedComponent implements OnInit {
                                             description: ['']
                                         })
                                     });
+                                    this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+                                    this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
                                     break;
                                 }
                                 case 'shareFromEstate': {
@@ -2249,6 +2302,8 @@ export class AddDeedComponent implements OnInit {
                                             description: ['']
                                         })
                                     });
+                                    this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+                                    this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
                                     break;
                                 }
                                 case 'souls': {
@@ -2264,12 +2319,16 @@ export class AddDeedComponent implements OnInit {
                                             names: ['']
                                         })
                                     });
+                                    this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+                                    this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
                                     break;
                                 }
                                 case 'other': {
                                     this.agentTransactionObject = this.fb.group({
                                         other: ['']
                                     });
+                                    this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+                                    this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
                                     break;
                                 }
                                 case 'asWhom': {
@@ -2321,6 +2380,8 @@ export class AddDeedComponent implements OnInit {
                                     };
                                     this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjectType.patchValue(transaction.agentTransactionObjects[index]['asWhom']);
                                     this.selectedAsWhomValue = transaction.agentTransactionObjects[index]['asWhom'];
+                                    this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+                                    this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
                                     break;
                                 }
 
@@ -2329,9 +2390,10 @@ export class AddDeedComponent implements OnInit {
                                 this.whoInherits = new FormControl;
                                 this.whoInherits.patchValue(transaction.agentTransactionObjects[index]['whoInherits']);
                                 this.agentTransactionObject.addControl('whoInherits', this.whoInherits);
+                                this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+                                this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
                             }
-                            this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
-                            this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
+                            
 
                         } // endfor agentransactionobjects
 
