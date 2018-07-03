@@ -19,6 +19,7 @@ export class DeedDetailsComponent implements OnInit {
   
   id: string;
   deed;
+  deedjson;
   sub;
   strDeed;
   selectedActions = this.selectedActions;
@@ -52,6 +53,8 @@ export class DeedDetailsComponent implements OnInit {
 
         // Download Button Function
         let json = JSON.stringify(this.deed);
+        this.deedjson = JSON.stringify(this.deed,null,4);
+
         this.downloadUri = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(json));
         this.downloadName = this.deed.deedCode + '_' + this.deed.deedRef + '.json';
         
