@@ -2135,23 +2135,43 @@ export class AddDeedComponent implements OnInit {
                                 case 'debt': {
                                     this.agentTransactionObject = this.fb.group({
                                         debt: this.fb.group({
-                                            amount: this.fb.group({
-                                                moscowSilver: this.fb.group({
-                                                    rubli: [''],
-                                                    altyny: [''],
-                                                    dengi: ['']
-                                                }),
-                                                chekhi: this.fb.group({
-                                                    rubli: [''],
-                                                    altyny: [''],
-                                                    dengi: ['']
-                                                })
-                                            }),
+                                            amount: this.fb.array([
+                                                this.initMoney()
+                                            ]),
                                             debtorName: [''],
                                             debtDate: ['']
                                         })
                                     });
-                                    this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+                                    console.log(transaction.agentTransactionObjects[index]);
+                                    if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver) {
+                                        this.agentTransactionObject.patchValue({
+                                            amount: [
+                                                {
+                                                    coins: 'silver',
+                                                    rubli: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.rubli,
+                                                    altyny: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.altyny,
+                                                    dengi: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.dengi
+                                                }
+                                            ],
+                                            debtorName: transaction.agentTransactionObjects[index].debt.debtorName,
+                                            debtDate: transaction.agentTransactionObjects[index].debt.debtDate
+                                        });
+                                    } else if (transaction.agentTransactionObjects[index].debt.amount.chekhi) {
+                                        this.agentTransactionObject.patchValue({
+                                            amount: [
+                                                {
+                                                    coins: 'chekhi',
+                                                    rubli: transaction.agentTransactionObjects[index].debt.amount.chekhi.rubli,
+                                                    altyny: transaction.agentTransactionObjects[index].debt.amount.chekhi.altyny,
+                                                    dengi: transaction.agentTransactionObjects[index].debt.amount.chekhi.dengi
+                                                }
+                                            ],
+                                            debtorName: transaction.agentTransactionObjects[index].debt.debtorName,
+                                            debtDate: transaction.agentTransactionObjects[index].debt.debtDate
+                                        });
+                                    } else {
+                                        this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+                                    }
                                     this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
                                     break;
                                 }
