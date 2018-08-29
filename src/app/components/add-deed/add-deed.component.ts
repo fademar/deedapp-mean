@@ -2143,31 +2143,31 @@ export class AddDeedComponent implements OnInit {
                                         })
                                     });
                                     console.log(transaction.agentTransactionObjects[index]);
-                                    if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver) {
+                                    if (transaction.agentTransactionObjects[index].amount.moscowSilver) {
                                         this.agentTransactionObject.patchValue({
                                             amount: [
                                                 {
                                                     coins: 'silver',
-                                                    rubli: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.rubli,
-                                                    altyny: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.altyny,
-                                                    dengi: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.dengi
+                                                    rubli: transaction.agentTransactionObjects[index].amount.moscowSilver.rubli,
+                                                    altyny: transaction.agentTransactionObjects[index].amount.moscowSilver.altyny,
+                                                    dengi: transaction.agentTransactionObjects[index].amount.moscowSilver.dengi
                                                 }
                                             ],
-                                            debtorName: transaction.agentTransactionObjects[index].debt.debtorName,
-                                            debtDate: transaction.agentTransactionObjects[index].debt.debtDate
+                                            debtorName: transaction.agentTransactionObjects[index].debtorName,
+                                            debtDate: transaction.agentTransactionObjects[index].debtDate
                                         });
-                                    } else if (transaction.agentTransactionObjects[index].debt.amount.chekhi) {
+                                    } else if (transaction.agentTransactionObjects[index].amount.chekhi) {
                                         this.agentTransactionObject.patchValue({
                                             amount: [
                                                 {
                                                     coins: 'chekhi',
-                                                    rubli: transaction.agentTransactionObjects[index].debt.amount.chekhi.rubli,
-                                                    altyny: transaction.agentTransactionObjects[index].debt.amount.chekhi.altyny,
-                                                    dengi: transaction.agentTransactionObjects[index].debt.amount.chekhi.dengi
+                                                    rubli: transaction.agentTransactionObjects[index].amount.chekhi.rubli,
+                                                    altyny: transaction.agentTransactionObjects[index].amount.chekhi.altyny,
+                                                    dengi: transaction.agentTransactionObjects[index].amount.chekhi.dengi
                                                 }
                                             ],
-                                            debtorName: transaction.agentTransactionObjects[index].debt.debtorName,
-                                            debtDate: transaction.agentTransactionObjects[index].debt.debtDate
+                                            debtorName: transaction.agentTransactionObjects[index].debtorName,
+                                            debtDate: transaction.agentTransactionObjects[index].debtDate
                                         });
                                     } else {
                                         this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
