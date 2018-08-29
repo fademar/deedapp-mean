@@ -2142,10 +2142,10 @@ export class AddDeedComponent implements OnInit {
                                             debtDate: ['']
                                         })
                                     });
-                                    console.log(transaction.agentTransactionObjects[index].debt.amount.moscowSilver);
                                     if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver || transaction.agentTransactionObjects[index].amount.chekhi) {
                                         if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver) {
                                         console.log("this moscowSilver");
+                                        console.log(transaction.agentTransactionObjects[index].debt.amount.moscowSilver.rubli);
                                         this.agentTransactionObject.patchValue({
                                             amount: [
                                                 {
@@ -2155,8 +2155,8 @@ export class AddDeedComponent implements OnInit {
                                                     dengi: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.dengi
                                                 }
                                             ],
-                                            debtorName: transaction.agentTransactionObjects[index].debtorName,
-                                            debtDate: transaction.agentTransactionObjects[index].debtDate
+                                            debtorName: transaction.agentTransactionObjects[index].debt.debtorName,
+                                            debtDate: transaction.agentTransactionObjects[index].debt.debtDate
                                         });
                                         }
                                         if (transaction.agentTransactionObjects[index].debt.amount.chekhi) {
