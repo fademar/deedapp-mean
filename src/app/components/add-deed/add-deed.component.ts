@@ -2142,35 +2142,41 @@ export class AddDeedComponent implements OnInit {
                                             debtDate: ['']
                                         })
                                     });
-                                    if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver || transaction.agentTransactionObjects[index].amount.chekhi) {
-                                        if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver) {
-                                        console.log("this moscowSilver");
-                                        console.log(transaction.agentTransactionObjects[index].debt.amount.moscowSilver.rubli);
-                                        console.log(transaction.agentTransactionObjects[index].debt.debtorName);
-                                        this.agentTransactionObject.patchValue({
-                                            
-                                            debtorName: transaction.agentTransactionObjects[index].debt.debtorName,
-                                            debtDate: transaction.agentTransactionObjects[index].debt.debtDate
-                                        });
-                                        }
-                                        if (transaction.agentTransactionObjects[index].debt.amount.chekhi) {
-                                            console.log("this is chekhi");
-                                            this.agentTransactionObject.patchValue({
-                                                amount: [
-                                                    {
-                                                        coins: 'chekhi',
-                                                        rubli: transaction.agentTransactionObjects[index].debt.amount.chekhi.rubli,
-                                                        altyny: transaction.agentTransactionObjects[index].debt.amount.chekhi.altyny,
-                                                        dengi: transaction.agentTransactionObjects[index].debt.amount.chekhi.dengi
-                                                    }
-                                                ],
-                                                debtorName: transaction.agentTransactionObjects[index].debtorName,
-                                                debtDate: transaction.agentTransactionObjects[index].debtDate
-                                            });
-                                        }
-                                    } else {
+                                    // if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver || transaction.agentTransactionObjects[index].amount.chekhi) {
+                                    //     if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver) {
+                                    //     console.log("this moscowSilver");
+                                    //     console.log(transaction.agentTransactionObjects[index].debt.amount.moscowSilver.rubli);
+                                    //     this.agentTransactionObject.patchValue({
+                                    //         amount: [
+                                    //             {
+                                    //                 coins: 'silver',
+                                    //                 rubli: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.rubli,
+                                    //                 altyny: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.altyny,
+                                    //                 dengi: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.dengi
+                                    //             }
+                                    //         ],
+                                    //         debtorName: transaction.agentTransactionObjects[index].debt.debtorName,
+                                    //         debtDate: transaction.agentTransactionObjects[index].debt.debtDate
+                                    //     });
+                                    //     }
+                                    //     if (transaction.agentTransactionObjects[index].debt.amount.chekhi) {
+                                    //         console.log("this is chekhi");
+                                    //         this.agentTransactionObject.patchValue({
+                                    //             amount: [
+                                    //                 {
+                                    //                     coins: 'chekhi',
+                                    //                     rubli: transaction.agentTransactionObjects[index].debt.amount.chekhi.rubli,
+                                    //                     altyny: transaction.agentTransactionObjects[index].debt.amount.chekhi.altyny,
+                                    //                     dengi: transaction.agentTransactionObjects[index].debt.amount.chekhi.dengi
+                                    //                 }
+                                    //             ],
+                                    //             debtorName: transaction.agentTransactionObjects[index].debtorName,
+                                    //             debtDate: transaction.agentTransactionObjects[index].debtDate
+                                    //         });
+                                    //     }
+                                    // } else {
                                         this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
-                                    }
+                                    // }
                                     this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
                                     break;
                                 }
