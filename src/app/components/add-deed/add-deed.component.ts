@@ -2146,19 +2146,11 @@ export class AddDeedComponent implements OnInit {
                                         if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver) {
                                         console.log("this moscowSilver");
                                         console.log(transaction.agentTransactionObjects[index].debt.amount.moscowSilver.rubli);
-                                        let debtValueSilver = [{
-                                            amount: [
-                                                {
-                                                    coins: 'silver',
-                                                    rubli: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.rubli,
-                                                    altyny: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.altyny,
-                                                    dengi: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.dengi
-                                                }
-                                            ],
+                                        this.agentTransactionObject.patchValue({
+                                            
                                             debtorName: transaction.agentTransactionObjects[index].debt.debtorName,
                                             debtDate: transaction.agentTransactionObjects[index].debt.debtDate
-                                        }];
-                                        this.agentTransactionObject.patchValue(debtValueSilver);
+                                        });
                                         }
                                         if (transaction.agentTransactionObjects[index].debt.amount.chekhi) {
                                             console.log("this is chekhi");
