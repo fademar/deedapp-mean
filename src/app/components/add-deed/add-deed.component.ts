@@ -2142,10 +2142,8 @@ export class AddDeedComponent implements OnInit {
                                             debtDate: ['']
                                         })
                                     });
-                                    if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver || transaction.agentTransactionObjects[index].amount.chekhi) {
+                                    if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver || transaction.agentTransactionObjects[index].debt.amount.chekhi) {
                                         if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver) {
-                                            console.log("this moscowSilver");
-                                            console.log(transaction.agentTransactionObjects[index].debt.amount.moscowSilver.rubli);
                                             this.agentTransactionObject.controls.debt['controls'].amount['controls'][0].patchValue({
                                                 coins: 'silver',
                                                 rubli: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.rubli,
@@ -2155,33 +2153,16 @@ export class AddDeedComponent implements OnInit {
                                             this.agentTransactionObject.controls.debt['controls'].debtorName.patchValue(transaction.agentTransactionObjects[index].debt.debtorName);
                                             this.agentTransactionObject.controls.debt['controls'].debtDate.patchValue(transaction.agentTransactionObjects[index].debt.debtDate);
 
-                                            // this.agentTransactionObject.patchValue({
-                                            //     amount: [
-                                            //         {
-                                            //             coins: 'silver',
-                                            //             rubli: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.rubli,
-                                            //             altyny: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.altyny,
-                                            //             dengi: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.dengi
-                                            //         }
-                                            //     ],
-                                            //     debtorName: transaction.agentTransactionObjects[index].debt.debtorName,
-                                            //     debtDate: transaction.agentTransactionObjects[index].debt.debtDate
-                                            // });
                                         }
                                         if (transaction.agentTransactionObjects[index].debt.amount.chekhi) {
-                                            console.log("this is chekhi");
-                                            this.agentTransactionObject.patchValue({
-                                                amount: [
-                                                    {
-                                                        coins: 'chekhi',
-                                                        rubli: transaction.agentTransactionObjects[index].debt.amount.chekhi.rubli,
-                                                        altyny: transaction.agentTransactionObjects[index].debt.amount.chekhi.altyny,
-                                                        dengi: transaction.agentTransactionObjects[index].debt.amount.chekhi.dengi
-                                                    }
-                                                ],
-                                                debtorName: transaction.agentTransactionObjects[index].debtorName,
-                                                debtDate: transaction.agentTransactionObjects[index].debtDate
+                                            this.agentTransactionObject.controls.debt['controls'].amount['controls'][0].patchValue({
+                                                coins: 'chekhi',
+                                                rubli: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.rubli,
+                                                altyny: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.altyny,
+                                                dengi: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.dengi
                                             });
+                                            this.agentTransactionObject.controls.debt['controls'].debtorName.patchValue(transaction.agentTransactionObjects[index].debt.debtorName);
+                                            this.agentTransactionObject.controls.debt['controls'].debtDate.patchValue(transaction.agentTransactionObjects[index].debt.debtDate);
                                         }
                                     } else {
                                         this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
