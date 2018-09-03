@@ -2140,13 +2140,11 @@ export class AddDeedComponent implements OnInit {
                                             debtDate: ['']
                                         })
                                     });
-                                    if (transaction.agentTransactionObjects[index].debt.amount) 
                                     
-                                    console.log(transaction.agentTransactionObjects[index].debt.amount);
                                     if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver) {
 
                                         if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver.rubli || transaction.agentTransactionObjects[index].debt.amount.moscowSilver.altyny || transaction.agentTransactionObjects[index].debt.amount.moscowSilver.dengi) {
-                                            this.agentTransactionObject.controls.debt['controls'].amount['controls'].push(this.initMoney());
+                                            this.agentTransactionObject.controls.debt['controls'].amount.push(this.initMoney());
                                             this.agentTransactionObject.controls.debt['controls'].amount['controls'][0].patchValue({
                                                 coins: 'silver',
                                                 rubli: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.rubli,
@@ -2155,7 +2153,7 @@ export class AddDeedComponent implements OnInit {
                                             });
                                         }
                                         if (transaction.agentTransactionObjects[index].debt.amount.chekhi.rubli || transaction.agentTransactionObjects[index].debt.amount.chekhi.altyny || transaction.agentTransactionObjects[index].debt.amount.chekhi.dengi) {
-                                            this.agentTransactionObject.controls.debt['controls'].amount['controls'].push(this.initMoney());
+                                            this.agentTransactionObject.controls.debt['controls'].amount.push(this.initMoney());
                                             this.agentTransactionObject.controls.debt['controls'].amount['controls'][0].patchValue({
                                                 coins: 'chekhi',
                                                 rubli: transaction.agentTransactionObjects[index].debt.amount.chekhi.rubli,
