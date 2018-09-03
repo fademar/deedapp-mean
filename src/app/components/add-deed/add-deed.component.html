@@ -1014,10 +1014,10 @@
                       </div>
                       <div formGroupName="debt" class="card-body">
                         <div formArrayName="amount">
+                          <label>Amount in</label>
                           <div *ngFor="let amountDebt of transactionObject['controls']['debt']['controls']['amount']['controls']; let k=index">
                             <div [formGroupName]="k">
                                     <div class="form-group">
-                                      <label>Amount in</label>
                                       <div class="row">
                                         <div class="col-2">
                                           <select class="form-control" formControlName="coins">
