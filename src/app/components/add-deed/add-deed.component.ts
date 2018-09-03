@@ -2142,8 +2142,9 @@ export class AddDeedComponent implements OnInit {
                                     });
                                     
                                     if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver) {
-
+                                        console.log(transaction.agentTransactionObjects[index].debt.amount.moscowSilver);
                                         if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver.rubli || transaction.agentTransactionObjects[index].debt.amount.moscowSilver.altyny || transaction.agentTransactionObjects[index].debt.amount.moscowSilver.dengi) {
+                                            console.log(this.agentTransactionObject.controls.debt['controls'].amount);
                                             this.agentTransactionObject.controls.debt['controls'].amount.push(this.initMoney());
                                             this.agentTransactionObject.controls.debt['controls'].amount['controls'][0].patchValue({
                                                 coins: 'silver',
