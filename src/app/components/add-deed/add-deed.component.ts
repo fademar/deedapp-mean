@@ -2135,40 +2135,37 @@ export class AddDeedComponent implements OnInit {
                                 case 'debt': {
                                     this.agentTransactionObject = this.fb.group({
                                         debt: this.fb.group({
-                                            amount: this.fb.array([]),
+                                            amount: this.fb.array([
+                                                this.initMoney()
+                                            ]),
                                             debtorName: [''],
                                             debtDate: ['']
                                         })
                                     });
-                                    
-                                    if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver) {
-                                        console.log(transaction.agentTransactionObjects[index].debt.amount.moscowSilver);
-                                        if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver.rubli || transaction.agentTransactionObjects[index].debt.amount.moscowSilver.altyny || transaction.agentTransactionObjects[index].debt.amount.moscowSilver.dengi) {
-                                            console.log(this.agentTransactionObject.controls.debt['controls'].amount);
-                                            this.agentTransactionObject.controls.debt['controls'].amount.push(this.initMoney());
+                                    console.log(transaction.agentTransactionObjects[index].debt.amount);
+                                    if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver || transaction.agentTransactionObjects[index].debt.amount.chekhi) {
+                                        if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver) {
                                             this.agentTransactionObject.controls.debt['controls'].amount['controls'][0].patchValue({
                                                 coins: 'silver',
                                                 rubli: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.rubli,
                                                 altyny: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.altyny,
                                                 dengi: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.dengi
                                             });
+                                            this.agentTransactionObject.controls.debt['controls'].debtorName.patchValue(transaction.agentTransactionObjects[index].debt.debtorName);
+                                            this.agentTransactionObject.controls.debt['controls'].debtDate.patchValue(transaction.agentTransactionObjects[index].debt.debtDate);
+
                                         }
-                                        if (transaction.agentTransactionObjects[index].debt.amount.chekhi.rubli || transaction.agentTransactionObjects[index].debt.amount.chekhi.altyny || transaction.agentTransactionObjects[index].debt.amount.chekhi.dengi) {
-                                            this.agentTransactionObject.controls.debt['controls'].amount.push(this.initMoney());
+                                        if (transaction.agentTransactionObjects[index].debt.amount.chekhi) {
                                             this.agentTransactionObject.controls.debt['controls'].amount['controls'][0].patchValue({
                                                 coins: 'chekhi',
                                                 rubli: transaction.agentTransactionObjects[index].debt.amount.chekhi.rubli,
                                                 altyny: transaction.agentTransactionObjects[index].debt.amount.chekhi.altyny,
                                                 dengi: transaction.agentTransactionObjects[index].debt.amount.chekhi.dengi
                                             });
+                                            this.agentTransactionObject.controls.debt['controls'].debtorName.patchValue(transaction.agentTransactionObjects[index].debt.debtorName);
+                                            this.agentTransactionObject.controls.debt['controls'].debtDate.patchValue(transaction.agentTransactionObjects[index].debt.debtDate);
                                         }
-                                        this.agentTransactionObject.controls.debt['controls'].debtorName.patchValue(transaction.agentTransactionObjects[index].debt.debtorName);
-                                        this.agentTransactionObject.controls.debt['controls'].debtDate.patchValue(transaction.agentTransactionObjects[index].debt.debtDate);
-                                        
                                     } else {
-                                        for (let index = 0; index < transaction.agentTransactionObjects[index].debt.amount.length; index++) {
-                                            this.agentTransactionObject.controls.debt['controls'].amount.push(this.initMoney());    
-                                        }
                                         this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
                                     }
 
