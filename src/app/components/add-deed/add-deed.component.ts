@@ -2142,7 +2142,7 @@ export class AddDeedComponent implements OnInit {
                                             debtDate: ['']
                                         })
                                     });
-            
+                                    console.log(transaction.agentTransactionObjects[index]);
                                     if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver || transaction.agentTransactionObjects[index].debt.amount.chekhi) {
                                         if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver) {
                                             this.agentTransactionObject.controls.debt['controls'].amount['controls'][0].patchValue({
@@ -2168,6 +2168,7 @@ export class AddDeedComponent implements OnInit {
                                     } else {
                                         this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
                                     }
+
                                     this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
                                     break;
                                 }
