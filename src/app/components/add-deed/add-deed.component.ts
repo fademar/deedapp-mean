@@ -2743,10 +2743,7 @@ export class AddDeedComponent implements OnInit {
             this.firstNamesMF = _.concat(this.firstNamesDependent, this.firstNamesMale, this.firstNamesFemale);
             this.firstNamesMF.sort();
             this.firstNamesMF = _.sortedUniq(this.firstNamesMF);
-            console.log('MF:' + this.firstNamesMF);
-            console.log('Male:' + this.firstNamesMale);
-            console.log('female' + this.firstNamesFemale);
-            console.log('dependent' + this.firstNamesDependent);
+
         });
     }
 
@@ -2766,18 +2763,35 @@ export class AddDeedComponent implements OnInit {
         } else {
             submitBtn.disabled = true;
             this.deedValue = JSON.stringify(this.deedForm.value);
-            this.deedService.saveDeed(this.deedValue).subscribe(deed => {
-                this.deed = deed;
-                if (this.deed._id) {
-                    this.notificationsService.success(
-                        'Success',
-                        'The deed has been successfully saved in the database with id ' + this.deed._id,
-                    );
-                }
-            });
-            setTimeout(() => {
-                this.router.navigate(['/list']);
-            }, 2000);
+
+            if (this.route.snapshot.params['id']) {
+                this.deedService.updateDeed(this.id, this.deedValue).subscribe(deed => {
+
+                    if (deed) {
+                        this.notificationsService.success(
+                            'Success',
+                            'The deed with id ' + this.id + ' has been successfully updated',
+                        );
+                    }
+                });
+                setTimeout(() => {
+                    this.router.navigate(['/deed/' + this.id]);
+                }, 2000);
+            } else {
+
+                this.deedService.saveDeed(this.deedValue).subscribe(deed => {
+                    this.deed = deed;
+                    if (this.deed._id) {
+                        this.notificationsService.success(
+                            'Success',
+                            'The deed has been successfully saved in the database with id ' + this.deed._id,
+                        );
+                    }
+                });
+                setTimeout(() => {
+                    this.router.navigate(['/list']);
+                }, 2000);
+            }
         }
     }
 
