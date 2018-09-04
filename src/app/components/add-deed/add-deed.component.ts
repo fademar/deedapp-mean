@@ -2169,9 +2169,10 @@ export class AddDeedComponent implements OnInit {
                                     } else {
                                         console.log(transaction.agentTransactionObjects[index].debt.amount.length);
                                         console.log(this.agentTransactionObject.controls.debt['controls'].amount);
-                                        // for (let index = 0; index < transaction.agentTransactionObjects[index].debt.amount.length; index++) {
-                                        //     this.agentTransactionObject.controls.debt['controls'].amount['controls'].push(this.initMoney());    
-                                        // }
+                                        for (let i = 0; i < transaction.agentTransactionObjects[index].debt.amount.length; i++) {
+                                            console.log(transaction.agentTransactionObjects[index].debt.amount[i]);
+                                            // this.agentTransactionObject.controls.debt['controls'].amount['controls'].push(this.initMoney());    
+                                        }
                                         this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
                                     }
 
