@@ -2135,18 +2135,14 @@ export class AddDeedComponent implements OnInit {
                                 case 'debt': {
                                     this.agentTransactionObject = this.fb.group({
                                         debt: this.fb.group({
-                                            amount: this.fb.array([
-                                                this.initMoney()
-                                            ]),
+                                            amount: this.fb.array([]),
                                             debtorName: [''],
                                             debtDate: ['']
                                         })
                                     });
                                     if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver) {
-                                        console.log(transaction.agentTransactionObjects[index].debt.amount.moscowSilver);
                                         if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver.rubli || transaction.agentTransactionObjects[index].debt.amount.moscowSilver.altyny || transaction.agentTransactionObjects[index].debt.amount.moscowSilver.dengi) {
-                                            console.log(this.agentTransactionObject.controls.debt['controls'].amount);
-                                            this.agentTransactionObject.controls.debt['controls'].amount['controls'].push(this.initMoney());
+                                            this.agentTransactionObject.controls.debt['controls'].amount.push(this.initMoney());
                                             this.agentTransactionObject.controls.debt['controls'].amount['controls'][0].patchValue({
                                                 coins: 'silver',
                                                 rubli: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.rubli,
@@ -2155,7 +2151,7 @@ export class AddDeedComponent implements OnInit {
                                             });
                                         }
                                         if (transaction.agentTransactionObjects[index].debt.amount.chekhi.rubli || transaction.agentTransactionObjects[index].debt.amount.chekhi.altyny || transaction.agentTransactionObjects[index].debt.amount.chekhi.dengi) {
-                                            this.agentTransactionObject.controls.debt['controls'].amount['controls'].push(this.initMoney());
+                                            this.agentTransactionObject.controls.debt['controls'].amount.push(this.initMoney());
                                             this.agentTransactionObject.controls.debt['controls'].amount['controls'][0].patchValue({
                                                 coins: 'chekhi',
                                                 rubli: transaction.agentTransactionObjects[index].debt.amount.chekhi.rubli,
@@ -2167,7 +2163,7 @@ export class AddDeedComponent implements OnInit {
                                         this.agentTransactionObject.controls.debt['controls'].debtDate.patchValue(transaction.agentTransactionObjects[index].debt.debtDate);
                                         
                                     } else {
-                                        
+                                                                               
                                         for (let i = 0; i < transaction.agentTransactionObjects[index].debt.amount.length; i++) {
                                             console.log(transaction.agentTransactionObjects[index].debt.amount[i]);
                                             this.agentTransactionObject.controls.debt['controls'].amount['controls'].push(this.initMoney());    
