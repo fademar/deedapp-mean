@@ -664,11 +664,12 @@
                       <div class="col">
                         <div class="list-group-item col-12">Amount in:
                           <ng-template ngFor let-debtamount [ngForOf]="agentTransactionObject.debt.amount" let-o="index">
-                              <div>
+                            <div>
                                 <span class="form-data" [innerHTML]="debtamount.coins | highlight: term + ': '"></span>
                                 <span class="form-data" [innerHTML]="debtamount.rubli | highlight: term + ' rubli'"></span>
                                 <span class="form-data" [innerHTML]="debtamount.altyny | highlight: term + ' altyny'"></span>
                                 <span class="form-data" [innerHTML]="debtamount.dengi | highlight: term + ' dengi"></span>
+                              </div>
                           </ng-template>
                         </div>
                         <div *ngIf="agentTransactionObject.debt.debtorName" class="list-group-item col-6">Debtor Name:
