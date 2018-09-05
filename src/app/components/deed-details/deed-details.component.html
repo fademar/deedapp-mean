@@ -661,12 +661,13 @@
                   </div>
                   <div class="card-body">
                     <div class="row no-gutters mb-3">
-                      <div class="list-group-item">Amount in:
+                      <div>Amount in:</div>
+                      <div class="list-group-item">
                           <ng-template ngFor let-debtamount [ngForOf]="agentTransactionObject.debt.amount" let-o="index">
                               <span class="form-data" [innerHTML]="debtamount.coins | highlight: term"></span>
-                              <span *ngIf="debtamount.rubli" class="form-data" [innerHTML]="debtamount.rubli | highlight: term + ' rubli'"></span>
-                              <span *ngIf="debtamount.altyny" class="form-data" [innerHTML]="debtamount.altyny | highlight: term + ' altyny'"></span>
-                              <span *ngIf="debtamount.dengi" class="form-data" [innerHTML]="debtamount.dengi | highlight: term + ' deng\'i'"></span>
+                              <span *ngIf="debtamount.rubli" class="form-data" [innerHTML]="debtamount.rubli | highlight: term"></span>
+                              <span *ngIf="debtamount.altyny" class="form-data" [innerHTML]="debtamount.altyny | highlight: term"></span>
+                              <span *ngIf="debtamount.dengi" class="form-data" [innerHTML]="debtamount.dengi | highlight: term"></span>
                           </ng-template>
                       </div>
                       <div *ngIf="agentTransactionObject.debt.debtorName" class="list-group-item">Debtor Name:
