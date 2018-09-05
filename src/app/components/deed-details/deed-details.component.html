@@ -664,9 +664,9 @@
                       <div class="list-group-item">Amount in:
                           <ng-template ngFor let-debtamount [ngForOf]="agentTransactionObject.debt.amount" let-o="index">
                               <span class="form-data" [innerHTML]="debtamount[o].coins | highlight: term"></span>
-                              <span *ngIf="debtamount[o].rubli" class="form-data" [innerHTML]="debtamount[o].rubli | highlight: term + ' rubli'"></span>
-                              <span *ngIf="debtamount[o].altyny" class="form-data" [innerHTML]="debtamount[o].altyny | highlight: term + ' altyny'"></span>
-                              <span *ngIf="debtamount[o].dengi" class="form-data" [innerHTML]="debtamount[o].dengi | highlight: term + ' deng\'i'"></span>
+                              <span *ngIf="debtamount.rubli" class="form-data" [innerHTML]="debtamount.rubli | highlight: term + ' rubli'"></span>
+                              <span *ngIf="debtamount.altyny" class="form-data" [innerHTML]="debtamount.altyny | highlight: term + ' altyny'"></span>
+                              <span *ngIf="debtamount.dengi" class="form-data" [innerHTML]="debtamount.dengi | highlight: term + ' deng\'i'"></span>
                           </ng-template>
                       </div>
                       <div *ngIf="agentTransactionObject.debt.debtorName" class="list-group-item">Debtor Name:
