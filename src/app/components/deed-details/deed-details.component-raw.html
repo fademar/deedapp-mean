@@ -1,0 +1,33 @@
+<div *ngIf="deed">
+    <div *ngIf="!term">
+      <app-navbar></app-navbar>
+    </div>
+    <app-note></app-note>
+    <div class="d-flex flex-column actions">
+      <div *ngIf="term">
+        <a mat-fab matTooltip="Back to results" matTooltipPosition="before" matTooltipClass="'tooltip'" class="mb-2 basic" routerLink="/search"
+          [queryParams]="{resultFor: term}">
+          <mat-icon class="md-dark">arrow_back</mat-icon>
+        </a>
+      </div>
+      <a mat-fab color="primary" matTooltip="Edit the deed" matTooltipPosition="before" matTooltipClass="'tooltip'" class="mb-2"
+        routerLink="/deed/edit/{{ deed._id }}" [queryParams]="term?{resultFor: term}:{}">
+        <mat-icon class="md-light">mode_edit</mat-icon>
+      </a>
+      <a mat-fab matTooltip="Download the deed" matTooltipPosition="before" matTooltipClass="'tooltip'" class="mb-2 basic" [href]="downloadUri"
+        [download]="downloadName">
+        <mat-icon class="md-dark">file_download</mat-icon>
+      </a>
+      <button mat-fab type="button" class="mb-2 basic" (click)="onDeleteClick(deed._id)" matTooltip="Delete the deed" matTooltipPosition="before"
+        matTooltipClass="'tooltip'">
+        <mat-icon class="md-dark">delete</mat-icon>
+      </button>
+    </div>
+  
+    <div class="container main-container">
+      <div *ngIf="deed.complete === false" class="card shadow bg-yellow-500 mb-3 p-3 text-center"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> There is more data in the manuscript</div>
+      <div class="card shadow mt-5 p-5">
+        <pre>{{ deedjson }}</pre>
+      </div>
+    </div>
+</div>
