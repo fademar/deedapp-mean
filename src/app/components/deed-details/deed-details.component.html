@@ -661,21 +661,22 @@
                   </div>
                   <div class="card-body">
                     <div class="row no-gutters mb-3">
-                        <div class="list-group-item">Amount in:
+                      <div class="col">
+                        <div class="list-group-item col-12">Amount in:
                           <ng-template ngFor let-debtamount [ngForOf]="agentTransactionObject.debt.amount" let-o="index">
                               <div>
-                                <span class="form-data" [innerHTML]="debtamount.coins | highlight: term"></span>
-                                <span class="form-data" [innerHTML]="debtamount.rubli | highlight: term"></span>
-                                <span class="form-data" [innerHTML]="debtamount.altyny | highlight: term"></span>
-                                <span class="form-data" [innerHTML]="debtamount.dengi | highlight: term"></span>
-                              </div>
+                                <span class="form-data" [innerHTML]="debtamount.coins | highlight: term + ': '"></span>
+                                <span class="form-data" [innerHTML]="debtamount.rubli | highlight: term + ' rubli'"></span>
+                                <span class="form-data" [innerHTML]="debtamount.altyny | highlight: term + ' altyny'"></span>
+                                <span class="form-data" [innerHTML]="debtamount.dengi | highlight: term + ' dengi"></span>
                           </ng-template>
-                      </div>
-                      <div *ngIf="agentTransactionObject.debt.debtorName" class="list-group-item">Debtor Name:
-                        <span class="form-data">{{ agentTransactionObject.debt.debtorName }}</span>
-                      </div>
-                      <div *ngIf="agentTransactionObject.debt.debtDate" class="list-group-item">Debt Date:
-                        <span class="form-data">{{ agentTransactionObject.debt.debtDate }}</span>
+                        </div>
+                        <div *ngIf="agentTransactionObject.debt.debtorName" class="list-group-item col-6">Debtor Name:
+                          <span class="form-data">{{ agentTransactionObject.debt.debtorName }}</span>
+                        </div>
+                        <div *ngIf="agentTransactionObject.debt.debtDate" class="list-group-item col-6">Debt Date:
+                          <span class="form-data">{{ agentTransactionObject.debt.debtDate }}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
