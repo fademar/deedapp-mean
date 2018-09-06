@@ -937,9 +937,9 @@ export class AddDeedComponent implements OnInit {
    initMoney() {
     return this.fb.group({
         coins: ['unspecified'],
-        rubli: [''],
-        altyny: [''],
-        dengi: ['']
+        rubli: [0],
+        altyny: [0],
+        dengi: [0]
     })
 }
 
