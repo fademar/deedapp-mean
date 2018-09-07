@@ -25,7 +25,8 @@ import { MatToolbarModule } from '@angular/material';
 import { MatSidenavModule } from '@angular/material';
 import { MatExpansionModule } from '@angular/material';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
-import { QuillModule } from 'ngx-quill'
+import { QuillModule } from 'ngx-quill';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -111,7 +112,8 @@ import { SortPipe } from './pipes/sort.pipe';
     FroalaEditorModule.forRoot(),
     FroalaViewModule.forRoot(),
     QuillModule,
-    MatExpansionModule
+    MatExpansionModule,
+    NgxJsonViewerModule,
   ],
   entryComponents: [ConfirmDialogComponent, NoteDialog],
   providers: [Title, DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, NoteService],
