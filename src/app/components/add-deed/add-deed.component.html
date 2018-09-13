@@ -1762,13 +1762,48 @@
                           </div>
                         </div>
                         <div class="row">
-                          <div class="form-group col-8">
+                          <div class="form-group col-12">
                             <label>Description</label>
                             <input type="text" class="form-control" formControlName="description">
                           </div>
-                          <div class="form-group col-4">
-                            <label>Price</label>
-                            <input type="number" min="0" class="form-control" formControlName="price">
+                        </div>
+                        <div class="row">
+                          <div class="form-group col-12">
+                            <div formArrayName="price">
+                              <label>Price in</label>
+                              <div *ngFor="let priceChattel of transactionCounterObject['controls']['chattels']['controls']['price']['controls']; let k=index">
+                                <div [formGroupName]="k">
+                                        <div class="form-group">
+                                          <div class="row">
+                                            <div class="col-2">
+                                              <select class="form-control" formControlName="coins">
+                                                  <option value="unspecified">Unspecified</option>
+                                                  <option value="silver">Silver</option>
+                                                  <option value="copper">Copper</option>
+                                                  <option value="chekhi">Chekhi</option>
+                                              </select>
+                                            </div>
+                                            <div class="col-2">
+                                              <input type="number" min="0" class="form-control" formControlName="rubli">
+                                            </div>
+                                            <div class="col-1 small-label">rubli</div>
+                                            <div class="col-2">
+                                              <input type="number" min="0" class="form-control" formControlName="altyny">
+                                            </div>
+                                            <div class="col-1 small-label">altyny</div>
+                                            <div class="col-2">
+                                              <input type="number" min="0" class="form-control" formControlName="dengi">
+                                            </div>
+                                            <div class="col-1 small-label">den'gi</div>
+                                            <div class="col-1">
+                                              <i class="fas fa-plus-circle mr-2" (click)="addMoneyChattelsCounterAgent(i, j)" aria-hidden="true"></i>
+                                              <i class="fas fa-ban" (click)="removeMoneyChattelsCounterAgent(i, j, k)" aria-hidden="true"></i>
+                                            </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1787,37 +1822,40 @@
                         </div>
                       </div>
                       <div formGroupName="debt" class="card-body">
-                        <div formGroupName="amount">
-                          <div class="form-group row" formGroupName="moscowSilver">
-                            <label class="col-3">Amount in Moscow Silver</label>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="rubli">
+                        <div formArrayName="amount">
+                          <label>Amount in</label>
+                          <div *ngFor="let amountDebt of transactionCounterObject['controls']['debt']['controls']['amount']['controls']; let k=index">
+                            <div [formGroupName]="k">
+                                    <div class="form-group">
+                                      <div class="row">
+                                        <div class="col-2">
+                                          <select class="form-control" formControlName="coins">
+                                              <option value="unspecified">Unspecified</option>
+                                              <option value="silver">Silver</option>
+                                              <option value="copper">Copper</option>
+                                              <option value="chekhi">Chekhi</option>
+                                          </select>
+                                        </div>
+                                        <div class="col-2">
+                                          <input type="number" min="0" class="form-control" formControlName="rubli">
+                                        </div>
+                                        <div class="col-1 small-label">rubli</div>
+                                        <div class="col-2">
+                                          <input type="number" min="0" class="form-control" formControlName="altyny">
+                                        </div>
+                                        <div class="col-1 small-label">altyny</div>
+                                        <div class="col-2">
+                                          <input type="number" min="0" class="form-control" formControlName="dengi">
+                                        </div>
+                                        <div class="col-1 small-label">den'gi</div>
+                                        <div class="col-1">
+                                          <i class="fas fa-plus-circle mr-2" (click)="addMoneyDebtCounterAgent(i, j)" aria-hidden="true"></i>
+                                          <i class="fas fa-ban" (click)="removeMoneyDebtCounterAgent(i, j, k)" aria-hidden="true"></i>
+                                        </div>
+                                      </div>
+                                  </div>
+                              </div>
                             </div>
-                            <div class="col-1 small-label">rubli</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="altyny">
-                            </div>
-                            <div class="col-1 small-label">altyny</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="dengi">
-                            </div>
-                            <div class="col-1 small-label">den'gi</div>
-                          </div>
-                          <div class="form-group row" formGroupName="chekhi">
-                            <label class="col-3">Amount in Chekhi</label>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="rubli">
-                            </div>
-                            <div class="col-1 small-label">rubli</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="altyny">
-                            </div>
-                            <div class="col-1 small-label">altyny</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="dengi">
-                            </div>
-                            <div class="col-1 small-label">den'gi</div>
-                          </div>
                         </div>
                         <div class="row">
                           <div class="form-group col">
@@ -1884,37 +1922,40 @@
                           </div>
                         </div>
                       </div>
-                      <div formGroupName="forfeit" class="card-body">
-                        <div class="form-group row" formGroupName="moscowSilver">
-                          <label class="col-3">Amount in Moscow Silver: </label>
-                          <div class="col-2">
-                            <input type="number" min="0" class="form-control" formControlName="rubli">
+                      <div formArrayName="forfeit" class="card-body">
+                        <label>Price in</label>
+                        <div *ngFor="let forfeitAmount of transactionCounterObject['controls']['forfeit']['controls']; let k=index">
+                          <div [formGroupName]="k">
+                                  <div class="form-group">
+                                    <div class="row">
+                                      <div class="col-2">
+                                        <select class="form-control" formControlName="coins">
+                                            <option value="unspecified">Unspecified</option>
+                                            <option value="silver">Silver</option>
+                                            <option value="copper">Copper</option>
+                                            <option value="chekhi">Chekhi</option>
+                                        </select>
+                                      </div>
+                                      <div class="col-2">
+                                        <input type="number" min="0" class="form-control" formControlName="rubli">
+                                      </div>
+                                      <div class="col-1 small-label">rubli</div>
+                                      <div class="col-2">
+                                        <input type="number" min="0" class="form-control" formControlName="altyny">
+                                      </div>
+                                      <div class="col-1 small-label">altyny</div>
+                                      <div class="col-2">
+                                        <input type="number" min="0" class="form-control" formControlName="dengi">
+                                      </div>
+                                      <div class="col-1 small-label">den'gi</div>
+                                      <div class="col-1">
+                                        <i class="fas fa-plus-circle mr-2" (click)="addMoneyForfeitCounterAgent(i, j)" aria-hidden="true"></i>
+                                        <i class="fas fa-ban" (click)="removeMoneyForfeitCounterAgent(i, j, k)" aria-hidden="true"></i>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
                           </div>
-                          <div class="col-1">rubli</div>
-                          <div class="col-2">
-                            <input type="number" min="0" class="form-control" formControlName="altyny">
-                          </div>
-                          <div class="col-1">altyny</div>
-                          <div class="col-2">
-                            <input type="number" min="0" class="form-control" formControlName="dengi">
-                          </div>
-                          <div class="col-1">den'gi</div>
-                        </div>
-                        <div class="form-group row" formGroupName="chekhi">
-                          <label class="col-3">Amount in Chekhi:</label>
-                          <div class="col-2">
-                            <input type="number" min="0" class="form-control" formControlName="rubli">
-                          </div>
-                          <div class="col-1">rubli</div>
-                          <div class="col-2">
-                            <input type="number" min="0" class="form-control" formControlName="altyny">
-                          </div>
-                          <div class="col-1">altyny</div>
-                          <div class="col-2">
-                            <input type="number" min="0" class="form-control" formControlName="dengi">
-                          </div>
-                          <div class="col-1">den'gi</div>
-                        </div>
                       </div>
                     </div>
                     <div *ngIf="transactionCounterObject['controls']['fugitiveSouls']" class="card mb-3">
@@ -1996,37 +2037,40 @@
                             <input type="text" class="form-control" formControlName="description">
                           </div>
                         </div>
-                        <div formGroupName="price">
-                          <div class="form-group row" formGroupName="moscowSilver">
-                            <label class="col-3 control-label">Price in Moscow Silver: </label>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="rubli">
+                        <div formArrayName="price">
+                          <label>Price in</label>
+                          <div *ngFor="let priceGoods of transactionCounterObject['controls']['goods']['controls']['price']['controls']; let k=index">
+                            <div [formGroupName]="k">
+                                    <div class="form-group">
+                                      <div class="row">
+                                        <div class="col-2">
+                                          <select class="form-control" formControlName="coins">
+                                              <option value="unspecified">Unspecified</option>
+                                              <option value="silver">Silver</option>
+                                              <option value="copper">Copper</option>
+                                              <option value="chekhi">Chekhi</option>
+                                          </select>
+                                        </div>
+                                        <div class="col-2">
+                                          <input type="number" min="0" class="form-control" formControlName="rubli">
+                                        </div>
+                                        <div class="col-1 small-label">rubli</div>
+                                        <div class="col-2">
+                                          <input type="number" min="0" class="form-control" formControlName="altyny">
+                                        </div>
+                                        <div class="col-1 small-label">altyny</div>
+                                        <div class="col-2">
+                                          <input type="number" min="0" class="form-control" formControlName="dengi">
+                                        </div>
+                                        <div class="col-1 small-label">den'gi</div>
+                                        <div class="col-1">
+                                          <i class="fas fa-plus-circle mr-2" (click)="addMoneyGoodsCounterAgent(i, j)" aria-hidden="true"></i>
+                                          <i class="fas fa-ban" (click)="removeMoneyGoodsCounterAgent(i, j, k)" aria-hidden="true"></i>
+                                        </div>
+                                      </div>
+                                  </div>
+                              </div>
                             </div>
-                            <div class="col-1">rubli</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="altyny">
-                            </div>
-                            <div class="col-1">altyny</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="dengi">
-                            </div>
-                            <div class="col-1">den'gi</div>
-                          </div>
-                          <div class="form-group row" formGroupName="chekhi">
-                            <label class="col-3 control-label">Price in Chekhi:</label>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="rubli">
-                            </div>
-                            <div class="col-1">rubli</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="altyny">
-                            </div>
-                            <div class="col-1">altyny</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="dengi">
-                            </div>
-                            <div class="col-1">den'gi</div>
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -2157,39 +2201,40 @@
                           </div>
                         </div>
                       </div>
-                      <div formGroupName="money" class="card-body">
-                        <div formGroupName="amount">
-                          <div class="form-group row" formGroupName="moscowSilver">
-                            <label class="col-3">Amount in Moscow Silver: </label>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="rubli">
+                      <div formArrayName="money"class=" card-body">
+                        <label>Amount in</label>
+                        <div *ngFor="let forfeitAmount of transactionCounterObject['controls']['money']['controls']; let k=index">
+                          <div [formGroupName]="k">
+                                  <div class="form-group">
+                                    <div class="row">
+                                      <div class="col-2">
+                                        <select class="form-control" formControlName="coins">
+                                            <option value="unspecified">Unspecified</option>
+                                            <option value="silver">Silver</option>
+                                            <option value="copper">Copper</option>
+                                            <option value="chekhi">Chekhi</option>
+                                        </select>
+                                      </div>
+                                      <div class="col-2">
+                                        <input type="number" min="0" class="form-control" formControlName="rubli">
+                                      </div>
+                                      <div class="col-1 small-label">rubli</div>
+                                      <div class="col-2">
+                                        <input type="number" min="0" class="form-control" formControlName="altyny">
+                                      </div>
+                                      <div class="col-1 small-label">altyny</div>
+                                      <div class="col-2">
+                                        <input type="number" min="0" class="form-control" formControlName="dengi">
+                                      </div>
+                                      <div class="col-1 small-label">den'gi</div>
+                                      <div class="col-1">
+                                        <i class="fas fa-plus-circle mr-2" (click)="addMoneyMoneyCounterAgent(i, j)" aria-hidden="true"></i>
+                                        <i class="fas fa-ban" (click)="removeMoneyMoneyCounterAgent(i, j, k)" aria-hidden="true"></i>
+                                      </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-1">rubli</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="altyny">
-                            </div>
-                            <div class="col-1">altyny</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="dengi">
-                            </div>
-                            <div class="col-1">den'gi</div>
                           </div>
-                          <div class="form-group row" formGroupName="chekhi">
-                            <label class="col-3">Amount in Chekhi:</label>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="rubli">
-                            </div>
-                            <div class="col-1">rubli</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="altyny">
-                            </div>
-                            <div class="col-1">altyny</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="dengi">
-                            </div>
-                            <div class="col-1">den'gi</div>
-                          </div>
-                        </div>
                       </div>
                     </div>
                     <div *ngIf="transactionCounterObject['controls']['parent']" class="card mb-3">
