@@ -115,6 +115,7 @@ import { SortPipe } from './pipes/sort.pipe';
     QuillModule,
     MatExpansionModule,
     NgxJsonViewerModule,
+    InputTrimModule
   ],
   entryComponents: [ConfirmDialogComponent, NoteDialog],
   providers: [Title, DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, NoteService],
