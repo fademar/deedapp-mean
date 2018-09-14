@@ -68,7 +68,7 @@
               <small class="text-danger pl-2" *ngIf="deedForm.controls.deedCode.errors">This field is required</small>
             </label>
             <div class="input-group">
-              <input class="form-control" formControlName="deedCode" placeholder="fond-opis-delo-list" required>
+              <input class="form-control" formControlName="deedCode" placeholder="fond-opis-delo-list" trim required>
               <span class="input-group-btn">
                 <button type="button" (click)="insertLastDeedCode()" class="btn btn-secondary" matTooltip="Click to insert the code of the last deed saved in the database">
                   <i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Code</button>
@@ -80,7 +80,7 @@
               <small class="text-danger pl-2" *ngIf="deedForm.controls.deedRef.errors">This field is required</small>
             </label>
             <div class="input-group">
-              <input class="form-control" formControlName="deedRef" placeholder="scan number" required>
+              <input class="form-control" formControlName="deedRef" placeholder="scan number" trim required>
               <span class="input-group-btn">
                 <button type="button" (click)="insertLastDeedRef()" class="btn btn-secondary" matTooltip="Click to insert the reference of the last deed saved in the database">
                   <i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Ref.</button>
@@ -93,13 +93,13 @@
             </label>
             <div class="row no-gutters">
               <div class="col">
-                <input type="text" class="form-control" formControlName="day" placeholder="day">
+                <input type="text" class="form-control" formControlName="day" placeholder="day" trim>
               </div>
               <div class="col">
-                <input type="text" class="form-control" formControlName="month" placeholder="month">
+                <input type="text" class="form-control" formControlName="month" placeholder="month" trim>
               </div>
               <div class="col">
-                <input type="text" class="form-control" formControlName="year" placeholder="year">
+                <input type="text" class="form-control" formControlName="year" placeholder="year" trim>
               </div>
               <div class="col">
                 <button type="button" (click)="insertLastDeedDate()" class="btn btn-secondary" matTooltip="Click to insert the date of the last deed saved in the database">
@@ -111,11 +111,11 @@
         <div class="row">
           <div class="form-group col-8">
             <label>Deed Name</label>
-            <input type="text" class="form-control" formControlName="deedName">
+            <input type="text" class="form-control" formControlName="deedName" trim>
           </div>
           <div class="form-group col-4">
             <label>Deed Language</label>
-            <input type="text" class="form-control" formControlName="deedLanguage">
+            <input type="text" class="form-control" formControlName="deedLanguage" trim>
           </div>
         </div>
       </div>
@@ -148,31 +148,31 @@
                   <div class="row">
                     <div class="form-group col">
                       <label>Geogr Status</label>
-                      <input class="form-control" formControlName="geogrStatus">
+                      <input class="form-control" formControlName="geogrStatus" trim>
                     </div>
                     <div class="form-group col">
                       <label>Social Status</label>
-                      <input type="text" class="form-control" formControlName="socialStatus">
+                      <input type="text" class="form-control" formControlName="socialStatus" trim>
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col">
                       <label>First Name</label>
-                      <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesMale"  [typeaheadMinLength]="0" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                      <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesMale"  [typeaheadMinLength]="0" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8" trim>
                     </div>
                     <div class="form-group col">
                       <label>Patronyme</label>
-                      <input type="text" class="form-control" formControlName="patronyme">
+                      <input type="text" class="form-control" formControlName="patronyme" trim>
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col">
                       <label>Last Name</label>
-                      <input type="text" class="form-control" formControlName="lastName">
+                      <input type="text" class="form-control" formControlName="lastName" trim>
                     </div>
                     <div class="form-group col">
                       <label>Related To</label>
-                      <input type="text" class="form-control" formControlName="relatedTo">
+                      <input type="text" class="form-control" formControlName="relatedTo" trim>
                     </div>
                   </div>
                 </div>
@@ -182,21 +182,21 @@
                   <div class="row">
                     <div class="form-grou col">
                       <label>Family Status</label>
-                      <input type="text" class="form-control" formControlName="familyStatus">
+                      <input type="text" class="form-control" formControlName="familyStatus" trim>
                     </div>
                     <div class="form-group col">
                       <label>First Name</label>
-                      <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesFemale"  [typeaheadMinLength]="0" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                      <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesFemale"  [typeaheadMinLength]="0" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8" trim>
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col">
                       <label>Patronyme</label>
-                      <input type="text" class="form-control" formControlName="patronyme">
+                      <input type="text" class="form-control" formControlName="patronyme" trim>
                     </div>
                     <div class="form-group col">
                       <label>Related To</label>
-                      <input type="text" class="form-control" formControlName="relatedTo">
+                      <input type="text" class="form-control" formControlName="relatedTo" trim>
                     </div>
                   </div>
                   <div class="card mb-3" formGroupName="referentMale">
@@ -207,35 +207,35 @@
                       <div class="row">
                         <div class="form-group col">
                           <label>Relationship To Agent</label>
-                          <input type="text" class="form-control" formControlName="relationshipToAgent">
+                          <input type="text" class="form-control" formControlName="relationshipToAgent" trim>
                         </div>
                         <div class="form-group col">
                           <label>Geogr Status</label>
-                          <input type="text" class="form-control" formControlName="geogrStatus">
+                          <input type="text" class="form-control" formControlName="geogrStatus" trim>
                         </div>
                         <div class="form-group col">
                           <label>Social Status</label>
-                          <input type="text" class="form-control" formControlName="socialStatus">
+                          <input type="text" class="form-control" formControlName="socialStatus" trim>
                         </div>
                       </div>
                       <div class="row">
                         <div class="form-group col">
                           <label>First Name</label>
-                          <input type="text" class="form-control" formControlName="firstName">
+                          <input type="text" class="form-control" formControlName="firstName" trim>
                         </div>
                         <div class="form-group col">
                           <label>Patronyme</label>
-                          <input type="text" class="form-control" formControlName="patronyme">
+                          <input type="text" class="form-control" formControlName="patronyme" trim>
                         </div>
                       </div>
                       <div class="row">
                         <div class="form-group col">
                           <label>Last Name</label>
-                          <input type="text" class="form-control" formControlName="lastName">
+                          <input type="text" class="form-control" formControlName="lastName" trim>
                         </div>
                         <div class="form-group col">
                           <label>Related To</label>
-                          <input type="text" class="form-control" formControlName="relatedTo">
+                          <input type="text" class="form-control" formControlName="relatedTo" trim>
                         </div>
                       </div>
                     </div>
@@ -259,23 +259,23 @@
                   <div class="row">
                     <div *ngIf="updateSocialStatusAgent()" class="form-group col">
                       <label>Other Social status</label>
-                      <input type="text" class="form-control" formControlName="otherSocialStatus">
+                      <input type="text" class="form-control" formControlName="otherSocialStatus" trim>
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-8">
                       <label>Corporation Name</label>
-                      <input type="text" class="form-control" formControlName="corporationName">
+                      <input type="text" class="form-control" formControlName="corporationName" trim>
                     </div>
                     <div class="form-group col-4">
                       <label>Number of Participants</label>
-                      <input type="number" min="0" class="form-control" formControlName="nbParticipants">
+                      <input type="number" min="0" class="form-control" formControlName="nbParticipants" trim>
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col">
                       <label>Names</label>
-                      <textarea class="form-control" formControlName="names"></textarea>
+                      <textarea class="form-control" formControlName="names" trim></textarea>
                     </div>
                   </div>
                 </div>
@@ -313,31 +313,31 @@
                     <div class="row">
                       <div class="form-group col">
                         <label>Geogr Status</label>
-                        <input type="text" class="form-control" formControlName="geogrStatus">
+                        <input type="text" class="form-control" formControlName="geogrStatus" trim>
                       </div>
                       <div class="form-group col">
                         <label>Social Status</label>
-                        <input type="text" class="form-control" formControlName="socialStatus">
+                        <input type="text" class="form-control" formControlName="socialStatus" trim>
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col">
                         <label>First Name</label>
-                        <input type="text" class="form-control" formControlName="firstName">
+                        <input type="text" class="form-control" formControlName="firstName" trim>
                       </div>
                       <div class="form-group col">
                         <label>Patronyme</label>
-                        <input type="text" class="form-control" formControlName="patronyme">
+                        <input type="text" class="form-control" formControlName="patronyme" trim>
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col">
                         <label>Last Name</label>
-                        <input type="text" class="form-control" formControlName="lastName">
+                        <input type="text" class="form-control" formControlName="lastName" trim>
                       </div>
                       <div class="form-group col">
                         <label>Related To</label>
-                        <input type="text" class="form-control" formControlName="relatedTo">
+                        <input type="text" class="form-control" formControlName="relatedTo" trim>
                       </div>
                     </div>
                   </div>
@@ -347,21 +347,21 @@
                     <div class="row">
                       <div class="form-group col">
                         <label>Family Status</label>
-                        <input type="text" class="form-control" formControlName="familyStatus">
+                        <input type="text" class="form-control" formControlName="familyStatus" trim>
                       </div>
                       <div class="form-group col">
                         <label>First Name</label>
-                        <input type="text" class="form-control" formControlName="firstName">
+                        <input type="text" class="form-control" formControlName="firstName" trim>
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col">
                         <label>Patronyme</label>
-                        <input type="text" class="form-control" formControlName="patronyme">
+                        <input type="text" class="form-control" formControlName="patronyme" trim>
                       </div>
                       <div class="form-group col">
                         <label>Related To</label>
-                        <input type="text" class="form-control" formControlName="relatedTo">
+                        <input type="text" class="form-control" formControlName="relatedTo" trim>
                       </div>
                     </div>
                     <div class="card mb-3" formGroupName="referentMale">
@@ -380,35 +380,35 @@
                         <div class="row">
                           <div class="form-group col">
                             <label>Relationship To coAgent</label>
-                            <input type="text" class="form-control" formControlName="relationshipToCoAgent">
+                            <input type="text" class="form-control" formControlName="relationshipToCoAgent" trim>
                           </div>
                           <div class="form-group col">
                             <label>Geogr Status</label>
-                            <input type="text" class="form-control" formControlName="geogrStatus">
+                            <input type="text" class="form-control" formControlName="geogrStatus" trim>
                           </div>
                           <div class="form-group col">
                             <label>Social Status</label>
-                            <input type="text" class="form-control" formControlName="socialStatus">
+                            <input type="text" class="form-control" formControlName="socialStatus" trim>
                           </div>
                         </div>
                         <div class="row">
                           <div class="form-group col">
                             <label>First Name</label>
-                            <input type="text" class="form-control" formControlName="firstName">
+                            <input type="text" class="form-control" formControlName="firstName" trim>
                           </div>
                           <div class="form-group col">
                             <label>Patronyme</label>
-                            <input type="text" class="form-control" formControlName="patronyme">
+                            <input type="text" class="form-control" formControlName="patronyme" trim>
                           </div>
                         </div>
                         <div class="row">
                           <div class="form-group col">
                             <label>Last Name</label>
-                            <input type="text" class="form-control" formControlName="lastName">
+                            <input type="text" class="form-control" formControlName="lastName" trim>
                           </div>
                           <div class="form-group col">
                             <label>Related To</label>
-                            <input type="text" class="form-control" formControlName="relatedTo">
+                            <input type="text" class="form-control" formControlName="relatedTo" trim>
                           </div>
                         </div>
                       </div>
@@ -420,7 +420,7 @@
                     <div class="row">
                       <div class="form-group col">
                         <label>Geogr Status</label>
-                        <input type="text" class="form-control" formControlName="geogrStatus">
+                        <input type="text" class="form-control" formControlName="geogrStatus" trim>
                       </div>
                       <div class="form-group col">
                         <label>Social Status</label>
@@ -432,13 +432,13 @@
                     <div class="row">
                       <div *ngIf="updateSocialStatusCoAgent()" class="form-group col">
                         <label>Other Social status</label>
-                        <input type="text" class="form-control" formControlName="otherSocialStatus">
+                        <input type="text" class="form-control" formControlName="otherSocialStatus" trim>
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col-8">
                         <label>Corporation Name</label>
-                        <input type="text" class="form-control" formControlName="corporationName">
+                        <input type="text" class="form-control" formControlName="corporationName" trim>
                       </div>
                       <div class="form-group col-4">
                         <label>Number of Participants</label>
@@ -448,7 +448,7 @@
                     <div class="row">
                       <div class="form-group col">
                         <label>Names</label>
-                        <textarea class="form-control" formControlName="names"></textarea>
+                        <textarea class="form-control" formControlName="names" trim></textarea>
                       </div>
                     </div>
                   </div>
@@ -483,11 +483,11 @@
               </div>
               <div *ngIf="updateRelationToAgent()" class="form-group">
                 <label>Other Relation to Agent</label>
-                <input type="text" class="form-control" formControlName="otherRelationToAgent">
+                <input type="text" class="form-control" formControlName="otherRelationToAgent" trim>
               </div>
               <div class="form-group">
                 <label>Number of Participants</label>
-                <input type="number" min="0" class="form-control" formControlName="numberOfParticipants">
+                <input type="number" min="0" class="form-control" formControlName="numberOfParticipants" trim>
               </div>
               <div class="form-group">
                 <label>Statuses and Names</label>
@@ -526,31 +526,31 @@
                   <div class="row">
                     <div class="form-group col">
                       <label>Geogr Status</label>
-                      <input class="form-control" formControlName="geogrStatus">
+                      <input class="form-control" formControlName="geogrStatus" trim>
                     </div>
                     <div class="form-group col">
                       <label>Social Status</label>
-                      <input type="text" class="form-control" formControlName="socialStatus">
+                      <input type="text" class="form-control" formControlName="socialStatus" trim>
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col">
                       <label>First Name</label>
-                      <input type="text" class="form-control" formControlName="firstName">
+                      <input type="text" class="form-control" formControlName="firstName" trim>
                     </div>
                     <div class="form-group col">
                       <label>Patronyme</label>
-                      <input type="text" class="form-control" formControlName="patronyme">
+                      <input type="text" class="form-control" formControlName="patronyme" trim>
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col">
                       <label>Last Name</label>
-                      <input type="text" class="form-control" formControlName="lastName">
+                      <input type="text" class="form-control" formControlName="lastName" trim>
                     </div>
                     <div class="form-group col">
                       <label>Related To</label>
-                      <input type="text" class="form-control" formControlName="relatedTo">
+                      <input type="text" class="form-control" formControlName="relatedTo" trim>
                     </div>
                   </div>
                 </div>
@@ -560,21 +560,21 @@
                   <div class="row">
                     <div class="form-grou col">
                       <label>Family Status</label>
-                      <input type="text" class="form-control" formControlName="familyStatus">
+                      <input type="text" class="form-control" formControlName="familyStatus" trim>
                     </div>
                     <div class="form-group col">
                       <label>First Name</label>
-                      <input type="text" class="form-control" formControlName="firstName">
+                      <input type="text" class="form-control" formControlName="firstName" trim>
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col">
                       <label>Patronyme</label>
-                      <input type="text" class="form-control" formControlName="patronyme">
+                      <input type="text" class="form-control" formControlName="patronyme" trim>
                     </div>
                     <div class="form-group col">
                       <label>Related To</label>
-                      <input type="text" class="form-control" formControlName="relatedTo">
+                      <input type="text" class="form-control" formControlName="relatedTo" trim>
                     </div>
                   </div>
                   <div class="card mb-3" formGroupName="referentMale">
@@ -585,35 +585,35 @@
                       <div class="row">
                         <div class="form-group col">
                           <label>Relationship To Counter Agent</label>
-                          <input type="text" class="form-control" formControlName="relationshipToCounterAgent">
+                          <input type="text" class="form-control" formControlName="relationshipToCounterAgent" trim>
                         </div>
                         <div class="form-group col">
                           <label>Geogr Status</label>
-                          <input type="text" class="form-control" formControlName="geogrStatus">
+                          <input type="text" class="form-control" formControlName="geogrStatus" trim>
                         </div>
                         <div class="form-group col">
                           <label>Social Status</label>
-                          <input type="text" class="form-control" formControlName="socialStatus">
+                          <input type="text" class="form-control" formControlName="socialStatus" trim>
                         </div>
                       </div>
                       <div class="row">
                         <div class="form-group col">
                           <label>First Name</label>
-                          <input type="text" class="form-control" formControlName="firstName">
+                          <input type="text" class="form-control" formControlName="firstName" trim>
                         </div>
                         <div class="form-group col">
                           <label>Patronyme</label>
-                          <input type="text" class="form-control" formControlName="patronyme">
+                          <input type="text" class="form-control" formControlName="patronyme" trim>
                         </div>
                       </div>
                       <div class="row">
                         <div class="form-group col">
                           <label>Last Name</label>
-                          <input type="text" class="form-control" formControlName="lastName">
+                          <input type="text" class="form-control" formControlName="lastName" trim>
                         </div>
                         <div class="form-group col">
                           <label>Related To</label>
-                          <input type="text" class="form-control" formControlName="relatedTo">
+                          <input type="text" class="form-control" formControlName="relatedTo" trim>
                         </div>
                       </div>
                     </div>
@@ -625,7 +625,7 @@
                   <div class="row">
                     <div class="form-group col">
                       <label>Geogr Status</label>
-                      <input type="text" class="form-control" formControlName="geogrStatus">
+                      <input type="text" class="form-control" formControlName="geogrStatus" trim>
                     </div>
                     <div class="form-group col">
                       <label>Social Status</label>
@@ -637,23 +637,23 @@
                   <div class="row">
                     <div *ngIf="updateSocialStatusCounterAgent()" class="form-group col">
                       <label>Other Social status</label>
-                      <input type="text" class="form-control" formControlName="otherSocialStatus">
+                      <input type="text" class="form-control" formControlName="otherSocialStatus" trim>
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-8">
                       <label>Corporation Name</label>
-                      <input type="text" class="form-control" formControlName="corporationName">
+                      <input type="text" class="form-control" formControlName="corporationName" trim>
                     </div>
                     <div class="form-group col-4">
                       <label>Number of Participants</label>
-                      <input type="number" min="0" class="form-control" formControlName="nbParticipants">
+                      <input type="number" min="0" class="form-control" formControlName="nbParticipants" trim>
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col">
                       <label>Names</label>
-                      <textarea class="form-control" formControlName="names"></textarea>
+                      <textarea class="form-control" formControlName="names" trim></textarea>
                     </div>
                   </div>
                 </div>
@@ -691,31 +691,31 @@
                     <div class="row">
                       <div class="form-group col">
                         <label>Geogr Status</label>
-                        <input type="text" class="form-control" formControlName="geogrStatus">
+                        <input type="text" class="form-control" formControlName="geogrStatus" trim>
                       </div>
                       <div class="form-group col">
                         <label>Social Status</label>
-                        <input type="text" class="form-control" formControlName="socialStatus">
+                        <input type="text" class="form-control" formControlName="socialStatus" trim>
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col">
                         <label>First Name</label>
-                        <input type="text" class="form-control" formControlName="firstName">
+                        <input type="text" class="form-control" formControlName="firstName" trim>
                       </div>
                       <div class="form-group col">
                         <label>Patronyme</label>
-                        <input type="text" class="form-control" formControlName="patronyme">
+                        <input type="text" class="form-control" formControlName="patronyme" trim>
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col">
                         <label>Last Name</label>
-                        <input type="text" class="form-control" formControlName="lastName">
+                        <input type="text" class="form-control" formControlName="lastName" trim>
                       </div>
                       <div class="form-group col">
                         <label>Related To</label>
-                        <input type="text" class="form-control" formControlName="relatedTo">
+                        <input type="text" class="form-control" formControlName="relatedTo" trim>
                       </div>
                     </div>
                   </div>
@@ -725,21 +725,21 @@
                     <div class="row">
                       <div class="form-group col">
                         <label>Family Status</label>
-                        <input type="text" class="form-control" formControlName="familyStatus">
+                        <input type="text" class="form-control" formControlName="familyStatus" trim>
                       </div>
                       <div class="form-group col">
                         <label>First Name</label>
-                        <input type="text" class="form-control" formControlName="firstName">
+                        <input type="text" class="form-control" formControlName="firstName" trim>
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col">
                         <label>Patronyme</label>
-                        <input type="text" class="form-control" formControlName="patronyme">
+                        <input type="text" class="form-control" formControlName="patronyme" trim>
                       </div>
                       <div class="form-group col">
                         <label>Related To</label>
-                        <input type="text" class="form-control" formControlName="relatedTo">
+                        <input type="text" class="form-control" formControlName="relatedTo" trim>
                       </div>
                     </div>
                     <div class="card mb-3" formGroupName="referentMale">
@@ -758,35 +758,35 @@
                         <div class="row">
                           <div class="form-group col">
                             <label>Relationship To Co-Counter Agent</label>
-                            <input type="text" class="form-control" formControlName="relationshipToCoCounterAgent">
+                            <input type="text" class="form-control" formControlName="relationshipToCoCounterAgent" trim>
                           </div>
                           <div class="form-group col">
                             <label>Geogr Status</label>
-                            <input type="text" class="form-control" formControlName="geogrStatus">
+                            <input type="text" class="form-control" formControlName="geogrStatus" trim>
                           </div>
                           <div class="form-group col">
                             <label>Social Status</label>
-                            <input type="text" class="form-control" formControlName="socialStatus">
+                            <input type="text" class="form-control" formControlName="socialStatus" trim>
                           </div>
                         </div>
                         <div class="row">
                           <div class="form-group col">
                             <label>First Name</label>
-                            <input type="text" class="form-control" formControlName="firstName">
+                            <input type="text" class="form-control" formControlName="firstName" trim>
                           </div>
                           <div class="form-group col">
                             <label>Patronyme</label>
-                            <input type="text" class="form-control" formControlName="patronyme">
+                            <input type="text" class="form-control" formControlName="patronyme" trim>
                           </div>
                         </div>
                         <div class="row">
                           <div class="form-group col">
                             <label>Last Name</label>
-                            <input type="text" class="form-control" formControlName="lastName">
+                            <input type="text" class="form-control" formControlName="lastName" trim>
                           </div>
                           <div class="form-group col">
                             <label>Related To</label>
-                            <input type="text" class="form-control" formControlName="relatedTo">
+                            <input type="text" class="form-control" formControlName="relatedTo" trim>
                           </div>
                         </div>
                       </div>
@@ -798,7 +798,7 @@
                     <div class="row">
                       <div class="form-group col">
                         <label>Geogr Status</label>
-                        <input type="text" class="form-control" formControlName="geogrStatus">
+                        <input type="text" class="form-control" formControlName="geogrStatus" trim>
                       </div>
                       <div class="form-group col">
                         <label>Social Status</label>
@@ -810,23 +810,23 @@
                     <div class="row">
                       <div *ngIf="updateSocialStatusCoCounterAgent()" class="form-group col">
                         <label>Other Social status</label>
-                        <input type="text" class="form-control" formControlName="otherSocialStatus">
+                        <input type="text" class="form-control" formControlName="otherSocialStatus" trim>
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col-8">
                         <label>Corporation Name</label>
-                        <input type="text" class="form-control" formControlName="corporationName">
+                        <input type="text" class="form-control" formControlName="corporationName" trim>
                       </div>
                       <div class="form-group col-4">
                         <label>Number of Participants</label>
-                        <input type="text" class="form-control" formControlName="nbParticipants">
+                        <input type="text" class="form-control" formControlName="nbParticipants" trim>
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col">
                         <label>Names</label>
-                        <textarea class="form-control" formControlName="names"></textarea>
+                        <textarea class="form-control" formControlName="names" trim></textarea>
                       </div>
                     </div>
                   </div>
@@ -861,15 +861,15 @@
               </div>
               <div *ngIf="updateRelationToCounterAgent()" class="form-group">
                 <label>Other Relation to Counter Agent</label>
-                <input type="text" class="form-control" formControlName="otherRelationToCounterAgent">
+                <input type="text" class="form-control" formControlName="otherRelationToCounterAgent" trim>
               </div>
               <div class="form-group">
                 <label>Number of Participants</label>
-                <input type="number" min="0" class="form-control" formControlName="numberOfParticipants">
+                <input type="number" min="0" class="form-control" formControlName="numberOfParticipants" trim>
               </div>
               <div class="form-group">
                 <label>Statuses and Names</label>
-                <input type="text" class="form-control" formControlName="statusesNames">
+                <input type="text" class="form-control" formControlName="statusesNames" trim>
               </div>
             </div>
           </div>
@@ -916,7 +916,7 @@
                 <div *ngSwitchCase="'other'">
                   <div class="form-group">
                     <label>Other Agent Action</label>
-                    <input type="text" class="form-control" formControlName="otherAgentAction">
+                    <input type="text" class="form-control" formControlName="otherAgentAction" trim>
                   </div>
                 </div>
                 <div *ngSwitchCase="'what'">
@@ -980,17 +980,17 @@
                         <div class="row">
                           <div class="form-group col">
                             <label>Type</label>
-                            <input type="text" class="form-control" formControlName="type">
+                            <input type="text" class="form-control" formControlName="type" trim>
                           </div>
                           <div class="form-group col">
                             <label>Origin</label>
-                            <input type="text" class="form-control" formControlName="origin">
+                            <input type="text" class="form-control" formControlName="origin" trim>
                           </div>
                         </div>
                         <div class="row">
                           <div class="form-group col-12">
                             <label>Description</label>
-                            <input type="text" class="form-control" formControlName="description">
+                            <input type="text" class="form-control" formControlName="description" trim>
                           </div>
                         </div>
                         <div class="row">
@@ -1112,26 +1112,26 @@
                         <div class="row">
                           <div class="form-group col">
                             <label>Family Status</label>
-                            <input type="text" class="form-control" formControlName="familyStatus">
+                            <input type="text" class="form-control" formControlName="familyStatus" trim>
                           </div>
                           <div class="form-group col">
                             <label>First Name</label>
-                            <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesMF" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                            <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesMF" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8" trim>
                           </div>
                         </div>
                         <div class="row">
                           <div class="form-group col">
                             <label>Patronyme</label>
-                            <input type="text" class="form-control" formControlName="patronyme">
+                            <input type="text" class="form-control" formControlName="patronyme" trim>
                           </div>
                           <div class="form-group col">
                             <label>Last Name</label>
-                            <input type="text" class="form-control" formControlName="lastName">
+                            <input type="text" class="form-control" formControlName="lastName" trim>
                           </div>
                         </div>
                         <div class="form-group">
                           <label>Relation to Agent</label>
-                          <input type="text" class="form-control" formControlName="relationToAgent">
+                          <input type="text" class="form-control" formControlName="relationToAgent" trim>
                         </div>
                       </div>
                     </div>
@@ -1200,16 +1200,16 @@
                       <div formGroupName="fugitiveSouls" class="card-body">
                         <div class="form-group">
                           <label>Juridical Status</label>
-                          <input class="form-control" formControlName="juridicalStatus">
+                          <input class="form-control" formControlName="juridicalStatus" trim>
                         </div>
                         <div class="form-group row" formGroupName="numberOfSouls">
                           <label class="col-2">Number of Souls: </label>
                           <div class="col-1">
-                            <input type="number" min="0" class="form-control" formControlName="male">
+                            <input type="number" min="0" class="form-control" formControlName="male" trim>
                           </div>
                           <div class="col-1">male</div>
                           <div class="col-1">
-                            <input type="number" min="0" class="form-control" formControlName="female">
+                            <input type="number" min="0" class="form-control" formControlName="female" trim>
                           </div>
                           <div class="col-1">female</div>
                           <div class="col-2">
@@ -1225,7 +1225,7 @@
                             </div>
                           </div>
                           <div class="col-2">
-                            <input type="number" min="0" class="form-control" formControlName="households">
+                            <input type="number" min="0" class="form-control" formControlName="households" trim>
                           </div>
                           <div class="col-1">households</div>
                         </div>
@@ -1235,7 +1235,7 @@
                         </div>
                         <div class="form-group">
                           <label>Years of rent</label>
-                          <input type="number" min="0" class="form-control" formControlName="yearsOfRent">
+                          <input type="number" min="0" class="form-control" formControlName="yearsOfRent" trim>
                         </div>
                       </div>
                     </div>

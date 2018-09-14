@@ -16,7 +16,7 @@ import { MatPaginatorModule } from '@angular/material';
 import { MatTableModule } from '@angular/material';
 import { MatSortModule } from '@angular/material';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { TypeaheadModule } from 'ngx-bootstrap';
 import { MatAutocompleteModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
 import { MatRadioModule } from '@angular/material';
@@ -27,6 +27,7 @@ import { MatExpansionModule } from '@angular/material';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { QuillModule } from 'ngx-quill';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
+import { InputTrimModule } from 'ng2-trim-directive';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
