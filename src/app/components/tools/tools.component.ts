@@ -10,6 +10,15 @@ import { NotificationsService } from 'angular2-notifications';
 })
 export class ToolsComponent implements OnInit {
 
+
+  public options = {
+    position: ['bottom', 'right'],
+    timeOut: 2000,
+    showProgressBar: false,
+    pauseOnHover: false,
+    animate: 'fade'
+}
+
   constructor(private deedService: DeedService, private notificationsService: NotificationsService) { }
 
   ngOnInit() {
