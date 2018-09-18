@@ -60,6 +60,17 @@ function handleError(res, reason, message, code) {
 	res.status(code || 500).json({ 'error': message });
 }
 
+// Recursive function in nested JSON
+function recursiveGetProperty(obj, lookup, callback) {
+    for (property in obj) {
+        if (property == lookup) {
+            callback(obj[property]);
+        } else if (obj[property] instanceof Object) {
+            recursiveGetProperty(obj[property], lookup, callback);
+        }
+    }
+}
+
 // Redirect / to /api/deeds
 app.get('/', (req, res) => {
 	res.send('Please use /api/deeds');
@@ -256,8 +267,35 @@ app.get('/api/search/:term', (req, res) => {
 	});
 });
 
+/*  '/api/firstNames'
+ *    GET: get the firstNames from the db
+ *
+ */
+app.get('/api/firstNames', (req, res) => {
+	db.collection(deedsCollection).aggregate.find({}).toArray((err, docs) => {
+		if (err) {
+			handleError(res, err.message, 'Failed to get deeds.');
+		} else {
+			res.status(200).json(arrayBody);
+		}
+	});
+});
+
+/*  '/api/trim'
+ *    GET: trim the db
+ *
+ */
+app.get('/api/trim', (req, res) => {
+	
+	db.collection(deedsCollection).find({}).forEach(doc => {
+		console.log(doc._id);	
+	})
+});
+
+
 
 
 app.get('*', function(req, res) {
 	res.sendFile(path.join(__dirname + '/dist/index.html'));
 });
+
