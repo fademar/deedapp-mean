@@ -50,7 +50,7 @@ export class TypeaheadService {
         }); //END FOREACH
 
         this.firstNamesMale.sort();
-        this.firstNamesMale = _.sortedUniq(this.firstNamesMale);
+        // this.firstNamesMale = _.sortedUniq(this.firstNamesMale);
     });
     console.log(this.firstNamesMale);
     return this.firstNamesMale;
@@ -81,7 +81,7 @@ export class TypeaheadService {
             }
         });
         this.firstNamesFemale.sort();
-        this.firstNamesFemale = _.sortedUniq(this.firstNamesFemale);
+        // this.firstNamesFemale = _.sortedUniq(this.firstNamesFemale);
     });
     console.log(this.firstNamesFemale);
 
@@ -113,6 +113,7 @@ export class TypeaheadService {
       
         if (deed.scribe.firstName) {
           this.firstNamesAll.push(_.trim(deed.scribe.firstName));
+          console.log("scribe")
         }
 
         if (deed.whitnesses.length > 0) {
@@ -121,6 +122,8 @@ export class TypeaheadService {
               this.firstNamesAll.push(_.trim(whitness.firstName));
             }            
           });
+          console.log("whintess")
+
         }
       
         if (deed.sureties.length > 0) {
@@ -129,6 +132,8 @@ export class TypeaheadService {
               this.firstNamesAll.push(_.trim(surety.firstName));
             }            
           });
+          console.log("surety")
+
         }
 
         if (deed.otherParticipants.length > 0) {
@@ -137,18 +142,22 @@ export class TypeaheadService {
               this.firstNamesAll.push(_.trim(otherParticipant.firstName));
             }            
           });
+          console.log("other")
+
         }
         
         if (deed.registrator.firstName) {
           this.firstNamesAll.push(_.trim(deed.registrator.firstName));
+          console.log("regis")
+
         }
         
       
       }); // END FOREACH DEEDS
       
       this.firstNamesAll = _.concat(this.firstNamesAll, this.firstNamesMale, this.firstNamesFemale);
-      this.firstNamesAll.sort();
-      this.firstNamesAll = _.sortedUniq(this.firstNamesAll);
+      // this.firstNamesAll.sort();
+      // this.firstNamesAll = _.sortedUniq(this.firstNamesAll);
     
     
     }); // END SUBSCRIBE
