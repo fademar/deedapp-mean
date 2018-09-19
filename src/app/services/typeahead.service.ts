@@ -6,16 +6,14 @@ import * as _ from 'lodash';
 @Injectable()
 export class TypeaheadService {
 
-    firstNamesMale;
-    firstNamesFemale;
-    firstNamesAll;
-    test;
+    firstNamesMale = [];
+    firstNamesFemale = [];
+    firstNamesAll = [];
+    test = [];
 
     constructor(private http: Http, private deedService: DeedService) { }
 
     getFirstNamesM() {
-        this.firstNamesMale = [];
-
         this.deedService.getDeeds().subscribe(deeds => {
             deeds.forEach(deed => {
                 if (deed.agentSex === 'male' && deed.agent.firstName) {
@@ -55,19 +53,12 @@ export class TypeaheadService {
 
             // this.firstNamesMale = _.sortedUniq(this.firstNamesMale);
 
+            console.log(this.firstNamesMale.sort(new Intl.Collator('ru').compare));
+
+
+
         });
 
-        this.test = ['Самуил', 'Давыд', 'Артемий', 'Филка'];
-        // this.firstNamesMale.sort(new Intl.Collator('ru').compare);
-        console.log('TABLEAU:');
-        console.log(this.firstNamesMale);
-        console.log('TABLEAU SORT:');
-        console.log(this.firstNamesMale.sort(new Intl.Collator('ru').compare));
-        console.log(this.firstNamesMale.sort((nameA, nameB) => nameA.localeCompare(nameB, 'ru')));
-        console.log('TABLEAU TEST:');
-        console.log(this.test);
-        console.log('TABLEAU SORT TEST:');
-        console.log(this.test.sort(new Intl.Collator('ru').compare))
 
         return this.firstNamesMale;
     }
