@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http } from '@angular/http';
 import { DeedService } from './deed.service';
 import * as _ from 'lodash';
 
@@ -52,6 +52,7 @@ export class TypeaheadService {
         this.firstNamesMale.sort();
         this.firstNamesMale = _.sortedUniq(this.firstNamesMale);
     });
+    console.log(this.firstNamesMale);
     return this.firstNamesMale;
   }
 
@@ -82,6 +83,7 @@ export class TypeaheadService {
         this.firstNamesFemale.sort();
         this.firstNamesFemale = _.sortedUniq(this.firstNamesFemale);
     });
+    console.log(this.firstNamesFemale);
 
     return this.firstNamesFemale;
 
@@ -150,6 +152,7 @@ export class TypeaheadService {
     
     
     }); // END SUBSCRIBE
+    console.log(this.firstNamesAll);
     return this.firstNamesAll;
   }
 
