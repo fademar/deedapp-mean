@@ -18,33 +18,36 @@ export class TypeaheadService {
         deeds.forEach(deed => {
             if (deed.agentSex === 'male' && deed.agent.firstName) {
                 this.firstNamesMale.push(_.trim(deed.agent.firstName));
+                console.log(deed.agent.firstName);
+
             }
             if (deed.agentSex === 'female' && deed.agent.referentMale.firstName) {
-              this.firstNamesMale.push(_.trim(deed.counterAgent.referentMale.firstName));
+              this.firstNamesMale.push(_.trim(deed.agent.referentMale.firstName));
             }
             if (deed.counterAgentSex === 'male' && deed.counterAgent.firstName) {
                 this.firstNamesMale.push(_.trim(deed.counterAgent.firstName));
-            }
+                console.log(deed.counterAgent.firstName);
+              }
             if (deed.counterAgentSex === 'female' && deed.counterAgent.referentMale.firstName) {
                 this.firstNamesMale.push(_.trim(deed.counterAgent.referentMale.firstName));
             }
             if (deed.coAgents.length > 0) {
-                deed.coAgents.forEach(element => {
-                    if (element.coAgentSex === 'male' && element.coAgent.firstName) {
-                        this.firstNamesMale.push(_.trim(element.coAgent.firstName));
+                deed.coAgents.forEach(coAgent => {
+                    if (coAgent.coAgentSex === 'male' && coAgent.firstName) {
+                        this.firstNamesMale.push(_.trim(coAgent.firstName));
                     }
-                    if (element.coAgentSex === 'female' && element.coAgent.referentMale.firstName) {
-                        this.firstNamesMale.push(_.trim(element.coAgent.referentMale.firstName));
+                    if (coAgent.coAgentSex === 'female' && coAgent.referentMale.firstName) {
+                        this.firstNamesMale.push(_.trim(coAgent.referentMale.firstName));
                     }       
                 });
             }
             if (deed.coCounterAgents.length > 0) {
-                deed.coCounterAgents.forEach(element => {
-                    if (element.coCounterAgentSex === 'male' && element.coCounterAgent.firstName) {
-                        this.firstNamesMale.push(_.trim(element.coCounterAgent.firstName));
+                deed.coCounterAgents.forEach(coCounterAgent => {
+                    if (coCounterAgent.coCounterAgentSex === 'male' && coCounterAgent.firstName) {
+                        this.firstNamesMale.push(_.trim(coCounterAgent.firstName));
                     }
-                    if (element.coCounterAgentSex === 'female' && element.coCounterAgent.referentMale.firstName) {
-                        this.firstNamesMale.push(_.trim(element.coCounterAgent.referentMale.firstName));
+                    if (coCounterAgent.coCounterAgentSex === 'female' && coCounterAgent.referentMale.firstName) {
+                        this.firstNamesMale.push(_.trim(coCounterAgent.referentMale.firstName));
                     }       
                 });
             }
@@ -69,16 +72,16 @@ export class TypeaheadService {
                 this.firstNamesFemale.push(_.trim(deed.counterAgent.firstName));
             }
             if (deed.coAgents.length > 0) {
-                deed.coAgents.forEach(element => {
-                    if (element.coAgentSex === 'female' && element.coAgent.firstName) {
-                        this.firstNamesFemale.push(_.trim(element.coAgent.firstName));
+                deed.coAgents.forEach(coAgent => {
+                    if (coAgent.coAgentSex === 'female' && coAgent.firstName) {
+                        this.firstNamesFemale.push(_.trim(coAgent.firstName));
                     }       
                 });
             }
             if (deed.coCounterAgents.length > 0) {
-                deed.coCounterAgents.forEach(element => {
-                    if (element.coCounterAgentSex === 'female' && element.coCounterAgent.firstName) {
-                        this.firstNamesFemale.push(_.trim(element.coCounterAgent.firstName));
+                deed.coCounterAgents.forEach(coCounterAgent => {
+                    if (coCounterAgent.coCounterAgentSex === 'female' && coCounterAgent.firstName) {
+                        this.firstNamesFemale.push(_.trim(coCounterAgent.firstName));
                     }       
                 });
             }
@@ -145,10 +148,8 @@ export class TypeaheadService {
 
         }
         
-        if (deed.registrator) {
-          if (deed.registrator.firstName) {
+        if (deed.registrator && deed.registrator.firstName) {
             this.firstNamesAll.push(_.trim(deed.registrator.firstName));
-          }
         }
         
       
