@@ -56,7 +56,7 @@ export class TypeaheadService {
 
         });
 
-        console.log("males:" + this.firstNamesMale);
+        console.log(this.firstNamesMale);
         return this.firstNamesMale;
     }
 
@@ -87,7 +87,7 @@ export class TypeaheadService {
             // this.firstNamesFemale.sort();
             // this.firstNamesFemale = _.sortedUniq(this.firstNamesFemale);
         });
-        console.log("female" + this.firstNamesFemale);
+        // console.log(this.firstNamesFemale);
 
         return this.firstNamesFemale;
 
@@ -159,7 +159,7 @@ export class TypeaheadService {
 
 
         }); // END SUBSCRIBE
-        console.log("all" + this.firstNamesAll);
+        // console.log(this.firstNamesAll);
         return this.firstNamesAll;
     }
 
