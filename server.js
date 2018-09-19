@@ -267,31 +267,6 @@ app.get('/api/search/:term', (req, res) => {
 	});
 });
 
-/*  '/api/firstNames'
- *    GET: get the firstNames from the db
- *
- */
-app.get('/api/firstNames', (req, res) => {
-	db.collection(deedsCollection).aggregate.find({}).toArray((err, docs) => {
-		if (err) {
-			handleError(res, err.message, 'Failed to get deeds.');
-		} else {
-			res.status(200).json(arrayBody);
-		}
-	});
-});
-
-/*  '/api/trim'
- *    GET: trim the db
- *
- */
-app.get('/api/trim', (req, res) => {
-	
-	db.collection(deedsCollection).find({}).forEach(doc => {
-		console.log(doc._id);	
-	})
-});
-
 
 
 
