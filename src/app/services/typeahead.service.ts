@@ -14,6 +14,7 @@ export class TypeaheadService {
 
   getFirstNamesM() {
     this.deedService.getDeeds().subscribe(deeds => {
+        console.log(deeds.length);
         deeds.forEach(deed => {
             if (deed.agentSex === 'male' && deed.agent.firstName) {
                 this.firstNamesMale.push(_.trim(deed.agent.firstName));
@@ -49,11 +50,13 @@ export class TypeaheadService {
             }
         }); //END FOREACH
 
-        this.firstNamesMale.sort();
+        // this.firstNamesMale.sort();
         // this.firstNamesMale = _.sortedUniq(this.firstNamesMale);
+
+        console.log(this.firstNamesMale);
+        return this.firstNamesMale;
     });
-    console.log(this.firstNamesMale);
-    return this.firstNamesMale;
+
   }
 
   getFirstNamesF() {
@@ -80,7 +83,7 @@ export class TypeaheadService {
                 });
             }
         });
-        this.firstNamesFemale.sort();
+        // this.firstNamesFemale.sort();
         // this.firstNamesFemale = _.sortedUniq(this.firstNamesFemale);
     });
     console.log(this.firstNamesFemale);
@@ -111,7 +114,7 @@ export class TypeaheadService {
           }); // END FOREACH TRANSACTION
         }
       
-        if (deed.scribe.firstName) {
+        if (deed.scribe && deed.scribe.firstName) {
           this.firstNamesAll.push(_.trim(deed.scribe.firstName));
           console.log("scribe")
         }
@@ -146,7 +149,7 @@ export class TypeaheadService {
 
         }
         
-        if (deed.registrator.firstName) {
+        if (deed.registrator && deed.registrator.firstName) {
           this.firstNamesAll.push(_.trim(deed.registrator.firstName));
           console.log("regis")
 
