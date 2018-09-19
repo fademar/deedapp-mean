@@ -116,7 +116,6 @@ export class TypeaheadService {
       
         if (deed.scribe && deed.scribe.firstName) {
           this.firstNamesAll.push(_.trim(deed.scribe.firstName));
-          console.log("scribe")
         }
 
         if (deed.whitnesses.length > 0) {
@@ -125,7 +124,6 @@ export class TypeaheadService {
               this.firstNamesAll.push(_.trim(whitness.firstName));
             }            
           });
-          console.log("whintess")
 
         }
       
@@ -135,7 +133,6 @@ export class TypeaheadService {
               this.firstNamesAll.push(_.trim(surety.firstName));
             }            
           });
-          console.log("surety")
 
         }
 
@@ -145,14 +142,13 @@ export class TypeaheadService {
               this.firstNamesAll.push(_.trim(otherParticipant.firstName));
             }            
           });
-          console.log("other")
 
         }
         
-        if (deed.registrator && deed.registrator.firstName) {
-          this.firstNamesAll.push(_.trim(deed.registrator.firstName));
-          console.log("regis")
-
+        if (deed.registrator) {
+          if (deed.registrator.firstName) {
+            this.firstNamesAll.push(_.trim(deed.registrator.firstName));
+          }
         }
         
       
