@@ -51,12 +51,14 @@ export class TypeaheadService {
                 }
             }); //END FOREACH
 
-            // this.firstNamesMale.sort();
             // this.firstNamesMale = _.sortedUniq(this.firstNamesMale);
 
         });
 
+        this.firstNamesMale.sort();
         console.log(this.firstNamesMale);
+
+
         return this.firstNamesMale;
     }
 
