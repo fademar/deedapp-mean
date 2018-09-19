@@ -13,11 +13,11 @@ export class AuthService {
     domain: 'cercec.eu.auth0.com',
     responseType: 'token id_token',
     audience: 'https://cercec.eu.auth0.com/userinfo',
-    redirectUri: 'https://russian-deeds.herokuapp.com/callback',      
+    redirectUri: 'https://russian-deeds.herokuapp.com/callback',
     scope: 'openid%20profile'
   });
 
-  constructor(public router: Router) {}
+  constructor(public router: Router) { }
 
   public login(): void {
     this.auth0.authorize();
@@ -27,7 +27,7 @@ export class AuthService {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.getUserInfo(authResult);
-        window.location.hash = '';
+        // window.location.hash = '';
         this.setSession(authResult);
         this.router.navigate(['/list']);
       } else if (err) {
@@ -62,8 +62,8 @@ export class AuthService {
   }
 
   private getUserInfo(authResult) {
-      this.auth0.client.userInfo(authResult.accessToken, function(err, user) {
-        localStorage.setItem('userName', user.nickname);
+    this.auth0.client.userInfo(authResult.accessToken, function (err, user) {
+      localStorage.setItem('userName', user.nickname);
     });
   }
 
