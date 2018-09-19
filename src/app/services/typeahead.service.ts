@@ -57,7 +57,8 @@ export class TypeaheadService {
 
         this.test = ['Ж', 'А', 'Н', 'З'];
         this.firstNamesMale.sort(new Intl.Collator('ru').compare);
-        console.log(this.firstNamesMale);
+        console.log(this.firstNamesMale.sort(new Intl.Collator('ru').compare));
+        console.log(this.test);
         console.log(this.test.sort(new Intl.Collator('ru').compare))
 
         return this.firstNamesMale;
