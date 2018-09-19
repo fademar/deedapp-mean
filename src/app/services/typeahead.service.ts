@@ -60,7 +60,9 @@ export class TypeaheadService {
 
 
         });
+        console.log("DEUX:");
 
+        console.log(this.firstNamesMaleSorted);
 
         return this.firstNamesMaleSorted;
     }
