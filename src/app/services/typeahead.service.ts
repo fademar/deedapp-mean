@@ -61,6 +61,7 @@ export class TypeaheadService {
         console.log(this.firstNamesMale);
         console.log('TABLEAU SORT:');
         console.log(this.firstNamesMale.sort(new Intl.Collator('ru').compare));
+        console.log(this.firstNamesMale.sort((nameA, nameB) => nameA.localeCompare(nameB, 'ru')));
         console.log('TABLEAU TEST:');
         console.log(this.test);
         console.log('TABLEAU SORT TEST:');
