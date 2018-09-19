@@ -55,7 +55,7 @@ export class TypeaheadService {
 
         });
 
-        this.firstNamesMale.sort();
+        this.firstNamesMale.sort((a, b) => a.localeCompare(b, 'ru'));
         console.log(this.firstNamesMale);
 
 
