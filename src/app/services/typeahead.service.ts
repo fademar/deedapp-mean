@@ -6,14 +6,16 @@ import * as _ from 'lodash';
 @Injectable()
 export class TypeaheadService {
 
-    firstNamesMale = [];
-    firstNamesFemale = [];
-    firstNamesAll = [];
-    test = [];
+    firstNamesMale;
+    firstNamesFemale;
+    firstNamesAll;
+    test;
 
     constructor(private http: Http, private deedService: DeedService) { }
 
     getFirstNamesM() {
+        this.firstNamesMale = [];
+
         this.deedService.getDeeds().subscribe(deeds => {
             deeds.forEach(deed => {
                 if (deed.agentSex === 'male' && deed.agent.firstName) {
