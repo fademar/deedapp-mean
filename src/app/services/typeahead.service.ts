@@ -7,6 +7,7 @@ import * as _ from 'lodash';
 export class TypeaheadService {
 
     firstNamesMale = [];
+    firstNamesMaleSorted = [];
     firstNamesFemale = [];
     firstNamesAll = [];
     test = [];
@@ -51,16 +52,17 @@ export class TypeaheadService {
                 }
             }); //END FOREACH
 
-            // this.firstNamesMale = _.sortedUniq(this.firstNamesMale);
+            this.firstNamesMale.sort(new Intl.Collator('ru').compare);
+            this.firstNamesMaleSorted = _.sortedUniq(this.firstNamesMale);
 
-            console.log(this.firstNamesMale.sort(new Intl.Collator('ru').compare));
+            console.log(this.firstNamesMaleSorted);
 
 
 
         });
 
 
-        return this.firstNamesMale;
+        return this.firstNamesMaleSorted;
     }
 
     getFirstNamesF() {
