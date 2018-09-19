@@ -9,12 +9,12 @@ export class TypeaheadService {
     firstNamesMale = [];
     firstNamesFemale = [];
     firstNamesAll = [];
+    test = [];
 
     constructor(private http: Http, private deedService: DeedService) { }
 
     getFirstNamesM() {
         this.deedService.getDeeds().subscribe(deeds => {
-            console.log(deeds.length);
             deeds.forEach(deed => {
                 if (deed.agentSex === 'male' && deed.agent.firstName) {
                     this.firstNamesMale.push(_.trim(deed.agent.firstName));
@@ -55,9 +55,10 @@ export class TypeaheadService {
 
         });
 
+        this.test = ['Ж', 'А', 'Н', 'З'];
         this.firstNamesMale.sort(new Intl.Collator('ru').compare);
         console.log(this.firstNamesMale);
-
+        console.log(this.test.sort(new Intl.Collator('ru').compare))
 
         return this.firstNamesMale;
     }
