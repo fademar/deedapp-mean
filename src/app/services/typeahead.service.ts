@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Subject }
 import { DeedService } from './deed.service';
 import * as _ from 'lodash';
 
