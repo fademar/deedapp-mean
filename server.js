@@ -286,9 +286,8 @@ app.get('/api/firstnamesmale', (req, res) => {
 	db.collection(deedsCollection).aggregate(
 			[
   				{ $group: { _id: {agentSex:"$agentSex","agent.firstName": "$agent.firsName" }}}
-			],
-	).toArray(	
-		(err, docs) => {
+			]
+	).toArray((err, docs) => {
 		if (err) {
 			handleError(res, err.message, 'Failed to get deeds.');
 		} else {
