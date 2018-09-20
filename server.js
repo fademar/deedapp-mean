@@ -282,6 +282,22 @@ app.get('/api/firstnames', (req, res) => {
 	});
 });
 
+app.get('/api/firstnamesmale', (req, res) => {
+	db.collection(deedsCollection).aggregate(
+			[
+				{ $match: { $and: [ { agentSex: "male" }, { counterAgentSex: "male" } ] } },
+  				{ $group: { _id: null, "agent.firstName": "$agent.firsName" }}
+			],
+			
+		(err, docs) => {
+		if (err) {
+			handleError(res, err.message, 'Failed to get deeds.');
+		} else {
+			docs.sort(new Intl.Collator('ru').compare);
+			res.status(200).json(docs);
+		}
+	});
+});
 
 
 app.get('*', function(req, res) {
