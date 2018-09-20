@@ -285,7 +285,7 @@ app.get('/api/firstnames', (req, res) => {
 app.get('/api/firstnamesmale', (req, res) => {
 	db.collection(deedsCollection).aggregate(
 			[
-  				{ $group: { _id: {agentSex:"$agentSex","agent.firstName": "$agent.firsName" }}}
+  				{ $group: { _id: {"agent.firstName": "$agent.firsName" }}}
 			]
 	).toArray((err, docs) => {
 		if (err) {
