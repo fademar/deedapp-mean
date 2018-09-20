@@ -155,6 +155,7 @@ export class AddDeedComponent implements OnInit {
         this.getFirstNamesM();
         this.getFirstNamesF();
         this.getFirstNamesAll();
+        this.getGeogrStatuses();
 
         if (this.route.snapshot.params['id']) {
             this.id = this.route.snapshot.params['id'];
@@ -2831,7 +2832,7 @@ export class AddDeedComponent implements OnInit {
 
     }
 
-    getGeogrStatus() {
+    getGeogrStatuses() {
         this.deedService.getDeeds().subscribe(deeds => {
             deeds.forEach(deed => {
                 if (deed.agentSex === 'male' && deed.agent.geogrStatus) {
@@ -2871,6 +2872,25 @@ export class AddDeedComponent implements OnInit {
                             this.geogrStatuses.push(_.trim(element.coCounterAgent.referentMale.geogrStatus));
                         }
                     });
+                }
+
+                if (deed.transactions.length > 0) {
+                    deed.transactions.forEach(transaction => {
+                        if (transaction.agentTransactionObjects.length > 0) {
+                            transaction.agentTransactionObjects.forEach(agentTransactionObject => {
+                                if (agentTransactionObject.immovableProperty && agentTransactionObject.immovableProperty.localisation !== '') {
+                                    this.geogrStatuses.push(_.trim(agentTransactionObject.immovableProperty.localisation));
+                                }
+                            });
+                        }
+                        if (transaction.counterAgentTransactionObjects.length > 0) {
+                            transaction.counterAgentTransactionObjects.forEach(counterAgentTransactionObject => {
+                                if (counterAgentTransactionObject.immovableProperty && counterAgentTransactionObject.immovableProperty.localisation !== '') {
+                                    this.geogrStatuses.push(_.trim(counterAgentTransactionObject.immovableProperty.localisation));
+                                }
+                            });
+                        }
+                    }); // END FOREACH TRANSACTION
                 }
 
                 if (deed.scribe && deed.scribe.geogrStatus) {
