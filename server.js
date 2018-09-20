@@ -272,10 +272,7 @@ app.get('/api/search/:term', (req, res) => {
  *
  */
 app.get('/api/firstnames', (req, res) => {
-	db.collection(deedsCollection).distinct(
-		'agent.firstName',
-		{agentSex: 'male'},
-		{collation: { locale: 'ru', strength: 3}}).toArray((err, docs) => {
+	db.collection(deedsCollection).distinct('agent.firstName', {agentSex: 'male'}, (err, docs) => {
 		if (err) {
 			handleError(res, err.message, 'Failed to get deeds.');
 		} else {
