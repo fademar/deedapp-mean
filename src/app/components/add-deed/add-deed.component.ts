@@ -69,7 +69,8 @@ export class AddDeedComponent implements OnInit {
     firstNamesAllSorted = [];
     firstNamesMaleSorted = [];
     firstNamesFemaleSorted = [];
-
+    geogrStatuses = [];
+    geogrStatusesSorted = [];
 
     id = this.id;
     deed;
@@ -152,6 +153,8 @@ export class AddDeedComponent implements OnInit {
         this.selectedCounterAction = '';
         this.counterAgentField = 'text';
         this.getFirstNamesM();
+        this.getFirstNamesF();
+        this.getFirstNamesAll();
 
         if (this.route.snapshot.params['id']) {
             this.id = this.route.snapshot.params['id'];
@@ -2828,7 +2831,92 @@ export class AddDeedComponent implements OnInit {
 
     }
 
+    getGeogrStatus() {
+        this.deedService.getDeeds().subscribe(deeds => {
+            deeds.forEach(deed => {
+                if (deed.agentSex === 'male' && deed.agent.geogrStatus) {
+                    this.geogrStatuses.push(_.trim(deed.agent.geogrStatus));
+                }
+                if (deed.agentSex === 'body-corporate' && deed.agent.geogrStatus) {
+                    this.geogrStatuses.push(_.trim(deed.agent.geogrStatus));
+                }
+                if (deed.agentSex === 'female' && deed.agent.referentMale.geogrStatus) {
+                    this.geogrStatuses.push(_.trim(deed.agent.referentMale.geogrStatus));
+                }
+                if (deed.counterAgentSex === 'male' && deed.counterAgent.geogrStatus) {
+                    this.geogrStatuses.push(_.trim(deed.counterAgent.geogrStatus));
+                }
+                if (deed.counterAgentSex === 'body-corporate' && deed.counterAgent.geogrStatus) {
+                    this.geogrStatuses.push(_.trim(deed.counterAgent.geogrStatus));
+                }
+                if (deed.counterAgentSex === 'female' && deed.counterAgent.referentMale.geogrStatus) {
+                    this.geogrStatuses.push(_.trim(deed.counterAgent.referentMale.geogrStatus));
+                }
+                if (deed.coAgents.length > 0) {
+                    deed.coAgents.forEach(element => {
+                        if (element.coAgentSex === 'male' && element.coAgent.geogrStatus) {
+                            this.geogrStatuses.push(_.trim(element.coAgent.geogrStatus));
+                        }
+                        if (element.coAgentSex === 'female' && element.coAgent.referentMale.geogrStatus) {
+                            this.geogrStatuses.push(_.trim(element.coAgent.referentMale.geogrStatus));
+                        }
+                    });
+                }
+                if (deed.coCounterAgents.length > 0) {
+                    deed.coCounterAgents.forEach(element => {
+                        if (element.coCounterAgentSex === 'male' && element.coCounterAgent.geogrStatus) {
+                            this.geogrStatuses.push(_.trim(element.coCounterAgent.geogrStatus));
+                        }
+                        if (element.coCounterAgentSex === 'female' && element.coCounterAgent.referentMale.geogrStatus) {
+                            this.geogrStatuses.push(_.trim(element.coCounterAgent.referentMale.geogrStatus));
+                        }
+                    });
+                }
 
+                if (deed.scribe && deed.scribe.geogrStatus) {
+                    this.geogrStatuses.push(_.trim(deed.scribe.geogrStatus));
+                }
+
+                if (deed.whitnesses.length > 0) {
+                    deed.whitnesses.forEach(whitness => {
+                        if (whitness.geogrStatus) {
+                            this.geogrStatuses.push(_.trim(whitness.geogrStatus));
+                        }
+                    });
+
+                }
+
+                if (deed.sureties.length > 0) {
+                    deed.sureties.forEach(surety => {
+                        if (surety.geogrStatus) {
+                            this.geogrStatuses.push(_.trim(surety.geogrStatuses));
+                        }
+                    });
+
+                }
+
+                if (deed.otherParticipants.length > 0) {
+                    deed.otherParticipants.forEach(otherParticipant => {
+                        if (otherParticipant.geogrStatus) {
+                            this.geogrStatuses.push(_.trim(otherParticipant.geogrStatus));
+                        }
+                    });
+
+                }
+
+                if (deed.registrator && deed.registrator.geogrStatus) {
+                    this.geogrStatuses.push(_.trim(deed.registrator.geogrStatus));
+                }
+
+
+
+
+            }); //END FOREACH
+
+            this.geogrStatuses.sort(new Intl.Collator('ru').compare);
+            this.geogrStatusesSorted = _.sortedUniq(this.geogrStatuses);
+        });
+    }
 
 
     // Submit the form
