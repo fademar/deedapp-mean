@@ -267,6 +267,22 @@ app.get('/api/search/:term', (req, res) => {
 	});
 });
 
+/*  '/api/firstnames'
+ *    GET: retrieve distinct firstnames and order them
+ *
+ */
+app.get('/api/firstnames', (req, res) => {
+	db.collection(deedsCollection).distinct(
+		'agent.firstName',
+		{agentSex: 'male'},
+		{collation: { locale: 'ru', strength: 3}}).toArray((err, docs) => {
+		if (err) {
+			handleError(res, err.message, 'Failed to get deeds.');
+		} else {
+			res.status(200).json(docs);
+		}
+	});
+});
 
 
 
