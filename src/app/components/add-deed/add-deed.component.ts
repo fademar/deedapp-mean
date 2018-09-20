@@ -65,6 +65,8 @@ export class AddDeedComponent implements OnInit {
     firstNamesMale = [];
     firstNamesFemale = [];
     firstNamesAll = [];
+    firstNamesAllRaw = [];
+    firstNamesAllSorted = [];
     firstNamesMaleSorted = [];
     firstNamesFemaleSorted = [];
 
@@ -2723,7 +2725,6 @@ export class AddDeedComponent implements OnInit {
 
             this.firstNamesMale.sort(new Intl.Collator('ru').compare);
             this.firstNamesMaleSorted = _.sortedUniq(this.firstNamesMale);
-            console.log(this.firstNamesMaleSorted);
         });
     }
 
@@ -2751,12 +2752,10 @@ export class AddDeedComponent implements OnInit {
                     });
                 }
             });
-            // this.firstNamesFemale.sort();
-            // this.firstNamesFemale = _.sortedUniq(this.firstNamesFemale);
+            this.firstNamesFemale.sort(new Intl.Collator('ru').compare);
+            this.firstNamesFemaleSorted = _.sortedUniq(this.firstNamesFemale);
         });
-        // console.log(this.firstNamesFemale);
 
-        return this.firstNamesFemale;
 
     }
 
@@ -2820,14 +2819,13 @@ export class AddDeedComponent implements OnInit {
 
             }); // END FOREACH DEEDS
 
-            this.firstNamesAll = _.concat(this.firstNamesAll, this.firstNamesMale, this.firstNamesFemale);
-            // this.firstNamesAll.sort();
-            // this.firstNamesAll = _.sortedUniq(this.firstNamesAll);
+            this.firstNamesAllRaw = _.concat(this.firstNamesAll, this.firstNamesMale, this.firstNamesFemale);
+            this.firstNamesAllRaw.sort(new Intl.Collator('ru').compare);
+            this.firstNamesAllSorted = _.sortedUniq(this.firstNamesAllRaw);
 
 
         }); // END SUBSCRIBE
-        // console.log(this.firstNamesAll);
-        return this.firstNamesAll;
+
     }
 
 
