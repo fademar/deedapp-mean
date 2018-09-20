@@ -276,6 +276,7 @@ app.get('/api/firstnames', (req, res) => {
 		if (err) {
 			handleError(res, err.message, 'Failed to get deeds.');
 		} else {
+			docs.sort(new Intl.Collator('ru').compare);
 			res.status(200).json(docs);
 		}
 	});
