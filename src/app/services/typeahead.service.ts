@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { Subject }
 import { DeedService } from './deed.service';
 import * as _ from 'lodash';
 
@@ -55,16 +56,7 @@ export class TypeaheadService {
             this.firstNamesMale.sort(new Intl.Collator('ru').compare);
             this.firstNamesMaleSorted = _.sortedUniq(this.firstNamesMale);
 
-            console.log(this.firstNamesMaleSorted);
-
-
-
         });
-        console.log("DEUX:");
-
-        console.log(this.firstNamesMaleSorted);
-
-        return this.firstNamesMaleSorted;
     }
 
     getFirstNamesF() {
