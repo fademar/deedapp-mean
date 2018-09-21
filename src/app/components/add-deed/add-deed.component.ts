@@ -2133,7 +2133,7 @@ export class AddDeedComponent implements OnInit {
                                             type: [''],
                                             origin: [''],
                                             description: [''],
-                                            price: ['']
+                                            price: this.fb.array([])
                                         })
                                     });
                                     this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
@@ -2581,6 +2581,35 @@ export class AddDeedComponent implements OnInit {
                                                 })
                                             })
                                         });
+
+                                        if (transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver) {
+                                            if (transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.rubli || transaction.counterAgentTransactionObjects[index].debt.money.moscowSilver.altyny || transaction.counterAgentTransactionObjects[index].debt.money.moscowSilver.dengi) {
+                                                this.counterAgentTransactionObject.controls.money['controls'].push(this.initMoney());
+                                                this.counterAgentTransactionObject.controls.money['controls'][0].patchValue({
+                                                    coins: 'silver',
+                                                    rubli: transaction.counterAgentTransactionObject[index].money.amount.moscowSilver.rubli,
+                                                    altyny: transaction.counterAgentTransactionObject[index].money.amount.moscowSilver.altyny,
+                                                    dengi: transaction.counterAgentTransactionObject[index].money.amount.moscowSilver.dengi
+                                                });
+                                            }
+                                            if (transaction.counterAgentTransactionObjects[index].money.amount.chekhi.rubli || transaction.counterAgentTransactionObjects[index].money.amount.chekhi.altyny || transaction.counterAgentTransactionObjects[index].money.amount.chekhi.dengi) {
+                                                this.counterAgentTransactionObject.controls.money['controls'].push(this.initMoney());
+                                                this.counterAgentTransactionObject.controls.money['controls'][0].patchValue({
+                                                    coins: 'chekhi',
+                                                    rubli: transaction.counterAgentTransactionObject[index].money.amount.chekhi.rubli,
+                                                    altyny: transaction.counterAgentTransactionObject[index].money.amount.chekhi.altyny,
+                                                    dengi: transaction.counterAgentTransactionObject[index].money.amount.chekhi.dengi
+                                                });
+                                            }
+                                        } else {
+    
+                                            for (let i = 0; i < transaction.counterAgentTransactionObjects[index].money.length; i++) {
+                                                this.counterAgentTransactionObject.controls.money['controls'].push(this.initMoney());
+                                            }
+                                            this.counterAgentTransactionObject.patchValue(transaction.counterAgentTransactionObjects[index]);
+                                        }
+    
+
                                         break;
                                     }
                                     case 'parent': {
