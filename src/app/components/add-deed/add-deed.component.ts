@@ -2561,7 +2561,6 @@ export class AddDeedComponent implements OnInit {
                                             if (transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.rubli || transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.altyny || transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.dengi) {
                                                 console.log(transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.rubli);
                                                 this.counterAgentTransactionObject.controls.money['controls'].push(this.initMoney());
-                                                console.log(this.counterAgentTransactionObject.controls.money['controls']);
                                                 this.counterAgentTransactionObject.controls.money['controls'][0].patchValue({
                                                     coins: 'silver',
                                                     rubli: transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.rubli,
@@ -2588,7 +2587,7 @@ export class AddDeedComponent implements OnInit {
                                             this.counterAgentTransactionObject.patchValue(transaction.counterAgentTransactionObjects[index]);
                                         }
 
-
+                                        this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects.push(this.counterAgentTransactionObject);
                                         break;
                                     }
                                     case 'parent': {
