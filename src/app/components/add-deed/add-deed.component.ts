@@ -2574,7 +2574,7 @@ export class AddDeedComponent implements OnInit {
                                                 this.counterAgentTransactionObject.controls.money['controls'].push(this.initMoney());
                                                 console.log(this.counterAgentTransactionObject.controls.money);
                                                 console.log(this.counterAgentTransactionObject.controls.money['controls'][0]['controls']);
-                                                this.counterAgentTransactionObject.controls.money['controls'][0]['controls'].patchValue({
+                                                this.counterAgentTransactionObject.controls.money.patchValue({
                                                     coins: 'silver',
                                                     rubli: transaction.counterAgentTransactionObject[index].money.amount.moscowSilver.rubli,
                                                     altyny: transaction.counterAgentTransactionObject[index].money.amount.moscowSilver.altyny,
@@ -2583,7 +2583,7 @@ export class AddDeedComponent implements OnInit {
                                             }
                                             if (transaction.counterAgentTransactionObjects[index].money.amount.chekhi.rubli || transaction.counterAgentTransactionObjects[index].money.amount.chekhi.altyny || transaction.counterAgentTransactionObjects[index].money.amount.chekhi.dengi) {
                                                 this.counterAgentTransactionObject.controls.money['controls'].push(this.initMoney());
-                                                this.counterAgentTransactionObject.controls.money['controls'][0]['controls'].patchValue({
+                                                this.counterAgentTransactionObject.controls.money.patchValue({
                                                     coins: 'chekhi',
                                                     rubli: transaction.counterAgentTransactionObject[index].money.amount.chekhi.rubli,
                                                     altyny: transaction.counterAgentTransactionObject[index].money.amount.chekhi.altyny,
