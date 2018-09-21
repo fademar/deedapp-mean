@@ -2554,15 +2554,13 @@ export class AddDeedComponent implements OnInit {
                                     }
                                     case 'money': {
                                         this.counterAgentTransactionObject = this.fb.group({
-                                            money: this.fb.group({
-                                                amount: this.fb.array([])
-                                            })
+                                            money: this.fb.array([])
                                         });
 
                                         if (transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver) {
                                             if (transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.rubli || transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.altyny || transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.dengi) {
-                                                this.counterAgentTransactionObject.controls.money['controls'].amount.push(this.initMoney());
-                                                this.counterAgentTransactionObject.controls.money['controls'].amount['controls'][0].patchValue({
+                                                this.counterAgentTransactionObject.controls.money['controls'].push(this.initMoney());
+                                                this.counterAgentTransactionObject.controls.money['controls'][0].patchValue({
                                                     coins: 'silver',
                                                     rubli: transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.rubli,
                                                     altyny: transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.altyny,
@@ -2570,8 +2568,8 @@ export class AddDeedComponent implements OnInit {
                                                 });
                                             }
                                             if (transaction.counterAgentTransactionObjects[index].money.amount.chekhi.rubli || transaction.counterAgentTransactionObjects[index].money.amount.chekhi.altyny || transaction.counterAgentTransactionObjects[index].money.amount.chekhi.dengi) {
-                                                this.counterAgentTransactionObject.controls.money['controls'].amount.push(this.initMoney());
-                                                this.counterAgentTransactionObject.controls.money['controls'].amount['controls'][0].patchValue({
+                                                this.counterAgentTransactionObject.controls.money['controls'].push(this.initMoney());
+                                                this.counterAgentTransactionObject.controls.money['controls'][0].patchValue({
                                                     coins: 'chekhi',
                                                     rubli: transaction.counterAgentTransactionObjects[index].money.amount.chekhi.rubli,
                                                     altyny: transaction.counterAgentTransactionObjects[index].money.amount.chekhi.altyny,
@@ -2581,8 +2579,8 @@ export class AddDeedComponent implements OnInit {
     
                                         } else {
     
-                                            for (let i = 0; i < transaction.counterAgentTransactionObjects[index].money.amount.length; i++) {
-                                                this.counterAgentTransactionObject.controls.money['controls'].amount['controls'].push(this.initMoney());
+                                            for (let i = 0; i < transaction.counterAgentTransactionObjects[index].money.length; i++) {
+                                                this.counterAgentTransactionObject.controls.money['controls'].push(this.initMoney());
                                             }
                                             this.counterAgentTransactionObject.patchValue(transaction.counterAgentTransactionObjects[index]);
                                         }

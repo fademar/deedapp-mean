@@ -1432,7 +1432,7 @@
                       </div>
                       <div formArrayName="money"class=" card-body">
                         <label>Amount in</label>
-                        <div *ngFor="let forfeitAmount of transactionObject['controls']['money']['controls']; let k=index">
+                        <div *ngFor="let moneyAmount of transactionObject['controls']['money']['controls']; let k=index">
                           <div [formGroupName]="k">
                                   <div class="form-group">
                                     <div class="row">
