@@ -2566,20 +2566,7 @@ export class AddDeedComponent implements OnInit {
                                     }
                                     case 'money': {
                                         this.counterAgentTransactionObject = this.fb.group({
-                                            money: this.fb.group({
-                                                amount: this.fb.group({
-                                                    moscowSilver: this.fb.group({
-                                                        rubli: [''],
-                                                        altyny: [''],
-                                                        dengi: ['']
-                                                    }),
-                                                    chekhi: this.fb.group({
-                                                        rubli: [''],
-                                                        altyny: [''],
-                                                        dengi: ['']
-                                                    })
-                                                })
-                                            })
+                                            money: this.fb.array([])
                                         });
 
                                         if (transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver) {
