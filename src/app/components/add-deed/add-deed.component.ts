@@ -2573,8 +2573,8 @@ export class AddDeedComponent implements OnInit {
                                             if (transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.rubli || transaction.counterAgentTransactionObjects[index].debt.money.moscowSilver.altyny || transaction.counterAgentTransactionObjects[index].debt.money.moscowSilver.dengi) {
                                                 this.counterAgentTransactionObject.controls.money['controls'].push(this.initMoney());
                                                 console.log(this.counterAgentTransactionObject.controls.money);
-                                                console.log(this.counterAgentTransactionObject.controls.money['controls'][0]);
-                                                this.counterAgentTransactionObject.controls.money['controls'][0].patchValue({
+                                                console.log(this.counterAgentTransactionObject.controls.money['controls'][0]['controls']);
+                                                this.counterAgentTransactionObject.controls.money['controls'][0]['controls'].patchValue({
                                                     coins: 'silver',
                                                     rubli: transaction.counterAgentTransactionObject[index].money.amount.moscowSilver.rubli,
                                                     altyny: transaction.counterAgentTransactionObject[index].money.amount.moscowSilver.altyny,
@@ -2583,7 +2583,7 @@ export class AddDeedComponent implements OnInit {
                                             }
                                             if (transaction.counterAgentTransactionObjects[index].money.amount.chekhi.rubli || transaction.counterAgentTransactionObjects[index].money.amount.chekhi.altyny || transaction.counterAgentTransactionObjects[index].money.amount.chekhi.dengi) {
                                                 this.counterAgentTransactionObject.controls.money['controls'].push(this.initMoney());
-                                                this.counterAgentTransactionObject.controls.money['controls'][0].patchValue({
+                                                this.counterAgentTransactionObject.controls.money['controls'][0]['controls'].patchValue({
                                                     coins: 'chekhi',
                                                     rubli: transaction.counterAgentTransactionObject[index].money.amount.chekhi.rubli,
                                                     altyny: transaction.counterAgentTransactionObject[index].money.amount.chekhi.altyny,
