@@ -2559,13 +2559,16 @@ export class AddDeedComponent implements OnInit {
 
                                         if (transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver) {
                                             if (transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.rubli || transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.altyny || transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.dengi) {
+                                                console.log(transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.rubli);
                                                 this.counterAgentTransactionObject.controls.money['controls'].push(this.initMoney());
+                                                console.log(this.counterAgentTransactionObject.controls.money['controls']);
                                                 this.counterAgentTransactionObject.controls.money['controls'][0].patchValue({
                                                     coins: 'silver',
                                                     rubli: transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.rubli,
                                                     altyny: transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.altyny,
                                                     dengi: transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.dengi
                                                 });
+                                                console.log(this.counterAgentTransactionObject.controls.money['controls']);
                                             }
                                             if (transaction.counterAgentTransactionObjects[index].money.amount.chekhi.rubli || transaction.counterAgentTransactionObjects[index].money.amount.chekhi.altyny || transaction.counterAgentTransactionObjects[index].money.amount.chekhi.dengi) {
                                                 this.counterAgentTransactionObject.controls.money['controls'].push(this.initMoney());
@@ -2578,7 +2581,7 @@ export class AddDeedComponent implements OnInit {
                                             }
     
                                         } else {
-    
+                                            console.log('else');
                                             for (let i = 0; i < transaction.counterAgentTransactionObjects[index].money.length; i++) {
                                                 this.counterAgentTransactionObject.controls.money['controls'].push(this.initMoney());
                                             }

@@ -1371,7 +1371,7 @@
                                 <div class="col-3">
                                   <input type="number" min="0" class="form-control" formControlName="y" trim="blur">
                                 </div>
-                                <div class="col-1">sazheni</div>
+                                <div class="col-2">sazheni</div>
                               </div>
                             </div>
                           </div>
@@ -1926,7 +1926,7 @@
                         </div>
                       </div>
                       <div formArrayName="forfeit" class="card-body">
-                        <label>Price in</label>
+                        <label>Amount in</label>
                         <div *ngFor="let forfeitAmount of transactionCounterObject['controls']['forfeit']['controls']; let k=index">
                           <div [formGroupName]="k">
                                   <div class="form-group">
@@ -2145,7 +2145,7 @@
                                 <div class="col-3">
                                   <input type="number" min="0" class="form-control" formControlName="y" trim="blur">
                                 </div>
-                                <div class="col-1">sazheni</div>
+                                <div class="col-2">sazheni</div>
                               </div>
                             </div>
                           </div>
@@ -2206,7 +2206,7 @@
                       </div>
                       <div formArrayName="money"class=" card-body">
                         <label>Amount in</label>
-                        <div *ngFor="let forfeitAmount of transactionCounterObject['controls']['money']['controls']; let k=index">
+                        <div *ngFor="let moneyAmount of transactionCounterObject['controls']['money']['controls']; let k=index">
                           <div [formGroupName]="k">
                                   <div class="form-group">
                                     <div class="row">
