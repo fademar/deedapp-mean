@@ -2133,7 +2133,7 @@ export class AddDeedComponent implements OnInit {
                                             type: [''],
                                             origin: [''],
                                             description: [''],
-                                            price: this.fb.array([])
+                                            price: ['']
                                         })
                                     });
                                     this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
@@ -2173,6 +2173,7 @@ export class AddDeedComponent implements OnInit {
                                     } else {
 
                                         for (let i = 0; i < transaction.agentTransactionObjects[index].debt.amount.length; i++) {
+                                            console.log(transaction.agentTransactionObjects[index].debt.amount[i]);
                                             this.agentTransactionObject.controls.debt['controls'].amount['controls'].push(this.initMoney());
                                         }
                                         this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
@@ -2278,35 +2279,22 @@ export class AddDeedComponent implements OnInit {
                                 }
                                 case 'money': {
                                     this.agentTransactionObject = this.fb.group({
-                                        money: this.fb.array([])
+                                        money: this.fb.group({
+                                            amount: this.fb.group({
+                                                moscowSilver: this.fb.group({
+                                                    rubli: [''],
+                                                    altyny: [''],
+                                                    dengi: ['']
+                                                }),
+                                                chekhi: this.fb.group({
+                                                    rubli: [''],
+                                                    altyny: [''],
+                                                    dengi: ['']
+                                                })
+                                            })
+                                        })
                                     });
-                                    if (transaction.agentTransactionObjects[index].money.amount.moscowSilver) {
-                                        if (transaction.agentTransactionObjects[index].money.amount.moscowSilver.rubli || transaction.agentTransactionObjects[index].debt.money.moscowSilver.altyny || transaction.agentTransactionObjects[index].debt.money.moscowSilver.dengi) {
-                                            this.agentTransactionObject.controls.money['controls'].push(this.initMoney());
-                                            this.agentTransactionObject.controls.money['controls'][0].patchValue({
-                                                coins: 'silver',
-                                                rubli: transaction.agentTransactionObjects[index].money.amount.moscowSilver.rubli,
-                                                altyny: transaction.agentTransactionObjects[index].money.amount.moscowSilver.altyny,
-                                                dengi: transaction.agentTransactionObjects[index].money.amount.moscowSilver.dengi
-                                            });
-                                        }
-                                        if (transaction.agentTransactionObjects[index].money.amount.chekhi.rubli || transaction.agentTransactionObjects[index].money.amount.chekhi.altyny || transaction.agentTransactionObjects[index].money.amount.chekhi.dengi) {
-                                            this.agentTransactionObject.controls.money['controls'].push(this.initMoney());
-                                            this.agentTransactionObject.controls.money['controls'][0].patchValue({
-                                                coins: 'chekhi',
-                                                rubli: transaction.agentTransactionObjects[index].money.amount.chekhi.rubli,
-                                                altyny: transaction.agentTransactionObjects[index].money.amount.chekhi.altyny,
-                                                dengi: transaction.agentTransactionObjects[index].money.amount.chekhi.dengi
-                                            });
-                                        }
-                                    } else {
-
-                                        for (let i = 0; i < transaction.agentTransactionObjects[index].money.length; i++) {
-                                            this.agentTransactionObject.controls.money['controls'].push(this.initMoney());
-                                        }
-                                        this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
-                                    }
-
+                                    this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
                                     this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
                                     break;
                                 }
@@ -2566,38 +2554,39 @@ export class AddDeedComponent implements OnInit {
                                     }
                                     case 'money': {
                                         this.counterAgentTransactionObject = this.fb.group({
-                                            money: this.fb.array([])
+                                            money: this.fb.group({
+                                                amount: this.fb.array([])
+                                            })
                                         });
 
                                         if (transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver) {
-                                            if (transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.rubli || transaction.counterAgentTransactionObjects[index].debt.money.moscowSilver.altyny || transaction.counterAgentTransactionObjects[index].debt.money.moscowSilver.dengi) {
-                                                this.counterAgentTransactionObject.controls.money['controls'].push(this.initMoney());
-                                                console.log(this.counterAgentTransactionObject.controls.money);
-                                                console.log(this.counterAgentTransactionObject.controls.money['controls'][0]['controls']);
-                                                this.counterAgentTransactionObject.controls.money.patchValue({
+                                            if (transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.rubli || transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.altyny || transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.dengi) {
+                                                this.counterAgentTransactionObject.controls.money['controls'].amount.push(this.initMoney());
+                                                this.counterAgentTransactionObject.controls.money['controls'].amount['controls'][0].patchValue({
                                                     coins: 'silver',
-                                                    rubli: transaction.counterAgentTransactionObject[index].money.amount.moscowSilver.rubli,
-                                                    altyny: transaction.counterAgentTransactionObject[index].money.amount.moscowSilver.altyny,
-                                                    dengi: transaction.counterAgentTransactionObject[index].money.amount.moscowSilver.dengi
+                                                    rubli: transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.rubli,
+                                                    altyny: transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.altyny,
+                                                    dengi: transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.dengi
                                                 });
                                             }
                                             if (transaction.counterAgentTransactionObjects[index].money.amount.chekhi.rubli || transaction.counterAgentTransactionObjects[index].money.amount.chekhi.altyny || transaction.counterAgentTransactionObjects[index].money.amount.chekhi.dengi) {
-                                                this.counterAgentTransactionObject.controls.money['controls'].push(this.initMoney());
-                                                this.counterAgentTransactionObject.controls.money.patchValue({
+                                                this.counterAgentTransactionObject.controls.money['controls'].amount.push(this.initMoney());
+                                                this.counterAgentTransactionObject.controls.money['controls'].amount['controls'][0].patchValue({
                                                     coins: 'chekhi',
-                                                    rubli: transaction.counterAgentTransactionObject[index].money.amount.chekhi.rubli,
-                                                    altyny: transaction.counterAgentTransactionObject[index].money.amount.chekhi.altyny,
-                                                    dengi: transaction.counterAgentTransactionObject[index].money.amount.chekhi.dengi
+                                                    rubli: transaction.counterAgentTransactionObjects[index].money.amount.chekhi.rubli,
+                                                    altyny: transaction.counterAgentTransactionObjects[index].money.amount.chekhi.altyny,
+                                                    dengi: transaction.counterAgentTransactionObjects[index].money.amount.chekhi.dengi
                                                 });
                                             }
+    
                                         } else {
     
-                                            for (let i = 0; i < transaction.counterAgentTransactionObjects[index].money.length; i++) {
-                                                this.counterAgentTransactionObject.controls.money['controls'].push(this.initMoney());
+                                            for (let i = 0; i < transaction.counterAgentTransactionObjects[index].money.amount.length; i++) {
+                                                this.counterAgentTransactionObject.controls.money['controls'].amount['controls'].push(this.initMoney());
                                             }
                                             this.counterAgentTransactionObject.patchValue(transaction.counterAgentTransactionObjects[index]);
                                         }
-    
+
 
                                         break;
                                     }
