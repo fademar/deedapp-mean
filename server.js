@@ -336,12 +336,14 @@ app.get('/api/firstnamesmale', (req, res) => {
 app.get('/api/update-schema', (req, res) => {
   db.collection(deedsCollection).updateMany({}, {
     $set: {
-      "schema-version": 1
+      "schema-version": 2
     }
-  }).then(r => {
-    console.log('Success!');
-  }).catch(err => {
-    console.log('Error - ' + err);
+  }, (err, activity) => {
+    if (err) {
+      handleError(res, err.message, 'Failed to update the database');
+    } else {
+      res.status(200).json("Database updated with success");
+    }
   });
 });
 
