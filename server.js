@@ -338,7 +338,7 @@ app.get('/api/update-schema', (req, res) => {
     $set: {
       "schema-version": 1
     }
-  }, false, true).toArray((err, docs) => {
+  }, {}).toArray((err, docs) => {
     if (err) {
       handleError(res, err.message, 'Failed to get deeds.');
     } else {
