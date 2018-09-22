@@ -338,12 +338,10 @@ app.get('/api/update-schema', (req, res) => {
     $set: {
       "schema-version": 1
     }
-  }, {}).toArray((err, docs) => {
-    if (err) {
-      handleError(res, err.message, 'Failed to get deeds.');
-    } else {
-      res.status(200).json(docs);
-    }
+  }).then(r => {
+    console.log('Success!');
+  }).catch(err => {
+    console.log('Error - ' + err);
   });
 });
 
