@@ -222,7 +222,7 @@ export class AddDeedComponent implements OnInit {
             verbatimCitations: [''],
             researcherNotes: [''],
             complete: [false],
-            schemaVersion: ['']
+            schemaVersion: [2]
         })
 
     }
