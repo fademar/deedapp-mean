@@ -1682,7 +1682,8 @@ export class AddDeedComponent implements OnInit {
                 fees: this.deed.fees,
                 verbatimCitations: this.deed.verbatimCitations,
                 researcherNotes: this.deed.researcherNotes,
-                complete: this.deed.complete
+                complete: this.deed.complete,
+                schemaVersion: this.deed.schemaVersion
             });
 
             // Populate Agent depending on AgentSex
@@ -2134,10 +2135,26 @@ export class AddDeedComponent implements OnInit {
                                             type: [''],
                                             origin: [''],
                                             description: [''],
-                                            price: ['']
+                                            price: this.fb.array([])
                                         })
                                     });
-                                    this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+                                    if (deed.schemaVersion == 1) {
+                                        if (transaction.agentTransactionObjects[index].chattels.price) {
+                                            this.agentTransactionObject.controls.chattels['controls'].price.push(this.initMoney());
+                                            this.agentTransactionObject.controls.chattels['controls'].price['controls'][0].patchValue({
+                                                coins: 'unspecified',
+                                                rubli: transaction.agentTransactionObjects[index].chattels.price,
+                                                altyny: 0,
+                                                dengi: 0
+                                            });
+                                        }
+                                        this.deedForm.controls.schemaVersion.patchValue(2);
+                                    } else {
+                                        for (let i = 0; i < transaction.agentTransactionObjects[index].chattels.price.length; i++) {
+                                            this.agentTransactionObject.controls.chattels['controls'].price['controls'].push(this.initMoney());
+                                        }
+                                        this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+                                    }
                                     this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
                                     break;
                                 }
@@ -2197,20 +2214,36 @@ export class AddDeedComponent implements OnInit {
                                 }
                                 case 'forfeit': {
                                     this.agentTransactionObject = this.fb.group({
-                                        forfeit: this.fb.group({
-                                            moscowSilver: this.fb.group({
-                                                rubli: [''],
-                                                altyny: [''],
-                                                dengi: ['']
-                                            }),
-                                            chekhi: this.fb.group({
-                                                rubli: [''],
-                                                altyny: [''],
-                                                dengi: ['']
-                                            })
-                                        })
+                                        forfeit: this.fb.array([])
                                     });
-                                    this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+
+                                    if (deed.schemaVersion == 1) {
+                                        if (transaction.agentTransactionObjects[index].forfeit.moscowSilver.rubli || transaction.agentTransactionObjects[index].forfeit.moscowSilver.altyny || transaction.agentTransactionObjects[index].forfeit.moscowSilver.dengi) {
+                                            this.agentTransactionObject.controls.forfeit['controls'].push(this.initMoney());
+                                            this.agentTransactionObject.controls.forfeit['controls'][0].patchValue({
+                                                coins: 'silver',
+                                                rubli: transaction.agentTransactionObjects[index].forfeit.moscowSilver.rubli,
+                                                altyny: transaction.agentTransactionObjects[index].forfeit.moscowSilver.altyny,
+                                                dengi: transaction.agentTransactionObjects[index].forfeit.moscowSilver.dengi
+                                            });
+                                        }
+                                        if (transaction.agentTransactionObjects[index].forfeit.chekhi.rubli || transaction.agentTransactionObjects[index].forfeit.chekhi.altyny || transaction.agentTransactionObjects[index].forfeit.chekhi.dengi) {
+                                            this.agentTransactionObject.controls.forfeit['controls'].push(this.initMoney());
+                                            this.agentTransactionObject.controls.forfeit['controls'][0].patchValue({
+                                                coins: 'chekhi',
+                                                rubli: transaction.agentTransactionObjects[index].forfeit.chekhi.rubli,
+                                                altyny: transaction.agentTransactionObjects[index].forfeit.chekhi.altyny,
+                                                dengi: transaction.agentTransactionObjects[index].forfeit.chekhi.dengi
+                                            });
+                                        }
+                                        this.deedForm.controls.schemaVersion.patchValue(2);
+
+                                    } else {
+                                        for (let i = 0; i < transaction.agentTransactionObjects[index].forfeit.length; i++) {
+                                            this.agentTransactionObject.controls.forfeit['controls'].push(this.initMoney());
+                                        }
+                                        this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+                                    }
                                     this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
                                     break;
                                 }
@@ -2243,7 +2276,23 @@ export class AddDeedComponent implements OnInit {
                                             ])
                                         })
                                     });
-                                    this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+                                    if (deed.schemaVersion == 1) {
+                                        if (transaction.agentTransactionObjects[index].goods.price) {
+                                            this.agentTransactionObject.controls.goods['controls'].price.push(this.initMoney());
+                                            this.agentTransactionObject.controls.goods['controls'].price['controls'][0].patchValue({
+                                                coins: 'unspecified',
+                                                rubli: transaction.agentTransactionObjects[index].goods.price,
+                                                altyny: 0,
+                                                dengi: 0
+                                            });
+                                        }
+                                        this.deedForm.controls.schemaVersion.patchValue(2);
+                                    } else {
+                                        for (let i = 0; i < transaction.agentTransactionObjects[index].goods.price.length; i++) {
+                                            this.agentTransactionObject.controls.goods['controls'].price['controls'].push(this.initMoney());
+                                        }
+                                        this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+                                    }
                                     this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
                                     break;
                                 }
@@ -2278,22 +2327,36 @@ export class AddDeedComponent implements OnInit {
                                 }
                                 case 'money': {
                                     this.agentTransactionObject = this.fb.group({
-                                        money: this.fb.group({
-                                            amount: this.fb.group({
-                                                moscowSilver: this.fb.group({
-                                                    rubli: [''],
-                                                    altyny: [''],
-                                                    dengi: ['']
-                                                }),
-                                                chekhi: this.fb.group({
-                                                    rubli: [''],
-                                                    altyny: [''],
-                                                    dengi: ['']
-                                                })
-                                            })
-                                        })
+                                        money: this.fb.array([])
                                     });
-                                    this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+
+                                    if (deed.schemaVersion == 1) {
+                                        if (transaction.agentTransactionObjects[index].money.amount.moscowSilver.rubli || transaction.agentTransactionObjects[index].money.amount.moscowSilver.altyny || transaction.agentTransactionObjects[index].money.amount.moscowSilver.dengi) {
+                                            this.agentTransactionObject.controls.money['controls'].push(this.initMoney());
+                                            this.agentTransactionObject.controls.money['controls'][0].patchValue({
+                                                coins: 'silver',
+                                                rubli: transaction.agentTransactionObjects[index].money.amount.moscowSilver.rubli,
+                                                altyny: transaction.agentTransactionObjects[index].money.amount.moscowSilver.altyny,
+                                                dengi: transaction.agentTransactionObjects[index].money.amount.moscowSilver.dengi
+                                            });
+                                        }
+                                        if (transaction.agentTransactionObjects[index].money.amount.chekhi.rubli || transaction.agentTransactionObjects[index].money.amount.chekhi.altyny || transaction.agentTransactionObjects[index].money.amount.chekhi.dengi) {
+                                            this.agentTransactionObject.controls.money['controls'].push(this.initMoney());
+                                            this.agentTransactionObject.controls.money['controls'][0].patchValue({
+                                                coins: 'chekhi',
+                                                rubli: transaction.agentTransactionObjects[index].money.amount.chekhi.rubli,
+                                                altyny: transaction.agentTransactionObjects[index].money.amount.chekhi.altyny,
+                                                dengi: transaction.agentTransactionObjects[index].money.amount.chekhi.dengi
+                                            });
+                                        }
+                                        this.deedForm.controls.schemaVersion.patchValue(2);
+
+                                    } else {
+                                        for (let i = 0; i < transaction.agentTransactionObjects[index].money.length; i++) {
+                                            this.agentTransactionObject.controls.money['controls'].push(this.initMoney());
+                                        }
+                                        this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
+                                    }
                                     this.deedForm.controls.transactions['controls'][i].controls.agentTransactionObjects.push(this.agentTransactionObject);
                                     break;
                                 }
@@ -2432,30 +2495,67 @@ export class AddDeedComponent implements OnInit {
                                                 type: [''],
                                                 origin: [''],
                                                 description: [''],
-                                                price: ['']
+                                                price: this.fb.array([])
                                             })
                                         });
+                                        if (deed.schemaVersion == 1) {
+                                            if (transaction.counterAgentTransactionObjects[index].chattels.price) {
+                                                this.counterAgentTransactionObject.controls.chattels['controls'].price.push(this.initMoney());
+                                                this.counterAgentTransactionObject.controls.chattels['controls'].price['controls'][0].patchValue({
+                                                    coins: 'unspecified',
+                                                    rubli: transaction.counterAgentTransactionObjects[index].chattels.price,
+                                                    altyny: 0,
+                                                    dengi: 0
+                                                });
+                                            }
+                                            this.deedForm.controls.schemaVersion.patchValue(2);
+                                        } else {
+                                            for (let i = 0; i < transaction.counterAgentTransactionObjects[index].chattels.price.length; i++) {
+                                                this.counterAgentTransactionObject.controls.chattels['controls'].price['controls'].push(this.initMoney());
+                                            }
+                                            this.counterAgentTransactionObject.patchValue(transaction.counterAgentTransactionObjects[index]);
+                                        }
+                                        this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects.push(this.counterAgentTransactionObject);
                                         break;
                                     }
                                     case 'debt': {
                                         this.counterAgentTransactionObject = this.fb.group({
                                             debt: this.fb.group({
-                                                amount: this.fb.group({
-                                                    moscowSilver: this.fb.group({
-                                                        rubli: [''],
-                                                        altyny: [''],
-                                                        dengi: ['']
-                                                    }),
-                                                    chekhi: this.fb.group({
-                                                        rubli: [''],
-                                                        altyny: [''],
-                                                        dengi: ['']
-                                                    })
-                                                }),
+                                                amount: this.fb.array([]),
                                                 debtorName: [''],
                                                 debtDate: ['']
                                             })
                                         });
+                                        if (deed.schemaVersion == 1) {
+                                            if (transaction.counterAgentTransactionObjects[index].debt.amount.moscowSilver.rubli || transaction.counterAgentTransactionObjects[index].debt.amount.moscowSilver.altyny || transaction.counterAgentTransactionObjects[index].debt.amount.moscowSilver.dengi) {
+                                                this.counterAgentTransactionObject.controls.debt['controls'].amount.push(this.initMoney());
+                                                this.counterAgentTransactionObject.controls.debt['controls'].amount['controls'][0].patchValue({
+                                                    coins: 'silver',
+                                                    rubli: transaction.counterAgentTransactionObjects[index].debt.amount.moscowSilver.rubli,
+                                                    altyny: transaction.counterAgentTransactionObjects[index].debt.amount.moscowSilver.altyny,
+                                                    dengi: transaction.counterAgentTransactionObjects[index].debt.amount.moscowSilver.dengi
+                                                });
+                                            }
+                                            if (transaction.counterAgentTransactionObjects[index].debt.amount.chekhi.rubli || transaction.counterAgentTransactionObjects[index].debt.amount.chekhi.altyny || transaction.counterAgentTransactionObjects[index].debt.amount.chekhi.dengi) {
+                                                this.counterAgentTransactionObject.controls.debt['controls'].amount.push(this.initMoney());
+                                                this.counterAgentTransactionObject.controls.debt['controls'].amount['controls'][0].patchValue({
+                                                    coins: 'chekhi',
+                                                    rubli: transaction.counterAgentTransactionObjects[index].debt.amount.chekhi.rubli,
+                                                    altyny: transaction.counterAgentTransactionObjects[index].debt.amount.chekhi.altyny,
+                                                    dengi: transaction.counterAgentTransactionObjects[index].debt.amount.chekhi.dengi
+                                                });
+                                            }
+                                            this.counterAgentTransactionObject.controls.debt['controls'].debtorName.patchValue(transaction.counterAgentTransactionObjects[index].debt.debtorName);
+                                            this.counterAgentTransactionObject.controls.debt['controls'].debtDate.patchValue(transaction.counterAgentTransactionObjects[index].debt.debtDate);
+                                            this.deedForm.controls.schemaVersion.patchValue(2);
+                                        } else {
+                                            for (let i = 0; i < transaction.counterAgentTransactionObjects[index].debt.amount.length; i++) {
+                                                this.counterAgentTransactionObject.controls.debt['controls'].amount['controls'].push(this.initMoney());
+                                            }
+                                            this.counterAgentTransactionObject.patchValue(transaction.counterAgentTransactionObjects[index]);
+                                        }
+
+                                        this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects.push(this.counterAgentTransactionObject);
                                         break;
                                     }
                                     case 'dependent': {
@@ -2468,23 +2568,43 @@ export class AddDeedComponent implements OnInit {
                                                 relationToAgent: ['']
                                             })
                                         });
+                                        this.counterAgentTransactionObject.patchValue(transaction.counterAgentTransactionObjects[index]);
+                                        this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects.push(this.counterAgentTransactionObject);
                                         break;
                                     }
                                     case 'forfeit': {
                                         this.counterAgentTransactionObject = this.fb.group({
-                                            forfeit: this.fb.group({
-                                                moscowSilver: this.fb.group({
-                                                    rubli: [''],
-                                                    altyny: [''],
-                                                    dengi: ['']
-                                                }),
-                                                chekhi: this.fb.group({
-                                                    rubli: [''],
-                                                    altyny: [''],
-                                                    dengi: ['']
-                                                })
-                                            })
+                                            forfeit: this.fb.array([])
                                         });
+
+                                        if (deed.schemaVersion == 1) {
+                                            if (transaction.counterAgentTransactionObjects[index].forfeit.moscowSilver.rubli || transaction.counterAgentTransactionObjects[index].forfeit.moscowSilver.altyny || transaction.counterAgentTransactionObjects[index].forfeit.moscowSilver.dengi) {
+                                                this.counterAgentTransactionObject.controls.forfeit['controls'].push(this.initMoney());
+                                                this.counterAgentTransactionObject.controls.forfeit['controls'][0].patchValue({
+                                                    coins: 'silver',
+                                                    rubli: transaction.counterAgentTransactionObjects[index].forfeit.moscowSilver.rubli,
+                                                    altyny: transaction.counterAgentTransactionObjects[index].forfeit.moscowSilver.altyny,
+                                                    dengi: transaction.counterAgentTransactionObjects[index].forfeit.moscowSilver.dengi
+                                                });
+                                            }
+                                            if (transaction.counterAgentTransactionObjects[index].forfeit.chekhi.rubli || transaction.counterAgentTransactionObjects[index].forfeit.chekhi.altyny || transaction.counterAgentTransactionObjects[index].forfeit.chekhi.dengi) {
+                                                this.counterAgentTransactionObject.controls.forfeit['controls'].push(this.initMoney());
+                                                this.counterAgentTransactionObject.controls.forfeit['controls'][0].patchValue({
+                                                    coins: 'chekhi',
+                                                    rubli: transaction.counterAgentTransactionObjects[index].forfeit.chekhi.rubli,
+                                                    altyny: transaction.counterAgentTransactionObjects[index].forfeit.chekhi.altyny,
+                                                    dengi: transaction.counterAgentTransactionObjects[index].forfeit.chekhi.dengi
+                                                });
+                                            }
+                                            this.deedForm.controls.schemaVersion.patchValue(2);
+
+                                        } else {
+                                            for (let i = 0; i < transaction.counterAgentTransactionObjects[index].forfeit.length; i++) {
+                                                this.counterAgentTransactionObject.controls.forfeit['controls'].push(this.initMoney());
+                                            }
+                                            this.counterAgentTransactionObject.patchValue(transaction.counterAgentTransactionObjects[index]);
+                                        }
+                                        this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects.push(this.counterAgentTransactionObject);
                                         break;
                                     }
                                     case 'fugitiveSouls': {
@@ -2501,6 +2621,8 @@ export class AddDeedComponent implements OnInit {
                                                 yearsOfRent: ['']
                                             })
                                         });
+                                        this.counterAgentTransactionObject.patchValue(transaction.counterAgentTransactionObjects[index]);
+                                        this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects.push(this.counterAgentTransactionObject);
                                         break;
                                     }
                                     case 'goods': {
@@ -2508,20 +2630,29 @@ export class AddDeedComponent implements OnInit {
                                             goods: this.fb.group({
                                                 type: [''],
                                                 description: [''],
-                                                price: this.fb.group({
-                                                    moscowSilver: this.fb.group({
-                                                        rubli: [''],
-                                                        altyny: [''],
-                                                        dengi: ['']
-                                                    }),
-                                                    chekhi: this.fb.group({
-                                                        rubli: [''],
-                                                        altyny: [''],
-                                                        dengi: ['']
-                                                    })
-                                                })
+                                                price: this.fb.array([
+                                                    this.initMoney()
+                                                ])
                                             })
                                         });
+                                        if (deed.schemaVersion == 1) {
+                                            if (transaction.counterAgentTransactionObjects[index].goods.price) {
+                                                this.counterAgentTransactionObject.controls.goods['controls'].price.push(this.initMoney());
+                                                this.counterAgentTransactionObject.controls.goods['controls'].price['controls'][0].patchValue({
+                                                    coins: 'unspecified',
+                                                    rubli: transaction.counterAgentTransactionObjects[index].goods.price,
+                                                    altyny: 0,
+                                                    dengi: 0
+                                                });
+                                            }
+                                            this.deedForm.controls.schemaVersion.patchValue(2);
+                                        } else {
+                                            for (let i = 0; i < transaction.counterAgentTransactionObjects[index].goods.price.length; i++) {
+                                                this.counterAgentTransactionObject.controls.goods['controls'].price['controls'].push(this.initMoney());
+                                            }
+                                            this.counterAgentTransactionObject.patchValue(transaction.counterAgentTransactionObjects[index]);
+                                        }
+                                        this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects.push(this.counterAgentTransactionObject);
                                         break;
                                     }
                                     case 'immovableProperty': {
@@ -2549,6 +2680,8 @@ export class AddDeedComponent implements OnInit {
                                                 appurtenances: ['']
                                             })
                                         });
+                                        this.counterAgentTransactionObject.patchValue(transaction.counterAgentTransactionObjects[index]);
+                                        this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects.push(this.counterAgentTransactionObject);
                                         break;
                                     }
                                     case 'money': {
@@ -2576,7 +2709,6 @@ export class AddDeedComponent implements OnInit {
                                                 });
                                             }
                                             this.deedForm.controls.schemaVersion.patchValue(2);
-
                                         } else {
                                             for (let i = 0; i < transaction.counterAgentTransactionObjects[index].money.length; i++) {
                                                 this.counterAgentTransactionObject.controls.money['controls'].push(this.initMoney());
@@ -2593,6 +2725,8 @@ export class AddDeedComponent implements OnInit {
                                                 coCounterAgentNumber: ['']
                                             })
                                         });
+                                        this.counterAgentTransactionObject.patchValue(transaction.counterAgentTransactionObjects[index]);
+                                        this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects.push(this.counterAgentTransactionObject);
                                         break;
                                     }
                                     case 'responsibilities': {
@@ -2601,6 +2735,8 @@ export class AddDeedComponent implements OnInit {
                                                 description: ['']
                                             })
                                         });
+                                        this.counterAgentTransactionObject.patchValue(transaction.counterAgentTransactionObjects[index]);
+                                        this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects.push(this.counterAgentTransactionObject);
                                         break;
                                     }
                                     case 'shareFromEstate': {
@@ -2610,6 +2746,8 @@ export class AddDeedComponent implements OnInit {
                                                 description: ['']
                                             })
                                         });
+                                        this.counterAgentTransactionObject.patchValue(transaction.counterAgentTransactionObjects[index]);
+                                        this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects.push(this.counterAgentTransactionObject);
                                         break;
                                     }
                                     case 'souls': {
@@ -2625,19 +2763,22 @@ export class AddDeedComponent implements OnInit {
                                                 names: ['']
                                             })
                                         });
+                                        this.counterAgentTransactionObject.patchValue(transaction.counterAgentTransactionObjects[index]);
+                                        this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects.push(this.counterAgentTransactionObject);
                                         break;
                                     }
                                     case 'other': {
                                         this.counterAgentTransactionObject = this.fb.group({
                                             other: ['']
                                         });
+                                        this.counterAgentTransactionObject.patchValue(transaction.counterAgentTransactionObjects[index]);
+                                        this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects.push(this.counterAgentTransactionObject);
                                         break;
                                     }
 
                                 } // END SWITCH
 
                             } // endfor counterAgentransactionobjects
-
                         }
                     }
                 } // endfor transactions
