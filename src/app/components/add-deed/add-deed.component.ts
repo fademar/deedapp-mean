@@ -2578,7 +2578,7 @@ export class AddDeedComponent implements OnInit {
                                                     dengi: transaction.counterAgentTransactionObjects[index].money.amount.chekhi.dengi
                                                 });
                                             }
-    
+
                                         } else {
                                             console.log('else');
                                             for (let i = 0; i < transaction.counterAgentTransactionObjects[index].money.length; i++) {
@@ -2638,8 +2638,6 @@ export class AddDeedComponent implements OnInit {
                                     }
 
                                 } // END SWITCH
-                                this.counterAgentTransactionObject.patchValue(transaction.counterAgentTransactionObjects[index]);
-                                this.deedForm.controls.transactions['controls'][i].controls.counterAgentTransactionObjects.push(this.counterAgentTransactionObject);
 
                             } // endfor counterAgentransactionobjects
 
