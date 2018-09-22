@@ -336,7 +336,7 @@ app.get('/api/firstnamesmale', (req, res) => {
 app.get('/api/update-schema', (req, res) => {
   db.collection(deedsCollection).updateMany({}, {
     $set: {
-      "schema-version": 2
+      "schema-version": 1
     }
   }, (err, activity) => {
     if (err) {
