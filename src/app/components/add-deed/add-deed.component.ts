@@ -221,7 +221,8 @@ export class AddDeedComponent implements OnInit {
             }),
             verbatimCitations: [''],
             researcherNotes: [''],
-            complete: [false]
+            complete: [false],
+            schemaVersion: ['']
         })
 
     }
@@ -2148,7 +2149,7 @@ export class AddDeedComponent implements OnInit {
                                             debtDate: ['']
                                         })
                                     });
-                                    if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver) {
+                                    if (deed.schemaVersion == 1) {
                                         if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver.rubli || transaction.agentTransactionObjects[index].debt.amount.moscowSilver.altyny || transaction.agentTransactionObjects[index].debt.amount.moscowSilver.dengi) {
                                             this.agentTransactionObject.controls.debt['controls'].amount.push(this.initMoney());
                                             this.agentTransactionObject.controls.debt['controls'].amount['controls'][0].patchValue({
@@ -2169,11 +2170,9 @@ export class AddDeedComponent implements OnInit {
                                         }
                                         this.agentTransactionObject.controls.debt['controls'].debtorName.patchValue(transaction.agentTransactionObjects[index].debt.debtorName);
                                         this.agentTransactionObject.controls.debt['controls'].debtDate.patchValue(transaction.agentTransactionObjects[index].debt.debtDate);
-
+                                        this.deedForm.controls.schemaVersion.patchValue(2);
                                     } else {
-
                                         for (let i = 0; i < transaction.agentTransactionObjects[index].debt.amount.length; i++) {
-                                            console.log(transaction.agentTransactionObjects[index].debt.amount[i]);
                                             this.agentTransactionObject.controls.debt['controls'].amount['controls'].push(this.initMoney());
                                         }
                                         this.agentTransactionObject.patchValue(transaction.agentTransactionObjects[index]);
@@ -2557,7 +2556,7 @@ export class AddDeedComponent implements OnInit {
                                             money: this.fb.array([])
                                         });
 
-                                        if (transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver) {
+                                        if (deed.schemaVersion == 1) {
                                             if (transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.rubli || transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.altyny || transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.dengi) {
                                                 this.counterAgentTransactionObject.controls.money['controls'].push(this.initMoney());
                                                 this.counterAgentTransactionObject.controls.money['controls'][0].patchValue({
@@ -2576,9 +2575,9 @@ export class AddDeedComponent implements OnInit {
                                                     dengi: transaction.counterAgentTransactionObjects[index].money.amount.chekhi.dengi
                                                 });
                                             }
+                                            this.deedForm.controls.schemaVersion.patchValue(2);
 
                                         } else {
-                                            console.log('else');
                                             for (let i = 0; i < transaction.counterAgentTransactionObjects[index].money.length; i++) {
                                                 this.counterAgentTransactionObject.controls.money['controls'].push(this.initMoney());
                                             }
