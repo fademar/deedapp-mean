@@ -258,6 +258,26 @@ app.get('/.well-known/acme-challenge/:fileid', function(req, res){
 	res.send('Requesting '+fileid)
 })
 
+/*  '/api/schema-version'
+ *    POST: update the database for schema version
+ *
+ */
+app.get('/api/update-schema', (req, res) => {
+	db.collection(deedsCollection).updateMany({}, {
+	  $set: {
+		"schemaVersion": 1
+	  }
+	}, (err, activity) => {
+	  if (err) {
+		handleError(res, err.message, 'Failed to update the database');
+	  } else {
+		res.status(200).json("Database updated with success");
+	  }
+	});
+  });
+
+
+
 app.get('*', function(req, res) {
 	res.sendFile(path.join(__dirname + '/dist/index.html'));
 });
