@@ -920,6 +920,15 @@
             </div>
           </div>
         </div>
+
+        <mat-toolbar class="mb-3">
+          <div class="action-button">
+            <button mat-raised-button class="text-left" type="button" (click)="addCoCounterAgent()">Co-Counter Agent</button>
+            <button mat-raised-button class="text-left" *ngIf="!collectiveCoCounterAgentOn" type="button" (click)="addCollectiveCoCounterAgent()">Collective
+              Co-Counter Agent</button>
+          </div>
+        </mat-toolbar>
+
       </div>
     </div>
 
@@ -1069,9 +1078,9 @@
                                       </div>
                                       <div class="col-1 small-label">den'gi</div>
                                       <div class="col-1">
-                                        <i class="fas fa-plus-circle mr-2" (click)="addMoneyChattelsAgent(i, j)"
+                                        <i class="fa fa-plus-circle mr-2" (click)="addMoneyChattelsAgent(i, j)"
                                           aria-hidden="true"></i>
-                                        <i class="fas fa-ban" (click)="removeMoneyChattelsAgent(i, j, k)" aria-hidden="true"></i>
+                                        <i class="fa fa-ban" (click)="removeMoneyChattelsAgent(i, j, k)" aria-hidden="true"></i>
                                       </div>
                                     </div>
                                   </div>
@@ -1228,8 +1237,8 @@
                                 </div>
                                 <div class="col-1 small-label">den'gi</div>
                                 <div class="col-1">
-                                  <i class="fas fa-plus-circle mr-2" (click)="addMoneyForfeitAgent(i, j)" aria-hidden="true"></i>
-                                  <i class="fas fa-ban" (click)="removeMoneyForfeitAgent(i, j, k)" aria-hidden="true"></i>
+                                  <i class="fa fa-plus-circle mr-2" (click)="addMoneyForfeitAgent(i, j)" aria-hidden="true"></i>
+                                  <i class="fa fa-ban" (click)="removeMoneyForfeitAgent(i, j, k)" aria-hidden="true"></i>
                                 </div>
                               </div>
                             </div>
@@ -1346,8 +1355,8 @@
                                   </div>
                                   <div class="col-1 small-label">den'gi</div>
                                   <div class="col-1">
-                                    <i class="fas fa-plus-circle mr-2" (click)="addMoneyGoodsAgent(i, j)" aria-hidden="true"></i>
-                                    <i class="fas fa-ban" (click)="removeMoneyGoodsAgent(i, j, k)" aria-hidden="true"></i>
+                                    <i class="fa fa-plus-circle mr-2" (click)="addMoneyGoodsAgent(i, j)" aria-hidden="true"></i>
+                                    <i class="fa fa-ban" (click)="removeMoneyGoodsAgent(i, j, k)" aria-hidden="true"></i>
                                   </div>
                                 </div>
                               </div>
@@ -1517,8 +1526,8 @@
                                 </div>
                                 <div class="col-1 small-label">den'gi</div>
                                 <div class="col-1">
-                                  <i class="fas fa-plus-circle mr-2" (click)="addMoneyMoneyAgent(i, j)" aria-hidden="true"></i>
-                                  <i class="fas fa-ban" (click)="removeMoneyMoneyAgent(i, j, k)" aria-hidden="true"></i>
+                                  <i class="fa fa-plus-circle mr-2" (click)="addMoneyMoneyAgent(i, j)" aria-hidden="true"></i>
+                                  <i class="fa fa-ban" (click)="removeMoneyMoneyAgent(i, j, k)" aria-hidden="true"></i>
                                 </div>
                               </div>
                             </div>
@@ -1873,9 +1882,9 @@
                                       </div>
                                       <div class="col-1 small-label">den'gi</div>
                                       <div class="col-1">
-                                        <i class="fas fa-plus-circle mr-2" (click)="addMoneyChattelsCounterAgent(i, j)"
+                                        <i class="fa fa-plus-circle mr-2" (click)="addMoneyChattelsCounterAgent(i, j)"
                                           aria-hidden="true"></i>
-                                        <i class="fas fa-ban" (click)="removeMoneyChattelsCounterAgent(i, j, k)"
+                                        <i class="fa fa-ban" (click)="removeMoneyChattelsCounterAgent(i, j, k)"
                                           aria-hidden="true"></i>
                                       </div>
                                     </div>
@@ -1929,9 +1938,9 @@
                                   </div>
                                   <div class="col-1 small-label">den'gi</div>
                                   <div class="col-1">
-                                    <i class="fas fa-plus-circle mr-2" (click)="addMoneyDebtCounterAgent(i, j)"
+                                    <i class="fa fa-plus-circle mr-2" (click)="addMoneyDebtCounterAgent(i, j)"
                                       aria-hidden="true"></i>
-                                    <i class="fas fa-ban" (click)="removeMoneyDebtCounterAgent(i, j, k)" aria-hidden="true"></i>
+                                    <i class="fa fa-ban" (click)="removeMoneyDebtCounterAgent(i, j, k)" aria-hidden="true"></i>
                                   </div>
                                 </div>
                               </div>
@@ -2033,9 +2042,9 @@
                                 </div>
                                 <div class="col-1 small-label">den'gi</div>
                                 <div class="col-1">
-                                  <i class="fas fa-plus-circle mr-2" (click)="addMoneyForfeitCounterAgent(i, j)"
+                                  <i class="fa fa-plus-circle mr-2" (click)="addMoneyForfeitCounterAgent(i, j)"
                                     aria-hidden="true"></i>
-                                  <i class="fas fa-ban" (click)="removeMoneyForfeitCounterAgent(i, j, k)" aria-hidden="true"></i>
+                                  <i class="fa fa-ban" (click)="removeMoneyForfeitCounterAgent(i, j, k)" aria-hidden="true"></i>
                                 </div>
                               </div>
                             </div>
@@ -2152,9 +2161,9 @@
                                   </div>
                                   <div class="col-1 small-label">den'gi</div>
                                   <div class="col-1">
-                                    <i class="fas fa-plus-circle mr-2" (click)="addMoneyGoodsCounterAgent(i, j)"
+                                    <i class="fa fa-plus-circle mr-2" (click)="addMoneyGoodsCounterAgent(i, j)"
                                       aria-hidden="true"></i>
-                                    <i class="fas fa-ban" (click)="removeMoneyGoodsCounterAgent(i, j, k)" aria-hidden="true"></i>
+                                    <i class="fa fa-ban" (click)="removeMoneyGoodsCounterAgent(i, j, k)" aria-hidden="true"></i>
                                   </div>
                                 </div>
                               </div>
@@ -2324,9 +2333,9 @@
                                 </div>
                                 <div class="col-1 small-label">den'gi</div>
                                 <div class="col-1">
-                                  <i class="fas fa-plus-circle mr-2" (click)="addMoneyMoneyCounterAgent(i, j)"
+                                  <i class="fa fa-plus-circle mr-2" (click)="addMoneyMoneyCounterAgent(i, j)"
                                     aria-hidden="true"></i>
-                                  <i class="fas fa-ban" (click)="removeMoneyMoneyCounterAgent(i, j, k)" aria-hidden="true"></i>
+                                  <i class="fa fa-ban" (click)="removeMoneyMoneyCounterAgent(i, j, k)" aria-hidden="true"></i>
                                 </div>
                               </div>
                             </div>
@@ -2600,6 +2609,12 @@
         <!-- FORMARRAYNAME TRANSACTIONS END  -->
       </div>
     </div>
+    <mat-toolbar class="mb-3">
+      <div class="action-button">
+        <button mat-raised-button class="mb-2 text-left" type="button" (click)="addTransaction()">Transaction</button>
+      </div>
+    </mat-toolbar>
+
 
 
     <!-- ACCESSORIES TO CONTRACT -->
@@ -2835,6 +2850,14 @@
       </div>
     </div>
 
+    <mat-toolbar class="mb-3">
+      <div class="action-button">
+        <button mat-raised-button class="text-left" type="button" (click)="addWhitness()">Whitness</button>
+        <button mat-raised-button class="text-left" type="button" (click)="addSurety()">Surety</button>
+        <button mat-raised-button class="text-left" *ngIf="!scribeOn" type="button" (click)="addScribe()">Scribe</button>
+        <button mat-raised-button class="text-left" type="button" (click)="addOtherParticipant()">Other Participant</button>
+      </div>
+    </mat-toolbar>
 
 
     <!-- REGISTRATION -->
@@ -2912,6 +2935,11 @@
           </div>
         </div>
 
+        <mat-toolbar class="mb-3">
+          <div class="action-button">
+            <button mat-raised-button class="text-left" *ngIf="!registratorOn" type="button" (click)="addRegistrator()">Registrator</button>
+          </div>
+        </mat-toolbar>
 
 
         <div formGroupName="fees" class="card">
