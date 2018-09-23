@@ -47,7 +47,7 @@
     "lodash": "4.17.4",
     "material-colors": "1.2.5",
     "material-design-icons": "3.0.1",
-    "mongodb": "2.2.25",
+    "mongodb": "^3.1.6",
     "ngx-bootstrap": "1.9.3",
     "ngx-quill": "1.6.0",
     "popper.js": "1.12.5",
