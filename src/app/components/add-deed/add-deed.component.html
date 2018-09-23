@@ -1,5 +1,6 @@
 <simple-notifications [options]="options"></simple-notifications>
 <form (keydown.enter)="$event.preventDefault()" [formGroup]="deedForm" (ngSubmit)="onSubmit(submitBtn)" novalidate>
+
   <mat-toolbar color="primary" class="nav-bar" id="cssmenu">
 
     <span class="nav-brand mr-5">Deed App</span>
@@ -11,21 +12,50 @@
         <a [routerLink]="['/deed/add']">New Deed</a>
       </li>
       <li routerLinkActive="active">
-        <a [routerLink]="['/search']" target="_blank">Search</a>
+        <a [routerLink]="['/search']" appNewWindow>Search</a>
       </li>
       <li routerLinkActive="active">
         <a [routerLink]="['/notes']" target="_blank">Notes</a>
       </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/tools']">Tools</a>
+      </li>
     </ul>
     <span class="spacer"></span>
-    <button mat-raised-button type="submit" #submitBtn [disabled]="disableSubmit" placement="bottom" matTooltip="Save the deed"
-      class="submit-button" matTooltipPosition="before" matTooltipClass="'tooltip'">
+    <button mat-raised-button type="submit" #submitBtn [disabled]="disableSubmit" placement="bottom" matTooltip="Save the deed" class="submit-button"
+      matTooltipPosition="before" matTooltipClass="'tooltip'">
       <mat-icon aria-label="Submit the form">save</mat-icon> SAVE
     </button>
     <button mat-icon-button class="logout-button" (click)="auth.logout()">
       <mat-icon class="nav-icon md-24" aria-label="Logout">power_settings_new</mat-icon>
     </button>
   </mat-toolbar>
+  <div class="actionsroot">
+    <div class="actionspanel">
+      <mat-card>
+        <mat-card-title>ADD</mat-card-title>
+        <mat-card-content>
+          <div class="d-flex flex-column">
+            <button mat-raised-button class="text-left" type="button" (click)="addCoAgent()">Co-Agent</button>
+            <button mat-raised-button class="text-left" *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" type="button">Collective Co-Agent</button>
+            <button mat-raised-button class="text-left" type="button" (click)="addCoCounterAgent()">Co-Counter Agent</button>
+            <button mat-raised-button class="mb-2 text-left" *ngIf="!collectiveCoCounterAgentOn" type="button" (click)="addCollectiveCoCounterAgent()">Collective Co-Counter Agent</button>
+            <button mat-raised-button class="mb-2 text-left" type="button" (click)="addTransaction()">Transaction</button>
+            <button mat-raised-button class="text-left" type="button" (click)="addWhitness()">Whitness</button>
+            <button mat-raised-button class="text-left" type="button" (click)="addSurety()">Surety</button>
+            <button mat-raised-button class="text-left" *ngIf="!scribeOn" type="button" (click)="addScribe()">Scribe</button>
+            <button mat-raised-button class="text-left" type="button" (click)="addOtherParticipant()">Other Participant</button>
+            <button mat-raised-button class="text-left" *ngIf="!registratorOn" type="button" (click)="addRegistrator()">Registrator</button>
+          </div>
+          <div class="d-flex flex-column pt-3">
+
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+
   <div class="container main-container">
     <!--DEED REFERENCES-->
     <div class="card shadow mb-3">
@@ -41,7 +71,7 @@
               <small class="text-danger pl-2" *ngIf="deedForm.controls.deedCode.errors">This field is required</small>
             </label>
             <div class="input-group">
-              <input class="form-control" formControlName="deedCode" placeholder="fond-opis-delo-list" required>
+              <input class="form-control" formControlName="deedCode" placeholder="fond-opis-delo-list" trim="blur" required>
               <span class="input-group-btn">
                 <button type="button" (click)="insertLastDeedCode()" class="btn btn-secondary" matTooltip="Click to insert the code of the last deed saved in the database">
                   <i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Code</button>
@@ -53,7 +83,7 @@
               <small class="text-danger pl-2" *ngIf="deedForm.controls.deedRef.errors">This field is required</small>
             </label>
             <div class="input-group">
-              <input class="form-control" formControlName="deedRef" placeholder="roll N° - scan N°" required>
+              <input class="form-control" formControlName="deedRef" placeholder="scan number" trim="blur" required>
               <span class="input-group-btn">
                 <button type="button" (click)="insertLastDeedRef()" class="btn btn-secondary" matTooltip="Click to insert the reference of the last deed saved in the database">
                   <i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Ref.</button>
@@ -66,13 +96,13 @@
             </label>
             <div class="row no-gutters">
               <div class="col">
-                <input type="text" class="form-control" formControlName="day" placeholder="day">
+                <input type="text" class="form-control" formControlName="day" placeholder="day" trim="blur">
               </div>
               <div class="col">
-                <input type="text" class="form-control" formControlName="month" placeholder="month">
+                <input type="text" class="form-control" formControlName="month" placeholder="month" trim="blur">
               </div>
               <div class="col">
-                <input type="text" class="form-control" formControlName="year" placeholder="year">
+                <input type="text" class="form-control" formControlName="year" placeholder="year" trim="blur">
               </div>
               <div class="col">
                 <button type="button" (click)="insertLastDeedDate()" class="btn btn-secondary" matTooltip="Click to insert the date of the last deed saved in the database">
@@ -88,7 +118,7 @@
           </div>
           <div class="form-group col-4">
             <label>Deed Language</label>
-            <input type="text" class="form-control" formControlName="deedLanguage">
+            <input type="text" class="form-control" formControlName="deedLanguage" trim="blur">
           </div>
         </div>
       </div>
@@ -105,7 +135,6 @@
         <div class="card mb-3">
           <div class="card-header">
             <h4 class="text-center">Agent</h4>
-
           </div>
           <div class="card-body">
             <div class="form-group">
@@ -122,31 +151,31 @@
                   <div class="row">
                     <div class="form-group col">
                       <label>Geogr Status</label>
-                      <input class="form-control" formControlName="geogrStatus">
+                      <input class="form-control" formControlName="geogrStatus" [typeahead]="geogrStatusesSorted" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8" trim="blur">
                     </div>
                     <div class="form-group col">
                       <label>Social Status</label>
-                      <input type="text" class="form-control" formControlName="socialStatus">
+                      <input type="text" class="form-control" formControlName="socialStatus" trim="blur">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col">
                       <label>First Name</label>
-                      <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                      <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesMaleSorted"  [typeaheadMinLength]="0" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8" trim="blur">
                     </div>
                     <div class="form-group col">
                       <label>Patronyme</label>
-                      <input type="text" class="form-control" formControlName="patronyme" [typeahead]="patronymesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                      <input type="text" class="form-control" formControlName="patronyme" trim="blur">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col">
                       <label>Last Name</label>
-                      <input type="text" class="form-control" formControlName="lastName" [typeahead]="lastNamesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                      <input type="text" class="form-control" formControlName="lastName" trim="blur">
                     </div>
                     <div class="form-group col">
                       <label>Related To</label>
-                      <input type="text" class="form-control" formControlName="relatedTo">
+                      <input type="text" class="form-control" formControlName="relatedTo" trim="blur">
                     </div>
                   </div>
                 </div>
@@ -156,21 +185,21 @@
                   <div class="row">
                     <div class="form-grou col">
                       <label>Family Status</label>
-                      <input type="text" class="form-control" formControlName="familyStatus">
+                      <input type="text" class="form-control" formControlName="familyStatus" trim="blur">
                     </div>
                     <div class="form-group col">
                       <label>First Name</label>
-                      <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesFemale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                      <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesFemaleSorted"  [typeaheadMinLength]="0" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8" trim="blur">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col">
                       <label>Patronyme</label>
-                      <input type="text" class="form-control" formControlName="patronyme" [typeahead]="patronymesFemale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                      <input type="text" class="form-control" formControlName="patronyme" trim="blur">
                     </div>
                     <div class="form-group col">
                       <label>Related To</label>
-                      <input type="text" class="form-control" formControlName="relatedTo" [typeahead]="lastNamesFemale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                      <input type="text" class="form-control" formControlName="relatedTo" trim="blur">
                     </div>
                   </div>
                   <div class="card mb-3" formGroupName="referentMale">
@@ -181,35 +210,35 @@
                       <div class="row">
                         <div class="form-group col">
                           <label>Relationship To Agent</label>
-                          <input type="text" class="form-control" formControlName="relationshipToAgent">
+                          <input type="text" class="form-control" formControlName="relationshipToAgent" trim="blur">
                         </div>
                         <div class="form-group col">
                           <label>Geogr Status</label>
-                          <input type="text" class="form-control" formControlName="geogrStatus">
+                          <input type="text" class="form-control" formControlName="geogrStatus" [typeahead]="geogrStatusesSorted" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8" trim="blur">
                         </div>
                         <div class="form-group col">
                           <label>Social Status</label>
-                          <input type="text" class="form-control" formControlName="socialStatus">
+                          <input type="text" class="form-control" formControlName="socialStatus" trim="blur">
                         </div>
                       </div>
                       <div class="row">
                         <div class="form-group col">
                           <label>First Name</label>
-                          <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                          <input type="text" class="form-control" formControlName="firstName" trim="blur">
                         </div>
                         <div class="form-group col">
                           <label>Patronyme</label>
-                          <input type="text" class="form-control" formControlName="patronyme" [typeahead]="patronymesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                          <input type="text" class="form-control" formControlName="patronyme" trim="blur">
                         </div>
                       </div>
                       <div class="row">
                         <div class="form-group col">
                           <label>Last Name</label>
-                          <input type="text" class="form-control" formControlName="lastName" [typeahead]="lastNamesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                          <input type="text" class="form-control" formControlName="lastName" trim="blur">
                         </div>
                         <div class="form-group col">
                           <label>Related To</label>
-                          <input type="text" class="form-control" formControlName="relatedTo">
+                          <input type="text" class="form-control" formControlName="relatedTo" trim="blur">
                         </div>
                       </div>
                     </div>
@@ -221,7 +250,7 @@
                   <div class="row">
                     <div class="form-group col">
                       <label>Geogr Status</label>
-                      <input type="text" class="form-control" formControlName="geogrStatus">
+                      <input type="text" class="form-control" formControlName="geogrStatus" [typeahead]="geogrStatusesSorted" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8" trim="blur">
                     </div>
                     <div class="form-group col">
                       <label>Social Status</label>
@@ -233,23 +262,23 @@
                   <div class="row">
                     <div *ngIf="updateSocialStatusAgent()" class="form-group col">
                       <label>Other Social status</label>
-                      <input type="text" class="form-control" formControlName="otherSocialStatus">
+                      <input type="text" class="form-control" formControlName="otherSocialStatus" trim="blur">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-8">
                       <label>Corporation Name</label>
-                      <input type="text" class="form-control" formControlName="corporationName">
+                      <input type="text" class="form-control" formControlName="corporationName" trim="blur">
                     </div>
                     <div class="form-group col-4">
                       <label>Number of Participants</label>
-                      <input type="number" min="0" class="form-control" formControlName="nbParticipants">
+                      <input type="number" min="0" class="form-control" formControlName="nbParticipants" trim="blur">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col">
                       <label>Names</label>
-                      <textarea class="form-control" formControlName="names"></textarea>
+                      <textarea class="form-control" formControlName="names" trim="blur"></textarea>
                     </div>
                   </div>
                 </div>
@@ -287,31 +316,31 @@
                     <div class="row">
                       <div class="form-group col">
                         <label>Geogr Status</label>
-                        <input type="text" class="form-control" formControlName="geogrStatus">
+                        <input type="text" class="form-control" formControlName="geogrStatus" [typeahead]="geogrStatusesSorted" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8" trim="blur">
                       </div>
                       <div class="form-group col">
                         <label>Social Status</label>
-                        <input type="text" class="form-control" formControlName="socialStatus">
+                        <input type="text" class="form-control" formControlName="socialStatus" trim="blur">
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col">
                         <label>First Name</label>
-                        <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                        <input type="text" class="form-control" formControlName="firstName" trim="blur" [typeahead]="firstNamesMaleSorted"  [typeaheadMinLength]="0" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
                       </div>
                       <div class="form-group col">
                         <label>Patronyme</label>
-                        <input type="text" class="form-control" formControlName="patronyme" [typeahead]="patronymesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                        <input type="text" class="form-control" formControlName="patronyme" trim="blur">
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col">
                         <label>Last Name</label>
-                        <input type="text" class="form-control" formControlName="lastName" [typeahead]="lastNamesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                        <input type="text" class="form-control" formControlName="lastName" trim="blur">
                       </div>
                       <div class="form-group col">
                         <label>Related To</label>
-                        <input type="text" class="form-control" formControlName="relatedTo">
+                        <input type="text" class="form-control" formControlName="relatedTo" trim="blur">
                       </div>
                     </div>
                   </div>
@@ -321,21 +350,21 @@
                     <div class="row">
                       <div class="form-group col">
                         <label>Family Status</label>
-                        <input type="text" class="form-control" formControlName="familyStatus">
+                        <input type="text" class="form-control" formControlName="familyStatus" trim="blur">
                       </div>
                       <div class="form-group col">
                         <label>First Name</label>
-                        <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesFemale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                        <input type="text" class="form-control" formControlName="firstName" trim="blur" [typeahead]="firstNamesFemaleSorted"  [typeaheadMinLength]="0" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col">
                         <label>Patronyme</label>
-                        <input type="text" class="form-control" formControlName="patronyme" [typeahead]="patronymesFemale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                        <input type="text" class="form-control" formControlName="patronyme" trim="blur">
                       </div>
                       <div class="form-group col">
                         <label>Related To</label>
-                        <input type="text" class="form-control" formControlName="relatedTo">
+                        <input type="text" class="form-control" formControlName="relatedTo" trim="blur">
                       </div>
                     </div>
                     <div class="card mb-3" formGroupName="referentMale">
@@ -354,35 +383,35 @@
                         <div class="row">
                           <div class="form-group col">
                             <label>Relationship To coAgent</label>
-                            <input type="text" class="form-control" formControlName="relationshipToCoAgent">
+                            <input type="text" class="form-control" formControlName="relationshipToCoAgent" trim="blur">
                           </div>
                           <div class="form-group col">
                             <label>Geogr Status</label>
-                            <input type="text" class="form-control" formControlName="geogrStatus">
+                            <input type="text" class="form-control" formControlName="geogrStatus" [typeahead]="geogrStatusesSorted" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8" trim="blur">
                           </div>
                           <div class="form-group col">
                             <label>Social Status</label>
-                            <input type="text" class="form-control" formControlName="socialStatus">
+                            <input type="text" class="form-control" formControlName="socialStatus" trim="blur">
                           </div>
                         </div>
                         <div class="row">
                           <div class="form-group col">
                             <label>First Name</label>
-                            <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                            <input type="text" class="form-control" formControlName="firstName" trim="blur" [typeahead]="firstNamesMaleSorted"  [typeaheadMinLength]="0" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
                           </div>
                           <div class="form-group col">
                             <label>Patronyme</label>
-                            <input type="text" class="form-control" formControlName="patronyme" [typeahead]="patronymesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                            <input type="text" class="form-control" formControlName="patronyme" trim="blur">
                           </div>
                         </div>
                         <div class="row">
                           <div class="form-group col">
                             <label>Last Name</label>
-                            <input type="text" class="form-control" formControlName="lastName" [typeahead]="lastNamesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                            <input type="text" class="form-control" formControlName="lastName" trim="blur">
                           </div>
                           <div class="form-group col">
                             <label>Related To</label>
-                            <input type="text" class="form-control" formControlName="relatedTo">
+                            <input type="text" class="form-control" formControlName="relatedTo" trim="blur">
                           </div>
                         </div>
                       </div>
@@ -394,7 +423,7 @@
                     <div class="row">
                       <div class="form-group col">
                         <label>Geogr Status</label>
-                        <input type="text" class="form-control" formControlName="geogrStatus">
+                        <input type="text" class="form-control" formControlName="geogrStatus" [typeahead]="geogrStatusesSorted" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8" trim="blur">
                       </div>
                       <div class="form-group col">
                         <label>Social Status</label>
@@ -406,23 +435,23 @@
                     <div class="row">
                       <div *ngIf="updateSocialStatusCoAgent()" class="form-group col">
                         <label>Other Social status</label>
-                        <input type="text" class="form-control" formControlName="otherSocialStatus">
+                        <input type="text" class="form-control" formControlName="otherSocialStatus" trim="blur">
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col-8">
                         <label>Corporation Name</label>
-                        <input type="text" class="form-control" formControlName="corporationName">
+                        <input type="text" class="form-control" formControlName="corporationName" trim="blur">
                       </div>
                       <div class="form-group col-4">
                         <label>Number of Participants</label>
-                        <input type="number" min="0" class="form-control" formControlName="nbParticipants">
+                        <input type="number" min="0" class="form-control" formControlName="nbParticipants" trim="blur">
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col">
                         <label>Names</label>
-                        <textarea class="form-control" formControlName="names"></textarea>
+                        <textarea class="form-control" formControlName="names" trim="blur"></textarea>
                       </div>
                     </div>
                   </div>
@@ -457,15 +486,15 @@
               </div>
               <div *ngIf="updateRelationToAgent()" class="form-group">
                 <label>Other Relation to Agent</label>
-                <input type="text" class="form-control" formControlName="otherRelationToAgent">
+                <input type="text" class="form-control" formControlName="otherRelationToAgent" trim="blur">
               </div>
               <div class="form-group">
                 <label>Number of Participants</label>
-                <input type="number" min="0" class="form-control" formControlName="numberOfParticipants">
+                <input type="number" min="0" class="form-control" formControlName="numberOfParticipants" trim="blur">
               </div>
               <div class="form-group">
                 <label>Statuses and Names</label>
-                <input type="text" class="form-control" formControlName="statusesNames">
+                <input type="text" class="form-control" formControlName="statusesNames" trim="blur">
               </div>
             </div>
           </div>
@@ -477,6 +506,8 @@
             <button mat-raised-button *ngIf="!collectiveCoAgentOn" (click)="addCollectiveCoAgent()" type="button">Collective Co-Agent</button>
           </div>
         </mat-toolbar>
+
+
         <!-- Main Counter Agent -->
 
         <div class="card mb-3">
@@ -498,31 +529,31 @@
                   <div class="row">
                     <div class="form-group col">
                       <label>Geogr Status</label>
-                      <input class="form-control" formControlName="geogrStatus">
+                      <input class="form-control" formControlName="geogrStatus" [typeahead]="geogrStatusesSorted" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8" trim="blur">
                     </div>
                     <div class="form-group col">
                       <label>Social Status</label>
-                      <input type="text" class="form-control" formControlName="socialStatus">
+                      <input type="text" class="form-control" formControlName="socialStatus" trim="blur">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col">
                       <label>First Name</label>
-                      <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                      <input type="text" class="form-control" formControlName="firstName" trim="blur" [typeahead]="firstNamesMaleSorted"  [typeaheadMinLength]="0" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
                     </div>
                     <div class="form-group col">
                       <label>Patronyme</label>
-                      <input type="text" class="form-control" formControlName="patronyme" [typeahead]="patronymesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                      <input type="text" class="form-control" formControlName="patronyme" trim="blur">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col">
                       <label>Last Name</label>
-                      <input type="text" class="form-control" formControlName="lastName" [typeahead]="lastNamesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                      <input type="text" class="form-control" formControlName="lastName" trim="blur">
                     </div>
                     <div class="form-group col">
                       <label>Related To</label>
-                      <input type="text" class="form-control" formControlName="relatedTo">
+                      <input type="text" class="form-control" formControlName="relatedTo" trim="blur">
                     </div>
                   </div>
                 </div>
@@ -532,21 +563,21 @@
                   <div class="row">
                     <div class="form-grou col">
                       <label>Family Status</label>
-                      <input type="text" class="form-control" formControlName="familyStatus">
+                      <input type="text" class="form-control" formControlName="familyStatus" trim="blur">
                     </div>
                     <div class="form-group col">
                       <label>First Name</label>
-                      <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesFemale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                      <input type="text" class="form-control" formControlName="firstName" trim="blur" [typeahead]="firstNamesFemaleSorted"  [typeaheadMinLength]="0" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col">
                       <label>Patronyme</label>
-                      <input type="text" class="form-control" formControlName="patronyme" [typeahead]="patronymesFemale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                      <input type="text" class="form-control" formControlName="patronyme" trim="blur">
                     </div>
                     <div class="form-group col">
                       <label>Related To</label>
-                      <input type="text" class="form-control" formControlName="relatedTo">
+                      <input type="text" class="form-control" formControlName="relatedTo" trim="blur">
                     </div>
                   </div>
                   <div class="card mb-3" formGroupName="referentMale">
@@ -557,35 +588,35 @@
                       <div class="row">
                         <div class="form-group col">
                           <label>Relationship To Counter Agent</label>
-                          <input type="text" class="form-control" formControlName="relationshipToCounterAgent">
+                          <input type="text" class="form-control" formControlName="relationshipToCounterAgent" trim="blur">
                         </div>
                         <div class="form-group col">
                           <label>Geogr Status</label>
-                          <input type="text" class="form-control" formControlName="geogrStatus">
+                          <input type="text" class="form-control" formControlName="geogrStatus" [typeahead]="geogrStatusesSorted" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8" trim="blur">
                         </div>
                         <div class="form-group col">
                           <label>Social Status</label>
-                          <input type="text" class="form-control" formControlName="socialStatus">
+                          <input type="text" class="form-control" formControlName="socialStatus" trim="blur">
                         </div>
                       </div>
                       <div class="row">
                         <div class="form-group col">
                           <label>First Name</label>
-                          <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                          <input type="text" class="form-control" formControlName="firstName" trim="blur" [typeahead]="firstNamesMaleSorted"  [typeaheadMinLength]="0" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
                         </div>
                         <div class="form-group col">
                           <label>Patronyme</label>
-                          <input type="text" class="form-control" formControlName="patronyme" [typeahead]="patronymesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                          <input type="text" class="form-control" formControlName="patronyme" trim="blur">
                         </div>
                       </div>
                       <div class="row">
                         <div class="form-group col">
                           <label>Last Name</label>
-                          <input type="text" class="form-control" formControlName="lastName" [typeahead]="lastNamesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                          <input type="text" class="form-control" formControlName="lastName" trim="blur">
                         </div>
                         <div class="form-group col">
                           <label>Related To</label>
-                          <input type="text" class="form-control" formControlName="relatedTo">
+                          <input type="text" class="form-control" formControlName="relatedTo" trim="blur">
                         </div>
                       </div>
                     </div>
@@ -597,7 +628,7 @@
                   <div class="row">
                     <div class="form-group col">
                       <label>Geogr Status</label>
-                      <input type="text" class="form-control" formControlName="geogrStatus">
+                      <input type="text" class="form-control" formControlName="geogrStatus" [typeahead]="geogrStatusesSorted" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8" trim="blur">
                     </div>
                     <div class="form-group col">
                       <label>Social Status</label>
@@ -609,23 +640,23 @@
                   <div class="row">
                     <div *ngIf="updateSocialStatusCounterAgent()" class="form-group col">
                       <label>Other Social status</label>
-                      <input type="text" class="form-control" formControlName="otherSocialStatus">
+                      <input type="text" class="form-control" formControlName="otherSocialStatus" trim="blur">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-8">
                       <label>Corporation Name</label>
-                      <input type="text" class="form-control" formControlName="corporationName">
+                      <input type="text" class="form-control" formControlName="corporationName" trim="blur">
                     </div>
                     <div class="form-group col-4">
                       <label>Number of Participants</label>
-                      <input type="number" min="0" class="form-control" formControlName="nbParticipants">
+                      <input type="number" min="0" class="form-control" formControlName="nbParticipants" trim="blur">
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col">
                       <label>Names</label>
-                      <textarea class="form-control" formControlName="names"></textarea>
+                      <textarea class="form-control" formControlName="names" trim="blur"></textarea>
                     </div>
                   </div>
                 </div>
@@ -663,31 +694,31 @@
                     <div class="row">
                       <div class="form-group col">
                         <label>Geogr Status</label>
-                        <input type="text" class="form-control" formControlName="geogrStatus">
+                        <input type="text" class="form-control" formControlName="geogrStatus" [typeahead]="geogrStatusesSorted" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8" trim="blur">
                       </div>
                       <div class="form-group col">
                         <label>Social Status</label>
-                        <input type="text" class="form-control" formControlName="socialStatus">
+                        <input type="text" class="form-control" formControlName="socialStatus" trim="blur">
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col">
                         <label>First Name</label>
-                        <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                        <input type="text" class="form-control" formControlName="firstName" trim="blur" [typeahead]="firstNamesMaleSorted"  [typeaheadMinLength]="0" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
                       </div>
                       <div class="form-group col">
                         <label>Patronyme</label>
-                        <input type="text" class="form-control" formControlName="patronyme" [typeahead]="patronymesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                        <input type="text" class="form-control" formControlName="patronyme" trim="blur">
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col">
                         <label>Last Name</label>
-                        <input type="text" class="form-control" formControlName="lastName" [typeahead]="lastNamesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                        <input type="text" class="form-control" formControlName="lastName" trim="blur">
                       </div>
                       <div class="form-group col">
                         <label>Related To</label>
-                        <input type="text" class="form-control" formControlName="relatedTo">
+                        <input type="text" class="form-control" formControlName="relatedTo" trim="blur">
                       </div>
                     </div>
                   </div>
@@ -697,21 +728,21 @@
                     <div class="row">
                       <div class="form-group col">
                         <label>Family Status</label>
-                        <input type="text" class="form-control" formControlName="familyStatus">
+                        <input type="text" class="form-control" formControlName="familyStatus" trim="blur">
                       </div>
                       <div class="form-group col">
                         <label>First Name</label>
-                        <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesFemale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                        <input type="text" class="form-control" formControlName="firstName" trim="blur" [typeahead]="firstNamesFemaleSorted"  [typeaheadMinLength]="0" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col">
                         <label>Patronyme</label>
-                        <input type="text" class="form-control" formControlName="patronyme" [typeahead]="patronymesFemale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                        <input type="text" class="form-control" formControlName="patronyme" trim="blur">
                       </div>
                       <div class="form-group col">
                         <label>Related To</label>
-                        <input type="text" class="form-control" formControlName="relatedTo">
+                        <input type="text" class="form-control" formControlName="relatedTo" trim="blur">
                       </div>
                     </div>
                     <div class="card mb-3" formGroupName="referentMale">
@@ -730,35 +761,35 @@
                         <div class="row">
                           <div class="form-group col">
                             <label>Relationship To Co-Counter Agent</label>
-                            <input type="text" class="form-control" formControlName="relationshipToCoCounterAgent">
+                            <input type="text" class="form-control" formControlName="relationshipToCoCounterAgent" trim="blur">
                           </div>
                           <div class="form-group col">
                             <label>Geogr Status</label>
-                            <input type="text" class="form-control" formControlName="geogrStatus">
+                            <input type="text" class="form-control" formControlName="geogrStatus" [typeahead]="geogrStatusesSorted" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8" trim="blur">
                           </div>
                           <div class="form-group col">
                             <label>Social Status</label>
-                            <input type="text" class="form-control" formControlName="socialStatus">
+                            <input type="text" class="form-control" formControlName="socialStatus" trim="blur">
                           </div>
                         </div>
                         <div class="row">
                           <div class="form-group col">
                             <label>First Name</label>
-                            <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                            <input type="text" class="form-control" formControlName="firstName" trim="blur" [typeahead]="firstNamesMaleSorted"  [typeaheadMinLength]="0" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
                           </div>
                           <div class="form-group col">
                             <label>Patronyme</label>
-                            <input type="text" class="form-control" formControlName="patronyme" [typeahead]="patronymesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                            <input type="text" class="form-control" formControlName="patronyme" trim="blur">
                           </div>
                         </div>
                         <div class="row">
                           <div class="form-group col">
                             <label>Last Name</label>
-                            <input type="text" class="form-control" formControlName="lastName" [typeahead]="lastNamesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                            <input type="text" class="form-control" formControlName="lastName" trim="blur">
                           </div>
                           <div class="form-group col">
                             <label>Related To</label>
-                            <input type="text" class="form-control" formControlName="relatedTo">
+                            <input type="text" class="form-control" formControlName="relatedTo" trim="blur">
                           </div>
                         </div>
                       </div>
@@ -770,7 +801,7 @@
                     <div class="row">
                       <div class="form-group col">
                         <label>Geogr Status</label>
-                        <input type="text" class="form-control" formControlName="geogrStatus">
+                        <input type="text" class="form-control" formControlName="geogrStatus" [typeahead]="geogrStatusesSorted" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8" trim="blur">
                       </div>
                       <div class="form-group col">
                         <label>Social Status</label>
@@ -782,23 +813,23 @@
                     <div class="row">
                       <div *ngIf="updateSocialStatusCoCounterAgent()" class="form-group col">
                         <label>Other Social status</label>
-                        <input type="text" class="form-control" formControlName="otherSocialStatus">
+                        <input type="text" class="form-control" formControlName="otherSocialStatus" trim="blur">
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col-8">
                         <label>Corporation Name</label>
-                        <input type="text" class="form-control" formControlName="corporationName">
+                        <input type="text" class="form-control" formControlName="corporationName" trim="blur">
                       </div>
                       <div class="form-group col-4">
                         <label>Number of Participants</label>
-                        <input type="text" class="form-control" formControlName="nbParticipants">
+                        <input type="text" class="form-control" formControlName="nbParticipants" trim="blur">
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col">
                         <label>Names</label>
-                        <textarea class="form-control" formControlName="names"></textarea>
+                        <textarea class="form-control" formControlName="names" trim="blur"></textarea>
                       </div>
                     </div>
                   </div>
@@ -833,27 +864,19 @@
               </div>
               <div *ngIf="updateRelationToCounterAgent()" class="form-group">
                 <label>Other Relation to Counter Agent</label>
-                <input type="text" class="form-control" formControlName="otherRelationToCounterAgent">
+                <input type="text" class="form-control" formControlName="otherRelationToCounterAgent" trim="blur">
               </div>
               <div class="form-group">
                 <label>Number of Participants</label>
-                <input type="number" min="0" class="form-control" formControlName="numberOfParticipants">
+                <input type="number" min="0" class="form-control" formControlName="numberOfParticipants" trim="blur">
               </div>
               <div class="form-group">
                 <label>Statuses and Names</label>
-                <input type="text" class="form-control" formControlName="statusesNames">
+                <input type="text" class="form-control" formControlName="statusesNames" trim="blur">
               </div>
             </div>
           </div>
-		</div>
-		
-		<mat-toolbar class="mb-3">
-			<div class="action-button">
-			  <button mat-raised-button type="button" (click)="addCoCounterAgent()">Co-Counter Agent</button>
-			  <button mat-raised-button *ngIf="!collectiveCoCounterAgentOn" (click)="addCollectiveCoCounterAgent()" type="button">Collective Co-Counter Agent</button>
-			</div>
-		  </mat-toolbar>
-
+        </div>
       </div>
     </div>
 
@@ -896,7 +919,7 @@
                 <div *ngSwitchCase="'other'">
                   <div class="form-group">
                     <label>Other Agent Action</label>
-                    <input type="text" class="form-control" formControlName="otherAgentAction">
+                    <input type="text" class="form-control" formControlName="otherAgentAction" trim="blur">
                   </div>
                 </div>
                 <div *ngSwitchCase="'what'">
@@ -960,21 +983,56 @@
                         <div class="row">
                           <div class="form-group col">
                             <label>Type</label>
-                            <input type="text" class="form-control" formControlName="type">
+                            <input type="text" class="form-control" formControlName="type" trim="blur">
                           </div>
                           <div class="form-group col">
                             <label>Origin</label>
-                            <input type="text" class="form-control" formControlName="origin">
+                            <input type="text" class="form-control" formControlName="origin" trim="blur">
                           </div>
                         </div>
                         <div class="row">
-                          <div class="form-group col-8">
+                          <div class="form-group col-12">
                             <label>Description</label>
-                            <input type="text" class="form-control" formControlName="description">
+                            <input type="text" class="form-control" formControlName="description" trim="blur">
                           </div>
-                          <div class="form-group col-4">
-                            <label>Price</label>
-                            <input type="text" class="form-control" formControlName="price">
+                        </div>
+                        <div class="row">
+                          <div class="form-group col-12">
+                            <div formArrayName="price">
+                              <label>Price in</label>
+                              <div *ngFor="let priceChattel of transactionObject['controls']['chattels']['controls']['price']['controls']; let k=index">
+                                <div [formGroupName]="k">
+                                        <div class="form-group">
+                                          <div class="row">
+                                            <div class="col-2">
+                                              <select class="form-control" formControlName="coins">
+                                                  <option value="unspecified">Unspecified</option>
+                                                  <option value="silver">Silver</option>
+                                                  <option value="copper">Copper</option>
+                                                  <option value="chekhi">Chekhi</option>
+                                              </select>
+                                            </div>
+                                            <div class="col-2">
+                                              <input type="number" min="0" class="form-control" formControlName="rubli" trim="blur">
+                                            </div>
+                                            <div class="col-1 small-label">rubli</div>
+                                            <div class="col-2">
+                                              <input type="number" min="0" class="form-control" formControlName="altyny" trim="blur">
+                                            </div>
+                                            <div class="col-1 small-label">altyny</div>
+                                            <div class="col-2">
+                                              <input type="number" min="0" class="form-control" formControlName="dengi" trim="blur">
+                                            </div>
+                                            <div class="col-1 small-label">den'gi</div>
+                                            <div class="col-1">
+                                              <i class="fas fa-plus-circle mr-2" (click)="addMoneyChattelsAgent(i, j)" aria-hidden="true"></i>
+                                              <i class="fas fa-ban" (click)="removeMoneyChattelsAgent(i, j, k)" aria-hidden="true"></i>
+                                            </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -993,46 +1051,49 @@
                         </div>
                       </div>
                       <div formGroupName="debt" class="card-body">
-                        <div formGroupName="amount">
-                          <div class="form-group row" formGroupName="moscowSilver">
-                            <label class="col-3">Amount in Moscow Silver</label>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="rubli">
+                        <div formArrayName="amount">
+                          <label>Amount in</label>
+                          <div *ngFor="let amountDebt of transactionObject['controls']['debt']['controls']['amount']['controls']; let k=index">
+                            <div [formGroupName]="k">
+                                    <div class="form-group">
+                                      <div class="row">
+                                        <div class="col-2">
+                                          <select class="form-control" formControlName="coins">
+                                              <option value="unspecified">Unspecified</option>
+                                              <option value="silver">Silver</option>
+                                              <option value="copper">Copper</option>
+                                              <option value="chekhi">Chekhi</option>
+                                          </select>
+                                        </div>
+                                        <div class="col-2">
+                                          <input type="number" min="0" class="form-control" formControlName="rubli" trim="blur">
+                                        </div>
+                                        <div class="col-1 small-label">rubli</div>
+                                        <div class="col-2">
+                                          <input type="number" min="0" class="form-control" formControlName="altyny" trim="blur">
+                                        </div>
+                                        <div class="col-1 small-label">altyny</div>
+                                        <div class="col-2">
+                                          <input type="number" min="0" class="form-control" formControlName="dengi" trim="blur">
+                                        </div>
+                                        <div class="col-1 small-label">den'gi</div>
+                                        <div class="col-1">
+                                          <i class="fas fa-plus-circle mr-2" (click)="addMoneyDebtAgent(i, j)" aria-hidden="true"></i>
+                                          <i class="fas fa-ban" (click)="removeMoneyDebtAgent(i, j, k)" aria-hidden="true"></i>
+                                        </div>
+                                      </div>
+                                  </div>
+                              </div>
                             </div>
-                            <div class="col-1 small-label">rubli</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="altyny">
-                            </div>
-                            <div class="col-1 small-label">altyny</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="dengi">
-                            </div>
-                            <div class="col-1 small-label">den'gi</div>
-                          </div>
-                          <div class="form-group row" formGroupName="chekhi">
-                            <label class="col-3">Amount in Chekhi</label>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="rubli">
-                            </div>
-                            <div class="col-1 small-label">rubli</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="altyny">
-                            </div>
-                            <div class="col-1 small-label">altyny</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="dengi">
-                            </div>
-                            <div class="col-1 small-label">den'gi</div>
-                          </div>
                         </div>
                         <div class="row">
                           <div class="form-group col">
                             <label>Debtor Name</label>
-                            <input type="text" class="form-control" formControlName="debtorName">
+                            <input type="text" class="form-control" formControlName="debtorName" trim="blur">
                           </div>
                           <div class="form-group col">
                             <label>Debt Date</label>
-                            <input type="text" class="form-control" formControlName="debtDate">
+                            <input type="text" class="form-control" formControlName="debtDate" trim="blur">
                           </div>
                         </div>
                       </div>
@@ -1054,26 +1115,26 @@
                         <div class="row">
                           <div class="form-group col">
                             <label>Family Status</label>
-                            <input type="text" class="form-control" formControlName="familyStatus">
+                            <input type="text" class="form-control" formControlName="familyStatus" trim="blur">
                           </div>
                           <div class="form-group col">
                             <label>First Name</label>
-                            <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesMF" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                            <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesAllSorted" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8" trim="blur">
                           </div>
                         </div>
                         <div class="row">
                           <div class="form-group col">
                             <label>Patronyme</label>
-                            <input type="text" class="form-control" formControlName="patronyme" [typeahead]="patronymesMF" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                            <input type="text" class="form-control" formControlName="patronyme" trim="blur">
                           </div>
                           <div class="form-group col">
                             <label>Last Name</label>
-                            <input type="text" class="form-control" formControlName="lastName" [typeahead]="lastNamesMF" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                            <input type="text" class="form-control" formControlName="lastName" trim="blur">
                           </div>
                         </div>
                         <div class="form-group">
                           <label>Relation to Agent</label>
-                          <input type="text" class="form-control" formControlName="relationToAgent">
+                          <input type="text" class="form-control" formControlName="relationToAgent" trim="blur">
                         </div>
                       </div>
                     </div>
@@ -1090,37 +1151,40 @@
                           </div>
                         </div>
                       </div>
-                      <div formGroupName="forfeit" class="card-body">
-                        <div class="form-group row" formGroupName="moscowSilver">
-                          <label class="col-3">Amount in Moscow Silver: </label>
-                          <div class="col-2">
-                            <input type="number" min="0" class="form-control" formControlName="rubli">
+                      <div formArrayName="forfeit" class="card-body">
+                        <label>Price in</label>
+                        <div *ngFor="let forfeitAmount of transactionObject['controls']['forfeit']['controls']; let k=index">
+                          <div [formGroupName]="k">
+                                  <div class="form-group">
+                                    <div class="row">
+                                      <div class="col-2">
+                                        <select class="form-control" formControlName="coins">
+                                            <option value="unspecified">Unspecified</option>
+                                            <option value="silver">Silver</option>
+                                            <option value="copper">Copper</option>
+                                            <option value="chekhi">Chekhi</option>
+                                        </select>
+                                      </div>
+                                      <div class="col-2">
+                                        <input type="number" min="0" class="form-control" formControlName="rubli" trim="blur">
+                                      </div>
+                                      <div class="col-1 small-label">rubli</div>
+                                      <div class="col-2">
+                                        <input type="number" min="0" class="form-control" formControlName="altyny" trim="blur">
+                                      </div>
+                                      <div class="col-1 small-label">altyny</div>
+                                      <div class="col-2">
+                                        <input type="number" min="0" class="form-control" formControlName="dengi" trim="blur">
+                                      </div>
+                                      <div class="col-1 small-label">den'gi</div>
+                                      <div class="col-1">
+                                        <i class="fas fa-plus-circle mr-2" (click)="addMoneyForfeitAgent(i, j)" aria-hidden="true"></i>
+                                        <i class="fas fa-ban" (click)="removeMoneyForfeitAgent(i, j, k)" aria-hidden="true"></i>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
                           </div>
-                          <div class="col-1">rubli</div>
-                          <div class="col-2">
-                            <input type="number" min="0" class="form-control" formControlName="altyny">
-                          </div>
-                          <div class="col-1">altyny</div>
-                          <div class="col-2">
-                            <input type="number" min="0" class="form-control" formControlName="dengi">
-                          </div>
-                          <div class="col-1">den'gi</div>
-                        </div>
-                        <div class="form-group row" formGroupName="chekhi">
-                          <label class="col-3">Amount in Chekhi:</label>
-                          <div class="col-2">
-                            <input type="number" min="0" class="form-control" formControlName="rubli">
-                          </div>
-                          <div class="col-1">rubli</div>
-                          <div class="col-2">
-                            <input type="number" min="0" class="form-control" formControlName="altyny">
-                          </div>
-                          <div class="col-1">altyny</div>
-                          <div class="col-2">
-                            <input type="number" min="0" class="form-control" formControlName="dengi">
-                          </div>
-                          <div class="col-1">den'gi</div>
-                        </div>
                       </div>
                     </div>
                     <div *ngIf="transactionObject['controls']['fugitiveSouls']" class="card mb-3">
@@ -1139,16 +1203,16 @@
                       <div formGroupName="fugitiveSouls" class="card-body">
                         <div class="form-group">
                           <label>Juridical Status</label>
-                          <input class="form-control" formControlName="juridicalStatus">
+                          <input class="form-control" formControlName="juridicalStatus" trim>
                         </div>
                         <div class="form-group row" formGroupName="numberOfSouls">
                           <label class="col-2">Number of Souls: </label>
                           <div class="col-1">
-                            <input type="number" min="0" class="form-control" formControlName="male">
+                            <input type="number" min="0" class="form-control" formControlName="male" trim="blur">
                           </div>
                           <div class="col-1">male</div>
                           <div class="col-1">
-                            <input type="number" min="0" class="form-control" formControlName="female">
+                            <input type="number" min="0" class="form-control" formControlName="female" trim="blur">
                           </div>
                           <div class="col-1">female</div>
                           <div class="col-2">
@@ -1164,9 +1228,9 @@
                             </div>
                           </div>
                           <div class="col-2">
-                            <input type="number" min="0" class="form-control" formControlName="households">
+                            <input type="number" min="0" class="form-control" formControlName="households" trim="blur">
                           </div>
-                          <div class="col-2">households</div>
+                          <div class="col-1">households</div>
                         </div>
                         <div class="form-group">
                           <label>Names</label>
@@ -1174,7 +1238,7 @@
                         </div>
                         <div class="form-group">
                           <label>Years of rent</label>
-                          <input type="number" min="0" class="form-control" formControlName="yearsOfRent">
+                          <input type="number" min="0" class="form-control" formControlName="yearsOfRent" trim="blur">
                         </div>
                       </div>
                     </div>
@@ -1195,44 +1259,47 @@
                         <div class="row">
                           <div class="form-group col-4">
                             <label>Type</label>
-                            <input type="text" class="form-control" formControlName="type">
+                            <input type="text" class="form-control" formControlName="type" trim="blur">
                           </div>
                           <div class="form-group col-8">
                             <label>Description</label>
-                            <input type="text" class="form-control" formControlName="description">
+                            <input type="text" class="form-control" formControlName="description" trim="blur">
                           </div>
                         </div>
-                        <div formGroupName="price">
-                          <div class="form-group row" formGroupName="moscowSilver">
-                            <label class="col-3 control-label">Price in Moscow Silver: </label>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="rubli">
+                        <div formArrayName="price">
+                          <label>Price in</label>
+                          <div *ngFor="let priceGoods of transactionObject['controls']['goods']['controls']['price']['controls']; let k=index">
+                            <div [formGroupName]="k">
+                                    <div class="form-group">
+                                      <div class="row">
+                                        <div class="col-2">
+                                          <select class="form-control" formControlName="coins">
+                                              <option value="unspecified">Unspecified</option>
+                                              <option value="silver">Silver</option>
+                                              <option value="copper">Copper</option>
+                                              <option value="chekhi">Chekhi</option>
+                                          </select>
+                                        </div>
+                                        <div class="col-2">
+                                          <input type="number" min="0" class="form-control" formControlName="rubli" trim="blur">
+                                        </div>
+                                        <div class="col-1 small-label">rubli</div>
+                                        <div class="col-2">
+                                          <input type="number" min="0" class="form-control" formControlName="altyny" trim="blur">
+                                        </div>
+                                        <div class="col-1 small-label">altyny</div>
+                                        <div class="col-2">
+                                          <input type="number" min="0" class="form-control" formControlName="dengi" trim="blur">
+                                        </div>
+                                        <div class="col-1 small-label">den'gi</div>
+                                        <div class="col-1">
+                                          <i class="fas fa-plus-circle mr-2" (click)="addMoneyGoodsAgent(i, j)" aria-hidden="true"></i>
+                                          <i class="fas fa-ban" (click)="removeMoneyGoodsAgent(i, j, k)" aria-hidden="true"></i>
+                                        </div>
+                                      </div>
+                                  </div>
+                              </div>
                             </div>
-                            <div class="col-1">rubli</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="altyny">
-                            </div>
-                            <div class="col-1">altyny</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="dengi">
-                            </div>
-                            <div class="col-1">den'gi</div>
-                          </div>
-                          <div class="form-group row" formGroupName="chekhi">
-                            <label class="col-3 control-label">Price in Chekhi:</label>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="rubli">
-                            </div>
-                            <div class="col-1">rubli</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="altyny">
-                            </div>
-                            <div class="col-1">altyny</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="dengi">
-                            </div>
-                            <div class="col-1">den'gi</div>
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -1266,45 +1333,45 @@
                         </div>
                         <div *ngIf="updateAgentImmovablePropertyType(i,j)" class="form-group">
                           <label>Other type</label>
-                          <input type="text" class="form-control" formControlName="otherImmovablePropertyType">
+                          <input type="text" class="form-control" formControlName="otherImmovablePropertyType" trim="blur">
                         </div>
 
                         <div *ngIf="updateAgentImmovablePropertyShare(i,j)" class="form-group">
                           <label>Other share</label>
-                          <input type="text" class="form-control" formControlName="otherImmovablePropertyShare">
+                          <input type="text" class="form-control" formControlName="otherImmovablePropertyShare" trim="blur">
                         </div>
                         <div class="row">
                           <div class="form-group col-3">
                             <label>Origin</label>
-                            <input type="text" class="form-control" formControlName="origin">
+                            <input type="text" class="form-control" formControlName="origin" trim="blur">
                           </div>
                           <div class="form-group col-3">
                             <label>Localisation</label>
-                            <input type="text" class="form-control" formControlName="localisation">
+                            <input type="text" class="form-control" formControlName="localisation" [typeahead]="geogrStatusesSorted" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8" trim="blur">
                           </div>
                           <div class="form-group col-6">
                             <label>Neighbours</label>
-                            <input type="text" class="form-control" formControlName="neighbours">
+                            <input type="text" class="form-control" formControlName="neighbours" trim="blur">
                           </div>
                         </div>
                         <div class="form-group" formGroupName="surface">
                           <label>Surface</label>
                           <div class="row">
                             <div class="col-3">
-                              <input type="number" min="0" class="form-control" formControlName="chetiVpole">
+                              <input type="number" min="0" class="form-control" formControlName="chetiVpole" trim="blur">
                             </div>
                             <div class="col-2">cheti v pole</div>
                             <div class="col-1 text-center">OR</div>
                             <div formGroupName="sazheni" class="col-6">
                               <div class="row">
                                 <div class="col-3">
-                                  <input type="number" min="0" class="form-control" formControlName="x">
+                                  <input type="number" min="0" class="form-control" formControlName="x" trim="blur">
                                 </div>
                                 <div class="col-1 text-center">x</div>
                                 <div class="col-3">
-                                  <input type="number" min="0" class="form-control" formControlName="y">
+                                  <input type="number" min="0" class="form-control" formControlName="y" trim="blur">
                                 </div>
-                                <div class="col-5">sazheni</div>
+                                <div class="col-2">sazheni</div>
                               </div>
                             </div>
                           </div>
@@ -1313,11 +1380,11 @@
                           <label>Population (souls)</label>
                           <div class="row">
                             <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="male">
+                              <input type="number" min="0" class="form-control" formControlName="male" trim="blur">
                             </div>
                             <div class="col-1">male</div>
                             <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="female">
+                              <input type="number" min="0" class="form-control" formControlName="female" trim="blur">
                             </div>
                             <div class="col-1">female</div>
                             <div class="col-2">
@@ -1333,19 +1400,19 @@
                               </div>
                             </div>
                             <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="households">
+                              <input type="number" min="0" class="form-control" formControlName="households" trim="blur">
                             </div>
-                            <div class="col-2">households</div>
+                            <div class="col-1">households</div>
                           </div>
                         </div>
                         <div class="row">
                           <div class="form-group col">
                             <label>Buildings</label>
-                            <input type="text" class="form-control" formControlName="buildings">
+                            <input type="text" class="form-control" formControlName="buildings" trim="blur">
                           </div>
                           <div class="form-group col">
                             <label>Appurtenances</label>
-                            <input type="text" class="form-control" formControlName="appurtenances">
+                            <input type="text" class="form-control" formControlName="appurtenances" trim="blur">
                           </div>
                         </div>
                       </div>
@@ -1363,39 +1430,40 @@
                           </div>
                         </div>
                       </div>
-                      <div formGroupName="money" class="card-body">
-                        <div formGroupName="amount">
-                          <div class="form-group row" formGroupName="moscowSilver">
-                            <label class="col-3">Amount in Moscow Silver: </label>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="rubli">
+                      <div formArrayName="money"class=" card-body">
+                        <label>Amount in</label>
+                        <div *ngFor="let moneyAmount of transactionObject['controls']['money']['controls']; let k=index">
+                          <div [formGroupName]="k">
+                                  <div class="form-group">
+                                    <div class="row">
+                                      <div class="col-2">
+                                        <select class="form-control" formControlName="coins">
+                                            <option value="unspecified">Unspecified</option>
+                                            <option value="silver">Silver</option>
+                                            <option value="copper">Copper</option>
+                                            <option value="chekhi">Chekhi</option>
+                                        </select>
+                                      </div>
+                                      <div class="col-2">
+                                        <input type="number" min="0" class="form-control" formControlName="rubli" trim="blur">
+                                      </div>
+                                      <div class="col-1 small-label">rubli</div>
+                                      <div class="col-2">
+                                        <input type="number" min="0" class="form-control" formControlName="altyny" trim="blur">
+                                      </div>
+                                      <div class="col-1 small-label">altyny</div>
+                                      <div class="col-2">
+                                        <input type="number" min="0" class="form-control" formControlName="dengi" trim="blur">
+                                      </div>
+                                      <div class="col-1 small-label">den'gi</div>
+                                      <div class="col-1">
+                                        <i class="fas fa-plus-circle mr-2" (click)="addMoneyMoneyAgent(i, j)" aria-hidden="true"></i>
+                                        <i class="fas fa-ban" (click)="removeMoneyMoneyAgent(i, j, k)" aria-hidden="true"></i>
+                                      </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-1">rubli</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="altyny">
-                            </div>
-                            <div class="col-1">altyny</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="dengi">
-                            </div>
-                            <div class="col-1">den'gi</div>
                           </div>
-                          <div class="form-group row" formGroupName="chekhi">
-                            <label class="col-3">Amount in Chekhi:</label>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="rubli">
-                            </div>
-                            <div class="col-1">rubli</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="altyny">
-                            </div>
-                            <div class="col-1">altyny</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="dengi">
-                            </div>
-                            <div class="col-1">den'gi</div>
-                          </div>
-                        </div>
                       </div>
                     </div>
                     <div *ngIf="transactionObject['controls']['parent']" class="card mb-3">
@@ -1416,7 +1484,6 @@
                           <label>Co-Agent</label>
                           <select class="form-control" formControlName="coAgentNumber">
                             <option *ngFor="let value of deedForm['controls'].coAgents['controls']; let i=index" [value]="'coAgent' + (i+1)">Co-Agent {{ i + 1 }}</option>
-                            <option [value]="'collective coAgent'">Collective Co-Agent</option>
                           </select>
                         </div>
                       </div>
@@ -1463,11 +1530,11 @@
                         </div>
                         <div *ngIf="updateAgentShareFromEstate(i,j)" class="form-group">
                           <label>Other Share</label>
-                          <input type="text" class="form-control" formControlName="otherShareFromEstate">
+                          <input type="text" class="form-control" formControlName="otherShareFromEstate" trim="blur">
                         </div>
                         <div class="form-group">
                           <label>Description</label>
-                          <input type="text" class="form-control" formControlName="description">
+                          <input type="text" class="form-control" formControlName="description" trim="blur">
                         </div>
                       </div>
                     </div>
@@ -1487,17 +1554,17 @@
                       <div formGroupName="souls" class="card-body">
                         <div class="form-group">
                           <label>Juridical Status</label>
-                          <input class="form-control" formControlName="juridicalStatus">
+                          <input class="form-control" formControlName="juridicalStatus" trim="blur">
                         </div>
-                        <div class="form-group" formGroupName="numberOfSouls">
+                        <div class="form-group" formGroupName="numberOfSouls" trim="blur">
                           <label>Number of Souls</label>
                           <div class="row">
                             <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="male">
+                              <input type="number" min="0" class="form-control" formControlName="male" trim="blur">
                             </div>
                             <div class="col-1">male</div>
                             <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="female">
+                              <input type="number" min="0" class="form-control" formControlName="female" trim="blur">
                             </div>
                             <div class="col-1">female</div>
                             <div class="col-2">
@@ -1513,14 +1580,14 @@
                               </div>
                             </div>
                             <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="households">
+                              <input type="number" min="0" class="form-control" formControlName="households" trim="blur">
                             </div>
-                            <div class="col-2">households</div>
+                            <div class="col-1">households</div>
                           </div>
                         </div>
                         <div class="form-group">
                           <label>Names</label>
-                          <input type="text" class="form-control" formControlName="names">
+                          <input type="text" class="form-control" formControlName="names" trim="blur">
                         </div>
                       </div>
                     </div>
@@ -1539,7 +1606,7 @@
                       </div>
                       <div class="form-group" class="card-body">
                         <label>Other</label>
-                        <input type="text" class="form-control" formControlName="other">
+                        <input type="text" class="form-control" formControlName="other" trim="blur">
                       </div>
                     </div>
                     <div *ngIf="transactionObject['controls']['asWhom']">
@@ -1547,7 +1614,7 @@
                         <div *ngSwitchCase="'as hired worker'">
                           <div class="form-group">
                             <label>To Do What</label>
-                            <input type="text" class="form-control" formControlName="toDoWhat">
+                            <input type="text" class="form-control" formControlName="toDoWhat" trim="blur">
                           </div>
                         </div>
                         <div *ngSwitchCase="'in household'">
@@ -1582,21 +1649,21 @@
                           </div>
                           <div class="form-group">
                             <label>Description</label>
-                            <input type="text" class="form-control" formControlName="description">
+                            <input type="text" class="form-control" formControlName="description" trim="blur">
                           </div>
                           <div class="form-group" formGroupName="annualRent">
                             <label>Annual Rent</label>
                             <div class="row">
                               <div class="col-2">
-                                <input type="number" min="0" class="form-control" formControlName="rubli">
+                                <input type="number" min="0" class="form-control" formControlName="rubli" trim="blur">
                               </div>
                               <div class="col-1">rubli</div>
                               <div class="col-2">
-                                <input type="number" min="0" class="form-control" formControlName="altyny">
+                                <input type="number" min="0" class="form-control" formControlName="altyny" trim="blur">
                               </div>
                               <div class="col-1">altyny</div>
                               <div class="col-2">
-                                <input type="number" min="0" class="form-control" formControlName="dengi">
+                                <input type="number" min="0" class="form-control" formControlName="dengi" trim="blur">
                               </div>
                               <div class="col-1">den'gi</div>
                             </div>
@@ -1649,14 +1716,6 @@
                       </select>
                     </div>
                   </div>
-                  <div *ngSwitchCase="'whatM'">
-                    <div class="form-group">
-                      <label>What ?</label>
-                      <select class="form-control" formControlName="counterAgentTransactionObjectType" (change)="selectedCounterWhat(i)">
-                        <option *ngFor="let what of whatListM" [value]="what">{{ what }}</option>
-                      </select>
-                    </div>
-                  </div>
                   <div *ngSwitchCase="'whom'">
                     <div class="form-group">
                       <label>Whom ?</label>
@@ -1668,11 +1727,11 @@
                   <div *ngSwitchCase="'settles'">
                     <div class="form-group">
                       <label>Accusation against Counter Agent</label>
-                      <input type="text" class="form-control" formControlName="accusationAgainstCounterAgent">
+                      <input type="text" class="form-control" formControlName="accusationAgainstCounterAgent" trim="blur">
                     </div>
                     <div class="form-group">
                       <label>Juridical Procedure Stage</label>
-                      <input type="text" class="form-control" formControlName="juridicalProcedureStage">
+                      <input type="text" class="form-control" formControlName="juridicalProcedureStage" trim="blur">
                     </div>
                   </div>
                 </div>
@@ -1698,21 +1757,56 @@
                         <div class="row">
                           <div class="form-group col">
                             <label>Type</label>
-                            <input type="text" class="form-control" formControlName="type">
+                            <input type="text" class="form-control" formControlName="type" trim="blur">
                           </div>
                           <div class="form-group col">
                             <label>Origin</label>
-                            <input type="text" class="form-control" formControlName="origin">
+                            <input type="text" class="form-control" formControlName="origin" trim="blur">
                           </div>
                         </div>
                         <div class="row">
-                          <div class="form-group col-8">
+                          <div class="form-group col-12">
                             <label>Description</label>
-                            <input type="text" class="form-control" formControlName="description">
+                            <input type="text" class="form-control" formControlName="description" trim="blur">
                           </div>
-                          <div class="form-group col-4">
-                            <label>Price</label>
-                            <input type="number" min="0" class="form-control" formControlName="price">
+                        </div>
+                        <div class="row">
+                          <div class="form-group col-12">
+                            <div formArrayName="price">
+                              <label>Price in</label>
+                              <div *ngFor="let priceChattel of transactionCounterObject['controls']['chattels']['controls']['price']['controls']; let k=index">
+                                <div [formGroupName]="k">
+                                        <div class="form-group">
+                                          <div class="row">
+                                            <div class="col-2">
+                                              <select class="form-control" formControlName="coins">
+                                                  <option value="unspecified">Unspecified</option>
+                                                  <option value="silver">Silver</option>
+                                                  <option value="copper">Copper</option>
+                                                  <option value="chekhi">Chekhi</option>
+                                              </select>
+                                            </div>
+                                            <div class="col-2">
+                                              <input type="number" min="0" class="form-control" formControlName="rubli" trim="blur">
+                                            </div>
+                                            <div class="col-1 small-label">rubli</div>
+                                            <div class="col-2">
+                                              <input type="number" min="0" class="form-control" formControlName="altyny" trim="blur">
+                                            </div>
+                                            <div class="col-1 small-label">altyny</div>
+                                            <div class="col-2">
+                                              <input type="number" min="0" class="form-control" formControlName="dengi" trim="blur">
+                                            </div>
+                                            <div class="col-1 small-label">den'gi</div>
+                                            <div class="col-1">
+                                              <i class="fas fa-plus-circle mr-2" (click)="addMoneyChattelsCounterAgent(i, j)" aria-hidden="true"></i>
+                                              <i class="fas fa-ban" (click)="removeMoneyChattelsCounterAgent(i, j, k)" aria-hidden="true"></i>
+                                            </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1731,46 +1825,49 @@
                         </div>
                       </div>
                       <div formGroupName="debt" class="card-body">
-                        <div formGroupName="amount">
-                          <div class="form-group row" formGroupName="moscowSilver">
-                            <label class="col-3">Amount in Moscow Silver</label>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="rubli">
+                        <div formArrayName="amount">
+                          <label>Amount in</label>
+                          <div *ngFor="let amountDebt of transactionCounterObject['controls']['debt']['controls']['amount']['controls']; let k=index">
+                            <div [formGroupName]="k">
+                                    <div class="form-group">
+                                      <div class="row">
+                                        <div class="col-2">
+                                          <select class="form-control" formControlName="coins">
+                                              <option value="unspecified">Unspecified</option>
+                                              <option value="silver">Silver</option>
+                                              <option value="copper">Copper</option>
+                                              <option value="chekhi">Chekhi</option>
+                                          </select>
+                                        </div>
+                                        <div class="col-2">
+                                          <input type="number" min="0" class="form-control" formControlName="rubli" trim="blur">
+                                        </div>
+                                        <div class="col-1 small-label">rubli</div>
+                                        <div class="col-2">
+                                          <input type="number" min="0" class="form-control" formControlName="altyny" trim="blur">
+                                        </div>
+                                        <div class="col-1 small-label">altyny</div>
+                                        <div class="col-2">
+                                          <input type="number" min="0" class="form-control" formControlName="dengi" trim="blur">
+                                        </div>
+                                        <div class="col-1 small-label">den'gi</div>
+                                        <div class="col-1">
+                                          <i class="fas fa-plus-circle mr-2" (click)="addMoneyDebtCounterAgent(i, j)" aria-hidden="true"></i>
+                                          <i class="fas fa-ban" (click)="removeMoneyDebtCounterAgent(i, j, k)" aria-hidden="true"></i>
+                                        </div>
+                                      </div>
+                                  </div>
+                              </div>
                             </div>
-                            <div class="col-1 small-label">rubli</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="altyny">
-                            </div>
-                            <div class="col-1 small-label">altyny</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="dengi">
-                            </div>
-                            <div class="col-1 small-label">den'gi</div>
-                          </div>
-                          <div class="form-group row" formGroupName="chekhi">
-                            <label class="col-3">Amount in Chekhi</label>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="rubli">
-                            </div>
-                            <div class="col-1 small-label">rubli</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="altyny">
-                            </div>
-                            <div class="col-1 small-label">altyny</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="dengi">
-                            </div>
-                            <div class="col-1 small-label">den'gi</div>
-                          </div>
                         </div>
                         <div class="row">
                           <div class="form-group col">
                             <label>Debtor Name</label>
-                            <input type="text" class="form-control" formControlName="debtorName">
+                            <input type="text" class="form-control" formControlName="debtorName" trim="blur">
                           </div>
                           <div class="form-group col">
                             <label>Debtor Date</label>
-                            <input type="text" class="form-control" formControlName="debtDate">
+                            <input type="text" class="form-control" formControlName="debtDate" trim="blur">
                           </div>
                         </div>
                       </div>
@@ -1792,26 +1889,26 @@
                         <div class="row">
                           <div class="form-group col">
                             <label>Family Status</label>
-                            <input type="text" class="form-control" formControlName="familyStatus">
+                            <input type="text" class="form-control" formControlName="familyStatus" trim="blur">
                           </div>
                           <div class="form-group col">
                             <label>First Name</label>
-                            <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesMF" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                            <input type="text" class="form-control" formControlName="firstName" trim="blur" [typeahead]="firstNamesAllSorted"  [typeaheadMinLength]="0" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
                           </div>
                         </div>
                         <div class="row">
                           <div class="form-group col">
                             <label>Patronyme</label>
-                            <input type="text" class="form-control" formControlName="patronyme" [typeahead]="patronymesMF" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                            <input type="text" class="form-control" formControlName="patronyme" trim="blur">
                           </div>
                           <div class="form-group col">
                             <label>Last Name</label>
-                            <input type="text" class="form-control" formControlName="lastName" [typeahead]="lastNamesMF" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                            <input type="text" class="form-control" formControlName="lastName" trim="blur">
                           </div>
                         </div>
                         <div class="form-group">
                           <label>Relation to Agent</label>
-                          <input type="text" class="form-control" formControlName="relationToAgent">
+                          <input type="text" class="form-control" formControlName="relationToAgent" trim="blur">
                         </div>
                       </div>
                     </div>
@@ -1828,37 +1925,40 @@
                           </div>
                         </div>
                       </div>
-                      <div formGroupName="forfeit" class="card-body">
-                        <div class="form-group row" formGroupName="moscowSilver">
-                          <label class="col-3">Amount in Moscow Silver: </label>
-                          <div class="col-2">
-                            <input type="number" min="0" class="form-control" formControlName="rubli">
+                      <div formArrayName="forfeit" class="card-body">
+                        <label>Amount in</label>
+                        <div *ngFor="let forfeitAmount of transactionCounterObject['controls']['forfeit']['controls']; let k=index">
+                          <div [formGroupName]="k">
+                                  <div class="form-group">
+                                    <div class="row">
+                                      <div class="col-2">
+                                        <select class="form-control" formControlName="coins">
+                                            <option value="unspecified">Unspecified</option>
+                                            <option value="silver">Silver</option>
+                                            <option value="copper">Copper</option>
+                                            <option value="chekhi">Chekhi</option>
+                                        </select>
+                                      </div>
+                                      <div class="col-2">
+                                        <input type="number" min="0" class="form-control" formControlName="rubli" trim="blur">
+                                      </div>
+                                      <div class="col-1 small-label">rubli</div>
+                                      <div class="col-2">
+                                        <input type="number" min="0" class="form-control" formControlName="altyny" trim="blur">
+                                      </div>
+                                      <div class="col-1 small-label">altyny</div>
+                                      <div class="col-2">
+                                        <input type="number" min="0" class="form-control" formControlName="dengi" trim="blur">
+                                      </div>
+                                      <div class="col-1 small-label">den'gi</div>
+                                      <div class="col-1">
+                                        <i class="fas fa-plus-circle mr-2" (click)="addMoneyForfeitCounterAgent(i, j)" aria-hidden="true"></i>
+                                        <i class="fas fa-ban" (click)="removeMoneyForfeitCounterAgent(i, j, k)" aria-hidden="true"></i>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
                           </div>
-                          <div class="col-1">rubli</div>
-                          <div class="col-2">
-                            <input type="number" min="0" class="form-control" formControlName="altyny">
-                          </div>
-                          <div class="col-1">altyny</div>
-                          <div class="col-2">
-                            <input type="number" min="0" class="form-control" formControlName="dengi">
-                          </div>
-                          <div class="col-1">den'gi</div>
-                        </div>
-                        <div class="form-group row" formGroupName="chekhi">
-                          <label class="col-3">Amount in Chekhi:</label>
-                          <div class="col-2">
-                            <input type="number" min="0" class="form-control" formControlName="rubli">
-                          </div>
-                          <div class="col-1">rubli</div>
-                          <div class="col-2">
-                            <input type="number" min="0" class="form-control" formControlName="altyny">
-                          </div>
-                          <div class="col-1">altyny</div>
-                          <div class="col-2">
-                            <input type="number" min="0" class="form-control" formControlName="dengi">
-                          </div>
-                          <div class="col-1">den'gi</div>
-                        </div>
                       </div>
                     </div>
                     <div *ngIf="transactionCounterObject['controls']['fugitiveSouls']" class="card mb-3">
@@ -1882,11 +1982,11 @@
                         <div class="form-group row" formGroupName="numberOfSouls">
                           <label class="col-2">Number of Souls: </label>
                           <div class="col-1">
-                            <input type="number" min="0" class="form-control" formControlName="male">
+                            <input type="number" min="0" class="form-control" formControlName="male" trim="blur">
                           </div>
                           <div class="col-1">male</div>
                           <div class="col-1">
-                            <input type="number" min="0" class="form-control" formControlName="female">
+                            <input type="number" min="0" class="form-control" formControlName="female" trim="blur">
                           </div>
                           <div class="col-1">female</div>
                           <div class="col-2">
@@ -1902,17 +2002,17 @@
                             </div>
                           </div>
                           <div class="col-2">
-                            <input type="number" min="0" class="form-control" formControlName="households">
+                            <input type="number" min="0" class="form-control" formControlName="households" trim="blur">
                           </div>
-                          <div class="col-2">households</div>
+                          <div class="col-1">households</div>
                         </div>
                         <div class="form-group">
                           <label>Names</label>
-                          <input type="text" class="form-control" formControlName="names">
+                          <input type="text" class="form-control" formControlName="names" trim="blur">
                         </div>
                         <div class="form-group">
                           <label>Years of rent</label>
-                          <input type="number" min="0" class="form-control" formControlName="yearsOfRent">
+                          <input type="number" min="0" class="form-control" formControlName="yearsOfRent" trim="blur">
                         </div>
                       </div>
                     </div>
@@ -1933,44 +2033,47 @@
                         <div class="row">
                           <div class="form-group col-4">
                             <label>Type</label>
-                            <input type="text" class="form-control" formControlName="type">
+                            <input type="text" class="form-control" formControlName="type" trim="blur">
                           </div>
                           <div class="form-group col-8">
                             <label>Description</label>
-                            <input type="text" class="form-control" formControlName="description">
+                            <input type="text" class="form-control" formControlName="description" trim="blur">
                           </div>
                         </div>
-                        <div formGroupName="price">
-                          <div class="form-group row" formGroupName="moscowSilver">
-                            <label class="col-3 control-label">Price in Moscow Silver: </label>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="rubli">
+                        <div formArrayName="price">
+                          <label>Price in</label>
+                          <div *ngFor="let priceGoods of transactionCounterObject['controls']['goods']['controls']['price']['controls']; let k=index">
+                            <div [formGroupName]="k">
+                                    <div class="form-group">
+                                      <div class="row">
+                                        <div class="col-2">
+                                          <select class="form-control" formControlName="coins">
+                                              <option value="unspecified">Unspecified</option>
+                                              <option value="silver">Silver</option>
+                                              <option value="copper">Copper</option>
+                                              <option value="chekhi">Chekhi</option>
+                                          </select>
+                                        </div>
+                                        <div class="col-2">
+                                          <input type="number" min="0" class="form-control" formControlName="rubli" trim="blur">
+                                        </div>
+                                        <div class="col-1 small-label">rubli</div>
+                                        <div class="col-2">
+                                          <input type="number" min="0" class="form-control" formControlName="altyny" trim="blur">
+                                        </div>
+                                        <div class="col-1 small-label">altyny</div>
+                                        <div class="col-2">
+                                          <input type="number" min="0" class="form-control" formControlName="dengi" trim="blur">
+                                        </div>
+                                        <div class="col-1 small-label">den'gi</div>
+                                        <div class="col-1">
+                                          <i class="fas fa-plus-circle mr-2" (click)="addMoneyGoodsCounterAgent(i, j)" aria-hidden="true"></i>
+                                          <i class="fas fa-ban" (click)="removeMoneyGoodsCounterAgent(i, j, k)" aria-hidden="true"></i>
+                                        </div>
+                                      </div>
+                                  </div>
+                              </div>
                             </div>
-                            <div class="col-1">rubli</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="altyny">
-                            </div>
-                            <div class="col-1">altyny</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="dengi">
-                            </div>
-                            <div class="col-1">den'gi</div>
-                          </div>
-                          <div class="form-group row" formGroupName="chekhi">
-                            <label class="col-3 control-label">Price in Chekhi:</label>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="rubli">
-                            </div>
-                            <div class="col-1">rubli</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="altyny">
-                            </div>
-                            <div class="col-1">altyny</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="dengi">
-                            </div>
-                            <div class="col-1">den'gi</div>
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -2004,45 +2107,45 @@
                         </div>
                         <div *ngIf="updateCounterAgentImmovablePropertyType(i,j)" class="form-group">
                           <label>Other type</label>
-                          <input type="text" class="form-control" formControlName="otherImmovablePropertyType">
+                          <input type="text" class="form-control" formControlName="otherImmovablePropertyType" trim="blur">
                         </div>
 
                         <div *ngIf="updateCounterAgentImmovablePropertyShare(i,j)" class="form-group">
                           <label>Other share</label>
-                          <input type="text" class="form-control" formControlName="otherImmovablePropertyShare">
+                          <input type="text" class="form-control" formControlName="otherImmovablePropertyShare" trim="blur">
                         </div>
                         <div class="row">
                           <div class="form-group col-3">
                             <label>Origin</label>
-                            <input type="text" class="form-control" formControlName="origin">
+                            <input type="text" class="form-control" formControlName="origin" trim="blur">
                           </div>
                           <div class="form-group col-3">
                             <label>Localisation</label>
-                            <input type="text" class="form-control" formControlName="localisation">
+                            <input type="text" class="form-control" formControlName="localisation" [typeahead]="geogrStatusesSorted" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8" trim="blur">
                           </div>
                           <div class="form-group col-6">
                             <label>Neighbours</label>
-                            <input type="text" class="form-control" formControlName="neighbours">
+                            <input type="text" class="form-control" formControlName="neighbours" trim="blur">
                           </div>
                         </div>
                         <div class="form-group" formGroupName="surface">
                           <label>Surface</label>
                           <div class="row">
                             <div class="col-3">
-                              <input type="number" min="0" class="form-control" formControlName="chetiVpole">
+                              <input type="number" min="0" class="form-control" formControlName="chetiVpole" trim="blur">
                             </div>
                             <div class="col-2">cheti v pole</div>
                             <div class="col-1 text-center">OR</div>
                             <div formGroupName="sazheni" class="col-6">
                               <div class="row">
                                 <div class="col-3">
-                                  <input type="number" min="0" class="form-control" formControlName="x">
+                                  <input type="number" min="0" class="form-control" formControlName="x" trim="blur">
                                 </div>
                                 <div class="col-1 text-center">x</div>
                                 <div class="col-3">
-                                  <input type="number" min="0" class="form-control" formControlName="y">
+                                  <input type="number" min="0" class="form-control" formControlName="y" trim="blur">
                                 </div>
-                                <div class="col-1">sazheni</div>
+                                <div class="col-2">sazheni</div>
                               </div>
                             </div>
                           </div>
@@ -2051,11 +2154,11 @@
                           <label>Population (souls)</label>
                           <div class="row">
                             <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="male">
+                              <input type="number" min="0" class="form-control" formControlName="male" trim="blur">
                             </div>
                             <div class="col-1">male</div>
                             <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="female">
+                              <input type="number" min="0" class="form-control" formControlName="female" trim="blur">
                             </div>
                             <div class="col-1">female</div>
                             <div class="col-2">
@@ -2071,19 +2174,19 @@
                               </div>
                             </div>
                             <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="households">
+                              <input type="number" min="0" class="form-control" formControlName="households" trim="blur">
                             </div>
-                            <div class="col-2">households</div>
+                            <div class="col-1">households</div>
                           </div>
                         </div>
                         <div class="row">
                           <div class="form-group col">
                             <label>Buildings</label>
-                            <input type="text" class="form-control" formControlName="buildings">
+                            <input type="text" class="form-control" formControlName="buildings" trim="blur">
                           </div>
                           <div class="form-group col">
                             <label>Appurtenances</label>
-                            <input type="text" class="form-control" formControlName="appurtenances">
+                            <input type="text" class="form-control" formControlName="appurtenances" trim="blur">
                           </div>
                         </div>
                       </div>
@@ -2101,39 +2204,40 @@
                           </div>
                         </div>
                       </div>
-                      <div formGroupName="money" class="card-body">
-                        <div formGroupName="amount">
-                          <div class="form-group row" formGroupName="moscowSilver">
-                            <label class="col-3">Amount in Moscow Silver: </label>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="rubli">
+                      <div formArrayName="money"class=" card-body">
+                        <label>Amount in</label>
+                        <div *ngFor="let moneyAmount of transactionCounterObject['controls']['money']['controls']; let k=index">
+                          <div [formGroupName]="k">
+                                  <div class="form-group">
+                                    <div class="row">
+                                      <div class="col-2">
+                                        <select class="form-control" formControlName="coins">
+                                            <option value="unspecified">Unspecified</option>
+                                            <option value="silver">Silver</option>
+                                            <option value="copper">Copper</option>
+                                            <option value="chekhi">Chekhi</option>
+                                        </select>
+                                      </div>
+                                      <div class="col-2">
+                                        <input type="number" min="0" class="form-control" formControlName="rubli" trim="blur">
+                                      </div>
+                                      <div class="col-1 small-label">rubli</div>
+                                      <div class="col-2">
+                                        <input type="number" min="0" class="form-control" formControlName="altyny" trim="blur">
+                                      </div>
+                                      <div class="col-1 small-label">altyny</div>
+                                      <div class="col-2">
+                                        <input type="number" min="0" class="form-control" formControlName="dengi" trim="blur">
+                                      </div>
+                                      <div class="col-1 small-label">den'gi</div>
+                                      <div class="col-1">
+                                        <i class="fas fa-plus-circle mr-2" (click)="addMoneyMoneyCounterAgent(i, j)" aria-hidden="true"></i>
+                                        <i class="fas fa-ban" (click)="removeMoneyMoneyCounterAgent(i, j, k)" aria-hidden="true"></i>
+                                      </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-1">rubli</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="altyny">
-                            </div>
-                            <div class="col-1">altyny</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="dengi">
-                            </div>
-                            <div class="col-1">den'gi</div>
                           </div>
-                          <div class="form-group row" formGroupName="chekhi">
-                            <label class="col-3">Amount in Chekhi:</label>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="rubli">
-                            </div>
-                            <div class="col-1">rubli</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="altyny">
-                            </div>
-                            <div class="col-1">altyny</div>
-                            <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="dengi">
-                            </div>
-                            <div class="col-1">den'gi</div>
-                          </div>
-                        </div>
                       </div>
                     </div>
                     <div *ngIf="transactionCounterObject['controls']['parent']" class="card mb-3">
@@ -2154,7 +2258,6 @@
                           <label>Co-Counter Agent</label>
                           <select class="form-control" formControlName="coCounterAgentNumber">
                             <option *ngFor="let value of deedForm['controls'].coCounterAgents['controls']; let i=index" [value]="'coCounterAgent' + (i+1)">Co-Counter Agent {{ i + 1 }}</option>
-                            <option [value]="'collective coCounterAgent'">Collective Co-Counter Agent</option>
                           </select>
                         </div>
                       </div>
@@ -2175,7 +2278,7 @@
                       <div formGroupName="responsabilities" class="card-body">
                         <div class="form-group">
                           <label>Description</label>
-                          <input type="text" class="form-control" formControlName="description">
+                          <input type="text" class="form-control" formControlName="description" trim="blur">
                         </div>
                       </div>
                     </div>
@@ -2201,11 +2304,11 @@
                         </div>
                         <div *ngIf="updateCounterAgentShareFromEstate(i,j)" class="form-group">
                           <label>Other Share</label>
-                          <input type="text" class="form-control" formControlName="otherShareFromEstate">
+                          <input type="text" class="form-control" formControlName="otherShareFromEstate" trim="blur">
                         </div>
                         <div class="form-group">
                           <label>Description</label>
-                          <input type="text" class="form-control" formControlName="description">
+                          <input type="text" class="form-control" formControlName="description" trim="blur">
                         </div>
                       </div>
                     </div>
@@ -2225,17 +2328,17 @@
                       <div formGroupName="souls" class="card-body">
                         <div class="form-group">
                           <label>Juridical Status</label>
-                          <input class="form-control" formControlName="juridicalStatus">
+                          <input class="form-control" formControlName="juridicalStatus" trim="blur">
                         </div>
-                        <div class="form-group" formGroupName="numberOfSouls">
+                        <div class="form-group" formGroupName="numberOfSouls" trim="blur">
                           <label>Number of Souls</label>
                           <div class="row">
                             <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="male">
+                              <input type="number" min="0" class="form-control" formControlName="male" trim="blur">
                             </div>
                             <div class="col-1">male</div>
                             <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="female">
+                              <input type="number" min="0" class="form-control" formControlName="female" trim="blur">
                             </div>
                             <div class="col-1">female</div>
                             <div class="col-2">
@@ -2251,14 +2354,14 @@
                               </div>
                             </div>
                             <div class="col-2">
-                              <input type="number" min="0" class="form-control" formControlName="households">
+                              <input type="number" min="0" class="form-control" formControlName="households" trim="blur">
                             </div>
-                            <div class="col-2">households</div>
+                            <div class="col-1">households</div>
                           </div>
                         </div>
                         <div class="form-group">
                           <label>Names</label>
-                          <input type="text" class="form-control" formControlName="names">
+                          <input type="text" class="form-control" formControlName="names" trim="blur">
                         </div>
                       </div>
                     </div>
@@ -2277,7 +2380,7 @@
                       </div>
                       <div class="form-group" class="card-body">
                         <label>Other</label>
-                        <input type="text" class="form-control" formControlName="other">
+                        <input type="text" class="form-control" formControlName="other" trim="blur">
                       </div>
                     </div>
                     <div *ngIf="transactionCounterObject['controls']['asWhom']">
@@ -2285,7 +2388,7 @@
                         <div *ngSwitchCase="'as hired worker'">
                           <div class="form-group">
                             <label>To Do What</label>
-                            <input type="text" class="form-control" formControlName="toDoWhat">
+                            <input type="text" class="form-control" formControlName="toDoWhat" trim="blur">
                           </div>
                         </div>
                         <div *ngSwitchCase="'in household'">
@@ -2320,21 +2423,21 @@
                           </div>
                           <div class="form-group">
                             <label>Description</label>
-                            <input type="text" class="form-control" formControlName="description">
+                            <input type="text" class="form-control" formControlName="description" trim="blur">
                           </div>
                           <div class="form-group" formGroupName="annualRent">
                             <label>Annual Rent</label>
                             <div class="row">
                               <div class="col-2">
-                                <input type="number" min="0" class="form-control" formControlName="rubli">
+                                <input type="number" min="0" class="form-control" formControlName="rubli" trim="blur">
                               </div>
                               <div class="col-1">rubli</div>
                               <div class="col-2">
-                                <input type="number" min="0" class="form-control" formControlName="altyny">
+                                <input type="number" min="0" class="form-control" formControlName="altyny" trim="blur">
                               </div>
                               <div class="col-1">altyny</div>
                               <div class="col-2">
-                                <input type="number" min="0" class="form-control" formControlName="dengi">
+                                <input type="number" min="0" class="form-control" formControlName="dengi" trim="blur">
                               </div>
                               <div class="col-1">den'gi</div>
                             </div>
@@ -2353,7 +2456,7 @@
                 <div class="card-body">
                   <div class="form-group row">
                     <label class="col-2">Advance Payment</label>
-                    <div class="col-4">
+                    <div class="col-10">
                       <div class="form-check form-check-inline">
                         <label class="form-check-label">
                           <input class="form-check-input" type="radio" formControlName="advancePayment" value="yes"> Yes
@@ -2365,37 +2468,20 @@
                         </label>
                       </div>
                     </div>
-                    <label class="col-2">Partial Advance</label>
-                    <div class="col-4">
-                      <div class="form-check form-check-inline">
-                        <label class="form-check-label">
-                          <input class="form-check-input" type="radio" formControlName="partialAdvance" value="yes"> Yes
-                        </label>
-                      </div>
-                      <div class="form-check form-check-inline">
-                        <label class="form-check-label">
-                          <input class="form-check-input" type="radio" formControlName="partialAdvance" value="no"> No
-                        </label>
-                      </div>
-                    </div>
                   </div>
                   <div class="form-group">
                     <label>Contract Conditions</label>
-                    <textarea class="form-control" formControlName="contractConditions"></textarea>
+                    <textarea class="form-control" formControlName="contractConditions" trim="blur"></textarea>
                   </div>
                   <div class="row">
                     <div class="form-group col">
                       <label>Contract Duration</label>
-                      <input type="text" class="form-control" formControlName="contractDuration">
+                      <input type="text" class="form-control" formControlName="contractDuration" trim="blur">
                     </div>
                     <div class="form-group col">
                       <label>Forfeit (roubles)</label>
-                      <input type="text" class="form-control" formControlName="forfeit">
+                      <input type="text" class="form-control" formControlName="forfeit" trim="blur">
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <label>Notes on reverse side</label>
-                    <textarea class="form-control" formControlName="notesOnReverseSide"></textarea>
                   </div>
                 </div>
               </div>
@@ -2404,14 +2490,7 @@
           </div>
           <!-- NGFOR END -->
         </div>
-		<!-- FORMARRAYNAME TRANSACTIONS END  -->
-		
-		<mat-toolbar class="mb-3">
-			<div class="action-button">
-			  <button mat-raised-button type="button" (click)="addTransaction()">Transaction</button>
-			</div>
-		  </mat-toolbar>
-
+        <!-- FORMARRAYNAME TRANSACTIONS END  -->
       </div>
     </div>
 
@@ -2450,31 +2529,31 @@
                 <div class="row">
                   <div class="form-group col">
                     <label>Geogr Status</label>
-                    <input type="text" class="form-control" formControlName="geogrStatus" appAutofocus>
+                    <input type="text" class="form-control" formControlName="geogrStatus" [typeahead]="geogrStatusesSorted" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8" autofocus trim="blur">
                   </div>
                   <div class="form-group col">
                     <label>Social Status</label>
-                    <input type="text" class="form-control" formControlName="socialStatus">
+                    <input type="text" class="form-control" formControlName="socialStatus" trim="blur">
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col">
                     <label>First Name</label>
-                    <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesMF" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                    <input type="text" class="form-control" formControlName="firstName" trim="blur" [typeahead]="firstNamesAllSorted"  [typeaheadMinLength]="0" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
                   </div>
                   <div class="form-group col">
                     <label>Patronyme</label>
-                    <input type="text" class="form-control" formControlName="patronyme" [typeahead]="patronymesMF" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                    <input type="text" class="form-control" formControlName="patronyme" trim="blur">
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col">
                     <label>Last Name</label>
-                    <input type="text" class="form-control" formControlName="lastName" [typeahead]="lastNamesMF" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                    <input type="text" class="form-control" formControlName="lastName" trim="blur">
                   </div>
                   <div class="form-group col">
                     <label>Related To</label>
-                    <input type="text" class="form-control" formControlName="relatedTo">
+                    <input type="text" class="form-control" formControlName="relatedTo" trim="blur">
                   </div>
                 </div>
               </div>
@@ -2501,31 +2580,31 @@
                 <div class="row">
                   <div class="form-group col">
                     <label>Geogr Status</label>
-                    <input type="text" class="form-control" formControlName="geogrStatus" appAutofocus>
+                    <input type="text" class="form-control" formControlName="geogrStatus" [typeahead]="geogrStatusesSorted" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8" trim="blur">
                   </div>
                   <div class="form-group col">
                     <label>Social Status</label>
-                    <input type="text" class="form-control" formControlName="socialStatus">
+                    <input type="text" class="form-control" formControlName="socialStatus" trim="blur">
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col">
                     <label>First Name</label>
-                    <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesMF" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                    <input type="text" class="form-control" formControlName="firstName" trim="blur" [typeahead]="firstNamesAllSorted"  [typeaheadMinLength]="0" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
                   </div>
                   <div class="form-group col">
                     <label>Patronyme</label>
-                    <input type="text" class="form-control" formControlName="patronyme" [typeahead]="patronymesMF" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                    <input type="text" class="form-control" formControlName="patronyme" trim="blur">
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col">
                     <label>Last Name</label>
-                    <input type="text" class="form-control" formControlName="lastName" [typeahead]="lastNamesMF" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                    <input type="text" class="form-control" formControlName="lastName" trim="blur">
                   </div>
                   <div class="form-group col">
                     <label>Related To</label>
-                    <input type="text" class="form-control" formControlName="relatedTo">
+                    <input type="text" class="form-control" formControlName="relatedTo" trim="blur">
                   </div>
                 </div>
               </div>
@@ -2550,31 +2629,31 @@
               <div class="row">
                 <div class="form-group col">
                   <label>Geogr Status</label>
-                  <input type="text" class="form-control" formControlName="geogrStatus" appAutofocus>
+                  <input type="text" class="form-control" formControlName="geogrStatus" [typeahead]="geogrStatusesSorted" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8" trim="blur">
                 </div>
                 <div class="form-group col">
                   <label>Social Status</label>
-                  <input type="text" class="form-control" formControlName="socialStatus">
+                  <input type="text" class="form-control" formControlName="socialStatus" trim="blur">
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col">
                   <label>First Name</label>
-                  <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesMF" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                  <input type="text" class="form-control" formControlName="firstName" trim="blur" [typeahead]="firstNamesAllSorted"  [typeaheadMinLength]="0" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
                 </div>
                 <div class="form-group col">
                   <label>Patronyme</label>
-                  <input type="text" class="form-control" formControlName="patronyme" [typeahead]="patronymesMF" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                  <input type="text" class="form-control" formControlName="patronyme" trim="blur">
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col">
                   <label>Last Name</label>
-                  <input type="text" class="form-control" formControlName="lastName" [typeahead]="lastNamesMF" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                  <input type="text" class="form-control" formControlName="lastName" trim="blur">
                 </div>
                 <div class="form-group col">
                   <label>Related To</label>
-                  <input type="text" class="form-control" formControlName="relatedTo">
+                  <input type="text" class="form-control" formControlName="relatedTo" trim="blur">
                 </div>
               </div>
             </div>
@@ -2599,50 +2678,43 @@
               <div formGroupName="otherParticipant">
                 <div class="form-group">
                   <label>Role</label>
-                  <input type="text" class="form-control" formControlName="role">
+                  <input type="text" class="form-control" formControlName="role" trim="blur">
                 </div>
                 <div class="row">
                   <div class="form-group col">
                     <label>Geogr Status</label>
-                    <input type="text" class="form-control" formControlName="geogrStatus" appAutofocus>
+                    <input type="text" class="form-control" formControlName="geogrStatus" [typeahead]="geogrStatusesSorted" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8" trim="blur">
                   </div>
                   <div class="form-group col">
                     <label>Social Status</label>
-                    <input type="text" class="form-control" formControlName="socialStatus">
+                    <input type="text" class="form-control" formControlName="socialStatus" trim="blur">
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col">
                     <label>First Name</label>
-                    <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesMF" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                    <input type="text" class="form-control" formControlName="firstName" trim="blur" [typeahead]="firstNamesAllSorted"  [typeaheadMinLength]="0" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
                   </div>
                   <div class="form-group col">
                     <label>Patronyme</label>
-                    <input type="text" class="form-control" formControlName="patronyme" [typeahead]="patronymesMF" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                    <input type="text" class="form-control" formControlName="patronyme" trim="blur">
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col">
                     <label>Last Name</label>
-                    <input type="text" class="form-control" formControlName="lastName" [typeahead]="lastNamesMF" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                    <input type="text" class="form-control" formControlName="lastName" trim="blur">
                   </div>
                   <div class="form-group col">
                     <label>Related To</label>
-                    <input type="text" class="form-control" formControlName="relatedTo">
+                    <input type="text" class="form-control" formControlName="relatedTo" trim="blur">
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-		<mat-toolbar class="mb-3">
-			<div class="action-button">
-			  <button mat-raised-button type="button" (click)="addWhitness()">Whitness</button>
-			  <button mat-raised-button type="button" (click)="addSurety()">Surety</button>
-			  <button mat-raised-button *ngIf="!scribeOn" type="button" (click)="addScribe()">Scribe</button>
-			  <button mat-raised-button type="button" (click)="addOtherParticipant()">Other Participant</button>
-			</div>
-		  </mat-toolbar>
+
       </div>
     </div>
 
@@ -2658,16 +2730,8 @@
         </div>
 
         <div class="form-group">
-          <label>Registration Date
-            <small class="pl-2">Format: 31-12-2017</small>
-          </label>
-          <div class="input-group col-4">
-            <input class="form-control" formControlName="registrationDate" placeholder="DD-MM-YYYY">
-            <span class="input-group-btn">
-              <button type="button" (click)="insertLastResgitrationDate()" class="btn btn-secondary" matTooltip="Click to insert the registration date of the last deed saved in the database">
-                <i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i> Date</button>
-            </span>
-          </div>
+          <label>Registration Date</label>
+          <input type="text" class="form-control" formControlName="registrationDate" trim="blur">
         </div>
         <div *ngIf="!registratorOn">
           <p class="lead text-center">
@@ -2708,31 +2772,26 @@
               <div class="row">
                 <div class="form-group col">
                   <label>First Name</label>
-                  <input type="text" class="form-control" formControlName="firstName" [typeahead]="firstNamesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8"/>
+                  <input type="text" class="form-control" formControlName="firstName" trim="blur" [typeahead]="firstNamesAllSorted"  [typeaheadMinLength]="0" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
                 </div>
                 <div class="form-group col">
                   <label>Patronyme</label>
-                  <input type="text" class="form-control" formControlName="patronyme" [typeahead]="patronymesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                  <input type="text" class="form-control" formControlName="patronyme" trim="blur">
                 </div>
               </div>
               <div class="row">
                 <div class="form-group col">
                   <label>Last Name</label>
-                  <input type="text" class="form-control" formControlName="lastName" [typeahead]="lastNamesMale" [typeaheadMinLength]="2" [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="8">
+                  <input type="text" class="form-control" formControlName="lastName" trim="blur">
                 </div>
                 <div class="form-group col">
                   <label>Related To</label>
-                  <input type="text" class="form-control" formControlName="relatedTo">
+                  <input type="text" class="form-control" formControlName="relatedTo" trim="blur">
                 </div>
               </div>
             </div>
           </div>
-		</div>
-		<mat-toolbar class="mb-3">
-			<div class="action-button">
-				<button mat-raised-button *ngIf="!registratorOn" type="button" (click)="addRegistrator()">Registrator</button>
-			</div>
-		  </mat-toolbar>
+        </div>
 
 
 
@@ -2746,15 +2805,15 @@
                 <label>Tax</label>
                 <div class="row">
                   <div class="col-2 pr-0">
-                    <input type="number" min="0" class="form-control" formControlName="roubles">
+                    <input type="number" min="0" class="form-control" formControlName="roubles" trim="blur">
                   </div>
                   <div class="col-1">roubles</div>
                   <div class="col-2 pr-0">
-                    <input type="number" min="0" class="form-control" formControlName="altyn">
+                    <input type="number" min="0" class="form-control" formControlName="altyn" trim="blur">
                   </div>
                   <div class="col-1">altyn</div>
                   <div class="col-2 pr-0">
-                    <input type="number" min="0" class="form-control" formControlName="denga">
+                    <input type="number" min="0" class="form-control" formControlName="denga" trim="blur">
                   </div>
                   <div class="col-1">denga</div>
                   <div class="col-1 pr-0">Collected: </div>
@@ -2777,19 +2836,19 @@
               <div class="form-group">
                 <label>Fee</label>
                 <div class="row">
-                  <div class="col-2 pr-0">
-                    <input type="number" min="0" class="form-control" formControlName="roubles">
+                  <div class="col-2">
+                    <input type="number" min="0" class="form-control" formControlName="roubles" trim="blur">
                   </div>
                   <div class="col-1">roubles</div>
-                  <div class="col-2 pr-0">
-                    <input type="number" min="0" class="form-control" formControlName="altyn">
+                  <div class="col-2">
+                    <input type="number" min="0" class="form-control" formControlName="altyn" trim="blur">
                   </div>
                   <div class="col-1">altyn</div>
-                  <div class="col-2 pr-0">
-                    <input type="number" min="0" class="form-control" formControlName="denga">
+                  <div class="col-2">
+                    <input type="number" min="0" class="form-control" formControlName="denga" trim="blur">
                   </div>
                   <div class="col-1">denga</div>
-                  <div class="col-1 pr-0">Collected: </div>
+                  <div class="col-1">Collected: </div>
                   <div class="col-sm-2">
                     <div class="form-check form-check-inline">
                       <label class="form-check-label">
@@ -2826,11 +2885,11 @@
 
         <div class="form-group">
           <label>Verbatim Citations</label>
-          <textarea rows="10" class="form-control" formControlName="verbatimCitations"></textarea>
+          <textarea rows="10" class="form-control" formControlName="verbatimCitations" trim="blur"></textarea>
         </div>
         <div class="form-group">
           <label>Researcher Notes</label>
-          <textarea rows="10" class="form-control" formControlName="researcherNotes"></textarea>
+          <textarea rows="10" class="form-control" formControlName="researcherNotes" trim="blur"></textarea>
         </div>
       </div>
     </div>

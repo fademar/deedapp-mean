@@ -627,7 +627,7 @@
                   </div>
                   <div class="card-body">
                     <div class="row no-gutters mb-3">
-                      <div class="col-6">
+                      <div class="col-12">
                         <div *ngIf="agentTransactionObject.chattels.type" class="list-group-item">Chattels Type:
                           <span class="form-data" [innerHTML]="agentTransactionObject.chattels.type | highlight: term"></span>
                         </div>
@@ -635,12 +635,27 @@
                           <span class="form-data" [innerHTML]="agentTransactionObject.chattels.origin | highlight: term"></span>
                         </div>
                       </div>
-                      <div class="col-6">
+                      <div class="col-12">
                         <div *ngIf="agentTransactionObject.chattels.description" class="list-group-item">Chattels Description:
                           <span class="form-data" [innerHTML]="agentTransactionObject.chattels.description | highlight: term"></span>
                         </div>
-                        <div *ngIf="agentTransactionObject.chattels.price" class="list-group-item">Chattels Price:
-                          <span class="form-data" [innerHTML]="agentTransactionObject.chattels.price | highlight: term"></span>
+                        <div *ngIf="deed.schemaVersion === '1' ">
+                          <div *ngIf="agentTransactionObject.chattels.price" class="list-group-item">Chattels Price:
+                            <span class="form-data" [innerHTML]="agentTransactionObject.chattels.price | highlight: term"></span>
+                          </div>
+                        </div>
+                        <div *ngIf="deed.schemaVersion === '2'">
+                          <div class="list-group-item col-12">Price in:
+                            <ng-template ngFor let-price [ngForOf]="agentTransactionObject.chattels.price" let-o="index">
+                              <div>
+                                <span class="form-data" [innerHTML]="price.coins | highlight: term"></span>:
+                                <span class="form-data" [innerHTML]="price.rubli | highlight: term"></span> rubli
+                                <span class="form-data" [innerHTML]="price.altyny | highlight: term"></span>
+                                altyny
+                                <span class="form-data" [innerHTML]="price.dengi | highlight: term"></span> dengi
+                              </div>
+                            </ng-template>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -656,6 +671,7 @@
                   </div>
                   <div class="card-body">
                     <div class="row no-gutters mb-3">
+                      <div *ngIf="deed.schemaVersion === '1'">
                       <div *ngIf="agentTransactionObject.debt.amount.moscowSilver.rubli || agentTransactionObject.debt.amount.moscowSilver.altyny || agentTransactionObject.debt.amount.moscowSilver.dengi"
                         class="list-group-item">Amount in Moscow Silver:
                         <span *ngIf="agentTransactionObject.debt.amount.moscowSilver.rubli" class="form-data">
@@ -679,6 +695,20 @@
                         <span *ngIf="agentTransactionObject.debt.amount.chekhi.dengi" class="form-data">
                           <span [innerHTML]="agentTransactionObject.debt.amount.chekhi.dengi | highlight: term"></span> den'gi
                         </span>
+                      </div>
+                    </div>
+                    <div *ngIf="deed.schemaVersion === '2'">
+                        <div class="list-group-item col-12">Amount in:
+                          <ng-template ngFor let-debtamount [ngForOf]="agentTransactionObject.debt.amount" let-o="index">
+                            <div>
+                              <span class="form-data" [innerHTML]="debtamount.coins | highlight: term"></span>:
+                              <span class="form-data" [innerHTML]="debtamount.rubli | highlight: term"></span> rubli
+                              <span class="form-data" [innerHTML]="debtamount.altyny | highlight: term"></span>
+                              altyny
+                              <span class="form-data" [innerHTML]="debtamount.dengi | highlight: term"></span> dengi
+                            </div>
+                          </ng-template>
+                        </div>
                       </div>
                       <div *ngIf="agentTransactionObject.debt.debtorName" class="list-group-item">Debtor Name:
                         <span class="form-data" [innerHTML]="agentTransactionObject.debt.debtorName | highlight: term"></span>
@@ -732,7 +762,10 @@
                     </div>
                   </div>
                   <div class="card-body">
-                    <ul class="list-group">
+                      <div *ngIf="deed.schemaVersion === '1'">
+
+                      <ul class="list-group">
+
                       <li *ngIf="agentTransactionObject.forfeit.moscowSilver.rubli || agentTransactionObject.forfeit.moscowSilver.altyny || agentTransactionObject.forfeit.moscowSilver.dengi"
                         class="list-group-item">
                         Amount in Moscow Silver:
@@ -760,6 +793,24 @@
                         </span>
                       </li>
                     </ul>
+                    </div>
+
+                    <div *ngIf="deed.schemaVersion === '2'">
+                      <div class="list-group-item col-12">Amount in:
+                        <ng-template ngFor let-forfeitamount [ngForOf]="agentTransactionObject.forfeit" let-o="index">
+                          <div>
+                            <span class="form-data" [innerHTML]="forfeitamount.coins | highlight: term"></span>:
+                            <span class="form-data" [innerHTML]="forfeitamount.rubli | highlight: term"></span> rubli
+                            <span class="form-data" [innerHTML]="forfeitamount.altyny | highlight: term"></span>
+                            altyny
+                            <span class="form-data" [innerHTML]="forfeitamount.dengi | highlight: term"></span> dengi
+                          </div>
+                        </ng-template>
+                      </div>
+                    </div>
+
+
+
                   </div>
                 </div>
                 <div *ngIf="agentTransactionObject.fugitiveSouls" class="card mb-3">
@@ -811,6 +862,8 @@
                     </div>
                   </div>
                   <div class="card-body">
+                    
+                    <div *ngIf="deed.schemaVersion === '1'">
                     <ul class="list-group">
                       <li *ngIf="agentTransactionObject.goods.type" class="list-group-item">
                         Type:
@@ -847,6 +900,24 @@
                         </span>
                       </li>
                     </ul>
+                  </div>
+
+                  <div *ngIf="deed.schemaVersion === '2'">
+                      <div class="list-group-item col-12">Price in:
+                        <ng-template ngFor let-pricegoods [ngForOf]="agentTransactionObject.goods.price" let-o="index">
+                          <div>
+                            <span class="form-data" [innerHTML]="pricegoods.coins | highlight: term"></span>:
+                            <span class="form-data" [innerHTML]="pricegoods.rubli | highlight: term"></span> rubli
+                            <span class="form-data" [innerHTML]="pricegoods.altyny | highlight: term"></span>
+                            altyny
+                            <span class="form-data" [innerHTML]="pricegoods.dengi | highlight: term"></span> dengi
+                          </div>
+                        </ng-template>
+                      </div>
+                    </div>
+
+
+
                   </div>
                 </div>
                 <div *ngIf="agentTransactionObject.immovableProperty">
@@ -931,6 +1002,7 @@
                     </div>
                   </div>
                   <div class="card-body">
+                    <div *ngIf="deed.schemaVersion ==='1'">
                     <ul class="list-group">
                       <li *ngIf="agentTransactionObject.money.amount.moscowSilver.rubli || agentTransactionObject.money.amount.moscowSilver.altyny || agentTransactionObject.money.amount.moscowSilver.dengi"
                         class="list-group-item">
@@ -959,6 +1031,22 @@
                         </span>
                       </li>
                     </ul>
+                  </div>
+
+                  <div *ngIf="deed.schemaVersion === '2'">
+                      <div class="list-group-item col-12">Amount in:
+                        <ng-template ngFor let-moneyamount [ngForOf]="agentTransactionObject.money" let-o="index">
+                          <div>
+                            <span class="form-data" [innerHTML]="moneyamount.coins | highlight: term"></span>:
+                            <span class="form-data" [innerHTML]="moneyamount.rubli | highlight: term"></span> rubli
+                            <span class="form-data" [innerHTML]="moneyamount.altyny | highlight: term"></span>
+                            altyny
+                            <span class="form-data" [innerHTML]="moneyamount.dengi | highlight: term"></span> dengi
+                          </div>
+                        </ng-template>
+                      </div>
+                    </div>
+
                   </div>
                 </div>
                 <div *ngIf="agentTransactionObject.parent" class="card mb-3">
@@ -1267,10 +1355,27 @@
                         Chattels Description:
                         <span class="form-data" [innerHTML]="counterAgentTransactionObject.chattels.description | highlight: term"></span>
                       </li>
+                      <div *ngIf="deed.schemaVersion === '1'">
                       <li *ngIf="counterAgentTransactionObject.chattels.price" class="list-group-item">
                         Chattels Price:
                         <span class="form-data" [innerHTML]="counterAgentTransactionObject.chattels.price | highlight: term"></span>
                       </li>
+                    </div>
+
+                    <div *ngIf="deed.schemaVersion === '2'">
+                        <div class="list-group-item col-12">Price in:
+                          <ng-template ngFor let-price [ngForOf]="counterAgentTransactionObject.chattels.price" let-o="index">
+                            <div>
+                              <span class="form-data" [innerHTML]="price.coins | highlight: term"></span>:
+                              <span class="form-data" [innerHTML]="price.rubli | highlight: term"></span> rubli
+                              <span class="form-data" [innerHTML]="price.altyny | highlight: term"></span>
+                              altyny
+                              <span class="form-data" [innerHTML]="price.dengi | highlight: term"></span> dengi
+                            </div>
+                          </ng-template>
+                        </div>
+                      </div>
+
                     </ul>
                   </div>
                 </div>
@@ -1284,6 +1389,8 @@
                   </div>
                   <div class="card-body">
                     <ul class="list-group">
+                        <div *ngIf="deed.schemaVersion === '1' ">
+
                       <li *ngIf="counterAgentTransactionObject.debt.amount.moscowSilver.rubli || counterAgentTransactionObject.debt.amount.moscowSilver.altyny || counterAgentTransactionObject.debt.amount.moscowSilver.dengi"
                         class="list-group-item">
                         Amount in Moscow Silver:
@@ -1310,6 +1417,20 @@
                           <span [innerHTML]="counterAgentTransactionObject.debt.amount.chekhi.dengi | highlight: term"></span> den'gi
                         </span>
                       </li>
+                      </div>
+                      <div *ngIf="deed.schemaVersion === '2'">
+                          <div class="list-group-item col-12">Amount in:
+                            <ng-template ngFor let-debtamount [ngForOf]="counterAgentTransactionObject.debt.amount" let-o="index">
+                              <div>
+                                <span class="form-data" [innerHTML]="debtamount.coins | highlight: term"></span>:
+                                <span class="form-data" [innerHTML]="debtamount.rubli | highlight: term"></span> rubli
+                                <span class="form-data" [innerHTML]="debtamount.altyny | highlight: term"></span>
+                                altyny
+                                <span class="form-data" [innerHTML]="debtamount.dengi | highlight: term"></span> dengi
+                              </div>
+                            </ng-template>
+                          </div>
+                        </div>
                       <li *ngIf="counterAgentTransactionObject.debt.debtorName" class="list-group-item">
                         Debtor Name:
                         <span class="form-data" [innerHTML]="counterAgentTransactionObject.debt.debtorName | highlight: term"></span>
@@ -1363,34 +1484,55 @@
                     </div>
                   </div>
                   <div class="card-body">
-                    <ul class="list-group">
-                      <li *ngIf="counterAgentTransactionObject.forfeit.moscowSilver.rubli || counterAgentTransactionObject.forfeit.moscowSilver.altyny || counterAgentTransactionObject.forfeit.moscowSilver.dengi"
-                        class="list-group-item">
-                        Amount in Moscow Silver:
-                        <span *ngIf="counterAgentTransactionObject.forfeit.moscowSilver.rubli" class="form-data">
-                          <span [innerHTML]="counterAgentTransactionObject.forfeit.moscowSilver.rubli | highlight: term"></span> rubli
-                        </span>
-                        <span *ngIf="counterAgentTransactionObject.forfeit.moscowSilver.altyny" class="form-data">
-                          <span [innerHTML]="counterAgentTransactionObject.forfeit.moscowSilver.altyny | highlight: term"></span> altyny
-                        </span>
-                        <span *ngIf="counterAgentTransactionObject.forfeit.moscowSilver.dengi" class="form-data">
-                          <span [innerHTML]="counterAgentTransactionObject.forfeit.moscowSilver.dengi | highlight: term"></span> den'gi
-                        </span>
-                      </li>
-                      <li *ngIf="counterAgentTransactionObject.forfeit.chekhi.rubli || counterAgentTransactionObject.forfeit.chekhi.altyny || counterAgentTransactionObject.forfeit.chekhi.dengi"
-                        class="list-group-item">
-                        Amount in Chekhi:
-                        <span *ngIf="counterAgentTransactionObject.forfeit.chekhi.rubli" class="form-data">
-                          <span [innerHTML]="counterAgentTransactionObject.forfeit.chekhi.rubli | highlight: term"></span> rubli
-                        </span>
-                        <span *ngIf="counterAgentTransactionObject.forfeit.chekhi.altyny" class="form-data">
-                          <span [innerHTML]="counterAgentTransactionObject.forfeit.chekhi.altyny | highlight: term"></span> altyny
-                        </span>
-                        <span *ngIf="counterAgentTransactionObject.forfeit.chekhi.dengi" class="form-data">
-                          <span [innerHTML]="counterAgentTransactionObject.forfeit.chekhi.dengi | highlight: term"></span> den'gi
-                        </span>
-                      </li>
-                    </ul>
+                      
+                        <div *ngIf="deed.schemaVersion === '1'">
+
+                          <ul class="list-group">
+    
+                          <li *ngIf="counterAgentTransactionObject.forfeit.moscowSilver.rubli || counterAgentTransactionObject.forfeit.moscowSilver.altyny || counterAgentTransactionObject.forfeit.moscowSilver.dengi"
+                            class="list-group-item">
+                            Amount in Moscow Silver:
+                            <span *ngIf="counterAgentTransactionObject.forfeit.moscowSilver.rubli" class="form-data">
+                              <span [innerHTML]="counterAgentTransactionObject.forfeit.moscowSilver.rubli | highlight: term"></span> rubli
+                            </span>
+                            <span *ngIf="counterAgentTransactionObject.forfeit.moscowSilver.altyny" class="form-data">
+                              <span [innerHTML]="counterAgentTransactionObject.forfeit.moscowSilver.altyny | highlight: term"></span> altyny
+                            </span>
+                            <span *ngIf="counterAgentTransactionObject.forfeit.moscowSilver.dengi" class="form-data">
+                              <span [innerHTML]="counterAgentTransactionObject.forfeit.moscowSilver.dengi | highlight: term"></span> den'gi
+                            </span>
+                          </li>
+                          <li *ngIf="counterAgentTransactionObject.forfeit.chekhi.rubli || counterAgentTransactionObject.forfeit.chekhi.altyny || counterAgentTransactionObject.forfeit.chekhi.dengi"
+                            class="list-group-item">
+                            Amount in Chekhi:
+                            <span *ngIf="counterAgentTransactionObject.forfeit.chekhi.rubli" class="form-data">
+                              <span [innerHTML]="counterAgentTransactionObject.forfeit.chekhi.rubli | highlight: term"></span> rubli
+                            </span>
+                            <span *ngIf="counterAgentTransactionObject.forfeit.chekhi.altyny" class="form-data">
+                              <span [innerHTML]="counterAgentTransactionObject.forfeit.chekhi.altyny | highlight: term"></span> altyny
+                            </span>
+                            <span *ngIf="counterAgentTransactionObject.forfeit.chekhi.dengi" class="form-data">
+                              <span [innerHTML]="counterAgentTransactionObject.forfeit.chekhi.altyny | highlight: term"></span> den'gi
+                            </span>
+                          </li>
+                        </ul>
+                        </div>
+    
+                        <div *ngIf="deed.schemaVersion === '2'">
+                          <div class="list-group-item col-12">Amount in:
+                            <ng-template ngFor let-forfeitamount [ngForOf]="counterAgentTransactionObject.forfeit" let-o="index">
+                              <div>
+                                <span class="form-data" [innerHTML]="forfeitamount.coins | highlight: term"></span>:
+                                <span class="form-data" [innerHTML]="forfeitamount.rubli | highlight: term"></span> rubli
+                                <span class="form-data" [innerHTML]="forfeitamount.altyny | highlight: term"></span>
+                                altyny
+                                <span class="form-data" [innerHTML]="forfeitamount.dengi | highlight: term"></span> dengi
+                              </div>
+                            </ng-template>
+                          </div>
+                        </div>
+
+
                   </div>
                 </div>
                 <div *ngIf="counterAgentTransactionObject.fugitiveSouls" class="card mb-3">
@@ -1440,6 +1582,7 @@
                     </div>
                   </div>
                   <div class="card-body">
+                    <div *ngIf="deed.schemaVersion === '1'">
                     <ul class="list-group">
                       <li *ngIf="counterAgentTransactionObject.goods.type" class="list-group-item">
                         Type:
@@ -1476,6 +1619,24 @@
                         </span>
                       </li>
                     </ul>
+                  </div>
+
+                  <div *ngIf="deed.schemaVersion === '2'">
+                    <div class="list-group-item col-12">Price in:
+                      <ng-template ngFor let-goodsprice [ngForOf]="counterAgentTransactionObject.goods.price" let-o="index">
+                        <div>
+                          <span class="form-data" [innerHTML]="goodsprice.coins | highlight: term"></span>:
+                          <span class="form-data" [innerHTML]="goodsprice.rubli | highlight: term"></span> rubli
+                          <span class="form-data" [innerHTML]="goodsprice.altyny | highlight: term"></span>
+                          altyny
+                          <span class="form-data" [innerHTML]="goodsprice.dengi | highlight: term"></span> dengi
+                        </div>
+                      </ng-template>
+                    </div>
+                  </div>
+
+
+
                   </div>
                 </div>
                 <div *ngIf="counterAgentTransactionObject.immovableProperty">
@@ -1560,6 +1721,7 @@
                     </div>
                   </div>
                   <div class="card-body">
+                    <div *ngIf="deed.schemaVersion==='1'">
                     <ul class="list-group">
                       <li *ngIf="counterAgentTransactionObject.money.amount.moscowSilver.rubli || counterAgentTransactionObject.money.amount.moscowSilver.altyny || counterAgentTransactionObject.money.amount.moscowSilver.dengi"
                         class="list-group-item">
@@ -1588,6 +1750,23 @@
                         </span>
                       </li>
                     </ul>
+                  </div>
+
+                  <div *ngIf="deed.schemaVersion === '2'">
+                      <div class="list-group-item col-12">Amount in:
+                        <ng-template ngFor let-moneyamount [ngForOf]="counterAgentTransactionObject.money" let-o="index">
+                          <div>
+                            <span class="form-data" [innerHTML]="moneyamount.coins | highlight: term"></span>:
+                            <span class="form-data" [innerHTML]="moneyamount.rubli | highlight: term"></span> rubli
+                            <span class="form-data" [innerHTML]="moneyamount.altyny | highlight: term"></span>
+                            altyny
+                            <span class="form-data" [innerHTML]="moneyamount.dengi | highlight: term"></span> dengi
+                          </div>
+                        </ng-template>
+                      </div>
+                    </div>
+
+
                   </div>
                 </div>
                 <div *ngIf="counterAgentTransactionObject.parent" class="card mb-3">
