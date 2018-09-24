@@ -13,7 +13,7 @@ export class AuthService {
     domain: 'cercec.eu.auth0.com',
     responseType: 'token id_token',
     audience: 'https://cercec.eu.auth0.com/userinfo',
-    redirectUri: 'https://deeds.cercec.fr/callback',      
+    redirectUri: 'http://3f2f56011e90446ab5c0514f67ca5831.testing-url.ws/callback',      
     scope: 'openid%20profile'
   });
 
