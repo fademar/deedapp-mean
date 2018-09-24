@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
-import 'rxjs/add/operator/map';
+import { map } from 'rxjs/operators';
 
 
 
@@ -20,7 +20,7 @@ export class SearchService {
 
 
   searchEntries(term) {
-    return this.http.get('/api/search/'+term).map(res => res.json());
+    return this.http.get('/api/search/'+term).pipe(map(res => res.json()));
   }
 
 
