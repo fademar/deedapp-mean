@@ -18,7 +18,6 @@ export class SearchService {
     this.results = null;
   }
 
-
   searchEntries(term) {
     return this.http.get('/api/search/'+term).map(res => res.json());
   }
