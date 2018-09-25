@@ -3,9 +3,8 @@
 }
 
 .form-data {
-  font-size: 1.1em;
-  font-weight: 500;
-  padding-left: 20px;
+	font-size: 1.1em;
+	padding: 0 10px;
 }
 
 md-card {
@@ -35,7 +34,7 @@ md-card {
   outline: none !important;
 }
 
-:host ::ng-deep .search-highlight{
+:host ::ng-deep .search-highlight {
   background-color: #F2E366;
 }
 

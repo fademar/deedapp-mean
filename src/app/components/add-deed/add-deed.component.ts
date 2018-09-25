@@ -12,7 +12,6 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/of';
 import * as _ from 'lodash';
 import { AuthService } from '../../services/auth.service';
-import { TypeaheadService } from '../../services/typeahead.service';
 
 
 @Component({
@@ -143,8 +142,7 @@ export class AddDeedComponent implements OnInit {
         private route: ActivatedRoute,
         private notificationsService: NotificationsService,
         public auth: AuthService,
-        private titleService: Title,
-        private typeaheadService: TypeaheadService) { }
+        private titleService: Title) { }
 
     ngOnInit() {
         this.titleService.setTitle('ADD - Russian Deeds App');
@@ -2170,7 +2168,7 @@ export class AddDeedComponent implements OnInit {
                                         if (transaction.agentTransactionObjects[index].debt.amount.moscowSilver.rubli || transaction.agentTransactionObjects[index].debt.amount.moscowSilver.altyny || transaction.agentTransactionObjects[index].debt.amount.moscowSilver.dengi) {
                                             this.agentTransactionObject.controls.debt['controls'].amount.push(this.initMoney());
                                             this.agentTransactionObject.controls.debt['controls'].amount['controls'][0].patchValue({
-                                                coins: 'silver',
+                                                coins: 'unspecified',
                                                 rubli: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.rubli,
                                                 altyny: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.altyny,
                                                 dengi: transaction.agentTransactionObjects[index].debt.amount.moscowSilver.dengi
@@ -2179,7 +2177,7 @@ export class AddDeedComponent implements OnInit {
                                         if (transaction.agentTransactionObjects[index].debt.amount.chekhi.rubli || transaction.agentTransactionObjects[index].debt.amount.chekhi.altyny || transaction.agentTransactionObjects[index].debt.amount.chekhi.dengi) {
                                             this.agentTransactionObject.controls.debt['controls'].amount.push(this.initMoney());
                                             this.agentTransactionObject.controls.debt['controls'].amount['controls'][0].patchValue({
-                                                coins: 'chekhi',
+                                                coins: 'unspecified',
                                                 rubli: transaction.agentTransactionObjects[index].debt.amount.chekhi.rubli,
                                                 altyny: transaction.agentTransactionObjects[index].debt.amount.chekhi.altyny,
                                                 dengi: transaction.agentTransactionObjects[index].debt.amount.chekhi.dengi
@@ -2221,7 +2219,7 @@ export class AddDeedComponent implements OnInit {
                                         if (transaction.agentTransactionObjects[index].forfeit.moscowSilver.rubli || transaction.agentTransactionObjects[index].forfeit.moscowSilver.altyny || transaction.agentTransactionObjects[index].forfeit.moscowSilver.dengi) {
                                             this.agentTransactionObject.controls.forfeit['controls'].push(this.initMoney());
                                             this.agentTransactionObject.controls.forfeit['controls'][0].patchValue({
-                                                coins: 'silver',
+                                                coins: 'unspecified',
                                                 rubli: transaction.agentTransactionObjects[index].forfeit.moscowSilver.rubli,
                                                 altyny: transaction.agentTransactionObjects[index].forfeit.moscowSilver.altyny,
                                                 dengi: transaction.agentTransactionObjects[index].forfeit.moscowSilver.dengi
@@ -2230,7 +2228,7 @@ export class AddDeedComponent implements OnInit {
                                         if (transaction.agentTransactionObjects[index].forfeit.chekhi.rubli || transaction.agentTransactionObjects[index].forfeit.chekhi.altyny || transaction.agentTransactionObjects[index].forfeit.chekhi.dengi) {
                                             this.agentTransactionObject.controls.forfeit['controls'].push(this.initMoney());
                                             this.agentTransactionObject.controls.forfeit['controls'][0].patchValue({
-                                                coins: 'chekhi',
+                                                coins: 'unspecified',
                                                 rubli: transaction.agentTransactionObjects[index].forfeit.chekhi.rubli,
                                                 altyny: transaction.agentTransactionObjects[index].forfeit.chekhi.altyny,
                                                 dengi: transaction.agentTransactionObjects[index].forfeit.chekhi.dengi
@@ -2334,7 +2332,7 @@ export class AddDeedComponent implements OnInit {
                                         if (transaction.agentTransactionObjects[index].money.amount.moscowSilver.rubli || transaction.agentTransactionObjects[index].money.amount.moscowSilver.altyny || transaction.agentTransactionObjects[index].money.amount.moscowSilver.dengi) {
                                             this.agentTransactionObject.controls.money['controls'].push(this.initMoney());
                                             this.agentTransactionObject.controls.money['controls'][0].patchValue({
-                                                coins: 'silver',
+                                                coins: 'unspecified',
                                                 rubli: transaction.agentTransactionObjects[index].money.amount.moscowSilver.rubli,
                                                 altyny: transaction.agentTransactionObjects[index].money.amount.moscowSilver.altyny,
                                                 dengi: transaction.agentTransactionObjects[index].money.amount.moscowSilver.dengi
@@ -2343,7 +2341,7 @@ export class AddDeedComponent implements OnInit {
                                         if (transaction.agentTransactionObjects[index].money.amount.chekhi.rubli || transaction.agentTransactionObjects[index].money.amount.chekhi.altyny || transaction.agentTransactionObjects[index].money.amount.chekhi.dengi) {
                                             this.agentTransactionObject.controls.money['controls'].push(this.initMoney());
                                             this.agentTransactionObject.controls.money['controls'][0].patchValue({
-                                                coins: 'chekhi',
+                                                coins: 'unspecified',
                                                 rubli: transaction.agentTransactionObjects[index].money.amount.chekhi.rubli,
                                                 altyny: transaction.agentTransactionObjects[index].money.amount.chekhi.altyny,
                                                 dengi: transaction.agentTransactionObjects[index].money.amount.chekhi.dengi
@@ -2530,7 +2528,7 @@ export class AddDeedComponent implements OnInit {
                                             if (transaction.counterAgentTransactionObjects[index].debt.amount.moscowSilver.rubli || transaction.counterAgentTransactionObjects[index].debt.amount.moscowSilver.altyny || transaction.counterAgentTransactionObjects[index].debt.amount.moscowSilver.dengi) {
                                                 this.counterAgentTransactionObject.controls.debt['controls'].amount.push(this.initMoney());
                                                 this.counterAgentTransactionObject.controls.debt['controls'].amount['controls'][0].patchValue({
-                                                    coins: 'silver',
+                                                    coins: 'unspecified',
                                                     rubli: transaction.counterAgentTransactionObjects[index].debt.amount.moscowSilver.rubli,
                                                     altyny: transaction.counterAgentTransactionObjects[index].debt.amount.moscowSilver.altyny,
                                                     dengi: transaction.counterAgentTransactionObjects[index].debt.amount.moscowSilver.dengi
@@ -2539,7 +2537,7 @@ export class AddDeedComponent implements OnInit {
                                             if (transaction.counterAgentTransactionObjects[index].debt.amount.chekhi.rubli || transaction.counterAgentTransactionObjects[index].debt.amount.chekhi.altyny || transaction.counterAgentTransactionObjects[index].debt.amount.chekhi.dengi) {
                                                 this.counterAgentTransactionObject.controls.debt['controls'].amount.push(this.initMoney());
                                                 this.counterAgentTransactionObject.controls.debt['controls'].amount['controls'][0].patchValue({
-                                                    coins: 'chekhi',
+                                                    coins: 'unspecified',
                                                     rubli: transaction.counterAgentTransactionObjects[index].debt.amount.chekhi.rubli,
                                                     altyny: transaction.counterAgentTransactionObjects[index].debt.amount.chekhi.altyny,
                                                     dengi: transaction.counterAgentTransactionObjects[index].debt.amount.chekhi.dengi
@@ -2581,7 +2579,7 @@ export class AddDeedComponent implements OnInit {
                                             if (transaction.counterAgentTransactionObjects[index].forfeit.moscowSilver.rubli || transaction.counterAgentTransactionObjects[index].forfeit.moscowSilver.altyny || transaction.counterAgentTransactionObjects[index].forfeit.moscowSilver.dengi) {
                                                 this.counterAgentTransactionObject.controls.forfeit['controls'].push(this.initMoney());
                                                 this.counterAgentTransactionObject.controls.forfeit['controls'][0].patchValue({
-                                                    coins: 'silver',
+                                                    coins: 'unspecified',
                                                     rubli: transaction.counterAgentTransactionObjects[index].forfeit.moscowSilver.rubli,
                                                     altyny: transaction.counterAgentTransactionObjects[index].forfeit.moscowSilver.altyny,
                                                     dengi: transaction.counterAgentTransactionObjects[index].forfeit.moscowSilver.dengi
@@ -2590,7 +2588,7 @@ export class AddDeedComponent implements OnInit {
                                             if (transaction.counterAgentTransactionObjects[index].forfeit.chekhi.rubli || transaction.counterAgentTransactionObjects[index].forfeit.chekhi.altyny || transaction.counterAgentTransactionObjects[index].forfeit.chekhi.dengi) {
                                                 this.counterAgentTransactionObject.controls.forfeit['controls'].push(this.initMoney());
                                                 this.counterAgentTransactionObject.controls.forfeit['controls'][0].patchValue({
-                                                    coins: 'chekhi',
+                                                    coins: 'unspecified',
                                                     rubli: transaction.counterAgentTransactionObjects[index].forfeit.chekhi.rubli,
                                                     altyny: transaction.counterAgentTransactionObjects[index].forfeit.chekhi.altyny,
                                                     dengi: transaction.counterAgentTransactionObjects[index].forfeit.chekhi.dengi
@@ -2693,7 +2691,7 @@ export class AddDeedComponent implements OnInit {
                                             if (transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.rubli || transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.altyny || transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.dengi) {
                                                 this.counterAgentTransactionObject.controls.money['controls'].push(this.initMoney());
                                                 this.counterAgentTransactionObject.controls.money['controls'][0].patchValue({
-                                                    coins: 'silver',
+                                                    coins: 'unspecified',
                                                     rubli: transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.rubli,
                                                     altyny: transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.altyny,
                                                     dengi: transaction.counterAgentTransactionObjects[index].money.amount.moscowSilver.dengi
@@ -2702,7 +2700,7 @@ export class AddDeedComponent implements OnInit {
                                             if (transaction.counterAgentTransactionObjects[index].money.amount.chekhi.rubli || transaction.counterAgentTransactionObjects[index].money.amount.chekhi.altyny || transaction.counterAgentTransactionObjects[index].money.amount.chekhi.dengi) {
                                                 this.counterAgentTransactionObject.controls.money['controls'].push(this.initMoney());
                                                 this.counterAgentTransactionObject.controls.money['controls'][0].patchValue({
-                                                    coins: 'chekhi',
+                                                    coins: 'unspecified',
                                                     rubli: transaction.counterAgentTransactionObjects[index].money.amount.chekhi.rubli,
                                                     altyny: transaction.counterAgentTransactionObjects[index].money.amount.chekhi.altyny,
                                                     dengi: transaction.counterAgentTransactionObjects[index].money.amount.chekhi.dengi

@@ -196,4 +196,11 @@ button:active {
 
 .submit-button {
   color: #3F51B5;
+  margin-right: 30px;
+}
+
+.action-button {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
 }
