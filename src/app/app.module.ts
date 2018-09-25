@@ -24,7 +24,6 @@ import { MatButtonToggleModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material';
 import { MatSidenavModule } from '@angular/material';
 import { MatExpansionModule } from '@angular/material';
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { QuillModule } from 'ngx-quill';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { InputTrimModule } from 'ng2-trim-directive';
@@ -113,8 +112,6 @@ import { ToolsComponent } from './components/tools/tools.component';
     MatButtonToggleModule,
     MatToolbarModule,
     MatSidenavModule,
-    FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot(),
     QuillModule,
     MatExpansionModule,
     NgxJsonViewerModule,
