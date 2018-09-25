@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { DeedService } from './deed.service';
 import * as _ from 'lodash';
 
@@ -12,7 +13,7 @@ export class TypeaheadService {
     firstNamesAll = [];
     test = [];
 
-    constructor(private http: Http, private deedService: DeedService) { }
+    constructor(private http: HttpClient, private deedService: DeedService) { }
 
     getFirstNamesM() {
         this.deedService.getDeeds().subscribe(deeds => {

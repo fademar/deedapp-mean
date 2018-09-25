@@ -293,41 +293,6 @@ app.get('/api/search/:term', (req, res) => {
   });
 });
 
-/*  '/api/firstnames'
- *    GET: retrieve distinct firstnames and order them
- *
- */
-app.get('/api/firstnames', (req, res) => {
-  db.collection(deedsCollection).distinct('agent.firstName', {
-    agentSex: 'male'
-  }, (err, docs) => {
-    if (err) {
-      handleError(res, err.message, 'Failed to get deeds.');
-    } else {
-      docs.sort(new Intl.Collator('ru').compare);
-      res.status(200).json(docs);
-    }
-  });
-});
-
-app.get('/api/firstnamesmale', (req, res) => {
-  db.collection(deedsCollection).aggregate(
-    [{
-      $group: {
-        _id: {
-          "agent.firstName": "$agent.firsName"
-        }
-      }
-    }]
-  ).toArray((err, docs) => {
-    if (err) {
-      handleError(res, err.message, 'Failed to get deeds.');
-    } else {
-      docs.sort(new Intl.Collator('ru').compare);
-      res.status(200).json(docs);
-    }
-  });
-});
 
 /*  '/api/schema-version'
  *    POST: update the database for schema version

@@ -2,7 +2,7 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { MatDialogModule } from '@angular/material';
 import { MatProgressSpinnerModule } from '@angular/material';
@@ -94,7 +94,7 @@ import { ToolsComponent } from './components/tools/tools.component';
     TypeaheadModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    HttpModule,
+    HttpClientModule,
     AppRoutingModule,
     MatDialogModule,
     MatProgressSpinnerModule,
