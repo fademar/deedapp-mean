@@ -1,10 +1,14 @@
 const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongodb = require('mongodb');
+const mongoClient = require('mongodb').MongoClient;
 const path = require('path');
+const assert = require('assert');
 
 var ObjectID = mongodb.ObjectID;
+
+// Database Name
+const dbName = 'heroku_kv9gq8sz';
 
 // Db Collection and URI
 const deedsCollection = 'Deeds';
@@ -31,18 +35,15 @@ app.use(express.static(path.join(__dirname, 'dist')));
 var db;
 
 // Connection to the database
-mongodb.MongoClient.connect(process.env.MONGODB_URI, (err, database) => {
-  if (err) {
-    console.log('the connection with the databas is impossible: ' + err);
-    process.exit(1);
-  }
-
-  // Save database object from the callback for reuse.
-  db = database;
+mongoClient.connect(process.env.MONGODB_URI, (err, client) => {
+  assert.equal(null, err);
   console.log('Database connection ready');
 
-  db.collection(deedsCollection).createIndex({
-    "$**": "text"
+
+  // Save database object from the callback for reuse.
+  db = client.db(dbName);
+  createTextIndex(db, function() {
+    console.log('Index created');
   });
 
   // Initialize the app.
