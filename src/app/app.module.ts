@@ -48,7 +48,6 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/guard.service';
 import { DownloadService } from './services/download.service';
 import { NoteService } from './services/note.service';
-import { TypeaheadService } from './services/typeahead.service';
 
 
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
@@ -115,7 +114,7 @@ import { ToolsComponent } from './components/tools/tools.component';
     InputTrimModule
   ],
   entryComponents: [ConfirmDialogComponent, NoteDialog],
-  providers: [Title, DeedService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, NoteService, TypeaheadService],
+  providers: [Title, DeedService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, NoteService],
   schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent]
 })
