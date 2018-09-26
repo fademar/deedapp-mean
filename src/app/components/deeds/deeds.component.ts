@@ -4,10 +4,8 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material';
 import { MatSort } from '@angular/material';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/startWith';
-import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/map';
+import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent, SubscriptionLike, PartialObserver } from 'rxjs';
+import { map, filter, scan } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -117,7 +115,7 @@ export class MyDataSource extends DataSource<any> {
 			this._sort.sortChange,
 		];
 
-		return Observable.merge(...displayDataChanges).map(() => {
+		return merge(...displayDataChanges).map(() => {
 			const sortedData = this.getSortedData();
 
 			// Grab the page's slice of data.
