@@ -15,7 +15,7 @@ const apiUrl = "/api/search";
 
 export class SearchService {
 
-    results: Observable<any> = null;;
+  results: Observable<any> = null;;
 
   constructor(private http: HttpClient) { }
 
@@ -39,11 +39,11 @@ export class SearchService {
 		return body || { };
 	}
 
-	getDeed(term: string): Observable<any> {
-	const url = `${apiUrl}/${term}`;
-	return this.http.get(url, httpOptions).pipe(
-		map(this.extractData),
-		catchError(this.handleError));
+	searchPlainText(term: string): Observable<any> {
+    const url = `${apiUrl}/${term}`;
+    return this.http.get(url, httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
 	}
 	 
   clearCache(){

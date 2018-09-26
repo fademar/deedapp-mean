@@ -66,7 +66,7 @@ export class DeedService {
 		);
 	}
 	  
-	deleteBook(id: string): Observable<{}> {
+	deleteDeed(id: string): Observable<{}> {
 	const url = `${apiUrl}/${id}`;
 	return this.http.delete(url, httpOptions)
 		.pipe(
