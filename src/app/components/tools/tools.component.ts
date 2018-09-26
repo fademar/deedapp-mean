@@ -30,8 +30,8 @@ export class ToolsComponent implements OnInit {
 
   ngOnInit() {
   
-    this.firstnamesService.getFirstNamesM().pipe(map(data => this.firstNamesMaleSorted));
-    this.firstnamesService.getFirstNamesF().pipe(map(data => this.firstNamesFemaleSorted));
+    this.firstnamesService.getFirstNamesM().pipe(map(data => this.firstNamesMaleSorted = data));
+    this.firstnamesService.getFirstNamesF().pipe(map(data => this.firstNamesFemaleSorted = data));
     console.log(this.firstNamesMaleSorted);
     console.log(this.firstNamesFemaleSorted);
   }
