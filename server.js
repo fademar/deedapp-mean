@@ -120,7 +120,7 @@ app.post('/api/deeds', (req, res) => {
  *    DELETE: deletes deed by id
  */
 
-app.get('/api/deed/:id', (req, res) => {
+app.get('/api/deeds/:id', (req, res) => {
   db.collection(deedsCollection).findOne({
     _id: new ObjectID(req.params.id)
   }, (err, doc) => {
@@ -132,7 +132,7 @@ app.get('/api/deed/:id', (req, res) => {
   });
 });
 
-app.put('/api/deed/:id', (req, res) => {
+app.put('/api/deeds/:id', (req, res) => {
   let updateDoc = req.body;
   delete updateDoc._id;
 
@@ -147,7 +147,7 @@ app.put('/api/deed/:id', (req, res) => {
   });
 });
 
-app.delete('/api/deed/:id', (req, res) => {
+app.delete('/api/deeds/:id', (req, res) => {
   db.collection(deedsCollection).deleteOne({
     _id: new ObjectID(req.params.id)
   }, (err, result) => {
@@ -218,7 +218,7 @@ app.post('/api/notes', (req, res) => {
  *    DELETE: deletes note by id
  */
 
-app.get('/api/note/:id', (req, res) => {
+app.get('/api/notes/:id', (req, res) => {
   db.collection(notesCollection).findOne({
     _id: new ObjectID(req.params.id)
   }, (err, doc) => {
@@ -230,7 +230,7 @@ app.get('/api/note/:id', (req, res) => {
   });
 });
 
-app.put('/api/note/:id', (req, res) => {
+app.put('/api/notes/:id', (req, res) => {
   let updateNote = req.body;
   delete updateNote._id;
 
@@ -245,7 +245,7 @@ app.put('/api/note/:id', (req, res) => {
   });
 });
 
-app.delete('/api/note/:id', (req, res) => {
+app.delete('/api/notes/:id', (req, res) => {
   db.collection(notesCollection).deleteOne({
     _id: new ObjectID(req.params.id)
   }, (err, result) => {

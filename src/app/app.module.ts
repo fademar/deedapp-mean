@@ -36,14 +36,12 @@ import { DeedsComponent } from './components/deeds/deeds.component';
 import { AddDeedComponent } from './components/add-deed/add-deed.component';
 import { EditDeedComponent } from './components/edit-deed/edit-deed.component';
 import { DeedDetailsComponent } from './components/deed-details/deed-details.component';
-import { SchemaComponent } from './components/schema/schema.component';
 import { SearchComponent } from './components/search/search.component';
 import { CallbackComponent } from './components/callback/callback.component';
 import { HomeComponent } from './components/home/home.component';
 
 
 import { DeedService } from './services/deed.service';
-import { SchemaService } from './services/schema.service';
 import { SearchService } from './services/search.service';
 import { PagerService } from './services/pager.service';
 import { AuthService } from './services/auth.service';
@@ -71,7 +69,6 @@ import { ToolsComponent } from './components/tools/tools.component';
     AddDeedComponent,
     EditDeedComponent,
     DeedDetailsComponent,
-    SchemaComponent,
     SearchComponent,
     ConfirmDialogComponent,
     CallbackComponent,
@@ -118,7 +115,7 @@ import { ToolsComponent } from './components/tools/tools.component';
     InputTrimModule
   ],
   entryComponents: [ConfirmDialogComponent, NoteDialog],
-  providers: [Title, DeedService, SchemaService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, NoteService, TypeaheadService],
+  providers: [Title, DeedService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, NoteService, TypeaheadService],
   schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent]
 })

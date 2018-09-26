@@ -163,10 +163,6 @@ export class TypeaheadService {
     }
 
 
-    getFirstNamesApi() {
-        return this.http.get('/api/firstnames').map(res => res.json());
-    }
-
 
 
 }
