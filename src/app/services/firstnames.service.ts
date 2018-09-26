@@ -13,7 +13,7 @@ export class FirstnamesService {
   constructor(private deedService: DeedService) { }
 
   getFirstNamesM(): Observable<any> {
-    let firstNamesMale = [];
+    const firstNamesMale = [];
 
     this.deedService.getDeeds().subscribe(deeds => {
         deeds.forEach(deed => {
@@ -53,12 +53,14 @@ export class FirstnamesService {
         }); //END FOREACH
 
         firstNamesMale.sort(new Intl.Collator('ru').compare);
+        console.log(firstNamesMale);
     });
+    console.log(_.sortedUniq(firstNamesMale));
     return Observable.of(_.sortedUniq(firstNamesMale));
 }
 
 getFirstNamesF(): Observable<any> {
-    let firstNamesFemale = [];
+    const firstNamesFemale = [];
 
     this.deedService.getDeeds().subscribe(deeds => {
         deeds.forEach(deed => {
