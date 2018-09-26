@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent, SubscriptionLike, PartialObserver } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { catchError, tap, map } from 'rxjs/operators';
+import { map, filter, scan } from 'rxjs/operators';
 import { DeedService } from './deed.service';
 import * as _ from 'lodash';
 
@@ -54,7 +54,7 @@ export class FirstnamesService {
 
         firstNamesMale.sort(new Intl.Collator('ru').compare);
     });
-    return _.sortedUniq(firstNamesMale);
+    return Observable.of(_.sortedUniq(firstNamesMale));
 }
 
 getFirstNamesF(): Observable<any> {
@@ -85,7 +85,7 @@ getFirstNamesF(): Observable<any> {
         });
         firstNamesFemale.sort(new Intl.Collator('ru').compare);
     });
-    return  _.sortedUniq(firstNamesFemale);
+    return  Observable.of(_.sortedUniq(firstNamesFemale));
 }
 
 // getFirstNamesAll() {
