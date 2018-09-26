@@ -1,6 +1,7 @@
 const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongodb = require('mongodb');
 const mongoClient = require('mongodb').MongoClient;
 const path = require('path');
 const assert = require('assert');
@@ -213,7 +214,7 @@ app.post('/api/notes', (req, res) => {
 });
 
 
-/*  '/api/note/:id'
+/*  '/api/notes/:id'
  *    GET: find note by id
  *    PUT: update note by id
  *    DELETE: deletes note by id
