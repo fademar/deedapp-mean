@@ -14,15 +14,16 @@ export class FirstnamesService {
 
 
 
-    createFirstNamesArray(obj, lookup) {
+    createFirstNamesArray(obj, lookup:string) {
         let values = [];
-        for (obj.keys in obj) {
-          if (obj.keys == lookup) {
-            values.push(_.trim(obj[obj.keys]));
-          } else if (obj[obj.keys] instanceof Object) {
-            this.createFirstNamesArray(obj[obj.jeys], lookup);
-          }
-        }
+        console.log(Object.keys(obj));
+        // for (property in obj) {
+        //   if ( == lookup) {
+        //     values.push(_.trim(obj[obj.keys]));
+        //   } else if (obj[obj.keys] instanceof Object) {
+        //     this.createFirstNamesArray(obj[obj.jeys], lookup);
+        //   }
+        // }
         return _.sortedUniq(values);
     }
 
@@ -30,7 +31,7 @@ export class FirstnamesService {
     getFirstNames(): Observable<any> {
         
         return  this.deedService.getDeeds().pipe(
-                    tap((data) => console.log('entering the service' + data.value)),
+                    tap((data) => console.log('entering the service')),
                     map((data: Object) => this.createFirstNamesArray(data, 'firstName')),
                     tap((data) => console.log('after service' + data))
                 )
