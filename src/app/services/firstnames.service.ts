@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent, SubscriptionLike, PartialObserver } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { map, filter, scan } from 'rxjs/operators';
+import { tap, map, filter, scan } from 'rxjs/operators';
 import { DeedService } from './deed.service';
 import * as _ from 'lodash';
 
@@ -10,85 +10,113 @@ import * as _ from 'lodash';
 })
 export class FirstnamesService {
 
-  constructor(private deedService: DeedService) { }
+    constructor(private deedService: DeedService, private observable: Observable<any>) { }
 
-  getFirstNamesM(): Observable<any> {
-    const firstNamesMale = [];
 
-    this.deedService.getDeeds().subscribe(deeds => {
-        deeds.forEach(deed => {
-            if (deed.agentSex === 'male' && deed.agent.firstName) {
-                firstNamesMale.push(_.trim(deed.agent.firstName));
 
-            }
-            if (deed.agentSex === 'female' && deed.agent.referentMale.firstName) {
-                firstNamesMale.push(_.trim(deed.agent.referentMale.firstName));
-            }
-            if (deed.counterAgentSex === 'male' && deed.counterAgent.firstName) {
-                firstNamesMale.push(_.trim(deed.counterAgent.firstName));
-            }
-            if (deed.counterAgentSex === 'female' && deed.counterAgent.referentMale.firstName) {
-                firstNamesMale.push(_.trim(deed.counterAgent.referentMale.firstName));
-            }
-            if (deed.coAgents.length > 0) {
-                deed.coAgents.forEach(element => {
-                    if (element.coAgentSex === 'male' && element.coAgent.firstName) {
-                        firstNamesMale.push(_.trim(element.coAgent.firstName));
-                    }
-                    if (element.coAgentSex === 'female' && element.coAgent.referentMale.firstName) {
-                        firstNamesMale.push(_.trim(element.coAgent.referentMale.firstName));
-                    }
-                });
-            }
-            if (deed.coCounterAgents.length > 0) {
-                deed.coCounterAgents.forEach(element => {
-                    if (element.coCounterAgentSex === 'male' && element.coCounterAgent.firstName) {
-                        firstNamesMale.push(_.trim(element.coCounterAgent.firstName));
-                    }
-                    if (element.coCounterAgentSex === 'female' && element.coCounterAgent.referentMale.firstName) {
-                        firstNamesMale.push(_.trim(element.coCounterAgent.referentMale.firstName));
-                    }
-                });
-            }
-        }); //END FOREACH
+    createFirstNamesArray(obj, lookup) {
+        let values = [];
+        for (obj.keys in obj) {
+          if (obj.keys == lookup) {
+            values.push(_.trim(obj[obj.keys]));
+          } else if (obj[obj.keys] instanceof Object) {
+            this.createFirstNamesArray(obj[obj.jeys], lookup);
+          }
+        }
+        return _.sortedUniq(values);
+    }
 
-        firstNamesMale.sort(new Intl.Collator('ru').compare);
-        console.log(firstNamesMale);
-    });
-    console.log(_.sortedUniq(firstNamesMale));
-    return Observable.of(_.sortedUniq(firstNamesMale));
-}
 
-getFirstNamesF(): Observable<any> {
-    const firstNamesFemale = [];
+    getFirstNames(): Observable<any> {
+        
+        return  this.deedService.getDeeds().pipe(
+                    tap((data) => console.log('entering the service' + data)),
+                    map((data: Object) => this.createFirstNamesArray(data, 'firstName')),
+                    tap((data) => console.log('after service' + data))
+                )
+        
+    }
 
-    this.deedService.getDeeds().subscribe(deeds => {
-        deeds.forEach(deed => {
-            if (deed.agentSex === 'female' && deed.agent.firstName) {
-                firstNamesFemale.push(_.trim(deed.agent.firstName));
-            }
-            if (deed.counterAgentSex === 'female' && deed.counterAgent.firstName) {
-                firstNamesFemale.push(_.trim(deed.counterAgent.firstName));
-            }
-            if (deed.coAgents.length > 0) {
-                deed.coAgents.forEach(coAgent => {
-                    if (coAgent.coAgentSex === 'female' && coAgent.firstName) {
-                        firstNamesFemale.push(_.trim(coAgent.firstName));
-                    }
-                });
-            }
-            if (deed.coCounterAgents.length > 0) {
-                deed.coCounterAgents.forEach(coCounterAgent => {
-                    if (coCounterAgent.coCounterAgentSex === 'female' && coCounterAgent.firstName) {
-                        firstNamesFemale.push(_.trim(coCounterAgent.firstName));
-                    }
-                });
-            }
-        });
-        firstNamesFemale.sort(new Intl.Collator('ru').compare);
-    });
-    return  Observable.of(_.sortedUniq(firstNamesFemale));
-}
+
+
+
+//   getFirstNamesM(): Observable<any> {
+//     const firstNamesMale = [];
+
+//     this.deedService.getDeeds().map(deeds => {
+//         deeds.forEach(deed => {
+//             if (deed.agentSex === 'male' && deed.agent.firstName) {
+//                 firstNamesMale.push(_.trim(deed.agent.firstName));
+
+//             }
+//             if (deed.agentSex === 'female' && deed.agent.referentMale.firstName) {
+//                 firstNamesMale.push(_.trim(deed.agent.referentMale.firstName));
+//             }
+//             if (deed.counterAgentSex === 'male' && deed.counterAgent.firstName) {
+//                 firstNamesMale.push(_.trim(deed.counterAgent.firstName));
+//             }
+//             if (deed.counterAgentSex === 'female' && deed.counterAgent.referentMale.firstName) {
+//                 firstNamesMale.push(_.trim(deed.counterAgent.referentMale.firstName));
+//             }
+//             if (deed.coAgents.length > 0) {
+//                 deed.coAgents.forEach(element => {
+//                     if (element.coAgentSex === 'male' && element.coAgent.firstName) {
+//                         firstNamesMale.push(_.trim(element.coAgent.firstName));
+//                     }
+//                     if (element.coAgentSex === 'female' && element.coAgent.referentMale.firstName) {
+//                         firstNamesMale.push(_.trim(element.coAgent.referentMale.firstName));
+//                     }
+//                 });
+//             }
+//             if (deed.coCounterAgents.length > 0) {
+//                 deed.coCounterAgents.forEach(element => {
+//                     if (element.coCounterAgentSex === 'male' && element.coCounterAgent.firstName) {
+//                         firstNamesMale.push(_.trim(element.coCounterAgent.firstName));
+//                     }
+//                     if (element.coCounterAgentSex === 'female' && element.coCounterAgent.referentMale.firstName) {
+//                         firstNamesMale.push(_.trim(element.coCounterAgent.referentMale.firstName));
+//                     }
+//                 });
+//             }
+//         }); //END FOREACH
+
+//         firstNamesMale.sort(new Intl.Collator('ru').compare);
+//         console.log(firstNamesMale);
+//     });
+//     console.log(_.sortedUniq(firstNamesMale));
+//     return ;
+// }
+
+// getFirstNamesF(): Observable<any> {
+//     const firstNamesFemale = [];
+
+//     this.deedService.getDeeds().subscribe(deeds => {
+//         deeds.forEach(deed => {
+//             if (deed.agentSex === 'female' && deed.agent.firstName) {
+//                 firstNamesFemale.push(_.trim(deed.agent.firstName));
+//             }
+//             if (deed.counterAgentSex === 'female' && deed.counterAgent.firstName) {
+//                 firstNamesFemale.push(_.trim(deed.counterAgent.firstName));
+//             }
+//             if (deed.coAgents.length > 0) {
+//                 deed.coAgents.forEach(coAgent => {
+//                     if (coAgent.coAgentSex === 'female' && coAgent.firstName) {
+//                         firstNamesFemale.push(_.trim(coAgent.firstName));
+//                     }
+//                 });
+//             }
+//             if (deed.coCounterAgents.length > 0) {
+//                 deed.coCounterAgents.forEach(coCounterAgent => {
+//                     if (coCounterAgent.coCounterAgentSex === 'female' && coCounterAgent.firstName) {
+//                         firstNamesFemale.push(_.trim(coCounterAgent.firstName));
+//                     }
+//                 });
+//             }
+//         });
+//         firstNamesFemale.sort(new Intl.Collator('ru').compare);
+//     });
+//     return  Observable.of(_.sortedUniq(firstNamesFemale));
+// }
 
 // getFirstNamesAll() {
 //     this.deedService.getDeeds().subscribe(deeds => {

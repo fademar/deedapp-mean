@@ -76,6 +76,7 @@ function recursiveGetProperty(obj, lookup, callback) {
   }
 }
 
+
 // Redirect / to /api/deeds
 app.get('/', (req, res) => {
   res.send('Please use /api/deeds');
@@ -296,7 +297,7 @@ app.get('/api/search/:term', (req, res) => {
 
 
 /*  '/api/schema-version'
- *    POST: update the database for schema version
+ *    GET: update the database for schema version
  *
  */
 app.get('/api/update-schema', (req, res) => {
@@ -315,8 +316,6 @@ app.get('/api/update-schema', (req, res) => {
     }
   });
 });
-
-
 
 
 

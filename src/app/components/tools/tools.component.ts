@@ -21,18 +21,15 @@ export class ToolsComponent implements OnInit {
     animate: 'fade'
   }
 
-  firstNamesMaleSorted;
-  firstNamesFemaleSorted;
+  firstNames;
 
 
   constructor(private firstnamesService: FirstnamesService, private notificationsService: NotificationsService) { }
 
   ngOnInit() {
   
-    this.firstnamesService.getFirstNamesM().subscribe(data => this.firstNamesMaleSorted = data);
-    this.firstnamesService.getFirstNamesF().subscribe(data => this.firstNamesFemaleSorted = data);
-    console.log(this.firstNamesMaleSorted);
-    console.log(this.firstNamesFemaleSorted);
+    this.firstnamesService.getFirstNames().subscribe(data => console.log(data));
+
   }
 
   
