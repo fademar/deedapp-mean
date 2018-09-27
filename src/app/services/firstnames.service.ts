@@ -32,7 +32,7 @@ export class FirstnamesService {
         
         return  this.deedService.getDeeds().pipe(
                     tap((data) => console.log('entering the service')),
-                    map((data: Object) => this.createFirstNamesArray(data, 'firstName')),
+                    map((data: Object) => JSON.stringify(data)),
                     tap((data) => console.log('after service' + data))
                 )
         
