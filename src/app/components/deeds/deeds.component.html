@@ -43,7 +43,7 @@
         <ng-container matColumnDef="details">
           <mat-header-cell *matHeaderCellDef> </mat-header-cell>
           <mat-cell *matCellDef="let deed">
-            <a mat-raised-button color="primary" routerLink="/deed/{{ deed._id }}">Details</a>
+            <a mat-raised-button color="primary" target="_blank" routerLink="/deed/{{ deed._id }}">Details</a>
           </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
