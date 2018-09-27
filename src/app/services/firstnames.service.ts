@@ -10,7 +10,7 @@ import * as _ from 'lodash';
 })
 export class FirstnamesService {
 
-    constructor(private deedService: DeedService, private observable: Observable<any>) { }
+    constructor(private deedService: DeedService) { }
 
 
 
