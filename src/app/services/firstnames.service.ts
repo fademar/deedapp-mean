@@ -105,6 +105,7 @@ export class FirstnamesService {
         }); //END FOREACH
 
         firstNames.sort(new Intl.Collator('ru').compare);
+        console.log(_.sortedUniq(firstNames));
         return _.sortedUniq(firstNames);
 
     }
