@@ -105,7 +105,6 @@ export class FirstnamesService {
         }); //END FOREACH
 
         firstNames.sort(new Intl.Collator('ru').compare);
-        console.log(_.sortedUniq(firstNames));
         return _.sortedUniq(firstNames);
 
     }
@@ -114,8 +113,8 @@ export class FirstnamesService {
     getFirstNames(): Observable<any> {
 
         return this.deedService.getDeeds().pipe(
-            tap((data) => console.log('entering the service')),
-            map((data: Object) => this.createFirstNamesArray(data)),
+            tap((data) => console.log('entering the service') + data),
+            map((data) => this.createFirstNamesArray(data)),
             tap((data) => console.log('after service' + data))
         )
 
