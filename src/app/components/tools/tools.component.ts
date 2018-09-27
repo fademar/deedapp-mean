@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent, SubscriptionLike, PartialObserver } from 'rxjs';import { map } from 'rxjs/operators';
+import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent, SubscriptionLike, PartialObserver } from 'rxjs'; import { map } from 'rxjs/operators';
 import { NotificationsService } from 'angular2-notifications';
 import { FirstnamesService } from '../../services/firstnames.service';
 
@@ -27,12 +27,13 @@ export class ToolsComponent implements OnInit {
   constructor(private firstnamesService: FirstnamesService, private notificationsService: NotificationsService) { }
 
   ngOnInit() {
-  
-    this.firstnamesService.getFirstNames().subscribe(data => console.log(data));
+
+    this.firstnamesService.getFirstNames().subscribe(data => this.firstNames = data);
+    console.log(this.firstNames);
 
   }
 
-  
+
 
 
 
