@@ -27,7 +27,7 @@ export class ToolsComponent implements OnInit {
   constructor(private firstnamesService: FirstnamesService, private notificationsService: NotificationsService) { }
 
   ngOnInit() {
-    this.firstnamesService.getFirstNames().subscribe(data => console.log(data.firstname));
+    this.firstnamesService.getFirstNames().subscribe(data => console.log(data));
 
   }
 
