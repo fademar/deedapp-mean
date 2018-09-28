@@ -104,8 +104,8 @@ export class FirstnamesService {
 
         }); //END FOREACH
         firstNames.sort((a, b) => a.localeCompare(b, 'ru', {}));
-        // firstNames.sort(new Intl.Collator('ru').compare);
-        return JSON.parse(_.sortedUniq(firstNames));
+        
+        return of(_.sortedUniq(firstNames));
 
     }
 
