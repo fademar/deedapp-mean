@@ -22,7 +22,6 @@ export class FirstnamesService {
         const firstNames = [];
 
         deeds.forEach(deed => {
-            console.log(JSON.stringify(new firstNameObject(deed.agentSex, deed.agent.firstName)));
             firstNames.push(JSON.stringify(new firstNameObject(deed.agentSex, _.trim(deed.agent.firstName))));
             firstNames.push(JSON.stringify(new firstNameObject(deed.counterAgentSex, _.trim(deed.counterAgent.firstName))));
 
@@ -104,9 +103,9 @@ export class FirstnamesService {
             }
 
         }); //END FOREACH
-
-        firstNames.sort(new Intl.Collator('ru').compare);
-        return _.sortedUniq(firstNames);
+        firstNames.sort((a, b) => a.localeCompare(b, 'ru', {}));
+        // firstNames.sort(new Intl.Collator('ru').compare);
+        return JSON.parse(_.sortedUniq(firstNames));
 
     }
 
