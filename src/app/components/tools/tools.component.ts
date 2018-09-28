@@ -22,20 +22,15 @@ export class ToolsComponent implements OnInit {
   }
 
   firstNames;
-
+  firstNamesSorted;
 
   constructor(private firstnamesService: FirstnamesService, private notificationsService: NotificationsService) { }
 
   ngOnInit() {
-
-    this.firstnamesService.getFirstNames().subscribe(data => console.log(data));
-
-  }
-
-  sortFirstnames(data) {
-    console.log(data);
-    // data.sort((a, b) => a.firstname.localeCompare(b.firstname, 'ru', {}))
-    // return of(_.sortedUniq(data));
+    this.firstnamesService.getFirstNames().subscribe(data => this.firstNames = data.firstname);
+    this.firstNames.sort(new Intl.Collator('ru').compare);
+    this.firstNamesSorted = _.sortedUniq(this.firstNames);
+    console.log(this.firstNamesSorted);
   }
 
 

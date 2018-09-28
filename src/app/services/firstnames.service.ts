@@ -115,9 +115,8 @@ export class FirstnamesService {
             }
 
         }); //END FOREACH
-        firstNames.sort((a, b) => a.firstname.localeCompare(b.firstname, 'ru', {}));
 
-        return _.sortedUniq(firstNames);
+        return firstNames;
 
     }
 
@@ -125,9 +124,7 @@ export class FirstnamesService {
     getFirstNames(): Observable<any> {
 
         return this.deedService.getDeeds().pipe(
-            tap((data) => console.log(data)),
-            map((data) => this.createFirstNamesArray(data)),
-            tap((data) => console.log(data))
+            map((data) => this.createFirstNamesArray(data))
         )
 
     }
