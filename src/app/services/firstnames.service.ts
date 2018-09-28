@@ -75,13 +75,13 @@ export class FirstnamesService {
             } // END IF TRANSACTION
 
             if (deed.scribe && deed.scribe.firstName !== '') {
-                firstNames.push(JSON.stringify(new firstNameObject('undefined', _.trim(deed.scribe.firstName))));
+                firstNames.push(JSON.stringify(new firstNameObject('scribe', _.trim(deed.scribe.firstName))));
             }
 
             if (deed.whitnesses.length > 0) {
                 deed.whitnesses.forEach(whitness => {
                     if (whitness.firstName !== '') {
-                        firstNames.push(JSON.stringify(new firstNameObject('undefined', _.trim(whitness.firstName))));
+                        firstNames.push(JSON.stringify(new firstNameObject('whitness', _.trim(whitness.firstName))));
                     }
                 });
 
@@ -90,7 +90,7 @@ export class FirstnamesService {
             if (deed.sureties.length > 0) {
                 deed.sureties.forEach(surety => {
                     if (surety.firstName !== '') {
-                        firstNames.push(JSON.stringify(new firstNameObject('undefined', _.trim(surety.firstName))));
+                        firstNames.push(JSON.stringify(new firstNameObject('surety', _.trim(surety.firstName))));
                     }
                 });
 
@@ -99,14 +99,14 @@ export class FirstnamesService {
             if (deed.otherParticipants.length > 0) {
                 deed.otherParticipants.forEach(otherParticipant => {
                     if (otherParticipant.firstName !== '') {
-                        firstNames.push(JSON.stringify(new firstNameObject('undefined', _.trim(otherParticipant.firstName))));
+                        firstNames.push(JSON.stringify(new firstNameObject('otherParticipant', _.trim(otherParticipant.firstName))));
                     }
                 });
 
             }
 
             if (deed.registrator && deed.registrator.firstName !== '') {
-                firstNames.push(JSON.stringify(new firstNameObject('undefined', _.trim(deed.registrator.firstName))));
+                firstNames.push(JSON.stringify(new firstNameObject('registrator', _.trim(deed.registrator.firstName))));
             }
 
         }); //END FOREACH
