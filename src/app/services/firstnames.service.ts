@@ -112,7 +112,7 @@ export class FirstnamesService {
         }); //END FOREACH
         // firstNames.json().sort((a, b) => a.localeCompare(b, 'ru', {}));
 
-        return of(firstNames);
+        return firstNames;
 
     }
 
