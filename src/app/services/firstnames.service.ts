@@ -110,8 +110,8 @@ export class FirstnamesService {
             }
 
         }); //END FOREACH
-        firstNames.sort((a, b) => a.localeCompare(b, 'ru', {}));
-        
+        firstNames.sort((a, b) => a.firstname.localeCompare(b.firstname, 'ru', {}));
+
         return of(_.sortedUniq(firstNames));
 
     }
