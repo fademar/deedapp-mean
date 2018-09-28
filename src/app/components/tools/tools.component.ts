@@ -28,9 +28,7 @@ export class ToolsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.firstnamesService.getFirstNames().pipe(
-      map(data => this.sortFirstnames(data))
-    ).subscribe(data => console.log(data));
+    this.firstnamesService.getFirstNames().subscribe(data => console.log(data));
 
   }
 
