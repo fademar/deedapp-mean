@@ -81,7 +81,7 @@ export class FirstnamesService {
             if (deed.whitnesses.length > 0) {
                 deed.whitnesses.forEach(whitness => {
                     if (whitness.firstName !== '') {
-                        firstNames.push(JSON.stringify(new firstNameObject('whitness', _.trim(whitness.firstName))));
+                        firstNames.push(JSON.stringify(new firstNameObject('whitness', _.trim(whitness.whitness.firstName))));
                     }
                 });
 
@@ -90,7 +90,7 @@ export class FirstnamesService {
             if (deed.sureties.length > 0) {
                 deed.sureties.forEach(surety => {
                     if (surety.firstName !== '') {
-                        firstNames.push(JSON.stringify(new firstNameObject('surety', _.trim(surety.firstName))));
+                        firstNames.push(JSON.stringify(new firstNameObject('surety', _.trim(surety.surety.firstName))));
                     }
                 });
 
@@ -99,7 +99,7 @@ export class FirstnamesService {
             if (deed.otherParticipants.length > 0) {
                 deed.otherParticipants.forEach(otherParticipant => {
                     if (otherParticipant.firstName !== '') {
-                        firstNames.push(JSON.stringify(new firstNameObject('otherParticipant', _.trim(otherParticipant.firstName))));
+                        firstNames.push(JSON.stringify(new firstNameObject('otherParticipant', _.trim(otherParticipant.otherParticipant.firstName))));
                     }
                 });
 
