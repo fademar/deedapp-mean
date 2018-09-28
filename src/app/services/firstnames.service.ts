@@ -22,9 +22,10 @@ export class FirstnamesService {
         const firstNames = [];
 
         deeds.forEach(deed => {
-            firstNames.push(JSON.stringify(new firstNameObject(deed.agentSex, _.trim(deed.agent.firstName))));
-            firstNames.push(JSON.stringify(new firstNameObject(deed.counterAgentSex, _.trim(deed.counterAgent.firstName))));
-
+            if (deed.agentSex === 'male' || deed.agentSex === 'female') {
+                firstNames.push(JSON.stringify(new firstNameObject(deed.agentSex, _.trim(deed.agent.firstName))));
+                firstNames.push(JSON.stringify(new firstNameObject(deed.counterAgentSex, _.trim(deed.counterAgent.firstName))));
+            }
             if (deed.agentSex === 'female' && deed.agent.referentMale.firstName) {
                 firstNames.push(JSON.stringify(new firstNameObject("male", _.trim(deed.agent.referentMale.firstName))));
             }
@@ -41,7 +42,7 @@ export class FirstnamesService {
             }
             if (deed.coCounterAgents.length > 0) {
                 deed.coCounterAgents.forEach(coCounterAgent => {
-                    firstNames.push(JSON.stringify(new firstNameObject(coCounterAgent.coAgentSex, _.trim(coCounterAgent.coCounterAgent.firstName))));
+                    firstNames.push(JSON.stringify(new firstNameObject(coCounterAgent.coCounterAgentSex, _.trim(coCounterAgent.coCounterAgent.firstName))));
                     if (coCounterAgent.coCounterAgentSex === 'female' && coCounterAgent.coCounterAgent.referentMale.firstName) {
                         firstNames.push(JSON.stringify(new firstNameObject("male", _.trim(coCounterAgent.coCounterAgent.referentMale.firstName))));
                     }
@@ -103,7 +104,7 @@ export class FirstnamesService {
             }
 
         }); //END FOREACH
-        firstNames.sort((a, b) => a.localeCompare(b, 'ru', {}));
+        firstNames.sort((a, b) => a.firstname.localeCompare(b.firstname, 'ru', {}));
         
         return of(_.sortedUniq(firstNames));
 
