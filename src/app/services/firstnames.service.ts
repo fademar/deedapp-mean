@@ -22,6 +22,7 @@ export class FirstnamesService {
         const firstNames = [];
 
         deeds.forEach(deed => {
+            console.log(new firstNameObject(deed.agentSex, deed.agent.firstName));
             firstNames.push(_.trim(new firstNameObject(deed.agentSex, deed.agent.firstName)));
             firstNames.push(_.trim(new firstNameObject(deed.counterAgentSex, deed.counterAgent.firstName)));
 
