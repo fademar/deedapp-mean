@@ -27,10 +27,8 @@ export class ToolsComponent implements OnInit {
   constructor(private firstnamesService: FirstnamesService, private notificationsService: NotificationsService) { }
 
   ngOnInit() {
-    this.firstnamesService.getFirstNames().subscribe(data => this.firstNames = data.firstname);
-    this.firstNames.sort(new Intl.Collator('ru').compare);
-    this.firstNamesSorted = _.sortedUniq(this.firstNames);
-    console.log(this.firstNamesSorted);
+    this.firstnamesService.getFirstNames().subscribe(data => console.log(data.firstname));
+
   }
 
 
