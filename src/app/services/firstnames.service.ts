@@ -7,7 +7,12 @@ import * as _ from 'lodash';
 
 
 export class FirstNameObject {
-    constructor(private sex: string, private firstname: string) { }
+    sex: string = "";
+    firstname: string = "";
+    constructor(sex: string, firstname: string) {
+        this.sex = sex;
+        this.firstname = firstname;
+    }
 }
 
 @Injectable({
@@ -110,9 +115,9 @@ export class FirstnamesService {
             }
 
         }); //END FOREACH
-        // firstNames.json().sort((a, b) => a.localeCompare(b, 'ru', {}));
+        firstNames.sort((a, b) => a.firstname.localeCompare(b.firstname, 'ru', {}));
 
-        return firstNames;
+        return _.sortedUniq(firstNames);
 
     }
 
