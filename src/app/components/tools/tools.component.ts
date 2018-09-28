@@ -28,9 +28,17 @@ export class ToolsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.firstnamesService.getFirstNames().subscribe(data => console.log(data));
+    this.firstnamesService.getFirstNames().pipe(
+      map(data => this.sortFirstnames(data))
+    ).subscribe(data => console.log(data));
 
   }
+
+  sortFirstnames(data) {
+    data.sort((a, b) => a.firstname.localeCompare(b.firstname, 'ru', {}))
+    return of(_.sortedUniq(data));
+  }
+
 
 
 
