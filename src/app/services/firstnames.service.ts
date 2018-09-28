@@ -49,7 +49,7 @@ export class FirstnamesService {
                     if ((coCounterAgent.coCounterAgentSex === 'male' || coCounterAgent.coCounterAgentSex === 'female') && coCounterAgent.coCounterAgent.firstName !== '') {
                         firstNames.push(JSON.stringify(new firstNameObject(coCounterAgent.coCounterAgentSex, _.trim(coCounterAgent.coCounterAgent.firstName))));
                     }
-                    if (coCounterAgent.coCounterAgentSex === 'female' && coCounterAgent.coCounterAgent.referentMale.firstName) {
+                    if (coCounterAgent.coCounterAgentSex === 'female' && coCounterAgent.coCounterAgent.referentMale.firstName !== '') {
                         firstNames.push(JSON.stringify(new firstNameObject('male', _.trim(coCounterAgent.coCounterAgent.referentMale.firstName))));
                     }
                 });
