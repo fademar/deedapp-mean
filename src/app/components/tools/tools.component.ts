@@ -28,8 +28,7 @@ export class ToolsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.firstnamesService.getFirstNames().subscribe(data => this.firstNames = data);
-    console.log(this.firstNames);
+    this.firstnamesService.getFirstNames().subscribe(data => console.log(data));
 
   }
 

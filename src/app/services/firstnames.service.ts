@@ -115,7 +115,7 @@ export class FirstnamesService {
         return this.deedService.getDeeds().pipe(
             tap((data) => console.log('entering the service')),
             map((data) => this.createFirstNamesArray(data)),
-            tap((data) => console.log('stop service'))
+            tap((data) => console.log('stop service' + data))
         )
 
     }
