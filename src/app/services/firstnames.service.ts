@@ -120,7 +120,9 @@ export class FirstnamesService {
     getFirstNames(): Observable<any> {
 
         return this.deedService.getDeeds().pipe(
-            map((data) => this.createFirstNamesArray(data))
+            tap((data) => console.log(data)),
+            map((data) => this.createFirstNamesArray(data)),
+            tap((data) => console.log(data))
         )
 
     }
