@@ -35,8 +35,9 @@ export class ToolsComponent implements OnInit {
   }
 
   sortFirstnames(data) {
-    data.sort((a, b) => a.firstname.localeCompare(b.firstname, 'ru', {}))
-    return of(_.sortedUniq(data));
+    console.log(data);
+    // data.sort((a, b) => a.firstname.localeCompare(b.firstname, 'ru', {}))
+    // return of(_.sortedUniq(data));
   }
 
 
