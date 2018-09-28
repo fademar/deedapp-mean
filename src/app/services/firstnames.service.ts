@@ -19,7 +19,7 @@ export class FirstnamesService {
 
 
     createFirstNamesArray(deeds) {
-        const firstNames: FirstNameObject[] = [];
+        let firstNames: FirstNameObject[] = [];
 
         deeds.forEach(deed => {
             if ((deed.agentSex === 'male' || deed.agentSex === 'female') && deed.agent.firsName !== '') {
