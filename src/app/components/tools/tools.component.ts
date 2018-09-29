@@ -36,9 +36,9 @@ export class ToolsComponent implements OnInit {
 
 
   getFIrstnamesSorted(data) {
-    data.reduce((prev, curr) => [...prev, ...curr.firstname]);
-    data.sort(new Intl.Collator('ru').compare);
-    return _.sortedUniq(data)
+    const array = data.filter((element) => element.firstname);;
+    array.sort(new Intl.Collator('ru').compare);
+    return _.sortedUniq(array)
   }
 
 
