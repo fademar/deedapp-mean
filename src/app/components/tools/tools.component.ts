@@ -30,8 +30,8 @@ export class ToolsComponent implements OnInit {
   ngOnInit() {
     this.firstNames = [];
     this.firstNamesSorted = [];
-    this.firstnamesService.getFirstNames().subscribe(data => console.log(this.getFirstnamesSorted(data)));
-
+    this.firstnamesService.getFirstNames().subscribe(data => this.firstNamesSorted = this.getFirstnamesSorted(data));
+    console.log(this.firstNamesSorted);
   }
 
 
