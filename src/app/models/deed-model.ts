@@ -26,10 +26,10 @@ export class Female {
 
 export class BodyCorporate {
 	geogrStatus: '';
-    socialStatus: '';
-    corporationName: '';
-    nbParticipants: '';
-    names: '';
+	socialStatus: '';
+	corporationName: '';
+	nbParticipants: '';
+	names: '';
 }
 
 export class OtherParticipant {
@@ -47,11 +47,26 @@ export class Registrator {
 	patronyme: '';
 	lastName: '';
 	relatedTo: ''
-}	
+}
 
 export class Fee {
 	amount: '';
 	collected: ''
+}
+
+export class FirstNameObject {
+	sex: string = '';
+	firstname: string = '';
+	constructor(sex: string, firstname: string) {
+		this.sex = sex;
+		this.firstname = firstname;
+	}
+	getSex() {
+		return this.sex;
+	}
+	getFirstname() {
+		return this.firstname;
+	}
 }
 
 export const gender = ['', 'male', 'female', 'body-corporate'];

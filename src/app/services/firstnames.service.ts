@@ -4,22 +4,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { tap, map, filter, scan } from 'rxjs/operators';
 import { DeedService } from './deed.service';
 import * as _ from 'lodash';
+import { FirstNameObject } from '../models/deed-model';
 
-
-export class FirstNameObject {
-    sex: string = "";
-    firstname: string = "";
-    constructor(sex: string, firstname: string) {
-        this.sex = sex;
-        this.firstname = firstname;
-    }
-    getSex() {
-        return this.sex;
-    }
-    getFirstname() {
-        return this.firstname;
-    }
-}
 
 @Injectable({
     providedIn: 'root'

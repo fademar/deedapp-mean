@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent, SubscriptionLike, PartialObserver } from 'rxjs'; import { map } from 'rxjs/operators';
 import { NotificationsService } from 'angular2-notifications';
 import { FirstnamesService } from '../../services/firstnames.service';
+import { FirstNameObject } from '../../models/deed-model';
 
 import * as _ from 'lodash';
 
@@ -36,8 +37,7 @@ export class ToolsComponent implements OnInit {
 
 
   getFIrstnamesSorted(data) {
-    const array = data.filter((element) => element.getFirstname());
-    console.log(array);
+    let array = data.filter((element: FirstNameObject) => element.getFirstname());
     array.sort(new Intl.Collator('ru').compare);
     return _.sortedUniq(array)
   }
