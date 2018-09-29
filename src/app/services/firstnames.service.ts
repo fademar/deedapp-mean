@@ -13,6 +13,12 @@ export class FirstNameObject {
         this.sex = sex;
         this.firstname = firstname;
     }
+    getSex() {
+        return this.sex;
+    }
+    getFirstname() {
+        return this.firstname;
+    }
 }
 
 @Injectable({
