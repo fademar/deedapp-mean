@@ -30,14 +30,18 @@ export class ToolsComponent implements OnInit {
   ngOnInit() {
     this.firstNames = [];
     this.firstNamesSorted = [];
-    this.firstnamesService.getFirstNames().subscribe(data => console.log(this.getFIrstnamesSorted(data)));
+    this.firstnamesService.getFirstNames().subscribe(data => console.log(this.getFirstnamesSorted(data)));
 
   }
 
 
 
-  getFIrstnamesSorted(data) {
-    let array = data.filter((element: FirstNameObject) => element.getFirstname());
+  getFirstnamesSorted(data) {
+    let array = [];
+    data.forEach(element => {
+      console.log(element.getFirstname());
+    });
+    data.filter((element: FirstNameObject) => element.getFirstname());
     array.sort(new Intl.Collator('ru').compare);
     return _.sortedUniq(array)
   }
