@@ -96,3 +96,5 @@ export const activityList = ['', 'транспорт', 'строительств
 export const typeTaxList = ['', 'мельница', 'рыбная ловля', 'конская площадка', 'мост и перевоз', 'other'];
 
 export const counterAgentActionsList = ['', 'agrees to marry', 'agrees to marry-off', 'cedes', 'exchanges', 'lends', 'pays', 'settles'];
+
+export const alphabet = ["#", "А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я"];

@@ -24,6 +24,7 @@ import { MatButtonToggleModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material';
 import { MatSidenavModule } from '@angular/material';
 import { MatExpansionModule } from '@angular/material';
+import { MatTabsModule } from '@angular/material/tabs';
 import { QuillModule } from 'ngx-quill';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { InputTrimModule } from 'ng2-trim-directive';
@@ -112,7 +113,8 @@ import { ToolsComponent } from './components/tools/tools.component';
     QuillModule,
     MatExpansionModule,
     NgxJsonViewerModule,
-    InputTrimModule
+    InputTrimModule,
+    MatTabsModule
   ],
   entryComponents: [ConfirmDialogComponent, NoteDialog],
   providers: [Title, DeedService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, NoteService, FirstnamesService],

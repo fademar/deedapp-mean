@@ -4,6 +4,14 @@
   <!--DEED REFERENCES-->
   <div class="card shadow mb-3">
     <div class="card-body">
-
+      <mat-tab-group>
+        <ng-template ngFor let-letter [ngForOf]="alphabet | async">
+          <mat-tab>
+            <ng-template mat-tab-label>{{ letter }}</ng-template>
+            <h1>Some tab content</h1>
+            <p>...</p>
+          </mat-tab>
+        </ng-template>
+      </mat-tab-group>
     </div>
   </div>
