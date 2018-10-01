@@ -25,7 +25,6 @@ export class ToolsComponent implements OnInit {
   firstNames;
   firstNamesSorted;
   alphabet = alphabet;
-  firstnames = this.firstNamesSorted;
 
   constructor(private firstnamesService: FirstnamesService, private notificationsService: NotificationsService) { }
 
