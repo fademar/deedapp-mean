@@ -3,7 +3,7 @@ import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fr
 import { NotificationsService } from 'angular2-notifications';
 import { FirstnamesService } from '../../services/firstnames.service';
 import { FirstNameObject, alphabet } from '../../models/deed-model';
-
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
 
 @Component({
@@ -21,18 +21,25 @@ export class ToolsComponent implements OnInit {
     pauseOnHover: false,
     animate: 'fade'
   }
-
+  form: FormGroup;
   firstNames;
   firstNamesSorted;
   alphabet = alphabet;
   nameForm;
+  control;
 
-  constructor(private firstnamesService: FirstnamesService, private notificationsService: NotificationsService) { }
+  constructor(private firstnamesService: FirstnamesService, private notificationsService: NotificationsService, private fb: FormBuilder) { }
 
   ngOnInit() {
+    this.form = new FormGroup({});
     this.firstNames = [];
     this.firstNamesSorted = [];
     this.firstnamesService.getFirstNames().subscribe(data => this.firstNamesSorted = this.getFirstnamesSorted(data));
+    this.firstNamesSorted.map((name, index) => {
+      const controlname = 'control-' + index.toString();
+      this.control = new FormControl;
+      this.form.addControl(controlname, this.control);
+    })
   }
 
 
