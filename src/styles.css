@@ -16,7 +16,7 @@ body {
 }
 
 .mat-tab-label {
-  display: flex;
+  min-width: 1px !important;
 }
 
 .material-icons {
