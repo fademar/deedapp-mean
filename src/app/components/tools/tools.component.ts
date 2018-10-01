@@ -23,7 +23,6 @@ export class ToolsComponent implements OnInit {
   }
 
   firstNames;
-  firstNamesUnSorted;
   firstNamesSorted;
   alphabet = alphabet;
 
@@ -32,9 +31,7 @@ export class ToolsComponent implements OnInit {
   ngOnInit() {
     this.firstNames = [];
     this.firstNamesSorted = [];
-    this.firstnamesService.getFirstNames().subscribe(data =>
-      this.firstNamesUnSorted = data);
-    this.firstNamesSorted = this.getFirstnamesSorted(this.firstNamesUnSorted);
+    this.firstnamesService.getFirstNames().subscribe(data => this.firstNamesSorted = this.getFirstnamesSorted(data));
   }
 
 
