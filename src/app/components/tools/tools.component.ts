@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent, SubscriptionLike, PartialObserver } from 'rxjs'; import { map } from 'rxjs/operators';
 import { NotificationsService } from 'angular2-notifications';
 import { FirstnamesService } from '../../services/firstnames.service';
 import { FirstNameObject, alphabet } from '../../models/deed-model';
-import { MatTabsModule, MatTab } from '@angular/material/tabs';
+import { MatTab } from '@angular/material/tabs';
 
 import * as _ from 'lodash';
 
@@ -14,6 +14,7 @@ import * as _ from 'lodash';
 })
 export class ToolsComponent implements OnInit {
 
+  @ViewChild(MatTab) matTab: MatTab;
 
   public options = {
     position: ['bottom', 'right'],
@@ -27,21 +28,16 @@ export class ToolsComponent implements OnInit {
   firstNamesSorted;
   alphabet = alphabet;
 
-  constructor(private firstnamesService: FirstnamesService, private notificationsService: NotificationsService, private matTab: MatTab) { }
+  constructor(private firstnamesService: FirstnamesService, private notificationsService: NotificationsService) { }
 
   ngOnInit() {
     this.firstNames = [];
     this.firstNamesSorted = [];
     this.firstnamesService.getFirstNames().subscribe(data => this.firstNamesSorted = this.getFirstnamesSorted(data));
-    this.setTabContent();
-  }
-
-
-  setTabContent() {
-    this.matTab.templateLabel;
     console.log(this.matTab.templateLabel);
-
   }
+
+
 
 
   getFirstnamesSorted(data) {
