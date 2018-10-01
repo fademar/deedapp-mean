@@ -5,7 +5,7 @@
     <!--DEED REFERENCES-->
     <div class="card shadow mb-3">
       <div class="card-body">
-        <ng-template ngFor let-name let-i="index" [ngForOf]="firstNamesSorted">
+        <ng-template ngFor let-name [ngForOf]="firstNamesSorted" let-i="index">
           <div class="col">{{ name }}</div>
           <div class="col">
             <input class="form-control" type="text" formControlName="control-{{i}}">
