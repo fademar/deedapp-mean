@@ -33,6 +33,7 @@ export class ToolsComponent implements OnInit {
     this.firstNames = [];
     this.firstNamesSorted = [];
     this.firstnamesService.getFirstNames().subscribe(data => this.firstNamesSorted = this.getFirstnamesSorted(data));
+    console.log(this.firstNamesSorted);
   }
 
 
