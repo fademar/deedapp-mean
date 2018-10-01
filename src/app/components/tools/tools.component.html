@@ -1,20 +1,19 @@
 <app-navbar></app-navbar>
 <simple-notifications [options]="options"></simple-notifications>
-<div class="container main-container">
-  <!--DEED REFERENCES-->
-  <div class="card shadow mb-3">
-    <div class="card-body">
-      <ng-template ngFor let-name let-i="index" [ngForOf]="firstNamesSorted">
-        <div class="col">{{ name }}</div>
-        <form (keydown.enter)="$event.preventDefault()" [formGroup]="form" (ngSubmit)="updateFirstName(name)"
-          novalidate>
+<form (keydown.enter)="$event.preventDefault()" [formGroup]="form" (ngSubmit)="updateFirstName(name)" novalidate>
+  <div class="container main-container">
+    <!--DEED REFERENCES-->
+    <div class="card shadow mb-3">
+      <div class="card-body">
+        <ng-template ngFor let-name let-i="index" [ngForOf]="firstNamesSorted">
+          <div class="col">{{ name }}</div>
           <div class="col">
             <input class="form-control" type="text" formControlName="control-{{i}}">
           </div>
           <div class="col">
             <button mat-raised-button type="submit">UPDATE</button>
           </div>
-        </form>
-      </ng-template>
+        </ng-template>
+      </div>
     </div>
-  </div>
+</form>
