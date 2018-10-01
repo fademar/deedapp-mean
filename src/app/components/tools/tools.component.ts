@@ -57,9 +57,8 @@ export class ToolsComponent implements OnInit {
   }
 
 
-  updateFirstName(name) {
-    this.nameForm = name + '-form';
-    console.log(this.nameForm.value);
+  updateFirstName() {
+    console.log(this.form.value);
   }
 
 
