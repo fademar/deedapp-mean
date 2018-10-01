@@ -5,13 +5,8 @@
   <div class="card shadow mb-3">
     <div class="card-body">
       <mat-tab-group>
-        <ng-template ngFor let-letter [ngForOf]="alphabet">
-          <mat-tab>
-            <ng-template mat-tab-label>{{ letter }}</ng-template>
-            <ng-template ngFor let-names [ngForOf]="firstNamesSliced" matTabContent>
-
-            </ng-template>
-          </mat-tab>
+        <ng-template ngFor let-names [ngForOf]="firstnames">
+          <p>{{ names }}</p>
         </ng-template>
       </mat-tab-group>
     </div>

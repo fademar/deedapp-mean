@@ -3,7 +3,6 @@ import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fr
 import { NotificationsService } from 'angular2-notifications';
 import { FirstnamesService } from '../../services/firstnames.service';
 import { FirstNameObject, alphabet } from '../../models/deed-model';
-import { MatTab } from '@angular/material/tabs';
 
 import * as _ from 'lodash';
 
@@ -14,7 +13,6 @@ import * as _ from 'lodash';
 })
 export class ToolsComponent implements OnInit {
 
-  @ViewChild(MatTab) matTab: MatTab;
 
   public options = {
     position: ['bottom', 'right'],
@@ -27,6 +25,7 @@ export class ToolsComponent implements OnInit {
   firstNames;
   firstNamesSorted;
   alphabet = alphabet;
+  firstnames = this.firstNamesSorted;
 
   constructor(private firstnamesService: FirstnamesService, private notificationsService: NotificationsService) { }
 
@@ -34,7 +33,6 @@ export class ToolsComponent implements OnInit {
     this.firstNames = [];
     this.firstNamesSorted = [];
     this.firstnamesService.getFirstNames().subscribe(data => this.firstNamesSorted = this.getFirstnamesSorted(data));
-    console.log(this.matTab.templateLabel);
   }
 
 
