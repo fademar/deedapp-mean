@@ -8,8 +8,9 @@
         <ng-template ngFor let-letter [ngForOf]="alphabet">
           <mat-tab>
             <ng-template mat-tab-label>{{ letter }}</ng-template>
-            <h1>Some tab content</h1>
-            <p>...</p>
+            <ng-template ngFor let-names [ngForOf]="firstNamesSliced" matTabContent>
+
+            </ng-template>
           </mat-tab>
         </ng-template>
       </mat-tab-group>
