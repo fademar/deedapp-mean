@@ -25,6 +25,7 @@ export class ToolsComponent implements OnInit {
   firstNames;
   firstNamesSorted;
   alphabet = alphabet;
+  nameForm;
 
   constructor(private firstnamesService: FirstnamesService, private notificationsService: NotificationsService) { }
 
@@ -47,7 +48,10 @@ export class ToolsComponent implements OnInit {
   }
 
 
-
+  updateFirstName(name) {
+    this.nameForm = name + '-form';
+    console.log(this.nameForm.value);
+  }
 
 
 }

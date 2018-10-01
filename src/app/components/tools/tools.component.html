@@ -4,8 +4,17 @@
   <!--DEED REFERENCES-->
   <div class="card shadow mb-3">
     <div class="card-body">
-      <ng-template ngFor let-names [ngForOf]="firstNamesSorted">
-        <p>{{ names }}</p>
+      <ng-template ngFor let-name [ngForOf]="firstNamesSorted">
+        <div class="col">{{ name }}</div>
+        <form (keydown.enter)="$event.preventDefault()" [formGroup]="{{name}}-form" (ngSubmit)="updateFirstName(name)"
+          novalidate>
+          <div class="col">
+            <input class="form-control" type="text" formControlName="newFirstname">
+          </div>
+          <div class="col">
+            <button mat-raised-button type="submit">UPDATE</button>
+          </div>
+        </form>
       </ng-template>
     </div>
   </div>
