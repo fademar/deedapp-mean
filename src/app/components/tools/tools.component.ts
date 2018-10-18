@@ -54,7 +54,9 @@ export class ToolsComponent implements OnInit {
       let nameAndSex = {'name':element.getFirstname(), 'sex':element.getSex()}
       array.push(nameAndSex);
     });
-    array.sort(new Intl.Collator('ru').compare);
+
+    array.sort((a, b) => a.name.localeCompare(b.name, 'ru', {ignorePunctuation: true}));
+    // array.sort(new Intl.Collator('ru').compare);
     return array
   }
 
