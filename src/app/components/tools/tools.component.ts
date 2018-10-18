@@ -35,14 +35,6 @@ export class ToolsComponent implements OnInit {
     this.firstNames = [];
     this.firstNamesSorted = [];
     this.firstnamesService.getFirstNames().subscribe(data => this.firstNamesSorted = this.getFirstnamesSorted(data));
-    this.firstNamesSorted.map((element, index) => {
-      console.log(element.name);
-      console.log(element.sex)
-      console.log(index);
-      this.control = new FormControl;
-      this.form.addControl(index.toString(), this.control);
-    })
-    console.log(this.form);
   }
 
 
