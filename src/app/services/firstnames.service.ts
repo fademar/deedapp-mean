@@ -107,7 +107,7 @@ export class FirstnamesService {
             }
 
         }); //END FOREACH
-
+        console.log(firstNames);
         return firstNames;
 
     }

@@ -50,10 +50,11 @@ export class ToolsComponent implements OnInit {
   getFirstnamesSorted(data) {
     let array = [];
     data.forEach(element => {
-      array.push(element.getFirstname());
+      let nameAndSex = {'name':element.getFirstname(), 'sex':element.getSex()}
+      array.push(nameAndSex);
     });
     array.sort(new Intl.Collator('ru').compare);
-    return _.sortedUniq(array)
+    return array
   }
 
 
