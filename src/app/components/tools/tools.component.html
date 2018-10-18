@@ -5,15 +5,23 @@
     <!--DEED REFERENCES-->
     <div class="card shadow mb-3">
       <div class="card-body">
+        <table>
+          <tbody>
         <ng-template ngFor let-name [ngForOf]="firstNamesSorted" let-i="index">
-          <div class="col">{{ name }}</div>
-          <!-- <div class="col">
-            <input class="form-control" type="text" formControlName="i">
-          </div> -->
-          <div class="col">
-            <button mat-raised-button type="submit">UPDATE</button>
-          </div>
+          <tr>
+            <td>
+              {{ i }}
+            </td>
+            <td>
+              {{ name }}
+            </td>
+            <td>
+              <button mat-raised-button type="submit">UPDATE</button>
+            </td>
+          </tr>
         </ng-template>
+      </tbody>
+      </table>
       </div>
     </div>
   </div>
