@@ -43,12 +43,16 @@ export class ToolsComponent implements OnInit {
   getFirstnamesSorted(data) {
     let array = [];
     data.forEach(element => {
-      let nameAndSex = {'name':element.getFirstname(), 'sex':element.getSex(), 'id':element.getId()}
-      array.push(nameAndSex);
+      let nameAndSex = {'name':element.getFirstname(), 'sex':element.getSex(), 'ids':[element.getId()]}
+      if (array.indexOf(nameAndSex.name) === -1) {
+        array.push(nameAndSex);
+      } else {
+        let i = array.indexOf(nameAndSex);
+        array[i].ids.push(element.getId());
+      }
     });
 
     array.sort((a, b) => a.name.localeCompare(b.name, 'ru', {ignorePunctuation: true}));
-    // array.sort(new Intl.Collator('ru').compare);
     return array
   }
 

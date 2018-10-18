@@ -5,7 +5,7 @@
     <!--DEED REFERENCES-->
     <div class="card shadow mb-3">
       <div class="card-body">
-        <table>
+        <table class="col-12">
           <tbody>
         <ng-template ngFor let-element [ngForOf]="firstNamesSorted" let-i="index">
           <tr>
@@ -19,7 +19,9 @@
                 {{ element.sex }}
               </td>
               <td>
-                {{ element.id }}
+                  <ng-template ngFor let-id [ngForOf]="element.ids" let-i="index">
+                    {{ id }} | 
+                  </ng-template>
               </td>
             <td>
               <button mat-raised-button type="submit">UPDATE</button>
