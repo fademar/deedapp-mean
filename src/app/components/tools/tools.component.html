@@ -7,14 +7,17 @@
       <div class="card-body">
         <table>
           <tbody>
-        <ng-template ngFor let-name [ngForOf]="firstNamesSorted" let-i="index">
+        <ng-template ngFor let-element [ngForOf]="firstNamesSorted" let-i="index">
           <tr>
             <td>
               {{ i }}
             </td>
             <td>
-              {{ name }}
+              {{ element.name }}
             </td>
+            <td>
+                {{ element.sex }}
+              </td>
             <td>
               <button mat-raised-button type="submit">UPDATE</button>
             </td>
