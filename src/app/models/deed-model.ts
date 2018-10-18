@@ -57,15 +57,20 @@ export class Fee {
 export class FirstNameObject {
 	sex: string = '';
 	firstname: string = '';
-	constructor(sex: string, firstname: string) {
+	deedId: string = '';
+	constructor(sex: string, firstname: string, deedId: string) {
 		this.sex = sex;
 		this.firstname = firstname;
+		this.deedId = deedId;
 	}
 	getSex() {
 		return this.sex;
 	}
 	getFirstname() {
 		return this.firstname;
+	}
+	getId() {
+		return this.deedId;
 	}
 }
 
