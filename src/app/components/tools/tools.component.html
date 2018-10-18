@@ -6,6 +6,14 @@
     <div class="card shadow mb-3">
       <div class="card-body">
         <table class="col-12">
+          <thead>
+            <tr>
+              <th>n°</th>
+              <th>firstname</th>
+              <th>total deeds</th>
+              <th></th>
+            </tr>
+          </thead>
           <tbody>
         <ng-template ngFor let-element [ngForOf]="firstNamesSorted" let-i="index">
           <tr>
@@ -15,13 +23,8 @@
             <td>
               {{ element.name }}
             </td>
-            <td>
-                {{ element.sex }}
-              </td>
               <td>
-                  <ng-template ngFor let-id [ngForOf]="element.ids" let-i="index">
-                    {{ id }} | 
-                  </ng-template>
+                {{ element.ids.length }}
               </td>
             <td>
               <button mat-raised-button type="submit">UPDATE</button>
