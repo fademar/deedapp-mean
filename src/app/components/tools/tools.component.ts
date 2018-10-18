@@ -52,7 +52,7 @@ export class ToolsComponent implements OnInit {
       }
     });
 
-    array.sort((a, b) => a.name.localeCompare(b.name, 'ru', {ignorePunctuation: true}));
+    array.sort((a, b) => a.name.localeCompare(b.name, 'ru', {}));
     return array
   }
 
