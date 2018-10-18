@@ -19,10 +19,10 @@ export class FirstnamesService {
         let firstNames: FirstNameObject[] = [];
 
         deeds.forEach(deed => {
-            if ((deed.agentSex === 'male' || deed.agentSex === 'female') && deed.agent.firsName !== '') {
+            if ((deed.agentSex === 'male' || deed.agentSex === 'female') && deed.agent.firstName !== '') {
                 firstNames.push(new FirstNameObject(deed.agentSex, _.trim(deed.agent.firstName)));
             }
-            if ((deed.counterAgentSex === 'male' || deed.counterAgentSex === 'female') && deed.counterAgent.firsName !== '') {
+            if ((deed.counterAgentSex === 'male' || deed.counterAgentSex === 'female') && deed.counterAgent.firstName !== '') {
                 firstNames.push(new FirstNameObject(deed.counterAgentSex, _.trim(deed.counterAgent.firstName)));
             }
             if (deed.agentSex === 'female' && deed.agent.referentMale.firstName !== '') {

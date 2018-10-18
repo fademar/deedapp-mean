@@ -41,6 +41,7 @@ export class ToolsComponent implements OnInit {
       this.control = new FormControl;
       this.form.addControl(index.toString(), this.control);
     })
+    console.log(this.form);
   }
 
 
