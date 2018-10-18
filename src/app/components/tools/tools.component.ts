@@ -44,12 +44,12 @@ export class ToolsComponent implements OnInit {
     let array = [{'name':'','sex':'','ids':[]}];
     data.forEach(element => {
       let nameAndSex = {'name':element.getFirstname(), 'sex':element.getSex(), 'ids':[element.getId()]}
-      console.log(array.indexOf(nameAndSex.name));
-      if (array.indexOf(nameAndSex.name) === -1) {
+      let indexName = _.findIndex(array, (o) => {o.name === nameAndSex.name});
+      console.log(indexName);
+      if (indexName === -1) {
         array.push(nameAndSex);
       } else {
-        let i = array.indexOf(nameAndSex);
-        array[i].ids.push(element.getId());
+        array[indexName].ids.push(element.getId());
       }
     });
 
