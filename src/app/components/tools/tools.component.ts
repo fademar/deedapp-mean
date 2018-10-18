@@ -44,6 +44,7 @@ export class ToolsComponent implements OnInit {
     let array = [];
     data.forEach(element => {
       let nameAndSex = {'name':element.getFirstname(), 'sex':element.getSex(), 'ids':[element.getId()]}
+      console.log(array.indexOf(nameAndSex.name));
       if (array.indexOf(nameAndSex.name) === -1) {
         array.push(nameAndSex);
       } else {
