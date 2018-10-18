@@ -38,9 +38,8 @@ export class ToolsComponent implements OnInit {
     this.firstNamesSorted.map((name, index) => {
       console.log(name);
       console.log(index);
-      const controlname = 'control-' + index.toString();
       this.control = new FormControl;
-      this.form.addControl(controlname, this.control);
+      this.form.addControl(index.toString(), this.control);
     })
   }
 

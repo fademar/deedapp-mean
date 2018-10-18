@@ -8,7 +8,7 @@
         <ng-template ngFor let-name [ngForOf]="firstNamesSorted" let-i="index">
           <div class="col">{{ name }}</div>
           <div class="col">
-            <input class="form-control" type="text" formControlName="'control-'+i">
+            <input class="form-control" type="text" formControlName="i">
           </div>
           <div class="col">
             <button mat-raised-button type="submit">UPDATE</button>
