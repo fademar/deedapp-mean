@@ -141,7 +141,7 @@ export class FirstnamesService {
     }
 
     updateFirstnames(data): Observable<any> {
-        return this.http.put('api/firstnames', data, httpOptions)
+        return this.http.put('/api/firstnames', data, httpOptions)
             .pipe(
             catchError(this.handleError)
             );
