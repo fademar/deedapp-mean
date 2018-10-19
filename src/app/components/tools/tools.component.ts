@@ -66,7 +66,13 @@ export class ToolsComponent implements OnInit {
 
 
   updateFirstName() {
-    console.log(this.form.value);
+    for (const key in this.form.value) {
+      if (this.form.value[key] !== null) {
+        const element = this.form.value[key];
+        console.log(element);
+      }
+    }
+    
   }
 
 
