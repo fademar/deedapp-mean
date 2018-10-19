@@ -17,10 +17,9 @@ export class FirstnamesService {
 
     createFirstNamesArray(deeds) {
         const firstNames: FirstNameObject[] = [];
-        const inDeeds = {'id':0,'fields':[]};
 
         deeds.forEach(deed => {
-            inDeeds.id = deed._id;
+            const inDeeds = {'id':deed._id,'fields':[]};
             if ((deed.agentSex === 'male' || deed.agentSex === 'female') && deed.agent.firstName !== '') {
                 inDeeds.fields.push('deed.agent.firstName');
                 firstNames.push(new FirstNameObject(deed.agentSex, _.trim(deed.agent.firstName), inDeeds));
