@@ -38,9 +38,8 @@ export class ToolsComponent implements OnInit {
     this.firstnamesService.getFirstNames().subscribe(data => {
       this.firstNamesSorted = this.getFirstnamesSorted(data);
       for (let index = 0; index < this.firstNamesSorted.length; index++) {
-        const controlName: string = 'control-'+ index;
         const control = new FormControl;
-        this.form.addControl(controlName, control);
+        this.form.addControl(index.toString(), control);
       }
     });
   }
