@@ -50,17 +50,15 @@
               {{ i }}
             </td>
             <td>
-              {{ element.firstname }}
+              {{ element.name }}
             </td>
               <td>
-                {{ element.deedId }}
+                <ng-template ngFor let-idAndField [ngForOf]="element.idsAndFields" let-o="index">
+                {{ idAndField.id }} | {{ idAndField.field }} / 
+                </ng-template>
               </td>
             <td>
-                <!-- <input type="text" class="form-control" [formControlName]="i" trim="blur"> -->
-                {{ element.sex }}
-            </td>
-            <td>
-              {{ element.field }}
+                <input type="text" class="form-control" [formControlName]="i" trim="blur">
             </td>
           </tr>
         </ng-template>
