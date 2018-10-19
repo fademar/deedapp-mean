@@ -323,7 +323,8 @@ app.get('/api/update-schema', (req, res) => {
  */
 app.put('/api/firstnames/', (req, res) => {
   let updateFirstname = req.body;
-  console.log(updateFirstname);
+  res.status(200).json(updateFirstname);
+  
   // delete updateFirstname._id;
 
   // db.collection(deedsCollection).updateOne({
