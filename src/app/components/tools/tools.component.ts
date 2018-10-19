@@ -5,6 +5,7 @@ import { FirstnamesService } from '../../services/firstnames.service';
 import { FirstNameObject, alphabet } from '../../models/deed-model';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-tools',
@@ -28,7 +29,7 @@ export class ToolsComponent implements OnInit {
   nameForm;
   control;
 
-  constructor(private firstnamesService: FirstnamesService, private notificationsService: NotificationsService, private fb: FormBuilder) { }
+  constructor(private firstnamesService: FirstnamesService, private notificationsService: NotificationsService, private fb: FormBuilder, public auth: AuthService) { }
 
   ngOnInit() {
     this.form = new FormGroup({});
