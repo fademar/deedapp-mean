@@ -57,11 +57,11 @@ export class Fee {
 export class FirstNameObject {
 	sex: string = '';
 	firstname: string = '';
-	deedId: string = '';
-	constructor(sex: string, firstname: string, deedId: string) {
+	inDeeds = {'id':'','fields':[]};
+	constructor(sex: string, firstname: string, inDeeds) {
 		this.sex = sex;
 		this.firstname = firstname;
-		this.deedId = deedId;
+		this.inDeeds = inDeeds;
 	}
 	getSex() {
 		return this.sex;
@@ -69,9 +69,10 @@ export class FirstNameObject {
 	getFirstname() {
 		return this.firstname;
 	}
-	getId() {
-		return this.deedId;
+	getInDeeds() {
+		return this.inDeeds;
 	}
+
 }
 
 export const gender = ['', 'male', 'female', 'body-corporate'];

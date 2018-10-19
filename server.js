@@ -317,6 +317,26 @@ app.get('/api/update-schema', (req, res) => {
   });
 });
 
+/*  '/api/firstnames/'
+ *    PUT: update the firstnames
+ *
+ */
+app.put('/api/firstnames/', (req, res) => {
+  let updateFirstname = req.body;
+  console.log(updateFirstname);
+  // delete updateFirstname._id;
+
+  // db.collection(deedsCollection).updateOne({
+  //   _id: new ObjectID(req.params.id)
+  // }, updateNote, (err, doc) => {
+  //   if (err) {
+  //     handleError(res, err.message, 'Failed to update deed');
+  //   } else {
+  //     res.status(200).json(updateNote);
+  //   }
+  // });
+});
+
 
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname + '/dist/index.html'));

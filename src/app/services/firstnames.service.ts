@@ -16,38 +16,48 @@ export class FirstnamesService {
 
 
     createFirstNamesArray(deeds) {
-        let firstNames: FirstNameObject[] = [];
+        const firstNames: FirstNameObject[] = [];
+        const inDeeds = {'id':0,'fields':[]};
 
         deeds.forEach(deed => {
+            inDeeds.id = deed._id;
             if ((deed.agentSex === 'male' || deed.agentSex === 'female') && deed.agent.firstName !== '') {
-                firstNames.push(new FirstNameObject(deed.agentSex, _.trim(deed.agent.firstName), deed._id));
+                inDeeds.fields.push('deed.agent.firstName');
+                firstNames.push(new FirstNameObject(deed.agentSex, _.trim(deed.agent.firstName), inDeeds));
             }
             if ((deed.counterAgentSex === 'male' || deed.counterAgentSex === 'female') && deed.counterAgent.firstName !== '') {
-                firstNames.push(new FirstNameObject(deed.counterAgentSex, _.trim(deed.counterAgent.firstName), deed._id));
+                inDeeds.fields.push('deed.counterAgent.firstName');
+                firstNames.push(new FirstNameObject(deed.counterAgentSex, _.trim(deed.counterAgent.firstName), inDeeds));
             }
             if (deed.agentSex === 'female' && deed.agent.referentMale.firstName !== '') {
-                firstNames.push(new FirstNameObject('male', _.trim(deed.agent.referentMale.firstName), deed._id));
+                inDeeds.fields.push('deed.agent.referentMale.firstName');
+                firstNames.push(new FirstNameObject('male', _.trim(deed.agent.referentMale.firstName), inDeeds));
             }
             if (deed.counterAgentSex === 'female' && deed.counterAgent.referentMale.firstName !== '') {
-                firstNames.push(new FirstNameObject('male', _.trim(deed.counterAgent.referentMale.firstName), deed._id));
+                inDeeds.fields.push('deed.counterAgent.referentMale.firstName');
+                firstNames.push(new FirstNameObject('male', _.trim(deed.counterAgent.referentMale.firstName), inDeeds));
             }
             if (deed.coAgents.length > 0) {
                 deed.coAgents.forEach(coAgent => {
                     if ((coAgent.coAgentSex === 'male' || coAgent.coAgentSex === 'female') && coAgent.coAgent.firstName !== '') {
-                        firstNames.push(new FirstNameObject(coAgent.coAgentSex, _.trim(coAgent.coAgent.firstName), deed._id));
+                        inDeeds.fields.push('coAgent.coAgent.firstName');
+                        firstNames.push(new FirstNameObject(coAgent.coAgentSex, _.trim(coAgent.coAgent.firstName), inDeeds));
                     }
                     if (coAgent.coAgentSex === 'female' && coAgent.coAgent.referentMale.firstName !== '') {
-                        firstNames.push(new FirstNameObject('male', _.trim(coAgent.coAgent.referentMale.firstName), deed._id));
+                        inDeeds.fields.push('coAgent.coAgent.referentMale.firstName');
+                        firstNames.push(new FirstNameObject('male', _.trim(coAgent.coAgent.referentMale.firstName), inDeeds));
                     }
                 });
             }
             if (deed.coCounterAgents.length > 0) {
                 deed.coCounterAgents.forEach(coCounterAgent => {
                     if ((coCounterAgent.coCounterAgentSex === 'male' || coCounterAgent.coCounterAgentSex === 'female') && coCounterAgent.coCounterAgent.firstName !== '') {
-                        firstNames.push(new FirstNameObject(coCounterAgent.coCounterAgentSex, _.trim(coCounterAgent.coCounterAgent.firstName), deed._id));
+                        inDeeds.fields.push('coCounterAgent.coCounterAgent.firstName');
+                        firstNames.push(new FirstNameObject(coCounterAgent.coCounterAgentSex, _.trim(coCounterAgent.coCounterAgent.firstName), inDeeds));
                     }
                     if (coCounterAgent.coCounterAgentSex === 'female' && coCounterAgent.coCounterAgent.referentMale.firstName !== '') {
-                        firstNames.push(new FirstNameObject('male', _.trim(coCounterAgent.coCounterAgent.referentMale.firstName), deed._id));
+                        inDeeds.fields.push('coCounterAgent.coCounterAgent.referentMale.firstName');
+                        firstNames.push(new FirstNameObject('male', _.trim(coCounterAgent.coCounterAgent.referentMale.firstName), inDeeds));
                     }
                 });
             }
@@ -57,14 +67,16 @@ export class FirstnamesService {
                     if (transaction.agentTransactionObjects.length > 0) {
                         transaction.agentTransactionObjects.forEach(agentTransactionObject => {
                             if (agentTransactionObject.dependent && agentTransactionObject.dependent.firstName !== '') {
-                                firstNames.push(new FirstNameObject('male', _.trim(agentTransactionObject.dependent.firstName), deed._id));
+                                inDeeds.fields.push('agentTransactionObject.dependent.firstName');
+                                firstNames.push(new FirstNameObject('male', _.trim(agentTransactionObject.dependent.firstName), inDeeds));
                             }
                         });
                     }
                     if (transaction.counterAgentTransactionObjects.length > 0) {
                         transaction.counterAgentTransactionObjects.forEach(counterAgentTransactionObject => {
                             if (counterAgentTransactionObject.dependent && counterAgentTransactionObject.dependent.firstName !== '') {
-                                firstNames.push(new FirstNameObject('male', _.trim(counterAgentTransactionObject.dependent.firstName), deed._id));
+                                inDeeds.fields.push('counterAgentTransactionObject.dependent.firstName');
+                                firstNames.push(new FirstNameObject('male', _.trim(counterAgentTransactionObject.dependent.firstName), inDeeds));
                             }
                         });
                     }
@@ -72,13 +84,15 @@ export class FirstnamesService {
             } // END IF TRANSACTION
 
             if (deed.scribe && deed.scribe.firstName !== '') {
-                firstNames.push(new FirstNameObject('undefined', _.trim(deed.scribe.firstName), deed._id));
+                inDeeds.fields.push('deed.scribe.firstName');
+                firstNames.push(new FirstNameObject('undefined', _.trim(deed.scribe.firstName), inDeeds));
             }
 
             if (deed.whitnesses.length > 0) {
                 deed.whitnesses.forEach(whitness => {
                     if (whitness.firstName !== '') {
-                        firstNames.push(new FirstNameObject('undefined', _.trim(whitness.whitness.firstName), deed._id));
+                        inDeeds.fields.push('whitness.whitness.firstName');
+                        firstNames.push(new FirstNameObject('undefined', _.trim(whitness.whitness.firstName), inDeeds));
                     }
                 });
 
@@ -87,7 +101,8 @@ export class FirstnamesService {
             if (deed.sureties.length > 0) {
                 deed.sureties.forEach(surety => {
                     if (surety.firstName !== '') {
-                        firstNames.push(new FirstNameObject('undefined', _.trim(surety.surety.firstName), deed._id));
+                        inDeeds.fields.push('surety.surety.firstName');
+                        firstNames.push(new FirstNameObject('undefined', _.trim(surety.surety.firstName), inDeeds));
                     }
                 });
 
@@ -96,14 +111,16 @@ export class FirstnamesService {
             if (deed.otherParticipants.length > 0) {
                 deed.otherParticipants.forEach(otherParticipant => {
                     if (otherParticipant.firstName !== '') {
-                        firstNames.push(new FirstNameObject('undefined', _.trim(otherParticipant.otherParticipant.firstName), deed._id));
+                        inDeeds.fields.push('otherParticipant.otherParticipant.firstName');
+                        firstNames.push(new FirstNameObject('undefined', _.trim(otherParticipant.otherParticipant.firstName), inDeeds));
                     }
                 });
 
             }
 
             if (deed.registrator && deed.registrator.firstName !== '') {
-                firstNames.push(new FirstNameObject('undefined', _.trim(deed.registrator.firstName), deed._id));
+                inDeeds.fields.push('deed.registrator.firstName');
+                firstNames.push(new FirstNameObject('undefined', _.trim(deed.registrator.firstName), inDeeds));
             }
 
         }); //END FOREACH
@@ -120,7 +137,7 @@ export class FirstnamesService {
 
     }
 
-
+    
 
 
     //   getFirstNamesM(): Observable<any> {

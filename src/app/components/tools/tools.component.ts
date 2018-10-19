@@ -50,12 +50,12 @@ export class ToolsComponent implements OnInit {
   getFirstnamesSorted(data) {
     let array = [];
     data.forEach(element => {
-      let nameAndSex = {'name':element.getFirstname(), 'sex':element.getSex(), 'ids':[element.getId()]}
+      let nameAndSex = {'name':element.getFirstname(), 'sex':element.getSex(), 'inDeeds':[element.getInDeeds()]}
       let indexName = _.findIndex(array, (o) => {return o.name === nameAndSex.name});
       if (indexName === -1) {
         array.push(nameAndSex);
       } else {
-        array[indexName].ids.push(element.getId());
+        array[indexName].inDeeds.push(element.getInDeeds());
       }
     });
 
