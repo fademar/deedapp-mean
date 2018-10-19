@@ -1,6 +1,36 @@
-<app-navbar></app-navbar>
 <simple-notifications [options]="options"></simple-notifications>
 <form (keydown.enter)="$event.preventDefault()" [formGroup]="form" (ngSubmit)="updateFirstName()" novalidate>
+    <mat-toolbar color="primary" class="nav-bar" id="cssmenu">
+        <span class="nav-brand mr-5">Deed App</span>
+        <ul>
+          <li routerLinkActive="active">
+            <a [routerLink]="['/list']">List</a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]="['/deed/add']">New Deed</a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]="['/search']" appNewWindow>Search</a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]="['/notes']" target="_blank">Notes</a>
+          </li>
+          <li routerLinkActive="active">
+            <a [routerLink]="['/tools']">Tools</a>
+          </li>
+        </ul>
+        <span class="spacer"></span>
+        <button mat-raised-button type="submit" #submitBtn [disabled]="disableSubmit" placement="bottom" matTooltip="Save the changes"
+          class="submit-button" matTooltipPosition="before" matTooltipClass="'tooltip'">
+          <mat-icon aria-label="Submit the form">save</mat-icon> SAVE
+        </button>
+        <button mat-icon-button class="logout-button" (click)="auth.logout()">
+          <mat-icon class="nav-icon md-24" aria-label="Logout">power_settings_new</mat-icon>
+        </button>
+      </mat-toolbar>
+    
+  
+  
   <div class="container main-container">
     <!--DEED REFERENCES-->
     <div class="card shadow mb-3">
@@ -27,7 +57,7 @@
                 {{ element.ids.length }}
               </td>
             <td>
-              <button mat-raised-button type="submit">UPDATE</button>
+                <input type="text" class="form-control" [formControlName]="'control-'+i" trim="blur">
             </td>
           </tr>
         </ng-template>
