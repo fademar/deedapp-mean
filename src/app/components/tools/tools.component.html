@@ -53,9 +53,7 @@
               {{ element.name }}
             </td>
               <td>
-                <ng-template ngFor let-idAndField [ngForOf]="element.idsAndFields" let-o="index">
-                {{ idAndField.id }} | {{ idAndField.field }} / 
-                </ng-template>
+                {{ element.idsAndFields.length }}
               </td>
             <td>
                 <input type="text" class="form-control" [formControlName]="i" trim="blur">
