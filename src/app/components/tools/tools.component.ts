@@ -36,11 +36,12 @@ export class ToolsComponent implements OnInit {
     this.firstNames = [];
     this.firstNamesSorted = [];
     this.firstnamesService.getFirstNames().subscribe(data => {
-      this.firstNamesSorted = this.getFirstnamesSorted(data);
-      for (let index = 0; index < this.firstNamesSorted.length; index++) {
-        const control = new FormControl;
-        this.form.addControl(index.toString(), control);
-      }
+      // this.firstNamesSorted = this.getFirstnamesSorted(data);
+      this.firstNamesSorted = data;
+      // for (let index = 0; index < this.firstNamesSorted.length; index++) {
+      //   const control = new FormControl;
+      //   this.form.addControl(index.toString(), control);
+      // }
     });
   }
 
@@ -50,7 +51,7 @@ export class ToolsComponent implements OnInit {
   getFirstnamesSorted(data) {
     let array = [];
     data.forEach(element => {
-      let nameAndSex = {'name':element.getFirstname(), 'sex':element.getSex(), 'inDeeds':[element.getInDeeds()]}
+      let nameAndSex = {'name':element.getFirstname(), 'sex':element.getSex(), 'ids':[element.getInDeeds()]}
       let indexName = _.findIndex(array, (o) => {return o.name === nameAndSex.name});
       if (indexName === -1) {
         array.push(nameAndSex);

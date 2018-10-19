@@ -53,11 +53,14 @@
               {{ element.name }}
             </td>
               <td>
-                {{ element.inDeeds.length }}
+                {{ element.id }}
               </td>
             <td>
-                <input type="text" class="form-control" [formControlName]="i" trim="blur">
-
+                <!-- <input type="text" class="form-control" [formControlName]="i" trim="blur"> -->
+                {{ element.sex }}
+            </td>
+            <td>
+              {{ element.field }}
             </td>
           </tr>
         </ng-template>
