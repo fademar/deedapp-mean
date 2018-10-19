@@ -28,6 +28,7 @@ export class ToolsComponent implements OnInit {
   alphabet = alphabet;
   nameForm;
   control;
+  formValue;
 
   constructor(private firstnamesService: FirstnamesService, private notificationsService: NotificationsService, private fb: FormBuilder, public auth: AuthService) { }
 
@@ -68,10 +69,16 @@ export class ToolsComponent implements OnInit {
     for (const key in this.form.value) {
       if (this.form.value[key] !== null) {
         const element = this.form.value[key];
+        console.log()
         console.log(this.firstNamesSorted[key]);
       }
     }
-    
+    this.formValue = JSON.stringify(this.form.value);
+
+    this.firstnamesService.updateFirstnames(this.formValue).subscribe(data => { 
+      console.log(data);
+    });
+
   }
 
 
