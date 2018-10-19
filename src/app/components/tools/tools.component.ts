@@ -69,6 +69,7 @@ export class ToolsComponent implements OnInit {
       if (this.form.value[key] !== null) {
         const element = this.form.value[key];
         console.log(element);
+        console.log(this.firstNamesSorted[key]);
       }
     }
     
