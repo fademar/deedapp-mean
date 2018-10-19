@@ -20,8 +20,7 @@
           </li>
         </ul>
         <span class="spacer"></span>
-        <button mat-raised-button type="submit" #submitBtn [disabled]="disableSubmit" placement="bottom" matTooltip="Save the changes"
-          class="submit-button" matTooltipPosition="before" matTooltipClass="'tooltip'">
+        <button mat-raised-button type="submit" placement="bottom" class="submit-button">
           <mat-icon aria-label="Submit the form">save</mat-icon> SAVE
         </button>
         <button mat-icon-button class="logout-button" (click)="auth.logout()">
