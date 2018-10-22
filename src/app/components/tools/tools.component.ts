@@ -76,16 +76,17 @@ export class ToolsComponent implements OnInit {
     }
 
     this.firstnamesService.updateFirstnames(this.formValue).subscribe(data => { 
-      const notification: string = '';
-      if (data.length > 0) {
-          data.forEach(message => {
-            this.notificationsService.success(
-              'Success',
-              message,
-          );
-        });  
-      }
+      console.log(data);
+      // if (data.length > 0) {
+      //     data.forEach(message => {
+      //       this.notificationsService.success(
+      //         'Success',
+      //         message,
+      //     );
+      //   });  
+      // }
     });
+
     setTimeout(() => {
         this.router.navigate(['/tools']);
     }, 2000);
