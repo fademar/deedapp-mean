@@ -328,6 +328,7 @@ app.put('/api/firstnames/', (req, res) => {
     
     element1.info.idsAndFields.forEach(element2 => {
       const placeholder = {};
+      reponse.push('Le champ ' + element2.field + ' du document ' + element2.id + ' a bien été mis à jour.');
       placeholder[element2.field] = element1.newName;
       db.collection(deedsCollection).updateOne({
         _id: new ObjectID(element2.id)
@@ -336,14 +337,14 @@ app.put('/api/firstnames/', (req, res) => {
         $set: placeholder 
       }, (err, doc) => {
         if (err) {
-          reponse.push(err.message);
+          handleError(res, err.message, 'Failed to update deed');
         } else {
-          reponse.push("Le champ " + element2.field + " dans le document " + element2.id + " a été mis à jour.")
+          res.status(200).json(reponse);
         }
       });      
     });
+
   });
-  res.status(200).json(reponse);
 });
 
 
