@@ -323,7 +323,7 @@ app.get('/api/update-schema', (req, res) => {
  */
 app.put('/api/firstnames/', (req, res) => {
   let updateFirstname = req.body;
-  res.status(200).json("la base de données a été mise à jour");
+  res.status(200).json(updateFirstname);
 
   // delete updateFirstname._id;
 
