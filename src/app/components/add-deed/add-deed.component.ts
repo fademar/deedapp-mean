@@ -1681,7 +1681,7 @@ export class AddDeedComponent implements OnInit {
                 verbatimCitations: this.deed.verbatimCitations,
                 researcherNotes: this.deed.researcherNotes,
                 complete: this.deed.complete,
-                schemaVersion: this.deed.schemaVersion
+                schemaVersion: 2
             });
 
             // Populate Agent depending on AgentSex

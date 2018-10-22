@@ -323,6 +323,7 @@ app.get('/api/update-schema', (req, res) => {
  */
 app.put('/api/firstnames/', (req, res) => {
   const updateFirstname = req.body;
+  const reponse = [];
   updateFirstname.forEach(element1 => {
     
     element1.info.idsAndFields.forEach(element2 => {
@@ -337,7 +338,8 @@ app.put('/api/firstnames/', (req, res) => {
         if (err) {
           handleError(res, err.message, 'Failed to update deed');
         } else {
-          res.status(200).json('Le champ ' + element2.field + ' du document ' + element2.id + ' a bien été mis à jour.' );
+          reponse.push('Le champ ' + element2.field + ' du document ' + element2.id + ' a bien été mis à jour.');
+          res.status(200).json(reponse);
         }
       });      
     });
