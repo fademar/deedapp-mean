@@ -86,9 +86,6 @@ export class ToolsComponent implements OnInit {
         });  
       }
     });
-    setTimeout(() => {
-        this.router.navigate(['/tools']);
-    }, 3000);
   }
 
 
