@@ -76,7 +76,6 @@ export class ToolsComponent implements OnInit {
     }
 
     this.firstnamesService.updateFirstnames(this.formValue).subscribe(data => { 
-      console.log(data);
       const notification: string = '';
       if (data.length > 0) {
           data.forEach(message => {
@@ -86,10 +85,10 @@ export class ToolsComponent implements OnInit {
           );
         });  
       }
-      });
-      setTimeout(() => {
-          this.router.navigate(['/tools']);
-      }, 2000);
+    });
+    setTimeout(() => {
+        this.router.navigate(['/tools']);
+    }, 3000);
   }
 
 
