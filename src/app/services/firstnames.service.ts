@@ -73,7 +73,7 @@ export class FirstnamesService {
                             
                     }
                     if (transaction.counterAgentTransactionObjects.length > 0) {
-                        for (let j = 0; j < transaction.agentTransactionObjects.length; j++) {
+                        for (let j = 0; j < transaction.counterAgentTransactionObjects.length; j++) {
                             const counterAgentTransactionObject = transaction.counterAgentTransactionObjects[j];
                             if (counterAgentTransactionObject.dependent && counterAgentTransactionObject.dependent.firstName !== '') {
                                 firstNames.push(new FirstNameObject('male', _.trim(counterAgentTransactionObject.dependent.firstName), deed._id, 'transactions['+ i.toString() + '].counterAgentTransactionObjects['+ j.toString() +'].dependent.firstName'));
