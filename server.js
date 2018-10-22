@@ -322,20 +322,27 @@ app.get('/api/update-schema', (req, res) => {
  *
  */
 app.put('/api/firstnames/', (req, res) => {
-  let updateFirstname = req.body;
-  res.status(200).json(updateFirstname);
+  const updateFirstname = req.body;
+  updateFirstname.forEach(element1 => {
+    
+    element1.info.idsAndFields.forEach(element2 => {
+      const placeholder = {};
+      placeholder[element2.field] = element1.newName;
+      db.collection(deedsCollection).updateOne({
+        _id: new ObjectID(element2.id)
+      },
+      {
+        $set: placeholder 
+      }, (err, doc) => {
+        if (err) {
+          handleError(res, err.message, 'Failed to update deed');
+        } else {
+          res.status(200).json('Le champ ' + element2.field + ' du document ' + element2.id + ' a bien été mis à jour.' );
+        }
+      });      
+    });
 
-  // delete updateFirstname._id;
-
-  // db.collection(deedsCollection).updateOne({
-  //   _id: new ObjectID(req.params.id)
-  // }, updateNote, (err, doc) => {
-  //   if (err) {
-  //     handleError(res, err.message, 'Failed to update deed');
-  //   } else {
-  //     res.status(200).json(updateNote);
-  //   }
-  // });
+  });
 });
 
 
