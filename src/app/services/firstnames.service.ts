@@ -40,7 +40,7 @@ export class FirstnamesService {
                 for (let index = 0; index < deed.coAgents.length; index++) {
                     const coAgent = deed.coAgents[index];
                     if ((coAgent.coAgentSex === 'male' || coAgent.coAgentSex === 'female') && coAgent.coAgent.firstName !== '') {
-                        firstNames.push(new FirstNameObject(coAgent.coAgentSex, _.trim(coAgent.coAgent.firstName), deed._id, 'coAgents.'+ index.toString() + '.coagent.firstName'));
+                        firstNames.push(new FirstNameObject(coAgent.coAgentSex, _.trim(coAgent.coAgent.firstName), deed._id, 'coAgents.'+ index.toString() + '.coAgent.firstName'));
                     }
                     if (coAgent.coAgentSex === 'female' && coAgent.coAgent.referentMale.firstName !== '') {
                         firstNames.push(new FirstNameObject('male', _.trim(coAgent.coAgent.referentMale.firstName), deed._id, 'coAgents.'+ index.toString() + '.coAgent.referentMale.firstName'));
