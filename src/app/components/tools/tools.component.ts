@@ -6,6 +6,7 @@ import { FirstNameObject, alphabet } from '../../models/deed-model';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
 import { AuthService } from '../../services/auth.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-tools',
@@ -30,7 +31,7 @@ export class ToolsComponent implements OnInit {
   control;
   formValue = [];
 
-  constructor(private firstnamesService: FirstnamesService, private notificationsService: NotificationsService, private fb: FormBuilder, public auth: AuthService) { }
+  constructor(private firstnamesService: FirstnamesService, private notificationsService: NotificationsService, private fb: FormBuilder, public auth: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.form = new FormGroup({});
@@ -76,8 +77,19 @@ export class ToolsComponent implements OnInit {
 
     this.firstnamesService.updateFirstnames(this.formValue).subscribe(data => { 
       console.log(data);
-    });
-
+      const notification: string = '';
+      if (data.length > 0) {
+          data.forEach(message => {
+            this.notificationsService.success(
+              'Success',
+              message,
+          );
+        });  
+      }
+      });
+      setTimeout(() => {
+          this.router.navigate(['/tools']);
+      }, 2000);
   }
 
 
