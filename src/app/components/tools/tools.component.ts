@@ -68,8 +68,8 @@ export class ToolsComponent implements OnInit {
   updateFirstName() {
     for (const key in this.form.value) {
       if (this.form.value[key] !== null) {
-        const newName = JSON.stringify(this.form.value[key]);
-        const info = JSON.stringify(this.firstNamesSorted[key]);
+        const newName = this.form.value[key];
+        const info = this.firstNamesSorted[key];
         this.formValue.push({'newName':newName, 'info':info});
       }
     }
