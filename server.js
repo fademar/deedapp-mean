@@ -336,15 +336,14 @@ app.put('/api/firstnames/', (req, res) => {
         $set: placeholder 
       }, (err, doc) => {
         if (err) {
-          handleError(res, err.message, 'Failed to update deed');
+          reponse.push(err.message);
         } else {
-          reponse.push('Le champ ' + element2.field + ' du document ' + element2.id + ' a bien été mis à jour.');
-          res.status(200).json(reponse);
+          reponse.push("Le champ " + element2.field + " dans le document " + element2.id + " a été mis à jour.")
         }
       });      
     });
-
   });
+  res.status(200).json(reponse);
 });
 
 
