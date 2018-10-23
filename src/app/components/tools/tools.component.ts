@@ -77,18 +77,18 @@ export class ToolsComponent implements OnInit {
 
     this.firstnamesService.updateFirstnames(this.formValue).subscribe(data => { 
       console.log(data);
-      // if (data.length > 0) {
-      //     data.forEach(message => {
-      //       this.notificationsService.success(
-      //         'Success',
-      //         message,
-      //     );
-      //   });  
-      // }
+      if (data.length > 0) {
+          data.forEach(message => {
+            this.notificationsService.success(
+              'Success',
+              message,
+          );
+        });  
+      }
     });
 
     setTimeout(() => {
-        this.router.navigate(['/tools']);
+        this.ngOnInit();
     }, 2000);
   }
 
