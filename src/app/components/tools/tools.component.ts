@@ -87,7 +87,7 @@ export class ToolsComponent implements OnInit {
     });
 
     setTimeout(() => {
-      this.ngOnInit();
+      this.router.navigate(['/tools']);
     }, 2000);
   }
 
