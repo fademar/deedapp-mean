@@ -364,11 +364,11 @@ app.post('/api/new-firstnames/', (req, res) => {
   db.collection(deedsCollection).bulkWrite(bulkOps, {
     "ordered": true,
     w: 1
-  }, (err, doc) => {
+  }, (err, result) => {
     if (err) {
       handleError(res, err.message, 'Failed to update deed');
     } else {
-      res.status(200).json(doc);
+      res.status(200).json(result.modifiedCount);
     }
   });
 
