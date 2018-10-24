@@ -114,7 +114,7 @@ export class ToolsComponent implements OnInit, OnDestroy {
     });
 
     setTimeout(() => {
-      this.initializeComponent();
+      this.router.navigate(['/list']);
     }, 2000);
   }
 
