@@ -346,6 +346,32 @@ app.post('/api/firstnames/', (req, res) => {
   });
 });
 
+app.post('/api/new-firstnames/', (req, res) => {
+  const updateFirstname = req.body;
+
+  updateFirstname.forEach(element1 => {
+
+    element1.info.idsAndFields.forEach(element2 => {
+      const placeholder = {};
+
+      placeholder[element2.field] = element1.newName;
+      db.collection(deedsCollection).updateOne({
+        _id: new ObjectID(element2.id)
+      }, {
+        $set: placeholder
+      }, (err, doc) => {
+        if (err) {
+          handleError(res, err.message, 'Failed to update deed');
+        } else {
+          res.status(200).json(reponse);
+        }
+      });
+    });
+
+  });
+});
+
+
 
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname + '/dist/index.html'));

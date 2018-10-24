@@ -102,21 +102,22 @@ export class ToolsComponent implements OnInit, OnDestroy {
         this.formValue.push({ 'newName': newName, 'info': info });
       }
     }
+    console.log(this.formValue);
 
-    this.firstnamesService.updateFirstnames(this.formValue).subscribe(data => {
-      if (data.length > 0) {
-        data.forEach(message => {
-          this.notificationsService.success(
-            'Success',
-            message,
-          );
-        });
-      }
-    });
+    // this.firstnamesService.updateFirstnames(this.formValue).subscribe(data => {
+    //   if (data.length > 0) {
+    //     data.forEach(message => {
+    //       this.notificationsService.success(
+    //         'Success',
+    //         message,
+    //       );
+    //     });
+    //   }
+    // });
 
-    setTimeout(() => {
-      this.router.navigate(['/list']);
-    }, 2000);
+    // setTimeout(() => {
+    //   this.router.navigate(['/list']);
+    // }, 2000);
   }
 
 
