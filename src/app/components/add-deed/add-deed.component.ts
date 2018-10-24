@@ -60,6 +60,7 @@ export class AddDeedComponent implements OnInit {
     otherImmovablePropertyType: FormControl;
     otherImmovablePropertyShare: FormControl;
     otherShareFromEstate: FormControl;
+    controlId: FormControl;
     asWhomValue;
     firstNamesMale = [];
     firstNamesFemale = [];
@@ -1639,7 +1640,6 @@ export class AddDeedComponent implements OnInit {
 
             });
             this.registratorList = _.sortBy(this.registratorList, ['firstName', 'patronyme', 'lastName']);
-            console.log(this.registratorList);
 
         });
 
@@ -1670,9 +1670,12 @@ export class AddDeedComponent implements OnInit {
             this.deed = deed;
             console.log(this.deed);
             const newSchemaVersion = 2;
+            this.controlId = new FormControl;
+            this.deedForm.addControl('_id', this.controlId);
 
             // Populating first FormControlNames with values
             this.deedForm.patchValue({
+                _id: this.deed._id,
                 deedCode: this.deed.deedCode,
                 deedRef: this.deed.deedRef,
                 deedDate: this.deed.deedDate,
