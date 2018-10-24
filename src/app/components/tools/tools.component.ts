@@ -52,12 +52,12 @@ export class ToolsComponent implements OnInit {
   getFirstnamesSorted(data) {
     let array = [];
     data.forEach(element => {
-      let nameAndSex = {'name':element.getFirstname(), 'sex':element.getSex(), 'idsAndFields':[{'id': element.getId(),'field':element.getField()}]};
-      let indexName = _.findIndex(array, (o) => {return o.name === nameAndSex.name});
+      let nameAndSex = { 'name': element.getFirstname(), 'sex': element.getSex(), 'idsAndFields': [{ 'id': element.getId(), 'field': element.getField() }] };
+      let indexName = _.findIndex(array, (o) => { return o.name === nameAndSex.name });
       if (indexName === -1) {
         array.push(nameAndSex);
       } else {
-        array[indexName].idsAndFields.push({'id':element.getId(), 'field':element.getField()});
+        array[indexName].idsAndFields.push({ 'id': element.getId(), 'field': element.getField() });
       }
     });
 
@@ -71,24 +71,23 @@ export class ToolsComponent implements OnInit {
       if (this.form.value[key] !== null) {
         const newName = this.form.value[key];
         const info = this.firstNamesSorted[key];
-        this.formValue.push({'newName':newName, 'info':info});
+        this.formValue.push({ 'newName': newName, 'info': info });
       }
     }
 
-    this.firstnamesService.updateFirstnames(this.formValue).subscribe(data => { 
-      console.log(data);
+    this.firstnamesService.updateFirstnames(this.formValue).subscribe(data => {
       if (data.length > 0) {
-          data.forEach(message => {
-            this.notificationsService.success(
-              'Success',
-              message,
+        data.forEach(message => {
+          this.notificationsService.success(
+            'Success',
+            message,
           );
-        });  
+        });
       }
     });
 
     setTimeout(() => {
-        this.ngOnInit();
+      this.ngOnInit();
     }, 2000);
   }
 
