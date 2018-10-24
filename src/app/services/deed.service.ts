@@ -60,6 +60,7 @@ export class DeedService {
 
 	updateDeed(id: string, data): Observable<any> {
 		const url = `${apiUrl}/${id}`;
+		console.log(url);
 		return this.http.put(url, data, httpOptions)
 			.pipe(
 				catchError(this.handleError)
