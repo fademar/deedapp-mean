@@ -349,13 +349,6 @@ app.post('/api/firstnames/', (req, res) => {
 app.post('/api/new-firstnames/', (req, res) => {
   const newNamesList = req.body;
 
-  const bulkUpdateCallback = function (err, res) {
-    if (err) {
-      handleError(res, err.message, 'Failed to update deed');
-    } else {
-      res.status(200).json('La base de données a été mise à jour');
-    }
-  }
 
   // Initialise the bulk operations array
   const bulkOps = newNamesList.map(function (element) {
@@ -375,7 +368,13 @@ app.post('/api/new-firstnames/', (req, res) => {
   db.collection(deedsCollection).bulkWrite(bulkOps, {
     "ordered": true,
     w: 1
-  }, bulkUpdateCallback);
+  }, (err, doc) => {
+    if (err) {
+      handleError(res, err.message, 'Failed to update deed');
+    } else {
+      res.status(200).json(reponse);
+    }
+  });
 });
 
 
