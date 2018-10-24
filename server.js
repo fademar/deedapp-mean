@@ -347,28 +347,32 @@ app.post('/api/firstnames/', (req, res) => {
 });
 
 app.post('/api/new-firstnames/', (req, res) => {
-  const updateFirstname = req.body;
+  const newNamesList = req.body;
 
-  updateFirstname.forEach(element1 => {
+  const bulkUpdateCallback = function (err, r) {
+    console.log(r.matchedCount);
+    console.log(r.modifiedCount);
+  }
 
-    element1.info.idsAndFields.forEach(element2 => {
-      const placeholder = {};
-
-      placeholder[element2.field] = element1.newName;
-      db.collection(deedsCollection).updateOne({
-        _id: new ObjectID(element2.id)
-      }, {
-        $set: placeholder
-      }, (err, doc) => {
-        if (err) {
-          handleError(res, err.message, 'Failed to update deed');
-        } else {
-          res.status(200).json(reponse);
+  // Initialise the bulk operations array
+  const bulkOps = newNamesList.map(function (element) {
+    return {
+      "updateOne": {
+        "filter": {
+          "_id": element.id
+        },
+        "update": {
+          "$set": element
         }
-      });
-    });
-
+      }
+    }
   });
+
+  // Get the underlying collection via the native node.js driver collection object
+  db.collection(deedsCollection).bulkWrite(bulkOps, {
+    "ordered": true,
+    w: 1
+  }, bulkUpdateCallback);
 });
 
 
