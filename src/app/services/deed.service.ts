@@ -3,7 +3,9 @@ import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
 
-
+const httpOptions = {
+	headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 const apiUrl = "/api/deeds";
 
@@ -12,14 +14,8 @@ const apiUrl = "/api/deeds";
 @Injectable()
 export class DeedService {
 
-	httpOptions;
 
-
-	constructor(private http: HttpClient) {
-		this.httpOptions = {
-			headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-		};
-	}
+	constructor(private http: HttpClient) { }
 
 
 	private handleError(error: HttpErrorResponse) {
@@ -43,20 +39,20 @@ export class DeedService {
 	}
 
 	getDeeds(): Observable<any> {
-		return this.http.get(apiUrl, this.httpOptions).pipe(
+		return this.http.get(apiUrl).pipe(
 			map(this.extractData),
 			catchError(this.handleError));
 	}
 
 	getDeed(id: string): Observable<any> {
 		const url = `${apiUrl}/${id}`;
-		return this.http.get(url, this.httpOptions).pipe(
+		return this.http.get(url).pipe(
 			map(this.extractData),
 			catchError(this.handleError));
 	}
 
 	saveDeed(data): Observable<any> {
-		return this.http.post(apiUrl, data, this.httpOptions)
+		return this.http.post(apiUrl, data, httpOptions)
 			.pipe(
 				catchError(this.handleError)
 			);
@@ -64,7 +60,7 @@ export class DeedService {
 
 	updateDeed(id: string, data): Observable<any> {
 		const url = `${apiUrl}/${id}`;
-		return this.http.put(url, data, this.httpOptions)
+		return this.http.put(url, data, httpOptions)
 			.pipe(
 				catchError(this.handleError)
 			);
@@ -72,7 +68,7 @@ export class DeedService {
 
 	deleteDeed(id: string): Observable<{}> {
 		const url = `${apiUrl}/${id}`;
-		return this.http.delete(url, this.httpOptions)
+		return this.http.delete(url)
 			.pipe(
 				catchError(this.handleError)
 			);
