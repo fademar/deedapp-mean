@@ -372,7 +372,7 @@ app.post('/api/new-firstnames/', (req, res) => {
     if (err) {
       handleError(res, err.message, 'Failed to update deed');
     } else {
-      res.status(200).json(reponse);
+      res.status(200).json('La base de données a été mise à jour avec succès.');
     }
   });
 });
