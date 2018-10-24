@@ -114,7 +114,12 @@ export class ToolsComponent implements OnInit, OnDestroy {
     });
 
     setTimeout(() => {
-      this.initializeComponent();
+      this.router.events.subscribe((e: any) => {
+        // If it is a NavigationEnd event re-initalise the component
+        if (e instanceof NavigationEnd) {
+          this.initializeComponent();
+        }
+      });;
     }, 2000);
   }
 
