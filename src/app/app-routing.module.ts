@@ -23,13 +23,13 @@ const appRoutes: Routes = [
   { path: 'search', component: SearchComponent, canActivate: [AuthGuard] },
   { path: 'callback', component: CallbackComponent },
   { path: 'notes', component: NotesComponent, canActivate: [AuthGuard] },
-  { path: 'tools', component: ToolsComponent, canActivate: [AuthGuard] },
+  { path: 'tools', component: ToolsComponent, canActivate: [AuthGuard], runGuardsAndResolvers: 'always' },
 ]
 
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes, { onSameUrlNavigation: 'reload' })
   ],
   exports: [
     RouterModule
