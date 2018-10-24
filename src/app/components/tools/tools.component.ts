@@ -107,16 +107,17 @@ export class ToolsComponent implements OnInit, OnDestroy {
     }
     console.log(this.formValue);
 
-    // this.firstnamesService.updateFirstnames(this.formValue).subscribe(data => {
-    //   if (data.length > 0) {
-    //     data.forEach(message => {
-    //       this.notificationsService.success(
-    //         'Success',
-    //         message,
-    //       );
-    //     });
-    //   }
-    // });
+    this.firstnamesService.updateFirstnames(this.formValue).subscribe(data => {
+      console.log(data);
+      // if (data.length > 0) {
+      //   data.forEach(message => {
+      //     this.notificationsService.success(
+      //       'Success',
+      //       message,
+      //     );
+      //   });
+      // }
+    });
 
     // setTimeout(() => {
     //   this.router.navigate(['/list']);
