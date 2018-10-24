@@ -358,7 +358,7 @@ app.post('/api/new-firstnames/', (req, res) => {
           "_id": element.id
         },
         "update": {
-          "$set": element
+          "$set": element.placeholder
         }
       }
     }
