@@ -14,16 +14,11 @@ const notesCollection = 'Notes';
 // App Init
 const app = express();
 app.use(bodyParser.json());
-const originWhitelist = ['http://localhost:3000', 'https://russian-deeds.herokuapp.com'];
 
 
 // Enable CORS 
 app.use(function (req, res, next) {
-  let origin = req.headers.origin;
-  // only allow requests from origins that we trust
-  if (originWhitelist.indexOf(origin) > -1) {
-    response.setHeader('Access-Control-Allow-Origin', origin);
-  }
+  res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
