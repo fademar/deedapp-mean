@@ -136,6 +136,7 @@ app.get('/api/deeds/:id', (req, res) => {
 
 app.put('/api/deeds/:id', (req, res) => {
   let updateDoc = req.body;
+  console.log(updateDoc);
   delete updateDoc._id;
 
   db.collection(deedsCollection).updateOne({
