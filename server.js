@@ -318,10 +318,10 @@ app.get('/api/update-schema', (req, res) => {
 });
 
 /*  '/api/firstnames/'
- *    PUT: update the firstnames
+ *    POST: update the firstnames
  *
  */
-app.put('/api/firstnames/', (req, res) => {
+app.post('/api/firstnames/', (req, res) => {
   const updateFirstname = req.body;
   const reponse = [];
   updateFirstname.forEach(element1 => {

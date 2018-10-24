@@ -23,6 +23,7 @@ export class ToolsComponent implements OnInit, OnDestroy {
     pauseOnHover: false,
     animate: 'fade'
   }
+
   form: FormGroup;
   firstNames;
   firstNamesSorted;
@@ -47,7 +48,7 @@ export class ToolsComponent implements OnInit, OnDestroy {
 
 
   initializeComponent() {
-    this.form = new FormGroup({});
+    this.form = this.fb.group({});
     this.firstNames = [];
     this.firstNamesSorted = [];
     this.firstnamesService.getFirstNames().subscribe(data => {

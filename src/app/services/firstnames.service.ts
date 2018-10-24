@@ -148,7 +148,7 @@ export class FirstnamesService {
         let httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         };
-        return this.http.put('/api/firstnames', data, httpOptions)
+        return this.http.post('/api/firstnames', data, httpOptions)
             .pipe(
                 catchError(this.handleError)
             );
