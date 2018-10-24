@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongodb = require('mongodb');
 const path = require('path');
+const async = require('async');
 
 var ObjectID = mongodb.ObjectID;
 
@@ -349,32 +350,28 @@ app.post('/api/firstnames/', (req, res) => {
 app.post('/api/new-firstnames/', (req, res) => {
   const newNamesList = req.body;
 
+  const q = async.queue(function (doc, callback) {
+    // code for your update
+    db.collection(deedsCollection).updateOne({
+      _id: new ObjectID(doc.id)
+    }, {
+      $set: doc.placeholder
+    }, {
+      w: 1
+    }, callback);
+  }, Infinity);
 
-  // Initialise the bulk operations array
-  const bulkOps = newNamesList.map(function (element) {
-    return {
-      "updateOne": {
-        "filter": {
-          "_id": element.id
-        },
-        "update": {
-          "$set": element.placeholder
-        }
-      }
-    }
+  newNamesList.forEach(element => {
+    q.push(element);
   });
 
-  // Get the underlying collection via the native node.js driver collection object
-  db.collection(deedsCollection).bulkWrite(bulkOps, {
-    "ordered": true,
-    w: 1
-  }, (err, doc) => {
-    if (err) {
-      handleError(res, err.message, 'Failed to update deed');
-    } else {
-      res.status(200).json('La base de données a été mise à jour avec succès.');
+  q.drain = function () {
+    if (cursor.isClosed()) {
+      res.status(200).json('La base de données a été mise à jour.');
     }
-  });
+  }
+
+
 });
 
 
