@@ -1668,6 +1668,7 @@ export class AddDeedComponent implements OnInit {
 
             // Getting deed values from db
             this.deed = deed;
+            console.log(this.deed);
             const newSchemaVersion = 2;
 
             // Populating first FormControlNames with values
@@ -3105,8 +3106,9 @@ export class AddDeedComponent implements OnInit {
 
         } else {
             submitBtn.disabled = true;
+            console.log(this.deedForm.value);
             this.deedValue = JSON.stringify(this.deedForm.value);
-
+            console.log(this.deedValue);
             if (this.route.snapshot.params['id']) {
                 this.deedService.updateDeed(this.id, this.deedValue).subscribe(deed => {
 
