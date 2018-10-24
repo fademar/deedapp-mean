@@ -3110,7 +3110,7 @@ export class AddDeedComponent implements OnInit {
         } else {
             submitBtn.disabled = true;
             console.log(this.deedForm.value);
-            this.deedValue = JSON.stringify(this.deedForm.value);
+            this.deedValue = this.deedForm.value;
             console.log(this.deedValue);
             if (this.route.snapshot.params['id']) {
                 this.deedService.updateDeed(this.id, this.deedValue).subscribe(deed => {
