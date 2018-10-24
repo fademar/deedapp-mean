@@ -98,8 +98,11 @@ export class ToolsComponent implements OnInit, OnDestroy {
     for (const key in this.form.value) {
       if (this.form.value[key] !== null) {
         const newName = this.form.value[key];
-        const info = this.firstNamesSorted[key];
-        this.formValue.push({ 'newName': newName, 'info': info });
+        this.firstNamesSorted[key].idsAndFields.forEach(element => {
+          const placeholder = {};
+          placeholder[element.field] = newName;
+          this.formValue.push({ 'id': element.id, placeholder });
+        });
       }
     }
     console.log(this.formValue);
