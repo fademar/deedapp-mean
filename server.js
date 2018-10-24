@@ -368,7 +368,7 @@ app.post('/api/new-firstnames/', (req, res) => {
     if (err) {
       handleError(res, err.message, 'Failed to update deed');
     } else {
-      res.status(200).json('ok');
+      res.status(200).json(doc);
     }
   });
 
