@@ -1668,6 +1668,7 @@ export class AddDeedComponent implements OnInit {
 
             // Getting deed values from db
             this.deed = deed;
+            const newSchemaVersion = 2;
 
             // Populating first FormControlNames with values
             this.deedForm.patchValue({
@@ -1681,7 +1682,7 @@ export class AddDeedComponent implements OnInit {
                 verbatimCitations: this.deed.verbatimCitations,
                 researcherNotes: this.deed.researcherNotes,
                 complete: this.deed.complete,
-                schemaVersion: 2
+                schemaVersion: newSchemaVersion
             });
 
             // Populate Agent depending on AgentSex
