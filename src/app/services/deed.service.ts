@@ -3,9 +3,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
 
-const httpOptions = {
-	headers: new HttpHeaders({'Content-Type': 'application/json'})
-  };
+
 
 const apiUrl = "/api/deeds";
 
@@ -14,8 +12,14 @@ const apiUrl = "/api/deeds";
 @Injectable()
 export class DeedService {
 
+	httpOptions;
 
-  	constructor(private http: HttpClient) { }
+
+	constructor(private http: HttpClient) {
+		this.httpOptions = {
+			headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+		};
+	}
 
 
 	private handleError(error: HttpErrorResponse) {
@@ -26,8 +30,8 @@ export class DeedService {
 			// The backend returned an unsuccessful response code.
 			// The response body may contain clues as to what went wrong,
 			console.error(
-			`Backend returned code ${error.status}, ` +
-			`body was: ${error.error}`);
+				`Backend returned code ${error.status}, ` +
+				`body was: ${error.error}`);
 		}
 		// return an observable with a user-facing error message
 		return throwError('Something bad happened; please try again later.');
@@ -35,43 +39,43 @@ export class DeedService {
 
 	private extractData(res: Response) {
 		let body = res;
-		return body || { };
+		return body || {};
 	}
 
 	getDeeds(): Observable<any> {
-		return this.http.get(apiUrl, httpOptions).pipe(
-		  map(this.extractData),
-		  catchError(this.handleError));
-	  }
-	  
+		return this.http.get(apiUrl, this.httpOptions).pipe(
+			map(this.extractData),
+			catchError(this.handleError));
+	}
+
 	getDeed(id: string): Observable<any> {
-	const url = `${apiUrl}/${id}`;
-	return this.http.get(url, httpOptions).pipe(
-		map(this.extractData),
-		catchError(this.handleError));
+		const url = `${apiUrl}/${id}`;
+		return this.http.get(url, this.httpOptions).pipe(
+			map(this.extractData),
+			catchError(this.handleError));
 	}
-	  
+
 	saveDeed(data): Observable<any> {
-	return this.http.post(apiUrl, data, httpOptions)
-		.pipe(
-		catchError(this.handleError)
-		);
+		return this.http.post(apiUrl, data, this.httpOptions)
+			.pipe(
+				catchError(this.handleError)
+			);
 	}
-	  
+
 	updateDeed(id: string, data): Observable<any> {
-	const url = `${apiUrl}/${id}`;
-	return this.http.put(url, data, httpOptions)
-		.pipe(
-		catchError(this.handleError)
-		);
+		const url = `${apiUrl}/${id}`;
+		return this.http.put(url, data, this.httpOptions)
+			.pipe(
+				catchError(this.handleError)
+			);
 	}
-	  
+
 	deleteDeed(id: string): Observable<{}> {
-	const url = `${apiUrl}/${id}`;
-	return this.http.delete(url, httpOptions)
-		.pipe(
-		catchError(this.handleError)
-		);
+		const url = `${apiUrl}/${id}`;
+		return this.http.delete(url, this.httpOptions)
+			.pipe(
+				catchError(this.handleError)
+			);
 	}
 
 

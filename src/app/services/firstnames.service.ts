@@ -7,9 +7,6 @@ import * as _ from 'lodash';
 import { FirstNameObject } from '../models/deed-model';
 
 
-const httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
 
 @Injectable({
     providedIn: 'root'
@@ -148,7 +145,7 @@ export class FirstnamesService {
     }
 
     updateFirstnames(data): Observable<any> {
-        return this.http.put('/api/firstnames', data, httpOptions)
+        return this.http.put('/api/firstnames', data, this.deedService.httpOptions)
             .pipe(
                 catchError(this.handleError)
             );

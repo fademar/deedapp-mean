@@ -14,11 +14,16 @@ const notesCollection = 'Notes';
 // App Init
 const app = express();
 app.use(bodyParser.json());
+const originWhitelist = ['http://localhost:3000', 'https://russian-deeds.herokuapp.com'];
 
 
 // Enable CORS 
 app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
+  let origin = req.headers.origin;
+  // only allow requests from origins that we trust
+  if (originWhitelist.indexOf(origin) > -1) {
+    response.setHeader('Access-Control-Allow-Origin', origin);
+  }
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
@@ -325,23 +330,22 @@ app.put('/api/firstnames/', (req, res) => {
   const updateFirstname = req.body;
   const reponse = [];
   updateFirstname.forEach(element1 => {
-    
+
     element1.info.idsAndFields.forEach(element2 => {
       const placeholder = {};
       reponse.push('Le champ ' + element2.field + ' du document ' + element2.id + ' a bien été mis à jour.');
       placeholder[element2.field] = element1.newName;
       db.collection(deedsCollection).updateOne({
         _id: new ObjectID(element2.id)
-      },
-      {
-        $set: placeholder 
+      }, {
+        $set: placeholder
       }, (err, doc) => {
         if (err) {
           handleError(res, err.message, 'Failed to update deed');
         } else {
           res.status(200).json(reponse);
         }
-      });      
+      });
     });
 
   });
