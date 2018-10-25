@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -10,9 +11,11 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public auth: AuthService, private router: Router) { }
+  constructor(private titleService: Title, public auth: AuthService, private router: Router) { }
 
   ngOnInit() {
+    this.titleService.setTitle('HOME - Russian Deeds App');
+
     if (this.auth.isAuthenticated) {
       this.router.navigate(['/list']);
     }

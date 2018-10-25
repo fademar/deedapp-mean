@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Title }     from '@angular/platform-browser';
+import { Title } from '@angular/platform-browser';
+import { AuthService } from '../../services/auth.service';
 import { SearchService } from '../../services/search.service';
 import { Subject } from 'rxjs/Subject';
 
@@ -25,7 +26,7 @@ export class SearchComponent implements OnInit {
     results;
     sub;
 
-    constructor(private titleService: Title, private fb: FormBuilder, private searchService: SearchService, private router: Router, private route: ActivatedRoute) { 
+    constructor(private titleService: Title, private fb: FormBuilder, private searchService: SearchService, private router: Router, private route: ActivatedRoute, public auth: AuthService) { 
         
     }
 
@@ -48,15 +49,15 @@ export class SearchComponent implements OnInit {
     }
 
     loadData(q) {
-        this.searchService.searchEntries(q).subscribe(results => {
+        this.searchService.searchPlainText(q).subscribe(results => {
             this.results = results;
+            console.log(this.results);
         });
     }
 
     onSubmit() {
         this.term = this.searchForm.controls.searchTerm.value;
         this.searchService.clearCache();
-        this.router.navigate(['/search'], {queryParams: {'resultFor': this.term}});
         this.loadData(this.term);
         localStorage.setItem('results', JSON.stringify(this.loadData(this.term)));
     }
@@ -64,7 +65,6 @@ export class SearchComponent implements OnInit {
     clearResults() {
         this.searchForm.reset();
         this.results = '';
-        this.router.navigate(['/search']);
     }
 
 }

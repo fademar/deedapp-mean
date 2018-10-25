@@ -1,3 +1,23 @@
+app-note, mat-sidenav-container, .main-content {
+	margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+mat-sidenav-container {
+	padding-top: 80px;
+}
+
+mat-sidenav {
+	width: 280px;
+	padding-top: 80px;
+}
+
+.main-content {
+	padding: 30px;
+}
+
+
 .input-group-btn .btn-primary {
     background-color: #3F51B5;
     border-color: #3F51B5;
