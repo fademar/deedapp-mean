@@ -232,16 +232,16 @@ app.get('/api/notes/:id', (req, res) => {
 });
 
 app.put('/api/notes/:id', (req, res) => {
-  let updateNote = req.body;
-  delete updateNote._id;
+  let updatedNode = req.body;
+  updatedNode._id = new ObjectID(req.params.id)
 
-  db.collection(notesCollection).updateOne({
+  db.collection(notesCollection).findOneAndReplace({
     _id: new ObjectID(req.params.id)
-  }, updateNote, (err, doc) => {
+  }, updatedNote, (err, doc) => {
     if (err) {
       handleError(res, err.message, 'Failed to update deed');
     } else {
-      res.status(200).json(updateNote);
+      res.status(200).json(updatedNote);
     }
   });
 });
