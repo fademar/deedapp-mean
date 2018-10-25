@@ -1,57 +1,68 @@
 <app-navbar></app-navbar>
-<div class="d-flex flex-column actions">
-  <a mat-fab matTooltip="Download the database" class="mb-2 download-button" matTooltipPosition="before"
-    matTooltipClass="'tooltip'" [href]="downloadUri" [download]="downloadName" (click)="updateDate()">
-    <mat-icon class="md-dark">archive</mat-icon>
-  </a>
+<div class="d-flex flex-column actions">	
+	<a mat-fab matTooltip="Download the database" class="mb-2 download-button" matTooltipPosition="before" matTooltipClass="'tooltip'" [href]="downloadUri" [download]="downloadName" (click)="updateDate()">
+		<mat-icon class="md-dark">archive</mat-icon>
+	</a>
 </div>
 <div class="container main-container">
-  <div class="card shadow mb-3">
-    <div class="card-body">
-      <div class="text-center">
-        <h3>
-          <i class="fa fa-list"></i> All Deeds</h3>
-        <hr class="mt-2 mb-2">
-      </div>
-      <mat-table #table [dataSource]="dataSource" matSort>
-        <!-- Position Column -->
-        <ng-container matColumnDef="deedCode">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> code </mat-header-cell>
-          <mat-cell *matCellDef="let deed"> {{deed.deedCode}} </mat-cell>
-        </ng-container>
-        <!-- Name Column -->
-        <ng-container matColumnDef="deedRef">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> ref </mat-header-cell>
-          <mat-cell *matCellDef="let deed"> {{deed.deedRef}} </mat-cell>
-        </ng-container>
-        <!-- Position Column -->
-        <ng-container matColumnDef="deedDate">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> date </mat-header-cell>
-          <mat-cell *matCellDef="let deed"> {{deed.deedDate.day}} {{deed.deedDate.month}} {{deed.deedDate.year}}</mat-cell>
-        </ng-container>
-        <!-- Name Column -->
-        <ng-container matColumnDef="deedName">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> name </mat-header-cell>
-          <mat-cell *matCellDef="let deed"> {{deed.deedName}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="complete">
-          <mat-header-cell *matHeaderCellDef> complete </mat-header-cell>
-          <mat-cell *matCellDef="let deed">
-            <mat-icon *ngIf="deed.complete === true" class="mat-24">check</mat-icon>
-          </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="details">
-          <mat-header-cell *matHeaderCellDef> </mat-header-cell>
-          <mat-cell *matCellDef="let deed">
-            <a mat-raised-button color="primary" target="_blank" routerLink="/deed/{{ deed._id }}">Details</a>
-          </mat-cell>
-        </ng-container>
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
+	<div class="card shadow mb-3">
+		<div class="card-body">
+			<div class="text-center">
+				<h3><i class="fa fa-list"></i> All Deeds</h3>
+				<hr class="mt-2 mb-2">
+			</div>
+			<table class="col-12" mat-table [dataSource]="dataSource" matSort>
+			
+				<!-- Code Column -->
+				<ng-container matColumnDef="deedCode">
+				<th mat-header-cell *matHeaderCellDef mat-sort-header> Code </th>
+				<td mat-cell *matCellDef="let row"> {{row.deedCode}} </td>
+				</ng-container>
+			
+				<!-- Ref Column -->
+				<ng-container matColumnDef="deedRef">
+				<th mat-header-cell *matHeaderCellDef mat-sort-header> Reference </th>
+				<td mat-cell *matCellDef="let row"> {{row.deedRef}} </td>
+				</ng-container>
+			
+				<!-- Date Column -->
+				<ng-container matColumnDef="deedDate">
+				<th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+				<td mat-cell *matCellDef="let row"> <span *ngIf="row.deedDate.day">{{row.deedDate.day}}-</span><span *ngIf="row.deedDate.month">{{row.deedDate.month}}-</span><span *ngIf="row.deedDate.year">{{row.deedDate.year}}</span> </td>
+				</ng-container>
+			
+				<!-- Name Column -->
+				<ng-container matColumnDef="deedName">
+				<th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+				<td mat-cell *matCellDef="let row"> {{row.deedName}} </td>
+				</ng-container>
 
-      <mat-paginator #paginator [length]="length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
-      </mat-paginator>
-    </div>
-  </div>
+				<!-- Name Column -->
+				<ng-container matColumnDef="complete">
+				<th mat-header-cell *matHeaderCellDef mat-sort-header> Complete </th>
+				<td mat-cell *matCellDef="let row"> <mat-icon *ngIf="row.complete === true" class="mat-24">check</mat-icon> </td>
+				</ng-container>
+
+				<ng-container matColumnDef="details">
+				<mat-header-cell *matHeaderCellDef> </mat-header-cell>
+				<mat-cell *matCellDef="let row"><a mat-raised-button color="primary" routerLink="/deed/{{ row._id }}">Details</a></mat-cell>
+			</ng-container>
+			
+				<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumns;">
+				</tr>
+			</table>
+
+
+			<mat-paginator #paginator
+			[length]="length"
+			[pageIndex]="0"
+			[pageSize]="10"
+			[pageSizeOptions]="[5, 10, 25, 100]">
+			</mat-paginator>
+
+
+	
+		</div>
+	</div>
 </div>

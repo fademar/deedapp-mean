@@ -2,7 +2,8 @@
 
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import 'rxjs/add/operator/filter';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import * as auth0 from 'auth0-js';
 
 @Injectable()
@@ -13,11 +14,11 @@ export class AuthService {
     domain: 'cercec.eu.auth0.com',
     responseType: 'token id_token',
     audience: 'https://cercec.eu.auth0.com/userinfo',
-    redirectUri: 'https://deeds.cercec.fr/callback',      
+    redirectUri: 'https://russian-deeds.herokuapp.com/callback',
     scope: 'openid%20profile'
   });
 
-  constructor(public router: Router) {}
+  constructor(public router: Router) { }
 
   public login(): void {
     this.auth0.authorize();
@@ -62,8 +63,8 @@ export class AuthService {
   }
 
   private getUserInfo(authResult) {
-      this.auth0.client.userInfo(authResult.accessToken, function(err, user) {
-        localStorage.setItem('userName', user.nickname);
+    this.auth0.client.userInfo(authResult.accessToken, function (err, user) {
+      localStorage.setItem('userName', user.nickname);
     });
   }
 

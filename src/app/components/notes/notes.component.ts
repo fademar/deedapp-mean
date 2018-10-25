@@ -72,7 +72,7 @@ export class NotesComponent implements OnInit {
       date: time,
       user: userName
     });
-    this.noteValue = JSON.stringify(this.noteForm.value);
+    this.noteValue = this.noteForm.value;
     if (this.editMode) {
       this.noteService.updateNote(this.noteId, this.noteValue).subscribe(note => {
         this.showNotes();
@@ -111,7 +111,7 @@ export class NotesComponent implements OnInit {
     this.dialogRef.componentInstance.confirmMessage = "Are you sure you want to delete this note?"
 
     this.dialogRef.afterClosed().subscribe(result => {
-      if(result) {
+      if (result) {
         this.noteService.deleteNote(id).subscribe(note => {
           this.showNotes();
           this.noteForm.reset();

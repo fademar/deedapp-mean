@@ -4,10 +4,8 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material';
 import { MatSort } from '@angular/material';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/startWith';
-import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/map';
+import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent, SubscriptionLike, PartialObserver } from 'rxjs';
+import { map, filter, scan } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -93,7 +91,9 @@ export interface DeedData {
 
 export class DataList {
 	dataChange: BehaviorSubject<DeedData[]> = new BehaviorSubject<DeedData[]>([]);
-	get data(): DeedData[] { return this.dataChange.value; }
+	get data(): DeedData[] {
+		return this.dataChange.value;
+	}
 
 	constructor(private deedService: DeedService) {
 		this.deedService.getDeeds().subscribe(deeds => {
@@ -115,7 +115,7 @@ export class MyDataSource extends DataSource<any> {
 			this._sort.sortChange,
 		];
 
-		return Observable.merge(...displayDataChanges).map(() => {
+		return merge(...displayDataChanges).map(() => {
 			const sortedData = this.getSortedData();
 
 			// Grab the page's slice of data.
@@ -135,23 +135,24 @@ export class MyDataSource extends DataSource<any> {
 
 		return data.sort((a, b) => {
 			let result = 0;
-			
+
 			switch (this._sort.active) {
-				case 'deedCode': 
-					result = (a.deedCode.localeCompare(b.deedCode, 'en', {numeric: true})) * (this._sort.direction == 'asc' ? 1 : -1);
+				case 'deedCode':
+					result = (a.deedCode.localeCompare(b.deedCode + '-' + b.deedRef, 'en', { numeric: true })) * (this._sort.direction == 'asc' ? 1 : -1);
 					break;
-				case 'deedRef': 
-					result = (a.deedRef.localeCompare(b.deedRef, 'en', {numeric: true})) * (this._sort.direction == 'asc' ? 1 : -1);
+				case 'deedRef':
+					result = (a.deedRef.localeCompare(b.deedCode + '-' + b.deedRef, 'en', { numeric: true })) * (this._sort.direction == 'asc' ? 1 : -1);
 					break;
-				case 'deedDate': 
-					result = ((a.deedDate.year + '-' + a.deedDate.month + '-' + a.deedDate.day).localeCompare(b.deedDate.year + '-' + b.deedDate.month + '-' + b.deedDate.day, 'en', {numeric: true})) * (this._sort.direction == 'asc' ? 1 : -1);
+				case 'deedDate':
+					result = ((a.deedDate.year + '-' + a.deedDate.month + '-' + a.deedDate.day).localeCompare(b.deedDate.year + '-' + b.deedDate.month + '-' + b.deedDate.day, 'en', { numeric: true })) * (this._sort.direction == 'asc' ? 1 : -1);
 					break;
-				case 'deedName': 
-					result = (a.deedName.localeCompare(b.deedName, 'ru')) * (this._sort.direction == 'asc' ? 1 : -1);	
+				case 'deedName':
+					result = (a.deedName.localeCompare(b.deedName, 'ru')) * (this._sort.direction == 'asc' ? 1 : -1);
 					break;
 			}
 
 			return result;
+
 		});
 	}
 
