@@ -61,6 +61,7 @@ import { ExcerptPipe } from './pipes/excerpt.pipe';
 import { HighlightPipe } from './pipes/highlight.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { ToolsComponent } from './components/tools/tools.component';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 @NgModule({
   declarations: [
@@ -114,7 +115,8 @@ import { ToolsComponent } from './components/tools/tools.component';
     MatExpansionModule,
     NgxJsonViewerModule,
     InputTrimModule,
-    MatTabsModule
+    MatTabsModule,
+    EditorModule
   ],
   entryComponents: [ConfirmDialogComponent, NoteDialog],
   providers: [Title, DeedService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, NoteService, FirstnamesService],

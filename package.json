@@ -30,6 +30,7 @@
     "@angular/platform-server": "^6.1.0",
     "@angular/router": "^6.1.0",
     "@ng-bootstrap/ng-bootstrap": "^3.2.2",
+    "@tinymce/tinymce-angular": "^2.3.1",
     "angular-font-awesome": "^3.1.2",
     "angular2-notifications": "^1.0.4",
     "async": "^2.6.1",
