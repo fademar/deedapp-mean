@@ -135,17 +135,15 @@ app.get('/api/deeds/:id', (req, res) => {
 });
 
 app.put('/api/deeds/:id', (req, res) => {
-  let updateDoc = req.body;
-  delete updateDoc._id;
-
-  db.collection(deedsCollection).updateOne({
-    _id: new ObjectID(req.params.id)
-  }, updateDoc, (err, doc) => {
+  let updatedDoc = req.body;
+  updatedDoc._id = new ObjectID(req.params.id);
+  db.collection(deedsCollection).findOneAndReplace({
+    _id: updatedDoc._id
+  }, updatedDoc, (err, doc) => {
     if (err) {
       handleError(res, err.message, 'Failed to update deed');
     } else {
-      updateDoc._id = req.params.id;
-      res.status(200).json(updateDoc);
+      res.status(200).json(updatedDoc);
     }
   });
 });
