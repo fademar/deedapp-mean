@@ -25,7 +25,6 @@ import { MatToolbarModule } from '@angular/material';
 import { MatSidenavModule } from '@angular/material';
 import { MatExpansionModule } from '@angular/material';
 import { MatTabsModule } from '@angular/material/tabs';
-import { QuillModule } from 'ngx-quill';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { InputTrimModule } from 'ng2-trim-directive';
 
@@ -111,7 +110,6 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     MatButtonToggleModule,
     MatToolbarModule,
     MatSidenavModule,
-    QuillModule,
     MatExpansionModule,
     NgxJsonViewerModule,
     InputTrimModule,
