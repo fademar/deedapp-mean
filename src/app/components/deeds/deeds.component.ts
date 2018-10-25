@@ -138,10 +138,10 @@ export class MyDataSource extends DataSource<any> {
 
 			switch (this._sort.active) {
 				case 'deedCode':
-					result = (a.deedCode.localeCompare(b.deedCode, 'en', { numeric: true })) * (this._sort.direction == 'asc' ? 1 : -1);
+					result = (a.deedCode.localeCompare(b.deedCode + '-' + b.deedRef, 'en', { numeric: true })) * (this._sort.direction == 'asc' ? 1 : -1);
 					break;
 				case 'deedRef':
-					result = (a.deedRef.localeCompare(b.deedRef, 'en', { numeric: true })) * (this._sort.direction == 'asc' ? 1 : -1);
+					result = (a.deedRef.localeCompare(b.deedCode + '-' + b.deedRef, 'en', { numeric: true })) * (this._sort.direction == 'asc' ? 1 : -1);
 					break;
 				case 'deedDate':
 					result = ((a.deedDate.year + '-' + a.deedDate.month + '-' + a.deedDate.day).localeCompare(b.deedDate.year + '-' + b.deedDate.month + '-' + b.deedDate.day, 'en', { numeric: true })) * (this._sort.direction == 'asc' ? 1 : -1);

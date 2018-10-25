@@ -88,9 +88,7 @@ app.get('/', (req, res) => {
  */
 
 app.get('/api/deeds', (req, res) => {
-  db.collection(deedsCollection).find({}).sort({
-    $natural: -1
-  }).toArray((err, docs) => {
+  db.collection(deedsCollection).find({}).sort({_id: -1}).toArray((err, docs) => {
     if (err) {
       handleError(res, err.message, 'Failed to get deeds.');
     } else {
