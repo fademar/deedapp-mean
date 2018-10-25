@@ -232,8 +232,8 @@ app.get('/api/notes/:id', (req, res) => {
 });
 
 app.put('/api/notes/:id', (req, res) => {
-  let updatedNode = req.body;
-  updatedNode._id = new ObjectID(req.params.id)
+  let updatedNote = req.body;
+  updatedNote._id = new ObjectID(req.params.id)
 
   db.collection(notesCollection).findOneAndReplace({
     _id: new ObjectID(req.params.id)
