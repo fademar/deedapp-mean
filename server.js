@@ -7,7 +7,8 @@ const path = require('path');
 var ObjectID = mongodb.ObjectID;
 
 // Db Collection and URI
-const dbName = 'heroku_kv9gq8sz';
+const MONGODB_URI = "mongodb://deeduser:K86d7A32a!#PvKqXPnBM@localhost:27017/dbdeeds";
+const PORT = 8080;
 const deedsCollection = 'Deeds';
 const notesCollection = 'Notes';
 
@@ -32,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 var db;
 
 // Connection to the database
-mongodb.MongoClient.connect(process.env.MONGODB_URI, (err, client) => {
+mongodb.MongoClient.connect(MONGODB_URI, (err, client) => {
   if (err) {
     console.log('the connection with the databas is impossible: ' + err);
     process.exit(1);
@@ -47,8 +48,8 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI, (err, client) => {
   });
 
   // Initialize the app.
-  var server = app.listen(process.env.PORT || 8080, () => {
-    console.log('App now running on port', process.env.PORT);
+  var server = app.listen(PORT || 8080, () => {
+    console.log('App now running on port', PORT);
   });
 
 });
@@ -88,7 +89,9 @@ app.get('/', (req, res) => {
  */
 
 app.get('/api/deeds', (req, res) => {
-  db.collection(deedsCollection).find({}).sort({_id: -1}).toArray((err, docs) => {
+  db.collection(deedsCollection).find({}).sort({
+    _id: -1
+  }).toArray((err, docs) => {
     if (err) {
       handleError(res, err.message, 'Failed to get deeds.');
     } else {
