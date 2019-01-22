@@ -25,6 +25,7 @@ export class DeedDetailsComponent implements OnInit {
     selectedCounterAction;
     downloadUri = this.downloadUri;
     downloadName = this.downloadName;
+    jsondeed;
 
     dialogRef: MatDialogRef<ConfirmDialogComponent>;
 
@@ -38,6 +39,7 @@ export class DeedDetailsComponent implements OnInit {
 
         this.deedService.getDeed(this.id).subscribe(deed => {
 
+            this.jsondeed = JSON.stringify(this.deed);
 
             this.deed = deed;
 
