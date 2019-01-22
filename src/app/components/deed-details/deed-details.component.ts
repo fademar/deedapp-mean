@@ -41,6 +41,7 @@ export class DeedDetailsComponent implements OnInit {
 
             this.jsondeed = JSON.stringify(this.deed);
 
+            console.log(deed);
             this.deed = deed;
 
             // Download Button Function
