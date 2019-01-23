@@ -34,7 +34,7 @@ const jwtCheck = jwt({
 
 app.use(jwtCheck);
 
-app.get('/authorized', function (req, res) {
+app.get('/api/authorized', function (req, res) {
   res.send('Secured Resource');
 });
 
