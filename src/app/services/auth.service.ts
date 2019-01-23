@@ -15,7 +15,7 @@ export class AuthService {
     responseType: 'token id_token',
     audience: 'https://russian-deeds.herokuapp.com/api/',
     redirectUri: 'https://russian-deeds.herokuapp.com/callback',
-    scope: 'openid%20profile'
+    scope: 'openid%20profile full_access'
   });
 
   constructor(public router: Router) { }
