@@ -62,6 +62,7 @@ import { HighlightPipe } from './pipes/highlight.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { ToolsComponent } from './components/tools/tools.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     ExcerptPipe,
     HighlightPipe,
     SortPipe,
-    ToolsComponent
+    ToolsComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

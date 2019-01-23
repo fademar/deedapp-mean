@@ -10,11 +10,33 @@ var ObjectID = mongodb.ObjectID;
 const dbName = 'heroku_kv9gq8sz';
 const deedsCollection = 'Deeds';
 const notesCollection = 'Notes';
+const firstNamesCollection = 'Firstnames';
 
 // App Init
 const app = express();
 app.use(bodyParser.json());
 
+
+const jwt = require('express-jwt');
+const jwks = require('jwks-rsa');
+
+const jwtCheck = jwt({
+  secret: jwks.expressJwtSecret({
+      cache: true,
+      rateLimit: true,
+      jwksRequestsPerMinute: 5,
+      jwksUri: "https://cercec.eu.auth0.com/.well-known/jwks.json"
+  }),
+  audience: 'deed-app-api',
+  issuer: "https://cercec.eu.auth0.com/",
+  algorithms: ['RS256']
+});
+
+app.use(jwtCheck);
+
+app.get('/authorized', function (req, res) {
+  res.send('Secured Resource');
+});
 
 // Enable CORS 
 app.use(function (req, res, next) {
