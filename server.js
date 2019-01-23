@@ -11,23 +11,8 @@ app.use(bodyParser.json());
 const jwt = require('express-jwt');
 const jwks = require('jwks-rsa');
 
-const checkJwt = jwt({
-  secret: jwks.expressJwtSecret({
-      cache: true,
-      rateLimit: true,
-      jwksRequestsPerMinute: 5,
-      jwksUri: "https://cercec.eu.auth0.com/.well-known/jwks.json"
-  }),
-  audience: 'https://russian-deeds.herokuapp.com/api/',
-  issuer: "https://cercec.eu.auth0.com/",
-  algorithms: ['RS256']
-});
 
-app.use(checkJwt);
 
-app.get('/authorized', function (req, res) {
-  res.send('Secured Resource');
-});
 
 
 
@@ -115,7 +100,7 @@ app.get('/', (req, res) => {
  *    POST: creates a new deed
  */
 
-app.get('/api/deeds', checkJwt, (req, res) => {
+app.get('/api/deeds', (req, res) => {
   db.collection(deedsCollection).find({}).sort({_id: -1}).toArray((err, docs) => {
     if (err) {
       handleError(res, err.message, 'Failed to get deeds.');
@@ -125,7 +110,7 @@ app.get('/api/deeds', checkJwt, (req, res) => {
   });
 });
 
-app.post('/api/deeds', checkJwt, (req, res) => {
+app.post('/api/deeds', (req, res) => {
   var newDeed = req.body;
 
   if (!req.body.deedRef) {
@@ -148,7 +133,7 @@ app.post('/api/deeds', checkJwt, (req, res) => {
  *    DELETE: deletes deed by id
  */
 
-app.get('/api/deeds/:id', checkJwt, (req, res) => {
+app.get('/api/deeds/:id', (req, res) => {
   db.collection(deedsCollection).findOne({
     _id: new ObjectID(req.params.id)
   }, (err, doc) => {
@@ -160,7 +145,7 @@ app.get('/api/deeds/:id', checkJwt, (req, res) => {
   });
 });
 
-app.put('/api/deeds/:id', checkJwt, (req, res) => {
+app.put('/api/deeds/:id', (req, res) => {
   let updatedDoc = req.body;
   updatedDoc._id = new ObjectID(req.params.id);
   db.collection(deedsCollection).findOneAndReplace({
@@ -174,7 +159,7 @@ app.put('/api/deeds/:id', checkJwt, (req, res) => {
   });
 });
 
-app.delete('/api/deeds/:id', checkJwt, (req, res) => {
+app.delete('/api/deeds/:id', (req, res) => {
   db.collection(deedsCollection).deleteOne({
     _id: new ObjectID(req.params.id)
   }, (err, result) => {
@@ -189,7 +174,7 @@ app.delete('/api/deeds/:id', checkJwt, (req, res) => {
 
 // Get the last Document inserted
 
-app.get('/api/lastdeed', checkJwt, (req, res) => {
+app.get('/api/lastdeed', (req, res) => {
   db.collection(deedsCollection).find({}).limit(1).sort({
     $natural: -1
   }).toArray((err, doc) => {
@@ -203,7 +188,7 @@ app.get('/api/lastdeed', checkJwt, (req, res) => {
 
 // Load JSON schema file
 
-app.get('/api/schema', checkJwt, (req, res) => {
+app.get('/api/schema', (req, res) => {
   let jsonFile = fs.readFileSync('./deed-schema copie.json', {
     encoding: 'utf8'
   });
@@ -216,7 +201,7 @@ app.get('/api/schema', checkJwt, (req, res) => {
  *    POST: creates a new note
  */
 
-app.get('/api/notes', checkJwt, (req, res) => {
+app.get('/api/notes', (req, res) => {
   db.collection(notesCollection).find({}).toArray((err, doc) => {
     if (err) {
       handleError(res, err.message, 'Failed to get notes.');
@@ -226,7 +211,7 @@ app.get('/api/notes', checkJwt, (req, res) => {
   });
 });
 
-app.post('/api/notes', checkJwt, (req, res) => {
+app.post('/api/notes', (req, res) => {
   var newNote = req.body;
 
   db.collection(notesCollection).insertOne(newNote, (err, doc) => {
@@ -245,7 +230,7 @@ app.post('/api/notes', checkJwt, (req, res) => {
  *    DELETE: deletes note by id
  */
 
-app.get('/api/notes/:id', checkJwt, (req, res) => {
+app.get('/api/notes/:id', (req, res) => {
   db.collection(notesCollection).findOne({
     _id: new ObjectID(req.params.id)
   }, (err, doc) => {
@@ -257,7 +242,7 @@ app.get('/api/notes/:id', checkJwt, (req, res) => {
   });
 });
 
-app.put('/api/notes/:id', checkJwt, (req, res) => {
+app.put('/api/notes/:id', (req, res) => {
   let updatedNote = req.body;
   updatedNote._id = new ObjectID(req.params.id)
 
@@ -272,7 +257,7 @@ app.put('/api/notes/:id', checkJwt, (req, res) => {
   });
 });
 
-app.delete('/api/notes/:id', checkJwt, (req, res) => {
+app.delete('/api/notes/:id', (req, res) => {
   db.collection(notesCollection).deleteOne({
     _id: new ObjectID(req.params.id)
   }, (err, result) => {
@@ -294,7 +279,7 @@ app.delete('/api/notes/:id', checkJwt, (req, res) => {
 
 
 
-app.get('/api/search', checkJwt, (req, res) => {
+app.get('/api/search', (req, res) => {
   let arrayBody = [];
   db.collection(deedsCollection).find({}).toArray((err, docs) => {
     if (err) {
@@ -305,7 +290,7 @@ app.get('/api/search', checkJwt, (req, res) => {
   });
 });
 
-app.get('/api/search/:term', checkJwt, (req, res) => {
+app.get('/api/search/:term', (req, res) => {
   let term = req.params.term;
   db.collection(deedsCollection).find({
     $text: {
@@ -325,7 +310,7 @@ app.get('/api/search/:term', checkJwt, (req, res) => {
  *    GET: update the database for schema version
  *
  */
-app.get('/api/update-schema', checkJwt, (req, res) => {
+app.get('/api/update-schema', (req, res) => {
   db.collection(deedsCollection).updateMany({}, {
     $set: {
       "schemaVersion": 1
@@ -346,7 +331,7 @@ app.get('/api/update-schema', checkJwt, (req, res) => {
  *    POST: update the firstnames
  *
  */
-app.post('/api/firstnames/', checkJwt, (req, res) => {
+app.post('/api/firstnames/', (req, res) => {
   const updateFirstname = req.body;
   const reponse = [];
   updateFirstname.forEach(element1 => {
@@ -371,7 +356,7 @@ app.post('/api/firstnames/', checkJwt, (req, res) => {
   });
 });
 
-app.post('/api/new-firstnames/', checkJwt, (req, res) => {
+app.post('/api/new-firstnames/', (req, res) => {
   const newNamesList = req.body;
   const bulkOps = newNamesList.map(function (element) {
     return {
