@@ -10,7 +10,7 @@ import { HighlightPipe } from '../../pipes/highlight.pipe';
 
 @Component({
     selector: 'app-deed-details',
-    templateUrl: './deed-details-pre.component.html',
+    templateUrl: './deed-details.component.html',
     styleUrls: ['./deed-details.component.css'],
     providers: [MatDialog, HighlightPipe]
 })
