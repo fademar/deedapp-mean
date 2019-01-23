@@ -17,9 +17,6 @@ const app = express();
 app.use(bodyParser.json());
 
 
-const jwt = require('express-jwt');
-const jwks = require('jwks-rsa');
-
 
 
 // Enable CORS 
