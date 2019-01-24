@@ -331,34 +331,34 @@ app.get('/api/update-schema', (req, res) => {
  *    POST: update the firstnames
  *
  */
-app.post('/api/firstnames/', (req, res) => {
-  const updateFirstname = req.body;
-  const reponse = [];
-  updateFirstname.forEach(element1 => {
+// app.post('/api/firstnames/', (req, res) => {
+//   const updateFirstname = req.body;
+//   const reponse = [];
+//   updateFirstname.forEach(element1 => {
 
-    element1.info.idsAndFields.forEach(element2 => {
-      const placeholder = {};
-      reponse.push('Le champ ' + element2.field + ' du document ' + element2.id + ' a bien été mis à jour.');
-      placeholder[element2.field] = element1.newName;
-      db.collection(deedsCollection).updateOne({
-        _id: new ObjectID(element2.id)
-      }, {
-        $set: placeholder
-      }, (err, doc) => {
-        if (err) {
-          handleError(res, err.message, 'Failed to update deed');
-        } else {
-          res.status(200).json(reponse);
-        }
-      });
-    });
+//     element1.info.idsAndFields.forEach(element2 => {
+//       const placeholder = {};
+//       reponse.push('Le champ ' + element2.field + ' du document ' + element2.id + ' a bien été mis à jour.');
+//       placeholder[element2.field] = element1.newName;
+//       db.collection(deedsCollection).updateOne({
+//         _id: new ObjectID(element2.id)
+//       }, {
+//         $set: placeholder
+//       }, (err, doc) => {
+//         if (err) {
+//           handleError(res, err.message, 'Failed to update deed');
+//         } else {
+//           res.status(200).json(reponse);
+//         }
+//       });
+//     });
 
-  });
-});
+//   });
+// });
 
 app.post('/api/new-firstnames/', (req, res) => {
   const newNamesList = req.body;
-  const bulkOps = newNamesList.map(function (element) {
+  const bulkOps = newNamesList.map(function(element) {
     return {
       "updateOne": {
         "filter": {
@@ -370,7 +370,6 @@ app.post('/api/new-firstnames/', (req, res) => {
       }
     }
   });
-
   db.collection(deedsCollection).bulkWrite(bulkOps, {
     "ordered": true,
     w: 1
@@ -381,8 +380,26 @@ app.post('/api/new-firstnames/', (req, res) => {
       res.status(200).json(result.modifiedCount);
     }
   });
+});
 
-
+/*  '/api/insert-firstnames/'
+ *    POST: insert the firstnames for the firstnames dictionnary
+ */
+app.post('/api/insert-firstnames/', (req,res) => {
+  const firstNamesList = req.body;
+  const bulkOps = firstNamesList.map(function(element) {
+    element['versions'] = [];
+    return [
+      {"insertOne": element},
+    ]
+  });
+  db.collection(firstNamesCollection).bulkWrite(bulkOps, {}, (err, result) => {
+    if (err) {
+      handleError(res, err.message, 'Failed to insert the document');
+    } else {
+      res.status(200).json('Firstames inserted');
+    }
+  });
 
 });
 

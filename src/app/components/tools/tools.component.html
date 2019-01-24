@@ -1,68 +1,83 @@
 <simple-notifications [options]="options"></simple-notifications>
-<form (keydown.enter)="$event.preventDefault()" [formGroup]="form" (ngSubmit)="updateFirstName()" novalidate>
-    <mat-toolbar color="primary" class="nav-bar" id="cssmenu">
-        <span class="nav-brand mr-5">Deed App</span>
-        <ul>
-          <li routerLinkActive="active">
-            <a [routerLink]="['/list']">List</a>
-          </li>
-          <li routerLinkActive="active">
-            <a [routerLink]="['/deed/add']">New Deed</a>
-          </li>
-          <li routerLinkActive="active">
-            <a [routerLink]="['/search']" appNewWindow>Search</a>
-          </li>
-          <li routerLinkActive="active">
-            <a [routerLink]="['/notes']" target="_blank">Notes</a>
-          </li>
-          <li routerLinkActive="active">
-            <a [routerLink]="['/tools']">Tools</a>
-          </li>
-        </ul>
-        <span class="spacer"></span>
+<mat-toolbar color="primary" class="nav-bar" id="cssmenu">
+    <span class="nav-brand mr-5">Deed App</span>
+    <ul>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/list']">List</a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/deed/add']">New Deed</a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/search']" appNewWindow>Search</a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/notes']" target="_blank">Notes</a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/tools']">Tools</a>
+      </li>
+    </ul>
+    <span class="spacer"></span>
+
+    <button mat-icon-button class="logout-button" (click)="auth.logout()">
+      <mat-icon class="nav-icon md-24" aria-label="Logout">power_settings_new</mat-icon>
+    </button>
+  </mat-toolbar>
+  
+  
+<mat-tab-group dynamicHeight>
+  <mat-tab label="Firstnames Operations">
+    <ng-template matTabContent>
+      <form (keydown.enter)="$event.preventDefault()" [formGroup]="form" (ngSubmit)="updateFirstName()" novalidate>
         <button mat-raised-button type="submit" placement="bottom" class="submit-button">
           <mat-icon aria-label="Submit the form">save</mat-icon> SAVE
         </button>
-        <button mat-icon-button class="logout-button" (click)="auth.logout()">
-          <mat-icon class="nav-icon md-24" aria-label="Logout">power_settings_new</mat-icon>
-        </button>
-      </mat-toolbar>
-    
+        <div class="container main-container">
+          <!--DEED REFERENCES-->
+          <div class="card shadow mb-3">
+            <div class="card-body">
+              <table class="col-12">
+                <thead>
+                  <tr>
+                    <th>n°</th>
+                    <th>firstname</th>
+                    <th>total deeds</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+              <ng-template ngFor let-element [ngForOf]="firstNamesSorted" let-i="index">
+                <tr>
+                  <td>
+                    {{ i }}
+                  </td>
+                  <td>
+                    {{ element.name }}
+                  </td>
+                    <td>
+                      {{ element.idsAndFields.length }}
+                    </td>
+                  <td>
+                      <input type="text" class="form-control" [formControlName]="i" trim="blur">
+                  </td>
+                </tr>
+              </ng-template>
+            </tbody>
+            </table>
+            </div>
+          </div>
+        </div>
+      </form>
+    </ng-template>
+  </mat-tab>
+  <mat-tab label="Admin">
+    <ng-template matTabContent>
+      The Second Content
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
+
+
+
   
-  
-  <div class="container main-container">
-    <!--DEED REFERENCES-->
-    <div class="card shadow mb-3">
-      <div class="card-body">
-        <table class="col-12">
-          <thead>
-            <tr>
-              <th>n°</th>
-              <th>firstname</th>
-              <th>total deeds</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-        <ng-template ngFor let-element [ngForOf]="firstNamesSorted" let-i="index">
-          <tr>
-            <td>
-              {{ i }}
-            </td>
-            <td>
-              {{ element.name }}
-            </td>
-              <td>
-                {{ element.idsAndFields.length }}
-              </td>
-            <td>
-                <input type="text" class="form-control" [formControlName]="i" trim="blur">
-            </td>
-          </tr>
-        </ng-template>
-      </tbody>
-      </table>
-      </div>
-    </div>
-  </div>
-</form>
