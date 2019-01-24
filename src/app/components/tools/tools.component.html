@@ -31,9 +31,11 @@
   <mat-tab label="Firstnames Operations">
     <ng-template matTabContent>
       <form (keydown.enter)="$event.preventDefault()" [formGroup]="form" (ngSubmit)="updateFirstName()" novalidate>
-        <button mat-raised-button type="submit" placement="bottom" class="submit-button">
-          <mat-icon aria-label="Submit the form">save</mat-icon> SAVE
-        </button>
+        <div class="row mt-2 mb-2">
+          <button mat-raised-button type="submit" placement="bottom">
+            <mat-icon aria-label="Submit the form">save</mat-icon> SAVE
+          </button>
+        </div>
           <!--DEED REFERENCES-->
           <div class="card shadow mb-3">
             <div class="card-body">
