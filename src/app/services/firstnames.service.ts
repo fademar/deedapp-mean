@@ -159,6 +159,7 @@ export class FirstnamesService {
         let httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         };
+        console.log(data);
         return this.http.post('/api/insert-firstnames', data, httpOptions)
             .pipe(
                 catchError(this.handleError)

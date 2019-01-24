@@ -134,12 +134,9 @@ export class ToolsComponent implements OnInit, OnDestroy {
     }, 2000);
   }
 
-  insertFirstnames() {
+  insertFirstNames() {
     this.firstnamesService.insertFirstnames(this.firstNamesSorted).subscribe(data => {
-      this.notificationsService.success(
-        'Success',
-        data
-      );
+      console.log(data);
     });
   }
 
