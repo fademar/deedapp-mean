@@ -198,6 +198,10 @@
     color: #3F51B5;
     margin-right: 30px;
   }
+
+  .save-button {
+    color: #ffffff;
+  }
   
   .action-button {
     display: flex;
