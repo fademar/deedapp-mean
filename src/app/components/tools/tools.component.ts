@@ -135,6 +135,9 @@ export class ToolsComponent implements OnInit, OnDestroy {
   }
 
   insertFirstNames(index) {
+    this.firstNamesSorted.forEach(element => {
+      element['versions'] = [];
+    });
     let chunkedList = _.chunk(this.firstNamesSorted, 100);
     this.firstnamesService.insertFirstnames(chunkedList[index]).subscribe(data => {
       this.notificationsService.success(
