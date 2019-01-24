@@ -27,7 +27,7 @@
 
 <div class="container main-container">
   
-<mat-tab-group dynamicHeight>
+<mat-tab-group dynamicHeight animationDuration="0ms">
   <mat-tab label="Firstnames Operations">
     <ng-template matTabContent>
       <form (keydown.enter)="$event.preventDefault()" [formGroup]="form" (ngSubmit)="updateFirstName()" novalidate>
@@ -75,7 +75,7 @@
   </mat-tab>
   <mat-tab label="Admin">
     <ng-template matTabContent>
-        <div class="row mt-2 mb-2">
+        <div class="mt-4 mb-4">
           <button mat-raised-button type="button" color="primary" class="save-button" placement="bottom" (click)="insertFirstnames()">
             <mat-icon aria-label="Submit the form">input</mat-icon> INSERT FIRSTNAMES
           </button>
