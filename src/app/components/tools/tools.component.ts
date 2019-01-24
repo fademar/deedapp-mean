@@ -134,10 +134,13 @@ export class ToolsComponent implements OnInit, OnDestroy {
     }, 2000);
   }
 
-  insertFirstNames() {
-    let chunkedList = _.chunk(this.firstNamesSorted, 99);
-    this.firstnamesService.insertFirstnames(chunkedList[0]).subscribe(data => {
-      console.log(data);
+  insertFirstNames(index) {
+    let chunkedList = _.chunk(this.firstNamesSorted, 100);
+    this.firstnamesService.insertFirstnames(chunkedList[index]).subscribe(data => {
+      this.notificationsService.success(
+        'Success',
+        'documents have been successfully inserted.',
+      );
     });
   }
 
