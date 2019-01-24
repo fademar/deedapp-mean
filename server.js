@@ -387,14 +387,9 @@ app.post('/api/new-firstnames/', (req, res) => {
  */
 app.post('/api/insert-firstnames/', (req,res) => {
   const firstNamesList = req.body;
-  const bulkOps = firstNamesList.map(function(element) {
-    return [
-      {"insertOne": element},
-    ]
-  });
-  db.collection(firstNamesCollection).bulkWrite(bulkOps, {}, (err, result) => {
+  db.collection(firstNamesCollection).insertMany(firstNamesList, (err, result) => {
     if (err) {
-      handleError(res, err.message, 'Failed to insert the document');
+      handleError(result, err.message, 'Failed to insert the document');
     } else {
       res.status(200).json('Firstames inserted');
     }
