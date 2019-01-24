@@ -388,7 +388,6 @@ app.post('/api/new-firstnames/', (req, res) => {
 app.post('/api/insert-firstnames/', (req,res) => {
   const firstNamesList = req.body;
   const bulkOps = firstNamesList.map(function(element) {
-    element['versions'] = [];
     return [
       {"insertOne": element},
     ]
