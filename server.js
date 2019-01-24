@@ -387,13 +387,15 @@ app.post('/api/new-firstnames/', (req, res) => {
  */
 app.post('/api/insert-firstnames/', (req,res) => {
   const firstNamesList = req.body;
-  db.collection(firstNamesCollection).insertMany(firstNamesList, (err, result) => {
-    if (err) {
-      handleError(result, err.message, 'Failed to insert the document');
-    } else {
-      res.status(200).json('Firstames inserted');
-    }
-  });
+  firstNamesList.versions = [];
+  console.log(firstNamesList);
+  // db.collection(firstNamesCollection).insertMany(firstNamesList, (err, result) => {
+  //   if (err) {
+  //     handleError(result, err.message, 'Failed to insert the document');
+  //   } else {
+  //     res.status(200).json('Firstames inserted');
+  //   }
+  // });
 
 });
 
