@@ -74,7 +74,11 @@
   </mat-tab>
   <mat-tab label="Admin">
     <ng-template matTabContent>
-      The Second Content
+        <div class="row mt-2 mb-2">
+          <button mat-raised-button type="button" placement="bottom" (click)="insertFirstnames()">
+            <mat-icon aria-label="Submit the form">input</mat-icon> INSERT FIRSTNAMES
+          </button>
+        </div>
     </ng-template>
   </mat-tab>
 </mat-tab-group>
