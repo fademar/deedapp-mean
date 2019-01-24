@@ -135,7 +135,8 @@ export class ToolsComponent implements OnInit, OnDestroy {
   }
 
   insertFirstNames() {
-    this.firstnamesService.insertFirstnames(this.firstNamesSorted).subscribe(data => {
+    let chunkedList = _.chunk(this.firstNamesSorted, 99);
+    this.firstnamesService.insertFirstnames(chunkedList[0]).subscribe(data => {
       console.log(data);
     });
   }
