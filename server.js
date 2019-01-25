@@ -372,14 +372,14 @@ app.post('/api/new-firstnames/', (req, res) => {
       res.status(200).json(result.modifiedCount);
     }
   });
-  db.collection(firstNamesCollection).updateOne(
-    {name: newNamesList[0]['newName']}, {$push: { versions: newNamesList[0]['oldName']} }, (err,res) => {
-    if (err) {
-      handleError(res, err.message, 'Failed to update firstname database');
-    } else {
-      res.status(200).json('The firstname has been updated');
-    }
-  });
+  // db.collection(firstNamesCollection).updateOne(
+  //   {name: newNamesList[0]['newName']}, {$push: { versions: newNamesList[0]['oldName']} }, (err,res) => {
+  //   if (err) {
+  //     handleError(res, err.message, 'Failed to update firstname database');
+  //   } else {
+  //     res.status(200).json('The firstname has been updated');
+  //   }
+  // });
 
 });
 
