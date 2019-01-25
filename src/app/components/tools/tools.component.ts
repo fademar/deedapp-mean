@@ -82,14 +82,13 @@ export class ToolsComponent implements OnInit, OnDestroy {
 
 
   updateFirstName() {
-    
     for (const key in this.form.value) {
       if (this.form.value[key] !== null) {
         const newName = this.form.value[key];
         this.firstNamesSorted[key].idsAndFields.forEach(element => {
           const placeholder = {};
           placeholder[element.field] = newName;
-          this.formValue.push({ 'id': element.id, placeholder });
+          this.formValue.push({ 'id': element.id, placeholder, 'old-name': this.firstNamesSorted[key].name});
         });
       }
     }
