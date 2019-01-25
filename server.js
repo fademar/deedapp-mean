@@ -373,7 +373,7 @@ app.post('/api/new-firstnames/', (req, res) => {
     }
   });
   db.collection(firstNamesCollection).updateOne(
-    {name: newNamesList[0]['newName']}, {$addToSet: { versions: newNamesList[0]['oldName']} }, (err,res) => {
+    {name: newNamesList[0]['newName']}, {$push: { versions: newNamesList[0]['oldName']} }, (err,res) => {
     if (err) {
       handleError(res, err.message, 'Failed to update firstname database');
     } else {
