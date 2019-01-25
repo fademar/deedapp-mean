@@ -30,7 +30,7 @@ export class ToolsComponent implements OnInit, OnDestroy {
   alphabet = alphabet;
   nameForm;
   control;
-  formValue = [];
+  formValue;
   navigationSubscription;
 
 
@@ -50,6 +50,7 @@ export class ToolsComponent implements OnInit, OnDestroy {
   initializeComponent() {
     this.form = this.fb.group({});
     this.firstNames = [];
+    this.formValue = [];
     this.firstNamesSorted = [];
     this.firstnamesService.getFirstNames().subscribe(data => {
       this.firstNamesSorted = data;
@@ -81,6 +82,7 @@ export class ToolsComponent implements OnInit, OnDestroy {
 
 
   updateFirstName() {
+    
     for (const key in this.form.value) {
       if (this.form.value[key] !== null) {
         const newName = this.form.value[key];
