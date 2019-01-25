@@ -85,7 +85,6 @@ export class NoteDialog implements OnInit {
       user: userName
     });
     this.noteValue = JSON.stringify(this.noteForm.value);
-    console.log(this.editMode);
     if (this.editMode) {
       this.noteService.updateNote(this.noteId, this.noteValue).subscribe(note => {
         this.showNotes();
