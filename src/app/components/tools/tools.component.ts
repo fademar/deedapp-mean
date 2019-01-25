@@ -7,7 +7,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
 import { AuthService } from '../../services/auth.service';
 import { Router, NavigationEnd } from '@angular/router';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-tools',
@@ -143,16 +143,7 @@ export class ToolsComponent implements OnInit, OnDestroy {
 
 
 @Component({
-  selector: 'dialog-overview-example-dialog',
+  selector: 'tools-dialog-component',
   templateUrl: 'tools-dialog-component.html',
 })
-export class DialogTools {
-
-  constructor(
-    public dialogRef: MatDialogRef<DialogTools>) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-}
+export class DialogTools {}
