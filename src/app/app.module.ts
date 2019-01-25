@@ -63,6 +63,7 @@ import { SortPipe } from './pipes/sort.pipe';
 import { ToolsComponent } from './components/tools/tools.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { AdminComponent } from './components/admin/admin.component';
+import { DialogTools } from './components/tools/tools.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { AdminComponent } from './components/admin/admin.component';
     HighlightPipe,
     SortPipe,
     ToolsComponent,
-    AdminComponent
+    AdminComponent,
+    DialogTools
   ],
   imports: [
     BrowserModule,
@@ -120,7 +122,7 @@ import { AdminComponent } from './components/admin/admin.component';
     MatTabsModule,
     EditorModule
   ],
-  entryComponents: [ConfirmDialogComponent, NoteDialog],
+  entryComponents: [ConfirmDialogComponent, NoteDialog, DialogTools],
   providers: [Title, DeedService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, NoteService, FirstnamesService],
   schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent]
