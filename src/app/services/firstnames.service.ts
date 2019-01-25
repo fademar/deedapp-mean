@@ -131,7 +131,7 @@ export class FirstnamesService {
         });
     
         firstnamesSorted.sort((a, b) => a.name.localeCompare(b.name, 'ru', {}));
-        
+        console.log(firstnamesSorted);
         return firstnamesSorted;
     }
 
