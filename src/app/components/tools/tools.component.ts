@@ -117,14 +117,19 @@ export class ToolsComponent implements OnInit, OnDestroy {
 
 
   openDialog(response): void {
+    let arrayNames = [];
+    this.formValue.forEach(element => {
+      arrayNames.push({'oldName': element.oldName, 'newName': element.newName});
+    });
+    let arrayUniq = _.uniq(arrayNames);
     const dialogRef = this.dialog.open(DialogTools, {
       width: '250px',
       data: response
     });
   
     dialogRef.afterClosed().subscribe(result => {
-      if ((result === true) && this.formValue !== []) {
-        console.log(this.formValue);
+      if ((result === true) && arrayUniq !== []) {
+        console.log(arrayUniq);
 
 
       }
