@@ -157,7 +157,6 @@ export class FirstnamesService {
     }
 
     updateFirstnames(data): Observable<any> {
-        console.log(data);
         let httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         };
@@ -177,6 +176,16 @@ export class FirstnamesService {
             );
     }
 
+    updateFirstnamesDictionnary(data): Observable<any> {
+        console.log(data);
+        let httpOptions = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+        };
+        return this.http.post('/api/update-firstname-dictionnary', data, httpOptions)
+            .pipe(
+                catchError(this.handleError)
+            );
+    }
     // test
 
 }

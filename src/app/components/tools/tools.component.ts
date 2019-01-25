@@ -123,7 +123,11 @@ export class ToolsComponent implements OnInit, OnDestroy {
     });
   
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if ((result === true) && this.formValue !== []) {
+        console.log(this.formValue);
+
+
+      }
     });
   }
 
