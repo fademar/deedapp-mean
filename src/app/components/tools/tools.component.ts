@@ -144,6 +144,6 @@ export class ToolsComponent implements OnInit, OnDestroy {
 
 @Component({
   selector: 'tools-dialog-component',
-  templateUrl: './tools-dialog-component.html',
+  templateUrl: './tools-dialog.component.html',
 })
 export class DialogTools {}
