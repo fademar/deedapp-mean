@@ -81,7 +81,6 @@ export class ToolsComponent implements OnInit, OnDestroy {
 
 
   updateFirstName() {
-    console.log(this.form.value);
     for (const key in this.form.value) {
       if (this.form.value[key] !== null) {
         const newName = this.form.value[key];
@@ -92,7 +91,6 @@ export class ToolsComponent implements OnInit, OnDestroy {
         });
       }
     }
-    console.log(this.formValue);
     this.firstnamesService.updateFirstnames(this.formValue).subscribe(data => {
       if (Number.isInteger(data)) {
         if (data === 1) {

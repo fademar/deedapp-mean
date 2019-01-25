@@ -12,11 +12,6 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 const jwt = require('express-jwt');
 const jwks = require('jwks-rsa');
 
-
-
-
-
-
 var ObjectID = mongodb.ObjectID;
 
 // Db Collection and URI
@@ -24,10 +19,6 @@ const dbName = 'heroku_kv9gq8sz';
 const deedsCollection = 'Deeds';
 const notesCollection = 'Notes';
 const firstNamesCollection = 'Firstnames';
-
-
-
-
 
 
 // Enable CORS 
@@ -359,6 +350,7 @@ app.get('/api/update-schema', (req, res) => {
 
 app.post('/api/new-firstnames/', (req, res) => {
   const newNamesList = req.body;
+  console.log(newNamesList);
   const bulkOps = newNamesList.map(function(element) {
     return {
       "updateOne": {
@@ -381,6 +373,7 @@ app.post('/api/new-firstnames/', (req, res) => {
       res.status(200).json(result.modifiedCount);
     }
   });
+
 });
 
 /*  '/api/insert-firstnames/'

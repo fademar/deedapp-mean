@@ -131,7 +131,6 @@ export class FirstnamesService {
         });
     
         firstnamesSorted.sort((a, b) => a.name.localeCompare(b.name, 'ru', {}));
-        console.log(firstnamesSorted);
         return firstnamesSorted;
     }
 
@@ -155,7 +154,6 @@ export class FirstnamesService {
         return this.deedService.getDeeds().pipe(
             map((data) => this.createFirstNamesArray(data))
         )
-
     }
 
     updateFirstnames(data): Observable<any> {
