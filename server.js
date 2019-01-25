@@ -350,7 +350,6 @@ app.get('/api/update-schema', (req, res) => {
 
 app.post('/api/new-firstnames/', (req, res) => {
   const newNamesList = req.body;
-  console.log(newNamesList);
   const bulkOps = newNamesList.map(function(element) {
     return {
       "updateOne": {
