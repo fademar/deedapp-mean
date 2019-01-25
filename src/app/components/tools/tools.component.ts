@@ -52,6 +52,7 @@ export class ToolsComponent implements OnInit, OnDestroy {
     this.firstNames = [];
     this.firstNamesSorted = [];
     this.firstnamesService.getFirstNames().subscribe(data => {
+      this.firstNamesSorted = data;
       for (let index = 0; index < data.length; index++) {
         const control = new FormControl;
         this.form.addControl(index.toString(), control);
