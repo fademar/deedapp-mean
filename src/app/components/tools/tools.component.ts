@@ -7,7 +7,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
 import { AuthService } from '../../services/auth.service';
 import { Router, NavigationEnd } from '@angular/router';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-tools',
@@ -84,24 +84,15 @@ export class ToolsComponent implements OnInit, OnDestroy {
         });
       }
     }
-    this.firstnamesService.updateFirstnames(this.formValue).subscribe(data => {
-      if (Number.isInteger(data)) {
-        if (data === 1) {
-          this.notificationsService.success(
-            'Success',
-            'One document has been successfully updated.',
-          );
-        } else {
-          this.openDialog();
-          this.notificationsService.success(
-            'Success',
-            data + ' documents have been successfully updated.',
-          );
+    this.firstnamesService.updateFirstnames(this.formValue).subscribe(response => {
+      if (Number.isInteger(response)) {
+        if (response >= 1) {
+          this.openDialog(response);
         }
       } else {
         this.notificationsService.error(
           'Error',
-          data
+          response
         )
       }
     });
@@ -125,13 +116,14 @@ export class ToolsComponent implements OnInit, OnDestroy {
   }
 
 
-  openDialog(): void {
+  openDialog(response): void {
     const dialogRef = this.dialog.open(DialogTools, {
       width: '250px',
+      data: response
     });
   
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      console.log(`Dialog result: ${result}`);
     });
   }
 
@@ -146,4 +138,6 @@ export class ToolsComponent implements OnInit, OnDestroy {
   selector: 'tools-dialog-component',
   templateUrl: './tools-dialog.component.html',
 })
-export class DialogTools {}
+export class DialogTools {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+}
