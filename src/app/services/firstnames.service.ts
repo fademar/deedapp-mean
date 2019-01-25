@@ -117,8 +117,22 @@ export class FirstnamesService {
             }
 
         }); //END FOREACH
-        return firstNames;
-
+        
+        // Sort uniq the array
+        let firstnamesSorted = [];
+        firstNames.forEach(element => {
+          let nameAndSex = { 'name': element.getFirstname(), 'sex': element.getSex(), 'idsAndFields': [{ 'id': element.getId(), 'field': element.getField() }] };
+          let indexName = _.findIndex(firstnamesSorted, (o) => { return o.name === nameAndSex.name });
+          if (indexName === -1) {
+            firstnamesSorted.push(nameAndSex);
+          } else {
+            firstnamesSorted[indexName].idsAndFields.push({ 'id': element.getId(), 'field': element.getField() });
+          }
+        });
+    
+        firstnamesSorted.sort((a, b) => a.name.localeCompare(b.name, 'ru', {}));
+        
+        return firstnamesSorted;
     }
 
     private handleError(error: HttpErrorResponse) {
@@ -136,8 +150,8 @@ export class FirstnamesService {
         return throwError('Something bad happened; please try again later.');
     };
 
-    getFirstNames(): Observable<any> {
 
+    getFirstNames(): Observable<any> {
         return this.deedService.getDeeds().pipe(
             map((data) => this.createFirstNamesArray(data))
         )

@@ -52,30 +52,14 @@ export class ToolsComponent implements OnInit, OnDestroy {
     this.firstNames = [];
     this.firstNamesSorted = [];
     this.firstnamesService.getFirstNames().subscribe(data => {
-      this.firstNamesSorted = this.getFirstnamesSorted(data);
-      console.log(this.firstNamesSorted);
-      for (let index = 0; index < this.firstNamesSorted.length; index++) {
+      for (let index = 0; index < data.length; index++) {
         const control = new FormControl;
         this.form.addControl(index.toString(), control);
       }
     });
   }
 
-  getFirstnamesSorted(data) {
-    let array = [];
-    data.forEach(element => {
-      let nameAndSex = { 'name': element.getFirstname(), 'sex': element.getSex(), 'idsAndFields': [{ 'id': element.getId(), 'field': element.getField() }] };
-      let indexName = _.findIndex(array, (o) => { return o.name === nameAndSex.name });
-      if (indexName === -1) {
-        array.push(nameAndSex);
-      } else {
-        array[indexName].idsAndFields.push({ 'id': element.getId(), 'field': element.getField() });
-      }
-    });
-
-    array.sort((a, b) => a.name.localeCompare(b.name, 'ru', {}));
-    return array
-  }
+  
 
 
   ngOnInit() {
