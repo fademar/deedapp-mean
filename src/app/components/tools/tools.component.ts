@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, Inject } from '@angular/core';
 import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent, SubscriptionLike, PartialObserver } from 'rxjs'; import { map } from 'rxjs/operators';
 import { NotificationsService } from 'angular2-notifications';
 import { FirstnamesService } from '../../services/firstnames.service';
@@ -7,14 +7,15 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
 import { AuthService } from '../../services/auth.service';
 import { Router, NavigationEnd } from '@angular/router';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-tools',
   templateUrl: './tools.component.html',
   styleUrls: ['./tools.component.css']
 })
-export class ToolsComponent implements OnInit, OnDestroy {
 
+export class ToolsComponent implements OnInit, OnDestroy {
 
   public options = {
     position: ['bottom', 'right'],
@@ -34,18 +35,14 @@ export class ToolsComponent implements OnInit, OnDestroy {
   navigationSubscription;
 
 
-  constructor(private firstnamesService: FirstnamesService, private notificationsService: NotificationsService, private fb: FormBuilder, public auth: AuthService, private router: Router) {
-
+  constructor(private firstnamesService: FirstnamesService, private notificationsService: NotificationsService, private fb: FormBuilder, public auth: AuthService, private router: Router, public dialog: MatDialog) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {
         this.initializeComponent();
       }
     });
-
-
   }
-
 
   initializeComponent() {
     this.form = this.fb.group({});
@@ -61,9 +58,6 @@ export class ToolsComponent implements OnInit, OnDestroy {
     });
   }
 
-  
-
-
   ngOnInit() {
     this.initializeComponent();
   }
@@ -78,8 +72,6 @@ export class ToolsComponent implements OnInit, OnDestroy {
       this.navigationSubscription.unsubscribe();
     }
   }
-
-
 
   updateFirstName() {
     for (const key in this.form.value) {
@@ -100,6 +92,7 @@ export class ToolsComponent implements OnInit, OnDestroy {
             'One document has been successfully updated.',
           );
         } else {
+          this.openDialog();
           this.notificationsService.success(
             'Success',
             data + ' documents have been successfully updated.',
@@ -113,9 +106,9 @@ export class ToolsComponent implements OnInit, OnDestroy {
       }
     });
 
-    setTimeout(() => {
-      this.initializeComponent();
-    }, 2000);
+    // setTimeout(() => {
+    //   this.initializeComponent();
+    // }, 2000);
   }
 
   insertFirstNames(index) {
@@ -129,6 +122,37 @@ export class ToolsComponent implements OnInit, OnDestroy {
         'documents have been successfully inserted.',
       );
     });
+  }
+
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogTools, {
+      width: '250px',
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+
+
+
+}
+
+
+
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'tools-dialog-component.html',
+})
+export class DialogTools {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogTools>) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }
