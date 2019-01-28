@@ -121,7 +121,7 @@ export class ToolsComponent implements OnInit, OnDestroy {
     this.formValue.forEach(element => {
       arrayNames.push({'oldName': element.oldName, 'newName': element.newName});
     });
-    let arrayUniq = _.uniq(arrayNames);
+    let arrayUniq = _.uniqWith(arrayNames, _.isEqual);;
     const dialogRef = this.dialog.open(DialogTools, {
       width: '250px',
       data: response
