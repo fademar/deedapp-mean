@@ -377,7 +377,7 @@ app.post('/api/new-firstnames/', (req, res) => {
 app.post('/api/update-firstname-dictionnary/', (req, res) => {
   const newName = req.body;
   db.collection(firstNamesCollection).updateOne(
-    {name: newNamesList[0]['newName']}, {$push: { versions: newNamesList[0]['oldName']} }, (err,res) => {
+    {name: newNamesList.$.newName}, {$push: { versions: newNamesList.$.oldName} }, (err,res) => {
     if (err) {
       handleError(res, err.message, 'Failed to update firstname database');
     } else {
