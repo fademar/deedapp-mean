@@ -130,8 +130,9 @@ export class ToolsComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       if ((result === true) && arrayUniq !== []) {
         console.log(arrayUniq);
-
-
+        this.firstnamesService.updateFirstnamesDictionnary(arrayUniq).subscribe(response => {
+          console.log(response);
+        })
       }
     });
   }
