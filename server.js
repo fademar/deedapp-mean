@@ -375,7 +375,7 @@ app.post('/api/new-firstnames/', (req, res) => {
 });
 
 app.post('/api/update-firstname-dictionnary/', (req, res) => {
-  const newName = req.body;
+  const newNamesList = req.body;
   db.collection(firstNamesCollection).updateOne(
     {name: newNamesList.$.newName}, {$push: { versions: newNamesList.$.oldName} }, (err,res) => {
     if (err) {
