@@ -384,8 +384,6 @@ app.post('/api/update-firstname-dictionnary/', (req, res) => {
   // //     res.status(200).json('The firstname has been updated');
   // //   }
   // });
-
-
 });
 
 /*  '/api/insert-firstnames/'
