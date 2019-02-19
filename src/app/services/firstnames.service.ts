@@ -177,7 +177,6 @@ export class FirstnamesService {
     }
 
     updateFirstnamesDictionnary(data): Observable<any> {
-        console.log(data);
         let httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         };

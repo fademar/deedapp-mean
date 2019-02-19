@@ -375,15 +375,15 @@ app.post('/api/new-firstnames/', (req, res) => {
 });
 
 app.post('/api/update-firstname-dictionnary/', (req, res) => {
-  // // const newNamesList = req.body;
-  // // db.collection(firstNamesCollection).updateOne(
-  // //   {name: newNamesList.$.newName}, {$push: { versions: newNamesList.$.oldName} }, (err,res) => {
-  // //   if (err) {
-  // //     handleError(res, err.message, 'Failed to update firstname database');
-  // //   } else {
-  // //     res.status(200).json('The firstname has been updated');
-  // //   }
-  // });
+  const newNamesList = req.body;
+  db.collection(firstNamesCollection).updateOne(
+    {name: newNamesList.$.newName}, {$push: { versions: newNamesList.$.oldName} }, (err,res) => {
+    if (err) {
+      handleError(res, err.message, 'Failed to update firstname database');
+    } else {
+      res.status(200).json('The firstname has been updated');
+    }
+  });
 });
 
 /*  '/api/insert-firstnames/'
