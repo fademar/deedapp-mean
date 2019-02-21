@@ -50,7 +50,7 @@ import { AuthGuard } from './services/guard.service';
 import { DownloadService } from './services/download.service';
 import { NoteService } from './services/note.service';
 import { FirstnamesService } from './services/firstnames.service';
-
+import { DictionaryService } from './services/dictionary.service';
 
 import { ConfirmDialogComponent } from './shared/confirm-dialog/confirm-dialog.component';
 import { NoteComponent } from './shared/note/note.component';
@@ -64,6 +64,8 @@ import { ToolsComponent } from './components/tools/tools.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { AdminComponent } from './components/admin/admin.component';
 import { DialogTools } from './components/tools/tools.component';
+import { DictionaryComponent } from './components/dictionary/dictionary.component';
+
 
 @NgModule({
   declarations: [
@@ -86,7 +88,8 @@ import { DialogTools } from './components/tools/tools.component';
     SortPipe,
     ToolsComponent,
     AdminComponent,
-    DialogTools
+    DialogTools,
+    DictionaryComponent
   ],
   imports: [
     BrowserModule,
@@ -123,7 +126,7 @@ import { DialogTools } from './components/tools/tools.component';
     EditorModule
   ],
   entryComponents: [ConfirmDialogComponent, NoteDialog, DialogTools],
-  providers: [Title, DeedService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, NoteService, FirstnamesService],
+  providers: [Title, DeedService, SearchService, PagerService, AuthService, AuthGuard, DownloadService, NoteService, FirstnamesService, DictionaryService],
   schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent]
 })

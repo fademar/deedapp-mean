@@ -374,6 +374,25 @@ app.post('/api/new-firstnames/', (req, res) => {
   });
 });
 
+/*  '/api/firstnames-dictionary'
+ *    GET: finds all firstname in dictionary
+ *    POST: creates a new firstname record
+ */
+
+app.get('/api/firstnames-dictionary', (req, res) => {
+  db.collection(firstNamesCollection).find({}).toArray((err, doc) => {
+    if (err) {
+      handleError(res, err.message, 'Failed to get notes.');
+    } else {
+      res.status(200).json(doc);
+    }
+  });
+});
+
+
+
+
+
 app.post('/api/update-firstname-dictionnary/', (req, res) => {
   const newNamesList = req.body;
   console.log(newNamesList);

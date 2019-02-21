@@ -10,6 +10,7 @@ import { CallbackComponent } from './components/callback/callback.component';
 import { HomeComponent } from './components/home/home.component';
 import { NotesComponent } from './components/notes/notes.component';
 import { ToolsComponent } from './components/tools/tools.component';
+import { DictionaryComponent } from './components/dictionary/dictionary.component';
 
 import { AuthGuard } from './services/guard.service';
 
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
   { path: 'callback', component: CallbackComponent },
   { path: 'notes', component: NotesComponent, canActivate: [AuthGuard] },
   { path: 'tools', component: ToolsComponent, canActivate: [AuthGuard], runGuardsAndResolvers: 'always' },
+  { path: 'dictionary', component: DictionaryComponent, canActivate: [AuthGuard], runGuardsAndResolvers: 'always' }
 ]
 
 

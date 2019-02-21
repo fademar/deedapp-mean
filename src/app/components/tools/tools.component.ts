@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, OnDestroy, Inject } from '@angular/core';
-import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent, SubscriptionLike, PartialObserver } from 'rxjs'; import { map } from 'rxjs/operators';
+import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent, SubscriptionLike, PartialObserver } from 'rxjs'; 
+import { map } from 'rxjs/operators';
 import { NotificationsService } from 'angular2-notifications';
 import { FirstnamesService } from '../../services/firstnames.service';
 import { FirstNameObject, alphabet } from '../../models/deed-model';
@@ -129,8 +130,6 @@ export class ToolsComponent implements OnInit, OnDestroy {
   
     dialogRef.afterClosed().subscribe(result => {
       if ((result === true) && arrayUniq !== []) {
-        console.log(result);
-        console.log(arrayUniq);
         this.firstnamesService.updateFirstnamesDictionnary(arrayUniq).subscribe(response => {
           console.log(response);
         })
