@@ -180,7 +180,7 @@ export class FirstnamesService {
         let httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         };
-        return this.http.post('/api/create-firstname-collection', httpOptions)
+        return this.http.get('/api/create-firstname-collection', httpOptions)
             .pipe(
                 catchError(this.handleError)
             );
