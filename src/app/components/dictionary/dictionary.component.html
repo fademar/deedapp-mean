@@ -33,6 +33,7 @@
 <mat-tab-group dynamicHeight animationDuration="0ms">
   <mat-tab label="Firstnames">
     <ng-template matTabContent>
+      <pre [innerHtml]="data"></pre>
       <!-- <form (keydown.enter)="$event.preventDefault()" [formGroup]="form" (ngSubmit)="updateFirstName()" novalidate>
         <div class="float-right mt-3 mb-3">
           <button mat-raised-button color="primary" type="submit" placement="bottom" class="save-button">

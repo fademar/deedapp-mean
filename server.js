@@ -380,7 +380,7 @@ app.post('/api/new-firstnames/', (req, res) => {
  */
 
 app.get('/api/firstnames-dictionary', (req, res) => {
-  db.collection(firstNamesCollection).find({}).toArray((err, doc) => {
+  db.collection(firstNamesCollection).find().sort({'name':1}).toArray((err, doc) => {
     if (err) {
       handleError(res, err.message, 'Failed to get notes.');
     } else {
