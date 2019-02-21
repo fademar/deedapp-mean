@@ -177,10 +177,7 @@ export class FirstnamesService {
     }
 
     createFirstnamesCollection(): Observable<any> {
-        let httpOptions = {
-            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-        };
-        return this.http.get('/api/create-firstname-collection', httpOptions)
+        return this.http.get('/api/create-firstname-collection')
             .pipe(
                 catchError(this.handleError)
             );
