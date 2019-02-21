@@ -117,6 +117,15 @@ export class ToolsComponent implements OnInit, OnDestroy {
   }
 
 
+  createCollection() {
+    this.firstnamesService.createFirstnamesCollection().subscribe(data => {
+      this.notificationsService.success(
+        'Success',
+        'Collection has been successfully created.',
+      );
+    })
+  }
+
   openDialog(response): void {
     let arrayNames = [];
     this.formValue.forEach(element => {

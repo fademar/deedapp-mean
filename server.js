@@ -389,7 +389,15 @@ app.get('/api/firstnames-dictionary', (req, res) => {
   });
 });
 
-
+app.get('/api/create-firstname-collection', (req, res) => {
+  db.createCollection('Firstnames', {collation: {locale:'ru'}}, (err, doc) => {
+    if (err) {
+      handleError(res, err.message, 'Failed to create the collection.');
+    } else {
+      res.status(200).json('Creation of the collection complete');
+    }
+  });
+});
 
 
 

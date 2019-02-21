@@ -176,6 +176,16 @@ export class FirstnamesService {
             );
     }
 
+    createFirstnamesCollection(): Observable<any> {
+        let httpOptions = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+        };
+        return this.http.post('/api/create-firstname-collection', httpOptions)
+            .pipe(
+                catchError(this.handleError)
+            );
+    }
+
     updateFirstnamesDictionnary(data): Observable<any> {
         let httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
