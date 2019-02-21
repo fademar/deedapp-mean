@@ -31,16 +31,15 @@
 <div class="container main-container">
   
 <mat-tab-group dynamicHeight animationDuration="0ms">
-  <mat-tab label="Firstnames Operations">
+  <mat-tab label="Firstnames">
     <ng-template matTabContent>
-      <form (keydown.enter)="$event.preventDefault()" [formGroup]="form" (ngSubmit)="updateFirstName()" novalidate>
+      <!-- <form (keydown.enter)="$event.preventDefault()" [formGroup]="form" (ngSubmit)="updateFirstName()" novalidate>
         <div class="float-right mt-3 mb-3">
           <button mat-raised-button color="primary" type="submit" placement="bottom" class="save-button">
             <mat-icon aria-label="Submit the form">save</mat-icon> SAVE
           </button>
         </div>
         <div class="clearfix"></div>
-          <!--DEED REFERENCES-->
           <div class="card shadow mb-3">
             <div class="card-body">
               <table class="col-12">
@@ -73,31 +72,7 @@
             </table>
             </div>
           </div>
-      </form>
-    </ng-template>
-  </mat-tab>
-  <mat-tab label="Admin">
-    <ng-template matTabContent>
-        <div class="mt-4 mb-4">
-          <button mat-raised-button type="button" color="primary" class="save-button" placement="bottom" (click)="insertFirstNames(0)">
-            <mat-icon aria-label="Submit the form">input</mat-icon> INSERT FIRSTNAMES 0-99
-          </button>
-        </div>
-        <div class="mt-4 mb-4">
-          <button mat-raised-button type="button" color="primary" class="save-button" placement="bottom" (click)="insertFirstNames(1)">
-            <mat-icon aria-label="Submit the form">input</mat-icon> INSERT FIRSTNAMES 100-199
-          </button>
-        </div>
-        <div class="mt-4 mb-4">
-          <button mat-raised-button type="button" color="primary" class="save-button" placement="bottom" (click)="insertFirstNames(2)">
-            <mat-icon aria-label="Submit the form">input</mat-icon> INSERT FIRSTNAMES 200-299
-          </button>
-        </div>
-        <div class="mt-4 mb-4">
-          <button mat-raised-button type="button" color="primary" class="save-button" placement="bottom" (click)="insertFirstNames(3)">
-            <mat-icon aria-label="Submit the form">input</mat-icon> INSERT FIRSTNAMES 300-361
-          </button>
-        </div>
+      </form> -->
     </ng-template>
   </mat-tab>
 </mat-tab-group>

@@ -18,6 +18,15 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class DictionaryComponent implements OnInit {
 
+  public options = {
+    position: ['bottom', 'right'],
+    timeOut: 2000,
+    showProgressBar: false,
+    pauseOnHover: false,
+    animate: 'fade'
+  }
+
+
   constructor(private dictionaryService: DictionaryService, private notificationsService: NotificationsService, private fb: FormBuilder, public auth: AuthService, private router: Router, public dialog: MatDialog) { }
 
   
