@@ -33,7 +33,8 @@ export class SearchComponent implements OnInit {
     ngOnInit() {
         this.titleService.setTitle('SEARCH - Russian Deeds App');
         this.searchForm = this.fb.group({
-            searchTerm: ['']
+            searchTerm: [''],
+            searchSubstr: ['']
         })
 
         this.sub = this.route

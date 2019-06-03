@@ -297,6 +297,18 @@ app.get('/api/search/:term', (req, res) => {
   });
 });
 
+app.get('/api/search/sub/:substring', (req, res) => {
+  let subsString = req.params.substring;
+  db.collection(deedsCollection).find({
+    
+  }).toArray((err, docs) => {
+    if (err) {
+      handleError(res, err.message, 'Failed to get deeds.');
+    } else {
+      res.status(200).json(docs);
+    }
+  });
+});
 
 /*  '/api/schema-version'
  *    GET: update the database for schema version

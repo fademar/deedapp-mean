@@ -45,6 +45,13 @@ export class SearchService {
       map(this.extractData),
       catchError(this.handleError));
 	}
+
+	searchSubstring(subString: string): Observable<any> {
+		const url = `${apiUrl}/sub/${subString}`;
+		return this.http.get(url, httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
+	}
 	 
   clearCache(){
     this.results = null;
