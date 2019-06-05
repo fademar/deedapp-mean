@@ -107,7 +107,10 @@ app.get('/api/deeds-index', (req, res) => {
     if (err) {
       handleError(res, err.message, 'Failed to get deeds.');
     } else {
-      console.log(docs);
+      docs.forEach(doc => {
+        doc.mongo_id = doc._id;
+        delete doc._id;
+      });
       res.status(200).json(docs);
     }
   });
