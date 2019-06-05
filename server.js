@@ -110,6 +110,21 @@ app.get('/api/deeds-index', (req, res) => {
       docs.forEach(doc => {
         doc.mongo_id = doc._id;
         delete doc._id;
+        if (doc.coAgents.length == 0) {
+          doc.coAgents.push({});
+        }
+        if (doc.coCounterAgents.length == 0) {
+          doc.coCounterAgents.push({});
+        }
+        if (doc.whitnesses.length == 0) {
+          doc.whitnesses.push({});
+        }
+        if (doc.sureties.length == 0) {
+          doc.sureties.push({});
+        }
+        if (doc.otherParticipants.length == 0) {
+          doc.otherParticipants.push({});
+        }
       });
       res.status(200).json(docs);
     }
