@@ -102,6 +102,17 @@ app.get('/api/deeds', (req, res) => {
   });
 });
 
+app.get('/api/deeds-index', (req, res) => {
+  db.collection(deedsCollection).find({}).sort({_id: -1}).toArray((err, docs) => {
+    if (err) {
+      handleError(res, err.message, 'Failed to get deeds.');
+    } else {
+      console.log(docs);
+      res.status(200).json(docs);
+    }
+  });
+});
+
 app.post('/api/deeds', (req, res) => {
   var newDeed = req.body;
 
