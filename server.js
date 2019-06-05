@@ -127,74 +127,8 @@ app.get('/api/deeds-index', (req, res) => {
           doc.otherParticipants.push({});
         }
       });
-      const transformStream = ndjson.stringify();
-      const outputStream = transformStream.pipe( fileSystem.createWriteStream( __dirname + "/data.ndjson" ) );
-      docs.forEach(
-        function iterator( record ) {
-    
-            transformStream.write( record );
-    
-        }
-      );
-    
-    // Once we've written each record in the record-set, we have to end the stream so that
-    // the TRANSFORM stream knows to flush and close the file output stream.
-    transformStream.end();
-    
-    // Once ndjson has flushed all data to the output stream, let's indicate done.
-    outputStream.on(
-        "finish",
-        function handleFinish() {
-    
-            console.log( chalk.green( "ndjson serialization complete!" ) );
-            console.log( "- - - - - - - - - - - - - - - - - - - - - - -" );
-    
-        }
-    );
-    
-    
-    // ----------------------------------------------------------------------------------- //
-    // ----------------------------------------------------------------------------------- //
-    
-    
-    // Since the stream actions are event-driven (and asynchronous), we have to wait until
-    // our output stream has been closed before we can try reading it back in.
-    outputStream.on(
-        "finish",
-        function handleFinish() {
-    
-            // When we read the file back into memory, ndjson will stream, buffer, and split
-            // the content based on the newline character. It will then parse each newline-
-            // delimited value as a JSON object and emit it from the TRANSFORM stream.
-            var inputStream = fileSystem.createReadStream( __dirname + "/data.ndjson" );
-            var transformStream = inputStream.pipe( ndjson.parse() );
-    
-            transformStream
-                // Each "data" event will emit one item from our original record-set.
-                .on(
-                    "data",
-                    function handleRecord( data ) {
-    
-                        console.log( chalk.red( "Record (event):" ), data );
-    
-                    }
-                )
-    
-                // Once ndjson has parsed all the input, let's indicate done.
-                .on(
-                    "end",
-                    function handleEnd() {
-    
-                        console.log( "- - - - - - - - - - - - - - - - - - - - - - -" );
-                        console.log( chalk.green( "ndjson parsing complete!" ) );
-    
-                    }
-                )
-            ;
-    
-          }
-      );
-      res.status(200).json(data);
+      
+      res.status(200).json(docs);
     }
   });
 });
