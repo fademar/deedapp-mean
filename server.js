@@ -472,6 +472,21 @@ app.post('/api/insert-firstnames/', (req,res) => {
 
 });
 
+/*  '/api/insert-objecttype/'
+ *    POST: insert the firstnames for the firstnames dictionnary
+ */
+app.post('/api/insert-objecttype/', (req,res) => {
+  const firstNamesList = req.body;
+  db.collection(firstNamesCollection).insertMany(firstNamesList, (err, result) => {
+    if (err) {
+      handleError(result, err.message, 'Failed to insert the document');
+    } else {
+      res.status(200).json('Firstames inserted');
+    }
+  });
+
+});
+
 
 
 app.get('*', function (req, res) {

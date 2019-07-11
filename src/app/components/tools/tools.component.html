@@ -1,45 +1,57 @@
 <simple-notifications [options]="options"></simple-notifications>
 <mat-toolbar color="primary" class="nav-bar" id="cssmenu">
-    <span class="nav-brand mr-5">Deed App</span>
-    <ul>
-      <li routerLinkActive="active">
-        <a [routerLink]="['/list']">List</a>
-      </li>
-      <li routerLinkActive="active">
-        <a [routerLink]="['/deed/add']">New Deed</a>
-      </li>
-      <li routerLinkActive="active">
-        <a [routerLink]="['/search']" appNewWindow>Search</a>
-      </li>
-      <li routerLinkActive="active">
-        <a [routerLink]="['/notes']" target="_blank">Notes</a>
-      </li>
-      <li routerLinkActive="active">
-        <a [routerLink]="['/tools']">Tools</a>
-      </li>
-      <li routerLinkActive="active">
-        <a [routerLink]="['/dictionary']">Dictionary</a>
-      </li>
-    </ul>
-    <span class="spacer"></span>
+  <span class="nav-brand mr-5">Deed App</span>
+  <ul>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/list']">List</a>
+    </li>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/deed/add']">New Deed</a>
+    </li>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/search']" appNewWindow>Search</a>
+    </li>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/notes']" target="_blank">Notes</a>
+    </li>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/tools']">Tools</a>
+    </li>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/dictionary']">Dictionary</a>
+    </li>
+  </ul>
+  <span class="spacer"></span>
 
-    <button mat-icon-button class="logout-button" (click)="auth.logout()">
-      <mat-icon class="nav-icon md-24" aria-label="Logout">power_settings_new</mat-icon>
-    </button>
-  </mat-toolbar>
+  <button mat-icon-button class="logout-button" (click)="auth.logout()">
+    <mat-icon class="nav-icon md-24" aria-label="Logout"
+      >power_settings_new</mat-icon
+    >
+  </button>
+</mat-toolbar>
 
 <div class="container main-container">
-  
-<mat-tab-group dynamicHeight animationDuration="0ms">
-  <mat-tab label="Firstnames">
-    <ng-template matTabContent>
-      <form (keydown.enter)="$event.preventDefault()" [formGroup]="form" (ngSubmit)="updateDictionary()" novalidate>
-        <div class="float-right mt-3 mb-3">
-          <button mat-raised-button color="primary" type="submit" placement="bottom" class="save-button">
-            <mat-icon aria-label="Submit the form">save</mat-icon> SAVE
-          </button>
-        </div>
-        <div class="clearfix"></div>
+  <mat-tab-group dynamicHeight animationDuration="0ms">
+    <mat-tab label="Firstnames">
+      <ng-template matTabContent>
+        <form
+          (keydown.enter)="$event.preventDefault()"
+          [formGroup]="form"
+          (ngSubmit)="updateDictionary()"
+          novalidate
+        >
+          <div class="float-right mt-3 mb-3">
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              placement="bottom"
+              class="save-button"
+            >
+              <mat-icon aria-label="Submit the form">save</mat-icon> SAVE
+            </button>
+          </div>
+          <div class="clearfix"></div>
           <!--DEED REFERENCES-->
           <div class="card shadow mb-3">
             <div class="card-body">
@@ -53,62 +65,122 @@
                   </tr>
                 </thead>
                 <tbody>
-              <ng-template ngFor let-element [ngForOf]="firstNamesSorted" let-i="index">
-                <tr>
-                  <td>
-                    {{ i }}
-                  </td>
-                  <td>
-                    {{ element.name }}
-                  </td>
-                    <td>
-                      {{ element.idsAndFields.length }}
-                    </td>
-                  <td>
-                      <input type="text" class="form-control" [formControlName]="i" trim="blur">
-                  </td>
-                </tr>
-              </ng-template>
-            </tbody>
-            </table>
+                  <ng-template
+                    ngFor
+                    let-element
+                    [ngForOf]="firstNamesSorted"
+                    let-i="index"
+                  >
+                    <tr>
+                      <td>
+                        {{ i }}
+                      </td>
+                      <td>
+                        {{ element.name }}
+                      </td>
+                      <td>
+                        {{ element.idsAndFields.length }}
+                      </td>
+                      <td>
+                        <input
+                          type="text"
+                          class="form-control"
+                          [formControlName]="i"
+                          trim="blur"
+                        />
+                      </td>
+                    </tr>
+                  </ng-template>
+                </tbody>
+              </table>
             </div>
           </div>
-      </form>
-    </ng-template>
-  </mat-tab>
-  <mat-tab label="Admin">
-      <ng-template matTabContent>
-          <div class="mt-4 mb-4">
-            <button mat-raised-button type="button" color="primary" class="save-button" placement="bottom" (click)="insertFirstNames(0)">
-              <mat-icon aria-label="Submit the form">input</mat-icon> INSERT FIRSTNAMES 0-99
-            </button>
-          </div>
-          <div class="mt-4 mb-4">
-            <button mat-raised-button type="button" color="primary" class="save-button" placement="bottom" (click)="insertFirstNames(1)">
-              <mat-icon aria-label="Submit the form">input</mat-icon> INSERT FIRSTNAMES 100-199
-            </button>
-          </div>
-          <div class="mt-4 mb-4">
-            <button mat-raised-button type="button" color="primary" class="save-button" placement="bottom" (click)="insertFirstNames(2)">
-              <mat-icon aria-label="Submit the form">input</mat-icon> INSERT FIRSTNAMES 200-299
-            </button>
-          </div>
-          <div class="mt-4 mb-4">
-            <button mat-raised-button type="button" color="primary" class="save-button" placement="bottom" (click)="insertFirstNames(3)">
-              <mat-icon aria-label="Submit the form">input</mat-icon> INSERT FIRSTNAMES 300-361
-            </button>
-          </div>
-          <hr>
-          <div class="mt-4 mb-4">
-            <button mat-raised-button type="button" color="primary" class="save-button" placement="bottom" (click)="createCollection()">
-              <mat-icon aria-label="Submit the form">input</mat-icon> CREATE COLLECTION
-            </button>
-          </div>
+        </form>
       </ng-template>
     </mat-tab>
-</mat-tab-group>
-
-
+    <mat-tab label="Admin">
+      <ng-template matTabContent>
+        <div class="mt-4 mb-4">
+          <button
+            mat-raised-button
+            type="button"
+            color="primary"
+            class="save-button"
+            placement="bottom"
+            (click)="insertFirstNames(0)"
+          >
+            <mat-icon aria-label="Submit the form">input</mat-icon> INSERT
+            FIRSTNAMES 0-99
+          </button>
+        </div>
+        <div class="mt-4 mb-4">
+          <button
+            mat-raised-button
+            type="button"
+            color="primary"
+            class="save-button"
+            placement="bottom"
+            (click)="insertFirstNames(1)"
+          >
+            <mat-icon aria-label="Submit the form">input</mat-icon> INSERT
+            FIRSTNAMES 100-199
+          </button>
+        </div>
+        <div class="mt-4 mb-4">
+          <button
+            mat-raised-button
+            type="button"
+            color="primary"
+            class="save-button"
+            placement="bottom"
+            (click)="insertFirstNames(2)"
+          >
+            <mat-icon aria-label="Submit the form">input</mat-icon> INSERT
+            FIRSTNAMES 200-299
+          </button>
+        </div>
+        <div class="mt-4 mb-4">
+          <button
+            mat-raised-button
+            type="button"
+            color="primary"
+            class="save-button"
+            placement="bottom"
+            (click)="insertFirstNames(3)"
+          >
+            <mat-icon aria-label="Submit the form">input</mat-icon> INSERT
+            FIRSTNAMES 300-361
+          </button>
+        </div>
+        <hr />
+        <div class="mt-4 mb-4">
+          <button
+            mat-raised-button
+            type="button"
+            color="primary"
+            class="save-button"
+            placement="bottom"
+            (click)="createCollection()"
+          >
+            <mat-icon aria-label="Submit the form">input</mat-icon> CREATE
+            COLLECTION
+          </button>
+        </div>
+        <hr />
+        <div class="mt-4 mb-4">
+          <button
+            mat-raised-button
+            type="button"
+            color="primary"
+            class="save-button"
+            placement="bottom"
+            (click)="updateDeeds()"
+          >
+            <mat-icon aria-label="Submit the form">input</mat-icon> UPDATE DEEDS
+          </button>
+          <pre>{{ deeds }}</pre>
+        </div>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
 </div>
-
-  
