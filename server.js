@@ -9,9 +9,6 @@ const app = express();
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
-const jwt = require("express-jwt");
-const jwks = require("jwks-rsa");
-
 var ObjectID = mongodb.ObjectID;
 
 // Db Collection and URI
