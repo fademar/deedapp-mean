@@ -3,7 +3,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongodb = require("mongodb");
 const path = require("path");
-var ndjson = require("ndjson");
 
 // App Init
 const app = express();
