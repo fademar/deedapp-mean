@@ -48,7 +48,7 @@
     "lodash": "^4.17.11",
     "material-colors": "^1.2.6",
     "material-design-icons": "3.0.1",
-    "mongodb": "^3.1.6",
+    "mongodb": "^3.1.13",
     "ng2-trim-directive": "^2.1.5",
     "ngx-bootstrap": "^3.0.1",
     "ngx-json-viewer": "^2.3.1",
